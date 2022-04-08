@@ -1,0 +1,17 @@
+﻿<Window x:Class="Hospital.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Hospital"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Button Content="Manager" HorizontalAlignment="Left" Margin="150,140,0,0" VerticalAlignment="Top" Width="150" Height="40"/>
+        <Button Content="Patient" HorizontalAlignment="Left" Margin="470,300,0,0" VerticalAlignment="Top" Width="150" Height="40"/>
+        <Button Content="Doctor" HorizontalAlignment="Left" Margin="150,300,0,0" VerticalAlignment="Top" Width="150" Height="40"/>
+        <Button Content="Secretary" HorizontalAlignment="Left" Margin="470,140,0,0" VerticalAlignment="Top" Width="150" Height="40"/>
+        <TextBlock HorizontalAlignment="Left" Margin="343,50,0,0" TextWrapping="Wrap" Text="HOME" VerticalAlignment="Top" Height="40" Width="90" FontSize="30"/>
+
+    </Grid>
+</Window>
