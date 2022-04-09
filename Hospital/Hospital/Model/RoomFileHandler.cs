@@ -4,7 +4,7 @@ namespace Hospital.Model
 {
    public class RoomFileHandler
    {
-      public List<Room> Read()
+      public System.Collections.Generic.List<Room> Read()
       {
          // TODO: implement
          return null;
