@@ -7,10 +7,10 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Button Content="Manager" HorizontalAlignment="Left" Margin="150,140,0,0" VerticalAlignment="Top" Width="150" Height="40"/>
-        <Button Content="Patient" HorizontalAlignment="Left" Margin="470,300,0,0" VerticalAlignment="Top" Width="150" Height="40"/>
-        <Button Content="Doctor" HorizontalAlignment="Left" Margin="150,300,0,0" VerticalAlignment="Top" Width="150" Height="40"/>
-        <Button Content="Secretary" HorizontalAlignment="Left" Margin="470,140,0,0" VerticalAlignment="Top" Width="150" Height="40"/>
+        <Button Content="Manager" HorizontalAlignment="Left" Margin="150,140,0,0" VerticalAlignment="Top" Width="150" Height="40" Click="ManagerClick"/>
+        <Button Content="Patient" HorizontalAlignment="Left" Margin="470,300,0,0" VerticalAlignment="Top" Width="150" Height="40" Click="PatientClick"/>
+        <Button Content="Doctor" HorizontalAlignment="Left" Margin="150,300,0,0" VerticalAlignment="Top" Width="150" Height="40" Click="DoctorClick"/>
+        <Button Content="Secretary" HorizontalAlignment="Left" Margin="470,140,0,0" VerticalAlignment="Top" Width="150" Height="40" Click="SecretaryClick"/>
         <TextBlock HorizontalAlignment="Left" Margin="343,50,0,0" TextWrapping="Wrap" Text="HOME" VerticalAlignment="Top" Height="40" Width="90" FontSize="30"/>
 
     </Grid>

@@ -21,5 +21,21 @@ namespace Hospital {
         public MainWindow() {
             InitializeComponent();
         }
+        private void DoctorClick(object sender, RoutedEventArgs e) {
+            Doctor.DoctorWindow doctorWindow = new Doctor.DoctorWindow();
+            doctorWindow.Show();
+        }
+        private void ManagerClick(object sender, RoutedEventArgs e) {
+            Manager.ManagerWindow managerWindow = new Manager.ManagerWindow();
+            managerWindow.Show();
+        }
+        private void SecretaryClick(object sender, RoutedEventArgs e) {
+            Secretary.SecretaryWindow secretaryWindow = new Secretary.SecretaryWindow();
+            secretaryWindow.Show();
+        }
+        private void PatientClick(object sender, RoutedEventArgs e) {
+            Patient.PatientWindow patientWindow = new Patient.PatientWindow();
+            patientWindow.Show();
+        }
     }
 }
