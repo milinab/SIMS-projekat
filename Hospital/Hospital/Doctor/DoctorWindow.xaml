@@ -5,8 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Hospital.Doctor"
         mc:Ignorable="d"
-        Title="DoctorWindow" Height="450" Width="800">
+        Title="DoctorWindow" Height="768" Width="1024" ResizeMode="NoResize">
     <Grid>
-        
+
+        <Button Content="Add" Margin="229,680,624.6,10.4" Click="AddClick"/>
+        <Button Content="Edit" Margin="447,680,406.6,10.4" Click="EditClick"/>
+        <Button Content="Delete" Margin="655,680,198.6,10.4" Click="DeleteClick"/>
+        <DataGrid Name="table" Height="551" Margin="0,60,0,10" VerticalAlignment="Top" Width="960" SelectionChanged="DataGrid_SelectionChanged"/>
+        <TextBlock HorizontalAlignment="Left" Margin="417,10,0,0" TextWrapping="Wrap" Text="Appointmentss" VerticalAlignment="Top" Height="41" Width="194" FontSize="30"/>
+
     </Grid>
 </Window>

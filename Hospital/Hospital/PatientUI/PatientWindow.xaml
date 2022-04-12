@@ -1,0 +1,73 @@
+﻿<Window x:Class="Hospital.PatientUI.PatientWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Hospital.PatientUI"
+        mc:Ignorable="d"
+        Title="PatientWindow" Height="560" Width="800"
+        x:Name="_window">
+    <Grid Margin="0,0,0,2">
+        <DataGrid x:Name="dataGridAppointments" ItemsSource="{Binding Appointments}" IsReadOnly="True"
+                  SelectionMode="Single" AutoGenerateColumns="False" HorizontalAlignment="Center" SelectionChanged="dataGridRooms_SelectionChanged" 
+                  Height="195" Width="763"  VerticalAlignment="Top" RenderTransformOrigin="0.496,0.563" Margin="0,51,0,0">
+            <DataGrid.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </DataGrid.RenderTransform>
+            <DataGrid.Columns>
+                <!--<DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="1*"/>-->
+                <DataGridTextColumn Header="Doctor" Binding="{Binding Doctor.Name}" Width="9*"/>
+                <DataGridTextColumn Header="Date" Binding="{Binding Date}" Width="23*"/>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Command="{Binding DataContext.DeleteCommand, ElementName=_window}" CommandParameter="{Binding}">Cancel an appointment</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+
+        </DataGrid>
+        <Button x:Name="BTN_BookAnAppointment" Content="Book an appointment" HorizontalAlignment="Left" Margin="20,25,0,0" VerticalAlignment="Top" Click="OpenBookAnAppointmentWindowClick"/>
+        <Button Content="Add" HorizontalAlignment="Left" Margin="93,462,0,0" VerticalAlignment="Top"  Click="BookAnAppointmentClick" Width="142"/>
+        <Label x:Name="labelDoctor" Content="Doctor:" HorizontalAlignment="Left" Margin="20,251,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="labelDate" Content="Date:" HorizontalAlignment="Left" Margin="20,286,0,0" VerticalAlignment="Top"/>
+        <Calendar x:Name="calendar" HorizontalAlignment="Left" Margin="74,284,0,0" VerticalAlignment="Top"/>
+        <Label Content="Edit an appointment" HorizontalAlignment="Center" Margin="0,254,0,0" VerticalAlignment="Top"/>
+
+
+        <Grid Grid.Column="0" DataContext="{Binding ElementName=dataGridAppointments,Path=SelectedItem}" Margin="20,11,-20,-11">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="365.04"/>
+                <RowDefinition Height="105.92"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+
+
+            <TextBlock Grid.Column="0" Grid.Row="0" Margin="344,288,0,61" HorizontalAlignment="Left"> Change Doctor:</TextBlock>
+            <TextBlock Grid.Column="0" Margin="344,327,334,0" TextWrapping="Wrap" Text="Change Date:" VerticalAlignment="Top" Height="17"/>
+
+            <TextBox HorizontalAlignment="Left" Margin="443,284,0,61" Grid.Row="0" Text="{Binding Path=Doctor.Name}" Width="156"/>
+            <TextBox HorizontalAlignment="Left" Margin="443,327,0,0" Text="{Binding Path=Date}" TextWrapping="Wrap" VerticalAlignment="Top" Width="156" Height="17"/>
+
+        </Grid>
+        <ComboBox x:Name="doctorsComboBox" ItemsSource="{Binding Doctors}" DisplayMemberPath="Name" SelectedValue="Name"  HorizontalAlignment="Left" Margin="77,254,0,0" VerticalAlignment="Top" Width="120"/>
+
+
+
+
+
+
+    </Grid>
+</Window>
