@@ -1,0 +1,82 @@
+﻿<Window x:Class="Hospital.Manager.ManagerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Hospital.Manager"
+        mc:Ignorable="d"
+        Title="ManagerWindow" Height="450" Width="800"
+        x:Name="_window">
+    <Grid>
+        <DataGrid x:Name="dataGridRooms" ItemsSource="{Binding Rooms}" IsReadOnly="True" 
+                  SelectionMode="Single" AutoGenerateColumns="False" HorizontalAlignment="Right" CanUserAddRows="True" CanUserDeleteRows="True"
+                  Height="240" VerticalAlignment="Top" Width="766" SelectionChanged="dataGridRooms_SelectionChanged" RenderTransformOrigin="0.5,0.5" Margin="0,21,21,0" AddingNewItem="DataGrid_AddingNewItem">
+
+            <DataGrid.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </DataGrid.RenderTransform>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
+                <DataGridTextColumn Header="Equipment" Binding="{Binding Equipment}" Width="*"/>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Command="{Binding DataContext.DeleteCommand, ElementName=_window}" CommandParameter="{Binding}">Delete</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+
+
+
+        <Button Content="Add" HorizontalAlignment="Left" Margin="261,393,0,0" VerticalAlignment="Top" Width="86" Height="25" Click="AddRoomClick"/>
+        <TextBox x:Name="TextBox" TextWrapping="Wrap" Margin="104,311,470,69"/>
+        <TextBox x:Name="TextBox2" TextWrapping="Wrap" Margin="104,352,470,28"/>
+
+        <Label Content="Equipment:" Margin="10,352,0,0" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top" Width="94" Height="82"/>
+        <Label Content="ID:" Margin="10,309,696,0" FontSize="16" />
+
+        <Grid Grid.Column="0" DataContext="{Binding ElementName=dataGridRooms,Path=SelectedItem}" Margin="470,311,0,2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="5.04"/>
+                <RowDefinition Height="1.5"/>
+                <RowDefinition Height="3"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0" />
+                <ColumnDefinition Width="7"/>
+                <ColumnDefinition Width="85"/>
+                <ColumnDefinition Width="67*" />
+                <ColumnDefinition Width="18*"/>
+                <ColumnDefinition Width="93*"/>
+                <ColumnDefinition Width="35*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock RenderTransformOrigin="1.149,0.944" HorizontalAlignment="Left" Width="124" Height="47" VerticalAlignment="Top" Text="ID:" FontSize="16" Grid.Column="1" Grid.ColumnSpan="2" Margin="-42,0,0,0" Grid.RowSpan="5"/>
+
+            <TextBox Text="{Binding Path=Id, Mode = TwoWay}" Height="29" VerticalAlignment="Top" Margin="38,-2,28,0" Grid.ColumnSpan="5" Grid.Column="2" Grid.RowSpan="2" />
+            <TextBox Grid.Row="2" Text="{Binding Path=Equipment, Mode = TwoWay}" Margin="39,11,0,-1" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="245" Height="29" Grid.Column="2" Grid.ColumnSpan="5" Grid.RowSpan="3">
+                <TextBox.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleY="1"/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </TextBox.RenderTransform>
+            </TextBox>
+        </Grid>
+        <Label Content="Equipment:" HorizontalAlignment="Left" Height="35" Margin="421,352,0,0" VerticalAlignment="Top" Width="97" FontSize="16"/>
+        <Label Content="Add new room:" Margin="10,266,616,2" FontSize="18" FontWeight="Bold"/>
+        <Label Content="Edit room:" Margin="421,266,241,94" FontSize="18" FontWeight="Bold"/>
+    </Grid>
+</Window>
+ 
