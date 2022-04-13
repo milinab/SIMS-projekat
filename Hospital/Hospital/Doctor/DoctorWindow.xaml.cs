@@ -34,12 +34,21 @@ namespace Hospital.Doctor {
             Content = addPage;
         }
         private void EditClick(object sender, RoutedEventArgs e) {
-            Edit editWindow = new Edit((Model.Appointment)gridAppointments.SelectedItem, _appointmentHandler);
-            editWindow.Show();
+            if (gridAppointments.SelectedItem != null) {
+                Edit editWindow = new Edit((Model.Appointment)gridAppointments.SelectedItem, _appointmentHandler);
+                editWindow.Show();
+            }
+            else {
+                MessageBox.Show("You must select row first", "Warning");
+            }
         }
         private void DeleteClick(object sender, RoutedEventArgs e) {
-            Model.Appointment app = (Model.Appointment)gridAppointments.SelectedItem;
-            _appointmentHandler.Delete(app.Id);
+            if (gridAppointments.SelectedItem != null) {
+                Model.Appointment app = (Model.Appointment)gridAppointments.SelectedItem;
+                _appointmentHandler.Delete(app.Id);
+            } else {
+                MessageBox.Show("You must select row first", "Warning");
+            }
         }
 
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e) {

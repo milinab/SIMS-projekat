@@ -26,6 +26,14 @@ namespace Hospital.Doctor {
             _appointmentHandler = appointmentHandler;
             id.Text = (_appointment.Id).ToString();
             datepicker.SelectedDate = _appointment.Date;
+            int hour = _appointment.Date.Hour;
+            int minute = _appointment.Date.Minute;
+            String hourString = hour.ToString();
+            String minuteString = minute.ToString();
+            timebox.Text = hourString + ":" + minuteString;
+            int hours = _appointment.Duration.Hours;
+            int minutes = _appointment.Duration.Minutes;
+            duration.Text = hours.ToString() + ":" + minute.ToString();
         }
 
         private void RoomClick(object sender, RoutedEventArgs e) {
@@ -41,7 +49,18 @@ namespace Hospital.Doctor {
         }
 
         private void Confirm(object sender, RoutedEventArgs e) {
-            Model.Appointment _appointment = new Model.Appointment{ Id = Int32.Parse(id.Text), Date = datepicker.SelectedDate.Value };
+            string _time = timebox.Text;
+            string[] timeParts = _time.Split(':');
+            DateTime _editDate = datepicker.SelectedDate.Value + new TimeSpan(Int32.Parse(timeParts[0]), Int32.Parse(timeParts[1]), 0);
+
+            string _duration = duration.Text;
+            string[] durationParts = _duration.Split(':');
+            TimeSpan _editDuration = new TimeSpan(Int32.Parse(durationParts[0]), Int32.Parse(durationParts[1]), 0);
+            Model.Appointment _appointment = new Model.Appointment {
+                Id = Int32.Parse(id.Text),
+                Date = _editDate,
+                Duration = _editDuration
+            };
             _appointmentHandler.Edit(_appointment);
             Close();
         }

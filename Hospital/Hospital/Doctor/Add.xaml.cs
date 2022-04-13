@@ -43,9 +43,17 @@ namespace Hospital.Doctor {
         private void Confirm(object sender, RoutedEventArgs e) {
             int _id = Int32.Parse(id.Text);
             DateTime _date = datepicker.SelectedDate.Value;
-            Model.Appointment appointment = new Model.Appointment { 
+            string _time = timebox.Text;
+            string[] _timeParts = _time.Split(':');
+            _date = _date + new TimeSpan(Int32.Parse(_timeParts[0]), Int32.Parse(_timeParts[1]), 0);
+            String _dur = duration.Text;
+            string[] _durationParts = _dur.Split(':');
+            TimeSpan _duration = new TimeSpan(Int32.Parse(_durationParts[0]), Int32.Parse(_durationParts[1]), 0);
+            Model.Appointment appointment = new Model.Appointment {
                 Id =  _id,
-                Date = _date };
+                Date = _date,
+                Duration = _duration
+            };
             appointmentHandler.Create(appointment);
             doctorWindow.BackToDoctorWindow();
         }

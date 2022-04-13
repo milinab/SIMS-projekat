@@ -35,11 +35,14 @@ namespace Hospital.Model
         public void Edit(Appointment newAppointment)
         {
             DateTime _date = newAppointment.Date;
+            TimeSpan _duration = newAppointment.Duration;
+            Console.WriteLine(_duration);
             foreach (Appointment appointment in appointments)
             {
                 if (newAppointment.Id.Equals(appointment.Id))
                 {
                     appointment.Date = _date;
+                    appointment.Duration = _duration;
                 }
             }
         }
