@@ -21,10 +21,14 @@ namespace Hospital.Secretary
     public partial class EditPatient : Window
     {
         public Patient patient1 { get; set; }
-        public EditPatient(Patient patient)
+        private PatientHandler PatientHandler;
+        public EditPatient(Patient patient, SecretaryWindow secretaryWindow, PatientHandler patientHandler)
         {
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
+            PatientHandler = patientHandler;
+
+
             this.nameText.Text = patient.Name;
             this.lastNameText.Text = patient.LastName;
             this.usernameText.Text = patient.Username;
@@ -86,12 +90,8 @@ namespace Hospital.Secretary
                     Number = numberText.Text
                 }
 
-
-
             };
-            var found = SecretaryWindow.Patients.FirstOrDefault(x => x.IdNumber == NewPatient.IdNumber );
-            SecretaryWindow.Patients.Remove(found);
-            SecretaryWindow.Patients.Add(NewPatient);
+            PatientHandler.Edit(NewPatient);
             DialogResult = true;
         }
     }

@@ -1,40 +1,57 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace Hospital.Model
 {
     public class PatientHandler
    {
+
+      public PatientHandler()
+        {
+            Patients = new ObservableCollection<Patient>();
+        }
       public Patient ReadById(int id)
       {
-         // TODO: implement
-         return null;
-      }
+            foreach (var patient in Patients)
+            {
+                if (patient.Id == id)
+                {
+                    return patient;
+                }
+            }
+            return null;
+        }
       
       public void Create(Patient newPatient)
       {
-            PatientList.Add(newPatient);
+            Patients.Add(newPatient);
         }
       
-      public void Edit(int id)
+      public void Edit(Patient newPatient)
       {
-         // TODO: implement
-      }
+            var found = Patients.FirstOrDefault(x => x.IdNumber == newPatient.IdNumber);
+            Patients.Remove(found);
+            Create(newPatient);
+        }
       
-      public void Delete(int id)
+      public void Delete(Patient newPatient)
       {
-         // TODO: implement
-      }
-      
-      public List<Patient> ReadAll()
-      {
-         // TODO: implement
-         return null;
-      }
-   
+            if (newPatient != null)
+            {
+                Patients.Remove(newPatient);
+            }
+        }
+
+      public ObservableCollection<Patient> ReadAll()
+            {
+                return Patients;
+            }
+
       public PatientFileHandler patientFileHandler { get; set; }
 
-        public List<Patient> PatientList = new List<Patient>();
+      private ObservableCollection<Patient> Patients;
 
     }
 }

@@ -24,9 +24,9 @@ namespace Hospital.Doctor {
             InitializeComponent();
             _appointmentHandler = new Model.AppointmentHandler();
             _content = Content;
-            table.ItemsSource = _appointmentHandler.ReadAll();
+            this.DataContext = this;
+            gridAppointments.ItemsSource = _appointmentHandler.ReadAll();
 
-            _appointmentHandler.Create(new Model.Appointment { Id = 30 });
         }
         private void AddClick(object sender, RoutedEventArgs e) {
             
@@ -34,11 +34,11 @@ namespace Hospital.Doctor {
             Content = addPage;
         }
         private void EditClick(object sender, RoutedEventArgs e) {
-            Edit editWindow = new Edit((Model.Appointment)table.SelectedItem, _appointmentHandler);
+            Edit editWindow = new Edit((Model.Appointment)gridAppointments.SelectedItem, _appointmentHandler);
             editWindow.Show();
         }
         private void DeleteClick(object sender, RoutedEventArgs e) {
-            Model.Appointment app = (Model.Appointment)table.SelectedItem;
+            Model.Appointment app = (Model.Appointment)gridAppointments.SelectedItem;
             _appointmentHandler.Delete(app.Id);
         }
 

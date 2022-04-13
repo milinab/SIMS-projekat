@@ -17,6 +17,7 @@ namespace Hospital.Model
 
         private string _id;
         private int _number;
+        private string _name;
 
         public string Id
         {
@@ -40,7 +41,24 @@ namespace Hospital.Model
                 }
             }
         }
-        public string Name;
+        public string Name 
+        {
+            get { return _name; }
+            set { if (value != _name)
+                {
+                    _name = value;
+                    OnPropertyChanged("Name");
+                }
+                    
+                }
+        }
+        public Equipment(string id, int num, string name)
+        {
+            Id = id;
+            Number = num;
+            Name = name;
+           
+        }
 
 
     }

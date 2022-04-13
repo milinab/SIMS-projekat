@@ -82,7 +82,7 @@ namespace Hospital.PatientUI
         private void BookAnAppointmentClick(object sender, RoutedEventArgs e)
         {
 
-            Appointments.Add(new Appointment { Id = 4, Doctor = new Model.Doctor(doctorsComboBox.Text, ""), Date = calendar.DisplayDate }); ;
+            Appointments.Add(new Appointment { Id = 4, Doctor = new Model.Doctor(doctorsComboBox.Text, ""), Date = calendar.DisplayDate }); //;
             
         }
 

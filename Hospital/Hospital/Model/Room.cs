@@ -1,5 +1,6 @@
 using Hospital.Model;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -7,34 +8,37 @@ using System.Runtime.Serialization.Formatters.Binary;
 namespace ClassDiagram.Model
 {
 
-    [Serializable()]
+    //[Serializable()]
 
     public class Room //:INotifyPropertyChanged
     {
        
 
         private string _id;
-        private string _name;
+        private string _type;
+        private Equipment _eq;
+
+        public Equipment Equipment { get; set; }
+
 
         public string Id 
         { 
             get { return _id; }
             set { _id = value; }
         }
-
-        public string Equipment
+        public string Type
         {
-            get { return _name; }
-            set { _name = value; }
+            get { return _type; }
+            set { _type = value; }
         }
 
         public Room() { }
 
-        public Room(string id = "No id",
-            string equipment = "No equipment")
+        public Room(string id, Equipment eq, string ty)
         {
-            Id = id;
-            Equipment = equipment;
+            _id = id;
+            Equipment = eq;
+            _type = ty;
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)
@@ -44,13 +48,13 @@ namespace ClassDiagram.Model
         }
 
         // The deserialize function (Removes Object Data from File)
-        public Room(SerializationInfo info, StreamingContext ctxt)
+       /* public Room(SerializationInfo info, StreamingContext ctxt)
         {
             //Get the values from info and assign them to the properties
             Id = (string)info.GetValue("Id", typeof(string));
             Equipment = (string)info.GetValue("Equipment", typeof(string));
 
-        }
+        }*/
 
 
 

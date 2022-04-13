@@ -47,6 +47,7 @@ namespace Hospital.Doctor {
         }
 
         private void Cancel(object sender, RoutedEventArgs e) {
+            Close();
         }
     }
 }

@@ -1,19 +1,20 @@
 using System;
+using System.ComponentModel;
+using ClassDiagram.Model;
 
 namespace Hospital.Model
 {
-   public class Appointment
+   public class Appointment: INotifyPropertyChanged
    {
 
         private int _id;
         private DateTime _date;
 
-        // public TimeSpan _duration;
-         public Doctor Doctor { get; set; }
-        // public Patient patient;
-        // public Room room;
+        public Doctor Doctor { get; set; }
+        public Patient patient;
+        public Room room;
 
-        public Appointment() { }
+        public Appointment( ) { }
 
         public Appointment(int id, Doctor doctor, DateTime dateTime)
         {
@@ -31,16 +32,14 @@ namespace Hospital.Model
         public DateTime Date
         {
             get { return _date; }
-            set { _date = value; }
+            set { _date = value; OnPropertyChanged(); }
         }
 
-        
-
-        /*public string Doctor
-        {
-            get { return _doctor; }
-            set { _doctor = value; }
-        }*/
+        private void OnPropertyChanged(string name="") {
+            if (PropertyChanged != null) {
+                PropertyChanged(this, new PropertyChangedEventArgs(name));
+            }
+        }
 
         public TimeSpan Duration 
         {
@@ -51,26 +50,23 @@ namespace Hospital.Model
 
         public System.Collections.ArrayList appointments;
 
-       //public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler PropertyChanged;
 
-        public System.Collections.ArrayList GetAppointments()
-        {
+        public System.Collections.ArrayList GetAppointments() {
             if (appointments == null)
                 appointments = new System.Collections.ArrayList();
             return appointments;
         }
 
         /// <pdGenerated>default setter</pdGenerated>
-        public void SetAppointment(System.Collections.ArrayList newAppointment)
-        {
+        public void SetAppointment(System.Collections.ArrayList newAppointment) {
             RemoveAllAppointment();
             foreach (Appointment oAppointment in newAppointment)
                 AddAppointment(oAppointment);
         }
 
         /// <pdGenerated>default Add</pdGenerated>
-        public void AddAppointment(Appointment newAppointment)
-        {
+        public void AddAppointment(Appointment newAppointment) {
             if (newAppointment == null)
                 return;
             if (this.appointments == null)
@@ -80,8 +76,7 @@ namespace Hospital.Model
         }
 
         /// <pdGenerated>default Remove</pdGenerated>
-        public void RemoveAppointment(Appointment oldAppointment)
-        {
+        public void RemoveAppointment(Appointment oldAppointment) {
             if (oldAppointment == null)
                 return;
             if (this.appointments != null)
@@ -90,12 +85,10 @@ namespace Hospital.Model
         }
 
         /// <pdGenerated>default removeAll</pdGenerated>
-        public void RemoveAllAppointment()
-        {
+        public void RemoveAllAppointment() {
             if (appointments != null)
                 appointments.Clear();
         }
-
 
     }
 }
