@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Hospital.Model;
 
 namespace Hospital.Doctor {
     /// <summary>
@@ -39,8 +41,6 @@ namespace Hospital.Doctor {
         }
 
         private void Confirm(object sender, RoutedEventArgs e) {
-            //String time = timebox.Text;
-            //Model.Room room = new Model.Room();
             int _id = Int32.Parse(id.Text);
             DateTime _date = datepicker.SelectedDate.Value;
             Model.Appointment appointment = new Model.Appointment { 

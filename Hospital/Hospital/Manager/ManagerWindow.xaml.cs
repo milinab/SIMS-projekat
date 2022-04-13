@@ -37,16 +37,24 @@ namespace Hospital.Manager {
 
 
 
-        Room bowser = new Room("Bowser", "Nesto");
+        /*Room bowser = new Room("Bowser", "Nesto");
 
         
         Stream stream = File.Open("RoomData.dat", FileMode.Create);
-        BinaryFormatter formatter = new BinaryFormatter();
+        BinaryFormatter formatter = new BinaryFormatter();*/
 
         //formatter.Serialize(bowser, stream);
+        public ObservableCollection<Equipment> Equipments
+        {
+            get;
+            set;
+        }
 
-        
-
+        public ObservableCollection<String> Types
+        {
+            get;
+            set;
+        }
 
         public ObservableCollection<Room> Rooms
         {
@@ -71,9 +79,37 @@ namespace Hospital.Manager {
             InitializeComponent();
             this.DataContext = this;
             Rooms = new ObservableCollection<Room>();
-            Rooms.Add(new Room { Id = "1", Equipment = "skener" });
-            Rooms.Add(new Room { Id = "2", Equipment = "noz" });
-            Rooms.Add(new Room { Id = "3", Equipment = "merac" });
+            Equipments = new ObservableCollection<Equipment>();
+            Types = new ObservableCollection<String>();
+
+
+            Equipment eq1 = new Equipment("123",3, "Makaze");
+            Equipment eq2 = new Equipment("222", 2, "Noz");
+            Equipment eq3 = new Equipment("333", 1, "Skener");
+
+            
+            Equipments.Add(eq1);
+            Equipments.Add(eq2);
+            Equipments.Add(eq3);
+
+           
+
+
+            Types.Add("Operation");
+            Types.Add("Conference");
+            Types.Add("Storage");
+
+
+            
+
+
+        
+
+            Rooms.Add(new Room("12", new Equipment("123", 3, "Makaze"), "Operation"));
+            Rooms.Add(new Room("1a", new Equipment("222", 2, "Noz"), "Conference"));
+            Rooms.Add(new Room("14g", new Equipment("333", 1, "Skener"), "Storage"));
+
+
 
 
 
@@ -87,7 +123,7 @@ namespace Hospital.Manager {
         private void AddRoomClick(object sender, RoutedEventArgs e)
         {
            
-            Rooms.Add(new Room { Id = TextBox.Text, Equipment = TextBox2.Text });
+            Rooms.Add(new Room { Id = TextBox.Text, Equipment = new Equipment("",2, eqComboBox.Text), Type = eqComboBox2.Text });
         }
 
         private void dataGridRooms_SelectionChanged(object sender, SelectionChangedEventArgs e)

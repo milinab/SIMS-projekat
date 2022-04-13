@@ -22,16 +22,16 @@ namespace Hospital.Secretary {
     public partial class SecretaryWindow : Window {
         
 
-        public static ObservableCollection<Patient> Patients { get; set; }
-            
-        
+
+        private PatientHandler PatientHandler;
+
         public SecretaryWindow()
         {
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
-            this.DataContext = this;
-            Patients = new ObservableCollection<Patient>();
-            Patients.Add(new Patient()
+            PatientHandler = new PatientHandler();
+            dataGridPatients.ItemsSource = PatientHandler.ReadAll();
+            Patient patient1 = new Patient()
             {
                 Name = "Pera",
                 LastName = "Lazic",
@@ -65,8 +65,9 @@ namespace Hospital.Secretary {
                 }
                 
 
-            }) ;
-            Patients.Add(new Patient()
+            };
+            PatientHandler.Create(patient1);
+            Patient patient2 = new Patient()
             {
 
                 Name = "Nikolina",
@@ -99,22 +100,19 @@ namespace Hospital.Secretary {
                     Street = "Nikole Tesle 3",
                     Number = "1b"
                 }
-            });
-            
+            };
+            PatientHandler.Create(patient2);
         }
 
         private void DeletePatient(object sender, RoutedEventArgs e)
         {
             Patient patient = dataGridPatients.SelectedValue as Patient;
-            if (patient != null)
-            {
-                Patients.Remove(patient);
-            }
+            PatientHandler.Delete(patient);
         }
 
         public void AddPatientClick(object sender, RoutedEventArgs e)
         {
-            var addPatientWindow = new AddPatient();
+            var addPatientWindow = new AddPatient(this, PatientHandler);
             addPatientWindow.ShowDialog();
         }
 
@@ -124,8 +122,8 @@ namespace Hospital.Secretary {
             Patient patient = dataGridPatients.SelectedValue as Patient;
             if (patient.AccountType == "Patient")
             {
-                var addPatientWindow = new EditPatient(patient);
-                addPatientWindow.ShowDialog();
+                var editPatientWindow = new EditPatient(patient, this, PatientHandler);
+                editPatientWindow.ShowDialog();
             }
         }
     }

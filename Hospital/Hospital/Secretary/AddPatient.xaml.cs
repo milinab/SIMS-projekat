@@ -12,11 +12,13 @@ namespace Hospital.Secretary
 
     public partial class AddPatient : Window
     {
-        
-        public AddPatient()
+        private PatientHandler PatientHandler;
+        private Patient Patient;
+        public AddPatient(SecretaryWindow secretaryWindow, PatientHandler patientHandler)
         {
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
+            PatientHandler = patientHandler;
         }
 
         private void AddPatientOnClick(object sender, RoutedEventArgs e)
@@ -59,7 +61,7 @@ namespace Hospital.Secretary
                 
 
             };
-            SecretaryWindow.Patients.Add(newUser);
+            PatientHandler.Create(newUser);
             DialogResult = true;
         }
 
