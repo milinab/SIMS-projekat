@@ -21,8 +21,8 @@ namespace Hospital.Secretary
     public partial class EditPatient : Window
     {
         public Patient patient1 { get; set; }
-        private PatientHandler PatientHandler;
-        public EditPatient(Patient patient, SecretaryWindow secretaryWindow, PatientHandler patientHandler)
+        private PatientService PatientHandler;
+        public EditPatient(Patient patient, SecretaryWindow secretaryWindow, PatientService patientHandler)
         {
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();

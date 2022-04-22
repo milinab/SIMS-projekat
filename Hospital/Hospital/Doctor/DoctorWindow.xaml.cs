@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Hospital.Model;
 
 namespace Hospital.Doctor {
     /// <summary>
@@ -19,23 +20,23 @@ namespace Hospital.Doctor {
     public partial class DoctorWindow : Window {
 
         private object _content;
-        private Model.AppointmentHandler _appointmentHandler;
-        public DoctorWindow() {
+        private readonly AppointmentController _controller;
+        public DoctorWindow(AppointmentController controller) {
             InitializeComponent();
-            _appointmentHandler = new Model.AppointmentHandler();
             _content = Content;
             this.DataContext = this;
-            gridAppointments.ItemsSource = _appointmentHandler.ReadAll();
+            _controller = controller;
+            gridAppointments.ItemsSource = _controller.ReadAll();
 
         }
         private void AddClick(object sender, RoutedEventArgs e) {
             
-            Add addPage = new Add(this, _appointmentHandler);
+            Add addPage = new Add(this, _controller);
             Content = addPage;
         }
         private void EditClick(object sender, RoutedEventArgs e) {
             if (gridAppointments.SelectedItem != null) {
-                Edit editWindow = new Edit((Model.Appointment)gridAppointments.SelectedItem, _appointmentHandler);
+                Edit editWindow = new Edit((Appointment)gridAppointments.SelectedItem, _controller);
                 editWindow.Show();
             }
             else {
@@ -44,8 +45,8 @@ namespace Hospital.Doctor {
         }
         private void DeleteClick(object sender, RoutedEventArgs e) {
             if (gridAppointments.SelectedItem != null) {
-                Model.Appointment app = (Model.Appointment)gridAppointments.SelectedItem;
-                _appointmentHandler.Delete(app.Id);
+                Appointment app = (Appointment)gridAppointments.SelectedItem;
+                _controller.Delete(app.Id);
             } else {
                 MessageBox.Show("You must select row first", "Warning");
             }

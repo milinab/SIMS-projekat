@@ -47,19 +47,6 @@ namespace ClassDiagram.Model
             info.AddValue("Equipment", Equipment);
         }
 
-        // The deserialize function (Removes Object Data from File)
-       /* public Room(SerializationInfo info, StreamingContext ctxt)
-        {
-            //Get the values from info and assign them to the properties
-            Id = (string)info.GetValue("Id", typeof(string));
-            Equipment = (string)info.GetValue("Equipment", typeof(string));
-
-        }*/
-
-
-
-
-
         public System.Collections.ArrayList equipment;
 
         public event PropertyChangedEventHandler PropertyChanged;

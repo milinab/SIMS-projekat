@@ -23,13 +23,13 @@ namespace Hospital.Secretary {
         
 
 
-        private PatientHandler PatientHandler;
+        private PatientService PatientHandler;
 
         public SecretaryWindow()
         {
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
-            PatientHandler = new PatientHandler();
+            PatientHandler = new PatientService();
             dataGridPatients.ItemsSource = PatientHandler.ReadAll();
             Patient patient1 = new Patient()
             {

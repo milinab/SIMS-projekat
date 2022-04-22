@@ -21,11 +21,11 @@ namespace Hospital.Doctor {
     /// </summary>
     public partial class Add : Page {
 
-        private DoctorWindow doctorWindow;
-        private Model.AppointmentHandler appointmentHandler;
-        public Add(DoctorWindow doctorWindow, Model.AppointmentHandler appointmentHandler) {
-            this.doctorWindow = doctorWindow;
-            this.appointmentHandler = appointmentHandler;
+        private DoctorWindow _doctorWindow;
+        private AppointmentController _appointmentController;
+        public Add(DoctorWindow doctorWindow, AppointmentController appointmentController) {
+            _doctorWindow = doctorWindow;
+            _appointmentController = appointmentController;
             InitializeComponent();
         }
         private void RoomClick(object sender, RoutedEventArgs e) {
@@ -45,21 +45,21 @@ namespace Hospital.Doctor {
             DateTime _date = datepicker.SelectedDate.Value;
             string _time = timebox.Text;
             string[] _timeParts = _time.Split(':');
-            _date = _date + new TimeSpan(Int32.Parse(_timeParts[0]), Int32.Parse(_timeParts[1]), 0);
-            String _dur = duration.Text;
+            _date += new TimeSpan(int.Parse(_timeParts[0]), int.Parse(_timeParts[1]), 0);
+            string _dur = duration.Text;
             string[] _durationParts = _dur.Split(':');
-            TimeSpan _duration = new TimeSpan(Int32.Parse(_durationParts[0]), Int32.Parse(_durationParts[1]), 0);
-            Model.Appointment appointment = new Model.Appointment {
+            TimeSpan _duration = new TimeSpan(int.Parse(_durationParts[0]), int.Parse(_durationParts[1]), 0);
+            Appointment appointment = new Appointment {
                 Id =  _id,
                 Date = _date,
                 Duration = _duration
             };
-            appointmentHandler.Create(appointment);
-            doctorWindow.BackToDoctorWindow();
+            _appointmentController.Create(appointment);
+            _doctorWindow.BackToDoctorWindow();
         }
 
         private void Cancel(object sender, RoutedEventArgs e) {
-            doctorWindow.BackToDoctorWindow();
+            _doctorWindow.BackToDoctorWindow();
         }
     }
 }

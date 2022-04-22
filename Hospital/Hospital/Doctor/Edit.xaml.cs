@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Hospital.Model;
 
 namespace Hospital.Doctor {
     /// <summary>
@@ -18,12 +19,12 @@ namespace Hospital.Doctor {
     /// </summary>
     public partial class Edit : Window {
 
-        private Model.Appointment _appointment;
-        private Model.AppointmentHandler _appointmentHandler;
-        public Edit(Model.Appointment appointment, Model.AppointmentHandler appointmentHandler) {
+        private Appointment _appointment;
+        private AppointmentController _appointmentController;
+        public Edit(Appointment appointment, AppointmentController appointmentController) {
             InitializeComponent();
             _appointment = appointment;
-            _appointmentHandler = appointmentHandler;
+            _appointmentController = appointmentController;
             id.Text = (_appointment.Id).ToString();
             datepicker.SelectedDate = _appointment.Date;
             int hour = _appointment.Date.Hour;
@@ -51,17 +52,17 @@ namespace Hospital.Doctor {
         private void Confirm(object sender, RoutedEventArgs e) {
             string _time = timebox.Text;
             string[] timeParts = _time.Split(':');
-            DateTime _editDate = datepicker.SelectedDate.Value + new TimeSpan(Int32.Parse(timeParts[0]), Int32.Parse(timeParts[1]), 0);
+            DateTime _editDate = datepicker.SelectedDate.Value + new TimeSpan(int.Parse(timeParts[0]), int.Parse(timeParts[1]), 0);
 
             string _duration = duration.Text;
             string[] durationParts = _duration.Split(':');
-            TimeSpan _editDuration = new TimeSpan(Int32.Parse(durationParts[0]), Int32.Parse(durationParts[1]), 0);
-            Model.Appointment _appointment = new Model.Appointment {
-                Id = Int32.Parse(id.Text),
+            TimeSpan _editDuration = new TimeSpan(int.Parse(durationParts[0]), int.Parse(durationParts[1]), 0);
+            Appointment _appointment = new Appointment {
+                Id = int.Parse(id.Text),
                 Date = _editDate,
                 Duration = _editDuration
             };
-            _appointmentHandler.Edit(_appointment);
+            _appointmentController.Edit(_appointment);
             Close();
         }
 

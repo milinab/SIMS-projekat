@@ -12,9 +12,9 @@ namespace Hospital.Secretary
 
     public partial class AddPatient : Window
     {
-        private PatientHandler PatientHandler;
+        private PatientService PatientHandler;
         private Patient Patient;
-        public AddPatient(SecretaryWindow secretaryWindow, PatientHandler patientHandler)
+        public AddPatient(SecretaryWindow secretaryWindow, PatientService patientHandler)
         {
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();

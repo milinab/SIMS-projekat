@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Hospital.Model;
 
 namespace Hospital.PatientUI
 {
@@ -28,10 +29,9 @@ namespace Hospital.PatientUI
             this.appointmentsWindow = aw;
         }
 
-        private void AddAppointment_Click(object sender, RoutedEventArgs e)
-        {
-         
-            appointmentsWindow.Appointments.Add(new Model.Appointment(3, new Model.Doctor(TextBoxDoctor.Text, ""), calendar.DisplayDate));
+        private void AddAppointment_Click(object sender, RoutedEventArgs e) {
+
+            appointmentsWindow.Appointments.Add(new Appointment() { Id = 3, Doctor = new Model.Doctor(TextBoxDoctor.Text, ""), Date = calendar.DisplayDate });
 
         }
 

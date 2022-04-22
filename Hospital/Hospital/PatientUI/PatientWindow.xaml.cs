@@ -29,8 +29,6 @@ namespace Hospital.PatientUI
     public partial class PatientWindow : Window
     {
 
-        public AppointmentHandler ah = new AppointmentHandler();
-
         public ObservableCollection<Appointment> Appointments
         {
             get;

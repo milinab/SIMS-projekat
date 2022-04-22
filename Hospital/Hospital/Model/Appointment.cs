@@ -1,52 +1,30 @@
 using System;
 using System.ComponentModel;
 using ClassDiagram.Model;
+using Hospital.Repository;
 
 namespace Hospital.Model
 {
-   public class Appointment: INotifyPropertyChanged
+   public class Appointment: Serializable
    {
 
-        private int _id;
-        private DateTime _date;
-
+        public int Id { get; set; }
+        public DateTime Date { get; set; }
+        public TimeSpan Duration { get; set; }
         public Doctor Doctor { get; set; }
-        public Patient patient;
-        public Room room;
+        public int DoctorId { get; set; }
+        public Patient Patient { get; set; }
+        public int PatientId { get; set; }
+        public Room Room { get; set; }
+        public int RoomId { get; set; }
 
         public Appointment( ) { }
-
-        public Appointment(int id, Doctor doctor, DateTime dateTime)
-        {
-            _id = id;
-            Doctor = doctor;
-            _date = dateTime;
-        }
-
-        public int Id
-        {
-          get { return _id; }
-          set { _id = value; }
-        }
-
-        public DateTime Date
-        {
-            get { return _date; }
-            set { _date = value; OnPropertyChanged(); }
-        }
 
         private void OnPropertyChanged(string name="") {
             if (PropertyChanged != null) {
                 PropertyChanged(this, new PropertyChangedEventArgs(name));
             }
         }
-
-        public TimeSpan Duration 
-        {
-            get;
-            set;
-        }
-
 
         public System.Collections.ArrayList appointments;
 
@@ -90,5 +68,28 @@ namespace Hospital.Model
                 appointments.Clear();
         }
 
+        public string[] ToCSV() 
+        {
+            string[] csvValues =
+            {
+                Id.ToString(),
+                Date.ToString(),
+                Duration.ToString(),
+                DoctorId.ToString(),
+                PatientId.ToString(),
+                RoomId.ToString()
+            };
+            return csvValues;
+        }
+
+        public void FromCSV(string[] values)
+        {
+            Id = int.Parse(values[0]);
+            Date = Convert.ToDateTime(values[1]);
+            Duration = TimeSpan.Parse(values[2]);
+            DoctorId = int.Parse(values[3]);
+            PatientId = int.Parse(values[4]);
+            RoomId = int.Parse(values[5]);
+        }
     }
 }
