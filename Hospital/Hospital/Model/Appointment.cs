@@ -5,7 +5,7 @@ using Hospital.Repository;
 
 namespace Hospital.Model
 {
-   public class Appointment: Serializable
+   public class Appointment: Serializable, INotifyPropertyChanged 
    {
 
         public int Id { get; set; }

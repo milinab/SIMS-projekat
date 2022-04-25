@@ -1,11 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace Hospital.Model
 {
     public class AppointmentService
     {
+        private int _id;
         public readonly AppointmentRepository _appointmentRepository;
 
         private readonly ObservableCollection<Appointment> _appointments;
@@ -13,6 +15,14 @@ namespace Hospital.Model
         public AppointmentService(AppointmentRepository appointmentRepository)
         {
             _appointments = new ObservableCollection<Appointment>();
+            if (_appointments.Count == 0)
+            {
+                _id = 0;
+            }
+            else
+            {
+                _id = _appointments.Last().Id;
+            }
             _appointmentRepository = appointmentRepository;
         }
 
@@ -30,7 +40,9 @@ namespace Hospital.Model
 
         public void Create(Appointment newAppointment)
         {
+            newAppointment.Id = GenerateID();
             _appointments.Add(newAppointment);
+            Console.WriteLine(_appointments.Last().Id);
         }
 
         public void Edit(Appointment newAppointment)
@@ -62,6 +74,10 @@ namespace Hospital.Model
         public ObservableCollection<Appointment> ReadAll()
         {
             return _appointments;
+        }
+        private int GenerateID()
+        {
+            return ++_id;
         }
     }
 }

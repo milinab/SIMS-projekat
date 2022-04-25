@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Hospital.Repository;
 
 namespace Hospital.Model
@@ -7,7 +8,7 @@ namespace Hospital.Model
    public class AppointmentRepository
    {
         private readonly string _path;
-        private List<Appointment> _appointments;
+        private ObservableCollection<Appointment> _appointments;
         private Serializer<Appointment> _appointmentSerializer;
 
         public AppointmentRepository(string path) 
@@ -15,16 +16,16 @@ namespace Hospital.Model
             _path = path;
         }
 
-        public List<Appointment> Read()
+        public ObservableCollection<Appointment> Read()
         {
-            _appointments = _appointmentSerializer.fromCSV("appointments.txt");
+            _appointments = _appointmentSerializer.FromCSV("appointments.txt");
             return _appointments;
         }
       
         public void Write()
         {
             _appointmentSerializer = new Serializer<Appointment>();
-            _appointmentSerializer.toCSV("appointments.txt", _appointments);
+            _appointmentSerializer.ToCSV("appointments.txt", _appointments);
         }
    }
 }

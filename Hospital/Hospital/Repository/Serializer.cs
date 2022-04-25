@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,8 @@ namespace Hospital.Repository
     class Serializer<T> where T: Serializable, new()
     {
         private static string _delimiter = "|";
-        public void toCSV(string fileName, List<T> objects) {
+        public void ToCSV(string fileName, ObservableCollection<T> objects)
+        {
             StreamWriter streamWriter = new StreamWriter(fileName);
 
             foreach (Serializable obj in objects) {
@@ -19,8 +21,9 @@ namespace Hospital.Repository
             }
         }
 
-        public List<T> fromCSV(string fileName) {
-            List<T> objects = new List<T>();
+        public ObservableCollection<T> FromCSV(string fileName)
+        {
+            ObservableCollection<T> objects = new ObservableCollection<T>();
 
             foreach (string line in File.ReadLines(fileName)) {
                 string[] csvValues = line.Split(Convert.ToChar(_delimiter));

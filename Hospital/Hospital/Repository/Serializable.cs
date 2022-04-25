@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Hospital.Repository {
-    public interface Serializable: INotifyPropertyChanged {
+    public interface Serializable {
 
         string[] ToCSV();
 

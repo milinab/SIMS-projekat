@@ -5,24 +5,36 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Hospital.Doctor"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="Create" Background="AliceBlue">
+      d:DesignHeight="768" d:DesignWidth="1024"
+      Title="Create" Background="White">
 
-    <Grid RenderTransformOrigin="0.753,0.563">
-        <DatePicker Name="datepicker" HorizontalAlignment="Left" Margin="338,100,0,0" VerticalAlignment="Top" Width="120"/>
-        <TextBlock HorizontalAlignment="Left" Margin="304,103,0,0" TextWrapping="Wrap" Text="Date:" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="304,142,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="22"><Run Text="Time:"/><LineBreak/><Run/></TextBlock>
-        <TextBox Name="timebox" HorizontalAlignment="Left" Height="23" Margin="367,141,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="41" TextChanged="TextBox_TextChanged"/>
-        <ListBox Name="roomlistbox"  HorizontalAlignment="Left" Height="74" Margin="384,219,0,0" VerticalAlignment="Top" Width="100" SelectionChanged="ListBox_SelectionChanged"/>
-        <TextBlock HorizontalAlignment="Left" Margin="305,219,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.473,4.516" Text="Choose room:"/>
-        <TextBlock HorizontalAlignment="Left" Margin="304,317,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.473,4.516" Text="Choose equipment:"/>
-        <ListBox Name="equipmentlistbox" HorizontalAlignment="Left" Height="59" Margin="413,316,0,0" VerticalAlignment="Top" Width="70" SelectionChanged="ListBox_SelectionChanged"/>
-        <Button Content="Confirm" HorizontalAlignment="Left" Margin="304,402,0,17.6" Width="75" Height="30" Click="Confirm"/>
-        <Button Content="Cancel" HorizontalAlignment="Left" Margin="408,402,0,17.6" Width="75" Height="30" Click="Cancel"/>
-        <TextBlock HorizontalAlignment="Left" Margin="338,20,0,0" TextWrapping="Wrap" Text="Add new appointment" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="304,63,0,0" TextWrapping="Wrap" Text="ID:" VerticalAlignment="Top" RenderTransformOrigin="1.014,0.514"/>
-        <TextBox x:Name="id" HorizontalAlignment="Left" Height="23" Margin="338,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged"/>
-        <TextBox x:Name="duration" HorizontalAlignment="Left" Height="23" Margin="367,180,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="41" TextChanged="TextBox_TextChanged"/>
-        <TextBlock HorizontalAlignment="Left" Margin="305,180,0,0" TextWrapping="Wrap" Text="Duration:" VerticalAlignment="Top"/>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="700"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="768"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Column="0"></Grid>
+        <Grid x:Name="newAppointment" Grid.Column="1" Grid.Row="0">
+            <Rectangle HorizontalAlignment="Center" VerticalAlignment="Top" Height="40" Width="700" Margin="0,0,0,0" Stroke="Black"/>
+            <TextBlock Text="New appointment" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0" TextWrapping="Wrap" FontSize="24"/>
+            
+            <TextBlock Text="Date:"      HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,120,500,0" TextWrapping="Wrap" FontSize="20"/>
+            <TextBlock Text="Time:"      HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,180,500,0" TextWrapping="Wrap" FontSize="20"/>
+            <TextBlock Text="Duration:"  HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,240,500,0" TextWrapping="Wrap" FontSize="20"/>
+            <TextBlock Text="Room:"      HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,370,500,0" TextWrapping="Wrap" FontSize="20"/>
+            <TextBlock Text="Equipment:" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,570,500,0" TextWrapping="Wrap" FontSize="20"/>
+
+            <DatePicker Name="datePicker"    HorizontalAlignment="Left" VerticalAlignment="Top" Margin="220,120,0,0" Width="257" Height="30"/>
+            <TextBox Name="timeBox"          HorizontalAlignment="Left" VerticalAlignment="Top" Margin="220,180,0,0" Width="232" Height="30" TextWrapping="Wrap" TextChanged="TextBox_TextChanged"/>
+            <TextBox Name="duration"         HorizontalAlignment="Left" VerticalAlignment="Top" Margin="220,240,0,0" Width="232" Height="30" TextWrapping="Wrap"  TextChanged="TextBox_TextChanged"/>
+            <ListBox Name="roomlistBox"      HorizontalAlignment="Left" VerticalAlignment="Top" Margin="220,300,0,0" Width="232" Height="166" SelectionChanged="ListBox_SelectionChanged"/>
+            <ListBox Name="equipmentListBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="220,500,0,0" Width="232" Height="166" SelectionChanged="ListBox_SelectionChanged"/>
+
+            <Button Content="Confirm" HorizontalAlignment="Left"  Margin="0,718,0,0" Width="350" Height="50" Click="Confirm"/>
+            <Button Content="Cancel"  HorizontalAlignment="Right" Margin="0,718,0,0" Width="350" Height="50" Click="Cancel"/>
+        </Grid>
     </Grid>
 </Page>
