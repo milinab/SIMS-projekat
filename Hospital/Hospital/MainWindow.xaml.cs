@@ -39,18 +39,22 @@ namespace Hospital {
         private void DoctorClick(object sender, RoutedEventArgs e) {
             DoctorWindow doctorWindow = new DoctorWindow(AppointmentController);
             doctorWindow.Show();
+            Close();
         }
         private void ManagerClick(object sender, RoutedEventArgs e) {
             Manager.ManagerWindow managerWindow = new Manager.ManagerWindow();
             managerWindow.Show();
+            Close();
         }
         private void SecretaryClick(object sender, RoutedEventArgs e) {
             Secretary.SecretaryWindow secretaryWindow = new Secretary.SecretaryWindow();
             secretaryWindow.Show();
+            Close();
         }
         private void PatientClick(object sender, RoutedEventArgs e) {
             PatientUI.PatientWindow patientWindow = new PatientUI.PatientWindow();
             patientWindow.Show();
+            Close();
         }
     }
 }

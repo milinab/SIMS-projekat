@@ -88,6 +88,7 @@
     <Compile Include="Doctor\Add.xaml.cs">
       <DependentUpon>Add.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Doctor\CustomTimeSpanUpDown.cs" />
     <Compile Include="Doctor\DoctorWindow.xaml.cs">
       <DependentUpon>DoctorWindow.xaml</DependentUpon>
     </Compile>

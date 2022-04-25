@@ -15,7 +15,7 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Patient" Width="3*"/>
                 <DataGridTextColumn Header="Date" Binding="{Binding Date, StringFormat=\{0:d.M.yyyy\}}" Width="2*"/>
-                <DataGridTextColumn Header="Time" Binding="{Binding Date, StringFormat=\{0:HH:mm\}}" Width="*"/>
+                <DataGridTextColumn Header="Time" Binding="{Binding Date, StringFormat=\{0:H:mm\}}" Width="*"/>
                 <DataGridTextColumn Header="Duration" Binding="{Binding Duration, StringFormat=\{0:h\\:mm\}}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>

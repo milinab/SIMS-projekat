@@ -40,7 +40,7 @@ namespace Hospital.Doctor {
                 editWindow.Show();
             }
             else {
-                MessageBox.Show("You must select row first", "Warning");
+                MessageBox.Show("You must select a row first", "Warning");
             }
         }
         private void DeleteClick(object sender, RoutedEventArgs e) {
@@ -48,7 +48,7 @@ namespace Hospital.Doctor {
                 Appointment app = (Appointment)gridAppointments.SelectedItem;
                 _controller.Delete(app.Id);
             } else {
-                MessageBox.Show("You must select row first", "Warning");
+                MessageBox.Show("You must select a row first", "Warning");
             }
         }
 
