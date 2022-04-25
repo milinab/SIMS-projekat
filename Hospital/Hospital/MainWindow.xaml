@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Hospital"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen">
     <Grid>
         <Button Content="Manager" HorizontalAlignment="Left" Margin="150,140,0,0" VerticalAlignment="Top" Width="150" Height="40" Click="ManagerClick"/>
         <Button Content="Patient" HorizontalAlignment="Left" Margin="470,300,0,0" VerticalAlignment="Top" Width="150" Height="40" Click="PatientClick"/>

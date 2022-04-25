@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Hospital.Doctor"
         mc:Ignorable="d"
-        Title="DoctorWindow" Height="768" Width="1024" ResizeMode="NoResize">
+        Title="DoctorWindow" Height="768" Width="1024" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
 
         <Button Content="Add" Margin="229,680,624.6,10.4" Click="AddClick"/>
