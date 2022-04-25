@@ -27,6 +27,7 @@ namespace Hospital.Doctor {
             _doctorWindow = doctorWindow;
             _appointmentController = appointmentController;
             InitializeComponent();
+            datePicker.SelectedDate = DateTime.Now;
         }
         private void RoomClick(object sender, RoutedEventArgs e) {
 
@@ -42,7 +43,7 @@ namespace Hospital.Doctor {
 
         private void Confirm(object sender, RoutedEventArgs e) {
             DateTime _date = datePicker.SelectedDate.Value;
-            string _time = timeBox.Text;
+            string _time = timePicker.Text;
             string[] _timeParts = _time.Split(':');
             _date += new TimeSpan(int.Parse(_timeParts[0]), int.Parse(_timeParts[1]), 0);
             string _dur = duration.Text;
