@@ -11,13 +11,14 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="324"/>
             <ColumnDefinition Width="700"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="768"/>
         </Grid.RowDefinitions>
         <Grid Grid.Column="0">
+            <local:Menu/>
         </Grid>
         <Grid x:Name="newAppointment" Grid.Column="1" Grid.Row="0">
             <Rectangle HorizontalAlignment="Center" VerticalAlignment="Top" Height="40" Width="700" Margin="0,0,0,0" Stroke="Black"/>
