@@ -1,0 +1,62 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Hospital.Model;
+using Hospital.Repository;
+
+namespace Hospital.Service
+{
+    public class AddressService
+    {
+        private int _id;
+        public readonly AddressRepository _repository;
+
+        public AddressService(AddressRepository addressRepository)
+        {
+            _repository = addressRepository;
+            ObservableCollection<Address> addresses = Read();
+            if (addresses.Count == 0)
+            {
+                _id = 0;
+            }
+            else
+            {
+                _id = addresses.Last().Id;
+            }
+        }
+
+        public Address ReadById(int id)
+        {
+            return _repository.ReadById(id);
+        }
+
+        public void Create(Address newAddress)
+        {
+            newAddress.Id = GenerateID();
+            _repository.Create(newAddress);
+        }
+
+        public void Edit(Address editAddress)
+        {
+            _repository.Edit(editAddress);
+        }
+
+        public void Delete(int id)
+        {
+            _repository.Delete(id);
+        }
+
+        public ObservableCollection<Address> Read()
+        {
+            return _repository.Read();
+        }
+
+        private int GenerateID()
+        {
+            return ++_id;
+        }
+    }
+}

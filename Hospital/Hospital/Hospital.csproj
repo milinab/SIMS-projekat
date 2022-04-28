@@ -99,7 +99,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controller\AddressController.cs" />
     <Compile Include="Controller\AppointmentController.cs" />
+    <Compile Include="Controller\CityController.cs" />
+    <Compile Include="Controller\CountryController.cs" />
     <Compile Include="Controller\MedicalRecordController.cs" />
     <Compile Include="Controller\PatientController.cs" />
     <Compile Include="Controller\RoomController.cs" />
@@ -126,6 +129,9 @@
     <Compile Include="PatientUI\PatientWindow.xaml.cs">
       <DependentUpon>PatientWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Repository\AddressRepository.cs" />
+    <Compile Include="Repository\CityRepository.cs" />
+    <Compile Include="Repository\CountryRepository.cs" />
     <Compile Include="Repository\Serializer.cs" />
     <Compile Include="Repository\UserRepository.cs" />
     <Compile Include="Secretary\AddPatient.xaml.cs">
@@ -137,6 +143,9 @@
     <Compile Include="Secretary\SecretaryWindow.xaml.cs">
       <DependentUpon>SecretaryWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Service\AddressService.cs" />
+    <Compile Include="Service\CityService.cs" />
+    <Compile Include="Service\CountryService.cs" />
     <Compile Include="Service\UserService.cs" />
     <Page Include="Doctor\Add.xaml">
       <Generator>MSBuild:Compile</Generator>
