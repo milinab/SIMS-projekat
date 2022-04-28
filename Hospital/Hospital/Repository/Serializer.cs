@@ -5,34 +5,33 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ServiceStack;
+using ServiceStack.Text;
 
 namespace Hospital.Repository
 {
-    class Serializer<T> where T: Serializable, new()
+    public class Serializer<T>
     {
-        private static string _delimiter = "|";
-        public void ToCSV(string fileName, ObservableCollection<T> objects)
-        {
-            StreamWriter streamWriter = new StreamWriter(fileName);
+        private readonly string _projectPath = AppContext.BaseDirectory + ".." + Path.DirectorySeparatorChar + ".." + Path.DirectorySeparatorChar+ "Resources"
+            + Path.DirectorySeparatorChar + "Data" + Path.DirectorySeparatorChar;
+        private readonly string _dataPath;
 
-            foreach (Serializable obj in objects) {
-                string line = string.Join(_delimiter, obj.ToCSV());
-                streamWriter.WriteLine(line);
-            }
+        public Serializer(string dataPath)
+        {
+            _dataPath = _projectPath + dataPath;
         }
 
-        public ObservableCollection<T> FromCSV(string fileName)
+        public ObservableCollection<T> Read()
         {
-            ObservableCollection<T> objects = new ObservableCollection<T>();
-
-            foreach (string line in File.ReadLines(fileName)) {
-                string[] csvValues = line.Split(Convert.ToChar(_delimiter));
-                T obj = new T();
-                obj.FromCSV(csvValues);
-                objects.Add(obj);
-            }
-
+            string csvText = File.ReadAllText(_dataPath);
+            ObservableCollection<T> objects = csvText.FromCsv<ObservableCollection<T>>();
             return objects;
+        }
+
+        public void Write(ObservableCollection<T> objects)
+        {
+            string csvText = CsvSerializer.SerializeToCsv(objects);
+            File.WriteAllText(_dataPath, csvText);
         }
     }
 }

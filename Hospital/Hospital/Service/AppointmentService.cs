@@ -8,72 +8,46 @@ namespace Hospital.Model
     public class AppointmentService
     {
         private int _id;
-        public readonly AppointmentRepository _appointmentRepository;
-
-        private readonly ObservableCollection<Appointment> _appointments;
+        public readonly AppointmentRepository _repository;
 
         public AppointmentService(AppointmentRepository appointmentRepository)
         {
-            _appointments = new ObservableCollection<Appointment>();
-            if (_appointments.Count == 0)
+            _repository = appointmentRepository;
+            ObservableCollection<Appointment> appointments = Read();
+            if (appointments.Count == 0)
             {
                 _id = 0;
             }
             else
             {
-                _id = _appointments.Last().Id;
+                _id = appointments.Last().Id;
             }
-            _appointmentRepository = appointmentRepository;
         }
 
         public Appointment ReadById(int id)
         {
-            foreach (Appointment appointment in _appointments)
-            {
-                if (appointment.Id.Equals(id))
-                {
-                    return appointment;
-                }
-            }
-            return null;
+            return _repository.ReadById(id);
         }
 
         public void Create(Appointment newAppointment)
         {
             newAppointment.Id = GenerateID();
-            _appointments.Add(newAppointment);
-            Console.WriteLine(_appointments.Last().Id);
+            _repository.Create(newAppointment);
         }
 
         public void Edit(Appointment newAppointment)
         {
-            DateTime _date = newAppointment.Date;
-            TimeSpan _duration = newAppointment.Duration;
-            Console.WriteLine(_duration);
-            foreach (Appointment appointment in _appointments)
-            {
-                if (newAppointment.Id.Equals(appointment.Id))
-                {
-                    appointment.Date = _date;
-                    appointment.Duration = _duration;
-                }
-            }
+            _repository.Edit(newAppointment);
         }
 
         public void Delete(int id)
         {
-            for (int i = _appointments.Count - 1; i >= 0; i--)
-            {
-                if (_appointments[i].Id.Equals(id))
-                {
-                    _appointments.Remove(_appointments[i]);
-                }
-            }
+            _repository.Delete(id);
         }
 
-        public ObservableCollection<Appointment> ReadAll()
+        public ObservableCollection<Appointment> Read()
         {
-            return _appointments;
+            return _repository.Read();
         }
         private int GenerateID()
         {

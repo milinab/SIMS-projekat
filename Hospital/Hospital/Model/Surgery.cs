@@ -1,8 +1,10 @@
 using System;
+using System.Runtime.Serialization;
 
 namespace Hospital.Model
 {
-   public class Surgery : Appointment
-   {
-   }
+    [DataContract]
+    public class Surgery : Appointment
+    {
+    }
 }

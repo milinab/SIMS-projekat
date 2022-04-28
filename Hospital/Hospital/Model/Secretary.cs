@@ -1,8 +1,13 @@
 using System;
+using System.Runtime.Serialization;
 
 namespace Hospital.Model
 {
-   public class Secretary : Employee
-   {
-   }
+    [DataContract]
+    public class Secretary : Employee
+    {
+        public Secretary()
+        {
+        }
+    }
 }

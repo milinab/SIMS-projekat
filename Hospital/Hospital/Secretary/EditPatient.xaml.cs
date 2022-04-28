@@ -21,12 +21,12 @@ namespace Hospital.Secretary
     public partial class EditPatient : Window
     {
         public Patient patient1 { get; set; }
-        private PatientService PatientHandler;
-        public EditPatient(Patient patient, SecretaryWindow secretaryWindow, PatientService patientHandler)
+        private PatientController _patientController;
+        public EditPatient(Patient patient, SecretaryWindow secretaryWindow, PatientController patientController)
         {
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
-            PatientHandler = patientHandler;
+            _patientController = patientController;
 
 
             this.nameText.Text = patient.Name;
@@ -39,13 +39,7 @@ namespace Hospital.Secretary
             this.emailText.Text = patient.Email;
             this.datePicker.SelectedDate = patient.DateOfBirth;
             this.healthInsuranceIdText.Text = patient.HealthInsuranceId;
-            this.chronicalDiseaseText.Text = patient.medicalRecord.ChronicalDiseases;
             this.bloodTypeText.Text = patient.BloodType;
-            this.countryText.Text = patient.Address.city.country.Name;
-            this.cityText.Text = patient.Address.city.Name;
-            this.zipText.Text = patient.Address.city.Zip;
-            this.streetText.Text = patient.Address.Street;
-            this.numberText.Text = patient.Address.Number;
 
         }
         private void CancelPatientOnClick(Object sender, RoutedEventArgs e)
@@ -71,15 +65,15 @@ namespace Hospital.Secretary
                 AccountType = "Patient",
                 HealthInsuranceId = healthInsuranceIdText.Text,
                 BloodType = bloodTypeText.Text,
-                medicalRecord = new MedicalRecord
+                MedicalRecord = new MedicalRecord
                 {
                     ChronicalDiseases = chronicalDiseaseText.Text
                 },
                 Address = new Address()
                 {
-                    city = new City()
+                    City = new City()
                     {
-                        country = new Country()
+                        Country = new Country()
                         {
                             Name = countryText.Text
                         },
@@ -91,7 +85,7 @@ namespace Hospital.Secretary
                 }
 
             };
-            PatientHandler.Edit(NewPatient);
+            _patientController.Edit(NewPatient);
             DialogResult = true;
         }
     }

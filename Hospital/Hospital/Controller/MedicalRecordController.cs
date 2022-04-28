@@ -1,40 +1,40 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace Hospital.Model
 {
-   public class MedicalRecordController
-   {
-      public MedicalRecord ReadById(int patientId)
-      {
-         // TODO: implement
-         return null;
-      }
+    public class MedicalRecordController
+    {
+        private readonly MedicalRecordService _service;
+        public MedicalRecordController(MedicalRecordService service)
+        {
+            _service = service;
+        }
+
+        public MedicalRecord ReadById(int id)
+        {
+            return _service.ReadById(id);
+        }
       
-      public void Create(MedicalRecord newMedicalRecord)
-      {
-         // TODO: implement
-      }
+        public void Create(MedicalRecord newMedicalRecord)
+        {
+            _service.Create(newMedicalRecord);
+        }
       
-      public void Edit(int id)
-      {
-         // TODO: implement
-      }
+        public void Edit(MedicalRecord editMedicalRecord)
+        {
+            _service.Edit(editMedicalRecord);
+        }
       
-      public void Delete(int id)
-      {
-         // TODO: implement
-      }
+        public void Delete(int id)
+        {
+            _service.Delete(id);
+        }
       
-      public List<MedicalRecord> ReadAll()
-      {
-         // TODO: implement
-         return null;
-      }
-   
-      public MedicalRecordRepository medicalRecordFileHandler;
-   
-      private List<MedicalRecord> MedicalRecords;
-   
-   }
+        public ObservableCollection<MedicalRecord> Read()
+        {
+            return _service.Read();
+        }
+    }
 }

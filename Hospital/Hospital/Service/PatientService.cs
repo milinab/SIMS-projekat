@@ -5,53 +5,46 @@ using System.Linq;
 
 namespace Hospital.Model
 {
-   public class PatientService
-   {
-
-      public PatientService()
+    public class PatientService
+    {
+        private int _id;
+        public readonly PatientRepository _repository;
+        public PatientService(PatientRepository patientRepository)
         {
-            Patients = new ObservableCollection<Patient>();
-        }
-      public Patient ReadById(int id)
-      {
-            foreach (var patient in Patients)
+            _repository = patientRepository;
+            ObservableCollection<Patient> patients = Read();
+            if (patients.Count == 0)
             {
-                if (patient.Id == id)
-                {
-                    return patient;
-                }
+                _id = 0;
             }
-            return null;
-        }
-      
-      public void Create(Patient newPatient)
-      {
-            Patients.Add(newPatient);
-        }
-      
-      public void Edit(Patient newPatient)
-      {
-            var found = Patients.FirstOrDefault(x => x.IdNumber == newPatient.IdNumber);
-            Patients.Remove(found);
-            Create(newPatient);
-        }
-      
-      public void Delete(Patient newPatient)
-      {
-            if (newPatient != null)
+            else
             {
-                Patients.Remove(newPatient);
+                _id = patients.Last().Id;
             }
         }
+        public Patient ReadById(int id)
+        {
+            return _repository.ReadById(id);
+        }
+      
+        public void Create(Patient newPatient)
+        {
+            _repository.Create(newPatient);
+        }
+      
+        public void Edit(Patient editPatient)
+        {
+            _repository.Edit(editPatient);
+        }
+      
+        public void Delete(int id)
+        {
+            _repository.Delete(id);
+        }
 
-      public ObservableCollection<Patient> ReadAll()
-            {
-                return Patients;
-            }
-
-      public PatientFileRepository patientFileHandler { get; set; }
-
-      private ObservableCollection<Patient> Patients;
-
+        public ObservableCollection<Patient> Read()
+        {
+            return _repository.Read();
+        }
     }
 }

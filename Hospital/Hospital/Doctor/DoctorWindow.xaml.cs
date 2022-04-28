@@ -20,23 +20,23 @@ namespace Hospital.Doctor {
     public partial class DoctorWindow : Window {
 
         private object _content;
-        private readonly AppointmentController _controller;
+        private readonly AppointmentController _appointmentController;
         public DoctorWindow(AppointmentController controller) {
             InitializeComponent();
             _content = Content;
             this.DataContext = this;
-            _controller = controller;
-            gridAppointments.ItemsSource = _controller.ReadAll();
+            _appointmentController = controller;
+            gridAppointments.ItemsSource = _appointmentController.Read();
 
         }
         private void AddClick(object sender, RoutedEventArgs e) {
             
-            Add addPage = new Add(this, _controller);
+            Add addPage = new Add(this, _appointmentController);
             Content = addPage;
         }
         private void EditClick(object sender, RoutedEventArgs e) {
             if (gridAppointments.SelectedItem != null) {
-                Edit editWindow = new Edit((Appointment)gridAppointments.SelectedItem, _controller);
+                Edit editWindow = new Edit((Appointment)gridAppointments.SelectedItem, _appointmentController);
                 editWindow.Show();
             }
             else {
@@ -46,7 +46,7 @@ namespace Hospital.Doctor {
         private void DeleteClick(object sender, RoutedEventArgs e) {
             if (gridAppointments.SelectedItem != null) {
                 Appointment app = (Appointment)gridAppointments.SelectedItem;
-                _controller.Delete(app.Id);
+                _appointmentController.Delete(app.Id);
             } else {
                 MessageBox.Show("You must select a row first", "Warning");
             }

@@ -1,9 +1,11 @@
 using System;
 using System.ComponentModel;
+using System.Runtime.Serialization;
 
 namespace Hospital.Model
-{
-   public class Equipment 
+{ 
+    [DataContract]
+    public class Equipment 
     {
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string name)
@@ -14,11 +16,11 @@ namespace Hospital.Model
             }
         }
 
-
         private string _id;
         private int _number;
         private string _name;
 
+        [DataMember]
         public string Id
         {
             get { return _id; }
@@ -30,7 +32,8 @@ namespace Hospital.Model
                 }
             }
         }
-      public int Number
+        [DataMember]
+        public int Number
         {
             get { return _number; }
             set {
@@ -41,7 +44,8 @@ namespace Hospital.Model
                 }
             }
         }
-        public string Name 
+        [DataMember]
+        public string Name
         {
             get { return _name; }
             set { if (value != _name)
@@ -49,18 +53,13 @@ namespace Hospital.Model
                     _name = value;
                     OnPropertyChanged("Name");
                 }
-                    
-                }
+            }
         }
         public Equipment(string id, int num, string name)
         {
             Id = id;
             Number = num;
             Name = name;
-           
         }
-
-
     }
-
 }

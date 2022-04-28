@@ -13,6 +13,7 @@ namespace Hospital.Model
         {
             _service = service;
         }
+
         public Patient ReadById(int id)
         {
             return _service.ReadById(id);
@@ -23,19 +24,19 @@ namespace Hospital.Model
             _service.Create(newPatient);
         }
       
-        public void Edit(Patient newPatient)
+        public void Edit(Patient editPatient)
         {
-            _service.Edit(newPatient);
+            _service.Edit(editPatient);
         }
       
-        public void Delete(Patient newPatient)
+        public void Delete(int id)
         {
-            _service.Delete(newPatient);
+            _service.Delete(id);
         }
 
-        public ObservableCollection<Patient> ReadAll()
+        public ObservableCollection<Patient> Read()
         {
-            return _service.ReadAll();
+            return _service.Read();
         }
     }
 }

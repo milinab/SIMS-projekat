@@ -1,42 +1,42 @@
 using ClassDiagram.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace Hospital.Model
 {
-   public class RoomController
-   {
-      public Room ReadById(int id)
-      {
-         // TODO: implement
-         return null;
-      }
+    public class RoomController
+    {
+        private readonly RoomService _service;
+
+        public RoomController(RoomService service)
+        {
+            _service = service;
+        }
+
+        public Room ReadById(int id)
+        {
+            return _service.ReadById(id);
+        }
       
-      public void Create(Room newRoom)
-      {
-         // TODO: implement
-      }
+        public void Create(Room newRoom)
+        {
+            _service.Create(newRoom);
+        }
       
-      public void Edit(int id)
-      {
-         // TODO: implement
-      }
+        public void Edit(Room editRoom)
+        {
+            _service.Edit(editRoom);
+        }
       
-      public bool Delete(int id)
-      {
-            //rs.Delete(id);
-            return true;
-      }
+        public void Delete(int id)
+        {
+            _service.Delete(id);
+        }
       
-      public List<Room> ReadAll()
-      {
-         // TODO: implement
-         return null;
-      }
-   
-      public RoomFileRepository roomFileHandler;
-   
-      private List<Room> Rooms;
-   
-   }
+        public ObservableCollection<Room> Read()
+        {
+            return _service.Read();
+        }
+    }
 }

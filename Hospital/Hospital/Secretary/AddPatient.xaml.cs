@@ -12,13 +12,13 @@ namespace Hospital.Secretary
 
     public partial class AddPatient : Window
     {
-        private PatientService PatientHandler;
+        private PatientController _patientController;
         private Patient Patient;
-        public AddPatient(SecretaryWindow secretaryWindow, PatientService patientHandler)
+        public AddPatient(SecretaryWindow secretaryWindow, PatientController patientController)
         {
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
-            PatientHandler = patientHandler;
+            _patientController = patientController;
         }
 
         private void AddPatientOnClick(object sender, RoutedEventArgs e)
@@ -39,15 +39,15 @@ namespace Hospital.Secretary
                 AccountType = "Patient",
                 HealthInsuranceId = healthInsuranceIdText.Text,
                 BloodType = bloodTypeText.Text,
-                medicalRecord = new MedicalRecord
+                MedicalRecord = new MedicalRecord
                 {
                     ChronicalDiseases = chronicalDiseaseText.Text
                 },
                 Address = new Address()
                 {
-                city = new City()
+                City = new City()
                 {
-                country = new Country()
+                Country = new Country()
                 {
                 Name = countryText.Text
                 },
@@ -61,7 +61,7 @@ namespace Hospital.Secretary
                 
 
             };
-            PatientHandler.Create(newUser);
+            _patientController.Create(newUser);
             DialogResult = true;
         }
 
