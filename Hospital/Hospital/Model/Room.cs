@@ -7,25 +7,22 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 namespace ClassDiagram.Model
 {
-
-    //[Serializable()]
-
-    public class Room //:INotifyPropertyChanged
+    [DataContract]
+    public class Room
     {
-       
-
         private string _id;
         private string _type;
-        private Equipment _eq;
-
+        [DataMember]
+        public int EquipmentId { get; set; }
         public Equipment Equipment { get; set; }
 
-
+        [DataMember]
         public string Id 
         { 
             get { return _id; }
             set { _id = value; }
         }
+        [DataMember]
         public string Type
         {
             get { return _type; }
@@ -40,7 +37,6 @@ namespace ClassDiagram.Model
             Equipment = eq;
             _type = ty;
         }
-
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         { 
             info.AddValue("Id", Id);

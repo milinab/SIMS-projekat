@@ -33,9 +33,9 @@ namespace Hospital.Model
             _service.Delete(id);
         }
 
-        public ObservableCollection<Appointment> ReadAll()
+        public ObservableCollection<Appointment> Read()
         {
-            return _service.ReadAll();
+            return _service.Read();
         }
     }
 }

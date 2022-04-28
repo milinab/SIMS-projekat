@@ -1,10 +1,25 @@
 using System;
 using System.ComponentModel;
+using System.Runtime.Serialization;
+using Hospital.Repository;
 
 namespace Hospital.Model
 {
-   public class User : INotifyPropertyChanged
+    [DataContract]
+    public class User : INotifyPropertyChanged
     {
+        private int _id;
+        private string _name;
+        private string _lastName;
+        private string _idNumber;
+        private string _username;
+        private string _password;
+        private Address _address;
+        private string _phone;
+        private string _email;
+        private string _accountType;
+        private DateTime _dateOfBirth;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string name)
         {
@@ -13,6 +28,7 @@ namespace Hospital.Model
                 PropertyChanged(this, new PropertyChangedEventArgs(name));
             }
         }
+        [DataMember]
         public int Id
         {
             get
@@ -28,7 +44,7 @@ namespace Hospital.Model
                 }
             }
         }
-
+        [DataMember]
         public string Name
         {
             get
@@ -44,6 +60,7 @@ namespace Hospital.Model
                 }
             }
         }
+        [DataMember]
         public string LastName
         {
             get
@@ -59,6 +76,7 @@ namespace Hospital.Model
                 }
             }
         }
+        [DataMember]
         public string IdNumber
         {
             get
@@ -74,6 +92,7 @@ namespace Hospital.Model
                 }
             }
         }
+        [DataMember]
         public string Username
         {
             get
@@ -89,6 +108,7 @@ namespace Hospital.Model
                 }
             }
         }
+        [DataMember]
         public string Password
         {
             get
@@ -104,6 +124,8 @@ namespace Hospital.Model
                 }
             }
         }
+        [DataMember]
+        public int AddressId { get; set; }
         public Address Address
         {
             get
@@ -119,6 +141,7 @@ namespace Hospital.Model
                 }
             }
         }
+        [DataMember]
         public string Email
         {
             get
@@ -134,6 +157,7 @@ namespace Hospital.Model
                 }
             }
         }
+        [DataMember]
         public string Phone
         {
             get
@@ -149,7 +173,7 @@ namespace Hospital.Model
                 }
             }
         }
-
+        [DataMember]
         public string AccountType
         {
             get
@@ -165,6 +189,7 @@ namespace Hospital.Model
                 }
             }
         }
+        [DataMember]
         public DateTime DateOfBirth
 
         {
@@ -181,17 +206,5 @@ namespace Hospital.Model
                 }
             }
         }
-        private int _id;
-        private string _name;  
-        private string _lastName;
-        private string _idNumber;
-        private string _username;
-        private string _password;
-        private Address _address;
-        private string _phone;
-        private string _email;
-        private string _accountType;
-        private DateTime _dateOfBirth;
-   
-   }
+    }
 }

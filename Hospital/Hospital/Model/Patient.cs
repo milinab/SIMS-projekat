@@ -1,15 +1,19 @@
 using System;
+using System.Runtime.Serialization;
 
 namespace Hospital.Model
 {
-
-    
-
-
-   public class Patient : User
-   {
-
-       public string Gender
+    [DataContract]
+    public class Patient : User
+    {
+        private string _gender;
+        private string _bloodType;
+        private string _healthInsuranceID;
+        [DataMember]
+        public int MedicalRecordId { get; set; }
+        public MedicalRecord MedicalRecord { get; set; }
+        [DataMember]
+        public string Gender
         {
             get
             {
@@ -24,7 +28,7 @@ namespace Hospital.Model
                 }
             }
         }
-
+        [DataMember]
         public string BloodType
         {
             get
@@ -40,8 +44,8 @@ namespace Hospital.Model
                 }
             }
         }
-
-        public String HealthInsuranceId
+        [DataMember]
+        public string HealthInsuranceId
         {
             get
             {
@@ -56,14 +60,5 @@ namespace Hospital.Model
                 }
             }
         }
-
-       
-
-        private string _gender;
-        private string _bloodType;
-        private string _healthInsuranceID;
-      
-        public MedicalRecord medicalRecord;
-   
-   }
+    }
 }

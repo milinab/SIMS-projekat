@@ -1,10 +1,16 @@
 using System;
+using System.Runtime.Serialization;
 
 namespace Hospital.Model
 {
-   public class Guest 
-   {
-      public new int Id;
-   
-   }
+    [DataContract]
+    public class Guest
+    {
+        [DataMember]
+        public int Id { get; set; }
+
+        public Guest()
+        {
+        }
+    }
 }

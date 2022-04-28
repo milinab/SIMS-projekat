@@ -1,12 +1,20 @@
 using System;
+using System.Runtime.Serialization;
 
 namespace Hospital.Model
 {
-   public class Employee : User
-   {
-      public int Vacation;
-      public int Experience;
-      public DateTime DateOfEmployment;
-   
-   }
+    [DataContract]
+    public class Employee : User
+    {
+        [DataMember]
+        public int Vacation { get; set; }
+        [DataMember]
+        public int Experience { get; set; }
+        [DataMember]
+        public DateTime DateOfEmployment { get; set; }
+
+        public Employee()
+        {
+        }
+    }
 }

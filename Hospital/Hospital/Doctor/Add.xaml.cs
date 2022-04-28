@@ -28,6 +28,8 @@ namespace Hospital.Doctor {
             _appointmentController = appointmentController;
             InitializeComponent();
             datePicker.SelectedDate = DateTime.Now;
+            //roomListBox.ItemsSource =
+            //equipmentListBox.ItemsSource =
         }
         private void RoomClick(object sender, RoutedEventArgs e) {
 
