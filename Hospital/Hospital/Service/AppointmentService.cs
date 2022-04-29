@@ -1,14 +1,14 @@
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Hospital.Model;
+using Hospital.Repository;
 
-namespace Hospital.Model
+namespace Hospital.Service
 {
     public class AppointmentService
     {
         private int _id;
-        public readonly AppointmentRepository _repository;
+        private readonly AppointmentRepository _repository;
 
         public AppointmentService(AppointmentRepository appointmentRepository)
         {
@@ -31,13 +31,13 @@ namespace Hospital.Model
 
         public void Create(Appointment newAppointment)
         {
-            newAppointment.Id = GenerateID();
+            newAppointment.Id = GenerateId();
             _repository.Create(newAppointment);
         }
 
-        public void Edit(Appointment newAppointment)
+        public void Edit(Appointment editAppointment)
         {
-            _repository.Edit(newAppointment);
+            _repository.Edit(editAppointment);
         }
 
         public void Delete(int id)
@@ -49,7 +49,7 @@ namespace Hospital.Model
         {
             return _repository.Read();
         }
-        private int GenerateID()
+        private int GenerateId()
         {
             return ++_id;
         }

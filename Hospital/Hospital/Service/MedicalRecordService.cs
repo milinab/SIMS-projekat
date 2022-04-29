@@ -1,9 +1,9 @@
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Hospital.Model;
+using Hospital.Repository;
 
-namespace Hospital.Model
+namespace Hospital.Service
 {
     public class MedicalRecordService
     {
@@ -31,7 +31,7 @@ namespace Hospital.Model
       
         public void Create(MedicalRecord newMedicalRecord)
         {
-            newMedicalRecord.Id = GenerateID();
+            newMedicalRecord.Id = GenerateId();
             _repository.Create(newMedicalRecord);
         }
       
@@ -50,7 +50,7 @@ namespace Hospital.Model
             return _repository.Read();
         }
 
-        private int GenerateID()
+        private int GenerateId()
         {
             return ++_id;
         }

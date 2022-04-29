@@ -1,15 +1,14 @@
 using Hospital.Repository;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Hospital.Model;
 
-namespace Hospital.Model
+namespace Hospital.Service
 {
     public class SurgeryService
     {
         private int _id;
-        public readonly SurgeryRepository _repository;
+        private readonly SurgeryRepository _repository;
 
         public SurgeryService(SurgeryRepository surgeryRepository)
         {
@@ -32,7 +31,7 @@ namespace Hospital.Model
 
         public void Create(Surgery newSurgery)
         {
-            newSurgery.Id = GenerateID();
+            newSurgery.Id = GenerateId();
             _repository.Create(newSurgery);
         }
 
@@ -50,7 +49,8 @@ namespace Hospital.Model
         {
             return _repository.Read();
         }
-        private int GenerateID()
+        
+        private int GenerateId()
         {
             return ++_id;
         }

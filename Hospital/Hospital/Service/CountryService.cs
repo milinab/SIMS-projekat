@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Hospital.Model;
 using Hospital.Repository;
 
@@ -12,7 +8,7 @@ namespace Hospital.Service
     public class CountryService
     {
         private int _id;
-        public readonly CountryRepository _repository;
+        private readonly CountryRepository _repository;
 
         public CountryService(CountryRepository countryRepository)
         {
@@ -35,7 +31,7 @@ namespace Hospital.Service
 
         public void Create(Country newCountry)
         {
-            newCountry.Id = GenerateID();
+            newCountry.Id = GenerateId();
             _repository.Create(newCountry);
         }
 
@@ -54,7 +50,7 @@ namespace Hospital.Service
             return _repository.Read();
         }
 
-        private int GenerateID()
+        private int GenerateId()
         {
             return ++_id;
         }

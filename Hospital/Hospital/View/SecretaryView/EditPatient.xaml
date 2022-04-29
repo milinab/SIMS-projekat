@@ -1,9 +1,9 @@
-﻿<Window x:Class="Hospital.Secretary.EditPatient"
+﻿<Window x:Class="Hospital.View.SecretaryView.EditPatient"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Hospital.Secretary"
+        xmlns:local="clr-namespace:Hospital.View.SecretaryView"
         mc:Ignorable="d"
         Title="EditPatient" Height="500" Width="600">
 

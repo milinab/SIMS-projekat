@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using Hospital.Repository;
+﻿using System.Collections.ObjectModel;
+using Hospital.Model;
 
-namespace Hospital.Model
+namespace Hospital.Repository
 {
     public class SecretaryRepository
     {

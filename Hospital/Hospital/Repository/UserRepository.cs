@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 using Hospital.Model;
 
 namespace Hospital.Repository
@@ -11,7 +6,7 @@ namespace Hospital.Repository
     public class UserRepository
     {
         private ObservableCollection<User> _users;
-        private Serializer<User> _serializer;
+        private readonly Serializer<User> _serializer;
 
         public UserRepository()
         {

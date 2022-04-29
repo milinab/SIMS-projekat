@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
-using Hospital.Model;
-using Hospital.Repository;
+﻿using System.Windows;
 
 namespace Hospital
 {

@@ -13,9 +13,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Hospital.Controller;
 using Hospital.Model;
 
-namespace Hospital.Doctor {
+namespace Hospital.View.DoctorView {
     /// <summary>
     /// Interaction logic for Create.xaml
     /// </summary>

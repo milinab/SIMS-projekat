@@ -1,9 +1,8 @@
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
+using Hospital.Model;
+using Hospital.Service;
 
-namespace Hospital.Model
+namespace Hospital.Controller
 {
     public class PatientController
     {

@@ -1,8 +1,8 @@
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using Hospital.Model;
+using Hospital.Service;
 
-namespace Hospital.Model
+namespace Hospital.Controller
 {
     public class AppointmentController
     {
@@ -23,9 +23,9 @@ namespace Hospital.Model
             _service.Create(newAppointment);
         }
 
-        public void Edit(Appointment newAppointment)
+        public void Edit(Appointment editAppointment)
         {
-            _service.Edit(newAppointment);
+            _service.Edit(editAppointment);
         }
 
         public void Delete(int id)

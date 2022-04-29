@@ -100,6 +100,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Controller\AddressController.cs" />
+    <Compile Include="Controller\DoctorController.cs" />
+    <Compile Include="Controller\ManagerController.cs" />
+    <Compile Include="Controller\SecretaryController.cs" />
     <Compile Include="Controller\SurgeryController.cs" />
     <Compile Include="Controller\AppointmentController.cs" />
     <Compile Include="Controller\CityController.cs" />
@@ -111,30 +114,14 @@
     <Compile Include="Controller\RoomController.cs" />
     <Compile Include="Controller\GuestController.cs" />
     <Compile Include="Controller\UserController.cs" />
-    <Compile Include="Doctor\Add.xaml.cs">
-      <DependentUpon>Add.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Doctor\CustomTimeSpanUpDown.cs" />
-    <Compile Include="Doctor\DoctorWindow.xaml.cs">
-      <DependentUpon>DoctorWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Doctor\Edit.xaml.cs">
-      <DependentUpon>Edit.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Doctor\Menu.xaml.cs">
-      <DependentUpon>Menu.xaml</DependentUpon>
-    </Compile>
     <Compile Include="LogIn.xaml.cs">
       <DependentUpon>LogIn.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PatientUI\BookAnAppointment.xaml.cs">
-      <DependentUpon>BookAnAppointment.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="PatientUI\PatientWindow.xaml.cs">
-      <DependentUpon>PatientWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Repository\AddressRepository.cs" />
     <Compile Include="Repository\CityRepository.cs" />
+    <Compile Include="Repository\DoctorRepository.cs" />
+    <Compile Include="Repository\ManagerRepository.cs" />
+    <Compile Include="Repository\SecretaryRepository.cs" />
     <Compile Include="Repository\SurgeryRepository.cs" />
     <Compile Include="Repository\GuestRepository.cs" />
     <Compile Include="Repository\EquipmentRepository.cs" />
@@ -142,16 +129,10 @@
     <Compile Include="Repository\CountryRepository.cs" />
     <Compile Include="Repository\Serializer.cs" />
     <Compile Include="Repository\UserRepository.cs" />
-    <Compile Include="Secretary\AddPatient.xaml.cs">
-      <DependentUpon>AddPatient.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Secretary\EditPatient.xaml.cs">
-      <DependentUpon>EditPatient.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Secretary\SecretaryWindow.xaml.cs">
-      <DependentUpon>SecretaryWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Service\AddressService.cs" />
+    <Compile Include="Service\DoctorService.cs" />
+    <Compile Include="Service\ManagerService.cs" />
+    <Compile Include="Service\SecretaryService.cs" />
     <Compile Include="Service\SurgeryService.cs" />
     <Compile Include="Service\CityService.cs" />
     <Compile Include="Service\EmployeeService.cs" />
@@ -159,22 +140,37 @@
     <Compile Include="Service\EquipmentService.cs" />
     <Compile Include="Service\GuestService.cs" />
     <Compile Include="Service\UserService.cs" />
-    <Page Include="Doctor\Add.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Doctor\DoctorWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Doctor\Edit.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Doctor\Menu.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+    <Compile Include="View\DoctorView\Add.xaml.cs">
+      <DependentUpon>Add.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DoctorView\CustomTimeSpanUpDown.cs" />
+    <Compile Include="View\DoctorView\DoctorWindow.xaml.cs">
+      <DependentUpon>DoctorWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DoctorView\Edit.xaml.cs">
+      <DependentUpon>Edit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DoctorView\Menu.xaml.cs">
+      <DependentUpon>Menu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ManagerView\ManagerWindow.xaml.cs">
+      <DependentUpon>ManagerWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientView\BookAnAppointment.xaml.cs">
+      <DependentUpon>BookAnAppointment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientView\PatientWindow.xaml.cs">
+      <DependentUpon>PatientWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SecretaryView\AddPatient.xaml.cs">
+      <DependentUpon>AddPatient.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SecretaryView\EditPatient.xaml.cs">
+      <DependentUpon>EditPatient.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SecretaryView\SecretaryWindow.xaml.cs">
+      <DependentUpon>SecretaryWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="LogIn.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -183,35 +179,38 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Manager\ManagerWindow.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="View\DoctorView\Add.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="PatientUI\BookAnAppointment.xaml">
+    <Page Include="View\DoctorView\DoctorWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
-    <Page Include="PatientUI\PatientWindow.xaml">
+    <Page Include="View\DoctorView\Edit.xaml">
       <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
-    <Page Include="Secretary\AddPatient.xaml">
+    <Page Include="View\DoctorView\Menu.xaml">
       <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
-    <Page Include="Secretary\EditPatient.xaml">
+    <Page Include="View\ManagerView\ManagerWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
-    <Page Include="Secretary\SecretaryWindow.xaml">
+    <Page Include="View\PatientView\BookAnAppointment.xaml">
       <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\PatientView\PatientWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SecretaryView\AddPatient.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SecretaryView\EditPatient.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SecretaryView\SecretaryWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Manager\ManagerWindow.xaml.cs">
-      <DependentUpon>ManagerWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Model\Address.cs" />
     <Compile Include="Model\Appointment.cs" />
     <Compile Include="Repository\AppointmentRepository.cs" />
@@ -264,6 +263,8 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="View" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

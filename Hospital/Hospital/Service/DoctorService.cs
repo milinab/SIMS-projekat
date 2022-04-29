@@ -1,14 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
+using Hospital.Model;
+using Hospital.Repository;
 
-namespace Hospital.Model
+namespace Hospital.Service
 {
     public class DoctorService
     {
         private int _id;
-        public readonly DoctorRepository _repository;
+        private readonly DoctorRepository _repository;
+        
         public DoctorService(DoctorRepository doctorRepository)
         {
             _repository = doctorRepository;
@@ -29,6 +30,7 @@ namespace Hospital.Model
 
         public void Create(Doctor newDoctor)
         {
+            newDoctor.Id = GenerateId();
             _repository.Create(newDoctor);
         }
 
@@ -45,6 +47,11 @@ namespace Hospital.Model
         public ObservableCollection<Doctor> Read()
         {
             return _repository.Read();
+        }
+        
+        private int GenerateId()
+        {
+            return ++_id;
         }
     }
 }

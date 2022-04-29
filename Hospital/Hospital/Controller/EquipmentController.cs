@@ -1,9 +1,8 @@
-using ClassDiagram.Model;
-using System;
-using System.Collections.Generic;
+using Hospital.Model;
 using System.Collections.ObjectModel;
+using Hospital.Service;
 
-namespace Hospital.Model
+namespace Hospital.Controller
 {
     public class EquipmentController
     {

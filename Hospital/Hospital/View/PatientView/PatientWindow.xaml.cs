@@ -1,25 +1,11 @@
 ﻿using Hospital.Model;
 using Prism.Commands;
-using Prism.Mvvm;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using static System.Net.Mime.MediaTypeNames;
-using System.Data;
-using System.Drawing;
 
-namespace Hospital.PatientUI
+namespace Hospital.View.PatientView
 {
     /// <summary>
     /// Interaction logic for PatientWindow.xaml
@@ -86,7 +72,7 @@ namespace Hospital.PatientUI
 
         private void OpenBookAnAppointmentWindowClick(object sender, RoutedEventArgs e)
         {
-            PatientUI.BookAnAppointment bookAnAppointment = new PatientUI.BookAnAppointment(this);
+            BookAnAppointment bookAnAppointment = new BookAnAppointment(this);
             bookAnAppointment.Show();
 
         }

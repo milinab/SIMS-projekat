@@ -1,9 +1,7 @@
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using Hospital.Repository;
+using Hospital.Model;
 
-namespace Hospital.Model
+namespace Hospital.Repository
 {
    public class AppointmentRepository
    {
@@ -40,14 +38,14 @@ namespace Hospital.Model
             Write();
         }
 
-        public void Edit(Appointment newAppointment)
+        public void Edit(Appointment editAppointment)
         {
             foreach (Appointment appointment in _appointments)
             {
-                if (newAppointment.Id.Equals(appointment.Id))
+                if (editAppointment.Id.Equals(appointment.Id))
                 {
-                    appointment.Date = newAppointment.Date;
-                    appointment.Duration = newAppointment.Duration;
+                    appointment.Date = editAppointment.Date;
+                    appointment.Duration = editAppointment.Duration;
                 }
             }
             Write();

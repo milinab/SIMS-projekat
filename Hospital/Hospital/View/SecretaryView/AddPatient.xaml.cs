@@ -1,9 +1,9 @@
 ﻿using Hospital.Model;
 using System;
-using System.Collections.ObjectModel;
 using System.Windows;
+using Hospital.Controller;
 
-namespace Hospital.Secretary
+namespace Hospital.View.SecretaryView
 {
     /// <summary>
     /// Interaction logic for AddPatient.xaml

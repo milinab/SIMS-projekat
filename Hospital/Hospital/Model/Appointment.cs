@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel;
 using System.Runtime.Serialization;
-using ClassDiagram.Model;
+using Hospital.Model;
 using Hospital.Repository;
 
 namespace Hospital.Model

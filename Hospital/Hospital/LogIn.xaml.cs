@@ -1,21 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
+﻿using System.Windows;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using Hospital.Controller;
-using Hospital.Doctor;
-using Hospital.Model;
 using Hospital.Repository;
 using Hospital.Service;
+using Hospital.View.DoctorView;
+using Hospital.View.ManagerView;
+using Hospital.View.PatientView;
+using Hospital.View.SecretaryView;
 
 namespace Hospital
 {
@@ -67,19 +58,19 @@ namespace Hospital
                 }
                 else if (type.Equals("manager"))
                 {
-                    Manager.ManagerWindow managerWindow = new Manager.ManagerWindow();
+                    ManagerWindow managerWindow = new ManagerWindow();
                     managerWindow.Show();
                     Close();
                 }
                 else if (type.Equals("Patient"))
                 {
-                    PatientUI.PatientWindow patientWindow = new PatientUI.PatientWindow();
+                    PatientWindow patientWindow = new PatientWindow();
                     patientWindow.Show();
                     Close();
                 }
                 else if (type.Equals("secretary"))
                 {
-                    Secretary.SecretaryWindow secretaryWindow = new Secretary.SecretaryWindow(_patientController);
+                    SecretaryWindow secretaryWindow = new SecretaryWindow(_patientController);
                     secretaryWindow.Show();
                     Close();
                 }

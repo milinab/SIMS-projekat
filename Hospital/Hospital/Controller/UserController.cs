@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 using Hospital.Model;
 using Hospital.Service;
 
@@ -40,7 +35,7 @@ namespace Hospital.Controller
 
         public ObservableCollection<User> ReadAll()
         {
-            return _service.ReadAll();
+            return _service.Read();
         }
 
         public (bool isValid, string type) IsLogInValid(string username, string password)

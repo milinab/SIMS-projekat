@@ -1,9 +1,7 @@
-using ClassDiagram.Model;
-using Hospital.Repository;
-using System;
+using Hospital.Model;
 using System.Collections.ObjectModel;
 
-namespace Hospital.Model
+namespace Hospital.Repository
 {
     public class RoomRepository
     {
