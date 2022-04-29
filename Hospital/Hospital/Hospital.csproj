@@ -100,12 +100,16 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Controller\AddressController.cs" />
+    <Compile Include="Controller\SurgeryController.cs" />
     <Compile Include="Controller\AppointmentController.cs" />
     <Compile Include="Controller\CityController.cs" />
+    <Compile Include="Controller\EmployeeController.cs" />
     <Compile Include="Controller\CountryController.cs" />
     <Compile Include="Controller\MedicalRecordController.cs" />
     <Compile Include="Controller\PatientController.cs" />
+    <Compile Include="Controller\EquipmentController.cs" />
     <Compile Include="Controller\RoomController.cs" />
+    <Compile Include="Controller\GuestController.cs" />
     <Compile Include="Controller\UserController.cs" />
     <Compile Include="Doctor\Add.xaml.cs">
       <DependentUpon>Add.xaml</DependentUpon>
@@ -131,6 +135,10 @@
     </Compile>
     <Compile Include="Repository\AddressRepository.cs" />
     <Compile Include="Repository\CityRepository.cs" />
+    <Compile Include="Repository\SurgeryRepository.cs" />
+    <Compile Include="Repository\GuestRepository.cs" />
+    <Compile Include="Repository\EquipmentRepository.cs" />
+    <Compile Include="Repository\EmployeeRepository.cs" />
     <Compile Include="Repository\CountryRepository.cs" />
     <Compile Include="Repository\Serializer.cs" />
     <Compile Include="Repository\UserRepository.cs" />
@@ -144,8 +152,12 @@
       <DependentUpon>SecretaryWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Service\AddressService.cs" />
+    <Compile Include="Service\SurgeryService.cs" />
     <Compile Include="Service\CityService.cs" />
+    <Compile Include="Service\EmployeeService.cs" />
     <Compile Include="Service\CountryService.cs" />
+    <Compile Include="Service\EquipmentService.cs" />
+    <Compile Include="Service\GuestService.cs" />
     <Compile Include="Service\UserService.cs" />
     <Page Include="Doctor\Add.xaml">
       <Generator>MSBuild:Compile</Generator>
