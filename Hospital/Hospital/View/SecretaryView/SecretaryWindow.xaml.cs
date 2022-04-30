@@ -8,16 +8,21 @@ namespace Hospital.View.SecretaryView {
     /// Interaction logic for SecretaryWindow.xaml
     /// </summary>
     public partial class SecretaryWindow : Window {
-        
 
 
+        private readonly object _content;
         private readonly PatientController _patientController;
+        private readonly UserController _userController;
+        private readonly AppointmentController _appointmentController;
 
-        public SecretaryWindow(PatientController patientController)
+        public SecretaryWindow(PatientController patientController, UserController userController, AppointmentController appointmentController)
         {
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
+            _content = Content;
             _patientController = patientController;
+            _userController = userController;
+            _appointmentController = appointmentController;
             dataGridPatients.ItemsSource = _patientController.Read();
             //Patient patient1 = new Patient()
             //{
@@ -101,7 +106,7 @@ namespace Hospital.View.SecretaryView {
         public void AddPatientClick(object sender, RoutedEventArgs e)
         {
             var addPatientWindow = new AddPatient(this, _patientController);
-            addPatientWindow.ShowDialog();
+            Content = addPatientWindow;
         }
 
         private void EditButtonClick(object sender, RoutedEventArgs e)
@@ -111,8 +116,24 @@ namespace Hospital.View.SecretaryView {
             if (patient.AccountType == "Patient")
             {
                 var editPatientWindow = new EditPatient(patient, this, _patientController);
-                editPatientWindow.ShowDialog();
+                Content = editPatientWindow;
             }
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            Content = _content;
+        }
+
+        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        {
+            AppointmentPage appointmentPage= new AppointmentPage(this, _appointmentController);
+            Content = appointmentPage;
+        }
+
+        public void BackToSecretaryWindow()
+        {
+            Content = _content;
         }
     }
 }

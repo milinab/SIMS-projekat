@@ -2,6 +2,7 @@
 using System;
 using System.Windows;
 using Hospital.Controller;
+using System.Windows.Controls;
 
 namespace Hospital.View.SecretaryView
 {
@@ -10,14 +11,15 @@ namespace Hospital.View.SecretaryView
     /// </summary>
 
 
-    public partial class AddPatient : Window
+    public partial class AddPatient : Page
     {
-        private PatientController _patientController;
-        private Patient Patient;
+        private readonly SecretaryWindow _secretaryWindow;
+        private readonly PatientController _patientController;
         public AddPatient(SecretaryWindow secretaryWindow, PatientController patientController)
         {
-            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+
             InitializeComponent();
+            _secretaryWindow = secretaryWindow;
             _patientController = patientController;
         }
 
@@ -62,12 +64,12 @@ namespace Hospital.View.SecretaryView
 
             };
             _patientController.Create(newUser);
-            DialogResult = true;
+            _secretaryWindow.BackToSecretaryWindow();
         }
 
         private void CancelPatientOnClick(Object sender, RoutedEventArgs e)
         {
-            DialogResult = false;
+            _secretaryWindow.BackToSecretaryWindow();
         }
 
     }

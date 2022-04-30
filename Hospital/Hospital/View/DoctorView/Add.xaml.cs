@@ -22,8 +22,8 @@ namespace Hospital.View.DoctorView {
     /// </summary>
     public partial class Add : Page {
 
-        private DoctorWindow _doctorWindow;
-        private AppointmentController _appointmentController;
+        private readonly DoctorWindow _doctorWindow;
+        private readonly AppointmentController _appointmentController;
         public Add(DoctorWindow doctorWindow, AppointmentController appointmentController) {
             _doctorWindow = doctorWindow;
             _appointmentController = appointmentController;

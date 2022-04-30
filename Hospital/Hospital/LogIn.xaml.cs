@@ -70,7 +70,7 @@ namespace Hospital
                 }
                 else if (type.Equals("secretary"))
                 {
-                    SecretaryWindow secretaryWindow = new SecretaryWindow(_patientController);
+                    SecretaryWindow secretaryWindow = new SecretaryWindow(_patientController, _userController, _appointmentController);
                     secretaryWindow.Show();
                     Close();
                 }

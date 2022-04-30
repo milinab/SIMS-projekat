@@ -2,23 +2,25 @@
 using System;
 using System.Windows;
 using Hospital.Controller;
+using System.Windows.Controls;
 
 namespace Hospital.View.SecretaryView
 {
     /// <summary>
     /// Interaction logic for Window1.xaml
     /// </summary>
-    public partial class EditPatient : Window
+    public partial class EditPatient : Page
     {
-        public Patient patient1 { get; set; }
-        private PatientController _patientController;
-        public EditPatient(Patient patient, SecretaryWindow secretaryWindow, PatientController patientController)
+        private int _id;
+        private readonly SecretaryWindow _secretaryWindow;
+        private readonly PatientController _patientController;
+        public EditPatient(Patient patient,SecretaryWindow secretaryWindow, PatientController patientController)
         {
-            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            
             InitializeComponent();
+
             _patientController = patientController;
-
-
+            _secretaryWindow = secretaryWindow;
             this.nameText.Text = patient.Name;
             this.lastNameText.Text = patient.LastName;
             this.usernameText.Text = patient.Username;
@@ -30,11 +32,12 @@ namespace Hospital.View.SecretaryView
             this.datePicker.SelectedDate = patient.DateOfBirth;
             this.healthInsuranceIdText.Text = patient.HealthInsuranceId;
             this.bloodTypeText.Text = patient.BloodType;
+            _id = patient.Id;
 
         }
         private void CancelPatientOnClick(Object sender, RoutedEventArgs e)
         {
-            DialogResult = false;
+            _secretaryWindow.BackToSecretaryWindow();
         }
 
         private void EditPatientOnClick(Object sender, RoutedEventArgs e)
@@ -42,7 +45,7 @@ namespace Hospital.View.SecretaryView
 
             Patient NewPatient = new Patient
             {
-
+                Id = _id,
                 Name = nameText.Text,
                 LastName = lastNameText.Text,
                 Username = usernameText.Text,
@@ -76,7 +79,7 @@ namespace Hospital.View.SecretaryView
 
             };
             _patientController.Edit(NewPatient);
-            DialogResult = true;
+            _secretaryWindow.BackToSecretaryWindow();
         }
     }
 }
