@@ -121,6 +121,7 @@
     <Compile Include="Repository\CityRepository.cs" />
     <Compile Include="Repository\DoctorRepository.cs" />
     <Compile Include="Repository\ManagerRepository.cs" />
+    <Compile Include="Repository\Repositories.cs" />
     <Compile Include="Repository\SecretaryRepository.cs" />
     <Compile Include="Repository\SurgeryRepository.cs" />
     <Compile Include="Repository\GuestRepository.cs" />
@@ -133,6 +134,7 @@
     <Compile Include="Service\DoctorService.cs" />
     <Compile Include="Service\ManagerService.cs" />
     <Compile Include="Service\SecretaryService.cs" />
+    <Compile Include="Service\Services.cs" />
     <Compile Include="Service\SurgeryService.cs" />
     <Compile Include="Service\CityService.cs" />
     <Compile Include="Service\EmployeeService.cs" />

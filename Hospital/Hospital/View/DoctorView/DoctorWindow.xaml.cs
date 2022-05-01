@@ -7,26 +7,28 @@ namespace Hospital.View.DoctorView {
     /// <summary>
     /// Interaction logic for DoctorWindow.xaml
     /// </summary>
-    public partial class DoctorWindow {
+    public partial class DoctorWindow
+    {
 
+        private App app;
         private readonly object _content;
-        private readonly AppointmentController _appointmentController;
-        public DoctorWindow(AppointmentController controller) {
+        public DoctorWindow()
+        {
+            app = Application.Current as App;
             InitializeComponent();
             _content = Content;
             this.DataContext = this;
-            _appointmentController = controller;
-            gridAppointments.ItemsSource = _appointmentController.Read();
+            gridAppointments.ItemsSource = app._appointmentController.Read();
 
         }
         private void AddClick(object sender, RoutedEventArgs e) {
             
-            Add addPage = new Add(this, _appointmentController);
+            Add addPage = new Add(this, app._appointmentController);
             Content = addPage;
         }
         private void EditClick(object sender, RoutedEventArgs e) {
             if (gridAppointments.SelectedItem != null) {
-                Edit editWindow = new Edit((Appointment)gridAppointments.SelectedItem, _appointmentController);
+                Edit editWindow = new Edit((Appointment)gridAppointments.SelectedItem);
                 editWindow.Show();
             }
             else {
@@ -35,8 +37,8 @@ namespace Hospital.View.DoctorView {
         }
         private void DeleteClick(object sender, RoutedEventArgs e) {
             if (gridAppointments.SelectedItem != null) {
-                Appointment app = (Appointment)gridAppointments.SelectedItem;
-                _appointmentController.Delete(app.Id);
+                Appointment appointment = (Appointment)gridAppointments.SelectedItem;
+                app._appointmentController.Delete(appointment.Id);
             } else {
                 MessageBox.Show("You must select a row first", "Warning");
             }

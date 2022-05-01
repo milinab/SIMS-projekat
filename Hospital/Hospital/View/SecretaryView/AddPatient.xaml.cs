@@ -13,57 +13,33 @@ namespace Hospital.View.SecretaryView
 
     public partial class AddPatient : Page
     {
+        private App _app;
         private readonly SecretaryWindow _secretaryWindow;
-        private readonly PatientController _patientController;
-        public AddPatient(SecretaryWindow secretaryWindow, PatientController patientController)
+        public AddPatient(SecretaryWindow secretaryWindow)
         {
-
+            _app = Application.Current as App;
             InitializeComponent();
             _secretaryWindow = secretaryWindow;
-            _patientController = patientController;
         }
 
         private void AddPatientOnClick(object sender, RoutedEventArgs e)
         {
-            
-            Patient newUser = new Patient
-            { 
-                
-                Name = nameText.Text,
-                LastName = lastNameText.Text,
-                Username = usernameText.Text,
-                Password = passwordText.Text,
-                Gender = genderText.Text,
-                IdNumber = idNumberText.Text,
-                Phone = phoneText.Text,
-                Email = emailText.Text,
-                DateOfBirth = (DateTime)datePicker.SelectedDate,
-                AccountType = "Patient",
-                HealthInsuranceId = healthInsuranceIdText.Text,
-                BloodType = bloodTypeText.Text,
-                MedicalRecord = new MedicalRecord
+            Country tempCountry = new Country(countryText.Text);
+            _app._countryController.Create(tempCountry);
+            City tempCity = new City(cityText.Text, zipText.Text, tempCountry);
+            _app._cityController.Create(tempCity);
+            Address tempAddress = new Address(streetText.Text, numberText.Text, tempCity);
+            _app._addressController.Create(tempAddress);
+            User user = new User(nameText.Text, lastNameText.Text, idNumberText.Text, usernameText.Text,
+                passwordText.Text, tempAddress, phoneText.Text, emailText.Text, "Patient", 
+                (DateTime)datePicker.SelectedDate);
+            _app._userController.Create(user);
+            Patient patient = new Patient(user, genderText.Text, bloodTypeText.Text, healthInsuranceIdText.Text, new MedicalRecord
                 {
                     ChronicalDiseases = chronicalDiseaseText.Text
-                },
-                Address = new Address()
-                {
-                City = new City()
-                {
-                Country = new Country()
-                {
-                Name = countryText.Text
-                },
-                Name = cityText.Text,
-                Zip = zipText.Text
-                },
-                Street = streetText.Text,
-                Number = numberText.Text
-                }
-               
-                
-
-            };
-            _patientController.Create(newUser);
+                });
+            
+            _app._patientController.Create(patient);
             _secretaryWindow.BackToSecretaryWindow();
         }
 

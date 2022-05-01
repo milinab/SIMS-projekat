@@ -15,34 +15,21 @@ namespace Hospital
     /// </summary>
     public partial class LogIn : Window
     {
+        private App _app;
         private string _username;
         private string _password;
-        private readonly AppointmentController _appointmentController;
-        private readonly UserController _userController;
-        private readonly PatientController _patientController;
 
         public LogIn()
         {
+            _app = Application.Current as App;
             InitializeComponent();
-
-            UserRepository userRepository = new UserRepository();
-            UserService userService = new UserService(userRepository);
-            _userController = new UserController(userService);
-
-            AppointmentRepository appointmentRepository = new AppointmentRepository();
-            AppointmentService appointmentService = new AppointmentService(appointmentRepository);
-            _appointmentController = new AppointmentController(appointmentService);
-
-            PatientRepository patientRepository = new PatientRepository();
-            PatientService patientService = new PatientService(patientRepository);
-            _patientController = new PatientController(patientService);
         }
 
         private void LogIn_Click(object sender, RoutedEventArgs e)
         {
             _username = username.Text;
             _password = password.Password.ToString();
-            (bool isValid, string type) = _userController.IsLogInValid(_username, _password);
+            (bool isValid, string type) = _app._userController.IsLogInValid(_username, _password);
             if (isValid == false)
             {
                 username.Background = Brushes.Red;
@@ -52,7 +39,7 @@ namespace Hospital
             {
                 if (type.Equals("doctor"))
                 {
-                    DoctorWindow doctorWindow = new DoctorWindow(_appointmentController);
+                    DoctorWindow doctorWindow = new DoctorWindow();
                     doctorWindow.Show();
                     Close();
                 }
@@ -62,7 +49,7 @@ namespace Hospital
                     managerWindow.Show();
                     Close();
                 }
-                else if (type.Equals("Patient"))
+                else if (type.Equals("patient"))
                 {
                     PatientWindow patientWindow = new PatientWindow();
                     patientWindow.Show();
@@ -70,7 +57,7 @@ namespace Hospital
                 }
                 else if (type.Equals("secretary"))
                 {
-                    SecretaryWindow secretaryWindow = new SecretaryWindow(_patientController, _userController, _appointmentController);
+                    SecretaryWindow secretaryWindow = new SecretaryWindow();
                     secretaryWindow.Show();
                     Close();
                 }

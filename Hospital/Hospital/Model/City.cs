@@ -1,4 +1,3 @@
-using System;
 using System.Runtime.Serialization;
 
 namespace Hospital.Model
@@ -18,6 +17,14 @@ namespace Hospital.Model
 
         public City()
         {
+        }
+
+        public City(string name, string zip, Country country)
+        {
+            Name = name;
+            Zip = zip;
+            Country = country;
+            CountryId = country.Id;
         }
     }
 }

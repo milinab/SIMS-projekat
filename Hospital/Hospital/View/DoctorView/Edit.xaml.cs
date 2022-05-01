@@ -8,14 +8,18 @@ namespace Hospital.View.DoctorView {
     /// <summary>
     /// Interaction logic for Edit.xaml
     /// </summary>
-    public partial class Edit : Window {
+    public partial class Edit : Window
+    {
 
+        private App _app;
         private readonly Appointment _appointment;
         private AppointmentController _appointmentController;
-        public Edit(Appointment appointment, AppointmentController appointmentController) {
+        public Edit(Appointment appointment)
+        {
+            _app = Application.Current as App;
             InitializeComponent();
             _appointment = appointment;
-            _appointmentController = appointmentController;
+            _appointmentController = _app._appointmentController;
             id.Text = (_appointment.Id).ToString();
             datepicker.SelectedDate = _appointment.Date;
             int hour = _appointment.Date.Hour;

@@ -7,26 +7,44 @@ namespace Hospital.Repository
     {
         private ObservableCollection<Address> _addresses;
         private readonly Serializer<Address> _serializer;
+        private ObservableCollection<City> _cities;
+        private readonly CityRepository _cityRepository;
 
-        public AddressRepository()
+        public AddressRepository(CityRepository cityRepository)
         {
             _serializer = new Serializer<Address>("addresses.csv");
             _addresses = new ObservableCollection<Address>();
+            _cities = new ObservableCollection<City>();
+            _cityRepository = cityRepository;
         }
 
         public ObservableCollection<Address> Read()
         {
             _addresses = _serializer.Read();
+            
+            foreach (var address in _addresses)
+            {
+                City city = _cityRepository.ReadById(address.CityId);
+                if (city != null)
+                {
+                    address.City = city;
+                }
+            }
             return _addresses;
         }
 
         public Address ReadById(int id)
         {
-            foreach (Address address in _addresses)
+            foreach (var address in _addresses)
             {
-                if (address.Id.Equals(id))
+                if (address.Id == id)
                 {
-                    return address;
+                    City city = _cityRepository.ReadById(address.CityId);
+                    if (city != null)
+                    {
+                        address.City = city;
+                        return address;
+                    }
                 }
             }
             return null;

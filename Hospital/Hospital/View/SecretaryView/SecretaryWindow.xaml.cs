@@ -7,22 +7,24 @@ namespace Hospital.View.SecretaryView {
     /// <summary>
     /// Interaction logic for SecretaryWindow.xaml
     /// </summary>
-    public partial class SecretaryWindow : Window {
+    public partial class SecretaryWindow : Window
+    {
 
-
+        private App app;
         private readonly object _content;
         private readonly PatientController _patientController;
         private readonly UserController _userController;
         private readonly AppointmentController _appointmentController;
 
-        public SecretaryWindow(PatientController patientController, UserController userController, AppointmentController appointmentController)
+        public SecretaryWindow()
         {
+            app = Application.Current as App;
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
             _content = Content;
-            _patientController = patientController;
-            _userController = userController;
-            _appointmentController = appointmentController;
+            _patientController = app._patientController;
+            _userController = app._userController;
+            _appointmentController = app._appointmentController;
             dataGridPatients.ItemsSource = _patientController.Read();
             //Patient patient1 = new Patient()
             //{
@@ -105,7 +107,7 @@ namespace Hospital.View.SecretaryView {
 
         public void AddPatientClick(object sender, RoutedEventArgs e)
         {
-            var addPatientWindow = new AddPatient(this, _patientController);
+            var addPatientWindow = new AddPatient(this);
             Content = addPatientWindow;
         }
 

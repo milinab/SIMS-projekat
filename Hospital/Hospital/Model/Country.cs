@@ -1,4 +1,3 @@
-using System;
 using System.Runtime.Serialization;
 
 namespace Hospital.Model
@@ -13,6 +12,11 @@ namespace Hospital.Model
 
         public Country()
         {
+        }
+
+        public Country(string name)
+        {
+            Name = name;
         }
     }
 }

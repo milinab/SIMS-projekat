@@ -10,7 +10,7 @@ namespace Hospital.Repository
 
         public EquipmentRepository()
         {
-            _serializer = new Serializer<Equipment>("equipments.csv");
+            _serializer = new Serializer<Equipment>("equipment.csv");
             _equipments = new ObservableCollection<Equipment>();
         }
 

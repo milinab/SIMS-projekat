@@ -1,4 +1,3 @@
-using System;
 using System.Runtime.Serialization;
 
 namespace Hospital.Model
@@ -16,5 +15,16 @@ namespace Hospital.Model
         public int CityId { get; set; }
         public City City { get; set; }
 
-}
+        public Address()
+        {
+        }
+
+        public Address(string street, string number, City city)
+        {
+            Street = street;
+            Number = number;
+            City = city;
+            CityId = city.Id;
+        }
+    }
 }

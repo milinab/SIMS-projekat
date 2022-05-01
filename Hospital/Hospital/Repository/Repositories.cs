@@ -1,0 +1,40 @@
+﻿namespace Hospital.Repository
+{
+    public class Repositories
+    {
+        public AddressRepository AddressRepository { get; set; }
+        public AppointmentRepository AppointmentRepository { get; set; }
+        public CityRepository CityRepository { get; set; }
+        public CountryRepository CountryRepository { get; set; }
+        public DoctorRepository DoctorRepository { get; set; }
+        public EmployeeRepository EmployeeRepository { get; set; }
+        public EquipmentRepository EquipmentRepository { get; set; }
+        public GuestRepository GuestRepository { get; set; }
+        public ManagerRepository ManagerRepository { get; set; }
+        public MedicalRecordRepository MedicalRecordRepository { get; set; }
+        public PatientRepository PatientRepository { get; set; }
+        public RoomRepository RoomRepository { get; set; }
+        public SecretaryRepository SecretaryRepository { get; set; }
+        public SurgeryRepository SurgeryRepository { get; set; }
+        public UserRepository UserRepository { get; set; }
+
+        public Repositories()
+        {
+            CountryRepository = new CountryRepository();
+            CityRepository = new CityRepository(CountryRepository);
+            AddressRepository = new AddressRepository(CityRepository);
+            PatientRepository = new PatientRepository(AddressRepository);
+            AppointmentRepository = new AppointmentRepository();
+            DoctorRepository = new DoctorRepository();
+            EmployeeRepository = new EmployeeRepository();
+            EquipmentRepository = new EquipmentRepository();
+            GuestRepository = new GuestRepository();
+            ManagerRepository = new ManagerRepository();
+            MedicalRecordRepository = new MedicalRecordRepository();
+            RoomRepository = new RoomRepository();
+            SecretaryRepository = new SecretaryRepository();
+            SurgeryRepository = new SurgeryRepository();
+            UserRepository = new UserRepository();
+        }
+    }
+}
