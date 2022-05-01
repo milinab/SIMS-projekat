@@ -7,14 +7,13 @@ namespace Hospital.Repository
     {
         private ObservableCollection<Patient> _patients;
         private readonly Serializer<Patient> _serializer;
-        private ObservableCollection<Address> _addresses;
         private readonly AddressRepository _addressRepository;
+   
         
         public PatientRepository(AddressRepository addressRepository)
         {
             _serializer = new Serializer<Patient>("patients.csv");
             _patients = new ObservableCollection<Patient>();
-            _addresses = new ObservableCollection<Address>();
             _addressRepository = addressRepository;
         }
 

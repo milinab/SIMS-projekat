@@ -102,6 +102,7 @@ namespace Hospital.View.SecretaryView {
         private void DeletePatient(object sender, RoutedEventArgs e)
         {
             Patient patient = dataGridPatients.SelectedValue as Patient;
+            _userController.Delete(app._userController.FindId(patient.Username));
             _patientController.Delete(patient.Id);
         }
 
@@ -115,9 +116,10 @@ namespace Hospital.View.SecretaryView {
         {
             
             Patient patient = dataGridPatients.SelectedValue as Patient;
+            int userId = app._userController.FindId(patient.Username);
             if (patient.AccountType == "Patient")
             {
-                var editPatientWindow = new EditPatient(patient, this, _patientController);
+                var editPatientWindow = new EditPatient(patient, userId, this);
                 Content = editPatientWindow;
             }
         }

@@ -12,14 +12,15 @@ namespace Hospital.View.SecretaryView
     public partial class EditPatient : Page
     {
         private int _id;
+        private int _userId;
         private readonly SecretaryWindow _secretaryWindow;
-        private readonly PatientController _patientController;
-        public EditPatient(Patient patient,SecretaryWindow secretaryWindow, PatientController patientController)
+        private readonly App _app;
+        public EditPatient(Patient patient,int userId,SecretaryWindow secretaryWindow)
         {
             
             InitializeComponent();
 
-            _patientController = patientController;
+            _app = Application.Current as App;
             _secretaryWindow = secretaryWindow;
             this.nameText.Text = patient.Name;
             this.lastNameText.Text = patient.LastName;
@@ -32,7 +33,13 @@ namespace Hospital.View.SecretaryView
             this.datePicker.SelectedDate = patient.DateOfBirth;
             this.healthInsuranceIdText.Text = patient.HealthInsuranceId;
             this.bloodTypeText.Text = patient.BloodType;
+            this.streetText.Text = patient.Address.Street;
+            this.cityText.Text = patient.Address.City.Name;
+            this.zipText.Text = patient.Address.City.Zip;
+            this.countryText.Text = patient.Address.City.Country.Name;
+            this.numberText.Text = patient.Address.Number.ToString();
             _id = patient.Id;
+            _userId = userId;
 
         }
         private void CancelPatientOnClick(Object sender, RoutedEventArgs e)
@@ -42,43 +49,21 @@ namespace Hospital.View.SecretaryView
 
         private void EditPatientOnClick(Object sender, RoutedEventArgs e)
         {
-
-            Patient NewPatient = new Patient
+            Country tempCountry = new Country(countryText.Text);
+            _app._countryController.Create(tempCountry);
+            City tempCity = new City(cityText.Text, zipText.Text, tempCountry);
+            _app._cityController.Create(tempCity);
+            Address tempAddress = new Address(streetText.Text, numberText.Text, tempCity);
+            _app._addressController.Create(tempAddress);
+            User user = new User(nameText.Text, lastNameText.Text, idNumberText.Text, usernameText.Text,
+                passwordText.Text, tempAddress, phoneText.Text, emailText.Text, "Patient",
+                (DateTime)datePicker.SelectedDate, _userId);
+            _app._userController.Edit(user);
+            Patient patient = new Patient(user, genderText.Text, bloodTypeText.Text, healthInsuranceIdText.Text, new MedicalRecord
             {
-                Id = _id,
-                Name = nameText.Text,
-                LastName = lastNameText.Text,
-                Username = usernameText.Text,
-                Password = passwordText.Text,
-                Gender = genderText.Text,
-                IdNumber = idNumberText.Text,
-                Phone = phoneText.Text,
-                Email = emailText.Text,
-                DateOfBirth = (DateTime)datePicker.SelectedDate,
-                AccountType = "Patient",
-                HealthInsuranceId = healthInsuranceIdText.Text,
-                BloodType = bloodTypeText.Text,
-                MedicalRecord = new MedicalRecord
-                {
-                    ChronicalDiseases = chronicalDiseaseText.Text
-                },
-                Address = new Address()
-                {
-                    City = new City()
-                    {
-                        Country = new Country()
-                        {
-                            Name = countryText.Text
-                        },
-                        Name = cityText.Text,
-                        Zip = zipText.Text
-                    },
-                    Street = streetText.Text,
-                    Number = numberText.Text
-                }
-
-            };
-            _patientController.Edit(NewPatient);
+                ChronicalDiseases = chronicalDiseaseText.Text
+            }, _id);
+            _app._patientController.Edit(patient);
             _secretaryWindow.BackToSecretaryWindow();
         }
     }

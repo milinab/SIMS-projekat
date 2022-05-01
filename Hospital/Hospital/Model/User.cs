@@ -238,5 +238,21 @@ namespace Hospital.Model
             _accountType = accountType;
             _dateOfBirth = dateOfBirth;
         }
+
+        public User(string name, string lastName, string idNumber, string username, string password, Address address, string phone, string email, string accountType, DateTime dateOfBirth, int id)
+        {
+            _name = name;
+            _lastName = lastName;
+            _idNumber = idNumber;
+            _username = username;
+            _password = password;
+            AddressId = address.Id;
+            _address = address;
+            _phone = phone;
+            _email = email;
+            _accountType = accountType;
+            _dateOfBirth = dateOfBirth;
+            _id = id;
+        }
     }
 }

@@ -34,7 +34,7 @@
             RoomRepository = new RoomRepository();
             SecretaryRepository = new SecretaryRepository();
             SurgeryRepository = new SurgeryRepository();
-            UserRepository = new UserRepository();
+            UserRepository = new UserRepository(AddressRepository);
         }
     }
 }
