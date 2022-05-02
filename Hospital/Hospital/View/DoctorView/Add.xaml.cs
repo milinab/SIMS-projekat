@@ -24,12 +24,12 @@ namespace Hospital.View.DoctorView {
     {
 
         private App _app;
-        private readonly DoctorWindow _doctorWindow;
+        private readonly Appointments _appointments;
         
-        public Add(DoctorWindow doctorWindow)
+        public Add(Appointments appointments)
         {
             _app = Application.Current as App;
-            _doctorWindow = doctorWindow;
+            _appointments = appointments;
             InitializeComponent();
             DatePicker.SelectedDate = DateTime.Now;
             ObservableCollection<Room> rooms = _app._roomController.Read();
@@ -78,11 +78,11 @@ namespace Hospital.View.DoctorView {
             Appointment appointment = new Appointment(date, duration, tempDoctor, tempPatient, tempRoom);
 
             _app._appointmentController.Create(appointment);
-            _doctorWindow.BackToDoctorWindow();
+            _appointments.SwitchPage();
         }
 
         private void Cancel(object sender, RoutedEventArgs e) {
-            _doctorWindow.BackToDoctorWindow();
+            _appointments.SwitchPage();
         }
     }
 }

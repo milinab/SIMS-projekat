@@ -146,8 +146,8 @@
       <DependentUpon>Add.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\DoctorView\CustomTimeSpanUpDown.cs" />
-    <Compile Include="View\DoctorView\DoctorWindow.xaml.cs">
-      <DependentUpon>DoctorWindow.xaml</DependentUpon>
+    <Compile Include="View\DoctorView\Appointments.xaml.cs">
+      <DependentUpon>Appointments.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\DoctorView\Edit.xaml.cs">
       <DependentUpon>Edit.xaml</DependentUpon>
@@ -187,7 +187,7 @@
     <Page Include="View\DoctorView\Add.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\DoctorView\DoctorWindow.xaml">
+    <Page Include="View\DoctorView\Appointments.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\DoctorView\Edit.xaml">

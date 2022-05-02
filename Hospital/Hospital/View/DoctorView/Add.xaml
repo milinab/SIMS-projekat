@@ -18,9 +18,11 @@
             <RowDefinition Height="768"/>
         </Grid.RowDefinitions>
         <Grid Grid.Column="0">
-            <local:Menu/>
+            <ContentControl x:Name="Menu">
+                <local:Menu/>
+            </ContentControl>
         </Grid>
-        <Grid x:Name="newAppointment" Grid.Column="1" Grid.Row="0">
+        <Grid x:Name="NewAppointment" Grid.Column="1" Grid.Row="0">
             <Rectangle HorizontalAlignment="Center" VerticalAlignment="Top" Height="40" Width="700" Margin="0,0,0,0" Stroke="Black"/>
             <TextBlock Text="New appointment" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,3,0,0" TextWrapping="Wrap" FontSize="24"/>
 
