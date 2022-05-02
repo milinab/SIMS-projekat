@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Hospital.Model;
 
 namespace Hospital.View.ManagerView
 {
@@ -36,14 +37,18 @@ namespace Hospital.View.ManagerView
         private void RenovateClick(object sender, RoutedEventArgs e)
         {
             Renovate renovate = new Renovate(this, _appointmentController);
-      
-                Content = renovate;
-            
+            Content = renovate;           
         }
 
         public void BackToRoomOccupancy()
         {
             Content = _content;
+            refresh();
+        }
+
+        public void refresh()
+        {
+            gridAppointment.ItemsSource = _appointmentController.Read();
         }
 
     }
