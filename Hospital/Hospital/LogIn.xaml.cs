@@ -41,9 +41,8 @@ namespace Hospital
             {
                 if (type.Equals("doctor"))
                 {
-                    DoctorWindow doctorWindow = new DoctorWindow();
-                    doctorWindow.Show();
-                    Close();
+                    Appointments appointments = new Appointments(this);
+                    Content = appointments;
                 }
                 else if (type.Equals("manager"))
                 {

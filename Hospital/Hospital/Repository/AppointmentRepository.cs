@@ -48,6 +48,7 @@ namespace Hospital.Repository
 
         public Appointment ReadById(int id)
         {
+            _appointments = _serializer.Read();
             foreach (Appointment appointment in _appointments)
             {
                 if (appointment.Id == id)
