@@ -1,0 +1,32 @@
+﻿<Window x:Class="Hospital.View.ManagerView.ManagerHomeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Hospital.View.ManagerView"
+        mc:Ignorable="d"
+        Title="ManagerHomeWindow" Height="450" Width="800">
+
+
+    <Grid>
+        <Button Content="Medicine records" HorizontalAlignment="Left" Margin="144,98,0,0" VerticalAlignment="Top" Width="150" Height="40" />
+        <Button Content="Equipment records" HorizontalAlignment="Left" Margin="453,200,0,0" VerticalAlignment="Top" Width="150" Height="40" Click="EquipmentClick" />
+        <Button Content="Room occupancy records" HorizontalAlignment="Left" Margin="144,200,0,0" VerticalAlignment="Top" Width="150" Height="40" Click="OccupancyClick" />
+        <Button Content="Survey analysis" HorizontalAlignment="Left" Margin="453,98,0,0" VerticalAlignment="Top" Width="150" Height="40" />
+        <Button Content="Room controller" HorizontalAlignment="Left" Margin="300,315,0,0" VerticalAlignment="Top" Width="150" Height="40" Click="RoomClick"/>
+
+        <DockPanel>
+            <Menu DockPanel.Dock="Top" Height="48" VerticalAlignment="Top">
+                <MenuItem Header="Home" Height="47" Width="67" FontSize="20" Margin="200,0,0,0"/>
+                <MenuItem Header="Equipment" Height="47" Width="124" FontSize="20"/>
+                <MenuItem Header="Room" Height="47" Width="73" FontSize="20"/>
+                <MenuItem Header="RoomOccupancy" Height="47" Width="160" FontSize="20"/>
+
+
+            </Menu>
+        </DockPanel>
+
+    </Grid>
+
+
+</Window>

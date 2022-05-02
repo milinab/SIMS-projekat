@@ -1,0 +1,31 @@
+﻿<Window x:Class="Hospital.View.ManagerView.RoomOccupancy"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Hospital.View.ManagerView"
+        mc:Ignorable="d"
+        Title="RoomOccupancy" Height="450" Width="800">
+    <Grid>
+
+        <DockPanel>
+            <Menu DockPanel.Dock="Top" Height="48" VerticalAlignment="Top">
+                <MenuItem Header="Home" Height="47" Width="67" FontSize="20" Margin="200,0,0,0"/>
+                <MenuItem Header="Equipment" Height="47" Width="124" FontSize="20"/>
+                <MenuItem Header="Room" Height="47" Width="73" FontSize="20"/>
+                <MenuItem Header="RoomOccupancy" Height="47" Width="160" FontSize="20"/>
+
+
+            </Menu>
+        </DockPanel>
+
+        <DataGrid x:Name="gridAppointment" AutoGenerateColumns="False" Height="243" Margin="0,63,0,0" VerticalAlignment="Top" CanUserAddRows="false">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Room" Binding="{Binding Room.Name }" Width="3*"/>
+                <DataGridTextColumn Header="Date" Binding="{Binding Date, StringFormat=\{0:d.M.yyyy\}}" Width="*"/>
+
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="Renovate" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="98,0,0,29" Height="50" Width="150" Click="RenovateClick"/>
+    </Grid>
+</Window>

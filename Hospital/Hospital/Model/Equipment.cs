@@ -19,6 +19,7 @@ namespace Hospital.Model
         private string _id;
         private int _number;
         private string _name;
+        private string _room;
 
         [DataMember]
         public string Id
@@ -31,6 +32,12 @@ namespace Hospital.Model
                     OnPropertyChanged("Id");
                 }
             }
+        }
+        [DataMember]
+        public string Room
+        {
+            get { return _room; }
+            set { _room = value; }
         }
         [DataMember]
         public int Number
@@ -55,11 +62,22 @@ namespace Hospital.Model
                 }
             }
         }
+        public Equipment()
+        {
+
+        }
         public Equipment(string id, int num, string name)
         {
             Id = id;
             Number = num;
             Name = name;
+        }
+        public Equipment(string id, int num, string name, string room)
+        {
+            Id = id;
+            Number = num;
+            Name = name;
+            Room = room;
         }
     }
 }

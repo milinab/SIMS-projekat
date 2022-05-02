@@ -27,6 +27,13 @@ namespace Hospital.Model
         {
         }
 
+        public Appointment(Room room, DateTime date)
+        {
+            Room = room;
+            RoomId = room.Id;
+            Date = date;
+        }
+
         public Appointment(DateTime date, TimeSpan duration, Doctor doctor, Patient patient, Room room)
         {
             Date = date;
@@ -35,7 +42,7 @@ namespace Hospital.Model
             Doctor = doctor;
             PatientId = patient.Id;
             Patient = patient;
-            RoomId = int.Parse(room.Id);
+            RoomId = room.Id;
             Room = room;
         }
 

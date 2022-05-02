@@ -46,8 +46,8 @@ namespace Hospital
                 }
                 else if (type.Equals("manager"))
                 {
-                    ManagerWindow managerWindow = new ManagerWindow();
-                    managerWindow.Show();
+                    ManagerHomeWindow managerHomeWindow = new ManagerHomeWindow();
+                    managerHomeWindow.Show();
                     Close();
                 }
                 else if (type.Equals("patient"))
