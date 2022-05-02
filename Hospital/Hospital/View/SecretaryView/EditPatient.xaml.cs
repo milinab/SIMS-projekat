@@ -66,5 +66,23 @@ namespace Hospital.View.SecretaryView
             _app._patientController.Edit(patient);
             _secretaryWindow.BackToSecretaryWindow();
         }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            _secretaryWindow.BackToSecretaryWindow();
+        }
+
+        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        {
+            AppointmentPage appointmentPage = new AppointmentPage(_secretaryWindow);
+            Content = appointmentPage;
+        }
+
+        private void SignOut_Click(object sender, RoutedEventArgs e)
+        {
+            LogIn logIn = new LogIn();
+            logIn.Show();
+            _secretaryWindow.Close();
+        }
     }
 }

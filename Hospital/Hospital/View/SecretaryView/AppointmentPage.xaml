@@ -10,8 +10,11 @@
     <DockPanel>
         <Menu Height="60" DockPanel.Dock ="Top">
             <MenuItem Height="60" Width="100" Header="Zdravo" FontSize="20"/>
-            <MenuItem Height="60" Width="100" VerticalAlignment="Center" Padding="34,0,0,0" Header="Patients" Click="MenuItem_Click" Margin="183,0,0,0" HorizontalAlignment="Stretch"/>
+            <MenuItem Height="60" Width="100" VerticalAlignment="Center" Padding="28,0,0,0" Header="Patients" Click="MenuItem_Click" Margin="183,0,0,0" HorizontalAlignment="Stretch"/>
             <MenuItem Height="60" Width="100" VerticalAlignment="Center" Padding="10,0,0,0" Header="Appointments" Click="MenuItem_Click_1"/>
+            <MenuItem Height="60" Width="100" VerticalAlignment="Center" Padding="0"/>
+            <MenuItem Height="60" Width="100" VerticalAlignment="Center" Padding="0"/>
+            <MenuItem Height="30" Width="80" VerticalAlignment="Center" Padding="12,0,0,0" Header="Sign out" BorderThickness="2,2,2,2" Click="SignOut_Click" BorderBrush="Black"/>
         </Menu>
         <Grid DockPanel.Dock="Bottom" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
             <Label Content="Appointments" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10" FontSize="40"/>
@@ -39,7 +42,7 @@
                 </DataGrid.Columns>
             </DataGrid>
 
-            <Button Content="Add appointment" HorizontalAlignment="Left" Margin="70,130,0,272" Height="70" Width="120" />
+            <Button Content="Add appointment" HorizontalAlignment="Left" Margin="70,150,0,272" Height="70" Width="120" />
         </Grid>
     </DockPanel>
 </Page>

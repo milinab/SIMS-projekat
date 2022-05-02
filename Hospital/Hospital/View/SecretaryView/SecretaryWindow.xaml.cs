@@ -12,9 +12,7 @@ namespace Hospital.View.SecretaryView {
 
         private App app;
         private readonly object _content;
-        private readonly PatientController _patientController;
-        private readonly UserController _userController;
-        private readonly AppointmentController _appointmentController;
+
 
         public SecretaryWindow()
         {
@@ -22,10 +20,8 @@ namespace Hospital.View.SecretaryView {
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
             _content = Content;
-            _patientController = app._patientController;
-            _userController = app._userController;
-            _appointmentController = app._appointmentController;
-            dataGridPatients.ItemsSource = _patientController.Read();
+           
+            dataGridPatients.ItemsSource = app._patientController.Read();
             //Patient patient1 = new Patient()
             //{
             //    Name = "Pera",
@@ -102,8 +98,8 @@ namespace Hospital.View.SecretaryView {
         private void DeletePatient(object sender, RoutedEventArgs e)
         {
             Patient patient = dataGridPatients.SelectedValue as Patient;
-            _userController.Delete(app._userController.FindId(patient.Username));
-            _patientController.Delete(patient.Id);
+            app._userController.Delete(app._userController.FindId(patient.Username));
+            app._patientController.Delete(patient.Id);
         }
 
         public void AddPatientClick(object sender, RoutedEventArgs e)
@@ -131,13 +127,20 @@ namespace Hospital.View.SecretaryView {
 
         private void MenuItem_Click_1(object sender, RoutedEventArgs e)
         {
-            AppointmentPage appointmentPage= new AppointmentPage(this, _appointmentController);
+            AppointmentPage appointmentPage= new AppointmentPage(this);
             Content = appointmentPage;
         }
 
         public void BackToSecretaryWindow()
         {
             Content = _content;
+        }
+
+         private void SignOut_Click(object sender, RoutedEventArgs e)
+        {
+            LogIn logIn = new LogIn();
+            logIn.Show();
+            this.Close();
         }
     }
 }
