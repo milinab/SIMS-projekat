@@ -12,11 +12,21 @@ namespace Hospital.Model
         public string ChronicalDiseases { get; set; }
         [DataMember]
         public string Allergies { get; set; }
-        [DataMember]
-        public int PatientId { get; set; }
-        public Patient Patient { get; set; }
+
         public MedicalRecord()
         {
+        }
+
+        public MedicalRecord(string chronicalDisease)
+        {
+            this.ChronicalDiseases = chronicalDisease;
+        }
+        
+
+        public MedicalRecord(string chronicalDisease, string allergies)
+        {
+            this.ChronicalDiseases = chronicalDisease;
+            this.Allergies = allergies;
         }
     }
 }

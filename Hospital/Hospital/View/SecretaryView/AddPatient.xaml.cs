@@ -34,11 +34,9 @@ namespace Hospital.View.SecretaryView
                 passwordText.Text, tempAddress, phoneText.Text, emailText.Text, "Patient", 
                 (DateTime)datePicker.SelectedDate);
             _app._userController.Create(user);
-            Patient patient = new Patient(user, genderText.Text, bloodTypeText.Text, healthInsuranceIdText.Text, new MedicalRecord
-                {
-                    ChronicalDiseases = chronicalDiseaseText.Text
-                });
-            
+            MedicalRecord record = new MedicalRecord(chronicalDiseaseText.Text);
+            _app._medicalRecordController.Create(record);
+            Patient patient = new Patient(user, genderText.Text, bloodTypeText.Text, healthInsuranceIdText.Text, record);
             _app._patientController.Create(patient);
             _secretaryWindow.BackToSecretaryWindow();
         }

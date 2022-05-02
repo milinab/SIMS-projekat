@@ -23,7 +23,8 @@
             CountryRepository = new CountryRepository();
             CityRepository = new CityRepository(CountryRepository);
             AddressRepository = new AddressRepository(CityRepository);
-            PatientRepository = new PatientRepository(AddressRepository);
+            MedicalRecordRepository = new MedicalRecordRepository();
+            PatientRepository = new PatientRepository(AddressRepository, MedicalRecordRepository);
             DoctorRepository = new DoctorRepository();
             RoomRepository = new RoomRepository();
             AppointmentRepository = new AppointmentRepository(DoctorRepository, PatientRepository, RoomRepository);
@@ -31,7 +32,6 @@
             EquipmentRepository = new EquipmentRepository();
             GuestRepository = new GuestRepository();
             ManagerRepository = new ManagerRepository();
-            MedicalRecordRepository = new MedicalRecordRepository();
             SecretaryRepository = new SecretaryRepository();
             SurgeryRepository = new SurgeryRepository();
             UserRepository = new UserRepository(AddressRepository);

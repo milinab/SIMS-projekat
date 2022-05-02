@@ -24,9 +24,9 @@ namespace Hospital.Service
             }
         }
 
-        public MedicalRecord ReadById(int patientId)
+        public MedicalRecord ReadById(int id)
         {
-            return _repository.ReadById(patientId);
+            return _repository.ReadById(id);
         }
       
         public void Create(MedicalRecord newMedicalRecord)

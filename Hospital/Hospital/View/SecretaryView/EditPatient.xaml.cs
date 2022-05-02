@@ -36,6 +36,7 @@ namespace Hospital.View.SecretaryView
             this.streetText.Text = patient.Address.Street;
             this.cityText.Text = patient.Address.City.Name;
             this.zipText.Text = patient.Address.City.Zip;
+            this.chronicalDiseaseText.Text = patient.MedicalRecord.ChronicalDiseases;
             this.countryText.Text = patient.Address.City.Country.Name;
             this.numberText.Text = patient.Address.Number.ToString();
             _id = patient.Id;
@@ -59,10 +60,10 @@ namespace Hospital.View.SecretaryView
                 passwordText.Text, tempAddress, phoneText.Text, emailText.Text, "Patient",
                 (DateTime)datePicker.SelectedDate, _userId);
             _app._userController.Edit(user);
-            Patient patient = new Patient(user, genderText.Text, bloodTypeText.Text, healthInsuranceIdText.Text, new MedicalRecord
-            {
-                ChronicalDiseases = chronicalDiseaseText.Text
-            }, _id);
+            MedicalRecord record = new MedicalRecord(chronicalDiseaseText.Text);
+            _app._medicalRecordController.Edit(record);
+            Patient patient = new Patient(user, genderText.Text, bloodTypeText.Text, healthInsuranceIdText.Text, record, _id);
+            
             _app._patientController.Edit(patient);
             _secretaryWindow.BackToSecretaryWindow();
         }

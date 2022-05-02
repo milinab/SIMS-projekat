@@ -66,12 +66,23 @@ namespace Hospital.Model
         }
 
         public Patient(User user, string gender, string bloodType,
+           string healthInsuranceId) : base(user)
+        {
+            _gender = gender;
+            _bloodType = bloodType;
+            _healthInsuranceID = healthInsuranceId;
+
+        }
+
+        public Patient(User user, string gender, string bloodType,
             string healthInsuranceId, MedicalRecord medicalRecord) : base(user)
         {
             _gender = gender;
             _bloodType = bloodType;
             _healthInsuranceID = healthInsuranceId;
+            MedicalRecordId = medicalRecord.Id;
             MedicalRecord = medicalRecord;
+
         }
 
         public Patient(User user, string gender, string bloodType,
@@ -82,6 +93,7 @@ namespace Hospital.Model
             _bloodType = bloodType;
             _healthInsuranceID = healthInsuranceId;
             MedicalRecord = medicalRecord;
+            MedicalRecordId = medicalRecord.Id;
         }
     }
 }
