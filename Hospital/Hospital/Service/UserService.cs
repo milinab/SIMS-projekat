@@ -53,6 +53,19 @@ namespace Hospital.Service
         {
             return ++_id;
         }
+        
+        public int FindId(string username)
+        {
+            foreach (User user in _repository.Read())
+            {
+                if (user.Username == username)
+                {
+                    return user.Id;
+                }
+            }
+            return -1;
+        }
+
 
         public (bool isValid, string type) IsLogInValid(string username, string password)
         {

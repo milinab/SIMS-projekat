@@ -23,15 +23,14 @@ namespace Hospital.View.SecretaryView
     {
 
 
-        private readonly AppointmentController _appointmentController;
+   
         private readonly SecretaryWindow _secretaryWindow;
-        public AppointmentPage(SecretaryWindow secretaryWindow, AppointmentController appointmentController)
+        public AppointmentPage(SecretaryWindow secretaryWindow)
         {
 
             _secretaryWindow = secretaryWindow;
-            _appointmentController = appointmentController;
             InitializeComponent();
-            dataGridAppointments.ItemsSource = _appointmentController.Read();
+            
         }
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
@@ -52,6 +51,13 @@ namespace Hospital.View.SecretaryView
         private void MenuItem_Click_1(object sender, RoutedEventArgs e)
         {
             this.UpdateLayout();
+        }
+
+        private void SignOut_Click(object sender, RoutedEventArgs e)
+        {
+            LogIn logIn = new LogIn();
+            logIn.Show();
+            _secretaryWindow.Close();
         }
     }
 }

@@ -1,0 +1,10 @@
+Id,Name,LastName,IdNumber,Username,Password,AddressId,Email,Phone,AccountType,DateOfBirth
+0,aleksaa,ignjatovic,12312312,aleksau,aleksau,0,aleksa@aleksa.com,02323232,doctor,2000-10-18
+1,manager,manager,1,manager,manager,1,manager,1,manager,2000-10-10
+2,aleksar,ignjatovic,12312312,aleksau,aleksau,2,aleksa@aleksa.com,02323232,secretary,2000-10-18
+3,patient,patient,3,patient,patient,3,patient,3,patient,2000-10-10
+4,sadsa,sdasd,12301231,aleksa,aleksa,1,aleksa,12312312,Patient,2000-10-10
+5,saraj,sara,,,,2,,,Patient,2000-10-10
+6,newpatient,newpatient,,,,3,,,Patient,2000-10-10
+7,asdasd,asdasdas,,,,4,,,Patient,2000-10-10
+8,sa,sa,,,,5,,,Patient,2000-10-10

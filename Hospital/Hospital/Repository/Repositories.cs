@@ -34,7 +34,7 @@
             MedicalRecordRepository = new MedicalRecordRepository();
             SecretaryRepository = new SecretaryRepository();
             SurgeryRepository = new SurgeryRepository();
-            UserRepository = new UserRepository();
+            UserRepository = new UserRepository(AddressRepository);
         }
     }
 }

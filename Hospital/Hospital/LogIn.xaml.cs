@@ -18,11 +18,13 @@ namespace Hospital
         private App _app;
         private string _username;
         private string _password;
+        private readonly object _content;
 
         public LogIn()
         {
             _app = Application.Current as App;
             InitializeComponent();
+            _content = Content;
         }
 
         private void LogIn_Click(object sender, RoutedEventArgs e)
@@ -62,6 +64,12 @@ namespace Hospital
                     Close();
                 }
             }
+
+            
+        }
+        public void BackToLogInWindow()
+        {
+            Content = _content;
         }
     }
 }

@@ -38,6 +38,10 @@ namespace Hospital.Controller
             return _service.Read();
         }
 
+        public int FindId(string username)
+        {
+            return _service.FindId(username);
+        }
         public (bool isValid, string type) IsLogInValid(string username, string password)
         {
             return _service.IsLogInValid(username, password);
