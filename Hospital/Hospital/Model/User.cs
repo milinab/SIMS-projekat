@@ -224,7 +224,8 @@ namespace Hospital.Model
             _accountType = user._accountType;
             _dateOfBirth = user._dateOfBirth;
         }
-        public User(string name, string lastName, string idNumber, string username, string password, Address address, string phone, string email, string accountType, DateTime dateOfBirth)
+        public User(string name, string lastName, string idNumber, string username, string password,
+            Address address, string phone, string email, string accountType, DateTime dateOfBirth)
         {
             _name = name;
             _lastName = lastName;

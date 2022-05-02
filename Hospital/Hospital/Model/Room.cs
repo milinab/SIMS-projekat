@@ -12,8 +12,7 @@ namespace Hospital.Model
     {
         private string _id;
         private string _type;
-        [DataMember]
-        public int EquipmentId { get; set; }
+        
         public Equipment Equipment { get; set; }
 
         [DataMember]
@@ -22,12 +21,19 @@ namespace Hospital.Model
             get { return _id; }
             set { _id = value; }
         }
+        
+        [DataMember]
+        public string Name { get; set; }
+        
         [DataMember]
         public string Type
         {
             get { return _type; }
             set { _type = value; }
         }
+        
+        [DataMember]
+        public int EquipmentId { get; set; }
 
         public Room() { }
 
@@ -37,6 +43,15 @@ namespace Hospital.Model
             Equipment = eq;
             _type = ty;
         }
+
+        public Room(string type, string name, Equipment equipment)
+        {
+            _type = type;
+            Name = name;
+            EquipmentId = int.Parse(equipment.Id);
+            Equipment = equipment;
+        }
+
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         { 
             info.AddValue("Id", Id);

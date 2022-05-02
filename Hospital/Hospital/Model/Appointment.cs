@@ -27,6 +27,18 @@ namespace Hospital.Model
         {
         }
 
+        public Appointment(DateTime date, TimeSpan duration, Doctor doctor, Patient patient, Room room)
+        {
+            Date = date;
+            Duration = duration;
+            DoctorId = doctor.Id;
+            Doctor = doctor;
+            PatientId = patient.Id;
+            Patient = patient;
+            RoomId = int.Parse(room.Id);
+            Room = room;
+        }
+
         private void OnPropertyChanged(string name="") {
             if (PropertyChanged != null) {
                 PropertyChanged(this, new PropertyChangedEventArgs(name));

@@ -24,14 +24,14 @@
             CityRepository = new CityRepository(CountryRepository);
             AddressRepository = new AddressRepository(CityRepository);
             PatientRepository = new PatientRepository(AddressRepository);
-            AppointmentRepository = new AppointmentRepository();
             DoctorRepository = new DoctorRepository();
+            RoomRepository = new RoomRepository();
+            AppointmentRepository = new AppointmentRepository(DoctorRepository, PatientRepository, RoomRepository);
             EmployeeRepository = new EmployeeRepository();
             EquipmentRepository = new EquipmentRepository();
             GuestRepository = new GuestRepository();
             ManagerRepository = new ManagerRepository();
             MedicalRecordRepository = new MedicalRecordRepository();
-            RoomRepository = new RoomRepository();
             SecretaryRepository = new SecretaryRepository();
             SurgeryRepository = new SurgeryRepository();
             UserRepository = new UserRepository();

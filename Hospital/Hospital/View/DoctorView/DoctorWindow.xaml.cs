@@ -10,20 +10,20 @@ namespace Hospital.View.DoctorView {
     public partial class DoctorWindow
     {
 
-        private App app;
+        private App _app;
         private readonly object _content;
         public DoctorWindow()
         {
-            app = Application.Current as App;
+            _app = Application.Current as App;
             InitializeComponent();
             _content = Content;
             this.DataContext = this;
-            gridAppointments.ItemsSource = app._appointmentController.Read();
+            gridAppointments.ItemsSource = _app._appointmentController.Read();
 
         }
         private void AddClick(object sender, RoutedEventArgs e) {
             
-            Add addPage = new Add(this, app._appointmentController);
+            Add addPage = new Add(this);
             Content = addPage;
         }
         private void EditClick(object sender, RoutedEventArgs e) {
@@ -38,7 +38,7 @@ namespace Hospital.View.DoctorView {
         private void DeleteClick(object sender, RoutedEventArgs e) {
             if (gridAppointments.SelectedItem != null) {
                 Appointment appointment = (Appointment)gridAppointments.SelectedItem;
-                app._appointmentController.Delete(appointment.Id);
+                _app._appointmentController.Delete(appointment.Id);
             } else {
                 MessageBox.Show("You must select a row first", "Warning");
             }
