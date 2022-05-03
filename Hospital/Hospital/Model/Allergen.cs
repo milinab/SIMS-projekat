@@ -14,7 +14,7 @@ namespace Hospital.Model
         {
         }
 
-        public Allergen(string name, string zip, Country country)
+        public Allergen(string name)
         {
             Name = name;
         }

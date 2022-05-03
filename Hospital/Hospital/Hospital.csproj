@@ -125,6 +125,7 @@
     </Compile>
     <Compile Include="Model\Therapy.cs" />
     <Compile Include="Model\Allergen.cs" />
+    <Compile Include="Model\AllergenList.cs" />
     <Compile Include="Repository\AddressRepository.cs" />
     <Compile Include="Repository\TherapyRepository.cs" />
     <Compile Include="Repository\CityRepository.cs" />

@@ -128,8 +128,9 @@ namespace Hospital.View.SecretaryView {
 
         private void MenuItem_Click_1(object sender, RoutedEventArgs e)
         {
-            AppointmentPage appointmentPage= new AppointmentPage(this);
-            Content = appointmentPage;
+            AppointmentPage appointmentPage= new AppointmentPage();
+            appointmentPage.Show();
+            this.Hide();
         }
 
         public void BackToSecretaryWindow()
@@ -141,7 +142,7 @@ namespace Hospital.View.SecretaryView {
         {
             LogIn logIn = new LogIn();
             logIn.Show();
-            this.Close();
+            this.Hide();
         }
     }
 }

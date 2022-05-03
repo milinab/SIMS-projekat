@@ -12,6 +12,7 @@ namespace Hospital
     /// </summary>
     public partial class App : Application
     {
+        internal AllergenController _allergenController;
         internal AddressController _addressController;
         internal AppointmentController _appointmentController;
         internal CityController _cityController;
@@ -36,6 +37,7 @@ namespace Hospital
             Repositories repositories = new Repositories();
             Services services = new Services(repositories);
 
+            _allergenController = new AllergenController(services.AllergenService);
             _addressController = new AddressController(services.AddressService);
             _appointmentController = new AppointmentController(services.AppointmentService);
             _cityController = new CityController(services.CityService);

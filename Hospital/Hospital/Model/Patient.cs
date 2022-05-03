@@ -65,6 +65,10 @@ namespace Hospital.Model
         {
         }
 
+        public Patient(User user, MedicalRecord medicalRecord) : base(user)
+        {
+            this.MedicalRecord = medicalRecord;
+        }
         public Patient(User user, string gender, string bloodType,
            string healthInsuranceId) : base(user)
         {

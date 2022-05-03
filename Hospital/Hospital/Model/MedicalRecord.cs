@@ -12,7 +12,7 @@ namespace Hospital.Model
         [DataMember]
         public string ChronicalDiseases { get; set; }
         [DataMember]
-        public List<Allergen> Allergies { get; set; }
+        public AllergenList AllergenIds{ get; set; }
 
         public MedicalRecord()
         {
@@ -28,11 +28,18 @@ namespace Hospital.Model
             this.Id = id;
         }
 
-
-        public MedicalRecord(string chronicalDisease, List<Allergen> allergies)
+        public MedicalRecord(string chronicalDisease, AllergenList allergenIds, int id)
         {
             this.ChronicalDiseases = chronicalDisease;
-            this.Allergies = allergies;
+            this.AllergenIds = allergenIds;
+            this.Id = id;
+        }
+
+
+        public MedicalRecord(string chronicalDisease, AllergenList allergenIds)
+        {
+            this.ChronicalDiseases = chronicalDisease;
+            this.AllergenIds = allergenIds;
         }
     }
 }

@@ -1,5 +1,8 @@
 Id,Name,LastName,IdNumber,Username,Password,AddressId,Email,Phone,AccountType,DateOfBirth
-0,doctor,doctor,0,doctor,doctor,0,doctor,0,doctor,2000-10-10
 1,manager,manager,1,manager,manager,1,manager,1,manager,2000-10-10
 2,secretary,secretary,2,secretary,secretary,2,secretary,2,secretary,2000-10-10
-3,1,1,1,1,1,32,1,1,Patient,2000-10-10
+3,doctor,doctor,3,doctor,doctor,3,doctor,3,doctor,2000-10-10
+4,Aleksa,Aleksic,01q01010,aleksau,aleksau,68,aleksa,1,patient,2000-10-10
+5,Igor,Igorovic,0101010,igor,igor,69,igor,06333333,patient,2000-10-10
+6,Marko,Markovic,1,markic,markic,70,1,1,patient,2000-10-10
+7,5,5,5,5,5,71,5,5,patient,2000-10-10

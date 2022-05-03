@@ -19,6 +19,11 @@ namespace Hospital.Model
         {
         }
 
+        public Address(City city)
+        {
+            this.City = city;
+        }
+
         public Address(string street, string number, City city)
         {
             Street = street;

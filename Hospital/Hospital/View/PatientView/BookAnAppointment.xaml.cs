@@ -82,16 +82,16 @@ namespace Hospital.View.PatientView
             //}
 
             //if (DoctorPriority.IsChecked == true)
-            //{
+           // {
             //DoctorPriorityDateAvailable DoctorPriorityDateAvailablePage = new DoctorPriorityDateAvailable(_patientWindow ,this,app._appointmentController);
             //Content = DoctorPriorityDateAvailablePage;
-            //}
-            // if (DatePriority.IsChecked == true)
-            //{
+           // }
+           //  if (DatePriority.IsChecked == true)
+           // {
             //BookAnAppointment bookAnAppointmentPage = new BookAnAppointment(this, app._appointmentController);
             //Content = bookAnAppointmentPage;
 
-            // }
+           // }
             
             //doctorsComboBox.ItemsSource = app._userController.ReadAll();
 

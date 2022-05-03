@@ -19,45 +19,114 @@ namespace Hospital.View.SecretaryView
     /// <summary>
     /// Interaction logic for Page1.xaml
     /// </summary>
-    public partial class AppointmentPage : Page
+    public partial class AppointmentPage : Window
     {
 
+        private App app;
+        private readonly object _content;
 
-   
-        private readonly SecretaryWindow _secretaryWindow;
-        public AppointmentPage(SecretaryWindow secretaryWindow)
+
+        public AppointmentPage()
         {
-
-            _secretaryWindow = secretaryWindow;
+            app = Application.Current as App;
+            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
-            
+            _content = Content;
+
+            dataGridAppointments.ItemsSource = app._appointmentController.Read();
+            //Patient patient1 = new Patient()
+            //{
+            //    Name = "Pera",
+            //    LastName = "Lazic",
+            //    Username = "peropera",
+            //    AccountType = "Patient",
+            //    Password = "p123eropera",
+            //    Gender = "Male",
+            //    IdNumber = "1111111111111",
+            //    Phone = "061111111",
+            //    Email = "pera@pera.mejl",
+            //    DateOfBirth = new DateTime(1999, 10, 10),
+            //    HealthInsuranceId = "12312312asda",
+            //    MedicalRecord = new MedicalRecord()
+            //    {
+            //        ChronicalDiseases = "Diabetes"
+            //    },
+            //    BloodType = "A+",
+            //    Address = new Address()
+            //    {
+            //        City = new City()
+            //        {
+            //            Country = new Country()
+            //            {
+            //                Name = "Serbia"
+            //            },
+            //            Zip = "15300",
+            //            Name = "Loznica"
+            //        },
+            //        Street = "Dusana Jovanovica",
+            //        Number = "15"
+            //    }
+
+
+            //};
+            //_patientController.Create(patient1);
+            //Patient patient2 = new Patient()
+            //{
+
+            //    Name = "Nikolina",
+            //    LastName = "Radicevic",
+            //    Username = "radicanina",
+            //    AccountType = "Patient",
+            //    Password = "whocares",
+            //    Gender = "Female",
+            //    IdNumber = "22222222222",
+            //    Phone = "0622222222",
+            //    Email = "ninasilna@321.32",
+            //    DateOfBirth = new DateTime(1951, 1, 1),
+            //    HealthInsuranceId = "222bbb222bb",
+            //    MedicalRecord = new MedicalRecord()
+            //    {
+            //        ChronicalDiseases = "None"
+            //    },
+            //    BloodType = "O-",
+            //    Address = new Address()
+            //    {
+            //        City = new City()
+            //        {
+            //            Country = new Country()
+            //            {
+            //                Name = "Germany"
+            //            },
+            //            Zip = "12220",
+            //            Name = "Minchen"
+            //        },
+            //        Street = "Nikole Tesle 3",
+            //        Number = "1b"
+            //    }
+            //};
+            //PatientHandler.Create(patient2);
         }
 
-        private void EditButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void DeleteButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+       
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
-            _secretaryWindow.BackToSecretaryWindow();
+            SecretaryWindow secretaryWindow = new SecretaryWindow();
+            secretaryWindow.Show();
+            this.Hide();
         }
 
         private void MenuItem_Click_1(object sender, RoutedEventArgs e)
         {
-            this.UpdateLayout();
+            Content = _content;
         }
+
 
         private void SignOut_Click(object sender, RoutedEventArgs e)
         {
             LogIn logIn = new LogIn();
             logIn.Show();
-            _secretaryWindow.Close();
+            this.Hide();
         }
     }
 }
