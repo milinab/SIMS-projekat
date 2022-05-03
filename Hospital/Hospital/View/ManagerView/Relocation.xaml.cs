@@ -27,6 +27,11 @@ namespace Hospital.View.ManagerView
         private readonly EquipmentWindow _equipmentWindow;
         private EquipmentController _equipmentController;
         private RoomController _roomController;
+        public ObservableCollection<Equipment> equipment
+        {
+            get;
+            set;
+        }
 
         public Relocation(Equipment equipments, EquipmentWindow equipmentWindow, EquipmentController equipmentController, RoomController roomController)
         {
@@ -37,7 +42,7 @@ namespace Hospital.View.ManagerView
             _roomController = roomController;
             ObservableCollection<Room> rooms = _app._roomController.Read();
             ObservableCollection<String> roomName = new ObservableCollection<string>();
-            ObservableCollection<Equipment> equipment = _app._equipmentController.Read();
+            equipment = _app._equipmentController.Read();
             ObservableCollection<String> eqName = new ObservableCollection<string>();
 
             foreach (Room room in rooms)
@@ -61,9 +66,24 @@ namespace Hospital.View.ManagerView
 
         public void RelocateClick(object sender, RoutedEventArgs e)
         {
-            Equipment equipment = new Equipment(_id, quantityTextBox.Text, eqComboBox.Text, roomComboBox2.Text);
-            _app._equipmentController.Edit(equipment);
-            _equipmentWindow.BackToEquipmentWindow();
+            foreach (var a in equipment)
+            {
+                TimeSpan dt = (TimeSpan)this.timePicker.Value;
+                DateTime now = DateTime.Now;
+                DateTime neww = now + dt;
+                int diff =(int)(neww - now).TotalSeconds;
+                if (diff > 0)
+                {
+                    Equipment equipment = new Equipment(_id, quantityTextBox.Text, eqComboBox.Text, roomComboBox2.Text);
+                    _app._equipmentController.Edit(equipment);
+                    _equipmentWindow.BackToEquipmentWindow();
+                }
+                else
+                {
+                    
+                }
+            }
+            
         }
 
         public void CancelClick(object sender, RoutedEventArgs e)

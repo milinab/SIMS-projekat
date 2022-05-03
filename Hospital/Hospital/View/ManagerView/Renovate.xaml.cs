@@ -47,6 +47,7 @@ namespace Hospital.View.ManagerView
         {
             DateTime _date = datePicker.SelectedDate.Value;
             string _room = roomComboBox.Text;
+            TimeSpan interval = new TimeSpan(23, 59, 59);
 
             ObservableCollection<Appointment> appointments = _app._appointmentController.Read();
             ObservableCollection<Room> rooms = _app._roomController.Read();
@@ -59,7 +60,7 @@ namespace Hospital.View.ManagerView
                 }
             }
 
-            Appointment appointment = new Appointment(tempRoom, _date);
+            Appointment appointment = new Appointment(tempRoom, _date, interval);
 
             bool nesto = false;
 

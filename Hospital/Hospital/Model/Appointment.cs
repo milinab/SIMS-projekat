@@ -34,6 +34,13 @@ namespace Hospital.Model
             RoomId = room.Id;
             Date = date;
         }
+        public Appointment(Room room, DateTime date, TimeSpan time)
+        {
+            Room = room;
+            RoomId = room.Id;
+            Date = date;
+            Duration = time;
+        }
 
         public Appointment(DateTime date, TimeSpan duration, Doctor doctor, Patient patient, Room room)
         {

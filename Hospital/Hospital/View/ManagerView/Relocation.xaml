@@ -3,8 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Hospital.View.ManagerView"
-        mc:Ignorable="d"
+        xmlns:local="clr-namespace:Hospital.View.ManagerView" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+      mc:Ignorable="d"
         Title="Relocation" Height="450" Width="800">
     <Grid>
 
@@ -37,9 +37,8 @@
         <ComboBox x:Name="eqComboBox" IsEditable="False"  Margin="313,75,120,345" Height="30"/>
         <ComboBox x:Name="roomComboBox2"   Margin="313,189,120,231" Height="30"/>
         <Button Content="Cancel" HorizontalAlignment="Left" Margin="383,372,0,0" VerticalAlignment="Top" Width="86" Height="25" Click="CancelClick" />
-        <Label Content="Number of days:" FontSize="20" Margin="51,222,590,187" />
-        <TextBox x:Name="daysTextBox"   Margin="313,230,120,190" Height="30" />
-
+        <Label Content="Number of days:" FontSize="20" Margin="49,222,557,187" />
+        <xctk:TimeSpanUpDown x:Name="timePicker" Margin="313,231,120,187" />
 
 
     </Grid>
