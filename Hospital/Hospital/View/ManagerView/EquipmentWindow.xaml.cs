@@ -23,6 +23,7 @@ namespace Hospital.View.ManagerView
     {
         private readonly object _content;
         private readonly EquipmentController _equipmentController;
+        private readonly RoomController _roomController;
 
         public EquipmentWindow(EquipmentController equipmentController)
         {
@@ -35,9 +36,19 @@ namespace Hospital.View.ManagerView
 
         private void RelocationClick(object sender, RoutedEventArgs e)
         {
-            Relocation relocation = new Relocation((Equipment)dataGridEquipment.SelectedItem, _equipmentController);
-            relocation.Show();
+            Equipment equipment = dataGridEquipment.SelectedItem as Equipment;
+            var editEquipment = new Relocation(equipment, this, _equipmentController, _roomController);
+            Content = editEquipment;
+        }
+        public void BackToEquipmentWindow()
+        {
+            Content = _content;
+            refresh();
         }
 
+        public void refresh()
+        {
+            dataGridEquipment.ItemsSource = _equipmentController.Read();
+        }
     }
 }

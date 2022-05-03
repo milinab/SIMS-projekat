@@ -14,7 +14,7 @@ namespace Hospital.View.ManagerView
 
     public partial class ManagerWindow : Window
     {
-
+        private App app;
         private readonly object _content;
         private readonly RoomController _roomController;
         private readonly EquipmentController _equipmentController;
@@ -34,8 +34,12 @@ namespace Hospital.View.ManagerView
 
         private void EditRoomClick(object sender, RoutedEventArgs e)
         {
-            EditRoom editRoom = new EditRoom((Room)dataGridRooms.SelectedItem, _roomController);
-            editRoom.Show();
+           
+            Room room = dataGridRooms.SelectedValue as Room;
+            //int roomId = room.Id;
+            var editRoom = new EditRoom(room, this);
+            Content = editRoom;
+
         }
 
 
@@ -68,7 +72,11 @@ namespace Hospital.View.ManagerView
         public void BackToManagerWindow()
         {
             Content = _content;
+            refresh();
         }
-
+        public void refresh()
+        {
+            dataGridRooms.ItemsSource = _roomController.Read();
+        }
     }
 }

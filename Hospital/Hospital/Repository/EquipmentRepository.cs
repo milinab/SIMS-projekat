@@ -46,6 +46,7 @@ namespace Hospital.Repository
                 {
                     equipment.Name = editEquipment.Name;
                     equipment.Number = editEquipment.Number;
+                    equipment.Room = editEquipment.Room;
                 }
             }
             Write();
