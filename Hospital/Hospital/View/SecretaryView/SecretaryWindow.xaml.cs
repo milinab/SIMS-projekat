@@ -114,7 +114,7 @@ namespace Hospital.View.SecretaryView {
             
             Patient patient = dataGridPatients.SelectedValue as Patient;
             int userId = app._userController.FindId(patient.Username);
-            if (patient.AccountType == "Patient")
+            if (patient.AccountType == "patient")
             {
                 var editPatientWindow = new EditPatient(patient, userId, this);
                 Content = editPatientWindow;

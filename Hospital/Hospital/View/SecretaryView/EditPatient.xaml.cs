@@ -67,7 +67,7 @@ namespace Hospital.View.SecretaryView
             tempAddress = new Address(streetText.Text, numberText.Text, tempCity, _addressId);
             _app._addressController.Edit(tempAddress);
             User user = new User(nameText.Text, lastNameText.Text, idNumberText.Text, usernameText.Text,
-                passwordText.Text, tempAddress, phoneText.Text, emailText.Text, "Patient",
+                passwordText.Text, tempAddress, phoneText.Text, emailText.Text, "patient",
                 (DateTime)datePicker.SelectedDate, _userId);
             _app._userController.Edit(user);
             MedicalRecord record = new MedicalRecord(chronicalDiseaseText.Text, _medicalRecordId);
