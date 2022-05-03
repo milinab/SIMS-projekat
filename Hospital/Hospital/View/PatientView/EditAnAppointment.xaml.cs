@@ -26,9 +26,10 @@ namespace Hospital.View.PatientView
         private App app;
         private readonly object _content;
         private readonly PatientWindow _patientWindow;
-        private readonly AppointmentController _appointmentController;
         private readonly UserController _userController;
         private readonly DoctorController _doctorController;
+        private int _id;
+        private DateTime Date;
 
         public ObservableCollection<Doctor> Doctors
         {
@@ -40,7 +41,17 @@ namespace Hospital.View.PatientView
         {
             InitializeComponent();
             app = Application.Current as App;
+            dataGridAppointments.ItemsSource = patientWindow.dataGridAppointments.ItemsSource;
+            Doctors = new ObservableCollection<Doctor>();
+            Doctors = app._doctorController.Read();
+            doctorsComboBox.ItemsSource = Doctors;
             _patientWindow = patientWindow;
+            _id = appointment.Id;
+            myCalendar.SelectedDate = appointment.Date;
+            DateTime startTime = appointment.Date.AddDays(-5);
+            DateTime endTime = appointment.Date.AddDays(5);
+            myCalendar.DisplayDateStart = startTime;
+            myCalendar.DisplayDateEnd = endTime;
         }
 
         private bool validate()
@@ -82,14 +93,19 @@ namespace Hospital.View.PatientView
 
             DateTime _date = myCalendar.SelectedDate.Value;
 
+            TimeSpan duration = new TimeSpan(0, 0, 30, 0);
+
+            Doctor doctor = new Doctor();
+            doctor.Id = DoctorId;
+            Patient patient = new Patient();
+            patient.Id = 1;
+
+            Room room = new Room();
+            patient.Id = 1;
 
 
-            Appointment appointment = new Appointment
-            {
-                DoctorId = DoctorId,
-                Date = _date
-            };
-            _appointmentController.Edit(appointment);
+            Appointment ap = new Appointment(_id, _date, duration, doctor, patient, room);
+            app._appointmentController.Edit(ap);
             _patientWindow.BackToPatientWindow();
         }
 
