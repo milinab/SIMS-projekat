@@ -125,7 +125,12 @@ namespace Hospital.View.PatientView
             Content = _content;
         }
 
-
+        private void LogOut_Click(object sender, RoutedEventArgs e)
+        {
+            LogIn logIn = new LogIn();
+            logIn.Show();
+            _patientWindow.Close();
+        }
 
     }
 }

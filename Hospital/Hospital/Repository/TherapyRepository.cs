@@ -7,11 +7,19 @@ namespace Hospital.Repository
     {
         private ObservableCollection<Therapy> _therapies;
         private readonly Serializer<Therapy> _serializer;
+        private readonly TherapyRepository _therapyRepository;
 
         public TherapyRepository()
         {
             _serializer = new Serializer<Therapy>("therapies.csv");
             _therapies = new ObservableCollection<Therapy>();
+        }
+
+        public TherapyRepository(TherapyRepository therapyRepository)
+        {
+            _serializer = new Serializer<Therapy>("therapies.csv");
+            _therapies = new ObservableCollection<Therapy>();
+            _therapyRepository = therapyRepository;
         }
 
         public ObservableCollection<Therapy> Read()
@@ -30,6 +38,19 @@ namespace Hospital.Repository
                 }
             }
             return null;
+        }
+
+        public ObservableCollection<Therapy> ReadByPatientId(int PatientId)
+        {
+            foreach (Therapy therapy in _therapies)
+            {
+                if (therapy.PatientId.Equals(PatientId))
+                {
+                    _therapies.Add(therapy);
+
+                }
+            }
+            return _therapies;
         }
 
         public void Create(Therapy newTherapy)

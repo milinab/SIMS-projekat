@@ -29,6 +29,11 @@ namespace Hospital.Service
             return _repository.ReadById(id);
         }
 
+        public ObservableCollection<Therapy> ReadByPatientId(int patientId)
+        {
+            return _repository.ReadByPatientId(patientId);
+        }
+
         public void Create(Therapy newTherapy)
         {
             newTherapy.Id = GenerateId();

@@ -15,17 +15,20 @@ namespace Hospital.Model
         public DateTime Time { get; set; }
         [DataMember]
         public string TherapyText { get; set; }
-        
+        public int PatientId { get; set; }
+
+
         public Therapy()
         {
         }
 
-        public Therapy(int id, string medicine, DateTime time, string therapyText)
+        public Therapy(int id, string medicine, DateTime time, string therapyText, int patientId)
         {
             Id = id;
             Medicine = medicine;
             Time = time;
             TherapyText = therapyText;
+            PatientId = patientId;
         }
 
         private void OnPropertyChanged(string name = "")

@@ -30,9 +30,17 @@ namespace Hospital.View.PatientView
         private readonly UserController _userController;
         private readonly DoctorController _doctorController;
 
-        public EditAnAppointment()
+        public ObservableCollection<Doctor> Doctors
+        {
+            get;
+            set;
+        }
+
+        public EditAnAppointment(Appointment appointment, PatientWindow patientWindow)
         {
             InitializeComponent();
+            app = Application.Current as App;
+            _patientWindow = patientWindow;
         }
 
         private bool validate()
@@ -69,6 +77,7 @@ namespace Hospital.View.PatientView
 
             //doctorsComboBox.ItemsSource = app._userController.ReadAll();
 
+
             int DoctorId = Int32.Parse(((Model.User)doctorsComboBox.SelectedItem).Id.ToString());
 
             DateTime _date = myCalendar.SelectedDate.Value;
@@ -80,7 +89,7 @@ namespace Hospital.View.PatientView
                 DoctorId = DoctorId,
                 Date = _date
             };
-            _appointmentController.Create(appointment);
+            _appointmentController.Edit(appointment);
             _patientWindow.BackToPatientWindow();
         }
 
@@ -92,6 +101,13 @@ namespace Hospital.View.PatientView
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
             _patientWindow.BackToPatientWindow();
+        }
+
+        private void LogOut_Click(object sender, RoutedEventArgs e)
+        {
+            LogIn logIn = new LogIn();
+            logIn.Show();
+            _patientWindow.Close();
         }
     }
 

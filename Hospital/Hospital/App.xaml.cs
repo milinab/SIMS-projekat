@@ -25,6 +25,7 @@ namespace Hospital
         internal SecretaryController _secretaryController;
         internal SurgeryController _surgeryController;
         internal UserController _userController;
+        internal TherapyController _therapyController;
         public App()
         {
             Repositories repositories = new Repositories();
@@ -45,6 +46,8 @@ namespace Hospital
             _secretaryController = new SecretaryController(services.SecretaryService);
             _surgeryController = new SurgeryController(services.SurgeryService);
             _userController = new UserController(services.UserService);
+            _therapyController = new TherapyController(services.TherapyService);
+
         }
     }
 }

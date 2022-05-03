@@ -18,6 +18,11 @@ namespace Hospital.Controller
             return _service.ReadById(id);
         }
 
+        public ObservableCollection<Therapy> ReadBypatientId(int patientId)
+        {
+            return _service.ReadByPatientId(patientId);
+        }
+
         public void Create(Therapy newTherapy)
         {
 

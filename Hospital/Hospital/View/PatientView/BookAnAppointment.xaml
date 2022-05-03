@@ -14,6 +14,7 @@
     <Grid>
 
         <Label Content="ZDRAVO CORPORATION" HorizontalAlignment="Left" Margin="7,6,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="18"/>
+        <Button Content="Log out" BorderThickness="2" HorizontalAlignment="Left" Margin="700,6,0,0" VerticalAlignment="Top" Height="29" Width="82" Click="LogOut_Click"/>
         <Border BorderBrush="Black" BorderThickness="1" Width="Auto" Height="1" Margin="0,32,0,470" />
 
         <Menu Width="Auto" Margin="0,40,0,450">

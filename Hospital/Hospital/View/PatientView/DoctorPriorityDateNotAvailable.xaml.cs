@@ -48,5 +48,12 @@ namespace Hospital.View.PatientView
         {
             _bookAnAppointment.BackToBookAnAppointmentWindow();
         }
+
+        private void LogOut_Click(object sender, RoutedEventArgs e)
+        {
+            LogIn logIn = new LogIn();
+            logIn.Show();
+            _patientWindow.Close();
+        }
     }
 }

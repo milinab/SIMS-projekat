@@ -20,6 +20,7 @@ namespace Hospital.Service
         public SecretaryService SecretaryService { get; set; }
         public SurgeryService SurgeryService { get; set; }
         public UserService UserService { get; set; }
+        public TherapyService TherapyService { get; set; }
 
 
         public Services(Repositories repositories)
@@ -40,6 +41,7 @@ namespace Hospital.Service
             SecretaryService = new SecretaryService(repositories.SecretaryRepository);
             SurgeryService = new SurgeryService(repositories.SurgeryRepository);
             UserService = new UserService(repositories.UserRepository);
+            TherapyService = new TherapyService(repositories.TherapyRepository);
         }
     }
 }
