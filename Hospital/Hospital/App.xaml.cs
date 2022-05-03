@@ -1,7 +1,9 @@
 ﻿using System.Windows;
 using Hospital.Controller;
+using Hospital.Model;
 using Hospital.Repository;
 using Hospital.Service;
+using Hospital.View.DoctorView;
 
 namespace Hospital
 {
@@ -26,6 +28,9 @@ namespace Hospital
         internal SurgeryController _surgeryController;
         internal UserController _userController;
         internal TherapyController _therapyController;
+
+        internal MainPage _mainPage;
+
         public App()
         {
             Repositories repositories = new Repositories();
@@ -48,6 +53,7 @@ namespace Hospital
             _userController = new UserController(services.UserService);
             _therapyController = new TherapyController(services.TherapyService);
 
+            _mainPage = new MainPage();
         }
     }
 }
