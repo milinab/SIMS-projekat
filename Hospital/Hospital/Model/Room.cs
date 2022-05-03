@@ -11,7 +11,7 @@ namespace Hospital.Model
     public class Room : INotifyPropertyChanged
     {
         private string _name;
-        private int _floor;
+        private string _floor;
         private int _id;
         private string _type;
 
@@ -47,7 +47,8 @@ namespace Hospital.Model
             get { return _type; }
             set { _type = value; }
         }
-        public int Floor
+        [DataMember]
+        public string Floor
         {
             get { return _floor; }
             set { _floor = value; OnPropertyChanged("Floor"); }
@@ -79,8 +80,9 @@ namespace Hospital.Model
             Equipment = equipment;
         }
 
-        public Room(string name, int floor, string ty)
+        public Room(string name, string floor, string ty, int id)
         {
+            Id = id;
             _name = name;
             _floor = floor;
             _type = ty;

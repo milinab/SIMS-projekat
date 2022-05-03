@@ -46,8 +46,8 @@
         <Button Content="Edit room" HorizontalAlignment="Left" Margin="248,360,0,0" VerticalAlignment="Top" Height="40" Width="120" Click="EditRoomClick" Grid.ColumnSpan="2"/>
 
 
-        <DockPanel Margin="0,0,10,383" Grid.ColumnSpan="2">
-            <Menu DockPanel.Dock="Top" Height="81">
+        <DockPanel Margin="0,0,10,358" Grid.ColumnSpan="2" Height="70">
+            <Menu DockPanel.Dock="Top" Height="70" Width="786">
                 <MenuItem Header="Home" Height="47" Width="67" FontSize="20" Margin="200,0,0,0" Click="HomeClick"/>
                 <MenuItem Header="Equipment" Height="47" Width="124" FontSize="20"/>
                 <MenuItem Header="Room" Height="47" Width="73" FontSize="20"/>

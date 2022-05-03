@@ -98,6 +98,11 @@ namespace Hospital.View.ManagerView
             
 
         }
+
+        private void roomComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 
 
