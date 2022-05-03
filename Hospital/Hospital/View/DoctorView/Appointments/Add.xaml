@@ -4,25 +4,21 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Hospital.View.DoctorView"
-      xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" x:Class="Hospital.View.DoctorView.Add"
+      xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+      xmlns:sys="clr-namespace:System;assembly=mscorlib"
+      x:Class="Hospital.View.DoctorView.Appointments.Add"
       mc:Ignorable="d" 
-      d:DesignHeight="768" d:DesignWidth="1024"
+      d:DesignHeight="768" d:DesignWidth="700"
       Title="Create" Background="White">
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="324"/>
-            <ColumnDefinition Width="700"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="768"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Column="0">
-            <ContentControl x:Name="Menu">
-                <local:Menu/>
-            </ContentControl>
-        </Grid>
-        <Grid x:Name="NewAppointment" Grid.Column="1" Grid.Row="0">
+        <Grid x:Name="NewAppointment" Grid.Column="0" Grid.Row="0">
             <Rectangle HorizontalAlignment="Center" VerticalAlignment="Top" Height="40" Width="700" Margin="0,0,0,0" Stroke="Black"/>
             <TextBlock Text="New appointment" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,3,0,0" TextWrapping="Wrap" FontSize="24"/>
 
@@ -32,14 +28,14 @@
             <TextBlock Text="Room:"      HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,330,500,0" TextWrapping="Wrap" FontSize="20"/>
             <TextBlock Text="Equipment:" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,530,500,0" TextWrapping="Wrap" FontSize="20"/>
 
-            <DatePicker Name="DatePicker"           HorizontalAlignment="Left" VerticalAlignment="Top" Margin="220,80,0,0" Width="260" Height="30" FontSize="18" SelectedDate="{Binding DatePicker, StringFormat=\{0:d.M.yyyy\}}"/>
+            <DatePicker Name="DatePicker"           HorizontalAlignment="Left" VerticalAlignment="Top" Margin="220,80,0,0" Width="260" Height="30" FontSize="18" SelectedDate="{Binding DatePicker, StringFormat=\{0:d.M.yyyy\}}" DisplayDateStart="{x:Static sys:DateTime.Today}"/>
             <xctk:TimePicker Name="TimePicker"      HorizontalAlignment="Left" VerticalAlignment="Top" Margin="220,140,0,0" Width="260" Height="30" FontSize="18" StartTime="7:00" EndTime="20:00" TextAlignment="Center" TimeInterval="0:15" ShowButtonSpinner="False" AllowTextInput="False"/>
             <local:CustomTimeSpanUpDown x:Name="Duration"    HorizontalAlignment="Left" VerticalAlignment="Top" Margin="220,200,0,0" Width="260" Height="30" FontSize="18" TextAlignment="Center" AllowTextInput="False" Minimum="0.00:10:00" Maximum="0.8:00:00" Value="0.00:10:00"/>
             <ListBox Name="RoomListBox"             HorizontalAlignment="Left" VerticalAlignment="Top" Margin="220,260,0,0" Width="260" Height="166" SelectionChanged="ListBox_SelectionChanged" FontSize="18"/>
             <ListBox Name="EquipmentListBox"        HorizontalAlignment="Left" VerticalAlignment="Top" Margin="220,460,0,0" Width="260" Height="166" SelectionChanged="ListBox_SelectionChanged" FontSize="18"/>
 
-            <Button Content="Confirm" HorizontalAlignment="Left"  VerticalAlignment="Bottom" Margin="0,0,0,38" Width="350" Height="50" Click="Confirm" FontSize="25"/>
-            <Button Content="Cancel"  HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,0,38" Width="350" Height="50" Click="Cancel" FontSize="25"/>
+            <Button Content="Confirm" HorizontalAlignment="Left"  VerticalAlignment="Bottom" Margin="0,0,0,0" Width="350" Height="50" Click="Confirm" FontSize="25"/>
+            <Button Content="Cancel"  HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,0,0" Width="350" Height="50" Click="Cancel" FontSize="25"/>
         </Grid>
     </Grid>
 </Page>

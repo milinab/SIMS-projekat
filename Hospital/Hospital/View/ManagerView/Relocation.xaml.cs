@@ -2,6 +2,7 @@
 using Hospital.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,23 +20,55 @@ namespace Hospital.View.ManagerView
     /// <summary>
     /// Interaction logic for Relocation.xaml
     /// </summary>
-    public partial class Relocation : Window
+    public partial class Relocation : Page
     {
-
+        private string _id;
+        private App _app;
+        private readonly EquipmentWindow _equipmentWindow;
         private EquipmentController _equipmentController;
-        private readonly Equipment _equipment;
+        private RoomController _roomController;
 
-        public Relocation(Equipment equipment, EquipmentController equipmentController)
+        public Relocation(Equipment equipments, EquipmentWindow equipmentWindow, EquipmentController equipmentController, RoomController roomController)
         {
             InitializeComponent();
+            _app = Application.Current as App;
+            _equipmentWindow = equipmentWindow;
             _equipmentController = equipmentController;
-            _equipment = equipment;
+            _roomController = roomController;
+            ObservableCollection<Room> rooms = _app._roomController.Read();
+            ObservableCollection<String> roomName = new ObservableCollection<string>();
+            ObservableCollection<Equipment> equipment = _app._equipmentController.Read();
+            ObservableCollection<String> eqName = new ObservableCollection<string>();
+
+            foreach (Room room in rooms)
+            {
+                roomName.Add(room.Name);
+            }
+            roomComboBox.ItemsSource = roomName;
+            roomComboBox2.ItemsSource = roomName;
+            foreach (Equipment eq in equipment)
+            {
+                eqName.Add(eq.Name);
+            }
+            eqComboBox.ItemsSource = eqName;
+            this.eqComboBox.Text = equipments.Name;
+            this.quantityTextBox.Text = equipments.Number;
+            this.roomComboBox.Text = equipments.Room;
+            _id = equipments.Id;
+
 
         }
 
         public void RelocateClick(object sender, RoutedEventArgs e)
         {
-            
+            Equipment equipment = new Equipment(_id, quantityTextBox.Text, eqComboBox.Text, roomComboBox2.Text);
+            _app._equipmentController.Edit(equipment);
+            _equipmentWindow.BackToEquipmentWindow();
+        }
+
+        public void CancelClick(object sender, RoutedEventArgs e)
+        {
+            _equipmentWindow.BackToEquipmentWindow();
         }
     }
 }

@@ -4,6 +4,9 @@ using System;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
+using Hospital.Controller;
+using System.Windows.Threading;
+using Tulpep.NotificationWindow;
 
 namespace Hospital.View.PatientView
 {
@@ -17,6 +20,7 @@ namespace Hospital.View.PatientView
         private App app;
         private readonly object _content;
         private Doctor doctor;
+        DispatcherTimer liveDateTime = new DispatcherTimer();
 
         public ObservableCollection<Appointment> Appointments
         {
@@ -25,6 +29,12 @@ namespace Hospital.View.PatientView
         }
 
         public ObservableCollection<Doctor> Doctors
+        {
+            get;
+            set;
+        }
+
+        public ObservableCollection<Therapy> Therapies
         {
             get;
             set;
@@ -41,6 +51,8 @@ namespace Hospital.View.PatientView
             Appointments = new ObservableCollection<Appointment>();
             Doctors = new ObservableCollection<Doctor>();
             Appointments = app._appointmentController.Read();
+            Therapies = app._therapyController.ReadBypatientId(1);
+            getTherapyTime();
 
 
             foreach (var a in Appointments) {
@@ -52,6 +64,43 @@ namespace Hospital.View.PatientView
 
 
             Console.WriteLine("tesct");
+
+
+        }
+
+        private void getTherapyTime()
+        {
+            foreach (var th in Therapies)
+            {
+                DateTime now = DateTime.Now;
+
+                TimeSpan ts = new TimeSpan(0, 30, 00);
+                DateTime newTimespan = th.Time - ts;
+                int diffInSeconds = (int)(th.Time - ts - now).TotalSeconds;
+                //liveDateTime.Interval = newTimespan.TimeOfDay; // specify interval time as you want
+                if (diffInSeconds > 0)
+                {
+                    liveDateTime.Interval = new TimeSpan(0, 0, diffInSeconds);
+                    liveDateTime.Tick += TimerTick;
+                    liveDateTime.Start();
+                }
+
+
+
+            }
+
+        }
+
+        private void TimerTick(object sender, EventArgs e)
+        {
+            //MessageBox.Show("Please, take your therapy in half an hour..", "Therapy reminder");
+            PopupNotifier popup = new PopupNotifier();
+            popup.Image = Properties.Resources.notification;
+            popup.TitleText = "Therapy reminder";
+            popup.ContentText = "Please, take your therapy in half an hour.";
+            popup.Popup();
+            Console.WriteLine("Za pola sata je vreme da uzmes terapiju!");
+            liveDateTime.Stop();
 
 
         }
@@ -81,8 +130,8 @@ namespace Hospital.View.PatientView
         {
             Appointment appointment = dataGridAppointments.SelectedValue as Appointment;
             //int appointmentId = app._appointmentController.ReadById(appointment.Id);
-            //var editAppointmentWindow = new EditAppointment(appointment, appointmentId, this);
-            //Content = EditAnAppointment;
+            var editAnAppointmentPage = new EditAnAppointment(appointment, this);
+            Content = editAnAppointmentPage;
         }
 
         private void CancelAnAppointmentClick(object sender, RoutedEventArgs e)
@@ -105,11 +154,18 @@ namespace Hospital.View.PatientView
         public void BackToPatientWindow()
         {
             Content = _content;
+            refresh();
+        }
+        public void refresh()
+        {
+            dataGridAppointments.ItemsSource = app._appointmentController.Read();
         }
 
-        private void OpenBookAnAppointmentWindowClick(object sender, RoutedEventArgs e)
+        private void LogOut_Click(object sender, RoutedEventArgs e)
         {
-
+            LogIn logIn = new LogIn();
+            logIn.Show();
+            this.Close();
         }
     }
 }

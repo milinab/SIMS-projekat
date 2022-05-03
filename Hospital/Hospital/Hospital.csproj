@@ -50,6 +50,7 @@
     </Reference>
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.IO, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.IO.4.3.0\lib\net462\System.IO.dll</HintPath>
       <Private>True</Private>
@@ -74,6 +75,9 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="Tulpep.NotificationWindow, Version=1.1.38.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Tulpep.NotificationWindow.1.1.38\lib\net40\Tulpep.NotificationWindow.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
@@ -101,6 +105,7 @@
     </ApplicationDefinition>
     <Compile Include="Controller\AddressController.cs" />
     <Compile Include="Controller\AllergenController.cs" />
+    <Compile Include="Controller\TherapyController.cs" />
     <Compile Include="Controller\DoctorController.cs" />
     <Compile Include="Controller\ManagerController.cs" />
     <Compile Include="Controller\SecretaryController.cs" />
@@ -118,9 +123,11 @@
     <Compile Include="LogIn.xaml.cs">
       <DependentUpon>LogIn.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\Therapy.cs" />
     <Compile Include="Model\Allergen.cs" />
     <Compile Include="Model\AllergenList.cs" />
     <Compile Include="Repository\AddressRepository.cs" />
+    <Compile Include="Repository\TherapyRepository.cs" />
     <Compile Include="Repository\CityRepository.cs" />
     <Compile Include="Repository\AllergenRepository.cs" />
     <Compile Include="Repository\DoctorRepository.cs" />
@@ -136,6 +143,7 @@
     <Compile Include="Repository\UserRepository.cs" />
     <Compile Include="Service\AddressService.cs" />
     <Compile Include="Service\AllergenService.cs" />
+    <Compile Include="Service\TherapyService.cs" />
     <Compile Include="Service\DoctorService.cs" />
     <Compile Include="Service\ManagerService.cs" />
     <Compile Include="Service\SecretaryService.cs" />
@@ -147,15 +155,21 @@
     <Compile Include="Service\EquipmentService.cs" />
     <Compile Include="Service\GuestService.cs" />
     <Compile Include="Service\UserService.cs" />
-    <Compile Include="View\DoctorView\Add.xaml.cs">
+    <Compile Include="View\DoctorView\Appointments\Add.xaml.cs">
       <DependentUpon>Add.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\DoctorView\CustomTimeSpanUpDown.cs" />
-    <Compile Include="View\DoctorView\Appointments.xaml.cs">
-      <DependentUpon>Appointments.xaml</DependentUpon>
+    <Compile Include="View\DoctorView\Appointments\AppointmentsPage.xaml.cs">
+      <DependentUpon>AppointmentsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\DoctorView\Edit.xaml.cs">
+    <Compile Include="View\DoctorView\Appointments\Edit.xaml.cs">
       <DependentUpon>Edit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DoctorView\Appointments\ViewPatientInformations.xaml.cs">
+      <DependentUpon>ViewPatientInformations.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DoctorView\CustomTimeSpanUpDown.cs" />
+    <Compile Include="View\DoctorView\MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\DoctorView\Menu.xaml.cs">
       <DependentUpon>Menu.xaml</DependentUpon>
@@ -220,13 +234,18 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="View\DoctorView\Add.xaml">
+    <Page Include="View\DoctorView\Appointments\Add.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\DoctorView\Appointments.xaml">
+    <Page Include="View\DoctorView\Appointments\AppointmentsPage.xaml">
+      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\DoctorView\Edit.xaml">
+    <Page Include="View\DoctorView\Appointments\Edit.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DoctorView\Appointments\ViewPatientInformations.xaml" />
+    <Page Include="View\DoctorView\MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\DoctorView\Menu.xaml">
@@ -349,6 +368,8 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\notification.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

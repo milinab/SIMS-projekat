@@ -7,10 +7,14 @@
       mc:Ignorable="d" 
       d:DesignHeight="560" d:DesignWidth="800" Background="White"
       Title="EditAnAppointment">
+    <Page.Resources>
+        <local:EnumMatchToBooleanConverter x:Key="enumConverter" />
+    </Page.Resources>
 
     <Grid>
 
         <Label Content="ZDRAVO CORPORATION" HorizontalAlignment="Left" Margin="7,6,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="18"/>
+        <Button Content="Log out" BorderThickness="2" HorizontalAlignment="Left" Margin="700,6,0,0" VerticalAlignment="Top" Height="29" Width="82" Click="LogOut_Click"/>
         <Border BorderBrush="Black" BorderThickness="1" Width="Auto" Height="1" Margin="0,32,0,470" />
 
         <Menu Width="Auto" Margin="0,40,0,450" >
@@ -27,9 +31,9 @@
 
         <DataGrid x:Name="dataGridAppointments" AutoGenerateColumns="False" Height="411" Margin="10,105,380,0" VerticalAlignment="Top">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Doctor" Binding="{Binding Doctors.Name}" Width="2*"/>
+                <DataGridTextColumn Header="Doctor" Binding="{Binding Doctor.Name}" Width="2*"/>
                 <DataGridTextColumn Header="Date" Binding="{Binding Date, StringFormat=\{0:d.M.yyyy\}}" Width="*"/>
-                <DataGridTextColumn Header="Time" Binding="{Binding Duration, StringFormat=\{0:H:mm\}}" Width="*"/>
+                <DataGridTextColumn Header="Time" Binding="{Binding Date, StringFormat=\{0:H:mm\}}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
 
@@ -37,7 +41,7 @@
         <ComboBox x:Name="doctorsComboBox" ItemsSource="{Binding Doctors.Name}" DisplayMemberPath="Name" SelectedValue="Doctors.Id"  HorizontalAlignment="Left" Margin="420,185,0,0" VerticalAlignment="Top" Width="192" Height="29"/>
 
         <Label Content="Choose the date:" HorizontalAlignment="Left" Margin="420,220,0,0" VerticalAlignment="Top" Width="156" FontSize="16" Height="34" FontWeight="Bold"/>
-        <Calendar x:Name="myCalendar" HorizontalAlignment="Left" Margin="420,250,0,0" VerticalAlignment="Top"/>
+        <Calendar x:Name="myCalendar"  HorizontalAlignment="Left" Margin="420,250,0,0" VerticalAlignment="Top"/>
 
         <RadioButton Name="DoctorPriority" GroupName="Priority"  Content="Doctor" HorizontalAlignment="Left" Margin="420,430,0,0" VerticalAlignment="Top" IsChecked="{Binding Path=CurrentOption, Mode=TwoWay, Converter={StaticResource enumConverter}, ConverterParameter=DoctorPriority}"/>
         <RadioButton Name="DatePriority" GroupName="Priority" Content="Date" HorizontalAlignment="Left" Margin="500,430,0,0" VerticalAlignment="Top" IsChecked="{Binding Path=CurrentOption, Mode=TwoWay, Converter={StaticResource enumConverter}, ConverterParameter=DatePriority}"/>

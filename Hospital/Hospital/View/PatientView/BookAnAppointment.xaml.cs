@@ -82,16 +82,16 @@ namespace Hospital.View.PatientView
             //}
 
             //if (DoctorPriority.IsChecked == true)
-            //{
+           // {
             //DoctorPriorityDateAvailable DoctorPriorityDateAvailablePage = new DoctorPriorityDateAvailable(_patientWindow ,this,app._appointmentController);
             //Content = DoctorPriorityDateAvailablePage;
-            //}
-            // if (DatePriority.IsChecked == true)
-            //{
+           // }
+           //  if (DatePriority.IsChecked == true)
+           // {
             //BookAnAppointment bookAnAppointmentPage = new BookAnAppointment(this, app._appointmentController);
             //Content = bookAnAppointmentPage;
 
-            // }
+           // }
             
             //doctorsComboBox.ItemsSource = app._userController.ReadAll();
 
@@ -125,7 +125,12 @@ namespace Hospital.View.PatientView
             Content = _content;
         }
 
-
+        private void LogOut_Click(object sender, RoutedEventArgs e)
+        {
+            LogIn logIn = new LogIn();
+            logIn.Show();
+            _patientWindow.Close();
+        }
 
     }
 }

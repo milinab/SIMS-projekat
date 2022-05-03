@@ -25,7 +25,7 @@ namespace Hospital.View.ManagerView
             Room newRoom = new Room
             {
                 Name = idText.Text,
-                Floor = int.Parse(floorText.Text),
+                Floor = floorText.Text,
                 Type = typeComboBox.Text
 
 

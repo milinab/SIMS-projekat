@@ -44,10 +44,12 @@ namespace Hospital.Repository
             {
                 if (room.Id.Equals(editRoom.Id))
                 {
+                    room.Name = editRoom.Name;
+                    room.Floor = editRoom.Floor;
                     room.Type = editRoom.Type;
-                    room.Equipment = editRoom.Equipment;
                 }
             }
+            Write();
         }
 
         public void Delete(int id)

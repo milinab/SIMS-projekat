@@ -14,6 +14,7 @@
     <Grid>
 
         <Label Content="ZDRAVO CORPORATION" HorizontalAlignment="Left" Margin="7,6,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="18"/>
+        <Button Content="Log out" BorderThickness="2" HorizontalAlignment="Left" Margin="700,6,0,0" VerticalAlignment="Top" Height="29" Width="82" Click="LogOut_Click"/>
         <Border BorderBrush="Black" BorderThickness="1" Width="Auto" Height="1" Margin="0,32,0,470" />
 
         <Menu Width="Auto" Margin="0,40,0,450">
@@ -30,9 +31,9 @@
 
         <DataGrid x:Name="dataGridAppointments" AutoGenerateColumns="False" Height="411" Margin="10,105,380,0" VerticalAlignment="Top">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Doctor" Binding="{Binding Doctors.Name}" Width="2*"/>
+                <DataGridTextColumn Header="Doctor" Binding="{Binding Doctor.Name}" Width="2*"/>
                 <DataGridTextColumn Header="Date" Binding="{Binding Date, StringFormat=\{0:d.M.yyyy\}}" Width="*"/>
-                <DataGridTextColumn Header="Time" Binding="{Binding Duration, StringFormat=\{0:H:mm\}}" Width="*"/>
+                <DataGridTextColumn Header="Time" Binding="{Binding Date, StringFormat=\{0:H:mm\}}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
 
@@ -44,7 +45,7 @@
 
         <RadioButton Name="DoctorPriority" GroupName="Priority"  Content="Doctor" HorizontalAlignment="Left" Margin="420,430,0,0" VerticalAlignment="Top" IsChecked="{Binding Path=CurrentOption, Mode=TwoWay, Converter={StaticResource enumConverter}, ConverterParameter=DoctorPriority}"/>
         <RadioButton Name="DatePriority" GroupName="Priority" Content="Date" HorizontalAlignment="Left" Margin="500,430,0,0" VerticalAlignment="Top" IsChecked="{Binding Path=CurrentOption, Mode=TwoWay, Converter={StaticResource enumConverter}, ConverterParameter=DatePriority}"/>
-       
+
         <Button x:Name="BTN_AddAppointment" Content="Continue" HorizontalAlignment="Left" Margin="420,465,0,0" VerticalAlignment="Top" Height="35" Width="80" Click="AddAppointment_Click"/>
         <Button x:Name="BTN_close" Content="Cancel" HorizontalAlignment="Left" Margin="520,465,0,0" VerticalAlignment="Top" Height="35" Width="80" Click="Cancel_Click"/>
     </Grid>

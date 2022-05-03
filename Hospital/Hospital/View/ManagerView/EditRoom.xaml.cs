@@ -19,37 +19,37 @@ namespace Hospital.View.ManagerView
     /// <summary>
     /// Interaction logic for EditRoom.xaml
     /// </summary>
-    public partial class EditRoom : Window
+    public partial class EditRoom : Page
     {
-        private RoomController _roomController;
-        private readonly Room _room;
+        private int _id;
+        private string _name;
+        private int _floor;
+        private string _type;
+        private readonly ManagerWindow _managerWindow;
+        private readonly App _app;
 
-        public EditRoom(Room room, RoomController roomController)
+        public EditRoom(Room room, ManagerWindow managerWindow)
         {
             InitializeComponent();
-            _room = room;
-            _roomController = roomController;
-            typeComboBox.Text = _room.Type;
+            _app = Application.Current as App;
+            _managerWindow = managerWindow;
+            this.nameText.Text = room.Name;
+            this.floorText.Text = room.Floor;
+            this.typeComboBox.Text = room.Type;
+            _id = room.Id;
         }
 
 
         public void EditRoomClick(Object sender, RoutedEventArgs e)
         {
-            string _type = typeComboBox.Text;
-            Room _room = new Room
-            {
-                Name = nameText.Text,
-                Floor = int.Parse(floorText.Text),
-                Type = _type
-
-            };
-            _roomController.Edit(_room);
-            Close();
+            Room room = new Room(nameText.Text, floorText.Text, typeComboBox.Text, _id);
+            _app._roomController.Edit(room);
+            _managerWindow.BackToManagerWindow();
         }
 
         public void CancelRoomClick(object sender, RoutedEventArgs e)
         {
-            Close();
+            _managerWindow.BackToManagerWindow();
         }
     }
 }

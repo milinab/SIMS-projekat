@@ -1,4 +1,4 @@
-﻿<Window x:Class="Hospital.View.ManagerView.Relocation"
+﻿<Page x:Class="Hospital.View.ManagerView.Relocation"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -18,20 +18,29 @@
 
             </Menu>
         </DockPanel>
-
-        <Label Content="From:" FontSize="20" Margin="121,70,476,288" ></Label>
-        <ComboBox x:Name="eqComboBoxr" IsEditable="False"  Margin="313,64,120,313"/>
-        <Label Content="To:" FontSize="20" Margin="145,144,452,214" ></Label>
-        <Label Content="Equipment:" FontSize="20" Margin="72,220,525,138" ></Label>
-        <ComboBox x:Name="eqComboBox2" IsEditable="False"  Margin="315,214,118,163"/>
-        <DatePicker x:Name="TerminDatum" HorizontalAlignment="Left" Height="25" Margin="400,311,0,0" VerticalAlignment="Top" Width="167" />
+        <Label Content="Equipmnent:" FontSize="20" Margin="86,67,584,345" ></Label>
+        <Label Content="From:" FontSize="20" Margin="145,105,584,307" RenderTransformOrigin="0.5,0.5" >
+            <Label.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Label.RenderTransform>
+        </Label>
+        <ComboBox x:Name="roomComboBox" IsEditable="False"  Margin="313,113,120,307" Height="30"/>
+        <Label Content="Quantity:" FontSize ="20" Margin="115,143,584,264" />
+        <TextBox x:Name="quantityTextBox"   Margin="313,151,120,269" Height="30" />
+        <Label Content="To:" FontSize="20" Margin="170,181,584,228" ></Label>
         <Button Content="Relocate" HorizontalAlignment="Left" Margin="581,372,0,0" VerticalAlignment="Top" Width="86" Height="25" Click="RelocateClick" />
-        <ComboBox x:Name="room2ComboBox"  Margin="313,137,120,240">
-            <ComboBoxItem IsSelected="True">Room1</ComboBoxItem>
-            <ComboBoxItem>Room2</ComboBoxItem>
-            <ComboBoxItem>Room3</ComboBoxItem>
-        </ComboBox>
+        <ComboBox x:Name="eqComboBox" IsEditable="False"  Margin="313,75,120,345" Height="30"/>
+        <ComboBox x:Name="roomComboBox2"   Margin="313,189,120,231" Height="30"/>
+        <Button Content="Cancel" HorizontalAlignment="Left" Margin="383,372,0,0" VerticalAlignment="Top" Width="86" Height="25" Click="CancelClick" />
+        <Label Content="Number of days:" FontSize="20" Margin="51,222,590,187" />
+        <TextBox x:Name="daysTextBox"   Margin="313,230,120,190" Height="30" />
+
 
 
     </Grid>
-</Window>
+</Page>
