@@ -48,6 +48,7 @@ namespace Hospital.View.ManagerView
             DateTime _date = datePicker.SelectedDate.Value;
             string _room = roomComboBox.Text;
 
+            ObservableCollection<Appointment> appointments = _app._appointmentController.Read();
             ObservableCollection<Room> rooms = _app._roomController.Read();
             Room tempRoom = new Room();
             foreach (Room room in rooms)
@@ -59,7 +60,26 @@ namespace Hospital.View.ManagerView
             }
 
             Appointment appointment = new Appointment(tempRoom, _date);
-            _appointmentController.Create(appointment);
+
+            bool nesto = false;
+
+            foreach (Appointment appointment1 in appointments.ToList())
+            {
+                if (DateTime.Compare(appointment1.Date, appointment.Date) == 0)
+                {
+                    if (appointment.RoomId == appointment1.RoomId)
+                    {
+                        MessageBox.Show("Ne moze!");
+                        nesto = true;
+                    }
+                }
+            }
+            if(nesto == false)
+            {
+                _appointmentController.Create(appointment);
+                _roomOccupancy.BackToRoomOccupancy();
+            }
+
             _roomOccupancy.BackToRoomOccupancy();
         }
 
@@ -73,7 +93,10 @@ namespace Hospital.View.ManagerView
 
         public Renovate()
         {
+            
             InitializeComponent();
+            
+
         }
     }
 
