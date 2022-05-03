@@ -2,6 +2,7 @@
 {
     public class Repositories
     {
+        public AllergenRepository AllergenRepository { get; set; }
         public AddressRepository AddressRepository { get; set; }
         public AppointmentRepository AppointmentRepository { get; set; }
         public CityRepository CityRepository { get; set; }
@@ -20,6 +21,7 @@
 
         public Repositories()
         {
+            AllergenRepository = new AllergenRepository();
             CountryRepository = new CountryRepository();
             CityRepository = new CityRepository(CountryRepository);
             AddressRepository = new AddressRepository(CityRepository);

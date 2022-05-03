@@ -99,6 +99,7 @@ namespace Hospital.View.SecretaryView {
         {
             Patient patient = dataGridPatients.SelectedValue as Patient;
             app._userController.Delete(app._userController.FindId(patient.Username));
+            app._medicalRecordController.Delete(patient.MedicalRecordId);
             app._patientController.Delete(patient.Id);
         }
 

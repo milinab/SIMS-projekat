@@ -100,6 +100,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Controller\AddressController.cs" />
+    <Compile Include="Controller\AllergenController.cs" />
     <Compile Include="Controller\DoctorController.cs" />
     <Compile Include="Controller\ManagerController.cs" />
     <Compile Include="Controller\SecretaryController.cs" />
@@ -117,8 +118,10 @@
     <Compile Include="LogIn.xaml.cs">
       <DependentUpon>LogIn.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\Allergen.cs" />
     <Compile Include="Repository\AddressRepository.cs" />
     <Compile Include="Repository\CityRepository.cs" />
+    <Compile Include="Repository\AllergenRepository.cs" />
     <Compile Include="Repository\DoctorRepository.cs" />
     <Compile Include="Repository\ManagerRepository.cs" />
     <Compile Include="Repository\Repositories.cs" />
@@ -131,6 +134,7 @@
     <Compile Include="Repository\Serializer.cs" />
     <Compile Include="Repository\UserRepository.cs" />
     <Compile Include="Service\AddressService.cs" />
+    <Compile Include="Service\AllergenService.cs" />
     <Compile Include="Service\DoctorService.cs" />
     <Compile Include="Service\ManagerService.cs" />
     <Compile Include="Service\SecretaryService.cs" />

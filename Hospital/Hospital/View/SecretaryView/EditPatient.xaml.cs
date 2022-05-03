@@ -13,6 +13,10 @@ namespace Hospital.View.SecretaryView
     {
         private int _id;
         private int _userId;
+        private int _addressId;
+        private int _medicalRecordId;
+        private int _countryId;
+        private int _cityId;
         private readonly SecretaryWindow _secretaryWindow;
         private readonly App _app;
         public EditPatient(Patient patient,int userId,SecretaryWindow secretaryWindow)
@@ -41,6 +45,11 @@ namespace Hospital.View.SecretaryView
             this.numberText.Text = patient.Address.Number.ToString();
             _id = patient.Id;
             _userId = userId;
+            _addressId = patient.AddressId;
+            _medicalRecordId = patient.MedicalRecordId;
+            _countryId = patient.Address.City.CountryId;
+            _cityId = patient.Address.CityId;
+            
 
         }
         private void CancelPatientOnClick(Object sender, RoutedEventArgs e)
@@ -50,17 +59,18 @@ namespace Hospital.View.SecretaryView
 
         private void EditPatientOnClick(Object sender, RoutedEventArgs e)
         {
-            Country tempCountry = new Country(countryText.Text);
-            _app._countryController.Create(tempCountry);
-            City tempCity = new City(cityText.Text, zipText.Text, tempCountry);
-            _app._cityController.Create(tempCity);
-            Address tempAddress = new Address(streetText.Text, numberText.Text, tempCity);
-            _app._addressController.Create(tempAddress);
+            Country tempCountry = new Country(countryText.Text, _cityId);
+            _app._countryController.Edit(tempCountry);
+            City tempCity = new City(cityText.Text, zipText.Text, tempCountry, _countryId);
+            _app._cityController.Edit(tempCity);
+            Address tempAddress = _app._addressController.ReadById(_addressId);
+            tempAddress = new Address(streetText.Text, numberText.Text, tempCity, _addressId);
+            _app._addressController.Edit(tempAddress);
             User user = new User(nameText.Text, lastNameText.Text, idNumberText.Text, usernameText.Text,
                 passwordText.Text, tempAddress, phoneText.Text, emailText.Text, "Patient",
                 (DateTime)datePicker.SelectedDate, _userId);
             _app._userController.Edit(user);
-            MedicalRecord record = new MedicalRecord(chronicalDiseaseText.Text);
+            MedicalRecord record = new MedicalRecord(chronicalDiseaseText.Text, _medicalRecordId);
             _app._medicalRecordController.Edit(record);
             Patient patient = new Patient(user, genderText.Text, bloodTypeText.Text, healthInsuranceIdText.Text, record, _id);
             

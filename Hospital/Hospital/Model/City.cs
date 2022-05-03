@@ -26,5 +26,13 @@ namespace Hospital.Model
             Country = country;
             CountryId = country.Id;
         }
+        public City(string name, string zip, Country country,int id)
+        {
+            Name = name;
+            Zip = zip;
+            Country = country;
+            CountryId = country.Id;
+            Id = id;
+        }
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
 
 namespace Hospital.Model
@@ -11,7 +12,7 @@ namespace Hospital.Model
         [DataMember]
         public string ChronicalDiseases { get; set; }
         [DataMember]
-        public string Allergies { get; set; }
+        public List<Allergen> Allergies { get; set; }
 
         public MedicalRecord()
         {
@@ -21,9 +22,14 @@ namespace Hospital.Model
         {
             this.ChronicalDiseases = chronicalDisease;
         }
-        
+        public MedicalRecord(string chronicalDisease,int id)
+        {
+            this.ChronicalDiseases = chronicalDisease;
+            this.Id = id;
+        }
 
-        public MedicalRecord(string chronicalDisease, string allergies)
+
+        public MedicalRecord(string chronicalDisease, List<Allergen> allergies)
         {
             this.ChronicalDiseases = chronicalDisease;
             this.Allergies = allergies;
