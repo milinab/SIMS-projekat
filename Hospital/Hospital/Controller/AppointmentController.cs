@@ -20,6 +20,7 @@ namespace Hospital.Controller
 
         public void Create(Appointment newAppointment)
         {
+
             _service.Create(newAppointment);
         }
 

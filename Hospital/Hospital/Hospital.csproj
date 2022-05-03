@@ -161,6 +161,16 @@
     <Compile Include="View\PatientView\BookAnAppointment.xaml.cs">
       <DependentUpon>BookAnAppointment.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\PatientView\DatePriority.xaml.cs">
+      <DependentUpon>DatePriority.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientView\DoctorPriorityDateNotAvailable.xaml.cs">
+      <DependentUpon>DoctorPriorityDateNotAvailable.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientView\EditAnAppointment.xaml.cs">
+      <DependentUpon>EditAnAppointment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientView\EnumMatchToBooleanConverter.cs" />
     <Compile Include="View\PatientView\PatientWindow.xaml.cs">
       <DependentUpon>PatientWindow.xaml</DependentUpon>
     </Compile>
@@ -200,6 +210,19 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\PatientView\BookAnAppointment.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PatientView\DatePriority.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PatientView\DoctorPriorityDateNotAvailable.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PatientView\EditAnAppointment.xaml">
+      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\PatientView\PatientWindow.xaml">

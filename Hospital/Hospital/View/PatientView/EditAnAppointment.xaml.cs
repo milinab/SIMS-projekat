@@ -16,13 +16,12 @@ using Hospital.Controller;
 using Hospital.Model;
 using System.Collections.ObjectModel;
 
-
 namespace Hospital.View.PatientView
 {
     /// <summary>
-    /// Interaction logic for BookAnAppointment.xaml
+    /// Interaction logic for EditAnAppointment.xaml
     /// </summary>
-    public partial class BookAnAppointment : Page
+    public partial class EditAnAppointment : Page
     {
         private App app;
         private readonly object _content;
@@ -31,41 +30,16 @@ namespace Hospital.View.PatientView
         private readonly UserController _userController;
         private readonly DoctorController _doctorController;
 
-        public ObservableCollection<Doctor> Doctors
-        {
-            get;
-            set;
-        }
-
-        public BookAnAppointment(PatientWindow patientWindow, AppointmentController appointmentController, UserController userController)
+        public EditAnAppointment()
         {
             InitializeComponent();
-            app = Application.Current as App;
-            _content = Content;
-            this.DataContext = this;
-            dataGridAppointments.ItemsSource = patientWindow.dataGridAppointments.ItemsSource;
-            //dataGridAppointments.ItemsSource = app._appointmentController.Read();
-            _patientWindow = patientWindow;
-            _appointmentController = appointmentController;
-            _userController = userController;
-            Doctors = new ObservableCollection<Doctor>();
-            Doctors = app._doctorController.Read();
-            doctorsComboBox.ItemsSource = Doctors;
-
-        }
-
-
-
-        public BookAnAppointment(UserController userController)
-        {
-            _userController = userController;
         }
 
         private bool validate()
         {
-         
 
-            if(DoctorPriority.IsChecked == false && DatePriority.IsChecked == false)
+
+            if (DoctorPriority.IsChecked == false && DatePriority.IsChecked == false)
             {
                 MessageBox.Show("You need to select a priority.", "Warning");
                 return false;
@@ -92,11 +66,11 @@ namespace Hospital.View.PatientView
             //Content = bookAnAppointmentPage;
 
             // }
-            
+
             //doctorsComboBox.ItemsSource = app._userController.ReadAll();
 
             int DoctorId = Int32.Parse(((Model.User)doctorsComboBox.SelectedItem).Id.ToString());
-            
+
             DateTime _date = myCalendar.SelectedDate.Value;
 
 
@@ -119,13 +93,7 @@ namespace Hospital.View.PatientView
         {
             _patientWindow.BackToPatientWindow();
         }
-
-        public void BackToBookAnAppointmentWindow()
-        {
-            Content = _content;
-        }
-
-
-
     }
+
+    
 }

@@ -13,6 +13,9 @@ namespace Hospital.Model
         [DataMember]
         public DateTime DateOfEmployment { get; set; }
 
+        public DateTime StartTime { get; set; }
+        public DateTime EndTime { get; set; }
+
         public Employee()
         {
         }

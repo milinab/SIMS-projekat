@@ -12,8 +12,11 @@ namespace Hospital.View.PatientView
     /// </summary>
     /// 
 
-    public partial class PatientWindow : Window
+    public partial class PatientWindow
     {
+        private App app;
+        private readonly object _content;
+        private Doctor doctor;
 
         public ObservableCollection<Appointment> Appointments
         {
@@ -21,68 +24,90 @@ namespace Hospital.View.PatientView
             set;
         }
 
-        public ObservableCollection<Model.Doctor> Doctors
+        public ObservableCollection<Doctor> Doctors
         {
             get;
             set;
-        }
-        
-        private DelegateCommand <Appointment> _deleteCommand;
-        public DelegateCommand<Appointment> DeleteCommand =>
-            _deleteCommand ?? (_deleteCommand = new DelegateCommand<Appointment>(ExecuteDeleteCommand));
-
-        void ExecuteDeleteCommand(Appointment app)
-        {
-            Appointments.Remove(app);
         }
 
         public PatientWindow()
         {
             InitializeComponent();
+            app = Application.Current as App;
+            _content = Content;
             this.DataContext = this;
+            dataGridAppointments.ItemsSource = app._appointmentController.Read();
+
             Appointments = new ObservableCollection<Appointment>();
-            Doctors = new ObservableCollection<Model.Doctor>();
-
-            //Doctors
-            Model.Doctor doctor1 = new Model.Doctor("Mike", "Mellow");
-            Model.Doctor doctor2 = new Model.Doctor("Olivia", "Wise");
-            Model.Doctor doctor3 = new Model.Doctor("Philip", "Ray");
-
-            //doctors,add
-            Doctors.Add(doctor1);
-            Doctors.Add(doctor2);
-            Doctors.Add(doctor3);
-
-            
+            Doctors = new ObservableCollection<Doctor>();
+            Appointments = app._appointmentController.Read();
 
 
+            foreach (var a in Appointments) {
+                 doctor = app._doctorController.ReadById(a.DoctorId);
+                Doctors.Add(doctor);
+            }
 
-            Appointments.Add(new Appointment { Id = 1, Doctor = new Model.Doctor("Dr Mike Mellow", "Mellow"), Date = new DateTime(2022, 12, 5, 7, 0, 0) });
-            Appointments.Add(new Appointment { Id = 2, Doctor = new Model.Doctor("Dr Test", "Testic"), Date = new DateTime(2022, 12, 7, 7, 30, 0) });
-            Appointments.Add(new Appointment { Id = 3, Doctor = new Model.Doctor("Dr Aron", "Aron"), Date = new DateTime(2022, 12, 9, 8, 30, 0) });
-            
+            //dataGridAppointments.ItemsSource = Doctors;
+
+
+            Console.WriteLine("tesct");
+
+
         }
 
         private void BookAnAppointmentClick(object sender, RoutedEventArgs e)
         {
 
-            Appointments.Add(new Appointment { Id = 4, Doctor = new Model.Doctor(doctorsComboBox.Text, ""), Date = calendar.DisplayDate }); //;
+            BookAnAppointment bookAnAppointmentPage = new BookAnAppointment(this, app._appointmentController, app._userController);
+            Content = bookAnAppointmentPage;
             
-        }
-
-        private void OpenBookAnAppointmentWindowClick(object sender, RoutedEventArgs e)
-        {
-            BookAnAppointment bookAnAppointment = new BookAnAppointment(this);
-            bookAnAppointment.Show();
-
         }
 
         private void EditAnAppointmentClick(object sender, RoutedEventArgs e)
         {
-
+            if (dataGridAppointments.SelectedItem != null)
+            {
+                Appointment appointment = (Appointment)dataGridAppointments.SelectedItem;
+                //editAnAppointment.Show();
+            }
+            else
+            {
+                MessageBox.Show("Select an appointment You want to edit.", "Warning");
+            }
         }
 
-        private void dataGridRooms_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void EditButtonClick(object sender, RoutedEventArgs e)
+        {
+            Appointment appointment = dataGridAppointments.SelectedValue as Appointment;
+            //int appointmentId = app._appointmentController.ReadById(appointment.Id);
+            //var editAppointmentWindow = new EditAppointment(appointment, appointmentId, this);
+            //Content = EditAnAppointment;
+        }
+
+        private void CancelAnAppointmentClick(object sender, RoutedEventArgs e)
+        {
+            if(dataGridAppointments.SelectedItem != null)
+            {
+                Appointment appointment = (Appointment)dataGridAppointments.SelectedItem;
+                app._appointmentController.Delete(appointment.Id);
+            } else
+            {
+                MessageBox.Show("Select an appointment You want to cancel.", "Warning");
+            }
+        }
+
+        private void MyAppointments_Click(object sender, RoutedEventArgs e)
+        {
+            Content = _content;
+        }
+
+        public void BackToPatientWindow()
+        {
+            Content = _content;
+        }
+
+        private void OpenBookAnAppointmentWindowClick(object sender, RoutedEventArgs e)
         {
 
         }
