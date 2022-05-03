@@ -7,19 +7,24 @@ namespace Hospital.Repository
     {
         private ObservableCollection<MedicalRecord> _medicalRecords;
         private readonly Serializer<MedicalRecord> _serializer;
+       
 
         public MedicalRecordRepository()
         {
             _serializer = new Serializer<MedicalRecord>("medicalrecords.csv");
             _medicalRecords = new ObservableCollection<MedicalRecord>();
+           
+          
         }
 
-        public MedicalRecord ReadById(int patientId)
+        public MedicalRecord ReadById(int id)
         {
+            _medicalRecords = _serializer.Read();
             foreach (MedicalRecord medicalRecord in _medicalRecords)
             {
-                if (medicalRecord.Id.Equals(patientId))
-                {
+                
+                if (medicalRecord.Id == id)
+                { 
                     return medicalRecord;
                 }
             }
@@ -39,7 +44,6 @@ namespace Hospital.Repository
                 if (medicalRecord.Id.Equals(editMedicalRecord.Id))
                 {
                     medicalRecord.ChronicalDiseases = editMedicalRecord.ChronicalDiseases;
-                    medicalRecord.Patient = editMedicalRecord.Patient;
                     medicalRecord.Allergies = editMedicalRecord.Allergies;
                 }
             }

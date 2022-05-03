@@ -7,25 +7,67 @@ namespace Hospital.Repository
    {
         private ObservableCollection<Appointment> _appointments;
         private readonly Serializer<Appointment> _serializer;
-
-        public AppointmentRepository()
+        private readonly DoctorRepository _doctorRepository;
+        private readonly PatientRepository _patientRepository;
+        private readonly RoomRepository _roomRepository;
+        
+        public AppointmentRepository(DoctorRepository doctorRepository, PatientRepository patientRepository, 
+            RoomRepository roomRepository)
         {
             _serializer = new Serializer<Appointment>("appointments.csv");
             _appointments = new ObservableCollection<Appointment>();
+            _doctorRepository = doctorRepository;
+            _patientRepository = patientRepository;
+            _roomRepository = roomRepository;
         }
 
         public ObservableCollection<Appointment> Read()
         {
             _appointments = _serializer.Read();
+
+            foreach (var appointment in _appointments)
+            {
+                Doctor doctor = _doctorRepository.ReadById(appointment.DoctorId);
+                Patient patient = _patientRepository.ReadById(appointment.PatientId);
+                Room room = _roomRepository.ReadById(appointment.RoomId);
+                if (doctor != null)
+                {
+                    appointment.Doctor = doctor;
+                }
+                if (patient != null)
+                {
+                    appointment.Patient = patient;
+                }
+                if (room != null)
+                {
+                    appointment.Room = room;
+                }
+            }
             return _appointments;
         }
 
         public Appointment ReadById(int id)
         {
+            _appointments = _serializer.Read();
             foreach (Appointment appointment in _appointments)
             {
-                if (appointment.Id.Equals(id))
+                if (appointment.Id == id)
                 {
+                    Doctor doctor = _doctorRepository.ReadById(appointment.DoctorId);
+                    Patient patient = _patientRepository.ReadById(appointment.PatientId);
+                    Room room = _roomRepository.ReadById(appointment.RoomId);
+                    if (doctor != null)
+                    {
+                        appointment.Doctor = doctor;
+                    }
+                    if (patient != null)
+                    {
+                        appointment.Patient = patient;
+                    }
+                    if (room != null)
+                    {
+                        appointment.Room = room;
+                    }
                     return appointment;
                 }
             }

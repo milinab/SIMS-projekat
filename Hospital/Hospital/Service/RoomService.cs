@@ -20,7 +20,7 @@ namespace Hospital.Service
             }
             else
             {
-                _id = int.Parse(rooms.Last().Id);
+                _id = rooms.Last().Id;
             }
         }
 
@@ -31,7 +31,7 @@ namespace Hospital.Service
       
         public void Create(Room newRoom)
         {
-            newRoom.Id = GenerateId().ToString();
+            newRoom.Id = GenerateId();
             _repository.Create(newRoom);
         }
       

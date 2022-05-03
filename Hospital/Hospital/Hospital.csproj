@@ -100,6 +100,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Controller\AddressController.cs" />
+    <Compile Include="Controller\AllergenController.cs" />
     <Compile Include="Controller\DoctorController.cs" />
     <Compile Include="Controller\ManagerController.cs" />
     <Compile Include="Controller\SecretaryController.cs" />
@@ -117,8 +118,10 @@
     <Compile Include="LogIn.xaml.cs">
       <DependentUpon>LogIn.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\Allergen.cs" />
     <Compile Include="Repository\AddressRepository.cs" />
     <Compile Include="Repository\CityRepository.cs" />
+    <Compile Include="Repository\AllergenRepository.cs" />
     <Compile Include="Repository\DoctorRepository.cs" />
     <Compile Include="Repository\ManagerRepository.cs" />
     <Compile Include="Repository\Repositories.cs" />
@@ -131,6 +134,7 @@
     <Compile Include="Repository\Serializer.cs" />
     <Compile Include="Repository\UserRepository.cs" />
     <Compile Include="Service\AddressService.cs" />
+    <Compile Include="Service\AllergenService.cs" />
     <Compile Include="Service\DoctorService.cs" />
     <Compile Include="Service\ManagerService.cs" />
     <Compile Include="Service\SecretaryService.cs" />
@@ -146,8 +150,8 @@
       <DependentUpon>Add.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\DoctorView\CustomTimeSpanUpDown.cs" />
-    <Compile Include="View\DoctorView\DoctorWindow.xaml.cs">
-      <DependentUpon>DoctorWindow.xaml</DependentUpon>
+    <Compile Include="View\DoctorView\Appointments.xaml.cs">
+      <DependentUpon>Appointments.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\DoctorView\Edit.xaml.cs">
       <DependentUpon>Edit.xaml</DependentUpon>
@@ -155,8 +159,29 @@
     <Compile Include="View\DoctorView\Menu.xaml.cs">
       <DependentUpon>Menu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ManagerView\AddRoomWindow.xaml.cs">
+      <DependentUpon>AddRoomWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ManagerView\EditRoom.xaml.cs">
+      <DependentUpon>EditRoom.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ManagerView\EquipmentWindow.xaml.cs">
+      <DependentUpon>EquipmentWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ManagerView\ManagerHomeWindow.xaml.cs">
+      <DependentUpon>ManagerHomeWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ManagerView\ManagerWindow.xaml.cs">
       <DependentUpon>ManagerWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ManagerView\Relocation.xaml.cs">
+      <DependentUpon>Relocation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ManagerView\Renovate.xaml.cs">
+      <DependentUpon>Renovate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ManagerView\RoomOccupancy.xaml.cs">
+      <DependentUpon>RoomOccupancy.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\PatientView\BookAnAppointment.xaml.cs">
       <DependentUpon>BookAnAppointment.xaml</DependentUpon>
@@ -197,7 +222,7 @@
     <Page Include="View\DoctorView\Add.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\DoctorView\DoctorWindow.xaml">
+    <Page Include="View\DoctorView\Appointments.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\DoctorView\Edit.xaml">
@@ -206,8 +231,36 @@
     <Page Include="View\DoctorView\Menu.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\ManagerView\AddRoomWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ManagerView\EditRoom.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ManagerView\EquipmentWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ManagerView\ManagerHomeWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\ManagerView\ManagerWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ManagerView\Relocation.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ManagerView\Renovate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ManagerView\RoomOccupancy.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\PatientView\BookAnAppointment.xaml">
       <SubType>Designer</SubType>

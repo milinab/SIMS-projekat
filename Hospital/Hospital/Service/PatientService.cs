@@ -26,7 +26,12 @@ namespace Hospital.Service
         {
             return _repository.ReadById(id);
         }
-      
+
+        public Patient ReadByIdTest(int id)
+        {
+            return _repository.ReadByIdTest(id);
+        }
+
         public void Create(Patient newPatient)
         {
             newPatient.Id = GenerateId();

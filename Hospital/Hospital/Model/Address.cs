@@ -26,5 +26,14 @@ namespace Hospital.Model
             City = city;
             CityId = city.Id;
         }
+
+        public Address(string street, string number, City city, int id)
+        {
+            Street = street;
+            Number = number;
+            City = city;
+            CityId = city.Id;
+            Id = id;
+        }
     }
 }

@@ -17,7 +17,12 @@ namespace Hospital.Controller
         {
             return _service.ReadById(id);
         }
-      
+
+        public Patient ReadByIdTest(int id)
+        {
+            return _service.ReadByIdTest(id);
+        }
+
         public void Create(Patient newPatient)
         {
             _service.Create(newPatient);

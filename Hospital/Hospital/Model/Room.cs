@@ -8,35 +8,84 @@ using System.Runtime.Serialization.Formatters.Binary;
 namespace Hospital.Model
 {
     [DataContract]
-    public class Room
+    public class Room : INotifyPropertyChanged
     {
-        private string _id;
+        private string _name;
+        private int _floor;
+        private int _id;
         private string _type;
-        [DataMember]
-        public int EquipmentId { get; set; }
+
+        public event PropertyChangedEventHandler propertyChanged;
+        protected virtual void OnPropertyChanged(string name)
+        {
+            if (propertyChanged != null)
+            {
+                propertyChanged(this, new PropertyChangedEventArgs(name));
+            }
+        }
+
+
         public Equipment Equipment { get; set; }
 
         [DataMember]
-        public string Id 
+        public int Id 
         { 
             get { return _id; }
             set { _id = value; }
         }
+        
+        [DataMember]
+        public string Name
+        {
+            get { return _name; }
+            set { _name = value; OnPropertyChanged("Name"); }
+        }
+
         [DataMember]
         public string Type
         {
             get { return _type; }
             set { _type = value; }
         }
+        public int Floor
+        {
+            get { return _floor; }
+            set { _floor = value; OnPropertyChanged("Floor"); }
+        }
+
+
+        [DataMember]
+        public int EquipmentId { get; set; }
 
         public Room() { }
 
-        public Room(string id, Equipment eq, string ty)
+        public Room(string name) 
+        {
+            _name = name;
+        }
+
+        public Room(int id, Equipment eq, string ty)
         {
             _id = id;
             Equipment = eq;
             _type = ty;
         }
+
+        public Room(string type, string name, Equipment equipment)
+        {
+            _type = type;
+            Name = name;
+            EquipmentId = int.Parse(equipment.Id);
+            Equipment = equipment;
+        }
+
+        public Room(string name, int floor, string ty)
+        {
+            _name = name;
+            _floor = floor;
+            _type = ty;
+        }
+
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         { 
             info.AddValue("Id", Id);

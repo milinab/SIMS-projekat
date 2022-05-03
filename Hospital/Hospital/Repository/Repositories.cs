@@ -2,6 +2,7 @@
 {
     public class Repositories
     {
+        public AllergenRepository AllergenRepository { get; set; }
         public AddressRepository AddressRepository { get; set; }
         public AppointmentRepository AppointmentRepository { get; set; }
         public CityRepository CityRepository { get; set; }
@@ -20,18 +21,19 @@
 
         public Repositories()
         {
+            AllergenRepository = new AllergenRepository();
             CountryRepository = new CountryRepository();
             CityRepository = new CityRepository(CountryRepository);
             AddressRepository = new AddressRepository(CityRepository);
-            PatientRepository = new PatientRepository(AddressRepository);
-            AppointmentRepository = new AppointmentRepository();
+            MedicalRecordRepository = new MedicalRecordRepository();
+            PatientRepository = new PatientRepository(AddressRepository, MedicalRecordRepository);
             DoctorRepository = new DoctorRepository();
+            RoomRepository = new RoomRepository();
+            AppointmentRepository = new AppointmentRepository(DoctorRepository, PatientRepository, RoomRepository);
             EmployeeRepository = new EmployeeRepository();
             EquipmentRepository = new EquipmentRepository();
             GuestRepository = new GuestRepository();
             ManagerRepository = new ManagerRepository();
-            MedicalRecordRepository = new MedicalRecordRepository();
-            RoomRepository = new RoomRepository();
             SecretaryRepository = new SecretaryRepository();
             SurgeryRepository = new SurgeryRepository();
             UserRepository = new UserRepository(AddressRepository);

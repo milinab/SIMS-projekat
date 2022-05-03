@@ -1,28 +1,22 @@
-using System.Runtime.Serialization;
+﻿using System.Runtime.Serialization;
 
 namespace Hospital.Model
 {
     [DataContract]
-    public class Country
+    public class Allergen
     {
         [DataMember]
         public int Id { get; set; }
         [DataMember]
         public string Name { get; set; }
-
-        public Country()
+       
+        public Allergen()
         {
         }
 
-        public Country(string name)
+        public Allergen(string name, string zip, Country country)
         {
             Name = name;
-        }
-
-        public Country(string name,int id)
-        {
-            Name = name;
-            Id = id;
         }
     }
 }

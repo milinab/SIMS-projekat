@@ -4,6 +4,7 @@ namespace Hospital.Service
 {
     public class Services
     {
+        public AllergenService AllergenService { get; set; }
         public AddressService AddressService { get; set; }
         public AppointmentService AppointmentService { get; set; }
         public CityService CityService { get; set; }
@@ -20,8 +21,10 @@ namespace Hospital.Service
         public SurgeryService SurgeryService { get; set; }
         public UserService UserService { get; set; }
 
+
         public Services(Repositories repositories)
         {
+            AllergenService = new AllergenService(repositories.AllergenRepository);
             AddressService = new AddressService(repositories.AddressRepository);
             AppointmentService = new AppointmentService(repositories.AppointmentRepository);
             CityService = new CityService(repositories.CityRepository);

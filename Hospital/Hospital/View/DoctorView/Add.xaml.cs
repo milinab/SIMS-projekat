@@ -20,16 +20,26 @@ namespace Hospital.View.DoctorView {
     /// <summary>
     /// Interaction logic for Create.xaml
     /// </summary>
-    public partial class Add : Page {
+    public partial class Add : Page
+    {
 
-        private readonly DoctorWindow _doctorWindow;
-        private readonly AppointmentController _appointmentController;
-        public Add(DoctorWindow doctorWindow, AppointmentController appointmentController) {
-            _doctorWindow = doctorWindow;
-            _appointmentController = appointmentController;
+        private App _app;
+        private readonly Appointments _appointments;
+        
+        public Add(Appointments appointments)
+        {
+            _app = Application.Current as App;
+            _appointments = appointments;
             InitializeComponent();
-            datePicker.SelectedDate = DateTime.Now;
-            //roomListBox.ItemsSource =
+            DatePicker.SelectedDate = DateTime.Now;
+            ObservableCollection<Room> rooms = _app._roomController.Read();
+            ObservableCollection<String> roomNames = new ObservableCollection<string>();
+            foreach (var room in rooms)
+            {
+                roomNames.Add(room.Name);
+            }
+
+            RoomListBox.ItemsSource = roomNames;
             //equipmentListBox.ItemsSource =
         }
         private void RoomClick(object sender, RoutedEventArgs e) {
@@ -45,23 +55,34 @@ namespace Hospital.View.DoctorView {
         }
 
         private void Confirm(object sender, RoutedEventArgs e) {
-            DateTime _date = datePicker.SelectedDate.Value;
-            string _time = timePicker.Text;
-            string[] _timeParts = _time.Split(':');
-            _date += new TimeSpan(int.Parse(_timeParts[0]), int.Parse(_timeParts[1]), 0);
-            string _dur = duration.Text;
-            string[] _durationParts = _dur.Split(':');
-            TimeSpan _duration = new TimeSpan(int.Parse(_durationParts[0]), int.Parse(_durationParts[1]), 0);
-            Appointment appointment = new Appointment {
-                Date = _date,
-                Duration = _duration
-            };
-            _appointmentController.Create(appointment);
-            _doctorWindow.BackToDoctorWindow();
+            DateTime date = DatePicker.SelectedDate.Value;
+            string time = TimePicker.Text;
+            string[] timeParts = time.Split(':');
+            date += new TimeSpan(int.Parse(timeParts[0]), int.Parse(timeParts[1]), 0);
+            string dur = Duration.Text;
+            string[] durationParts = dur.Split(':');
+            TimeSpan duration = new TimeSpan(int.Parse(durationParts[0]), int.Parse(durationParts[1]), 0);
+            Doctor tempDoctor = _app._doctorController.ReadById(1);
+            Patient tempPatient = _app._patientController.ReadById(1);
+            string roomName = RoomListBox.SelectedItem.ToString();
+            ObservableCollection<Room> rooms = _app._roomController.Read();
+            Room tempRoom = new Room();
+            foreach (var room in rooms)
+            {
+                if (room.Name.Equals(roomName))
+                {
+                    tempRoom = room;
+                }
+            }
+
+            Appointment appointment = new Appointment(date, duration, tempDoctor, tempPatient, tempRoom);
+
+            _app._appointmentController.Create(appointment);
+            _appointments.SwitchPage();
         }
 
         private void Cancel(object sender, RoutedEventArgs e) {
-            _doctorWindow.BackToDoctorWindow();
+            _appointments.SwitchPage();
         }
     }
 }

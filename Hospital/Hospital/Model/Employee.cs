@@ -19,5 +19,19 @@ namespace Hospital.Model
         public Employee()
         {
         }
+        
+        public Employee(Employee employee)
+        {
+            Vacation = employee.Vacation;
+            Experience = employee.Experience;
+            DateOfEmployment = employee.DateOfEmployment;
+        }
+
+        public Employee(User user, int vacation, int experience, DateTime dateOfEmployment) : base(user)
+        {
+            Vacation = vacation;
+            Experience = experience;
+            DateOfEmployment = dateOfEmployment;
+        }
     }
 }
