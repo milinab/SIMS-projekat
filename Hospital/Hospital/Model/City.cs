@@ -19,6 +19,11 @@ namespace Hospital.Model
         {
         }
 
+        public City(Country country)
+        {
+            this.Country = country;
+        }
+
         public City(string name, string zip, Country country)
         {
             Name = name;

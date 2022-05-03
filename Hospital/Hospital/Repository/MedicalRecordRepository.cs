@@ -44,7 +44,7 @@ namespace Hospital.Repository
                 if (medicalRecord.Id.Equals(editMedicalRecord.Id))
                 {
                     medicalRecord.ChronicalDiseases = editMedicalRecord.ChronicalDiseases;
-                    medicalRecord.Allergies = editMedicalRecord.Allergies;
+                    medicalRecord.AllergenIds = editMedicalRecord.AllergenIds;
                 }
             }
             Write();

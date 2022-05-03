@@ -119,6 +119,7 @@
       <DependentUpon>LogIn.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\Allergen.cs" />
+    <Compile Include="Model\AllergenList.cs" />
     <Compile Include="Repository\AddressRepository.cs" />
     <Compile Include="Repository\CityRepository.cs" />
     <Compile Include="Repository\AllergenRepository.cs" />
