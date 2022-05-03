@@ -1,4 +1,5 @@
 using System.Collections.ObjectModel;
+using System.Windows;
 using Hospital.Model;
 
 namespace Hospital.Repository
@@ -82,12 +83,14 @@ namespace Hospital.Repository
 
         public void Edit(Appointment editAppointment)
         {
+            _appointments = _serializer.Read();
             foreach (Appointment appointment in _appointments)
             {
-                if (editAppointment.Id.Equals(appointment.Id))
+                if (editAppointment.Id == appointment.Id)
                 {
                     appointment.Date = editAppointment.Date;
                     appointment.Duration = editAppointment.Duration;
+                    appointment.Room = editAppointment.Room;
                 }
             }
             Write();

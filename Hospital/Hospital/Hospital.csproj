@@ -142,15 +142,21 @@
     <Compile Include="Service\EquipmentService.cs" />
     <Compile Include="Service\GuestService.cs" />
     <Compile Include="Service\UserService.cs" />
-    <Compile Include="View\DoctorView\Add.xaml.cs">
+    <Compile Include="View\DoctorView\Appointments\Add.xaml.cs">
       <DependentUpon>Add.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\DoctorView\CustomTimeSpanUpDown.cs" />
-    <Compile Include="View\DoctorView\Appointments.xaml.cs">
-      <DependentUpon>Appointments.xaml</DependentUpon>
+    <Compile Include="View\DoctorView\Appointments\AppointmentsPage.xaml.cs">
+      <DependentUpon>AppointmentsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\DoctorView\Edit.xaml.cs">
+    <Compile Include="View\DoctorView\Appointments\Edit.xaml.cs">
       <DependentUpon>Edit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DoctorView\Appointments\ViewPatientInformations.xaml.cs">
+      <DependentUpon>ViewPatientInformations.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DoctorView\CustomTimeSpanUpDown.cs" />
+    <Compile Include="View\DoctorView\MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\DoctorView\Menu.xaml.cs">
       <DependentUpon>Menu.xaml</DependentUpon>
@@ -205,13 +211,18 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="View\DoctorView\Add.xaml">
+    <Page Include="View\DoctorView\Appointments\Add.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\DoctorView\Appointments.xaml">
+    <Page Include="View\DoctorView\Appointments\AppointmentsPage.xaml">
+      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\DoctorView\Edit.xaml">
+    <Page Include="View\DoctorView\Appointments\Edit.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DoctorView\Appointments\ViewPatientInformations.xaml" />
+    <Page Include="View\DoctorView\MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\DoctorView\Menu.xaml">
@@ -321,6 +332,5 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

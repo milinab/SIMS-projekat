@@ -1,59 +1,45 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Hospital.Controller;
 using Hospital.Model;
 
-namespace Hospital.View.DoctorView {
+namespace Hospital.View.DoctorView.Appointments {
     /// <summary>
-    /// Interaction logic for Create.xaml
+    /// Interaction logic for Edit.xaml
     /// </summary>
-    public partial class Add : Page
+    public partial class Edit
     {
 
         private App _app;
-        private readonly Appointments _appointments;
+        private AppointmentsPage _appointmentsPage;
+        private Appointment _appointment;
         
-        public Add(Appointments appointments)
+        public Edit(Appointment app, AppointmentsPage appointmentsPage)
         {
+            _appointment = app;
             _app = Application.Current as App;
-            _appointments = appointments;
             InitializeComponent();
-            DatePicker.SelectedDate = DateTime.Now;
+            _appointmentsPage = appointmentsPage;
             ObservableCollection<Room> rooms = _app._roomController.Read();
-            ObservableCollection<String> roomNames = new ObservableCollection<string>();
+            ObservableCollection<string> roomNames = new ObservableCollection<string>();
             foreach (var room in rooms)
             {
                 roomNames.Add(room.Name);
             }
 
             RoomListBox.ItemsSource = roomNames;
-            //equipmentListBox.ItemsSource =
+            
+            Appointment appointment = app;
+            DatePicker.SelectedDate = appointment.Date;
+            TimePicker.Value = appointment.Date;
+            Duration.Value = appointment.Duration;
+            RoomListBox.SelectedItem = appointment.Room.Name;
         }
+
         private void RoomClick(object sender, RoutedEventArgs e) {
 
         }
-
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e) {
-
-        }
-
-        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-
-        }
-
+        
         private void Confirm(object sender, RoutedEventArgs e) {
             DateTime date = DatePicker.SelectedDate.Value;
             string time = TimePicker.Text;
@@ -75,14 +61,13 @@ namespace Hospital.View.DoctorView {
                 }
             }
 
-            Appointment appointment = new Appointment(date, duration, tempDoctor, tempPatient, tempRoom);
-
-            _app._appointmentController.Create(appointment);
-            _appointments.SwitchPage();
+            Appointment app = new Appointment(_appointment.Id, date, duration, tempDoctor, tempPatient, tempRoom);
+            _app._appointmentController.Edit(app);
+            _appointmentsPage.SwitchPage();
         }
 
         private void Cancel(object sender, RoutedEventArgs e) {
-            _appointments.SwitchPage();
+            _appointmentsPage.SwitchPage();
         }
     }
 }

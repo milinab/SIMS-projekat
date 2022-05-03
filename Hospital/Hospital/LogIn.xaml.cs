@@ -41,8 +41,9 @@ namespace Hospital
             {
                 if (type.Equals("doctor"))
                 {
-                    Appointments appointments = new Appointments(this);
-                    Content = appointments;
+                    MainPage mainPage = new MainPage();
+                    mainPage.Show();
+                    Close();
                 }
                 else if (type.Equals("manager"))
                 {
