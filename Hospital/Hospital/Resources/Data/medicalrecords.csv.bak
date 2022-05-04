@@ -1,5 +1,2 @@
-Id,ChronicalDiseases,AllergenIds
-1,Bolest,
-2,1,
-3,1,
-4,55,"[1,2,3,4]"
+Id,ChronicalDiseases,Allergies
+1,1,

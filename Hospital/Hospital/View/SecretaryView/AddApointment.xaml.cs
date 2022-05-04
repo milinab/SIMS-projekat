@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using Hospital.Model;
 using Xceed.Wpf.Toolkit;
+using MessageBox = Xceed.Wpf.Toolkit.MessageBox;
 
 namespace Hospital.View.SecretaryView
 {
@@ -71,36 +72,43 @@ namespace Hospital.View.SecretaryView
             TimeSpan duration = new TimeSpan(int.Parse(durationParts[0]), int.Parse(durationParts[1]), 0);
             ObservableCollection<Doctor> doctors = _app._doctorController.Read();
             Doctor tempDoctor = new Doctor();
+
+            string[] temp = (DoctorListBox.SelectedItem).ToString().Split(',');
+
             foreach (var doctor in doctors)
             {
-                if (doctor.Id == (DoctorListBox.SelectedIndex + 1))
+                if (doctor.Id == int.Parse(temp[0]))
                 {
                     tempDoctor = doctor;
                 }
-                ObservableCollection<Patient> patients = _app._patientController.Read();
-                Patient tempPatient = new Patient();
-                foreach (var patient in patients)
-                {
-                    if (patient.Id == (PatientListBox.SelectedIndex + 1))
-                    {
-                        tempPatient = patient;
-                    }
-                    string roomName = RoomListBox.SelectedItem.ToString();
-                    ObservableCollection<Room> rooms = _app._roomController.Read();
-                    Room tempRoom = new Room();
-                    foreach (var room in rooms)
-                    {
-                        if (room.Name.Equals(roomName))
-                        {
-                            tempRoom = room;
-                        }
-                    }
+            }
 
-                    Appointment appointment = new Appointment(date, duration, tempDoctor, tempPatient, tempRoom);
-                    _app._appointmentController.Create(appointment);
-                    _appointmentPage.BackToAppointmentPage();
+            ObservableCollection<Patient> patients = _app._patientController.Read();
+            Patient tempPatient = new Patient();
+
+            string[] temp2 = (PatientListBox.SelectedItem).ToString().Split(',');
+            foreach (var patient in patients)
+            {
+                if (patient.Id == int.Parse(temp2[0]))
+                {
+                    tempPatient = patient;
                 }
             }
+
+            string roomName = RoomListBox.SelectedItem.ToString();
+            ObservableCollection<Room> rooms = _app._roomController.Read();
+            Room tempRoom = new Room();
+            foreach (var room in rooms)
+            {
+                if (room.Name.Equals(roomName))
+                {
+                    tempRoom = room;
+                }
+            }
+
+            Appointment appointment = new Appointment(date, duration, tempDoctor, tempPatient, tempRoom);
+            _app._appointmentController.Create(appointment);
+            _appointmentPage.BackToAppointmentPage();
         }
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)

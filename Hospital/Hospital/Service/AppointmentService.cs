@@ -1,3 +1,4 @@
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Hospital.Model;
@@ -31,6 +32,14 @@ namespace Hospital.Service
 
         public void Create(Appointment newAppointment)
         {
+            // var appointments = Read();
+            // foreach (var appointment in appointments)
+            // {
+            //     var startTime = newAppointment.Date;
+            //     var tempTime = startTime;
+            //     var endTime = tempTime.AddMinutes(newAppointment.Duration.Hours / 60 + newAppointment.Duration.Minutes);
+            //     
+            // }
             newAppointment.Id = GenerateId();
             _repository.Create(newAppointment);
         }

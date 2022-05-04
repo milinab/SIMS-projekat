@@ -1,5 +1,2 @@
 MedicalRecordId,Gender,BloodType,HealthInsuranceId,Id,Name,LastName,IdNumber,Username,Password,AddressId,Email,Phone,AccountType,DateOfBirth
-1,Male,0+,11001010,1,Aleksa,Aleksic,01q01010,aleksau,aleksau,68,aleksa,1,patient,2000-10-10
-2,Male,0+,1001010,2,Igor,Igorovic,0101010,igor,igor,69,igor,06333333,patient,2000-10-10
-3,Male,0+,1,3,Marko,Markovic,1,markic,markic,70,1,1,patient,2000-10-10
-4,Male,0+,55,4,5,5,5,5,5,71,5,5,patient,2000-10-10
+1,Female,0+,5616161,1,Milina,Bucko,1234567891011,p,p,1,milina@bucko.com,01234567,patient,2000-09-11

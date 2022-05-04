@@ -50,7 +50,7 @@ namespace Hospital.View.DoctorView.Appointments {
             string dur = Duration.Text;
             string[] durationParts = dur.Split(':');
             TimeSpan duration = new TimeSpan(int.Parse(durationParts[0]), int.Parse(durationParts[1]), 0);
-            Doctor tempDoctor = _app._doctorController.ReadById(1);
+            Doctor tempDoctor = _app._doctorController.ReadById(4);
             Patient tempPatient = _app._patientController.ReadById(1);
             string roomName = RoomListBox.SelectedItem.ToString();
             ObservableCollection<Room> rooms = _app._roomController.Read();
