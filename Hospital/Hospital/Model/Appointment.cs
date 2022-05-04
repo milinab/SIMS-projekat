@@ -1,52 +1,77 @@
 using System;
 using System.ComponentModel;
-using ClassDiagram.Model;
+using System.Runtime.Serialization;
 
 namespace Hospital.Model
 {
-   public class Appointment: INotifyPropertyChanged
-   {
-
-        private int _id;
-        private DateTime _date;
-
+    [DataContract]
+    public class Appointment: INotifyPropertyChanged 
+    {
+        [DataMember]
+        public int Id { get; set; }
+        [DataMember]
+        public DateTime Date { get; set; }
+        [DataMember]
+        public TimeSpan Duration { get; set; }
+        [DataMember]
+        public int DoctorId { get; set; }
         public Doctor Doctor { get; set; }
-        public Patient patient;
-        public Room room;
+        [DataMember]
+        public int PatientId { get; set; }
+        public Patient Patient { get; set; }
+        [DataMember]
+        public int RoomId { get; set; }
+        public Room Room { get; set; }
 
-        public Appointment( ) { }
 
-        public Appointment(int id, Doctor doctor, DateTime dateTime)
+        public Appointment()
         {
-            _id = id;
+        }
+
+        public Appointment(Room room, DateTime date)
+        {
+            Room = room;
+            RoomId = room.Id;
+            Date = date;
+        }
+        public Appointment(Room room, DateTime date, TimeSpan time)
+        {
+            Room = room;
+            RoomId = room.Id;
+            Date = date;
+            Duration = time;
+        }
+
+        public Appointment(DateTime date, TimeSpan duration, Doctor doctor, Patient patient, Room room)
+        {
+            Date = date;
+            Duration = duration;
+            DoctorId = doctor.Id;
             Doctor = doctor;
-            _date = dateTime;
+            PatientId = patient.Id;
+            Patient = patient;
+            RoomId = room.Id;
+            Room = room;
         }
-
-        public int Id
+        
+        public Appointment(int id, DateTime date, TimeSpan duration, Doctor doctor, Patient patient, Room room)
         {
-          get { return _id; }
-          set { _id = value; }
+            Id = id;
+            Date = date;
+            Duration = duration;
+            DoctorId = doctor.Id;
+            Doctor = doctor;
+            PatientId = patient.Id;
+            Patient = patient;
+            RoomId = room.Id;
+            Room = room;
         }
 
-        public DateTime Date
-        {
-            get { return _date; }
-            set { _date = value; OnPropertyChanged(); }
-        }
-
-        private void OnPropertyChanged(string name="") {
+        private void OnPropertyChanged(string name) {
             if (PropertyChanged != null) {
                 PropertyChanged(this, new PropertyChangedEventArgs(name));
             }
         }
-
-        public TimeSpan Duration 
-        {
-            get;
-            set;
-        }
-
 
         public System.Collections.ArrayList appointments;
 
@@ -89,6 +114,5 @@ namespace Hospital.Model
             if (appointments != null)
                 appointments.Clear();
         }
-
     }
 }

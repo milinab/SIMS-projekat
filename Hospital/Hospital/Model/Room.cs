@@ -5,39 +5,86 @@ using System.ComponentModel;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 
-namespace ClassDiagram.Model
+namespace Hospital.Model
 {
-
-    //[Serializable()]
-
-    public class Room //:INotifyPropertyChanged
+    [DataContract]
+    public class Room : INotifyPropertyChanged
     {
-       
-
-        private string _id;
+        private string _name;
+        private string _floor;
+        private int _id;
         private string _type;
-        private Equipment _eq;
+
+        public event PropertyChangedEventHandler propertyChanged;
+        protected virtual void OnPropertyChanged(string name)
+        {
+            if (propertyChanged != null)
+            {
+                propertyChanged(this, new PropertyChangedEventArgs(name));
+            }
+        }
+
 
         public Equipment Equipment { get; set; }
 
-
-        public string Id 
+        [DataMember]
+        public int Id 
         { 
             get { return _id; }
             set { _id = value; }
         }
+        
+        [DataMember]
+        public string Name
+        {
+            get { return _name; }
+            set { _name = value; OnPropertyChanged("Name"); }
+        }
+
+        [DataMember]
         public string Type
         {
             get { return _type; }
             set { _type = value; }
         }
+        [DataMember]
+        public string Floor
+        {
+            get { return _floor; }
+            set { _floor = value; OnPropertyChanged("Floor"); }
+        }
+
+
+        [DataMember]
+        public int EquipmentId { get; set; }
 
         public Room() { }
 
-        public Room(string id, Equipment eq, string ty)
+        public Room(string name) 
+        {
+            _name = name;
+        }
+
+        public Room(int id, Equipment eq, string ty)
         {
             _id = id;
             Equipment = eq;
+            _type = ty;
+        }
+
+        public Room(string type, string name, Equipment equipment)
+        {
+            _type = type;
+            Name = name;
+            EquipmentId = int.Parse(equipment.Id);
+            Equipment = equipment;
+        }
+
+        public Room(string name, string floor, string ty, int id)
+        {
+            Id = id;
+            _name = name;
+            _floor = floor;
             _type = ty;
         }
 
@@ -46,19 +93,6 @@ namespace ClassDiagram.Model
             info.AddValue("Id", Id);
             info.AddValue("Equipment", Equipment);
         }
-
-        // The deserialize function (Removes Object Data from File)
-       /* public Room(SerializationInfo info, StreamingContext ctxt)
-        {
-            //Get the values from info and assign them to the properties
-            Id = (string)info.GetValue("Id", typeof(string));
-            Equipment = (string)info.GetValue("Equipment", typeof(string));
-
-        }*/
-
-
-
-
 
         public System.Collections.ArrayList equipment;
 

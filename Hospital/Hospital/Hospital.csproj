@@ -41,13 +41,32 @@
     <Reference Include="Prism, Version=8.1.97.5141, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
       <HintPath>..\packages\Prism.Core.8.1.97\lib\net47\Prism.dll</HintPath>
     </Reference>
+    <Reference Include="ServiceStack.Text, Version=6.0.0.0, Culture=neutral, PublicKeyToken=02c12cbda47e6587, processorArchitecture=MSIL">
+      <HintPath>..\packages\ServiceStack.Text.6.0.2\lib\net472\ServiceStack.Text.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.IO, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.IO.4.3.0\lib\net462\System.IO.dll</HintPath>
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -57,96 +76,257 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="Tulpep.NotificationWindow, Version=1.1.38.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Tulpep.NotificationWindow.1.1.38\lib\net40\Tulpep.NotificationWindow.dll</HintPath>
+    </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="Xceed.Wpf.AvalonDock, Version=4.3.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.4.3.0\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=4.3.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.4.3.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=4.3.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.4.3.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=4.3.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.4.3.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit, Version=4.3.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.4.3.0\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Doctor\Add.xaml.cs">
+    <Compile Include="Controller\AddressController.cs" />
+    <Compile Include="Controller\AllergenController.cs" />
+    <Compile Include="Controller\TherapyController.cs" />
+    <Compile Include="Controller\DoctorController.cs" />
+    <Compile Include="Controller\ManagerController.cs" />
+    <Compile Include="Controller\SecretaryController.cs" />
+    <Compile Include="Controller\SurgeryController.cs" />
+    <Compile Include="Controller\AppointmentController.cs" />
+    <Compile Include="Controller\CityController.cs" />
+    <Compile Include="Controller\EmployeeController.cs" />
+    <Compile Include="Controller\CountryController.cs" />
+    <Compile Include="Controller\MedicalRecordController.cs" />
+    <Compile Include="Controller\PatientController.cs" />
+    <Compile Include="Controller\EquipmentController.cs" />
+    <Compile Include="Controller\RoomController.cs" />
+    <Compile Include="Controller\GuestController.cs" />
+    <Compile Include="Controller\UserController.cs" />
+    <Compile Include="LogIn.xaml.cs">
+      <DependentUpon>LogIn.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Therapy.cs" />
+    <Compile Include="Model\Allergen.cs" />
+    <Compile Include="Model\AllergenList.cs" />
+    <Compile Include="Repository\AddressRepository.cs" />
+    <Compile Include="Repository\TherapyRepository.cs" />
+    <Compile Include="Repository\CityRepository.cs" />
+    <Compile Include="Repository\AllergenRepository.cs" />
+    <Compile Include="Repository\DoctorRepository.cs" />
+    <Compile Include="Repository\ManagerRepository.cs" />
+    <Compile Include="Repository\Repositories.cs" />
+    <Compile Include="Repository\SecretaryRepository.cs" />
+    <Compile Include="Repository\SurgeryRepository.cs" />
+    <Compile Include="Repository\GuestRepository.cs" />
+    <Compile Include="Repository\EquipmentRepository.cs" />
+    <Compile Include="Repository\EmployeeRepository.cs" />
+    <Compile Include="Repository\CountryRepository.cs" />
+    <Compile Include="Repository\Serializer.cs" />
+    <Compile Include="Repository\UserRepository.cs" />
+    <Compile Include="Service\AddressService.cs" />
+    <Compile Include="Service\AllergenService.cs" />
+    <Compile Include="Service\TherapyService.cs" />
+    <Compile Include="Service\DoctorService.cs" />
+    <Compile Include="Service\ManagerService.cs" />
+    <Compile Include="Service\SecretaryService.cs" />
+    <Compile Include="Service\Services.cs" />
+    <Compile Include="Service\SurgeryService.cs" />
+    <Compile Include="Service\CityService.cs" />
+    <Compile Include="Service\EmployeeService.cs" />
+    <Compile Include="Service\CountryService.cs" />
+    <Compile Include="Service\EquipmentService.cs" />
+    <Compile Include="Service\GuestService.cs" />
+    <Compile Include="Service\UserService.cs" />
+    <Compile Include="View\DoctorView\Appointments\Add.xaml.cs">
       <DependentUpon>Add.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Doctor\DoctorWindow.xaml.cs">
-      <DependentUpon>DoctorWindow.xaml</DependentUpon>
+    <Compile Include="View\DoctorView\Appointments\AppointmentsPage.xaml.cs">
+      <DependentUpon>AppointmentsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Doctor\Edit.xaml.cs">
+    <Compile Include="View\DoctorView\Appointments\Edit.xaml.cs">
       <DependentUpon>Edit.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PatientUI\BookAnAppointment.xaml.cs">
+    <Compile Include="View\DoctorView\Appointments\ViewPatientInformations.xaml.cs">
+      <DependentUpon>ViewPatientInformations.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DoctorView\CustomTimeSpanUpDown.cs" />
+    <Compile Include="View\DoctorView\MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DoctorView\Menu.xaml.cs">
+      <DependentUpon>Menu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ManagerView\AddRoomWindow.xaml.cs">
+      <DependentUpon>AddRoomWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ManagerView\EditRoom.xaml.cs">
+      <DependentUpon>EditRoom.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ManagerView\EquipmentWindow.xaml.cs">
+      <DependentUpon>EquipmentWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ManagerView\ManagerHomeWindow.xaml.cs">
+      <DependentUpon>ManagerHomeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ManagerView\ManagerWindow.xaml.cs">
+      <DependentUpon>ManagerWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ManagerView\Relocation.xaml.cs">
+      <DependentUpon>Relocation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ManagerView\Renovate.xaml.cs">
+      <DependentUpon>Renovate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ManagerView\RoomOccupancy.xaml.cs">
+      <DependentUpon>RoomOccupancy.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientView\BookAnAppointment.xaml.cs">
       <DependentUpon>BookAnAppointment.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PatientUI\PatientWindow.xaml.cs">
+    <Compile Include="View\PatientView\DatePriority.xaml.cs">
+      <DependentUpon>DatePriority.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientView\DoctorPriorityDateNotAvailable.xaml.cs">
+      <DependentUpon>DoctorPriorityDateNotAvailable.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientView\EditAnAppointment.xaml.cs">
+      <DependentUpon>EditAnAppointment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientView\EnumMatchToBooleanConverter.cs" />
+    <Compile Include="View\PatientView\PatientWindow.xaml.cs">
       <DependentUpon>PatientWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Secretary\AddPatient.xaml.cs">
+    <Compile Include="View\SecretaryView\AddPatient.xaml.cs">
       <DependentUpon>AddPatient.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Secretary\EditPatient.xaml.cs">
+    <Compile Include="View\SecretaryView\EditPatient.xaml.cs">
       <DependentUpon>EditPatient.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Secretary\SecretaryWindow.xaml.cs">
+    <Compile Include="View\SecretaryView\AppointmentPage.xaml.cs">
+      <DependentUpon>AppointmentPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SecretaryView\AddApointment.xaml.cs">
+      <DependentUpon>AddApointment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SecretaryView\SecretaryWindow.xaml.cs">
       <DependentUpon>SecretaryWindow.xaml</DependentUpon>
     </Compile>
-    <Page Include="Doctor\Add.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="LogIn.xaml">
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Doctor\DoctorWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Doctor\Edit.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Page Include="Manager\ManagerWindow.xaml">
+    <Page Include="View\DoctorView\Appointments\Add.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DoctorView\Appointments\AppointmentsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="PatientUI\BookAnAppointment.xaml">
+    <Page Include="View\DoctorView\Appointments\Edit.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DoctorView\Appointments\ViewPatientInformations.xaml" />
+    <Page Include="View\DoctorView\MainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DoctorView\Menu.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ManagerView\AddRoomWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="PatientUI\PatientWindow.xaml">
+    <Page Include="View\ManagerView\EditRoom.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Secretary\AddPatient.xaml">
+    <Page Include="View\ManagerView\EquipmentWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Secretary\EditPatient.xaml">
+    <Page Include="View\ManagerView\ManagerHomeWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Secretary\SecretaryWindow.xaml">
+    <Page Include="View\ManagerView\ManagerWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ManagerView\Relocation.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ManagerView\Renovate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ManagerView\RoomOccupancy.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\PatientView\BookAnAppointment.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PatientView\DatePriority.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PatientView\DoctorPriorityDateNotAvailable.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PatientView\EditAnAppointment.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PatientView\PatientWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SecretaryView\AddPatient.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SecretaryView\EditPatient.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SecretaryView\AppointmentPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SecretaryView\AddApointment.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SecretaryView\SecretaryWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Manager\ManagerWindow.xaml.cs">
-      <DependentUpon>ManagerWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Model\Address.cs" />
     <Compile Include="Model\Appointment.cs" />
-    <Compile Include="Model\AppointmentFileHandler.cs" />
-    <Compile Include="Model\AppointmentHandler.cs" />
+    <Compile Include="Repository\AppointmentRepository.cs" />
+    <Compile Include="Service\AppointmentService.cs" />
     <Compile Include="Model\City.cs" />
     <Compile Include="Model\Country.cs" />
     <Compile Include="Model\Doctor.cs" />
@@ -155,14 +335,14 @@
     <Compile Include="Model\Guest.cs" />
     <Compile Include="Model\Manager.cs" />
     <Compile Include="Model\MedicalRecord.cs" />
-    <Compile Include="Model\MedicalRecordFileHandler.cs" />
-    <Compile Include="Model\MedicalRecordHandler.cs" />
+    <Compile Include="Repository\MedicalRecordRepository.cs" />
+    <Compile Include="Service\MedicalRecordService.cs" />
     <Compile Include="Model\Patient.cs" />
-    <Compile Include="Model\PatientFileHandler.cs" />
-    <Compile Include="Model\PatientHandler.cs" />
+    <Compile Include="Repository\PatientRepository.cs" />
+    <Compile Include="Service\PatientService.cs" />
     <Compile Include="Model\Room.cs" />
-    <Compile Include="Model\RoomFileHandler.cs" />
-    <Compile Include="Model\RoomHandler.cs" />
+    <Compile Include="Repository\RoomRepository.cs" />
+    <Compile Include="Service\RoomService.cs" />
     <Compile Include="Model\Secretary.cs" />
     <Compile Include="Model\Surgery.cs" />
     <Compile Include="Model\User.cs" />
@@ -195,6 +375,8 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\notification.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

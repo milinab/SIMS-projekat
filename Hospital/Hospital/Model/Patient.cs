@@ -1,15 +1,19 @@
 using System;
+using System.Runtime.Serialization;
 
 namespace Hospital.Model
 {
-
-    
-
-
-   public class Patient : User
-   {
-
-       public string Gender
+    [DataContract]
+    public class Patient : User
+    {
+        private string _gender;
+        private string _bloodType;
+        private string _healthInsuranceID;
+        [DataMember]
+        public int MedicalRecordId { get; set; }
+        public MedicalRecord MedicalRecord { get; set; }
+        [DataMember]
+        public string Gender
         {
             get
             {
@@ -24,7 +28,7 @@ namespace Hospital.Model
                 }
             }
         }
-
+        [DataMember]
         public string BloodType
         {
             get
@@ -40,8 +44,8 @@ namespace Hospital.Model
                 }
             }
         }
-
-        public String HealthInsuranceId
+        [DataMember]
+        public string HealthInsuranceId
         {
             get
             {
@@ -57,13 +61,43 @@ namespace Hospital.Model
             }
         }
 
-       
+        public Patient()
+        {
+        }
 
-        private string _gender;
-        private string _bloodType;
-        private string _healthInsuranceID;
-      
-        public MedicalRecord medicalRecord;
-   
-   }
+        public Patient(User user, MedicalRecord medicalRecord) : base(user)
+        {
+            this.MedicalRecord = medicalRecord;
+        }
+        public Patient(User user, string gender, string bloodType,
+           string healthInsuranceId) : base(user)
+        {
+            _gender = gender;
+            _bloodType = bloodType;
+            _healthInsuranceID = healthInsuranceId;
+
+        }
+
+        public Patient(User user, string gender, string bloodType,
+            string healthInsuranceId, MedicalRecord medicalRecord) : base(user)
+        {
+            _gender = gender;
+            _bloodType = bloodType;
+            _healthInsuranceID = healthInsuranceId;
+            MedicalRecordId = medicalRecord.Id;
+            MedicalRecord = medicalRecord;
+
+        }
+
+        public Patient(User user, string gender, string bloodType,
+            string healthInsuranceId, MedicalRecord medicalRecord, int id) : base(user)
+        {
+            Id = id;
+            _gender = gender;
+            _bloodType = bloodType;
+            _healthInsuranceID = healthInsuranceId;
+            MedicalRecord = medicalRecord;
+            MedicalRecordId = medicalRecord.Id;
+        }
+    }
 }

@@ -1,0 +1,36 @@
+﻿<Page x:Class="Hospital.View.ManagerView.EditRoom"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Hospital.View.ManagerView"
+        mc:Ignorable="d"
+        Title="EditRoom" Height="450" Width="800">
+    <Grid>
+
+        <DockPanel>
+            <Menu DockPanel.Dock="Top" Height="48" VerticalAlignment="Top">
+                <MenuItem Header="Home" Height="47" Width="67" FontSize="20" Margin="200,0,0,0"/>
+                <MenuItem Header="Equipment" Height="47" Width="124" FontSize="20"/>
+                <MenuItem Header="Room" Height="47" Width="73" FontSize="20"/>
+                <MenuItem Header="RoomOccupancy" Height="47" Width="160" FontSize="20"/>
+
+
+            </Menu>
+        </DockPanel>
+
+        <Label Content="New name:" FontSize="20" Margin="114,76,570,268" ></Label>
+        <TextBox x:Name="nameText" TextWrapping="Wrap" Margin="289,82,144,294" />
+        <Label Content="New floor:" FontSize="20" Margin="120,180,477,178" ></Label>
+        <TextBox x:Name="floorText" TextWrapping="Wrap" Margin="289,180,144,196" />
+        <Label Content="New type:" FontSize="20" Margin="125,291,514,56" ></Label>
+        <ComboBox x:Name="typeComboBox"  Margin="289,289,144,86" >
+            <ComboBoxItem IsSelected="True">Operation</ComboBoxItem>
+            <ComboBoxItem>Conference</ComboBoxItem>
+            <ComboBoxItem>Storage</ComboBoxItem>
+        </ComboBox>
+        <Button Content="Confirm" HorizontalAlignment="Left" Margin="570,387,0,0" VerticalAlignment="Top" Width="86" Height="25" Click="EditRoomClick"/>
+        <Button Content="Cancel" HorizontalAlignment="Left" Margin="289,387,0,0" VerticalAlignment="Top" Width="86" Height="25" Click="CancelRoomClick"/>
+        
+    </Grid>
+</Page>

@@ -1,0 +1,52 @@
+﻿<Page x:Class="Hospital.View.PatientView.EditAnAppointment"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Hospital.View.PatientView"
+      mc:Ignorable="d" 
+      d:DesignHeight="560" d:DesignWidth="800" Background="White"
+      Title="EditAnAppointment">
+    <Page.Resources>
+        <local:EnumMatchToBooleanConverter x:Key="enumConverter" />
+    </Page.Resources>
+
+    <Grid>
+
+        <Label Content="ZDRAVO CORPORATION" HorizontalAlignment="Left" Margin="7,6,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="18"/>
+        <Button Content="Log out" BorderThickness="2" HorizontalAlignment="Left" Margin="700,6,0,0" VerticalAlignment="Top" Height="29" Width="82" Click="LogOut_Click"/>
+        <Border BorderBrush="Black" BorderThickness="1" Width="Auto" Height="1" Margin="0,32,0,470" />
+
+        <Menu Width="Auto" Margin="0,40,0,450" >
+            <MenuItem Height="60" Width="140" VerticalAlignment="Center" Padding="10,0,0,0" Header=" " Margin="10,0,0,0" HorizontalAlignment="Stretch"/>
+            <MenuItem Height="60" Width="100" VerticalAlignment="Center" Padding="10,0,0,0" Header="Medical record"/>
+            <MenuItem Height="60" Width="120" VerticalAlignment="Center" Padding="10,0,0,0" Header="My appointments" Margin="0,0,0,0" HorizontalAlignment="Stretch" Click="MyAppointments_Click"/>
+            <MenuItem Height="60" Width="85" VerticalAlignment="Center" Padding="10,0,0,0" Header="My therapy"/>
+            <MenuItem Height="60" Width="70" VerticalAlignment="Center" Padding="10,0,0,0" Header="Calendar"/>
+            <MenuItem Height="60" Width="55" VerticalAlignment="Center" Padding="10,0,0,0" Header="Notes"/>
+            <MenuItem Height="60" Width="65" VerticalAlignment="Center" Padding="10,0,0,0" Header="Surveys"/>
+        </Menu>
+
+        <Label Content="Edit an appointment" HorizontalAlignment="Left" Margin="500,105,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="18"/>
+
+        <DataGrid x:Name="dataGridAppointments" AutoGenerateColumns="False" Height="411" Margin="10,105,380,0" VerticalAlignment="Top">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Doctor" Binding="{Binding Doctor.Name}" Width="2*"/>
+                <DataGridTextColumn Header="Date" Binding="{Binding Date, StringFormat=\{0:d.M.yyyy\}}" Width="*"/>
+                <DataGridTextColumn Header="Time" Binding="{Binding Date, StringFormat=\{0:H:mm\}}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Label Content="Choose the doctor:" HorizontalAlignment="Left" Margin="420,150,0,0" VerticalAlignment="Top" Width="156" FontSize="16" Height="34" FontWeight="Bold"/>
+        <ComboBox x:Name="doctorsComboBox" ItemsSource="{Binding Doctors.Name}" DisplayMemberPath="Name" SelectedValue="Doctors.Id"  HorizontalAlignment="Left" Margin="420,185,0,0" VerticalAlignment="Top" Width="192" Height="29"/>
+
+        <Label Content="Choose the date:" HorizontalAlignment="Left" Margin="420,220,0,0" VerticalAlignment="Top" Width="156" FontSize="16" Height="34" FontWeight="Bold"/>
+        <Calendar x:Name="myCalendar"  HorizontalAlignment="Left" Margin="420,250,0,0" VerticalAlignment="Top"/>
+
+        <RadioButton Name="DoctorPriority" GroupName="Priority"  Content="Doctor" HorizontalAlignment="Left" Margin="420,430,0,0" VerticalAlignment="Top" IsChecked="{Binding Path=CurrentOption, Mode=TwoWay, Converter={StaticResource enumConverter}, ConverterParameter=DoctorPriority}"/>
+        <RadioButton Name="DatePriority" GroupName="Priority" Content="Date" HorizontalAlignment="Left" Margin="500,430,0,0" VerticalAlignment="Top" IsChecked="{Binding Path=CurrentOption, Mode=TwoWay, Converter={StaticResource enumConverter}, ConverterParameter=DatePriority}"/>
+
+        <Button x:Name="BTN_AddAppointment" Content="Continue" HorizontalAlignment="Left" Margin="420,465,0,0" VerticalAlignment="Top" Height="35" Width="80" Click="AddAppointment_Click"/>
+        <Button x:Name="BTN_close" Content="Cancel" HorizontalAlignment="Left" Margin="520,465,0,0" VerticalAlignment="Top" Height="35" Width="80" Click="Cancel_Click"/>
+    </Grid>
+</Page>

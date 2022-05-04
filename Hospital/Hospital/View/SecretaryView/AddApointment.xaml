@@ -1,0 +1,76 @@
+﻿<Page x:Class="Hospital.View.SecretaryView.AddAppointment"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Hospital.View.SecretaryView" xmlns:local1="clr-namespace:Hospital.View.DoctorView"
+      mc:Ignorable="d" 
+      Title="AddAppointment" Width="800" Height="600">
+
+    <DockPanel>
+        <Menu Height="60" DockPanel.Dock ="Top">
+            <MenuItem Height="60" Width="100" Header="Zdravo" FontSize="20"/>
+            <MenuItem Height="60" Width="100" VerticalAlignment="Center" Padding="28,0,0,0" Header="Patients" Click="MenuItem_Click" Margin="183,0,0,0" HorizontalAlignment="Stretch"/>
+            <MenuItem Height="60" Width="100" VerticalAlignment="Center" Padding="10,0,0,0" Header="Appointments" Click="MenuItem_Click_1"/>
+            <MenuItem Height="60" Width="100" VerticalAlignment="Center" Padding="0"/>
+            <MenuItem Height="60" Width="100" VerticalAlignment="Center" Padding="0"/>
+            <MenuItem Height="30" Width="80" VerticalAlignment="Center" Padding="12,0,0,0" Header="Sign out" BorderThickness="2,2,2,2" Click="SignOut_Click" BorderBrush="Black"/>
+        </Menu>
+        <Grid DockPanel.Dock="Bottom">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
+
+
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="180"/>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="180"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Row="1" Margin="0,10,0,10" 
+                   HorizontalAlignment="Right" Width="110">Date:</TextBlock>
+            <DatePicker Name="DatePicker" SelectedDate="10/10/2000" Grid.Row="1" Grid.Column="1" Margin="0,10,20,10"/>
+
+            <TextBlock Grid.Row="2" Margin="0,10,0,10" 
+                   HorizontalAlignment="Right" Width="110">Time:</TextBlock>
+            <xctk:TimePicker Name="TimePicker" Grid.Row="2" Grid.Column="1"  StartTime="7:00" Margin="0,10,20,10" EndTime="20:00" TextAlignment="Center" TimeInterval="0:15" AllowTextInput="False"/>
+
+            <TextBlock Grid.Row="3" Margin="0,10,0,10" 
+                   HorizontalAlignment="Right" Width="110">Duration:</TextBlock>
+            <local1:CustomTimeSpanUpDown x:Name="Duration" Grid.Row="3" Grid.Column="1" Margin="0,10,20,10" AllowTextInput="False" Minimum="0.00:10:00" Maximum="0.8:00:00" Value="0.00:10:00"/>
+
+            <TextBlock Grid.Row="4" Margin="0,10,0,10" HorizontalAlignment="Right" Width="110">Doctor:</TextBlock>
+            <ListBox Name="DoctorListBox" Grid.Row="4" Grid.Column="1" Grid.RowSpan="2"  SelectionChanged="ListBox_SelectionChanged" Margin="0,10,20,10"/>
+
+            <TextBlock Grid.Row="6" Margin="0,10,0,10" HorizontalAlignment="Right"  Width="110">Patient:</TextBlock>
+            <ListBox Name="PatientListBox" Grid.Row="6" Grid.Column="1" Grid.RowSpan="2"  SelectionChanged="ListBox_SelectionChanged" Margin="0,10,20,10"/>
+
+
+
+            <TextBlock Grid.Row="1" Grid.Column="3" Margin="0,10,0,10" 
+                   HorizontalAlignment="Right" Width="110">Room:</TextBlock>
+            <ListBox Name="RoomListBox" Grid.Row="1" Grid.Column="4" Grid.RowSpan="2" SelectionChanged="ListBox_SelectionChanged" Margin="0,10,30,10"/>
+
+
+            <TextBlock Grid.Row="5" Grid.Column="3" Margin="0,10,0,10" 
+                   HorizontalAlignment="Right" Width="110">Equipment:</TextBlock>
+            <ListBox Name="EquipmentListBox" Grid.Row="5" Grid.Column="4" Grid.RowSpan="2"  SelectionChanged="ListBox_SelectionChanged" Margin="0,10,20,10"/>
+
+
+            <Button Grid.Row="9" Grid.Column="4" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Width="60" Margin="20,0,0,0" Click="Confirm">Confirm</Button>
+            <Button Grid.Row="9" Grid.Column="4" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Width="60" Margin="100,0,0,0" Click="Cancel">Cancel</Button>
+        </Grid>
+    </DockPanel>
+</Page>

@@ -1,0 +1,62 @@
+﻿<Window x:Class="Hospital.View.ManagerView.ManagerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Hospital.View.ManagerView"
+        mc:Ignorable="d"
+        Title="ManagerWindow" Height="450" Width="800"
+        x:Name="_window">
+    <Grid>
+
+
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="349*"/>
+            <ColumnDefinition Width="451*"/>
+        </Grid.ColumnDefinitions>
+        <DataGrid x:Name="dataGridRooms" ItemsSource="{Binding Rooms}" IsReadOnly="True" 
+                  SelectionMode="Single" AutoGenerateColumns="False" HorizontalAlignment="Right" CanUserAddRows="True" CanUserDeleteRows="True"
+                  Height="256" VerticalAlignment="Top" Width="766"  RenderTransformOrigin="0.5,0.5" Margin="0,81,17,0" Grid.ColumnSpan="2">
+
+            <DataGrid.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </DataGrid.RenderTransform>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Floor" Binding="{Binding Floor}"/>
+                <DataGridTextColumn Header="Type" Binding="{Binding Type}" Width="*"/>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Delete" Click="DeleteRoom"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Label Grid.Column="1" Content="Label" HorizontalAlignment="Left" Margin="615,-1,0,0" VerticalAlignment="Top"/>
+
+        <Button Content="Add room" HorizontalAlignment="Left" Margin="60,360,0,0" VerticalAlignment="Top" Height="40" Width="120" Click="AddRoomsClick"/>
+        <Button Content="Edit room" HorizontalAlignment="Left" Margin="248,360,0,0" VerticalAlignment="Top" Height="40" Width="120" Click="EditRoomClick" Grid.ColumnSpan="2"/>
+
+
+        <DockPanel Margin="0,0,10,358" Grid.ColumnSpan="2" Height="70">
+            <Menu DockPanel.Dock="Top" Height="70" Width="786">
+                <MenuItem Header="Home" Height="47" Width="67" FontSize="20" Margin="200,0,0,0" Click="HomeClick"/>
+                <MenuItem Header="Equipment" Height="47" Width="124" FontSize="20"/>
+                <MenuItem Header="Room" Height="47" Width="73" FontSize="20"/>
+                <MenuItem Header="RoomOccupancy" Height="47" Width="160" FontSize="20"/>
+
+
+            </Menu>
+        </DockPanel>
+
+    </Grid>
+</Window>
+ 
