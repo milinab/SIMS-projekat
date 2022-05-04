@@ -23,14 +23,7 @@
             <Button Content="View Patient Info" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,75" Height="50" Width="150" Click="ViewClick"/>
             <DataGrid x:Name="GridAppointments" VerticalAlignment="Top" AutoGenerateColumns="False" Height="520" Margin="0, 60, 0, 0" CanUserAddRows="false">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Patient" Width="3*">
-                        <DataGridTextColumn.Binding>
-                            <MultiBinding StringFormat="{}{0} {1}">
-                                <Binding Path="Patient.Name"/>
-                                <Binding Path="Patient.LastName"/>
-                            </MultiBinding>
-                        </DataGridTextColumn.Binding>
-                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="Doctor" Binding="{Binding Doctor.Name}" Width="3*"/>
                     <DataGridTextColumn Header="Date" Binding="{Binding Date, StringFormat=\{0:d.M.yyyy\}}" Width="2*"/>
                     <DataGridTextColumn Header="Time" Binding="{Binding Date, StringFormat=\{0:H:mm\}}" Width="*"/>
                     <DataGridTextColumn Header="Duration" Binding="{Binding Duration, StringFormat=\{0:h\\:mm\}}" Width="*"/>

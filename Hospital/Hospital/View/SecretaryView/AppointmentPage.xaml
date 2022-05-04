@@ -20,29 +20,44 @@
             <Label Content="Appointments" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10" FontSize="40"/>
             <DataGrid x:Name="dataGridAppointments" ItemsSource="{Binding Appointments}" CanUserDeleteRows="True" IsReadOnly="True" 
                   IsHitTestVisible="True" AutoGenerateColumns="False" HorizontalAlignment="Left" 
-                  Height="350" Margin="260,160,0,0" VerticalAlignment="Top" Width="500" RowHeight="30">
+                  Height="350" Margin="260,160,0,0" VerticalAlignment="Top" Width="500" RowHeight="40">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width= "*"/>
-                    <DataGridTextColumn Header="Date" Binding="{Binding Date }" Width = "*"/>
+                    <DataGridTextColumn FontSize="12" Header="Doctor" Width="*">
+                        <DataGridTextColumn.Binding>
+                            <MultiBinding StringFormat="{}{0}&#13;{1}">
+                                <Binding Path="Doctor.Name"/>
+                                <Binding Path="Doctor.LastName"/>
+                            </MultiBinding>
+                        </DataGridTextColumn.Binding>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn FontSize="12" Header="Patient" Width="*">
+                        <DataGridTextColumn.Binding>
+                            <MultiBinding StringFormat="{}{0}&#13;{1}">
+                                <Binding Path="Patient.Name"/>
+                                <Binding Path="Patient.LastName"/>
+                            </MultiBinding>
+                        </DataGridTextColumn.Binding>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="Date" Binding="{Binding Date }" Width = "2*"/>
                     <DataGridTextColumn Header="Duration" Binding="{Binding Duration}" Width = "*"/>
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button  >Edit</Button>
+                                <Button>Edit</Button>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Content="Delete" />
+                                <Button Content="Delete" Click="DeletePatient" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
 
-            <Button Content="Add appointment" HorizontalAlignment="Left" Margin="70,150,0,272" Height="70" Width="120" />
+            <Button Content="Add appointment" HorizontalAlignment="Left" Margin="70,150,0,272" Height="70" Width="120" Click="AddPatientClick" />
         </Grid>
     </DockPanel>
 </Window>

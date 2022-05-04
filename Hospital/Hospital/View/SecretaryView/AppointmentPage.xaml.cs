@@ -1,4 +1,5 @@
 ﻿using Hospital.Controller;
+using Hospital.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,79 +33,9 @@ namespace Hospital.View.SecretaryView
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
             _content = Content;
-
+            DataContext = this;
             dataGridAppointments.ItemsSource = app._appointmentController.Read();
-            //Patient patient1 = new Patient()
-            //{
-            //    Name = "Pera",
-            //    LastName = "Lazic",
-            //    Username = "peropera",
-            //    AccountType = "Patient",
-            //    Password = "p123eropera",
-            //    Gender = "Male",
-            //    IdNumber = "1111111111111",
-            //    Phone = "061111111",
-            //    Email = "pera@pera.mejl",
-            //    DateOfBirth = new DateTime(1999, 10, 10),
-            //    HealthInsuranceId = "12312312asda",
-            //    MedicalRecord = new MedicalRecord()
-            //    {
-            //        ChronicalDiseases = "Diabetes"
-            //    },
-            //    BloodType = "A+",
-            //    Address = new Address()
-            //    {
-            //        City = new City()
-            //        {
-            //            Country = new Country()
-            //            {
-            //                Name = "Serbia"
-            //            },
-            //            Zip = "15300",
-            //            Name = "Loznica"
-            //        },
-            //        Street = "Dusana Jovanovica",
-            //        Number = "15"
-            //    }
-
-
-            //};
-            //_patientController.Create(patient1);
-            //Patient patient2 = new Patient()
-            //{
-
-            //    Name = "Nikolina",
-            //    LastName = "Radicevic",
-            //    Username = "radicanina",
-            //    AccountType = "Patient",
-            //    Password = "whocares",
-            //    Gender = "Female",
-            //    IdNumber = "22222222222",
-            //    Phone = "0622222222",
-            //    Email = "ninasilna@321.32",
-            //    DateOfBirth = new DateTime(1951, 1, 1),
-            //    HealthInsuranceId = "222bbb222bb",
-            //    MedicalRecord = new MedicalRecord()
-            //    {
-            //        ChronicalDiseases = "None"
-            //    },
-            //    BloodType = "O-",
-            //    Address = new Address()
-            //    {
-            //        City = new City()
-            //        {
-            //            Country = new Country()
-            //            {
-            //                Name = "Germany"
-            //            },
-            //            Zip = "12220",
-            //            Name = "Minchen"
-            //        },
-            //        Street = "Nikole Tesle 3",
-            //        Number = "1b"
-            //    }
-            //};
-            //PatientHandler.Create(patient2);
+       
         }
 
        
@@ -121,7 +52,33 @@ namespace Hospital.View.SecretaryView
             Content = _content;
         }
 
+        private void DeletePatient(object sender, RoutedEventArgs e)
+        {
+            Appointment appointment = dataGridAppointments.SelectedValue as Appointment;
+            app._appointmentController.Delete(appointment.Id);
+        }
 
+        public void AddPatientClick(object sender, RoutedEventArgs e)
+        {
+            AddAppointment addPage = new AddAppointment(this);
+            Content = addPage;
+            
+        }
+
+        //private void EditButtonClick(object sender, RoutedEventArgs e)
+        //{
+
+        //    Appointment appointment = dataGridAppointments.SelectedValue as Appointment;
+        //    {
+        //        var editAppointment = new EditAppointment(appointment, this);
+        //        Content = editAppointment;
+        //    }
+        //}
+
+        public void BackToAppointmentPage()
+        {
+            Content = _content;
+        }
         private void SignOut_Click(object sender, RoutedEventArgs e)
         {
             LogIn logIn = new LogIn();
