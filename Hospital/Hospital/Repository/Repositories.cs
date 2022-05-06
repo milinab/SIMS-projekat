@@ -19,6 +19,10 @@
         public SurgeryRepository SurgeryRepository { get; set; }
         public UserRepository UserRepository { get; set; }
         public TherapyRepository TherapyRepository { get; set; }
+        public SurveyRepository SurveyRepository { get; set; }
+        public DoctorSurveyResponseRepository DoctorSurveyResponseRepository { get; set; }
+        public HospitalSurveyResponseRepository HospitalSurveyResponseRepository { get; set; }
+        public QuestionRepository QuestionRepository { get; set; }
 
         public Repositories()
         {
@@ -39,6 +43,11 @@
             SurgeryRepository = new SurgeryRepository();
             UserRepository = new UserRepository(AddressRepository);
             TherapyRepository = new TherapyRepository(TherapyRepository);
+            SurveyRepository = new SurveyRepository(SurveyRepository);
+            DoctorSurveyResponseRepository = new DoctorSurveyResponseRepository(DoctorSurveyResponseRepository);
+            HospitalSurveyResponseRepository = new HospitalSurveyResponseRepository(HospitalSurveyResponseRepository);
+            QuestionRepository = new QuestionRepository(QuestionRepository);
+
         }
     }
 }

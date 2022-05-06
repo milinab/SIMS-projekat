@@ -99,6 +99,18 @@ namespace Hospital.View.PatientView
             
             DateTime _date = myCalendar.SelectedDate.Value;
 
+/*            Lista<Wuestion> q = new..
+                
+
+            BolnicaAnketa ba = new BolnicaAnketa();
+            ba.listaPitana = pitanja;
+            ba.name;
+            base.expirationDate;
+
+            BolicaAnketaOdgovor bao - new ...
+                bao.setBa
+                bao.setUser(getLoggedUser- string)
+                bao.setEvalueteDate(Date.now())*/
 
 
             Appointment appointment = new Appointment

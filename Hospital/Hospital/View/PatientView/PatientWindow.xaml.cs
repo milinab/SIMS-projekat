@@ -56,7 +56,7 @@ namespace Hospital.View.PatientView
 
 
             foreach (var a in Appointments) {
-                 doctor = app._doctorController.ReadById(a.DoctorId);
+                doctor = app._doctorController.ReadById(a.DoctorId);
                 Doctors.Add(doctor);
             }
 

@@ -1,0 +1,45 @@
+﻿<Page x:Class="Hospital.View.PatientView.Surveys"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Hospital.View.PatientView"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800" Background="White"
+      Title="Surveys">
+
+    <Grid Margin="0,0,0,0">
+
+        <Label Content="ZDRAVO CORPORATION" HorizontalAlignment="Left" Margin="7,6,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="18"/>
+        <Button Content="Log out" BorderThickness="2" HorizontalAlignment="Left" Margin="700,6,0,0" VerticalAlignment="Top" Height="29" Width="82" Click="LogOut_Click"/>
+        <Border BorderBrush="Black" BorderThickness="1" Width="Auto" Height="1" Margin="0,32,0,470" />
+
+        <Menu Width="Auto" Margin="0,40,0,450">
+            <MenuItem Height="60" Width="140" VerticalAlignment="Center" Padding="10,0,0,0" Header=" " Margin="10,0,0,0" HorizontalAlignment="Stretch"/>
+            <MenuItem Height="60" Width="100" VerticalAlignment="Center" Padding="10,0,0,0" Header="Medical record"/>
+            <MenuItem Height="60" Width="120" VerticalAlignment="Center" Padding="10,0,0,0" Header="My appointments" Margin="0,0,0,0" HorizontalAlignment="Stretch" Click="MyAppointments_Click"/>
+            <MenuItem Height="60" Width="85" VerticalAlignment="Center" Padding="10,0,0,0" Header="My therapy"/>
+            <MenuItem Height="60" Width="77" VerticalAlignment="Center" Padding="10,0,0,0" Header="Calendar"/>
+            <MenuItem Height="60" Width="55" VerticalAlignment="Center" Padding="10,0,0,0" Header="Notes"/>
+            <MenuItem Height="60" Width="65" VerticalAlignment="Center" Padding="10,0,0,0" Header="Surveys" Click="Surveys_Click"/>
+        </Menu>
+
+        <DataGrid x:Name="dataGridSurveys" AutoGenerateColumns="False" Height="411" Margin="10,105,380,0" VerticalAlignment="Top">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name"  Width="2*"/>
+                <DataGridTextColumn Header="Date" Binding="{Binding Date, StringFormat=\{0:d.M.yyyy\}}" Width="*"/>
+                <DataGridTemplateColumn Width="50">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Click="FillTheSurvey">Edit</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+
+
+
+    </Grid>
+</Page>
