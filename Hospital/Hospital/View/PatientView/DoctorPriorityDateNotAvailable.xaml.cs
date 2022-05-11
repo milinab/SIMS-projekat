@@ -26,6 +26,8 @@ namespace Hospital.View.PatientView
         private readonly BookAnAppointment _bookAnAppointment;
         private readonly PatientWindow _patientWindow;
         private readonly AppointmentController _appointmentController;
+        private int _doctorId;
+        private DateTime _date;
 
         public DoctorPriorityDateAvailable(PatientWindow patientWindow, BookAnAppointment bookAnAppointment, AppointmentController appointmentController)
         {
@@ -33,6 +35,17 @@ namespace Hospital.View.PatientView
             _bookAnAppointment = bookAnAppointment;
             _patientWindow = patientWindow;
             _appointmentController = appointmentController;
+        }
+
+        public DoctorPriorityDateAvailable(int doctorId, DateTime date, BookAnAppointment bookAnAppointment)
+        {
+            InitializeComponent();
+            this.frame.Content = null;
+            this.frame.NavigationService.RemoveBackEntry();
+
+            _bookAnAppointment = bookAnAppointment;
+            _doctorId = doctorId;
+            _date = date;
         }
 
         private void ConfirmAppointment_Click(object sender, RoutedEventArgs e)

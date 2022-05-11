@@ -23,6 +23,7 @@
         public DoctorSurveyResponseRepository DoctorSurveyResponseRepository { get; set; }
         public HospitalSurveyResponseRepository HospitalSurveyResponseRepository { get; set; }
         public QuestionRepository QuestionRepository { get; set; }
+        public NoteRepository NoteRepository { get; set; }
 
         public Repositories()
         {
@@ -47,6 +48,7 @@
             DoctorSurveyResponseRepository = new DoctorSurveyResponseRepository(DoctorSurveyResponseRepository);
             HospitalSurveyResponseRepository = new HospitalSurveyResponseRepository(HospitalSurveyResponseRepository);
             QuestionRepository = new QuestionRepository(QuestionRepository);
+            NoteRepository = new NoteRepository(NoteRepository);
 
         }
     }

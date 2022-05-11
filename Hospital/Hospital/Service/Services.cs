@@ -25,6 +25,7 @@ namespace Hospital.Service
         public DoctorSurveyResponseService DoctorSurveyResponseService { get; set; }
         public HospitalSurveyResponseService HospitalSurveyResponseService { get; set; }
         public QuestionService QuestionService { get; set; }
+        public NoteService NoteService { get; set; }
 
 
         public Services(Repositories repositories)
@@ -50,6 +51,7 @@ namespace Hospital.Service
             DoctorSurveyResponseService = new DoctorSurveyResponseService(repositories.DoctorSurveyResponseRepository);
             HospitalSurveyResponseService = new HospitalSurveyResponseService(repositories.HospitalSurveyResponseRepository);
             QuestionService = new QuestionService(repositories.QuestionRepository);
+            NoteService = new NoteService(repositories.NoteRepository);
         }
     }
 }

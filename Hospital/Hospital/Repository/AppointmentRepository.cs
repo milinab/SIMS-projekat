@@ -112,5 +112,34 @@ namespace Hospital.Repository
         {
             _serializer.Write(_appointments);
         }
-   }
+        public ObservableCollection<Appointment> ReadByDoctorId(int doctorId)
+        {
+            var itemsToReturn = new ObservableCollection<Appointment>();
+            _appointments = _serializer.Read();
+            foreach (Appointment appointment in _appointments)
+            {
+                if (appointment.DoctorId == doctorId)
+                {
+                    Doctor doctor = _doctorRepository.ReadById(appointment.DoctorId);
+                    Patient patient = _patientRepository.ReadById(appointment.PatientId);
+                    Room room = _roomRepository.ReadById(appointment.RoomId);
+                    if (doctor != null)
+                    {
+                        appointment.Doctor = doctor;
+                    }
+                    if (patient != null)
+                    {
+                        appointment.Patient = patient;
+                    }
+                    if (room != null)
+                    {
+                        appointment.Room = room;
+                    }
+
+                    itemsToReturn.Add(appointment);
+                }
+            }
+            return itemsToReturn;
+        }
+    }
 }

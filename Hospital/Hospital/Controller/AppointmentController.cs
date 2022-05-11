@@ -38,5 +38,10 @@ namespace Hospital.Controller
         {
             return _service.Read();
         }
+
+        public ObservableCollection<Appointment> ReadByDoctorId(int doctorId)
+        {
+            return _service.ReadByDoctorId(doctorId);
+        }
     }
 }

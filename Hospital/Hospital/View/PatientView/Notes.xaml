@@ -1,13 +1,12 @@
-﻿<Page x:Class="Hospital.View.PatientView.Surveys"
+﻿<Page x:Class="Hospital.View.PatientView.Notes"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Hospital.View.PatientView"
-      xmlns:rating="clr-namespace:Hospital.View.PatientView"
       mc:Ignorable="d" 
-      d:DesignHeight="560" d:DesignWidth="800" Background="AntiqueWhite" 
-      Title="Surveys">
+      d:DesignHeight="560" d:DesignWidth="800" Background="AntiqueWhite"
+      Title="Notes">
 
     <Grid Margin="0,0,0,0">
 
@@ -24,20 +23,25 @@
             <MenuItem Height="60" Width="55" VerticalAlignment="Center" Padding="10,0,0,0" Header="Notes" Foreground="Maroon"/>
             <MenuItem Height="60" Width="65" VerticalAlignment="Center" Padding="10,0,0,0" Header="Surveys" Click="Surveys_Click" Foreground="Maroon"/>
         </Menu>
-        <Label Content="Survey" HorizontalAlignment="Left" Margin="350,80,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Georgia"/>
+        <Label Content="Notes" HorizontalAlignment="Left" Margin="350,80,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Georgia"/>
         <Border BorderBrush="Black" BorderThickness="1" Width="Auto" Height="1" Margin="0,85,0,364" />
 
-        <StackPanel>
-            <Label Content="Ponasanje medicinskih sestara/ tehnicara je:" HorizontalAlignment="Left" Margin="30,145,0,0" FontFamily="Georgia" FontSize="16"/>
-            <rating:Rating Height="60" Width="100"  />
-        </StackPanel>
+        <Button Content="Delete note" Background="Bisque" HorizontalAlignment="Left" Margin="94,136,0,0" VerticalAlignment="Top" Width="76" Click="AddNote_Click" Height="19"/>
+        <Button Content="Add note" Background="Bisque" HorizontalAlignment="Left" Margin="10,136,0,0" VerticalAlignment="Top" Width="76" Click="DeleteNote_Click" Height="19"/>
 
-        <Label Content="Postovanje prava pacijenata u bolnici je:" HorizontalAlignment="Left" Margin="30,180,0,0" VerticalAlignment="Top" Width="304" FontFamily="Georgia" FontSize="16"/>
-        <Label Content="Zadovljstvo cistocom bolnicke sobe i/ili odeljenja:" HorizontalAlignment="Left" Margin="30,215,0,0" VerticalAlignment="Top" Width="370" FontFamily="Georgia" FontSize="16"/>
-        <Label Content="Zadovljstvo pruzenom prehranom:" HorizontalAlignment="Left" Margin="30,250,0,0" VerticalAlignment="Top" Width="283" FontFamily="Georgia" FontSize="16"/>
-        <Label Content="Zadovoljnstvo higijenom sanitarnog cvora:" HorizontalAlignment="Left" Margin="30,285,0,0" VerticalAlignment="Top" Width="319" FontFamily="Georgia" FontSize="16"/>
-
-
+        <DataGrid x:Name="dataGridNotes" Background="AntiqueWhite" AutoGenerateColumns="False" Height="335" Margin="10,168,10,0" VerticalAlignment="Top">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Binding="{Binding Note.Name}" Width="2*"/>
+                <DataGridTextColumn Header="Date" Binding="{Binding Date, StringFormat=\{0:d.M.yyyy\}}" Width="*"/>
+                <DataGridTemplateColumn Width="50">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Click="InfoButtonClick">Info</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
 
 
     </Grid>

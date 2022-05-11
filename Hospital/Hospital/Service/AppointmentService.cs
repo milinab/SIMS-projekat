@@ -75,6 +75,11 @@ namespace Hospital.Service
         {
             return _repository.Read();
         }
+        public ObservableCollection<Appointment> ReadByDoctorId(int doctorId)
+        {
+            return _repository.ReadByDoctorId(doctorId);
+        }
+
         private int GenerateId()
         {
             return ++_id;

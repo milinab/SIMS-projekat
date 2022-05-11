@@ -19,8 +19,8 @@
             <MenuItem Height="60" Width="120" VerticalAlignment="Center" Padding="10,0,0,0" Header="My appointments" Margin="0,0,0,0" HorizontalAlignment="Stretch" Click="MyAppointments_Click"/>
             <MenuItem Height="60" Width="85" VerticalAlignment="Center" Padding="10,0,0,0" Header="My therapy"/>
             <MenuItem Height="60" Width="70" VerticalAlignment="Center" Padding="10,0,0,0" Header="Calendar"/>
-            <MenuItem Height="60" Width="55" VerticalAlignment="Center" Padding="10,0,0,0" Header="Notes"/>
-            <MenuItem Height="60" Width="65" VerticalAlignment="Center" Padding="10,0,0,0" Header="Surveys"/>
+            <MenuItem Height="60" Width="55" VerticalAlignment="Center" Padding="10,0,0,0" Header="Notes" Click="Notes_Click"/>
+            <MenuItem Height="60" Width="65" VerticalAlignment="Center" Padding="10,0,0,0" Header="Surveys" Click="Surveys_Click"/>
         </Menu>
 
         <Button x:Name="BTN_BookAnAppointment" Content="Book an appointment" HorizontalAlignment="Left" Margin="411,105,0,0" VerticalAlignment="Top" Click="BookAnAppointmentClick"/>

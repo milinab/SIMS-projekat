@@ -60,12 +60,6 @@ namespace Hospital.View.PatientView
                 Doctors.Add(doctor);
             }
 
-            //dataGridAppointments.ItemsSource = Doctors;
-
-
-            Console.WriteLine("tesct");
-
-
         }
 
         private void getTherapyTime()
@@ -84,8 +78,6 @@ namespace Hospital.View.PatientView
                     liveDateTime.Tick += TimerTick;
                     liveDateTime.Start();
                 }
-
-
 
             }
 
@@ -149,6 +141,18 @@ namespace Hospital.View.PatientView
         private void MyAppointments_Click(object sender, RoutedEventArgs e)
         {
             Content = _content;
+        }
+
+        private void Surveys_Click(object sender, RoutedEventArgs e)
+        {
+            var takeSurvey = new Surveys(this);
+            Content = takeSurvey;
+        }
+
+        private void Notes_Click(object sender, RoutedEventArgs e)
+        {
+            var lookNotes = new Notes(this);
+            Content = lookNotes;
         }
 
         public void BackToPatientWindow()

@@ -43,11 +43,6 @@ namespace Hospital.View.PatientView
         {
         }
 
-        private void dataGridRooms_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
         private void MyAppointments_Click(object sender, RoutedEventArgs e)
         {
             _patientWindow.BackToPatientWindow();
