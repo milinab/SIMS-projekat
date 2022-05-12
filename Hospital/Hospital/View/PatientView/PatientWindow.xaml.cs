@@ -142,7 +142,8 @@ namespace Hospital.View.PatientView
 
         private void MyAppointments_Click(object sender, RoutedEventArgs e)
         {
-            Content = _content;
+            PastAppointments bookAnAppointmentPage = new PastAppointments(this);
+            Content = bookAnAppointmentPage;
         }
 
         private void Surveys_Click(object sender, RoutedEventArgs e)

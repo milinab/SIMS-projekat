@@ -31,14 +31,15 @@ namespace Hospital.View.PatientView
             _content = Content;
             this.DataContext = this;
             _patientWindow = patientWindow;
-            dataGridPastAppointments.ItemsSource = app._appointmentController.Read();
+            dataGridPastAppointments.ItemsSource = app._appointmentController.ReadPastAppointments();
         }
 
         private void FillOutSurveyButtonClick(object sender, RoutedEventArgs e)
         {
             Appointment appointment = dataGridPastAppointments.SelectedValue as Appointment;
-           // var DoctorSurveyPage = new DoctorSurvey(appointment, this);
-           // Content = DoctorSurveyPage;
+            Page page = new SurveysForDoctor(_patientWindow, appointment);
+            this.frame.Navigate(page);
+
         }
 
         private void MyAppointments_Click(object sender, RoutedEventArgs e)

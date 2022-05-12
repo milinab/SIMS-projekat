@@ -12,9 +12,13 @@ namespace Hospital.Model
         [DataMember]
         public Survey HS { get; set; }
         [DataMember]
-        public string UserId { get; set; }
+        public int UserId { get; set; }
         [DataMember]
         public DateTime Date { get; set; }
+        [DataMember]
+        public int DoctorId { get; set; }
+        [DataMember]
+        public int Grade { get; set; }
 
         public DoctorSurveyResponse()
         {

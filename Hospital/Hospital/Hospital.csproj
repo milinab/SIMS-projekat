@@ -261,6 +261,9 @@
     <Compile Include="View\PatientView\RatingControl.xaml.cs">
       <DependentUpon>RatingControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\PatientView\SurveyForDoctor.xaml.cs">
+      <DependentUpon>SurveyForDoctor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\PatientView\Surveys.xaml.cs">
       <DependentUpon>Surveys.xaml</DependentUpon>
     </Compile>
@@ -378,6 +381,10 @@
     <Page Include="View\PatientView\RatingControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PatientView\SurveyForDoctor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\PatientView\Surveys.xaml">
       <SubType>Designer</SubType>

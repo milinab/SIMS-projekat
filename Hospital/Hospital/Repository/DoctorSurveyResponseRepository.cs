@@ -11,13 +11,13 @@ namespace Hospital.Repository
 
         public DoctorSurveyResponseRepository()
         {
-            _serializer = new Serializer<DoctorSurveyResponse>("doctorSurveyResponse.csv");
+            _serializer = new Serializer<DoctorSurveyResponse>("doctorSurveyResponses.csv");
             _doctorSurveyResponse = new ObservableCollection<DoctorSurveyResponse>();
         } 
 
         public DoctorSurveyResponseRepository(DoctorSurveyResponseRepository doctorSurveyResponseRepository)
         {
-            _serializer = new Serializer<DoctorSurveyResponse>("hospitalSurveyResponses.csv");
+            _serializer = new Serializer<DoctorSurveyResponse>("doctorSurveyResponses.csv");
             _doctorSurveyResponse = new ObservableCollection<DoctorSurveyResponse>();
             _doctorSurveyResponseRepository = doctorSurveyResponseRepository;
         }
