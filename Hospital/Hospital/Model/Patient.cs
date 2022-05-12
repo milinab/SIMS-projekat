@@ -13,6 +13,7 @@ namespace Hospital.Model
         public int MedicalRecordId { get; set; }
         public MedicalRecord MedicalRecord { get; set; }
         [DataMember]
+        public Boolean IsActive { get; set; }
         public string Gender
         {
             get

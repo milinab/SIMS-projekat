@@ -42,5 +42,9 @@ namespace Hospital.Controller
         {
             return _service.Read();
         }
+        public Patient ReadByUsername(string username)
+        {
+            return _service.ReadByUsername(username);
+        }
     }
 }

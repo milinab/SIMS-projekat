@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Media;
 using Hospital.Controller;
+using Hospital.Model;
 using Hospital.Repository;
 using Hospital.Service;
 using Hospital.View.DoctorView;
@@ -53,9 +54,18 @@ namespace Hospital
                 }
                 else if (type.Equals("patient"))
                 {
-                    PatientWindow patientWindow = new PatientWindow();
-                    patientWindow.Show();
-                    Close();
+                    Patient p = _app._patientController.ReadByUsername(_username);
+                    if(p.IsActive)
+                    {
+                        PatientWindow patientWindow = new PatientWindow();
+                        patientWindow.Show();
+                        Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Your account is banned. Please wait for secretary to make Your account active again.");
+                    }
+                    
                 }
                 else if (type.Equals("secretary"))
                 {
