@@ -20,6 +20,7 @@ namespace Hospital.View.PatientView
         private App app;
         private readonly object _content;
         private Doctor doctor;
+        public Patient patient;
         DispatcherTimer liveDateTime = new DispatcherTimer();
 
         public ObservableCollection<Appointment> Appointments
@@ -40,12 +41,13 @@ namespace Hospital.View.PatientView
             set;
         }
 
-        public PatientWindow()
+        public PatientWindow(Patient p)
         {
             InitializeComponent();
             app = Application.Current as App;
             _content = Content;
             this.DataContext = this;
+            patient = p;
             dataGridAppointments.ItemsSource = app._appointmentController.Read();
 
             Appointments = new ObservableCollection<Appointment>();

@@ -34,6 +34,7 @@ namespace Hospital
         internal HospitalSurveyResponseController _hospitalSurveyResponseController;
         internal QuestionController _questionController;
         internal NoteController _noteController;
+        internal TrolController _trolController;
 
         internal MainPage _mainPage;
 
@@ -64,6 +65,7 @@ namespace Hospital
             _hospitalSurveyResponseController = new HospitalSurveyResponseController(services.HospitalSurveyResponseService);
             _questionController = new QuestionController(services.QuestionService);
             _noteController = new NoteController(services.NoteService);
+            _trolController = new TrolController(services.TrolService);
 
             _mainPage = new MainPage();
         }

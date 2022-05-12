@@ -159,7 +159,7 @@ namespace Hospital.View.PatientView
 
             //zameniti za prave vrednosti koje cu dobiti kroz view-e
             Patient patient = new Patient();
-            patient.Id = 1;
+            patient.Id = _patientWindow.patient.Id;
             Room room = new Room();
             room.Id = 2;
             var a = SelectedItem.Date;

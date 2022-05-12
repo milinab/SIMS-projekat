@@ -106,6 +106,7 @@
     </ApplicationDefinition>
     <Compile Include="Controller\AddressController.cs" />
     <Compile Include="Controller\AllergenController.cs" />
+    <Compile Include="Controller\TrolController.cs" />
     <Compile Include="Controller\NoteController.cs" />
     <Compile Include="Controller\HospitalSurveyResponseController.cs" />
     <Compile Include="Controller\QuestionController.cs" />
@@ -130,6 +131,7 @@
     <Compile Include="LogIn.xaml.cs">
       <DependentUpon>LogIn.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\Trol.cs" />
     <Compile Include="Model\Note.cs" />
     <Compile Include="Model\HospitalSurveyResponse.cs" />
     <Compile Include="Model\Question.cs" />
@@ -139,6 +141,7 @@
     <Compile Include="Model\Allergen.cs" />
     <Compile Include="Model\AllergenList.cs" />
     <Compile Include="Repository\AddressRepository.cs" />
+    <Compile Include="Repository\TrolRepository.cs" />
     <Compile Include="Repository\NoteRepository.cs" />
     <Compile Include="Repository\HospitalSurveyResponseRepository.cs" />
     <Compile Include="Repository\QuestionRepository.cs" />
@@ -160,6 +163,7 @@
     <Compile Include="Repository\UserRepository.cs" />
     <Compile Include="Service\AddressService.cs" />
     <Compile Include="Service\AllergenService.cs" />
+    <Compile Include="Service\TrolService.cs" />
     <Compile Include="Service\NoteService.cs" />
     <Compile Include="Service\HospitalSurveyResponseService.cs" />
     <Compile Include="Service\QuestionService.cs" />

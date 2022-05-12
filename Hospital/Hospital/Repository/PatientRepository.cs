@@ -100,6 +100,7 @@ namespace Hospital.Repository
                     patient.DateOfBirth = editPatient.DateOfBirth;
                     patient.Email = editPatient.Email;
                     patient.Gender = editPatient.Gender;
+                    patient.IsActive = editPatient.IsActive;
                 }
             }
             Write();
