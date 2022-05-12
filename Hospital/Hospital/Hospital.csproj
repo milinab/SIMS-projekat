@@ -254,7 +254,6 @@
     <Compile Include="View\PatientView\PatientWindow.xaml.cs">
       <DependentUpon>PatientWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\PatientView\Rating.cs" />
     <Compile Include="View\PatientView\RatingControl.xaml.cs">
       <DependentUpon>RatingControl.xaml</DependentUpon>
     </Compile>

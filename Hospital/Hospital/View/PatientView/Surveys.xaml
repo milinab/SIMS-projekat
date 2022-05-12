@@ -27,17 +27,33 @@
         <Label Content="Survey" HorizontalAlignment="Left" Margin="350,80,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Georgia"/>
         <Border BorderBrush="Black" BorderThickness="1" Width="Auto" Height="1" Margin="0,85,0,364" />
 
-        <StackPanel>
-            <Label Content="Ponasanje medicinskih sestara/ tehnicara je:" HorizontalAlignment="Left" Margin="30,145,0,0" FontFamily="Georgia" FontSize="16"/>
-            <rating:Rating Height="60" Width="100"  />
+        <StackPanel Margin="10,156,10,10">
+            <ItemsControl Name="icTodoList">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="40,0,0,5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="100" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="{Binding QuestionText}" Margin="0,0,0,20" />
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
         </StackPanel>
 
-        <Label Content="Postovanje prava pacijenata u bolnici je:" HorizontalAlignment="Left" Margin="30,180,0,0" VerticalAlignment="Top" Width="304" FontFamily="Georgia" FontSize="16"/>
-        <Label Content="Zadovljstvo cistocom bolnicke sobe i/ili odeljenja:" HorizontalAlignment="Left" Margin="30,215,0,0" VerticalAlignment="Top" Width="370" FontFamily="Georgia" FontSize="16"/>
-        <Label Content="Zadovljstvo pruzenom prehranom:" HorizontalAlignment="Left" Margin="30,250,0,0" VerticalAlignment="Top" Width="283" FontFamily="Georgia" FontSize="16"/>
-        <Label Content="Zadovoljnstvo higijenom sanitarnog cvora:" HorizontalAlignment="Left" Margin="30,285,0,0" VerticalAlignment="Top" Width="319" FontFamily="Georgia" FontSize="16"/>
+        <rating:RatingControl x:Name="Pitanje1" Height="30" Width="100" RenderTransformOrigin="0.422,0.31" Margin="80,-180,0,0" />
+        <rating:RatingControl x:Name="Pitanje2" Height="30" Width="100" RenderTransformOrigin="0.422,0.31" Margin="80,-120,0,0" />
+        <rating:RatingControl x:Name="Pitanje3" Height="30" Width="100" RenderTransformOrigin="0.422,0.31" Margin="80,-60,0,0" />
+        <rating:RatingControl x:Name="Pitanje4" Height="30" Width="100" RenderTransformOrigin="0.422,0.31" Margin="80,0,0,0" />
+        <rating:RatingControl x:Name="Pitanje5" Height="30" Width="100" RenderTransformOrigin="0.422,0.31" Margin="80,60,0,0"/>
 
+        <Button Content="Send asnwers" Height="42" Width="114" Margin="430,377,256,31" Background="LawnGreen" FontFamily="Georgia" Click="SendAnswers_Click"/>
 
+        <Button Content="Back" Height="42" Width="114" Margin="574,377,112,31" Background="IndianRed" FontFamily="Georgia" Click="Back_Click"/>
+
+        <Frame x:Name="frame" NavigationUIVisibility="Hidden" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" Grid.Column="1"/>
 
 
     </Grid>

@@ -54,6 +54,25 @@ namespace Hospital.View.PatientView
 
         }
 
+        public BookAnAppointment(PatientWindow patientWindow)
+        {
+            InitializeComponent();
+            app = Application.Current as App;
+            _content = Content;
+            this.DataContext = this;
+            dataGridAppointments.ItemsSource = patientWindow.dataGridAppointments.ItemsSource;
+            //dataGridAppointments.ItemsSource = app._appointmentController.Read();
+            _patientWindow = patientWindow;
+            //_appointmentController = appointmentController;
+            //_userController = userController;
+            Doctors = new ObservableCollection<Doctor>();
+            Doctors = app._doctorController.Read();
+            doctorsComboBox.ItemsSource = Doctors;
+
+        }
+
+
+
 
 
         public BookAnAppointment(UserController userController)
@@ -113,12 +132,10 @@ namespace Hospital.View.PatientView
 
             if (DoctorPriority.IsChecked == true)
             {
-                Window doctorPriority = new DoctorPriorityDateAvailableTest(DoctorId, date, this, this._patientWindow);
-                doctorPriority.Show();
-                /*                Page doctorPriority = new DoctorPriorityDateAvailable(DoctorId, date, this);
-                                this.frame.NavigationService.RemoveBackEntry();
-                                this.frame.Content = null;
-                                this.frame.Navigate(doctorPriority);*/
+                Page doctorPriority = new DoctorPriorityDateAvailable(DoctorId, date, this, _patientWindow);
+                this.frame.NavigationService.RemoveBackEntry();
+                this.frame.Content = null;
+                this.frame.Navigate(doctorPriority);
 
 
             }

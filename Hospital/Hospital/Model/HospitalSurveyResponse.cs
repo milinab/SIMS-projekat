@@ -15,6 +15,8 @@ namespace Hospital.Model
         public int UserId { get; set; }
         [DataMember]
         public DateTime Date { get; set; }
+        [DataMember]
+        public int Grade { get; set; }
 
         public HospitalSurveyResponse()
         {

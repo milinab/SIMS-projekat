@@ -11,15 +11,20 @@ namespace Hospital.Model
         public string QuestionText { get; set; }
         [DataMember]
         public int Grade { get; set; }
+        [DataMember]
+        public int SurveyId { get; set; }
+
+
 
         public Question()
         {
         }
 
-        public Question(string question, int grade)
+        public Question(string question, int grade, int surveyId)
         {
             QuestionText = question;
             Grade = grade;
+            SurveyId = surveyId;
         }
 
     }

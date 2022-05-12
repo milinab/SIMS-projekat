@@ -28,7 +28,7 @@
         <Frame x:Name="frame" NavigationUIVisibility="Hidden" Margin="420,110,0,0" RenderTransformOrigin="0.5,0.5" Grid.Column="1"></Frame>
 
         <Label Content="Chosen doctor:" HorizontalAlignment="Left" Margin="420,150,0,0" VerticalAlignment="Top" Width="156" FontSize="16" Height="34" FontWeight="Bold"/>
-        <Label Name="ChosenDoctor" HorizontalAlignment="Left" Margin="420,185,0,0" VerticalAlignment="Top" Width="192" Height="29"  Content="{Binding Path=DoctorName}"/>
+        <Label Name="ChosenDoctordd" HorizontalAlignment="Left" Margin="420,185,0,0" VerticalAlignment="Top" Width="192" Height="29"  Content="{Binding Path=DoctorName}"/>
 
 
         <Label Content="Choose an appointment:" HorizontalAlignment="Left" Margin="420,220,0,0" VerticalAlignment="Top" Width="210" FontSize="16" Height="34" FontWeight="Bold"/>
