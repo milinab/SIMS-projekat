@@ -1,4 +1,4 @@
-﻿<Page x:Class="Hospital.View.PatientView.Notes"
+﻿<Page x:Class="Hospital.View.PatientView.AddNote"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Hospital.View.PatientView"
       mc:Ignorable="d" 
       d:DesignHeight="560" d:DesignWidth="800" Background="AntiqueWhite"
-      Title="Notes">
+      Title="AddNote">
 
     <Grid Margin="0,0,0,0">
 
@@ -25,41 +25,26 @@
         </Menu>
         <Label Content="Notes" HorizontalAlignment="Left" Margin="350,80,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Georgia"/>
         <Border BorderBrush="Black" BorderThickness="1" Width="Auto" Height="1" Margin="0,85,0,364" />
+        <Border BorderBrush="Black" BorderThickness="1" Width="Auto" Height="1" Margin="0,184,0,375" />
 
-        <Button Content="Delete note" Background="Bisque" HorizontalAlignment="Left" Margin="94,136,0,0" VerticalAlignment="Top" Width="76" Click="DeleteNote_Click" Height="19"/>
-        <Button Content="Add note" Background="Bisque" HorizontalAlignment="Left" Margin="10,136,0,0" VerticalAlignment="Top" Width="76" Click="AddNote_Click" Height="19"/>
 
-        <DataGrid x:Name="dataGridNotes" Background="AntiqueWhite" AutoGenerateColumns="False" Height="335" Margin="10,168,10,0" VerticalAlignment="Top">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="2*">
-                    <DataGridTextColumn.CellStyle>
-                        <Style TargetType="DataGridCell">
-                            <Setter Property="Background" 
-                                Value="AntiqueWhite" />
-                        </Style>
-                    </DataGridTextColumn.CellStyle>
-                </DataGridTextColumn>
-                <DataGridTextColumn Header="Date" Binding="{Binding Date, StringFormat=\{0:d.M.yyyy H:mm\}}" Width="*">
-                    <DataGridTextColumn.CellStyle>
-                        <Style TargetType="DataGridCell">
-                            <Setter Property="Background" 
-                                Value="AntiqueWhite" />
-                        </Style>
-                    </DataGridTextColumn.CellStyle>
-                </DataGridTextColumn>
-                <DataGridTemplateColumn Width="50">
+        <Label Content="Name:" HorizontalAlignment="Left" Margin="10,134,0,0" VerticalAlignment="Top" FontSize="14"/>
+        <TextBox x:Name="noteName" HorizontalAlignment="Left" Margin="70,134,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="248" Height="27" BorderBrush="Maroon" TextChanged="NameTextBoxTextChanged">
+            <TextBox.Background>
+                <ImageBrush ImageSource="insertNoteName.png" AlignmentX="Left" AlignmentY="Top" Stretch="None" />
+            </TextBox.Background>
+        </TextBox>
+        <Button Content="Back to all notes" HorizontalAlignment="Left" Margin="642,134,0,0" VerticalAlignment="Top" FontSize="14" Height="27" Width="130" Click="BackToAllNotes_Click"/>
+        <Button Content="Save changes" HorizontalAlignment="Left" Margin="674,472,0,0" VerticalAlignment="Top" Height="34" Width="83" Click="SaveChanges_Click"/>
+        <TextBox x:Name="noteText" HorizontalAlignment="Center" Margin="0,175,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="760" Height="284"  BorderBrush="Maroon" TextChanged="TextTextBoxTextChanged">
+            <TextBox.Background>
+                <ImageBrush ImageSource="insertNoteText.png" AlignmentX="Left" AlignmentY="Top" Stretch="None" />
+            </TextBox.Background>
+        </TextBox>
 
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Click="InfoButtonClick">Info</Button>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
 
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
-        </DataGrid>
 
-        <Frame x:Name="frame" NavigationUIVisibility="Hidden" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" Grid.Column="1"/>
+        <Frame x:Name="frame" NavigationUIVisibility="Hidden" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" Grid.Column="1" />
 
     </Grid>
 </Page>

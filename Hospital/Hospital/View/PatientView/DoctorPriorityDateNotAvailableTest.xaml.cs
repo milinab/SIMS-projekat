@@ -156,6 +156,13 @@ namespace Hospital.View.PatientView
                 /*               if (allAppointmentTimes.Contains(a.Time)) {
                                    allAppointmentTimes.Remove(a.Time);
                                }*/
+                
+                    /*if(allAppointmentTimes.IsEmpty...)
+                        {
+                            izlistaj sve slobodne termine iz +-3 dana 
+                        }
+                     */
+                 
             }
 
 

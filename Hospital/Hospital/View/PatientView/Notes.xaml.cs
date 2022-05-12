@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Hospital.Model;
 using System.Collections.ObjectModel;
+using Hospital.Controller;
 
 namespace Hospital.View.PatientView
 {
@@ -26,6 +27,7 @@ namespace Hospital.View.PatientView
         private readonly object _content;
         private Note note;
         private readonly PatientWindow _patientWindow;
+        
 
         public ObservableCollection<Note> NotesList
         {
@@ -72,26 +74,47 @@ namespace Hospital.View.PatientView
 
         private void InfoButtonClick(object sender, RoutedEventArgs e)
         {
-            //Appointment appointment = dataGridAppointments.SelectedValue as Appointment;
-            //int appointmentId = app._appointmentController.ReadById(appointment.Id);
-            //var editAnAppointmentPage = new EditAnAppointment(appointment, this);
-            //Content = editAnAppointmentPage;
+            Note note = dataGridNotes.SelectedValue as Note;
+            Page infoNote = new NoteInfo(_patientWindow, note);
+            this.frame.NavigationService.RemoveBackEntry();
+            this.frame.Content = null;
+            this.frame.Navigate(infoNote);
+   
         }
 
         private void AddNote_Click(object sender, RoutedEventArgs e)
         {
-            //Appointment appointment = dataGridAppointments.SelectedValue as Appointment;
-            //int appointmentId = app._appointmentController.ReadById(appointment.Id);
-            //var editAnAppointmentPage = new EditAnAppointment(appointment, this);
-            //Content = editAnAppointmentPage;
+            Page addNote = new AddNote(_patientWindow, this);
+            this.frame.NavigationService.RemoveBackEntry();
+            this.frame.Content = null;
+            this.frame.Navigate(addNote);
+            
+            
         }
 
         private void DeleteNote_Click(object sender, RoutedEventArgs e)
         {
-            //Appointment appointment = dataGridAppointments.SelectedValue as Appointment;
-            //int appointmentId = app._appointmentController.ReadById(appointment.Id);
-            //var editAnAppointmentPage = new EditAnAppointment(appointment, this);
-            //Content = editAnAppointmentPage;
+            if (dataGridNotes.SelectedItem != null)
+            {
+                Note note = (Note)dataGridNotes.SelectedItem;
+                app._noteController.Delete(note.Id);
+            }
+            else
+            {
+                MessageBox.Show("Select a note You want to delete.", "Warning");
+            }
         }
+
+        public void BackToNotes()
+        {
+            Content = _content;
+            refresh();
+        }
+        public void refresh()
+        {
+            dataGridNotes.ItemsSource = app._noteController.Read();
+        }
+
+        
     }
 }

@@ -54,6 +54,7 @@ namespace Hospital.Repository
                 {
                     note.Name = editNote.Name;
                     note.NoteText = editNote.NoteText;
+                    note.Date = editNote.Date;
                 }
             }
             Write();

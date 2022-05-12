@@ -220,6 +220,9 @@
     <Compile Include="View\ManagerView\RoomOccupancy.xaml.cs">
       <DependentUpon>RoomOccupancy.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\PatientView\AddNote.xaml.cs">
+      <DependentUpon>AddNote.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\PatientView\BookAnAppointment.xaml.cs">
       <DependentUpon>BookAnAppointment.xaml</DependentUpon>
     </Compile>
@@ -239,6 +242,9 @@
       <DependentUpon>EditAnAppointment.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\PatientView\EnumMatchToBooleanConverter.cs" />
+    <Compile Include="View\PatientView\NoteInfo.xaml.cs">
+      <DependentUpon>NoteInfo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\PatientView\Notes.xaml.cs">
       <DependentUpon>Notes.xaml</DependentUpon>
     </Compile>
@@ -323,6 +329,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="View\PatientView\AddNote.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\PatientView\BookAnAppointment.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -344,6 +354,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\PatientView\EditAnAppointment.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PatientView\NoteInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -435,6 +449,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\notification.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\insertNoteName.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\PatientView\insertNoteName.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\PatientView\insertNoteText.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

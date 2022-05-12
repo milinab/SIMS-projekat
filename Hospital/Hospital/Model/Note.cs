@@ -24,12 +24,21 @@ namespace Hospital.Model
             Name = name;
         }
 
-        public Note(string name,int id, string NoteText, DateTime date)
+        public Note(string name,int id, string noteText, DateTime date)
         {
             Name = name;
             Id = id;
-            NoteText = NoteText;
+            NoteText = noteText;
             Date = date;
+
+        }
+
+        public Note(string name, int id, string noteText)
+        {
+            Name = name;
+            Id = id;
+            NoteText = noteText;
+            
 
         }
     }
