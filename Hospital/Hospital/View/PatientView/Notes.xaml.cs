@@ -45,14 +45,21 @@ namespace Hospital.View.PatientView
             dataGridNotes.ItemsSource = app._noteController.Read();
         }
 
+        private void MedicalRecord_Click(object sender, RoutedEventArgs e)
+        {
+            Page medicalRecordPage = new MedicalRecord(_patientWindow);
+            this.frame.Navigate(medicalRecordPage);
+        }
+
         private void Surveys_Click(object sender, RoutedEventArgs e)
         {
-            Content = _content;
+            Page hospitalSurveyPage = new Surveys(_patientWindow);
+            this.frame.Navigate(hospitalSurveyPage);
         }
 
         private void Notes_Click(object sender, RoutedEventArgs e)
         {
-
+            Content = _content;
         }
 
         private void MyAppointments_Click(object sender, RoutedEventArgs e)

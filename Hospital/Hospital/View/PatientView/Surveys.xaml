@@ -17,11 +17,11 @@
 
         <Menu Width="Auto" Margin="0,40,0,450" Background="Bisque">
             <MenuItem Height="60" Width="140" VerticalAlignment="Center" Padding="10,0,0,0" Header=" " Margin="10,0,0,0" HorizontalAlignment="Stretch" />
-            <MenuItem Height="60" Width="100" VerticalAlignment="Center" Padding="10,0,0,0" Header="Medical record" Foreground="Maroon"/>
+            <MenuItem Height="60" Width="100" VerticalAlignment="Center" Padding="10,0,0,0" Header="Medical record" Foreground="Maroon" Click="MedicalRecord_Click"/>
             <MenuItem Height="60" Width="120" VerticalAlignment="Center" Padding="10,0,0,0" Header="My appointments" Margin="0,0,0,0" HorizontalAlignment="Stretch" Click="MyAppointments_Click" Foreground="Maroon"/>
             <MenuItem Height="60" Width="85" VerticalAlignment="Center" Padding="10,0,0,0" Header="My therapy" Foreground="Maroon"/>
             <MenuItem Height="60" Width="77" VerticalAlignment="Center" Padding="10,0,0,0" Header="Calendar" Foreground="Maroon"/>
-            <MenuItem Height="60" Width="55" VerticalAlignment="Center" Padding="10,0,0,0" Header="Notes" Foreground="Maroon"/>
+            <MenuItem Height="60" Width="55" VerticalAlignment="Center" Padding="10,0,0,0" Header="Notes" Foreground="Maroon" Click="Notes_Click"/>
             <MenuItem Height="60" Width="65" VerticalAlignment="Center" Padding="10,0,0,0" Header="Surveys" Click="Surveys_Click" Foreground="Maroon"/>
         </Menu>
         <Label Content="Survey" HorizontalAlignment="Left" Margin="350,80,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Georgia"/>
@@ -33,7 +33,7 @@
                     <DataTemplate>
                         <Grid Margin="40,0,0,5">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="100" />
                             </Grid.ColumnDefinitions>
                             <TextBlock Text="{Binding QuestionText}" Margin="0,0,0,20" />
@@ -43,15 +43,15 @@
             </ItemsControl>
         </StackPanel>
 
-        <rating:RatingControl x:Name="Pitanje1" Height="30" Width="100" RenderTransformOrigin="0.422,0.31" Margin="80,-180,0,0" />
-        <rating:RatingControl x:Name="Pitanje2" Height="30" Width="100" RenderTransformOrigin="0.422,0.31" Margin="80,-120,0,0" />
-        <rating:RatingControl x:Name="Pitanje3" Height="30" Width="100" RenderTransformOrigin="0.422,0.31" Margin="80,-60,0,0" />
-        <rating:RatingControl x:Name="Pitanje4" Height="30" Width="100" RenderTransformOrigin="0.422,0.31" Margin="80,0,0,0" />
-        <rating:RatingControl x:Name="Pitanje5" Height="30" Width="100" RenderTransformOrigin="0.422,0.31" Margin="80,60,0,0"/>
+        <rating:RatingControl x:Name="Pitanje1" Height="40" Width="100" RenderTransformOrigin="0.422,0.31" Margin="80,-180,0,0" />
+        <rating:RatingControl x:Name="Pitanje2" Height="40" Width="100" RenderTransformOrigin="0.422,0.31" Margin="80,-115,0,0" />
+        <rating:RatingControl x:Name="Pitanje3" Height="40" Width="100" RenderTransformOrigin="0.422,0.31" Margin="80,-50,0,0" />
+        <rating:RatingControl x:Name="Pitanje4" Height="40" Width="100" RenderTransformOrigin="0.422,0.31" Margin="80,15,0,0" />
+        <rating:RatingControl x:Name="Pitanje5" Height="40" Width="100" RenderTransformOrigin="0.422,0.31" Margin="80,80,0,0"/>
 
-        <Button Content="Send asnwers" Height="42" Width="114" Margin="430,377,256,31" Background="LawnGreen" FontFamily="Georgia" Click="SendAnswers_Click"/>
+        <Button Content="Send asnwers" Height="42" Width="114" Margin="350,377,256,31" Background="GreenYellow" FontFamily="Georgia" Click="SendAnswers_Click"/>
 
-        <Button Content="Back" Height="42" Width="114" Margin="574,377,112,31" Background="IndianRed" FontFamily="Georgia" Click="Back_Click"/>
+        <Button Content="Back" Height="42" Width="114" Margin="550,377,112,31" Background="IndianRed" FontFamily="Georgia" Click="Back_Click"/>
 
         <Frame x:Name="frame" NavigationUIVisibility="Hidden" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" Grid.Column="1"/>
 

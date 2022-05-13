@@ -71,10 +71,6 @@ namespace Hospital.View.PatientView
 
         }
 
-
-
-
-
         public BookAnAppointment(UserController userController)
         {
             _userController = userController;
@@ -83,7 +79,6 @@ namespace Hospital.View.PatientView
         private bool validate()
         {
          
-
             if(DoctorPriority.IsChecked == false && DatePriority.IsChecked == false)
             {
                 MessageBox.Show("You need to select a priority.", "Warning");
@@ -100,32 +95,6 @@ namespace Hospital.View.PatientView
             //    return;
             //}
 
-            //if (DoctorPriority.IsChecked == true)
-            // {
-            //DoctorPriorityDateAvailable DoctorPriorityDateAvailablePage = new DoctorPriorityDateAvailable(_patientWindow ,this,app._appointmentController);
-            //Content = DoctorPriorityDateAvailablePage;
-            // }
-            //  if (DatePriority.IsChecked == true)
-            // {
-            //BookAnAppointment bookAnAppointmentPage = new BookAnAppointment(this, app._appointmentController);
-            //Content = bookAnAppointmentPage;
-
-            // }
-
-            //doctorsComboBox.ItemsSource = app._userController.ReadAll();
-
-            /*   DODAVANJE APP I CUVANJE         int DoctorId = Int32.Parse(((Model.User)doctorsComboBox.SelectedItem).Id.ToString());
-
-                        DateTime _date = myCalendar.SelectedDate.Value;
-
-                        Appointment appointment = new Appointment
-                        {
-                            DoctorId = DoctorId,
-                            Date = _date
-                        };
-                        _appointmentController.Create(appointment);
-                        _patientWindow.BackToPatientWindow();*/
-
             int DoctorId = Int32.Parse(((Model.User)doctorsComboBox.SelectedItem).Id.ToString());
             
             DateTime date = myCalendar.SelectedDate.Value;
@@ -133,37 +102,17 @@ namespace Hospital.View.PatientView
             if (DoctorPriority.IsChecked == true)
             {
                 Page doctorPriority = new DoctorPriorityDateAvailable(DoctorId, date, this, _patientWindow);
-                this.frame.NavigationService.RemoveBackEntry();
-                this.frame.Content = null;
                 this.frame.Navigate(doctorPriority);
 
 
             }
             if (DatePriority.IsChecked == true)
             {
-                Window datePriority = new DatePriorityTest(DoctorId, date, this, this._patientWindow);
-                datePriority.Show();
-                /*                Page datePriority = new DatePriorityTest(DoctorId, date, this);
-                                this.frame.NavigationService.RemoveBackEntry();
-                                this.frame.Content = null;
-                                this.frame.Navigate(datePriority);*/
+                Page datePriority = new DatePriority(DoctorId, date, this, _patientWindow);
+                this.frame.Navigate(datePriority);
 
 
             }
-
-            /*            Lista<Wuestion> q = new..
-
-
-                        BolnicaAnketa ba = new BolnicaAnketa();
-                        ba.listaPitana = pitanja;
-                        ba.name;
-                        base.expirationDate;
-
-                        BolicaAnketaOdgovor bao - new ...
-                            bao.setBa
-                            bao.setUser(getLoggedUser- string)
-                            bao.setEvalueteDate(Date.now())*/
-
         }
 
         private void MyAppointments_Click(object sender, RoutedEventArgs e)

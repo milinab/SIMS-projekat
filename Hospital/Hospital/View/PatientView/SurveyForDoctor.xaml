@@ -75,9 +75,9 @@
         <rating:RatingControl x:Name="Pitanje5" Height="30" Width="100" RenderTransformOrigin="0.422,0.31" Margin="80,60,0,0"/>
 
 
-        <Button Content="Send asnwers" Height="42" Width="114" Margin="430,377,256,31" Background="LawnGreen" FontFamily="Georgia" Click="SendAnswers_Click"/>
+        <Button Content="Send asnwers" Height="42" Width="114" Margin="350,377,256,31" Background="GreenYellow" FontFamily="Georgia" Click="SendAnswers_Click"/>
 
-        <Button Content="Back" Height="42" Width="114" Margin="574,377,112,31" Background="IndianRed" FontFamily="Georgia" Click="Button_Click"/>
+        <Button Content="Back" Height="42" Width="114" Margin="550,377,112,31" Background="IndianRed" FontFamily="Georgia" Click="Button_Click"/>
 
         <Frame x:Name="frame" NavigationUIVisibility="Hidden" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" Grid.Column="1"/>
 

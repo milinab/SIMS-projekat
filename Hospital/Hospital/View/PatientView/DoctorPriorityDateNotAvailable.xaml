@@ -30,7 +30,7 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Doctor" Binding="{Binding Doctor.Name}" Width="2*"/>
                 <DataGridTextColumn Header="Date" Binding="{Binding Date, StringFormat=\{0:d.M.yyyy\}}" Width="*"/>
-                <DataGridTextColumn Header="Time" Binding="{Binding Duration, StringFormat=\{0:H:mm\}}" Width="*"/>
+                <DataGridTextColumn Header="Time" Binding="{Binding Date, StringFormat=\{0:H:mm\}}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
         

@@ -93,10 +93,21 @@ namespace Hospital.View.PatientView
         {
 
         }
+        private void MedicalRecord_Click(object sender, RoutedEventArgs e)
+        {
+            Page medicalRecordPage = new MedicalRecord(_patientWindow);
+            this.frame.Navigate(medicalRecordPage);
+        }
 
         private void MyAppointments_Click(object sender, RoutedEventArgs e)
         {
             _patientWindow.BackToPatientWindow();
+        }
+
+        private void Notes_Click(object sender, RoutedEventArgs e)
+        {
+            Page notesPage = new Notes(_patientWindow);
+            this.frame.Navigate(notesPage);
         }
 
         public void BackToPatientWindow()
