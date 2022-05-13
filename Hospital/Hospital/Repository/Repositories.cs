@@ -19,6 +19,7 @@
         public SurgeryRepository SurgeryRepository { get; set; }
         public UserRepository UserRepository { get; set; }
         public TherapyRepository TherapyRepository { get; set; }
+        public MedicineRepository MedicineRepository { get; set; }
 
         public Repositories()
         {
@@ -39,6 +40,7 @@
             SurgeryRepository = new SurgeryRepository();
             UserRepository = new UserRepository(AddressRepository);
             TherapyRepository = new TherapyRepository(TherapyRepository);
+            MedicineRepository = new MedicineRepository();
         }
     }
 }

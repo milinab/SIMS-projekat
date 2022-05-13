@@ -25,6 +25,6 @@
         <TextBlock Text="Choose date:"      HorizontalAlignment="Left" VerticalAlignment="Top" Margin="103,244,0,0" TextWrapping="Wrap" FontSize="30" Width="233"/>
         <DatePicker Name="datePicker"           HorizontalAlignment="Left" VerticalAlignment="Top" Margin="336,250,0,0" Width="384" Height="40" FontSize="18"/>
         <Button Content="Cancel" HorizontalAlignment="Left" Margin="336,348,0,0" VerticalAlignment="Top" Width="150" Height="50" Click="CancelRenovateClick"/>
-        <Button Content="Schedule" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="570,0,0,36" Height="50" Width="150" Click="Schedule"/>
+        <Button Content="Schedule" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="570,0,0,52" Height="50" Width="150" Click="Schedule"/>
     </Grid>
 </Page>

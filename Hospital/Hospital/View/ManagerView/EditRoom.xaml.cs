@@ -26,10 +26,15 @@ namespace Hospital.View.ManagerView
         private int _floor;
         private string _type;
         private readonly ManagerWindow _managerWindow;
+        private readonly EquipmentWindow _equipmentWindow;
+        private readonly RoomOccupancy _roomOccupancy;
+        private readonly ManagerHomeWindow _managerHomeWindow;
+        private readonly MedicineWindow _medicine;
         private readonly App _app;
 
         public EditRoom(Room room, ManagerWindow managerWindow)
         {
+
             InitializeComponent();
             _app = Application.Current as App;
             _managerWindow = managerWindow;
@@ -50,6 +55,30 @@ namespace Hospital.View.ManagerView
         public void CancelRoomClick(object sender, RoutedEventArgs e)
         {
             _managerWindow.BackToManagerWindow();
+        }
+        private void EquipmentClick(object sender, RoutedEventArgs e)
+        {
+            _equipmentWindow.BackToEquipmentWindow();
+        }
+        private void RoomClick(object sender, RoutedEventArgs e)
+        {
+
+            _managerWindow.BackToManagerWindow();
+        }
+
+        private void OccupancyClick(object sender, RoutedEventArgs e)
+        {
+            _roomOccupancy.BackToRoomOccupancy();
+        }
+        private void HomeClick(object sender, RoutedEventArgs e)
+        {
+            _managerHomeWindow.BackToHomeWindow();
+        }
+        private void MedicineClick(object sender, RoutedEventArgs e)
+        {
+            MedicineWindow medicine = new MedicineWindow();
+            medicine.Show();
+            //Close();
         }
     }
 }

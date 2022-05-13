@@ -5,23 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Hospital.View.ManagerView"
         mc:Ignorable="d"
-        Title="EquipmentWindow" Height="450" Width="800">
-    <Grid>
+        Title="EquipmentWindow" Height="450" Width="800"
+        WindowStyle="None">
+    <Window.Resources>
+        <SolidColorBrush x:Key="clBr" Color="AliceBlue" />
+    </Window.Resources>
+    <Grid Background="Azure">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="17*"/>
+            <ColumnDefinition Width="783*"/>
+        </Grid.ColumnDefinitions>
+        <TextBox Margin="523,82,94,337" TextChanged="TextBoxTextChanged" Grid.Column="1"/>
+        <ComboBox Margin="331,82,296,337" Name="eqComboBox" SelectionChanged="ComboBoxSelectionChanged" Grid.Column="1"/>
 
-        <DockPanel>
-            <Menu DockPanel.Dock="Top" Height="48" VerticalAlignment="Top">
-                <MenuItem Header="Home" Height="47" Width="67" FontSize="20" Margin="200,0,0,0"/>
-                <MenuItem Header="Equipment" Height="47" Width="124" FontSize="20"/>
-                <MenuItem Header="Room" Height="47" Width="73" FontSize="20"/>
-                <MenuItem Header="RoomOccupancy" Height="47" Width="160" FontSize="20"/>
-
-
-            </Menu>
-        </DockPanel>
-
-        <DataGrid x:Name="dataGridEquipment" IsReadOnly="True" 
-                  SelectionMode="Single" AutoGenerateColumns="False" HorizontalAlignment="Right" CanUserAddRows="True" CanUserDeleteRows="True"
-                  Height="288" VerticalAlignment="Top" Width="750"  RenderTransformOrigin="0.5,0.5" Margin="0,53,21,0">
+        <DataGrid x:Name="dataGridEquipment" IsReadOnly="True"  Background="Azure" BorderBrush="White"
+                  SelectionMode="Single" AutoGenerateColumns="False" HorizontalAlignment="Left" CanUserAddRows="True" CanUserDeleteRows="True"
+                  Height="186" VerticalAlignment="Center" Width="796"  RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2" Margin="2,0,0,0">
 
             <DataGrid.RenderTransform>
                 <TransformGroup>
@@ -32,20 +31,51 @@
                 </TransformGroup>
             </DataGrid.RenderTransform>
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
-                <DataGridTextColumn Header="Number" Binding="{Binding Number}"/>
-                <DataGridTextColumn Header="Room" Binding="{Binding Room}" Width="*"/>
-                <DataGridTemplateColumn>
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Number" Binding="{Binding Name}" >
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="Background" 
+                                Value="Azure" />
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Number" Binding="{Binding Number}" >
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="Background" 
+                                Value="Azure" />
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Room" Binding="{Binding Room}" Width="*" >
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="Background" 
+                                Value="Azure" />
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
+        <TextBlock Text="Relocate" Margin="49,391,637,25" Cursor="Hand" FontSize="15" MouseLeftButtonDown="RelocationClick" Grid.Column="1"/>
+        <Image Margin="12,385,731,20" Source="/images/data-transfer.png" MouseLeftButtonUp="OccupancyClick" Cursor="Hand" MouseLeftButtonDown="RelocationClick" Grid.Column="1"/>
+        <Line X1="50" Y1="50" X2="1000" Y2="50" Stroke="White"  StrokeThickness="3" Margin="-50,18,1,318" Grid.ColumnSpan="2" />
+        <DockPanel Margin="0,-10,0,373" Grid.ColumnSpan="2">
+            <Menu DockPanel.Dock="Top" Background ="AliceBlue" Cursor="Hand" Height="66" >
 
-        <Button Content="Relocation" HorizontalAlignment="Left" Margin="50,360,0,0" VerticalAlignment="Top" Width="86" Height="25" Click="RelocationClick"/>
+                <MenuItem Header="Home" Height="61" Width="95" FontSize="12" Click="HomeClick" HorizontalAlignment="Stretch" Margin="90,0,0,0" />
+                <MenuItem Header="Medicine" Height="65" Width="130" FontSize="12" Click="MedicineClick"/>
+                <MenuItem Header="Equipment" Height="65" Width="145" FontSize="12" Click="EquipmentClick"/>
+                <MenuItem Header="Rooms" Height="66" Width="105" FontSize="12" Click="RoomClick" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <MenuItem Header="Room occupancy" Height="64" Width="102" FontSize="12" Click="OccupancyClick"/>
+
+
+
+            </Menu>
+        </DockPanel>
+        <Image Source="/images/hospitalll.jpg" Margin="0,0,721,376" MouseLeftButtonUp="HomeClick" Cursor="Hand" Grid.ColumnSpan="2"/>
+        <Image Source="/images/sign_out.png" Margin="682,15,66,395" MouseLeftButtonUp="SignOutClick" Cursor="Hand" Grid.Column="1"/>
+        <TextBlock Text="Sign out" FontSize="12" Margin="710,19,0,394" MouseLeftButtonUp="SignOutClick" Cursor="Hand" RenderTransformOrigin="0.512,0.042" HorizontalAlignment="Left" Width="84" Grid.Column="1"/>
 
 
 

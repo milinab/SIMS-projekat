@@ -105,6 +105,7 @@
     </ApplicationDefinition>
     <Compile Include="Controller\AddressController.cs" />
     <Compile Include="Controller\AllergenController.cs" />
+    <Compile Include="Controller\MedicineController.cs" />
     <Compile Include="Controller\TherapyController.cs" />
     <Compile Include="Controller\DoctorController.cs" />
     <Compile Include="Controller\ManagerController.cs" />
@@ -123,10 +124,12 @@
     <Compile Include="LogIn.xaml.cs">
       <DependentUpon>LogIn.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\Medicine.cs" />
     <Compile Include="Model\Therapy.cs" />
     <Compile Include="Model\Allergen.cs" />
     <Compile Include="Model\AllergenList.cs" />
     <Compile Include="Repository\AddressRepository.cs" />
+    <Compile Include="Repository\MedicineRepository.cs" />
     <Compile Include="Repository\TherapyRepository.cs" />
     <Compile Include="Repository\CityRepository.cs" />
     <Compile Include="Repository\AllergenRepository.cs" />
@@ -143,6 +146,7 @@
     <Compile Include="Repository\UserRepository.cs" />
     <Compile Include="Service\AddressService.cs" />
     <Compile Include="Service\AllergenService.cs" />
+    <Compile Include="Service\MedicineService.cs" />
     <Compile Include="Service\TherapyService.cs" />
     <Compile Include="Service\DoctorService.cs" />
     <Compile Include="Service\ManagerService.cs" />
@@ -174,6 +178,9 @@
     <Compile Include="View\DoctorView\Menu.xaml.cs">
       <DependentUpon>Menu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ManagerView\AddMedicine.xaml.cs">
+      <DependentUpon>AddMedicine.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ManagerView\AddRoomWindow.xaml.cs">
       <DependentUpon>AddRoomWindow.xaml</DependentUpon>
     </Compile>
@@ -189,6 +196,9 @@
     <Compile Include="View\ManagerView\ManagerWindow.xaml.cs">
       <DependentUpon>ManagerWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ManagerView\MedicineWindow.xaml.cs">
+      <DependentUpon>MedicineWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ManagerView\Relocation.xaml.cs">
       <DependentUpon>Relocation.xaml</DependentUpon>
     </Compile>
@@ -197,6 +207,9 @@
     </Compile>
     <Compile Include="View\ManagerView\RoomOccupancy.xaml.cs">
       <DependentUpon>RoomOccupancy.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ManagerView\Survey.xaml.cs">
+      <DependentUpon>Survey.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\PatientView\BookAnAppointment.xaml.cs">
       <DependentUpon>BookAnAppointment.xaml</DependentUpon>
@@ -254,6 +267,10 @@
     <Page Include="View\DoctorView\Menu.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\ManagerView\AddMedicine.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\ManagerView\AddRoomWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -273,6 +290,10 @@
     <Page Include="View\ManagerView\ManagerWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\ManagerView\MedicineWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\ManagerView\Relocation.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -284,6 +305,10 @@
     <Page Include="View\ManagerView\RoomOccupancy.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ManagerView\Survey.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\PatientView\BookAnAppointment.xaml">
       <SubType>Designer</SubType>
@@ -377,6 +402,36 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\notification.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\medicine.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\equipment.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\occupancy.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\room.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\hospitalll.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\sign_out.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\data-transfer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\maintenance.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -8,16 +8,7 @@
         Title="EditRoom" Height="450" Width="800">
     <Grid>
 
-        <DockPanel>
-            <Menu DockPanel.Dock="Top" Height="48" VerticalAlignment="Top">
-                <MenuItem Header="Home" Height="47" Width="67" FontSize="20" Margin="200,0,0,0"/>
-                <MenuItem Header="Equipment" Height="47" Width="124" FontSize="20"/>
-                <MenuItem Header="Room" Height="47" Width="73" FontSize="20"/>
-                <MenuItem Header="RoomOccupancy" Height="47" Width="160" FontSize="20"/>
-
-
-            </Menu>
-        </DockPanel>
+        <DockPanel/>
 
         <Label Content="New name:" FontSize="20" Margin="114,76,570,268" ></Label>
         <TextBox x:Name="nameText" TextWrapping="Wrap" Margin="289,82,144,294" />
@@ -31,6 +22,16 @@
         </ComboBox>
         <Button Content="Confirm" HorizontalAlignment="Left" Margin="570,387,0,0" VerticalAlignment="Top" Width="86" Height="25" Click="EditRoomClick"/>
         <Button Content="Cancel" HorizontalAlignment="Left" Margin="289,387,0,0" VerticalAlignment="Top" Width="86" Height="25" Click="CancelRoomClick"/>
-        
+        <Menu Margin="0,1,0,381">
+            <MenuItem Header="Home" Height="47" Width="95" FontSize="20" Click="HomeClick" Margin="80,0,0,0"/>
+            <MenuItem Header="Medicine" Height="47" Width="123" FontSize="20" Click="MedicineClick"/>
+            <MenuItem Header="Equipment" Height="47" Width="134" FontSize="20" Click="EquipmentClick"/>
+            <MenuItem Header="Rooms" Height="47" Width="98" FontSize="20" Click="RoomClick"/>
+            <MenuItem Header="Room occupancy" Height="47" Width="160" FontSize="20" Click="OccupancyClick"/>
+
+
+
+        </Menu>
+
     </Grid>
 </Page>

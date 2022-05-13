@@ -29,6 +29,7 @@ namespace Hospital
         internal SurgeryController _surgeryController;
         internal UserController _userController;
         internal TherapyController _therapyController;
+        internal MedicineController _medicineController;
 
         internal MainPage _mainPage;
 
@@ -54,6 +55,7 @@ namespace Hospital
             _surgeryController = new SurgeryController(services.SurgeryService);
             _userController = new UserController(services.UserService);
             _therapyController = new TherapyController(services.TherapyService);
+            _medicineController = new MedicineController(services.MedicineService);
 
             _mainPage = new MainPage();
         }

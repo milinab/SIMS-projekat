@@ -35,6 +35,7 @@ namespace Hospital.View.ManagerView
 
         public Relocation(Equipment equipments, EquipmentWindow equipmentWindow, EquipmentController equipmentController, RoomController roomController)
         {
+
             InitializeComponent();
             _app = Application.Current as App;
             _equipmentWindow = equipmentWindow;

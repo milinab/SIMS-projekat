@@ -12,46 +12,65 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using Hospital.Model;
 
 namespace Hospital.View.ManagerView
 {
     /// <summary>
-    /// Interaction logic for RoomOccupancy.xaml
+    /// Interaction logic for Medicine.xaml
     /// </summary>
-    public partial class RoomOccupancy : Window
+    public partial class MedicineWindow : Window
     {
-        private readonly object _content;
-        private readonly AppointmentController _appointmentController;
         private App _app;
+        private readonly object _content;
+        private readonly MedicineController _medicineController;
 
-        public RoomOccupancy(AppointmentController appointmentController)
+        public MedicineWindow(MedicineController medicineController)
         {
             _app = Application.Current as App;
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
             _content = Content;
-            this.DataContext = this;
-            _appointmentController = appointmentController;
-            gridAppointment.ItemsSource = _appointmentController.Read();
+            _medicineController = medicineController;
+            dataGridMedicine.ItemsSource = _medicineController.Read();
+
         }
 
-        private void RenovateClick(object sender, RoutedEventArgs e)
+        private void AddMedicineClick(object sender, RoutedEventArgs e)
         {
-            Renovate renovate = new Renovate(this, _appointmentController);
-            Content = renovate;           
+            AddMedicine addMedicine = new AddMedicine(this, _medicineController);
+            addMedicine.ShowDialog();
+            Close();
         }
 
-        public void BackToRoomOccupancy()
+        public void BackToMedicineWindow()
         {
             Content = _content;
-            refresh();
         }
 
-        public void refresh()
+        private void SignOutClick(object sender, RoutedEventArgs e)
         {
-            gridAppointment.ItemsSource = _appointmentController.Read();
+            LogIn login = new LogIn();
+            login.Show();
+            Close();
         }
+
+
+
+
+
+
+
+
+
+
+
+        public MedicineWindow()
+        {
+            _app = Application.Current as App;
+            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            InitializeComponent();
+        }
+
         private void EquipmentClick(object sender, RoutedEventArgs e)
         {
             View.ManagerView.EquipmentWindow equipmentWindow = new View.ManagerView.EquipmentWindow(_app._equipmentController);
@@ -82,12 +101,6 @@ namespace Hospital.View.ManagerView
         {
             MedicineWindow medicine = new MedicineWindow(_app._medicineController);
             medicine.Show();
-            Close();
-        }
-        private void SignOutClick(object sender, RoutedEventArgs e)
-        {
-            LogIn login = new LogIn();
-            login.Show();
             Close();
         }
     }

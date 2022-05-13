@@ -21,11 +21,13 @@ namespace Hospital.View.ManagerView
     public partial class ManagerHomeWindow : Window
     {
         private App _app;
- 
+        private readonly object _content;
         public ManagerHomeWindow()
         {
             _app = Application.Current as App;
+            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
+            _content = Content;
         }
 
         private void EquipmentClick(object sender, RoutedEventArgs e)
@@ -46,6 +48,29 @@ namespace Hospital.View.ManagerView
         { 
              View.ManagerView.RoomOccupancy roomOccupancy = new View.ManagerView.RoomOccupancy(_app._appointmentController);
             roomOccupancy.Show();
+            Close();
+        }
+        private void HomeClick (object sender, RoutedEventArgs e)
+        {
+            View.ManagerView.ManagerHomeWindow managerHomeWindow = new ManagerHomeWindow();
+            managerHomeWindow.Show();
+            Close ();
+        }
+        private void MedicineClick(object sender, RoutedEventArgs e)
+        {
+            MedicineWindow medicine = new MedicineWindow(_app._medicineController);
+            medicine.Show();
+            Close();
+        }
+        public void BackToHomeWindow()
+        {
+            Content = _content;
+        }
+
+        private void SignOutClick(object sender, RoutedEventArgs e)
+        {
+            LogIn login = new LogIn();
+            login.Show();
             Close();
         }
 

@@ -12,11 +12,14 @@ namespace Hospital.View.ManagerView
     {
         private RoomController _roomController;
         private Room Room;
-
+        private App _app;
+        private ManagerWindow _managerWindow;
         public AddRoomWindow(ManagerWindow managerWindow, RoomController roomController)
         {
+            _app = Application.Current as App;
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
+            _managerWindow = managerWindow;
             _roomController = roomController;
         }
 
@@ -32,12 +35,16 @@ namespace Hospital.View.ManagerView
 
             };
             _roomController.Create(newRoom);
-            DialogResult = true;
+            ManagerWindow managerWindow = new ManagerWindow(_app._roomController);
+            managerWindow.Show();
+            Close();
         }
 
         private void CancelRoomClick(object sender, RoutedEventArgs e)
             {
-                DialogResult = false;
+            ManagerWindow managerWindow = new ManagerWindow(_app._roomController);
+            managerWindow.Show();
+            Close();
             }
 
 
@@ -51,6 +58,38 @@ namespace Hospital.View.ManagerView
         {
             get;
             set;
+        }
+        private void EquipmentClick(object sender, RoutedEventArgs e)
+        {
+            View.ManagerView.EquipmentWindow equipmentWindow = new View.ManagerView.EquipmentWindow(_app._equipmentController);
+            equipmentWindow.Show();
+            Close();
+        }
+        private void RoomClick(object sender, RoutedEventArgs e)
+        {
+
+            View.ManagerView.ManagerWindow roomWindow = new View.ManagerView.ManagerWindow(_app._roomController);
+            roomWindow.Show();
+            Close();
+        }
+
+        private void OccupancyClick(object sender, RoutedEventArgs e)
+        {
+            View.ManagerView.RoomOccupancy roomOccupancy = new View.ManagerView.RoomOccupancy(_app._appointmentController);
+            roomOccupancy.Show();
+            Close();
+        }
+        private void HomeClick(object sender, RoutedEventArgs e)
+        {
+            View.ManagerView.ManagerHomeWindow managerHomeWindow = new ManagerHomeWindow();
+            managerHomeWindow.Show();
+            Close();
+        }
+        private void MedicineClick(object sender, RoutedEventArgs e)
+        {
+            MedicineWindow medicine = new MedicineWindow();
+            medicine.Show();
+            Close();
         }
 
     }

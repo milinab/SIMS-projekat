@@ -5,28 +5,39 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Hospital.View.ManagerView"
         mc:Ignorable="d"
-        Title="ManagerHomeWindow" Height="450" Width="800">
+        Title="ManagerHomeWindow" Height="450" Width="800"
+        WindowStyle="None">
 
 
-    <Grid>
-        <Button Content="Medicine records" HorizontalAlignment="Left" Margin="144,98,0,0" VerticalAlignment="Top" Width="150" Height="40" />
-        <Button Content="Equipment records" HorizontalAlignment="Left" Margin="453,200,0,0" VerticalAlignment="Top" Width="150" Height="40" Click="EquipmentClick" />
-        <Button Content="Room occupancy records" HorizontalAlignment="Left" Margin="144,200,0,0" VerticalAlignment="Top" Width="150" Height="40" Click="OccupancyClick" />
-        <Button Content="Survey analysis" HorizontalAlignment="Left" Margin="453,98,0,0" VerticalAlignment="Top" Width="150" Height="40" />
-        <Button Content="Room controller" HorizontalAlignment="Left" Margin="300,315,0,0" VerticalAlignment="Top" Width="150" Height="40" Click="RoomClick"/>
+    <Grid Background="Azure" Margin="0,1,0,-1">
+        <Line X1="50" Y1="50" X2="1000" Y2="50" Stroke="White"  StrokeThickness="3" Margin="-50,18,1,318" />
+        <Image Margin="121,103,479,212" Source="/images/medicine.jpg" MouseLeftButtonUp="MedicineClick" Cursor="Hand"/>
+        <Image Margin="479,105,121,210" Source="/images/equipment.jpg" MouseLeftButtonUp="EquipmentClick" Cursor="Hand"/>
+        <Image Margin="120,273,480,42" Source="/images/occupancy.jpg" MouseLeftButtonUp="OccupancyClick" Cursor="Hand"/>
+        <Image Margin="480,271,120,44" Source="/images/room.jpg" MouseLeftButtonUp="RoomClick" Cursor="Hand"/>
+        <TextBlock Text="Medicine records" HorizontalAlignment="Left" Margin="163,228,0,0" VerticalAlignment="Top" Width="115" Height="33" MouseLeftButtonUp="MedicineClick" FontSize="15" Cursor="Hand"/>
+        <TextBlock Text="Equipment records" HorizontalAlignment="Left" Margin="514,230,0,0" VerticalAlignment="Top" Width="127" Height="32" MouseLeftButtonUp="EquipmentClick" FontSize="15" Cursor="Hand"/>
+        <TextBlock Text="Room occupancy records" HorizontalAlignment="Left" Margin="132,399,0,0" VerticalAlignment="Top" Width="194" Height="40" MouseLeftButtonUp="OccupancyClick" FontSize="15" Cursor="Hand"/>
+        <TextBlock Text="Room records" HorizontalAlignment="Left" Margin="522,396,0,0" VerticalAlignment="Top" Width="111" Height="40" MouseLeftButtonUp="RoomClick" FontSize="15" Cursor="Hand"/>
 
-        <DockPanel>
-            <Menu DockPanel.Dock="Top" Height="48" VerticalAlignment="Top">
-                <MenuItem Header="Home" Height="47" Width="67" FontSize="20" Margin="200,0,0,0"/>
-                <MenuItem Header="Equipment" Height="47" Width="124" FontSize="20"/>
-                <MenuItem Header="Room" Height="47" Width="73" FontSize="20"/>
-                <MenuItem Header="RoomOccupancy" Height="47" Width="160" FontSize="20"/>
+        <DockPanel Margin="0,-10,0,373">
+            <Menu DockPanel.Dock="Top" Background ="AliceBlue" Cursor="Hand" Height="66" >
+
+                <MenuItem Header="Home" Height="61" Width="95" FontSize="12" Click="HomeClick" HorizontalAlignment="Stretch" Margin="90,0,0,0" />
+                <MenuItem Header="Medicine" Height="65" Width="130" FontSize="12" Click="MedicineClick"/>
+                <MenuItem Header="Equipment" Height="65" Width="145" FontSize="12" Click="EquipmentClick"/>
+                <MenuItem Header="Rooms" Height="66" Width="105" FontSize="12" Click="RoomClick" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <MenuItem Header="Room occupancy" Height="64" Width="102" FontSize="12" Click="OccupancyClick"/>
+
 
 
             </Menu>
         </DockPanel>
+        <Image Source="/images/hospitalll.jpg" Margin="0,0,721,376" MouseLeftButtonUp="HomeClick" Cursor="Hand"/>
+        <Image Source="/images/sign_out.png" Margin="699,15,66,395" MouseLeftButtonUp="SignOutClick" Cursor="Hand"/>
+        <TextBlock Text="Sign out" FontSize="12" Margin="727,19,0,394" MouseLeftButtonUp="SignOutClick" Cursor="Hand" RenderTransformOrigin="0.512,0.042" HorizontalAlignment="Left" Width="84"/>
 
-    </Grid>
+    </Grid >
 
 
 </Window>
