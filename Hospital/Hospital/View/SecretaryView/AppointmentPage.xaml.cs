@@ -2,6 +2,7 @@
 using Hospital.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace Hospital.View.SecretaryView
 {
     /// <summary>
@@ -27,24 +29,25 @@ namespace Hospital.View.SecretaryView
         private readonly object _content;
 
 
+
         public AppointmentPage()
         {
             app = Application.Current as App;
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
+
             _content = Content;
-            DataContext = this;
             dataGridAppointments.ItemsSource = app._appointmentController.Read();
-       
+
         }
 
-       
+
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
             SecretaryWindow secretaryWindow = new SecretaryWindow();
             secretaryWindow.Show();
-            this.Hide();
+            this.Close();
         }
 
         private void MenuItem_Click_1(object sender, RoutedEventArgs e)
@@ -52,17 +55,18 @@ namespace Hospital.View.SecretaryView
             Content = _content;
         }
 
-        private void DeletePatient(object sender, RoutedEventArgs e)
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
             Appointment appointment = dataGridAppointments.SelectedValue as Appointment;
             app._appointmentController.Delete(appointment.Id);
         }
 
-        public void AddPatientClick(object sender, RoutedEventArgs e)
+        public void AddButtton_Click(object sender, RoutedEventArgs e)
         {
-            //AddAppointment addPage = new AddAppointment(this);
-            //Content = addPage;
-            
+            AddAppointment addWindow = new AddAppointment(this);
+            addWindow.Show();
+            this.Close();
+
         }
 
         //private void EditButtonClick(object sender, RoutedEventArgs e)
@@ -75,15 +79,11 @@ namespace Hospital.View.SecretaryView
         //    }
         //}
 
-        public void BackToAppointmentPage()
-        {
-            Content = _content;
-        }
         private void SignOut_Click(object sender, RoutedEventArgs e)
         {
             LogIn logIn = new LogIn();
             logIn.Show();
-            this.Hide();
+            this.Close();
         }
     }
 }

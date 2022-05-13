@@ -22,7 +22,7 @@ namespace Hospital.View.SecretaryView
         private readonly App _app;
         private AllergenList allergies;
         private ObservableCollection<Allergen> allergens;
-        public EditPatient(Patient patient,int userId,SecretaryWindow secretaryWindow)
+        public EditPatient(Patient patient, int userId, SecretaryWindow secretaryWindow)
         {
             _app = Application.Current as App;
             InitializeComponent();
@@ -54,7 +54,7 @@ namespace Hospital.View.SecretaryView
             _medicalRecordId = patient.MedicalRecordId;
             _countryId = patient.Address.City.CountryId;
             _cityId = patient.Address.CityId;
-            
+
 
         }
         private void CancelPatientOnClick(Object sender, RoutedEventArgs e)
@@ -77,13 +77,13 @@ namespace Hospital.View.SecretaryView
             _app._userController.Edit(user);
             AllergenList patientAllergies = new AllergenList();
             foreach (Allergen allergen in AllergenListBox.SelectedItems)
-            { 
+            {
                 patientAllergies.Add(allergen.Id);
             }
             MedicalRecord record = new MedicalRecord(chronicalDiseaseText.Text, patientAllergies, _medicalRecordId);
             _app._medicalRecordController.Edit(record);
             Patient patient = new Patient(user, genderText.Text, bloodTypeText.Text, healthInsuranceIdText.Text, record, _id);
-            
+
             _app._patientController.Edit(patient);
             _secretaryWindow.BackToSecretaryWindow();
         }
@@ -97,7 +97,7 @@ namespace Hospital.View.SecretaryView
         {
             AppointmentPage appointmentPage = new AppointmentPage();
             appointmentPage.Show();
-            _secretaryWindow.Hide();
+            _secretaryWindow.Close();
         }
 
         private void AddAllergen_Click(object sender, RoutedEventArgs e)
@@ -118,7 +118,7 @@ namespace Hospital.View.SecretaryView
         {
             LogIn logIn = new LogIn();
             logIn.Show();
-            _secretaryWindow.Hide();
+            _secretaryWindow.Close();
         }
     }
 }

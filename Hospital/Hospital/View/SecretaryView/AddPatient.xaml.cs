@@ -26,7 +26,7 @@ namespace Hospital.View.SecretaryView
             AllergenListBox.ItemsSource = allergens;
             AllergenListBox.Items.Refresh();
             _secretaryWindow = secretaryWindow;
-          
+
         }
 
         private void AddPatientOnClick(object sender, RoutedEventArgs e)
@@ -38,7 +38,7 @@ namespace Hospital.View.SecretaryView
             Address tempAddress = new Address(streetText.Text, numberText.Text, tempCity);
             _app._addressController.Create(tempAddress);
             User user = new User(nameText.Text, lastNameText.Text, idNumberText.Text, usernameText.Text,
-                passwordText.Text, tempAddress, phoneText.Text, emailText.Text, "patient", 
+                passwordText.Text, tempAddress, phoneText.Text, emailText.Text, "patient",
                 (DateTime)datePicker.SelectedDate);
             AllergenList patientAllergies = new AllergenList();
             foreach (Allergen allergen in AllergenListBox.SelectedItems)
@@ -67,11 +67,11 @@ namespace Hospital.View.SecretaryView
         {
             AppointmentPage appointmentPage = new AppointmentPage();
             appointmentPage.Show();
-            _secretaryWindow.Hide();
+            _secretaryWindow.Close();
         }
 
         private void AddAllergen_Click(object sender, RoutedEventArgs e)
-        {   
+        {
             if (AllergiesText.Text.Trim().Equals(""))
             {
                 MessageBox.Show("Allergy can't have no name");

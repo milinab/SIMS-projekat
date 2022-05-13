@@ -289,6 +289,9 @@
     <Compile Include="View\SecretaryView\AppointmentPage.xaml.cs">
       <DependentUpon>AppointmentPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\SecretaryView\AddAppointment.xaml.cs">
+      <DependentUpon>AddAppointment.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\SecretaryView\SecretaryWindow.xaml.cs">
       <DependentUpon>SecretaryWindow.xaml</DependentUpon>
     </Compile>
@@ -422,6 +425,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\SecretaryView\AppointmentPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SecretaryView\AddAppointment.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

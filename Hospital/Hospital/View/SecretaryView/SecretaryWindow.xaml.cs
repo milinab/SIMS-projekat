@@ -76,9 +76,5 @@ namespace Hospital.View.SecretaryView
             this.Close();
         }
 
-        private void dataGridPatients_SelectionChanged()
-        {
-
-        }
     }
 }
