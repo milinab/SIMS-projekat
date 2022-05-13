@@ -57,5 +57,10 @@ namespace Hospital.Service
         {
             return ++_id;
         }
+
+        public Patient ReadByUsername(string username)
+        {
+            return _repository.ReadByUsername(username);
+        }
     }
 }

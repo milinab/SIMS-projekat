@@ -20,6 +20,12 @@
         public UserRepository UserRepository { get; set; }
         public TherapyRepository TherapyRepository { get; set; }
         public MedicineRepository MedicineRepository { get; set; }
+        public SurveyRepository SurveyRepository { get; set; }
+        public DoctorSurveyResponseRepository DoctorSurveyResponseRepository { get; set; }
+        public HospitalSurveyResponseRepository HospitalSurveyResponseRepository { get; set; }
+        public QuestionRepository QuestionRepository { get; set; }
+        public NoteRepository NoteRepository { get; set; }
+        public TrolRepository TrolRepository { get; set; }
 
         public Repositories()
         {
@@ -41,6 +47,12 @@
             UserRepository = new UserRepository(AddressRepository);
             TherapyRepository = new TherapyRepository(TherapyRepository);
             MedicineRepository = new MedicineRepository();
+            SurveyRepository = new SurveyRepository(SurveyRepository);
+            DoctorSurveyResponseRepository = new DoctorSurveyResponseRepository(DoctorSurveyResponseRepository);
+            HospitalSurveyResponseRepository = new HospitalSurveyResponseRepository(HospitalSurveyResponseRepository);
+            QuestionRepository = new QuestionRepository(QuestionRepository);
+            NoteRepository = new NoteRepository(NoteRepository);
+            TrolRepository = new TrolRepository(TrolRepository);
         }
     }
 }

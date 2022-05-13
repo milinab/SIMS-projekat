@@ -75,9 +75,28 @@ namespace Hospital.Service
         {
             return _repository.Read();
         }
+        public ObservableCollection<Appointment> ReadByDoctorId(int doctorId)
+        {
+            return _repository.ReadByDoctorId(doctorId);
+        }
+
         private int GenerateId()
         {
             return ++_id;
         }
+
+        public ObservableCollection<Appointment> ReadPastAppointments()
+        {
+            ObservableCollection<Appointment> pastAppointments = new ObservableCollection<Appointment>();
+
+            ObservableCollection<Appointment> allAppointments = _repository.Read();
+            foreach (Appointment a in allAppointments) {
+                if (a.Date < DateTime.Now) {
+                    pastAppointments.Add(a);
+                }
+            }
+            return pastAppointments;
+        }
+        
     }
 }

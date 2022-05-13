@@ -30,6 +30,12 @@ namespace Hospital
         internal UserController _userController;
         internal TherapyController _therapyController;
         internal MedicineController _medicineController;
+        internal SurveyController _surveyController;
+        internal DoctorSurveyResponseController _doctorSurveyResponseController;
+        internal HospitalSurveyResponseController _hospitalSurveyResponseController;
+        internal QuestionController _questionController;
+        internal NoteController _noteController;
+        internal TrolController _trolController;
 
         internal MainPage _mainPage;
 
@@ -56,6 +62,12 @@ namespace Hospital
             _userController = new UserController(services.UserService);
             _therapyController = new TherapyController(services.TherapyService);
             _medicineController = new MedicineController(services.MedicineService);
+            _surveyController = new SurveyController(services.SurveyService);
+            _doctorSurveyResponseController = new DoctorSurveyResponseController(services.DoctorSurveyResponseService);
+            _hospitalSurveyResponseController = new HospitalSurveyResponseController(services.HospitalSurveyResponseService);
+            _questionController = new QuestionController(services.QuestionService);
+            _noteController = new NoteController(services.NoteService);
+            _trolController = new TrolController(services.TrolService);
 
             _mainPage = new MainPage();
         }

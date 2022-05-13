@@ -100,6 +100,7 @@ namespace Hospital.Repository
                     patient.DateOfBirth = editPatient.DateOfBirth;
                     patient.Email = editPatient.Email;
                     patient.Gender = editPatient.Gender;
+                    patient.IsActive = editPatient.IsActive;
                 }
             }
             Write();
@@ -120,6 +121,25 @@ namespace Hospital.Repository
         public void Write()
         {
             _serializer.Write(_patients);
+        }
+
+        public Patient ReadByUsername(string username)
+        {
+            _patients = _serializer.Read();
+            foreach (Patient user in _patients)
+            {
+                if (user.Username == username)
+                {
+                    Address address = _addressRepository.ReadById(user.AddressId);
+                    if (address != null)
+                    {
+                        user.Address = address;
+                        return user;
+                    }
+                    return user;
+                }
+            }
+            return null;
         }
     }
 }

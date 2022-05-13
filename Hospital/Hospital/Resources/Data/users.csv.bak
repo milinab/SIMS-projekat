@@ -1,5 +1,0 @@
-Id,Name,LastName,IdNumber,Username,Password,AddressId,Email,Phone,AccountType,DateOfBirth
-1,Milina,Bucko,1234567891011,p,p,1,milina@bucko.com,01234567,patient,2000-09-11
-2,Aleksa,Ignjatovic,1234567891011,s,s,2,aleksa@ignjatovic.com,01234567,secretary,2000-10-18
-3,Nemanja,Jelic,1234567891011,m,m,3,nemanja@jelic.com,01234567,manager,2000-06-21
-4,Marko,Uljarevic,1234567891011,d,d,4,marko@uljarevic.com,01234567,doctor,2000-01-21

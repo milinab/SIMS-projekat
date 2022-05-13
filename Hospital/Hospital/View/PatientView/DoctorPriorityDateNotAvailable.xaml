@@ -33,19 +33,22 @@
                 <DataGridTextColumn Header="Time" Binding="{Binding Duration, StringFormat=\{0:H:mm\}}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
+        
 
         <Label Content="Chosen doctor:" HorizontalAlignment="Left" Margin="420,150,0,0" VerticalAlignment="Top" Width="156" FontSize="16" Height="34" FontWeight="Bold"/>
-        <Label Name="ChosenDoctor" HorizontalAlignment="Left" Margin="420,185,0,0" VerticalAlignment="Top" Width="192" Height="29"  Content="{Binding Doctor.Name}"/>
+        <TextBlock x:Name="ChosenDoctor" HorizontalAlignment="Left" Height="29" Margin="425,184,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="125"/>
 
         <Label Content="Choose an appointment:" HorizontalAlignment="Left" Margin="420,220,0,0" VerticalAlignment="Top" Width="210" FontSize="16" Height="34" FontWeight="Bold"/>
         <DataGrid x:Name="dataGridDoctorPriority" AutoGenerateColumns="False" Height="195" Margin="425,254,10,0" VerticalAlignment="Top">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Date" Binding="{Binding Date, StringFormat=\{0:d.M.yyyy\}}" Width="*"/>
-                <DataGridTextColumn Header="Time" Binding="{Binding Duration, StringFormat=\{0:H:mm\}}" Width="*"/>
+                <DataGridTextColumn Header="Time" Binding="{Binding Date, StringFormat=\{0:H:mm\}}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
 
         <Button x:Name="ConfirmAppointment" Content="Confirm" HorizontalAlignment="Left" Margin="420,465,0,0" VerticalAlignment="Top" Height="35" Width="80" Click="ConfirmAppointment_Click"/>
         <Button x:Name="Back" Content="Back" HorizontalAlignment="Left" Margin="520,465,0,0" VerticalAlignment="Top" Height="35" Width="80" Click="Back_Click"/>
+
+        <Frame x:Name="frame" NavigationUIVisibility="Hidden" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" Grid.Column="1"/>
     </Grid>
 </Page>

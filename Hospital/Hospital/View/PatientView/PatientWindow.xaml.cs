@@ -20,6 +20,7 @@ namespace Hospital.View.PatientView
         private App app;
         private readonly object _content;
         private Doctor doctor;
+        public Patient patient;
         DispatcherTimer liveDateTime = new DispatcherTimer();
 
         public ObservableCollection<Appointment> Appointments
@@ -40,12 +41,13 @@ namespace Hospital.View.PatientView
             set;
         }
 
-        public PatientWindow()
+        public PatientWindow(Patient p)
         {
             InitializeComponent();
             app = Application.Current as App;
             _content = Content;
             this.DataContext = this;
+            patient = p;
             dataGridAppointments.ItemsSource = app._appointmentController.Read();
 
             Appointments = new ObservableCollection<Appointment>();
@@ -56,15 +58,9 @@ namespace Hospital.View.PatientView
 
 
             foreach (var a in Appointments) {
-                 doctor = app._doctorController.ReadById(a.DoctorId);
+                doctor = app._doctorController.ReadById(a.DoctorId);
                 Doctors.Add(doctor);
             }
-
-            //dataGridAppointments.ItemsSource = Doctors;
-
-
-            Console.WriteLine("tesct");
-
 
         }
 
@@ -84,8 +80,6 @@ namespace Hospital.View.PatientView
                     liveDateTime.Tick += TimerTick;
                     liveDateTime.Start();
                 }
-
-
 
             }
 
@@ -148,7 +142,20 @@ namespace Hospital.View.PatientView
 
         private void MyAppointments_Click(object sender, RoutedEventArgs e)
         {
-            Content = _content;
+            PastAppointments bookAnAppointmentPage = new PastAppointments(this);
+            Content = bookAnAppointmentPage;
+        }
+
+        private void Surveys_Click(object sender, RoutedEventArgs e)
+        {
+            var takeSurvey = new Surveys(this);
+            Content = takeSurvey;
+        }
+
+        private void Notes_Click(object sender, RoutedEventArgs e)
+        {
+            var lookNotes = new Notes(this);
+            Content = lookNotes;
         }
 
         public void BackToPatientWindow()

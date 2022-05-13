@@ -60,8 +60,8 @@ namespace Hospital.View.SecretaryView
 
         public void AddPatientClick(object sender, RoutedEventArgs e)
         {
-            AddAppointment addPage = new AddAppointment(this);
-            Content = addPage;
+            //AddAppointment addPage = new AddAppointment(this);
+            //Content = addPage;
             
         }
 

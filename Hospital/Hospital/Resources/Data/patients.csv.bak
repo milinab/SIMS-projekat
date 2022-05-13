@@ -1,2 +1,0 @@
-MedicalRecordId,Gender,BloodType,HealthInsuranceId,Id,Name,LastName,IdNumber,Username,Password,AddressId,Email,Phone,AccountType,DateOfBirth
-1,Female,0+,5616161,1,Milina,Bucko,1234567891011,p,p,1,milina@bucko.com,01234567,patient,2000-09-11

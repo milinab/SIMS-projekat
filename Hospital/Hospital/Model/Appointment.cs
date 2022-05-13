@@ -28,18 +28,18 @@ namespace Hospital.Model
         {
         }
 
-        public Appointment(Room room, DateTime date)
+        public Appointment(Room room, DateTime duration)
         {
             Room = room;
             RoomId = room.Id;
-            Date = date;
+            Date = duration;
         }
-        public Appointment(Room room, DateTime date, TimeSpan time)
+        public Appointment(Room room, DateTime date, TimeSpan duration)
         {
             Room = room;
             RoomId = room.Id;
             Date = date;
-            Duration = time;
+            Duration = duration;
         }
 
         public Appointment(DateTime date, TimeSpan duration, Doctor doctor, Patient patient, Room room)
