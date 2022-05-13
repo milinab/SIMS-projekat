@@ -15,7 +15,7 @@
 
         <Menu Width="Auto" Margin="0,40,0,450">
             <MenuItem Height="60" Width="140" VerticalAlignment="Center" Padding="10,0,0,0" Header=" " Margin="10,0,0,0" HorizontalAlignment="Stretch"/>
-            <MenuItem Height="60" Width="100" VerticalAlignment="Center" Padding="10,0,0,0" Header="Medical record"/>
+            <MenuItem Height="60" Width="100" VerticalAlignment="Center" Padding="10,0,0,0" Header="Medical record" Click="MedicalRecord_Click"/>
             <MenuItem Height="60" Width="120" VerticalAlignment="Center" Padding="10,0,0,0" Header="My appointments" Margin="0,0,0,0" HorizontalAlignment="Stretch" Click="MyAppointments_Click"/>
             <MenuItem Height="60" Width="85" VerticalAlignment="Center" Padding="10,0,0,0" Header="My therapy"/>
             <MenuItem Height="60" Width="70" VerticalAlignment="Center" Padding="10,0,0,0" Header="Calendar"/>

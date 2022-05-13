@@ -139,6 +139,11 @@ namespace Hospital.View.PatientView
                 MessageBox.Show("Select an appointment You want to cancel.", "Warning");
             }
         }
+        private void MedicalRecord_Click(object sender, RoutedEventArgs e)
+        {
+            var medicalRecordPage = new MedicalRecord(this);
+            Content = medicalRecordPage;
+        }
 
         private void MyAppointments_Click(object sender, RoutedEventArgs e)
         {

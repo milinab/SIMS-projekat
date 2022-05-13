@@ -256,6 +256,9 @@
       <DependentUpon>EditAnAppointment.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\PatientView\EnumMatchToBooleanConverter.cs" />
+    <Compile Include="View\PatientView\MedicalRecord.xaml.cs">
+      <DependentUpon>MedicalRecord.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\PatientView\NoteInfo.xaml.cs">
       <DependentUpon>NoteInfo.xaml</DependentUpon>
     </Compile>
@@ -378,6 +381,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\PatientView\EditAnAppointment.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PatientView\MedicalRecord.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

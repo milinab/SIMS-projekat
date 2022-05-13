@@ -67,6 +67,7 @@ namespace Hospital.View.PatientView
             AvailableAppointments = new ObservableCollection<Appointment>();
             initializeData(doctorId, date);
             dataGridDoctorPriority.ItemsSource = AvailableAppointments;
+            dataGridAppointments.ItemsSource = patientWindow.Appointments;
         }
         private void initializeData(int doctorId, DateTime date)
         {
@@ -76,82 +77,35 @@ namespace Hospital.View.PatientView
             this.ChosenDoctor.Text = doctor.Name + " " + doctor.LastName;
 
             // radno vreme bolnice
-            List<TimeSpan> allAppointmentTimes = new List<TimeSpan>();
-            allAppointmentTimes.Add(new TimeSpan(7, 00, 00));
-            allAppointmentTimes.Add(new TimeSpan(7, 30, 00));
-            allAppointmentTimes.Add(new TimeSpan(8, 00, 00));
-            allAppointmentTimes.Add(new TimeSpan(8, 30, 00));
-            allAppointmentTimes.Add(new TimeSpan(9, 00, 00));
-            allAppointmentTimes.Add(new TimeSpan(9, 30, 00));
-            allAppointmentTimes.Add(new TimeSpan(10, 00, 00));
-            allAppointmentTimes.Add(new TimeSpan(10, 30, 00));
+            List<TimeSpan> hospitalWorkingHours = new List<TimeSpan>();
+            hospitalWorkingHours.Add(new TimeSpan(7, 00, 00));
+            hospitalWorkingHours.Add(new TimeSpan(7, 30, 00));
+            hospitalWorkingHours.Add(new TimeSpan(8, 00, 00));
+            hospitalWorkingHours.Add(new TimeSpan(8, 30, 00));
+            hospitalWorkingHours.Add(new TimeSpan(9, 00, 00));
+            hospitalWorkingHours.Add(new TimeSpan(9, 30, 00));
+            hospitalWorkingHours.Add(new TimeSpan(10, 00, 00));
+            hospitalWorkingHours.Add(new TimeSpan(10, 30, 00));
 
-            /*List<TimeSpan> allAppointmentTimesAv = new List<TimeSpan>();
-            allAppointmentTimesAv.Add(new TimeSpan(7, 00, 00));
-            allAppointmentTimesAv.Add(new TimeSpan(7, 30, 00));
-            allAppointmentTimesAv.Add(new TimeSpan(8, 00, 00));
-            allAppointmentTimesAv.Add(new TimeSpan(8, 30, 00));
-            allAppointmentTimesAv.Add(new TimeSpan(9, 00, 00));
-            allAppointmentTimesAv.Add(new TimeSpan(9, 30, 00));
-            allAppointmentTimesAv.Add(new TimeSpan(10, 00, 00));
-            allAppointmentTimesAv.Add(new TimeSpan(10, 30, 00));*/
-
-            List<TimeSpan> allAppointmentTimesAv = new List<TimeSpan>(allAppointmentTimes);
+            List<TimeSpan> hospitalWorkingHoursListForCalculation = new List<TimeSpan>(hospitalWorkingHours);
 
             // pronadji sve appointmente tog lekara, uzmi njigovo pocetno vreme i izbrisi iz liste allAppointmentTImes ako se poklapaju
 
             DoctorsAppointments = new ObservableCollection<Appointment>();
             DoctorsAppointments = app._appointmentController.ReadByDoctorId(doctorId);
 
-            foreach (Appointment a in DoctorsAppointments)
+            findAvailabeAppointments(DoctorsAppointments, hospitalWorkingHours, hospitalWorkingHoursListForCalculation, date);
+
+            if (AvailableAppointments.Count == 0)
             {
+                DateTime tommorow = date.AddDays(1); //uzmes sutradan
+                _date = tommorow;
+                MessageBox.Show("Nazalost, nema dostupnih termina za trazeni datum. U listi ce vam se prikazati dostupni termini za naredni datum.");
+                findAvailabeAppointments(DoctorsAppointments, hospitalWorkingHours, hospitalWorkingHoursListForCalculation, tommorow);
 
-                var appStartTime = a.Date;
-                var appEndTime = a.Date + a.Duration;
-
-                foreach (TimeSpan appTime in allAppointmentTimes)
-                {
-                    //DateTime dt = new DateTime(date);
-                    date = date + appTime;
-                    if (DateTime.Compare(date, appStartTime) > 0)
-                    {
-                        if (DateTime.Compare(date, appEndTime) < 0)
-                        {
-                            if (allAppointmentTimesAv.Contains(appTime))
-                            {
-                                allAppointmentTimesAv.Remove(appTime);
-                            }
-
-                        }
-                        else if (DateTime.Compare(date, appEndTime) == 0)
-                        {
-                            allAppointmentTimesAv.Remove(appTime);
-                        }
-                    }
-                    else if (DateTime.Compare(date, appStartTime) == 0)
-                    {
-                        if (DateTime.Compare(date, appEndTime) < 0)
-                        {
-                            if (allAppointmentTimesAv.Contains(appTime))
-                            {
-                                allAppointmentTimesAv.Remove(appTime);
-                            }
-                        }
-                    }
-                    date = _date;
-                }
-            }
-
-
-            foreach (TimeSpan time in allAppointmentTimesAv)
-            {
-                Appointment app = new Appointment();
-                app.Date = _date + time;
-
-                AvailableAppointments.Add(app);
             }
         }
-
+            
         private void ConfirmAppointment_Click(object sender, RoutedEventArgs e)
         {
             var viewModel = this.dataGridDoctorPriority.DataContext as Appointment;
@@ -169,6 +123,59 @@ namespace Hospital.View.PatientView
             _patientWindow.BackToPatientWindow();
         }
 
+        public void findAvailabeAppointments(ObservableCollection<Appointment> DoctorsAppointments,
+            List<TimeSpan> hospitalWorkingHours, List<TimeSpan> hospitalWorkingHoursListForCalculation, DateTime date)
+        {
+
+            List<TimeSpan> cloneList = new List<TimeSpan>(hospitalWorkingHoursListForCalculation);
+            foreach (Appointment a in DoctorsAppointments)
+            {
+
+                var appStartTime = a.Date;
+                var appEndTime = a.Date + a.Duration;
+
+                foreach (TimeSpan appTime in hospitalWorkingHours)
+                {
+                    //DateTime dt = new DateTime(date);
+                    date = date + appTime;
+                    if (DateTime.Compare(date, appStartTime) > 0)
+                    {
+                        if (DateTime.Compare(date, appEndTime) < 0)
+                        {
+                            if (cloneList.Contains(appTime))
+                            {
+                                cloneList.Remove(appTime);
+                            }
+
+                        }
+                        else if (DateTime.Compare(date, appEndTime) == 0)
+                        {
+                            cloneList.Remove(appTime);
+                        }
+                    }
+                    else if (DateTime.Compare(date, appStartTime) == 0)
+                    {
+                        if (DateTime.Compare(date, appEndTime) < 0)
+                        {
+                            if (cloneList.Contains(appTime))
+                            {
+                                cloneList.Remove(appTime);
+                            }
+                        }
+                    }
+                    date = _date;
+                }
+            }
+
+            foreach (TimeSpan time in cloneList)
+            {
+                Appointment app = new Appointment();
+                app.Date = _date + time;
+
+                AvailableAppointments.Add(app);
+            }
+
+        }
         private void MyAppointments_Click(object sender, RoutedEventArgs e)
         {
             _patientWindow.BackToPatientWindow();

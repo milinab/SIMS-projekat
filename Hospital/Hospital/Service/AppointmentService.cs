@@ -80,6 +80,11 @@ namespace Hospital.Service
             return _repository.ReadByDoctorId(doctorId);
         }
 
+        public ObservableCollection<Appointment> ReadByDateAndNotDoctor(int doctorId, DateTime date)
+        {
+            return _repository.ReadByDateAndNotDoctor(doctorId, date);
+        }
+
         private int GenerateId()
         {
             return ++_id;
