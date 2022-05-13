@@ -106,16 +106,13 @@
     </ApplicationDefinition>
     <Compile Include="Controller\AddressController.cs" />
     <Compile Include="Controller\AllergenController.cs" />
-<<<<<<< HEAD
     <Compile Include="Controller\MedicineController.cs" />
-=======
     <Compile Include="Controller\TrolController.cs" />
     <Compile Include="Controller\NoteController.cs" />
     <Compile Include="Controller\HospitalSurveyResponseController.cs" />
     <Compile Include="Controller\QuestionController.cs" />
     <Compile Include="Controller\DoctorSurveyResponseController.cs" />
     <Compile Include="Controller\SurveyController.cs" />
->>>>>>> 5914fce4a047f3599b1b015186480fe774a529a9
     <Compile Include="Controller\TherapyController.cs" />
     <Compile Include="Controller\DoctorController.cs" />
     <Compile Include="Controller\ManagerController.cs" />
@@ -135,30 +132,24 @@
     <Compile Include="LogIn.xaml.cs">
       <DependentUpon>LogIn.xaml</DependentUpon>
     </Compile>
-<<<<<<< HEAD
     <Compile Include="Model\Medicine.cs" />
-=======
     <Compile Include="Model\Trol.cs" />
     <Compile Include="Model\Note.cs" />
     <Compile Include="Model\HospitalSurveyResponse.cs" />
     <Compile Include="Model\Question.cs" />
     <Compile Include="Model\DoctorSurveyResponse.cs" />
     <Compile Include="Model\Survey.cs" />
->>>>>>> 5914fce4a047f3599b1b015186480fe774a529a9
     <Compile Include="Model\Therapy.cs" />
     <Compile Include="Model\Allergen.cs" />
     <Compile Include="Model\AllergenList.cs" />
     <Compile Include="Repository\AddressRepository.cs" />
-<<<<<<< HEAD
     <Compile Include="Repository\MedicineRepository.cs" />
-=======
     <Compile Include="Repository\TrolRepository.cs" />
     <Compile Include="Repository\NoteRepository.cs" />
     <Compile Include="Repository\HospitalSurveyResponseRepository.cs" />
     <Compile Include="Repository\QuestionRepository.cs" />
     <Compile Include="Repository\DoctorSurveyResponseRepository.cs" />
     <Compile Include="Repository\SurveyRepository.cs" />
->>>>>>> 5914fce4a047f3599b1b015186480fe774a529a9
     <Compile Include="Repository\TherapyRepository.cs" />
     <Compile Include="Repository\CityRepository.cs" />
     <Compile Include="Repository\AllergenRepository.cs" />
@@ -175,16 +166,13 @@
     <Compile Include="Repository\UserRepository.cs" />
     <Compile Include="Service\AddressService.cs" />
     <Compile Include="Service\AllergenService.cs" />
-<<<<<<< HEAD
     <Compile Include="Service\MedicineService.cs" />
-=======
     <Compile Include="Service\TrolService.cs" />
     <Compile Include="Service\NoteService.cs" />
     <Compile Include="Service\HospitalSurveyResponseService.cs" />
     <Compile Include="Service\QuestionService.cs" />
     <Compile Include="Service\DoctorSurveyResponseService.cs" />
     <Compile Include="Service\SurveyService.cs" />
->>>>>>> 5914fce4a047f3599b1b015186480fe774a529a9
     <Compile Include="Service\TherapyService.cs" />
     <Compile Include="Service\DoctorService.cs" />
     <Compile Include="Service\ManagerService.cs" />
@@ -246,13 +234,8 @@
     <Compile Include="View\ManagerView\RoomOccupancy.xaml.cs">
       <DependentUpon>RoomOccupancy.xaml</DependentUpon>
     </Compile>
-<<<<<<< HEAD
-    <Compile Include="View\ManagerView\Survey.xaml.cs">
-      <DependentUpon>Survey.xaml</DependentUpon>
-=======
     <Compile Include="View\PatientView\AddNote.xaml.cs">
       <DependentUpon>AddNote.xaml</DependentUpon>
->>>>>>> 5914fce4a047f3599b1b015186480fe774a529a9
     </Compile>
     <Compile Include="View\PatientView\BookAnAppointment.xaml.cs">
       <DependentUpon>BookAnAppointment.xaml</DependentUpon>
@@ -370,11 +353,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-<<<<<<< HEAD
-    <Page Include="View\ManagerView\Survey.xaml">
-=======
     <Page Include="View\PatientView\AddNote.xaml">
->>>>>>> 5914fce4a047f3599b1b015186480fe774a529a9
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -500,7 +479,6 @@
     <None Include="Resources\notification.png" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
     <Resource Include="images\medicine.jpg" />
   </ItemGroup>
   <ItemGroup>
@@ -529,7 +507,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\maintenance.png" />
-=======
     <None Include="Resources\insertNoteName.JPG" />
   </ItemGroup>
   <ItemGroup>
@@ -537,7 +514,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="View\PatientView\insertNoteText.png" />
->>>>>>> 5914fce4a047f3599b1b015186480fe774a529a9
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
