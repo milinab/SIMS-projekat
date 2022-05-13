@@ -3,7 +3,8 @@ using Hospital.Controller;
 using Hospital.Model;
 
 
-namespace Hospital.View.SecretaryView {
+namespace Hospital.View.SecretaryView
+{
     /// <summary>
     /// Interaction logic for SecretaryWindow.xaml
     /// </summary>
@@ -20,79 +21,9 @@ namespace Hospital.View.SecretaryView {
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
             _content = Content;
-           
+
             dataGridPatients.ItemsSource = app._patientController.Read();
-            //Patient patient1 = new Patient()
-            //{
-            //    Name = "Pera",
-            //    LastName = "Lazic",
-            //    Username = "peropera",
-            //    AccountType = "Patient",
-            //    Password = "p123eropera",
-            //    Gender = "Male",
-            //    IdNumber = "1111111111111",
-            //    Phone = "061111111",
-            //    Email = "pera@pera.mejl",
-            //    DateOfBirth = new DateTime(1999, 10, 10),
-            //    HealthInsuranceId = "12312312asda",
-            //    MedicalRecord = new MedicalRecord()
-            //    {
-            //        ChronicalDiseases = "Diabetes"
-            //    },
-            //    BloodType = "A+",
-            //    Address = new Address()
-            //    {
-            //        City = new City()
-            //        {
-            //            Country = new Country()
-            //            {
-            //                Name = "Serbia"
-            //            },
-            //            Zip = "15300",
-            //            Name = "Loznica"
-            //        },
-            //        Street = "Dusana Jovanovica",
-            //        Number = "15"
-            //    }
-                
 
-            //};
-            //_patientController.Create(patient1);
-            //Patient patient2 = new Patient()
-            //{
-
-            //    Name = "Nikolina",
-            //    LastName = "Radicevic",
-            //    Username = "radicanina",
-            //    AccountType = "Patient",
-            //    Password = "whocares",
-            //    Gender = "Female",
-            //    IdNumber = "22222222222",
-            //    Phone = "0622222222",
-            //    Email = "ninasilna@321.32",
-            //    DateOfBirth = new DateTime(1951, 1, 1),
-            //    HealthInsuranceId = "222bbb222bb",
-            //    MedicalRecord = new MedicalRecord()
-            //    {
-            //        ChronicalDiseases = "None"
-            //    },
-            //    BloodType = "O-",
-            //    Address = new Address()
-            //    {
-            //        City = new City()
-            //        {
-            //            Country = new Country()
-            //            {
-            //                Name = "Germany"
-            //            },
-            //            Zip = "12220",
-            //            Name = "Minchen"
-            //        },
-            //        Street = "Nikole Tesle 3",
-            //        Number = "1b"
-            //    }
-            //};
-            //PatientHandler.Create(patient2);
         }
 
         private void DeletePatient(object sender, RoutedEventArgs e)
@@ -111,7 +42,7 @@ namespace Hospital.View.SecretaryView {
 
         private void EditButtonClick(object sender, RoutedEventArgs e)
         {
-            
+
             Patient patient = dataGridPatients.SelectedValue as Patient;
             int userId = app._userController.FindId(patient.Username);
             if (patient.AccountType == "patient")
@@ -128,9 +59,9 @@ namespace Hospital.View.SecretaryView {
 
         private void MenuItem_Click_1(object sender, RoutedEventArgs e)
         {
-            AppointmentPage appointmentPage= new AppointmentPage();
+            AppointmentPage appointmentPage = new AppointmentPage();
             appointmentPage.Show();
-            this.Hide();
+            this.Close();
         }
 
         public void BackToSecretaryWindow()
@@ -138,11 +69,16 @@ namespace Hospital.View.SecretaryView {
             Content = _content;
         }
 
-         private void SignOut_Click(object sender, RoutedEventArgs e)
+        private void SignOut_Click(object sender, RoutedEventArgs e)
         {
             LogIn logIn = new LogIn();
             logIn.Show();
-            this.Hide();
+            this.Close();
+        }
+
+        private void dataGridPatients_SelectionChanged()
+        {
+
         }
     }
 }
