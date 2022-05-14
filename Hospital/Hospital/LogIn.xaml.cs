@@ -46,15 +46,13 @@ namespace Hospital
 
         private bool PatientCheck(Patient p)
         {
-            if (p.IsActive)
+            if (!p.IsActive)
             {
-                PatientWindow patientWindow = new PatientWindow(p);
-                patientWindow.Show();
-                Close();
-                return true;
+                MessageBox.Show("Your account is banned. Please wait for secretary to make Your account active again.");
+                return false;
             }
-            MessageBox.Show("Your account is banned. Please wait for secretary to make Your account active again.");
-            return false;
+            
+            return true;
         }
 
         private bool ValidateLogInInputs(string username, string password)
@@ -94,7 +92,10 @@ namespace Hospital
                     Patient p = _app._patientController.ReadByUsername(username);
                     if (PatientCheck(p))
                     {
-                        return new PatientWindow(p);
+                        PatientWindow patientWindow = new PatientWindow(p);
+                        patientWindow.Show();
+                        Close();
+                        return null;
                     }
                     return null;
                 case "secretary":

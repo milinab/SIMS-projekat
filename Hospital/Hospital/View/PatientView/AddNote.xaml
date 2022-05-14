@@ -75,7 +75,7 @@
             </Validation.ErrorTemplate>
         </TextBox>
         <Button Content="Back to all notes" Background="Bisque" HorizontalAlignment="Left" Margin="642,134,0,0" VerticalAlignment="Top" FontSize="14" Height="27" Width="130" Click="BackToAllNotes_Click"/>
-        <Button x:Name="buttonSave" IsDefault="True" Command="{Binding SaveProtocolCommand}"  Content="Save changes" Background="Bisque" HorizontalAlignment="Left" Margin="674,472,0,0" VerticalAlignment="Top" Height="34" Width="83" Click="SaveChanges_Click" >
+        <Button x:Name="buttonSave" IsDefault="True" Command="{Binding SaveProtocolCommand}"  Content="Save changes" Background="Bisque" HorizontalAlignment="Left" Margin="642,470,0,0" VerticalAlignment="Top" Height="27" Width="130" Click="SaveChanges_Click" >
             <Button.Style>
                 <Style TargetType="Button">
                     <Setter Property="IsEnabled" Value="False"/>
@@ -91,7 +91,7 @@
                 </Style>
             </Button.Style>
         </Button>
-        <TextBox x:Name="noteText" HorizontalAlignment="Center" Margin="-120,191,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="538" Height="268" TextChanged="TextTextBoxTextChanged">
+        <TextBox x:Name="noteText" HorizontalAlignment="Center" Margin="-110,191,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="538" Height="268" TextChanged="TextTextBoxTextChanged">
             <TextBox.Text>
                 <Binding Path="NoteText" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>

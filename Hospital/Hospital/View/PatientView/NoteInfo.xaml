@@ -88,7 +88,7 @@
                 </Style>
             </Button.Style>
         </Button>
-        <TextBox x:Name="noteText" HorizontalAlignment="Center" Margin="0,175,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="760" Height="284" Background="AntiqueWhite">
+        <TextBox x:Name="noteText" HorizontalAlignment="Center" Margin="-110,191,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="538" Height="268" Background="AntiqueWhite">
             <TextBox.Text>
                 <Binding Path="NoteText" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
