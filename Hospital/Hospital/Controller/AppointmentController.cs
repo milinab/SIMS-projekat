@@ -54,5 +54,10 @@ namespace Hospital.Controller
         {
             return _service.ReadByDateAndNotDoctor(doctorId, date);
         }
+
+        public ObservableCollection<Appointment> ReadFutureAppointments()
+        {
+            return _service.ReadFutureAppointments();
+        }
     }
 }

@@ -25,6 +25,7 @@ namespace Hospital.View.PatientView
             new FrameworkPropertyMetadata(0, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, new PropertyChangedCallback(RatingChanged)));
 
         private int _max = 5;
+        
 
         public int Value
         {
@@ -34,9 +35,9 @@ namespace Hospital.View.PatientView
             }
             set
             {
-                if (value < 0)
+                if (value < 1)
                 {
-                    SetValue(ValueProperty, 0);
+                    SetValue(ValueProperty, 1);
                 }
                 else if (value > _max)
                 {
@@ -84,6 +85,7 @@ namespace Hospital.View.PatientView
         public RatingControl()
         {
             InitializeComponent();
+            this.firstStar.IsChecked = true;
 
         }
     }
