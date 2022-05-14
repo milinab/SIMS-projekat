@@ -16,15 +16,15 @@ using System.Windows.Shapes;
 namespace Hospital.View.PatientView
 {
     /// <summary>
-    /// Interaction logic for MedicalRecord.xaml
+    /// Interaction logic for Profile.xaml
     /// </summary>
-    public partial class MedicalRecord : Page
+    public partial class Profile : Page
     {
         private App app;
         private readonly object _content;
-        private MedicalRecord medicalRecord;
+        private Profile profile;
         private readonly PatientWindow _patientWindow;
-        public MedicalRecord(PatientWindow patientWindow)
+        public Profile(PatientWindow patientWindow)
         {
             InitializeComponent();
             app = Application.Current as App;
@@ -32,7 +32,6 @@ namespace Hospital.View.PatientView
             this.DataContext = this;
             _patientWindow = patientWindow;
         }
-
         private void HomePage_Click(object sender, RoutedEventArgs e)
         {
             Page homePage = new HomePage(_patientWindow);
