@@ -69,15 +69,14 @@ namespace Hospital.View.SecretaryView
 
         }
 
-        //private void EditButtonClick(object sender, RoutedEventArgs e)
-        //{
+        private void EditButton_Click(object sender, RoutedEventArgs e)
+        {
 
-        //    Appointment appointment = dataGridAppointments.SelectedValue as Appointment;
-        //    {
-        //        var editAppointment = new EditAppointment(appointment, this);
-        //        Content = editAppointment;
-        //    }
-        //}
+            Appointment appointment =dataGridAppointments.SelectedValue as Appointment;
+            EditAppointment editWindow = new EditAppointment(appointment, this);
+            editWindow.Show();
+            this.Close();
+        }
 
         private void SignOut_Click(object sender, RoutedEventArgs e)
         {
