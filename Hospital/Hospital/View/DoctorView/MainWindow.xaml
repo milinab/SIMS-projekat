@@ -1,0 +1,42 @@
+﻿<Window x:Class="Hospital.View.DoctorView.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Hospital.View.DoctorView"
+        mc:Ignorable="d"
+        Title="Appointments"
+        Height="768" Width="1024" ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen" WindowStyle="None">
+    <Window.Resources>
+        <ResourceDictionary Source="DoctorResourceDictionary.xaml"></ResourceDictionary>
+    </Window.Resources>
+    <Window.Style>
+        <StaticResource ResourceKey="MainWindowStyle"></StaticResource>
+    </Window.Style>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="324"/>
+            <ColumnDefinition Width="700"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Column="0">
+            <Rectangle Name="MenuRectangle" Style="{StaticResource MenuRectangleStyle}"/>
+            <Button Content="Checkup" Name="CheckupButton" Style="{StaticResource MenuButtonStyle}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,180,0,0" Click="CheckupPage"/>
+            <Button Content="Appointments" Name="AppointmentsButton" Style="{StaticResource MenuButtonStyle}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,300,0,0" Click="AppointmentsPage"/>
+            <Button Content="Patients" Name="PatientsButton" Style="{StaticResource MenuButtonStyle}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,350,0,0" Click="PatientsPage"/>
+            <Button Content="Requests" Name="RequestsButton" Style="{StaticResource MenuButtonStyle}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,400,0,0" Click="RequestsPage"/>
+            <Button Content="Malfunction report" Name="MalfunctionReportButton" Style="{StaticResource MenuButtonStyle}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,450,0,0" Click="MalfunctionReportPage"/>
+            <Button Content="Account" Name="AccountButton" Style="{StaticResource MenuButtonStyle}" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,134" Click="AccountPage"/>
+            <Button Content="Log out" Name="LogOutButton" Style="{StaticResource MenuButtonStyle}" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,0" Click="LogOutPage"/>
+        </Grid>
+        <Grid Grid.Column="1">
+            <Frame Name="Frame" NavigationUIVisibility="Hidden">
+                
+            </Frame>
+        </Grid>
+    </Grid>
+</Window>
+
