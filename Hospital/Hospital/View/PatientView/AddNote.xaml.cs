@@ -16,6 +16,8 @@ using Hospital.Model;
 using System.Collections.ObjectModel;
 using Hospital.Controller;
 using System.ComponentModel;
+using Hospital.View.PatientView.Validations;
+using System;
 
 namespace Hospital.View.PatientView
 {
@@ -39,33 +41,45 @@ namespace Hospital.View.PatientView
         private readonly PatientWindow _patientWindow;
         private readonly Notes _notes;
 
+        private string _noteName;
+        private string _noteText;
+
+        public string NoteName {
+
+            get { return _noteName; }
+            set {
+                if (value != _noteName) { 
+                    _noteName = value;
+                    OnPropertyChanged("NoteName");
+                }
+            }
+        }
+
+        public string NoteText
+        {
+
+            get { return _noteText; }
+            set
+            {
+                if (value != _noteText)
+                {
+                    _noteText = value;
+                    OnPropertyChanged("NoteText");
+                }
+            }
+        }
+
         public AddNote(PatientWindow patientWindow, Notes notes)
         {
             InitializeComponent();
             app = Application.Current as App;
             this.frame.Content = null;
             this.frame.NavigationService.RemoveBackEntry();
-            
+
             this.DataContext = this;
             _patientWindow = patientWindow;
             _notes = notes;
-            this.necessaryName.Visibility = Visibility.Hidden;
-            this.necessaryText.Visibility = Visibility.Hidden;
-
         }
-
-        /*bool IsEmptyInputValidate()
-        {
-            return noteName.Text == "" || noteText.Text == "";
-        }
-
-        private bool ValidateInput()
-        {
-            if(IsEmptyInputValidate())
-            {
-
-            }
-        }*/
 
         private void HomePage_Click(object sender, RoutedEventArgs e)
         {
@@ -135,21 +149,19 @@ namespace Hospital.View.PatientView
                 NoteText = noteText.Text,
                 Date = DateTime.Now
             };
-            
-            if(this.noteName.Text=="")
-            {
-                this.necessaryName.Visibility = Visibility.Visible;
-            }
-            else if (this.noteText.Text == "") {
 
-                this.necessaryText.Visibility = Visibility.Visible;
-            }
-            else {
+            if (this.noteName.Text != "" && this.noteText.Text != "")
+            {
                 app._noteController.Create(newNote);
                 _notes.BackToNotes();
                 Page note = new Notes(_patientWindow);
                 this.frame.Navigate(note);
             }
+            else {
+                Page note = new Notes(_patientWindow);
+                this.frame.Navigate(note);
+            }
+            
         }
 
         private void BackToAllNotes_Click(object sender, RoutedEventArgs e)

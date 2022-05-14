@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Hospital.View.PatientView"
+      xmlns:val="clr-namespace:Hospital.View.PatientView.Validations"
       mc:Ignorable="d" 
       d:DesignHeight="560" d:DesignWidth="800" Background="AntiqueWhite"
       Title="NoteInfo">
@@ -44,10 +45,74 @@
         <Border BorderBrush="Black" BorderThickness="1" Width="Auto" Height="1" Margin="0,184,0,375" />
 
         <Label Content="Name:" HorizontalAlignment="Left" Margin="10,134,0,0" VerticalAlignment="Top" FontSize="14"/>
-        <TextBox x:Name="noteName" HorizontalAlignment="Left" Margin="70,134,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="248" Height="27" Background="AntiqueWhite"/>
+        <TextBox x:Name="noteName" HorizontalAlignment="Left" Margin="70,134,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="248" Height="27" Background="AntiqueWhite">
+            <TextBox.Text>
+                <Binding Path="NoteName" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <val:NoEmptyInputsRule ValidationStep="RawProposedValue"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+            <Validation.ErrorTemplate>
+                <ControlTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <AdornedElementPlaceholder Name="customAdorner" Grid.Column="0" Grid.Row="0"/>
+                        <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding [0].ErrorContent}" Foreground="Red"/>
+                    </Grid>
+                </ControlTemplate>
+            </Validation.ErrorTemplate>
+
+        </TextBox>
         <Button Content="Back to all notes" Background="Bisque" HorizontalAlignment="Left" Margin="642,134,0,0" VerticalAlignment="Top" FontSize="14" Height="27" Width="130" Click="BackToAllNotes_Click"/>
-        <Button Content="Save changes" Background="Bisque" HorizontalAlignment="Left" Margin="642,470,0,0" VerticalAlignment="Top" Height="27" Width="130" Click="SaveChanges_Click"/>
-        <TextBox x:Name="noteText" HorizontalAlignment="Center" Margin="0,175,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="760" Height="284" Background="AntiqueWhite"/>
+        <Button Content="Save changes" IsDefault="True" Command="{Binding SaveProtocolCommand}" Background="Bisque" HorizontalAlignment="Left" Margin="642,470,0,0" VerticalAlignment="Top" Height="27" Width="130" Click="SaveChanges_Click">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="IsEnabled" Value="False"/>
+                    <Style.Triggers>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Path=(Validation.HasError), ElementName=noteName}" Value="False"/>
+                                <Condition Binding="{Binding Path=(Validation.HasError), ElementName=noteText}" Value="False"/>
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="IsEnabled" Value="True"/>
+                        </MultiDataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        <TextBox x:Name="noteText" HorizontalAlignment="Center" Margin="0,175,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="760" Height="284" Background="AntiqueWhite">
+            <TextBox.Text>
+                <Binding Path="NoteText" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <val:NoEmptyInputsRule ValidationStep="RawProposedValue"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+            <Validation.ErrorTemplate>
+                <ControlTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <AdornedElementPlaceholder  Grid.Column="0" Grid.Row="0"/>
+                        <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding [0].ErrorContent}" Foreground="Red"/>
+                    </Grid>
+                </ControlTemplate>
+            </Validation.ErrorTemplate>
+        </TextBox>
         <TextBlock x:Name="dateText" HorizontalAlignment="Left" Margin="15,470,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="248" Height="27" Background="AntiqueWhite"/>
 
         <Frame x:Name="frame" NavigationUIVisibility="Hidden" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" Grid.Column="1" />

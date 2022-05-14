@@ -1,6 +1,7 @@
 ﻿using Hospital.Model;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,13 +20,54 @@ namespace Hospital.View.PatientView
     /// <summary>
     /// Interaction logic for NoteInfo.xaml
     /// </summary>
-    public partial class NoteInfo : Page
+    public partial class NoteInfo : Page, INotifyPropertyChanged
     {
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string name)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(name));
+            }
+        }
         private int _id;
         private App app;
         private readonly object _content;
         private readonly PatientWindow _patientWindow;
         private DateTime _date;
+
+        private string _noteName;
+        private string _noteText;
+
+        public string NoteName
+        {
+
+            get { return _noteName; }
+            set
+            {
+                if (value != _noteName)
+                {
+                    _noteName = value;
+                    OnPropertyChanged("NoteName");
+                }
+            }
+        }
+
+        public string NoteText
+        {
+
+            get { return _noteText; }
+            set
+            {
+                if (value != _noteText)
+                {
+                    _noteText = value;
+                    OnPropertyChanged("NoteText");
+                }
+            }
+        }
         public NoteInfo(PatientWindow patientWindow, Note note)
         {
             InitializeComponent();
@@ -35,9 +77,9 @@ namespace Hospital.View.PatientView
 
             this.DataContext = this;
             _patientWindow = patientWindow;
-            
-            this.noteText.Text = note.NoteText;
-            this.noteName.Text = note.Name;
+
+            this.NoteText = note.NoteText;
+            this.NoteName = note.Name;
             _date = note.Date;
             this.dateText.Text = note.Date.ToString("d.M.yyyy H:mm");
             _id = note.Id;
@@ -102,9 +144,10 @@ namespace Hospital.View.PatientView
 
         private void SaveChanges_Click(object sender, RoutedEventArgs e)
         {
-            Note note = new Note(noteName.Text,_id, noteText.Text, DateTime.Now);
-            app._noteController.Edit(note);
-
+            if (this.noteName.Text != "" || this.noteText.Text != "") {
+                Note note = new Note(noteName.Text, _id, noteText.Text, DateTime.Now);
+                app._noteController.Edit(note);
+            }
         }
 
         private void BackToAllNotes_Click(object sender, RoutedEventArgs e)

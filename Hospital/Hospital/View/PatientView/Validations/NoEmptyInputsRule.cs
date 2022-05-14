@@ -7,25 +7,27 @@ using System.Windows.Controls;
 
 namespace Hospital.View.PatientView.Validations
 {
-    class NoEmptyInputsRule : ValidationRule
+    public class NoEmptyInputsRule : ValidationRule
     {
         public override ValidationResult Validate(object value, System.Globalization.CultureInfo cultureInfo)
         {
-
-            var input = value as string;
-
-            if (input.Length != 0)
+            try
             {
-                return new ValidationResult(true, null);
+                var input = value as string;
+
+                if (input.Length != 0)
+                {
+                    return new ValidationResult(true, null);
+                }
+                else
+                {
+                    return new ValidationResult(false, "Necessary to input");
+                }
             }
-            else
+            catch
             {
-                return new ValidationResult(false, "Necessary to input");
+                return new ValidationResult(false, "Unknown error occured.");
             }
-
-
-
-
         }
     }
 }
