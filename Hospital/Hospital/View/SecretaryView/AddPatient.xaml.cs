@@ -24,7 +24,6 @@ namespace Hospital.View.SecretaryView
             InitializeComponent();
             allergens = _app._allergenController.Read();
             AllergenListBox.ItemsSource = allergens;
-            AllergenListBox.Items.Refresh();
             _secretaryWindow = secretaryWindow;
 
         }

@@ -21,15 +21,15 @@ namespace Hospital.View.SecretaryView
         private readonly SecretaryWindow _secretaryWindow;
         private readonly App _app;
         private AllergenList allergies;
-        private ObservableCollection<Allergen> allergens;
+        private ObservableCollection<Allergen> _allergens;
+        private ObservableCollection<Allergen> _patientAllergens;
         public EditPatient(Patient patient, int userId, SecretaryWindow secretaryWindow)
         {
             _app = Application.Current as App;
             InitializeComponent();
 
-            allergens = _app._allergenController.Read();
-            AllergenListBox.ItemsSource = allergens;
-            AllergenListBox.Items.Refresh();
+            _allergens = _app._allergenController.Read();
+            AllergenListBox.ItemsSource = _allergens;
             _secretaryWindow = secretaryWindow;
             this.nameText.Text = patient.Name;
             this.lastNameText.Text = patient.LastName;
@@ -48,6 +48,11 @@ namespace Hospital.View.SecretaryView
             this.chronicalDiseaseText.Text = patient.MedicalRecord.ChronicalDiseases;
             this.countryText.Text = patient.Address.City.Country.Name;
             this.numberText.Text = patient.Address.Number.ToString();
+            foreach (int i in patient.MedicalRecord.AllergenIds)
+            {
+                AllergenListBox.SelectedItems.Add(AllergenListBox.Items[i - 1]);
+            }
+            
             _id = patient.Id;
             _userId = userId;
             _addressId = patient.AddressId;
@@ -111,7 +116,7 @@ namespace Hospital.View.SecretaryView
             _app._allergenController.Create(allergen);
             AllergiesText.Text = "";
             AllergenListBox.Items.Refresh();
-            AllergenListBox.ItemsSource = allergens;
+            AllergenListBox.ItemsSource = _allergens;
         }
 
         private void SignOut_Click(object sender, RoutedEventArgs e)

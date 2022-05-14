@@ -59,13 +59,14 @@ namespace Hospital.Model
             Id = id;
             Date = date;
             Duration = duration;
-            DoctorId = doctor.Id;
             Doctor = doctor;
-            PatientId = patient.Id;
+            DoctorId = doctor.Id;
             Patient = patient;
-            RoomId = room.Id;
+            PatientId = patient.Id;
             Room = room;
+            RoomId = room.Id;
         }
+
 
         private void OnPropertyChanged(string name) {
             if (PropertyChanged != null) {

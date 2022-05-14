@@ -295,6 +295,9 @@
     <Compile Include="View\SecretaryView\SecretaryWindow.xaml.cs">
       <DependentUpon>SecretaryWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\SecretaryView\EditAppointment.xaml.cs">
+      <DependentUpon>EditAppointment.xaml</DependentUpon>
+    </Compile>
     <Page Include="LogIn.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -435,6 +438,10 @@
     <Page Include="View\SecretaryView\SecretaryWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\SecretaryView\EditAppointment.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\Address.cs" />
@@ -528,6 +535,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="View\PatientView\insertNoteText.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\secretaryZdravo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\hospital.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

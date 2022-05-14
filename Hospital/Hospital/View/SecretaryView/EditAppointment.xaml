@@ -1,17 +1,17 @@
-﻿<Window x:Class="Hospital.View.SecretaryView.AddAppointment"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:Hospital.View.SecretaryView"
-      xmlns:local1="clr-namespace:Hospital.View.DoctorView"
-      mc:Ignorable="d" 
-      Title="AddAppointment" Width="800" Height="600"
-      WindowStyle="None"
-      ResizeMode="NoResize"
-      Background="#E1E5F8"
-      Foreground="#2218a7">
+﻿<Window x:Class="Hospital.View.SecretaryView.EditAppointment"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Hospital.View.SecretaryView"
+        xmlns:local1="clr-namespace:Hospital.View.DoctorView"
+        mc:Ignorable="d"
+        Title="EditAppointment" Height="600" Width="800"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        Background="#E1E5F8"
+        Foreground="#2218a7">
 
     <Window.Resources>
         <Style TargetType="Button">
