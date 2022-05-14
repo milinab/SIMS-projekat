@@ -34,7 +34,6 @@ namespace Hospital
             InvalidFieldsLabel.Visibility = Visibility.Hidden;
             string username = UsernameBox.Text;
             string password = PasswordBox.Password.ToString();
-            Patient p = _app._patientController.ReadByUsername(username);
             if (ValidateLogInInputs(username, password)) return;
             (bool isValid, string type) = _app._userController.IsLogInValid(username, password);
             if (!isValid)
@@ -42,21 +41,20 @@ namespace Hospital
                 InvalidFieldsLabel.Visibility = Visibility.Visible;
                 return;
             }
-            OpenTypeWindow(type, p);
+            OpenTypeWindow(type, username);
         }
 
-        private void PatientCheck(Patient p)
+        private bool PatientCheck(Patient p)
         {
             if (p.IsActive)
             {
                 PatientWindow patientWindow = new PatientWindow(p);
                 patientWindow.Show();
                 Close();
+                return true;
             }
-            else
-            {
-                MessageBox.Show("Your account is banned. Please wait for secretary to make Your account active again.");
-            }
+            MessageBox.Show("Your account is banned. Please wait for secretary to make Your account active again.");
+            return false;
         }
 
         private bool ValidateLogInInputs(string username, string password)
@@ -75,16 +73,15 @@ namespace Hospital
             return false;
         }
 
-        private void OpenTypeWindow(string type, Patient p)
+        private void OpenTypeWindow(string type, string username)
         {
-            if (GetRoleWindow(type, p) == null) return;
-            PatientCheck(p);
-            Window roleWindow = GetRoleWindow(type, p);
+            if (GetRoleWindow(type, username) == null) return;
+            Window roleWindow = GetRoleWindow(type, username);
             roleWindow.Show();
             Close();
         }
 
-        private Window GetRoleWindow(string role, Patient p)
+        private Window GetRoleWindow(string role, string username)
         {
             
             switch (role)
@@ -94,7 +91,12 @@ namespace Hospital
                 case "manager":
                     return new ManagerHomeWindow();
                 case "patient":
-                    return new PatientWindow(p);
+                    Patient p = _app._patientController.ReadByUsername(username);
+                    if (PatientCheck(p))
+                    {
+                        return new PatientWindow(p);
+                    }
+                    return null;
                 case "secretary":
                     return new SecretaryWindow();
                 default:
