@@ -48,11 +48,11 @@ namespace Hospital.View.PatientView
             _content = Content;
             this.DataContext = this;
             patient = p;
-            dataGridAppointments.ItemsSource = app._appointmentController.Read();
+            dataGridAppointments.ItemsSource = app._appointmentController.ReadFutureAppointments();
 
             Appointments = new ObservableCollection<Appointment>();
             Doctors = new ObservableCollection<Doctor>();
-            Appointments = app._appointmentController.Read();
+            Appointments = app._appointmentController.ReadFutureAppointments();
             Therapies = app._therapyController.ReadBypatientId(1);
             getTherapyTime();
 
@@ -134,11 +134,59 @@ namespace Hospital.View.PatientView
             {
                 Appointment appointment = (Appointment)dataGridAppointments.SelectedItem;
                 app._appointmentController.Delete(appointment.Id);
+
+                Trol troll = app._trolController.ReadByPatientId(this.patient.Id);
+                if (troll == null)
+                {
+                    Trol tr = new Trol(this.patient.Id, DateTime.Now, 1);
+                    app._trolController.Create(tr);
+                }
+                else
+                {
+                    if ((DateTime.Now - troll.StartDate).TotalDays < 30)
+                    {
+                        //ovo je okej, dozvoli
+                        troll.NumberOfCancellations += 1;
+                        app._trolController.Edit(troll);
+                        Trol newTroll = app._trolController.ReadById(troll.Id);
+                        if (newTroll.NumberOfCancellations >= 5)
+                        {
+                            this.patient.IsActive = false;
+
+                            app._patientController.Edit(this.patient);
+                            app._trolController.Delete(troll.Id);
+                            MessageBox.Show("Your account is banned due to..");
+                            LogIn logIn = new LogIn();
+                            logIn.Show();
+                            this.Close();
+                        }
+                    }
+                    else
+                    {
+                        app._trolController.Delete(troll.Id);
+                        Trol tr = new Trol(this.patient.Id, DateTime.Now, 1);
+                        app._trolController.Create(tr);
+                    }
+                }
+
+
             } else
             {
                 MessageBox.Show("Select an appointment You want to cancel.", "Warning");
             }
         }
+
+        private void HomePage_Click(object sender, RoutedEventArgs e)
+        {
+            HomePage homePagePage = new HomePage(this);
+            Content = homePagePage;
+        }
+        private void Profile_Click(object sender, RoutedEventArgs e)
+        {
+            Profile profilePage = new Profile(this);
+            Content = profilePage;
+        }
+        
         private void MedicalRecord_Click(object sender, RoutedEventArgs e)
         {
             var medicalRecordPage = new MedicalRecord(this);
@@ -147,8 +195,24 @@ namespace Hospital.View.PatientView
 
         private void MyAppointments_Click(object sender, RoutedEventArgs e)
         {
-            PastAppointments bookAnAppointmentPage = new PastAppointments(this);
-            Content = bookAnAppointmentPage;
+            PastAppointments pastAppointmentsPage = new PastAppointments(this);
+            Content = pastAppointmentsPage;
+        }
+        private void MyTherapy_Click(object sender, RoutedEventArgs e)
+        {
+            MyTherapy myTherapyPage = new MyTherapy(this);
+            Content = myTherapyPage;
+        }
+
+        private void Calendar_Click(object sender, RoutedEventArgs e)
+        {
+            Calendar calendarPage = new Calendar(this);
+            Content = calendarPage;
+        }
+        private void Notes_Click(object sender, RoutedEventArgs e)
+        {
+            var lookNotes = new Notes(this);
+            Content = lookNotes;
         }
 
         private void Surveys_Click(object sender, RoutedEventArgs e)
@@ -156,11 +220,10 @@ namespace Hospital.View.PatientView
             var takeSurvey = new Surveys(this);
             Content = takeSurvey;
         }
-
-        private void Notes_Click(object sender, RoutedEventArgs e)
+        private void Notification_Click(object sender, RoutedEventArgs e)
         {
-            var lookNotes = new Notes(this);
-            Content = lookNotes;
+            Notification notificationPage = new Notification(this);
+            Content = notificationPage;
         }
 
         public void BackToPatientWindow()
@@ -170,7 +233,7 @@ namespace Hospital.View.PatientView
         }
         public void refresh()
         {
-            dataGridAppointments.ItemsSource = app._appointmentController.Read();
+            dataGridAppointments.ItemsSource = app._appointmentController.ReadFutureAppointments();
         }
 
         private void LogOut_Click(object sender, RoutedEventArgs e)

@@ -102,6 +102,21 @@ namespace Hospital.Service
             }
             return pastAppointments;
         }
-        
+
+        public ObservableCollection<Appointment> ReadFutureAppointments()
+        {
+            ObservableCollection<Appointment> futureAppointments = new ObservableCollection<Appointment>();
+
+            ObservableCollection<Appointment> allAppointments = _repository.Read();
+            foreach (Appointment a in allAppointments)
+            {
+                if (a.Date > DateTime.Now)
+                {
+                    futureAppointments.Add(a);
+                }
+            }
+            return futureAppointments;
+        }
+
     }
 }
