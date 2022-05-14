@@ -240,36 +240,52 @@
     <Compile Include="View\PatientView\BookAnAppointment.xaml.cs">
       <DependentUpon>BookAnAppointment.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\PatientView\Calendar.xaml.cs">
+      <DependentUpon>Calendar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientView\EditDatePriority.xaml.cs">
+      <DependentUpon>EditDatePriority.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\PatientView\DatePriority.xaml.cs">
       <DependentUpon>DatePriority.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\PatientView\EditDoctorPriority.xaml.cs">
+      <DependentUpon>EditDoctorPriority.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\PatientView\DoctorPriorityDateNotAvailable.xaml.cs">
       <DependentUpon>DoctorPriorityDateNotAvailable.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\PatientView\DatePriorityTest.xaml.cs">
-      <DependentUpon>DatePriorityTest.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\PatientView\DoctorPriorityDateNotAvailableTest.xaml.cs">
-      <DependentUpon>DoctorPriorityDateNotAvailableTest.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\PatientView\EditAnAppointment.xaml.cs">
       <DependentUpon>EditAnAppointment.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\PatientView\EnumMatchToBooleanConverter.cs" />
+    <Compile Include="View\PatientView\HomePage.xaml.cs">
+      <DependentUpon>HomePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\PatientView\MedicalRecord.xaml.cs">
       <DependentUpon>MedicalRecord.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\PatientView\MyTherapy.xaml.cs">
+      <DependentUpon>MyTherapy.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientView\Validations\NoEmptyInputsRule.cs" />
     <Compile Include="View\PatientView\NoteInfo.xaml.cs">
       <DependentUpon>NoteInfo.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\PatientView\Notes.xaml.cs">
       <DependentUpon>Notes.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\PatientView\Notification.xaml.cs">
+      <DependentUpon>Notification.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\PatientView\PastAppointments.xaml.cs">
       <DependentUpon>PastAppointments.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\PatientView\PatientWindow.xaml.cs">
       <DependentUpon>PatientWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientView\Profile.xaml.cs">
+      <DependentUpon>Profile.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\PatientView\RatingControl.xaml.cs">
       <DependentUpon>RatingControl.xaml</DependentUpon>
@@ -367,19 +383,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\PatientView\Calendar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PatientView\EditDatePriority.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\PatientView\DatePriority.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\PatientView\EditDoctorPriority.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\PatientView\DoctorPriorityDateNotAvailable.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\PatientView\DatePriorityTest.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="View\PatientView\DoctorPriorityDateNotAvailableTest.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -387,7 +407,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\PatientView\HomePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\PatientView\MedicalRecord.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PatientView\MyTherapy.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -399,11 +427,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\PatientView\Notification.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\PatientView\PastAppointments.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\PatientView\PatientWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PatientView\Profile.xaml">
+      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\PatientView\RatingControl.xaml">
@@ -528,6 +564,13 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="View\PatientView\insertNoteText.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\notifications.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\home.png" />
+    <Resource Include="images\user.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -19,18 +19,19 @@ using Hospital.Model;
 namespace Hospital.View.PatientView
 {
     /// <summary>
-    /// Interaction logic for DoctorPriorityDateAvailable.xaml
+    /// Interaction logic for EditDoctorPriority.xaml
     /// </summary>
-    public partial class DoctorPriorityDateAvailable : Page
+    public partial class EditDoctorPriority : Page
     {
         private App app;
-        private readonly BookAnAppointment _bookAnAppointment;
+        private readonly EditAnAppointment _editAnAppointment;
         private readonly PatientWindow _patientWindow;
         private readonly AppointmentController _appointmentController;
         private int _doctorId;
         private DateTime _date;
         private String chosenDoctor;
         private Doctor doctor;
+        private int _id;
 
         private String DoctorName
         {
@@ -44,22 +45,22 @@ namespace Hospital.View.PatientView
 
 
 
-        public DoctorPriorityDateAvailable(PatientWindow patientWindow, BookAnAppointment bookAnAppointment, AppointmentController appointmentController)
+        public EditDoctorPriority(PatientWindow patientWindow, EditAnAppointment editAnAppointment, AppointmentController appointmentController)
         {
             InitializeComponent();
-            _bookAnAppointment = bookAnAppointment;
+            _editAnAppointment = editAnAppointment;
             _patientWindow = patientWindow;
             _appointmentController = appointmentController;
         }
 
-        public DoctorPriorityDateAvailable(int doctorId, DateTime date, BookAnAppointment bookAnAppointment, PatientWindow patientWindow)
+        public EditDoctorPriority(int doctorId, DateTime date, EditAnAppointment editAnAppointment, PatientWindow patientWindow, int appointmantId)
         {
             InitializeComponent();
             app = Application.Current as App;
             //this.frame.Content = null;
             //this.frame.NavigationService.RemoveBackEntry();
-
-            _bookAnAppointment = bookAnAppointment;
+            _editAnAppointment = editAnAppointment;
+            _id = appointmantId;
             _patientWindow = patientWindow;
             _doctorId = doctorId;
             _date = date;
@@ -108,19 +109,55 @@ namespace Hospital.View.PatientView
             
         private void ConfirmAppointment_Click(object sender, RoutedEventArgs e)
         {
-            var viewModel = this.dataGridDoctorPriority.DataContext as Appointment;
             var SelectedItem = dataGridDoctorPriority.SelectedItem as Appointment;
 
-            //zameniti za prave vrednosti koje cu dobiti kroz view-e
             Patient patient = new Patient();
             patient.Id = _patientWindow.patient.Id;
+            TimeSpan duration = new TimeSpan(0, 0, 30, 0);
             Room room = new Room();
             room.Id = 2;
-            var a = SelectedItem.Date;
+            var selectedDate = SelectedItem.Date;
 
-            Appointment appointment = new Appointment(a, new TimeSpan(0, 30, 00), doctor, patient, room);
-            app._appointmentController.Create(appointment);
+            Appointment ap = new Appointment(_id, selectedDate, duration, doctor, patient, room);
+            app._appointmentController.Edit(ap);
+            Trol troll = app._trolController.ReadByPatientId(_patientWindow.patient.Id);
+            if (troll == null)
+            {
+                Trol tr = new Trol(_patientWindow.patient.Id, DateTime.Now, 1);
+                app._trolController.Create(tr);
+            }
+            else
+            {
+                if ((DateTime.Now - troll.StartDate).TotalDays < 30)
+                {
+                    //ovo je okej, dozvoli
+                    troll.NumberOfCancellations += 1;
+                    app._trolController.Edit(troll);
+                    Trol newTroll = app._trolController.ReadById(troll.Id);
+                    if (newTroll.NumberOfCancellations >= 5)
+                    {
+                        _patientWindow.patient.IsActive = false;
+
+                        app._patientController.Edit(_patientWindow.patient);
+                        app._trolController.Delete(troll.Id);
+                        MessageBox.Show("Your account is banned due to..");
+                        LogIn logIn = new LogIn();
+                        logIn.Show();
+                        _patientWindow.Close();
+                    }
+                }
+                else
+                {
+                    app._trolController.Delete(troll.Id);
+                    Trol tr = new Trol(_patientWindow.patient.Id, DateTime.Now, 1);
+                    app._trolController.Create(tr);
+                }
+            }
             _patientWindow.BackToPatientWindow();
+
+/*            Appointment appointment = new Appointment(a, new TimeSpan(0, 30, 00), doctor, patient, room);
+            app._appointmentController.Create(appointment);
+            _patientWindow.BackToPatientWindow();*/
         }
 
         public void findAvailabeAppointments(ObservableCollection<Appointment> DoctorsAppointments,
@@ -228,10 +265,8 @@ namespace Hospital.View.PatientView
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
-            Page page = new BookAnAppointment(_patientWindow);
-            this.frame.Navigate(page);
 
-            _bookAnAppointment.BackToBookAnAppointmentWindow();
+            _patientWindow.BackToPatientWindow();
         }
 
         private void LogOut_Click(object sender, RoutedEventArgs e)
