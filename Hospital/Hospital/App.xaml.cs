@@ -30,10 +30,12 @@ namespace Hospital
         internal UserController _userController;
         internal TherapyController _therapyController;
 
-        internal MainPage _mainPage;
+        internal MainWindow _mainWindow;
 
         public App()
         {
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjM3MDMyQDMyMzAyZTMxMmUzMGcxWFBwNGZOQ2g3WjlkbzRHNVljWmpmZnh4a2FJbVNZQW5qUFJNVFlCWmc9");
+
             Repositories repositories = new Repositories();
             Services services = new Services(repositories);
 
@@ -55,7 +57,8 @@ namespace Hospital
             _userController = new UserController(services.UserService);
             _therapyController = new TherapyController(services.TherapyService);
 
-            _mainPage = new MainPage();
+            _mainWindow = new MainWindow();
+            
         }
     }
 }

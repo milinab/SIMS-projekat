@@ -1,12 +1,11 @@
 ﻿using System.Windows;
 using System.Windows.Media;
-using Hospital.Controller;
-using Hospital.Repository;
-using Hospital.Service;
+using Hospital.Model;
 using Hospital.View.DoctorView;
 using Hospital.View.ManagerView;
 using Hospital.View.PatientView;
 using Hospital.View.SecretaryView;
+using ServiceStack;
 
 namespace Hospital
 {
@@ -16,8 +15,6 @@ namespace Hospital
     public partial class LogIn : Window
     {
         private App _app;
-        private string _username;
-        private string _password;
         private readonly object _content;
 
         public LogIn()
@@ -29,44 +26,62 @@ namespace Hospital
 
         private void LogIn_Click(object sender, RoutedEventArgs e)
         {
-            _username = username.Text;
-            _password = password.Password.ToString();
-            (bool isValid, string type) = _app._userController.IsLogInValid(_username, _password);
-            if (isValid == false)
+            EnterUsernameLabel.Visibility = Visibility.Hidden;
+            EnterPasswordLabel.Visibility = Visibility.Hidden;
+            InvalidFieldsLabel.Visibility = Visibility.Hidden;
+            string username = UsernameBox.Text;
+            string password = PasswordBox.Password.ToString();
+            if (ValidateLogInInputs(username, password)) return;
+            (bool isValid, string type) = _app._userController.IsLogInValid(username, password);
+            if (!isValid)
             {
-                username.Background = Brushes.Red;
-                password.Background = Brushes.Red;
+                InvalidFieldsLabel.Visibility = Visibility.Visible;
+                return;
             }
-            else
+            OpenTypeWindow(type);
+        }
+
+        private bool ValidateLogInInputs(string username, string password)
+        {
+            if (username.IsEmpty())
             {
-                if (type.Equals("doctor"))
-                {
-                    MainPage mainPage = new MainPage();
-                    mainPage.Show();
-                    Close();
-                }
-                else if (type.Equals("manager"))
-                {
-                    ManagerHomeWindow managerHomeWindow = new ManagerHomeWindow();
-                    managerHomeWindow.Show();
-                    Close();
-                }
-                else if (type.Equals("patient"))
-                {
-                    PatientWindow patientWindow = new PatientWindow();
-                    patientWindow.Show();
-                    Close();
-                }
-                else if (type.Equals("secretary"))
-                {
-                    SecretaryWindow secretaryWindow = new SecretaryWindow();
-                    secretaryWindow.Show();
-                    Close();
-                }
+                EnterUsernameLabel.Visibility = Visibility.Visible;
+                return true;
             }
 
-            
+            if (password.IsEmpty())
+            {
+                EnterPasswordLabel.Visibility = Visibility.Visible;
+                return true;
+            }
+            return false;
         }
+
+        private void OpenTypeWindow(string type)
+        {
+            if (GetRoleWindow(type) == null) return;
+            Window roleWindow = GetRoleWindow(type);
+            roleWindow.Show();
+            Close();
+        }
+
+        private Window GetRoleWindow(string role)
+        {
+            switch (role)
+            {
+                case "doctor":
+                    return new MainWindow();
+                case "manager":
+                    return new ManagerHomeWindow();
+                case "patient":
+                    return new PatientWindow();
+                case "secretary":
+                    return new SecretaryWindow();
+                default:
+                    return null;
+            }
+        }
+
         public void BackToLogInWindow()
         {
             Content = _content;
