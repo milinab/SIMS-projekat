@@ -7,13 +7,23 @@
         mc:Ignorable="d"
         Title="EditPatient" Height="600" Width="800"
         Foreground="#2218a7">
+    <Page.Resources>
+        <Style TargetType="{x:Type DatePicker}">
+            <Style.Resources>
+                <Style TargetType="DatePickerTextBox">
+                    <Setter Property="Background" Value="Transparent"/>
+                </Style>
+            </Style.Resources>
+            <Setter Property="Background" Value="#bbc4eb"/>
+        </Style>
+    </Page.Resources>
 
 
     <DockPanel>
         <Menu Foreground="#2218a7" BorderThickness="0,0,0,2" Height="60" DockPanel.Dock ="Top" BorderBrush="#2218a7" Background="#E1E5F8">
             <MenuItem Height="60" Width="167" FontSize="20" FontFamily="Yu Gothic Light">
                 <MenuItem.Icon>
-                    <Image Source="/Images/SecretaryMenuBarIcon.png" Stretch="Fill" Margin="0,-21,-58,-15" />
+                    <Image Source="/Images/hospital.png" Stretch="Fill" Margin="0,-21,-58,-15" />
                 </MenuItem.Icon>
                 <MenuItem.Header>
                     <Label Content="Zdravo" HorizontalAlignment="Right" Foreground="#2218a7" FontSize="24" Margin="60,0,0,0" FontFamily="Yu Gothic Light" HorizontalContentAlignment="Right" VerticalContentAlignment="Top" FontWeight="Bold" />
@@ -100,7 +110,7 @@
 
             <TextBlock Grid.Row="8" Margin="0,10,0,10" Grid.Column="0"
                  HorizontalAlignment="Center" Width="110">Date Of Birth:</TextBlock>
-            <DatePicker x:Name="datePicker" SelectedDate="10/10/2000" Grid.Row="8" Grid.Column="1" Width="160" Margin="0,10,20,10"  Background="#737ccf" Foreground="#2218a7"/>
+            <DatePicker x:Name="datePicker" SelectedDate="2022-05-17" Grid.Row="8" Grid.Column="1" Width="160" Margin="0,10,20,10" IsTodayHighlighted="True"/>
 
             <TextBlock Grid.Row="9" Grid.Column="0" Margin="0,10,0,10" 
                    HorizontalAlignment="Center" Width="110">Health Insurance ID:</TextBlock>
@@ -156,7 +166,7 @@
                    HorizontalAlignment="Center" Width="110">Allergies:</TextBlock>
             <TextBox x:Name="AllergiesText" Text="" Grid.Row="7" Grid.Column="3" 
                  Width="160" Margin="0,10,20,10" />
-            <Button Grid.Row="7" Grid.Column="4" HorizontalAlignment="Left" VerticalAlignment="Center" Height="16" Width="16" Padding="0,0,0,0" Click="AddAllergen_Click">+</Button>
+            <Button Grid.Row="7" Grid.Column="4" HorizontalAlignment="center" FontSize="16"  VerticalAlignment="Center" Height="30"  Width="36" Padding="0,0,0,0" Click="AddAllergen_Click" Margin="-6,0,0,0" FontWeight="Bold" FontStretch="Medium">new</Button>
             <ListBox Grid.Row="8" Grid.Column="3" MaxHeight="120" Grid.RowSpan="3" x:Name="AllergenListBox" DisplayMemberPath="Name" SelectionMode="Multiple"  ScrollViewer.VerticalScrollBarVisibility="Auto">
             </ListBox>
 

@@ -92,6 +92,11 @@ namespace Hospital.Repository
                     appointment.Date = editAppointment.Date;
                     appointment.Duration = editAppointment.Duration;
                     appointment.Room = editAppointment.Room;
+                    appointment.Patient = editAppointment.Patient;
+                    appointment.Doctor = editAppointment.Doctor;
+                    appointment.RoomId = editAppointment.RoomId;
+                    appointment.PatientId = editAppointment.PatientId;
+                    appointment.DoctorId = editAppointment.DoctorId;
                 }
             }
             Write();

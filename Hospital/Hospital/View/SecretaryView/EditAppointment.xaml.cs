@@ -1,29 +1,34 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Windows;
-using System.Windows.Controls;
 using Hospital.Model;
-using Xceed.Wpf.Toolkit;
-using MessageBox = Xceed.Wpf.Toolkit.MessageBox;
 
 namespace Hospital.View.SecretaryView
 {
     /// <summary>
-    /// Interaction logic for Create.xaml
+    /// Interaction logic for Edit.xaml
     /// </summary>
-    public partial class AddAppointment : Window
+    public partial class EditAppointment : Window
     {
 
         private App _app;
-        private readonly object _content;
+        private AppointmentPage _appointmentPage;
+        private Appointment _appointment;
 
-        public AddAppointment(AppointmentPage appointmentPage)
+        public EditAppointment(Appointment appo, AppointmentPage appointmentPage)
         {
+            Appointment appointment = appo;
+            _appointment = appointment;
             _app = Application.Current as App;
             this.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             InitializeComponent();
-           
+            _appointmentPage = appointmentPage;
             ObservableCollection<Room> rooms = _app._roomController.Read();
+            ObservableCollection<string> roomNames = new ObservableCollection<string>();
+            foreach (var room in rooms)
+            {
+                roomNames.Add(room.Name);
+            }
             ObservableCollection<Doctor> doctors = _app._doctorController.Read();
             ObservableCollection<Patient> patients = _app._patientController.Read();
             ObservableCollection<string> patientNames = new ObservableCollection<string>();
@@ -36,35 +41,38 @@ namespace Hospital.View.SecretaryView
             {
                 patientNames.Add(patient.Id + ", " + patient.Name + " " + patient.LastName);
             }
+
             PatientListBox.ItemsSource = patientNames;
             DoctorListBox.ItemsSource = doctorNames;
-            ObservableCollection<String> roomNames = new ObservableCollection<string>();
-            foreach (var room in rooms)
-            {
-                roomNames.Add(room.Name);
-            }
-
             RoomListBox.ItemsSource = roomNames;
-            
-            //equipmentListBox.ItemsSource =
+
+
+            DatePicker.SelectedDate = appointment.Date;
+            TimePicker.Value = appointment.Date;
+            Duration.Value = appointment.Duration;
+            RoomListBox.SelectedItem = appointment.Room.Name;
+            PatientListBox.SelectedItem = appointment.Patient.Id + ", " + appointment.Patient.Name + " " + appointment.Patient.LastName;
+            DoctorListBox.SelectedItem = appointment.Doctor.Id + ", dr " + appointment.Doctor.LastName;
+
+
+
         }
+
+        private void ListBox_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+
+
         private void RoomClick(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }
 
         private void Confirm(object sender, RoutedEventArgs e)
         {
+        
             DateTime date = DatePicker.SelectedDate.Value;
             string time = TimePicker.Text;
             string[] timeParts = time.Split(':');
@@ -94,6 +102,7 @@ namespace Hospital.View.SecretaryView
                 if (patient.Id == int.Parse(temp2[0]))
                 {
                     tempPatient = patient;
+                    
                 }
             }
 
@@ -107,9 +116,8 @@ namespace Hospital.View.SecretaryView
                     tempRoom = room;
                 }
             }
-
-            Appointment appointment = new Appointment(date, duration, tempDoctor, tempPatient, tempRoom);
-            _app._appointmentController.Create(appointment);
+            Appointment appointment = new Appointment(_appointment.Id, date, duration, tempDoctor, tempPatient, tempRoom);
+            _app._appointmentController.Edit(appointment);
             AppointmentPage appointmentPage = new AppointmentPage();
             appointmentPage.Show();
             this.Close();
@@ -143,3 +151,4 @@ namespace Hospital.View.SecretaryView
         }
     }
 }
+    
