@@ -34,7 +34,6 @@ namespace Hospital.View.ManagerView
 
         public EditRoom(Room room, ManagerWindow managerWindow)
         {
-
             InitializeComponent();
             _app = Application.Current as App;
             _managerWindow = managerWindow;

@@ -79,8 +79,14 @@ namespace Hospital.View.ManagerView
         private void RelocationClick(object sender, RoutedEventArgs e)
         {
             Equipment equipment = dataGridEquipment.SelectedItem as Equipment;
+            if (equipment == null)
+            {
+                validacija.Visibility = Visibility.Visible;
+                return;
+            }
             var editEquipment = new Relocation(equipment, this, _equipmentController, _roomController);
             Content = editEquipment;
+            validacija.Visibility = Visibility.Hidden;
         }
         public void BackToEquipmentWindow()
         {
@@ -108,7 +114,7 @@ namespace Hospital.View.ManagerView
 
         private void OccupancyClick(object sender, RoutedEventArgs e)
         {
-            View.ManagerView.RoomOccupancy roomOccupancy = new View.ManagerView.RoomOccupancy(_app._appointmentController);
+            View.ManagerView.RoomOccupancy roomOccupancy = new View.ManagerView.RoomOccupancy(_app._appointmentController, _app._roomController);
             roomOccupancy.Show();
             Close();
         }

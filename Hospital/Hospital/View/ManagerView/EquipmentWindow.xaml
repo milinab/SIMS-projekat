@@ -15,12 +15,11 @@
             <ColumnDefinition Width="17*"/>
             <ColumnDefinition Width="783*"/>
         </Grid.ColumnDefinitions>
-        <TextBox Margin="523,82,94,337" TextChanged="TextBoxTextChanged" Grid.Column="1"/>
-        <ComboBox Margin="331,82,296,337" Name="eqComboBox" SelectionChanged="ComboBoxSelectionChanged" Grid.Column="1"/>
+        <TextBox Margin="589,89,28,323" TextChanged="TextBoxTextChanged" Grid.Column="1"/>
+        <ComboBox Margin="413,88,214,0" Name="eqComboBox" SelectionChanged="ComboBoxSelectionChanged" Grid.Column="1" FontSize="12" VerticalAlignment="Top" Height="25"/>
 
         <DataGrid x:Name="dataGridEquipment" IsReadOnly="True"  Background="Azure" BorderBrush="White"
-                  SelectionMode="Single" AutoGenerateColumns="False" HorizontalAlignment="Left" CanUserAddRows="True" CanUserDeleteRows="True"
-                  Height="186" VerticalAlignment="Center" Width="796"  RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2" Margin="2,0,0,0">
+                  SelectionMode="Single" AutoGenerateColumns="False" HorizontalAlignment="Left" CanUserAddRows="True" CanUserDeleteRows="True" Width="796"  RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2" Margin="2,122,0,0" VerticalAlignment="Top" Height="235">
 
             <DataGrid.RenderTransform>
                 <TransformGroup>
@@ -31,7 +30,7 @@
                 </TransformGroup>
             </DataGrid.RenderTransform>
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Number" Binding="{Binding Name}" >
+                <DataGridTextColumn Header="Number" Binding="{Binding Name}" Foreground="Black">
                     <DataGridTextColumn.CellStyle>
                         <Style TargetType="DataGridCell">
                             <Setter Property="Background" 
@@ -39,7 +38,7 @@
                         </Style>
                     </DataGridTextColumn.CellStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="Number" Binding="{Binding Number}" >
+                <DataGridTextColumn Header="Number" Binding="{Binding Number}" Foreground="Black">
                     <DataGridTextColumn.CellStyle>
                         <Style TargetType="DataGridCell">
                             <Setter Property="Background" 
@@ -47,7 +46,7 @@
                         </Style>
                     </DataGridTextColumn.CellStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="Room" Binding="{Binding Room}" Width="*" >
+                <DataGridTextColumn Header="Room" Binding="{Binding Room}" Width="*" Foreground="Black">
                     <DataGridTextColumn.CellStyle>
                         <Style TargetType="DataGridCell">
                             <Setter Property="Background" 
@@ -77,7 +76,7 @@
         <Image Source="/images/sign_out.png" Margin="682,15,66,395" MouseLeftButtonUp="SignOutClick" Cursor="Hand" Grid.Column="1"/>
         <TextBlock Text="Sign out" FontSize="12" Margin="710,19,0,394" MouseLeftButtonUp="SignOutClick" Cursor="Hand" RenderTransformOrigin="0.512,0.042" HorizontalAlignment="Left" Width="84" Grid.Column="1"/>
 
-
+        <Label Name="validacija" Content="Please select equipment you want to relocate" FontSize="12" Foreground="Red" Margin="8,96,483,300" Grid.ColumnSpan="2" Visibility="Hidden"/>
 
     </Grid>
 </Window>

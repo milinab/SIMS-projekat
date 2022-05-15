@@ -34,7 +34,7 @@ namespace Hospital.Repository
             }
             return null;
         }
-        public void Create (Medicine newMedicine)
+        public void Create(Medicine newMedicine)
         {
             _medicine.Add(newMedicine);
             Write();

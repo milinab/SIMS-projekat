@@ -6,32 +6,26 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-
 namespace Hospital.Model
 {
-    
-
-
-
     [DataContract]
-    public class Medicine
+    public class MedicineReplace
     {
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string name)
         {
-            if(PropertyChanged != null)
+            if (PropertyChanged != null)
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(name));
             }
         }
-
-        private int _id;
+        private string _id;
         private string _name;
         private string _description;
         private int _number;
 
         [DataMember]
-        public int Id
+        public string Id
         {
             get { return _id; }
             set
@@ -62,13 +56,14 @@ namespace Hospital.Model
         public string Description
         {
             get { return _description; }
-            set {
-                    if(value != _description)
-                    {
-                        _description = value;
+            set
+            {
+                if (value != _description)
+                {
+                    _description = value;
                     OnPropertyChanged("Description");
-                    }
                 }
+            }
         }
 
         [DataMember]
@@ -85,12 +80,11 @@ namespace Hospital.Model
             }
         }
 
-        public Medicine()
+        public MedicineReplace()
         {
 
         }
-
-        public Medicine(int id, string name, string description, int number)
+        public MedicineReplace(string id, string name, string description, int number)
         {
             Id = id;
             Name = name;
@@ -98,7 +92,7 @@ namespace Hospital.Model
             Number = number;
         }
 
-        public Medicine(string name, string description, int number)
+        public MedicineReplace(string name, string description, int number)
         {
             Name = name;
             Description = description;

@@ -36,7 +36,7 @@ namespace Hospital
         internal QuestionController _questionController;
         internal NoteController _noteController;
         internal TrolController _trolController;
-
+        internal MedicineReplaceController _medicineReplaceController;
         internal MainPage _mainPage;
 
         public App()
@@ -68,6 +68,7 @@ namespace Hospital
             _questionController = new QuestionController(services.QuestionService);
             _noteController = new NoteController(services.NoteService);
             _trolController = new TrolController(services.TrolService);
+            _medicineReplaceController = new MedicineReplaceController(services.MedicineReplaceService);
 
             _mainPage = new MainPage();
         }

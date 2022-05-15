@@ -38,7 +38,13 @@ namespace Hospital.View.ManagerView
         {
            
             Room room = dataGridRooms.SelectedValue as Room;
-            //int roomId = room.Id;
+            if (room == null)
+            {
+                validacija.Visibility = Visibility.Visible;
+                return;
+            }
+
+            validacija.Visibility = Visibility.Hidden;
             var editRoom = new EditRoom(room, this);
             Content = editRoom;
 
@@ -93,7 +99,7 @@ namespace Hospital.View.ManagerView
 
         private void OccupancyClick(object sender, RoutedEventArgs e)
         {
-            View.ManagerView.RoomOccupancy roomOccupancy = new View.ManagerView.RoomOccupancy(_app._appointmentController);
+            View.ManagerView.RoomOccupancy roomOccupancy = new View.ManagerView.RoomOccupancy(_app._appointmentController, _app._roomController);
             roomOccupancy.Show();
             Close();
         }

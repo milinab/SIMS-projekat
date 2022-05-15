@@ -46,7 +46,7 @@ namespace Hospital.View.ManagerView
 
         private void OccupancyClick (object sender, RoutedEventArgs e)
         { 
-             View.ManagerView.RoomOccupancy roomOccupancy = new View.ManagerView.RoomOccupancy(_app._appointmentController);
+             View.ManagerView.RoomOccupancy roomOccupancy = new View.ManagerView.RoomOccupancy(_app._appointmentController, _app._roomController);
             roomOccupancy.Show();
             Close();
         }

@@ -26,6 +26,7 @@
         public QuestionRepository QuestionRepository { get; set; }
         public NoteRepository NoteRepository { get; set; }
         public TrolRepository TrolRepository { get; set; }
+        public MedicineReplaceRepository MedicineReplaceRepository { get; set; }
 
         public Repositories()
         {
@@ -53,6 +54,7 @@
             QuestionRepository = new QuestionRepository(QuestionRepository);
             NoteRepository = new NoteRepository(NoteRepository);
             TrolRepository = new TrolRepository(TrolRepository);
+            MedicineReplaceRepository = new MedicineReplaceRepository();
         }
     }
 }

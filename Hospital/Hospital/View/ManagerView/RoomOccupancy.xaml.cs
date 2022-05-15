@@ -22,10 +22,11 @@ namespace Hospital.View.ManagerView
     public partial class RoomOccupancy : Window
     {
         private readonly object _content;
+        private readonly RoomController _roomController;
         private readonly AppointmentController _appointmentController;
         private App _app;
 
-        public RoomOccupancy(AppointmentController appointmentController)
+        public RoomOccupancy(AppointmentController appointmentController, RoomController roomController)
         {
             _app = Application.Current as App;
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
@@ -39,7 +40,7 @@ namespace Hospital.View.ManagerView
         private void RenovateClick(object sender, RoutedEventArgs e)
         {
             Renovate renovate = new Renovate(this, _appointmentController);
-            Content = renovate;           
+            Content = renovate;     
         }
 
         public void BackToRoomOccupancy()
@@ -68,7 +69,7 @@ namespace Hospital.View.ManagerView
 
         private void OccupancyClick(object sender, RoutedEventArgs e)
         {
-            View.ManagerView.RoomOccupancy roomOccupancy = new View.ManagerView.RoomOccupancy(_app._appointmentController);
+            View.ManagerView.RoomOccupancy roomOccupancy = new View.ManagerView.RoomOccupancy(_app._appointmentController, _app._roomController);
             roomOccupancy.Show();
             Close();
         }
@@ -89,6 +90,16 @@ namespace Hospital.View.ManagerView
             LogIn login = new LogIn();
             login.Show();
             Close();
+        }
+        private void MergeClick(object sender, RoutedEventArgs e)
+        {
+            MergeRooms mergeRooms = new MergeRooms(this, _roomController);
+            Content = mergeRooms;
+        }
+        private void DivideClick(object sender, RoutedEventArgs e)
+        {
+            DivideRoom divideRoom = new DivideRoom(this, _roomController);
+            Content = divideRoom;
         }
     }
 }

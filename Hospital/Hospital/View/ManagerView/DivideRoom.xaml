@@ -1,0 +1,41 @@
+﻿<Page x:Class="Hospital.View.ManagerView.DivideRoom"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Hospital.View.ManagerView"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="DivideRoom">
+
+    <Grid Background="Azure">
+
+        <Button Content="Cancel" Margin="220,359,430,46" Click="CancelClick"/>
+        <Button Content="Divide" Margin="473,359,177,46" Click="DivideClick"/>
+        <TextBlock Text="Select room you want to divide:" Margin="178,116,411,288"/>
+        <ComboBox Name="RoomComboBox" Margin="412,113,177,295" />
+        <TextBlock Text="Enter a new room name:" Margin="216,177,373,227"/>
+        <TextBox x:Name="RoomName" Margin="412,173,177,236"/>
+        <TextBlock Text="Select a new room type:" Margin="216,249,373,155"/>
+        <ComboBox x:Name="TypeComboBox" Margin="412,245,177,164"/>
+        <Line X1="50" Y1="50" X2="1000" Y2="50" Stroke="White"  StrokeThickness="3" Margin="-50,18,1,318" />
+        <DockPanel Margin="0,-10,0,373">
+            <Menu DockPanel.Dock="Top" Background ="AliceBlue" Cursor="Hand" Height="66" >
+
+                <MenuItem Header="Home" Height="61" Width="95" FontSize="12" Click="HomeClick" HorizontalAlignment="Stretch" Margin="90,0,0,0" />
+                <MenuItem Header="Medicine" Height="65" Width="130" FontSize="12" Click="MedicineClick"/>
+                <MenuItem Header="Equipment" Height="65" Width="145" FontSize="12" Click="EquipmentClick"/>
+                <MenuItem Header="Rooms" Height="66" Width="105" FontSize="12" Click="RoomClick" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <MenuItem Header="Room occupancy" Height="64" Width="102" FontSize="12" Click="OccupancyClick"/>
+
+
+
+            </Menu>
+        </DockPanel>
+        <Image Source="/images/hospitalll.jpg" Margin="0,0,721,376" MouseLeftButtonUp="HomeClick" Cursor="Hand"/>
+        <Image Source="/images/sign_out.png" Margin="699,15,66,395" MouseLeftButtonUp="SignOutClick" Cursor="Hand"/>
+        <TextBlock Text="Sign out" FontSize="12" Margin="727,19,0,394" MouseLeftButtonUp="SignOutClick" Cursor="Hand" RenderTransformOrigin="0.512,0.042" HorizontalAlignment="Left" Width="84"/>
+
+
+    </Grid>
+</Page>

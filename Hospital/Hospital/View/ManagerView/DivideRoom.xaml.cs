@@ -2,6 +2,7 @@
 using Hospital.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,102 +13,89 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Hospital.View.ManagerView
 {
     /// <summary>
-    /// Interaction logic for Medicine.xaml
+    /// Interaction logic for DivideRoom.xaml
     /// </summary>
-    public partial class MedicineWindow : Window
+    public partial class DivideRoom : Page
     {
+
         private App _app;
-        private readonly object _content;
-        private readonly MedicineController _medicineController;
-
-        public MedicineWindow(MedicineController medicineController)
+        private RoomController _roomController;
+        private readonly RoomOccupancy _roomOccupancy;
+        public DivideRoom(RoomOccupancy roomOccupancy, RoomController roomController)
         {
-            _app = Application.Current as App;
-            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
-            _content = Content;
-            _medicineController = medicineController;
-            dataGridMedicine.ItemsSource = _medicineController.Read();
-
-        }
-
-        private void AddMedicineClick(object sender, RoutedEventArgs e)
-        {
-            AddMedicine addMedicine = new AddMedicine(this, _medicineController);
-            addMedicine.ShowDialog();
-            Close();
-        }
-
-        public void BackToMedicineWindow()
-        {
-            Content = _content;
-        }
-
-        private void SignOutClick(object sender, RoutedEventArgs e)
-        {
-            LogIn login = new LogIn();
-            login.Show();
-            Close();
-        }
-
-
-        private void ReplaceMedicineClick(object sender, RoutedEventArgs e)
-        {
-            Medicine medicine = dataGridMedicine.SelectedValue as Medicine;
-            MedicineReplacePage medicineReplacePage = new MedicineReplacePage(this, medicine, _medicineController);
-            Content = medicineReplacePage;
-        }
-
-
-
-
-
-
-
-
-        public MedicineWindow()
-        {
             _app = Application.Current as App;
-            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-            InitializeComponent();
+            _roomController = roomController;
+            _roomOccupancy = roomOccupancy;
+            ObservableCollection<Room> rooms = _app._roomController.Read();
+            ObservableCollection<String> roomName = new ObservableCollection<string>();
+            ObservableCollection<String> roomType = new ObservableCollection<string>();
+            foreach (Room room in rooms)
+            {
+                roomName.Add(room.Name);
+            }
+            foreach (Room room in rooms)
+            {
+                roomType.Add(room.Type);
+            }
+            RoomComboBox.ItemsSource = roomName;
+            TypeComboBox.ItemsSource= roomType;
+        }
+        private void CancelClick(object sender, RoutedEventArgs e)
+        {
+            _roomOccupancy.BackToRoomOccupancy();
+        }
+
+        private void DivideClick(object sender, RoutedEventArgs e)
+        {
+            Room newRoom = new Room
+            {
+                Name = RoomName.Text,
+                Floor = "4",
+                Type = TypeComboBox.Text
+            };
+            _app._roomController.Create(newRoom);
+            _roomOccupancy.BackToRoomOccupancy();
+
         }
 
         private void EquipmentClick(object sender, RoutedEventArgs e)
         {
             View.ManagerView.EquipmentWindow equipmentWindow = new View.ManagerView.EquipmentWindow(_app._equipmentController);
             equipmentWindow.Show();
-            Close();
         }
         private void RoomClick(object sender, RoutedEventArgs e)
         {
 
             View.ManagerView.ManagerWindow roomWindow = new View.ManagerView.ManagerWindow(_app._roomController);
             roomWindow.Show();
-            Close();
         }
 
         private void OccupancyClick(object sender, RoutedEventArgs e)
         {
             View.ManagerView.RoomOccupancy roomOccupancy = new View.ManagerView.RoomOccupancy(_app._appointmentController, _app._roomController);
             roomOccupancy.Show();
-            Close();
         }
         private void HomeClick(object sender, RoutedEventArgs e)
         {
             View.ManagerView.ManagerHomeWindow managerHomeWindow = new ManagerHomeWindow();
             managerHomeWindow.Show();
-            Close();
         }
         private void MedicineClick(object sender, RoutedEventArgs e)
         {
             MedicineWindow medicine = new MedicineWindow(_app._medicineController);
             medicine.Show();
-            Close();
+        }
+        private void SignOutClick(object sender, RoutedEventArgs e)
+        {
+            LogIn login = new LogIn();
+            login.Show();
         }
     }
 }
