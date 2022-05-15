@@ -48,8 +48,21 @@ namespace Hospital.View.PatientView
             _patientWindow = patientWindow;
             _id = appointment.Id;
             myCalendar.SelectedDate = appointment.Date;
+            setDatePicker(appointment);
+
+        }
+
+        private void setDatePicker(Appointment appointment) { 
             DateTime startTime = appointment.Date.AddDays(-5);
             DateTime endTime = appointment.Date.AddDays(5);
+
+            if (appointment.Date.Date.Equals(DateTime.Now.Date)) {
+                startTime = DateTime.Now.Date.AddDays(1);
+                myCalendar.DisplayDateStart = startTime;
+            }
+            if (DateTime.Now.Date > startTime) {
+                startTime = DateTime.Now.Date;
+            }
             myCalendar.DisplayDateStart = startTime;
             myCalendar.DisplayDateEnd = endTime;
         }
@@ -103,8 +116,19 @@ namespace Hospital.View.PatientView
             Room room = new Room();
             patient.Id = 1;
 
+            if (DoctorPriority.IsChecked == true)
+            {
+                Page doctorPriority = new EditDoctorPriority(DoctorId, _date, this, _patientWindow, _id);
+                this.frame.Navigate(doctorPriority);
+            }
+           if (DatePriority.IsChecked == true)
+            {
+                Page datePriority = new EditDatePriority(DoctorId, _date, this, _patientWindow, _id);
+                this.frame.Navigate(datePriority);
+            }
 
-            Appointment ap = new Appointment(_id, _date, duration, doctor, patient, room);
+
+/*            Appointment ap = new Appointment(_id, _date, duration, doctor, patient, room);
             app._appointmentController.Edit(ap);
             Trol troll = app._trolController.ReadByPatientId(_patientWindow.patient.Id);
             if(troll == null)
@@ -138,13 +162,58 @@ namespace Hospital.View.PatientView
                     Trol tr = new Trol(_patientWindow.patient.Id, DateTime.Now, 1);
                     app._trolController.Create(tr);
                 }
-            }
-            _patientWindow.BackToPatientWindow();
+            }*/
+            //_patientWindow.BackToPatientWindow();
+        }
+
+        private void HomePage_Click(object sender, RoutedEventArgs e)
+        {
+            Page homePage = new HomePage(_patientWindow);
+            this.frame.Navigate(homePage);
+        }
+
+        private void Profile_Click(object sender, RoutedEventArgs e)
+        {
+            Page profilePage = new Profile(_patientWindow);
+            this.frame.Navigate(profilePage);
+        }
+
+        private void MedicalRecord_Click(object sender, RoutedEventArgs e)
+        {
+            Page medicalRecordPage = new MedicalRecord(_patientWindow);
+            this.frame.Navigate(medicalRecordPage);
         }
 
         private void MyAppointments_Click(object sender, RoutedEventArgs e)
         {
             _patientWindow.BackToPatientWindow();
+        }
+        private void MyTherapy_Click(object sender, RoutedEventArgs e)
+        {
+            Page myTherapyPage = new MyTherapy(_patientWindow);
+            this.frame.Navigate(myTherapyPage);
+        }
+
+        private void Calendar_Click(object sender, RoutedEventArgs e)
+        {
+            Page calendarPage = new Calendar(_patientWindow);
+            this.frame.Navigate(calendarPage);
+        }
+        private void Notes_Click(object sender, RoutedEventArgs e)
+        {
+            Page notesPage = new Notes(_patientWindow);
+            this.frame.Navigate(notesPage);
+        }
+
+        private void Surveys_Click(object sender, RoutedEventArgs e)
+        {
+            Page hospitalSurveyPage = new Surveys(_patientWindow);
+            this.frame.Navigate(hospitalSurveyPage);
+        }
+        private void Notification_Click(object sender, RoutedEventArgs e)
+        {
+            Page notificationPage = new Notification(_patientWindow);
+            this.frame.Navigate(notificationPage);
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)

@@ -14,22 +14,42 @@
         <Button Content="Log out" BorderThickness="2" HorizontalAlignment="Left" Margin="700,6,0,0" VerticalAlignment="Top" Height="29" Width="82" Click="LogOut_Click" Background="IndianRed" FontFamily="Georgia"/>
         <Border BorderBrush="Black" BorderThickness="1" Width="Auto" Height="1" Margin="0,32,0,470" />
 
+
         <Menu Width="Auto" Margin="0,40,0,450" Background="Bisque">
-            <MenuItem Height="60" Width="140" VerticalAlignment="Center" Padding="10,0,0,0" Header=" " Margin="10,0,0,0" HorizontalAlignment="Stretch" />
-            <MenuItem Height="60" Width="100" VerticalAlignment="Center" Padding="10,0,0,0" Header="Medical record" Foreground="Maroon"/>
+            <MenuItem Click="HomePage_Click">
+                <MenuItem.Icon>
+                    <Image Source="/images/home.png" Margin="0,0,-10,-2" />
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem Click="Profile_Click">
+                <MenuItem.Icon>
+                    <Image Source="/images/user.png" Margin="0,0,-10,-2" />
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem Height="60" Width="70" VerticalAlignment="Center" Padding="10,0,0,0" Header=" " Margin="10,0,0,0" HorizontalAlignment="Stretch" />
+            <MenuItem Height="60" Width="100" VerticalAlignment="Center" Padding="10,0,0,0" Header="Medical record" Foreground="Maroon" Click="MedicalRecord_Click"/>
             <MenuItem Height="60" Width="120" VerticalAlignment="Center" Padding="10,0,0,0" Header="My appointments" Margin="0,0,0,0" HorizontalAlignment="Stretch" Click="MyAppointments_Click" Foreground="Maroon"/>
-            <MenuItem Height="60" Width="85" VerticalAlignment="Center" Padding="10,0,0,0" Header="My therapy" Foreground="Maroon"/>
-            <MenuItem Height="60" Width="77" VerticalAlignment="Center" Padding="10,0,0,0" Header="Calendar" Foreground="Maroon"/>
-            <MenuItem Height="60" Width="55" VerticalAlignment="Center" Padding="10,0,0,0" Header="Notes" Foreground="Maroon"/>
-            <MenuItem Height="60" Width="65" VerticalAlignment="Center" Padding="10,0,0,0" Header="Surveys" Click="Surveys_Click" Foreground="Maroon"/>
+            <MenuItem Height="60" Width="85" VerticalAlignment="Center" Padding="10,0,0,0" Header="My therapy" Foreground="Maroon" Click="MyTherapy_Click"/>
+            <MenuItem Height="60" Width="77" VerticalAlignment="Center" Padding="10,0,0,0" Header="Calendar" Foreground="Maroon" Click="Calendar_Click"/>
+            <MenuItem Height="60" Width="55" VerticalAlignment="Center" Padding="10,0,0,0" Header="Notes" Foreground="Maroon" Click="Notes_Click"/>
+            <MenuItem Height="60" Width="65" VerticalAlignment="Center" Padding="10,0,0,0" Header="Surveys" Foreground="Maroon" Click="Surveys_Click" />
+            <MenuItem Height="60" Width="80" VerticalAlignment="Center" Padding="10,0,0,0" Header=" " Margin="10,0,0,0" HorizontalAlignment="Stretch" />
+            <MenuItem Click="Notification_Click">
+                <MenuItem.Icon>
+                    <Image Source="/images/notifications.png" Margin="0,0,-10,-2" />
+                </MenuItem.Icon>
+            </MenuItem>
         </Menu>
         <Label Content="Notes" HorizontalAlignment="Left" Margin="350,80,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Georgia"/>
         <Border BorderBrush="Black" BorderThickness="1" Width="Auto" Height="1" Margin="0,85,0,364" />
 
+
+
         <Button Content="Delete note" Background="Bisque" HorizontalAlignment="Left" Margin="94,136,0,0" VerticalAlignment="Top" Width="76" Click="DeleteNote_Click" Height="19"/>
         <Button Content="Add note" Background="Bisque" HorizontalAlignment="Left" Margin="10,136,0,0" VerticalAlignment="Top" Width="76" Click="AddNote_Click" Height="19"/>
+        <TextBlock x:Name="selectForDelete" HorizontalAlignment="Left" Margin="565,141,0,0" TextWrapping="Wrap" Text="Please select the note You want to delete." VerticalAlignment="Top" Foreground="Red" Visibility="Hidden"/>
 
-        <DataGrid x:Name="dataGridNotes" Background="AntiqueWhite" AutoGenerateColumns="False" Height="335" Margin="10,168,10,0" VerticalAlignment="Top">
+        <DataGrid x:Name="dataGridNotes" Background="AntiqueWhite" AutoGenerateColumns="False" Height="335" Margin="10,168,10,0" VerticalAlignment="Top" CanUserAddRows="false">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="2*">
                     <DataGridTextColumn.CellStyle>
@@ -51,7 +71,7 @@
 
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Click="InfoButtonClick">Info</Button>
+                            <Button Click="InfoButtonClick" Foreground="Black" Background="AliceBlue">Info</Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
 
@@ -59,7 +79,9 @@
             </DataGrid.Columns>
         </DataGrid>
 
+
         <Frame x:Name="frame" NavigationUIVisibility="Hidden" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" Grid.Column="1"/>
+        
 
     </Grid>
 </Page>

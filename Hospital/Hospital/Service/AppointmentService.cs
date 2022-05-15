@@ -80,6 +80,11 @@ namespace Hospital.Service
             return _repository.ReadByDoctorId(doctorId);
         }
 
+        public ObservableCollection<Appointment> ReadByDateAndNotDoctor(int doctorId, DateTime date)
+        {
+            return _repository.ReadByDateAndNotDoctor(doctorId, date);
+        }
+
         private int GenerateId()
         {
             return ++_id;
@@ -97,6 +102,21 @@ namespace Hospital.Service
             }
             return pastAppointments;
         }
-        
+
+        public ObservableCollection<Appointment> ReadFutureAppointments()
+        {
+            ObservableCollection<Appointment> futureAppointments = new ObservableCollection<Appointment>();
+
+            ObservableCollection<Appointment> allAppointments = _repository.Read();
+            foreach (Appointment a in allAppointments)
+            {
+                if (a.Date > DateTime.Now)
+                {
+                    futureAppointments.Add(a);
+                }
+            }
+            return futureAppointments;
+        }
+
     }
 }

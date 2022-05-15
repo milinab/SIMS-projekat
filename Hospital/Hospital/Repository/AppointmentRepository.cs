@@ -1,3 +1,4 @@
+using System;
 using System.Collections.ObjectModel;
 using System.Windows;
 using Hospital.Model;
@@ -91,6 +92,11 @@ namespace Hospital.Repository
                     appointment.Date = editAppointment.Date;
                     appointment.Duration = editAppointment.Duration;
                     appointment.Room = editAppointment.Room;
+                    appointment.Patient = editAppointment.Patient;
+                    appointment.Doctor = editAppointment.Doctor;
+                    appointment.RoomId = editAppointment.RoomId;
+                    appointment.PatientId = editAppointment.PatientId;
+                    appointment.DoctorId = editAppointment.DoctorId;
                 }
             }
             Write();
@@ -137,6 +143,37 @@ namespace Hospital.Repository
                     }
 
                     itemsToReturn.Add(appointment);
+                }
+            }
+            return itemsToReturn;
+        }
+
+        public ObservableCollection<Appointment> ReadByDateAndNotDoctor(int doctorId, DateTime date)
+        {
+            var itemsToReturn = new ObservableCollection<Appointment>();
+            _appointments = _serializer.Read();
+            foreach (Appointment appointment in _appointments)
+            {
+                if (appointment.Date.Date == date && appointment.DoctorId != doctorId)
+                {
+                    
+                    Doctor doctor = _doctorRepository.ReadById(appointment.DoctorId);
+                    Patient patient = _patientRepository.ReadById(appointment.PatientId);
+                    Room room = _roomRepository.ReadById(appointment.RoomId);
+                    if (doctor != null)
+                    {
+                        appointment.Doctor = doctor;
+                    }
+                    if (patient != null)
+                    {
+                        appointment.Patient = patient;
+                    }
+                    if (room != null)
+                    {
+                        appointment.Room = room;
+                    }
+                    itemsToReturn.Add(appointment);
+                    
                 }
             }
             return itemsToReturn;

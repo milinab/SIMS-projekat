@@ -21,15 +21,15 @@ namespace Hospital.View.SecretaryView
         private readonly SecretaryWindow _secretaryWindow;
         private readonly App _app;
         private AllergenList allergies;
-        private ObservableCollection<Allergen> allergens;
-        public EditPatient(Patient patient,int userId,SecretaryWindow secretaryWindow)
+        private ObservableCollection<Allergen> _allergens;
+        private ObservableCollection<Allergen> _patientAllergens;
+        public EditPatient(Patient patient, int userId, SecretaryWindow secretaryWindow)
         {
             _app = Application.Current as App;
             InitializeComponent();
 
-            allergens = _app._allergenController.Read();
-            AllergenListBox.ItemsSource = allergens;
-            AllergenListBox.Items.Refresh();
+            _allergens = _app._allergenController.Read();
+            AllergenListBox.ItemsSource = _allergens;
             _secretaryWindow = secretaryWindow;
             this.nameText.Text = patient.Name;
             this.lastNameText.Text = patient.LastName;
@@ -48,13 +48,18 @@ namespace Hospital.View.SecretaryView
             this.chronicalDiseaseText.Text = patient.MedicalRecord.ChronicalDiseases;
             this.countryText.Text = patient.Address.City.Country.Name;
             this.numberText.Text = patient.Address.Number.ToString();
+            foreach (int i in patient.MedicalRecord.AllergenIds)
+            {
+                AllergenListBox.SelectedItems.Add(AllergenListBox.Items[i - 1]);
+            }
+            
             _id = patient.Id;
             _userId = userId;
             _addressId = patient.AddressId;
             _medicalRecordId = patient.MedicalRecordId;
             _countryId = patient.Address.City.CountryId;
             _cityId = patient.Address.CityId;
-            
+
 
         }
         private void CancelPatientOnClick(Object sender, RoutedEventArgs e)
@@ -77,13 +82,13 @@ namespace Hospital.View.SecretaryView
             _app._userController.Edit(user);
             AllergenList patientAllergies = new AllergenList();
             foreach (Allergen allergen in AllergenListBox.SelectedItems)
-            { 
+            {
                 patientAllergies.Add(allergen.Id);
             }
             MedicalRecord record = new MedicalRecord(chronicalDiseaseText.Text, patientAllergies, _medicalRecordId);
             _app._medicalRecordController.Edit(record);
             Patient patient = new Patient(user, genderText.Text, bloodTypeText.Text, healthInsuranceIdText.Text, record, _id);
-            
+
             _app._patientController.Edit(patient);
             _secretaryWindow.BackToSecretaryWindow();
         }
@@ -97,7 +102,7 @@ namespace Hospital.View.SecretaryView
         {
             AppointmentPage appointmentPage = new AppointmentPage();
             appointmentPage.Show();
-            _secretaryWindow.Hide();
+            _secretaryWindow.Close();
         }
 
         private void AddAllergen_Click(object sender, RoutedEventArgs e)
@@ -111,14 +116,14 @@ namespace Hospital.View.SecretaryView
             _app._allergenController.Create(allergen);
             AllergiesText.Text = "";
             AllergenListBox.Items.Refresh();
-            AllergenListBox.ItemsSource = allergens;
+            AllergenListBox.ItemsSource = _allergens;
         }
 
         private void SignOut_Click(object sender, RoutedEventArgs e)
         {
             LogIn logIn = new LogIn();
             logIn.Show();
-            _secretaryWindow.Hide();
+            _secretaryWindow.Close();
         }
     }
 }

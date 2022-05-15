@@ -12,13 +12,13 @@ namespace Hospital.View.DoctorView.Appointments {
     {
 
         private App _app;
-        private readonly AppointmentsPage _appointmentsPage;
+        private readonly Frame _frame;
         
-        public Add(AppointmentsPage appointmentsPage)
+        public Add(Frame frame)
         {
             _app = Application.Current as App;
+            _frame = frame;
             InitializeComponent();
-            _appointmentsPage = appointmentsPage;
             DatePicker.SelectedDate = DateTime.Now;
             ObservableCollection<Room> rooms = _app._roomController.Read();
             ObservableCollection<String> roomNames = new ObservableCollection<string>();
@@ -66,11 +66,11 @@ namespace Hospital.View.DoctorView.Appointments {
             Appointment appointment = new Appointment(date, duration, tempDoctor, tempPatient, tempRoom);
 
             _app._appointmentController.Create(appointment);
-            _appointmentsPage.SwitchPage();
+            _frame.GoBack();
         }
 
         private void Cancel(object sender, RoutedEventArgs e) {
-            _appointmentsPage.SwitchPage();
+            _frame.GoBack();
         }
     }
 }

@@ -37,10 +37,14 @@ namespace Hospital
         internal NoteController _noteController;
         internal TrolController _trolController;
         internal MedicineReplaceController _medicineReplaceController;
-        internal MainPage _mainPage;
+        //internal MainPage _mainPage;
+
+        internal MainWindow _mainWindow;
 
         public App()
         {
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjM3MDMyQDMyMzAyZTMxMmUzMGcxWFBwNGZOQ2g3WjlkbzRHNVljWmpmZnh4a2FJbVNZQW5qUFJNVFlCWmc9");
+
             Repositories repositories = new Repositories();
             Services services = new Services(repositories);
 
@@ -70,7 +74,8 @@ namespace Hospital
             _trolController = new TrolController(services.TrolService);
             _medicineReplaceController = new MedicineReplaceController(services.MedicineReplaceService);
 
-            _mainPage = new MainPage();
+            _mainWindow = new MainWindow();
+            
         }
     }
 }

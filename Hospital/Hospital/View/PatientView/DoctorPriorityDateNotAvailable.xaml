@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Hospital.View.PatientView"
       mc:Ignorable="d" 
-      d:DesignHeight="560" d:DesignWidth="800" Background="White"
+      d:DesignHeight="560" d:DesignWidth="800" Background="AntiqueWhite"
       Title="DoctorPriorityDateAvailable">
 
     <Grid>
@@ -14,23 +14,39 @@
         <Button Content="Log out" BorderThickness="2" HorizontalAlignment="Left" Margin="700,6,0,0" VerticalAlignment="Top" Height="29" Width="82" Click="LogOut_Click"/>
         <Border BorderBrush="Black" BorderThickness="1" Width="Auto" Height="1" Margin="0,32,0,470" />
 
-        <Menu Width="Auto" Margin="0,40,0,450">
-            <MenuItem Height="60" Width="140" VerticalAlignment="Center" Padding="10,0,0,0" Header=" " Margin="10,0,0,0" HorizontalAlignment="Stretch"/>
-            <MenuItem Height="60" Width="100" VerticalAlignment="Center" Padding="10,0,0,0" Header="Medical record"/>
-            <MenuItem Height="60" Width="120" VerticalAlignment="Center" Padding="10,0,0,0" Header="My appointments" Margin="0,0,0,0" HorizontalAlignment="Stretch" Click="MyAppointments_Click"/>
-            <MenuItem Height="60" Width="85" VerticalAlignment="Center" Padding="10,0,0,0" Header="My therapy"/>
-            <MenuItem Height="60" Width="70" VerticalAlignment="Center" Padding="10,0,0,0" Header="Calendar"/>
-            <MenuItem Height="60" Width="55" VerticalAlignment="Center" Padding="10,0,0,0" Header="Notes"/>
-            <MenuItem Height="60" Width="65" VerticalAlignment="Center" Padding="10,0,0,0" Header="Surveys"/>
+        <Menu Width="Auto" Margin="0,40,0,450" Background="Bisque">
+            <MenuItem Click="HomePage_Click">
+                <MenuItem.Icon>
+                    <Image Source="/images/home.png" Margin="0,0,-10,-2" />
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem Click="Profile_Click">
+                <MenuItem.Icon>
+                    <Image Source="/images/user.png" Margin="0,0,-10,-2" />
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem Height="60" Width="70" VerticalAlignment="Center" Padding="10,0,0,0" Header=" " Margin="10,0,0,0" HorizontalAlignment="Stretch" />
+            <MenuItem Height="60" Width="100" VerticalAlignment="Center" Padding="10,0,0,0" Header="Medical record" Foreground="Maroon" Click="MedicalRecord_Click"/>
+            <MenuItem Height="60" Width="120" VerticalAlignment="Center" Padding="10,0,0,0" Header="My appointments" Margin="0,0,0,0" HorizontalAlignment="Stretch" Click="MyAppointments_Click" Foreground="Maroon"/>
+            <MenuItem Height="60" Width="85" VerticalAlignment="Center" Padding="10,0,0,0" Header="My therapy" Foreground="Maroon" Click="MyTherapy_Click"/>
+            <MenuItem Height="60" Width="77" VerticalAlignment="Center" Padding="10,0,0,0" Header="Calendar" Foreground="Maroon" Click="Calendar_Click"/>
+            <MenuItem Height="60" Width="55" VerticalAlignment="Center" Padding="10,0,0,0" Header="Notes" Foreground="Maroon" Click="Notes_Click"/>
+            <MenuItem Height="60" Width="65" VerticalAlignment="Center" Padding="10,0,0,0" Header="Surveys" Foreground="Maroon" Click="Surveys_Click" />
+            <MenuItem Height="60" Width="80" VerticalAlignment="Center" Padding="10,0,0,0" Header=" " Margin="10,0,0,0" HorizontalAlignment="Stretch" />
+            <MenuItem Click="Notification_Click">
+                <MenuItem.Icon>
+                    <Image Source="/images/notifications.png" Margin="0,0,-10,-2" />
+                </MenuItem.Icon>
+            </MenuItem>
         </Menu>
 
         <Label Content="Book an appointment" HorizontalAlignment="Left" Margin="500,105,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="18"/>
 
-        <DataGrid x:Name="dataGridAppointments" AutoGenerateColumns="False" Height="411" Margin="10,105,380,0" VerticalAlignment="Top">
+        <DataGrid x:Name="dataGridAppointments" AutoGenerateColumns="False" Height="411" Margin="10,105,380,0" VerticalAlignment="Top" CanUserAddRows="false">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Doctor" Binding="{Binding Doctor.Name}" Width="2*"/>
                 <DataGridTextColumn Header="Date" Binding="{Binding Date, StringFormat=\{0:d.M.yyyy\}}" Width="*"/>
-                <DataGridTextColumn Header="Time" Binding="{Binding Duration, StringFormat=\{0:H:mm\}}" Width="*"/>
+                <DataGridTextColumn Header="Time" Binding="{Binding Date, StringFormat=\{0:H:mm\}}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
         
@@ -39,7 +55,7 @@
         <TextBlock x:Name="ChosenDoctor" HorizontalAlignment="Left" Height="29" Margin="425,184,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="125"/>
 
         <Label Content="Choose an appointment:" HorizontalAlignment="Left" Margin="420,220,0,0" VerticalAlignment="Top" Width="210" FontSize="16" Height="34" FontWeight="Bold"/>
-        <DataGrid x:Name="dataGridDoctorPriority" AutoGenerateColumns="False" Height="195" Margin="425,254,10,0" VerticalAlignment="Top">
+        <DataGrid x:Name="dataGridDoctorPriority" AutoGenerateColumns="False" Height="195" Margin="425,254,10,0" VerticalAlignment="Top" CanUserAddRows="false">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Date" Binding="{Binding Date, StringFormat=\{0:d.M.yyyy\}}" Width="*"/>
                 <DataGridTextColumn Header="Time" Binding="{Binding Date, StringFormat=\{0:H:mm\}}" Width="*"/>

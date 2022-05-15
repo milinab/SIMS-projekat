@@ -43,21 +43,58 @@ namespace Hospital.View.PatientView
             this.DataContext = this;
             _patientWindow = patientWindow;
             dataGridNotes.ItemsSource = app._noteController.Read();
+            this.selectForDelete.Visibility = Visibility.Hidden;
         }
 
-        private void Surveys_Click(object sender, RoutedEventArgs e)
+        private void HomePage_Click(object sender, RoutedEventArgs e)
+        {
+            Page homePage = new HomePage(_patientWindow);
+            this.frame.Navigate(homePage);
+        }
+
+        private void Profile_Click(object sender, RoutedEventArgs e)
+        {
+            Page profilePage = new Profile(_patientWindow);
+            this.frame.Navigate(profilePage);
+        }
+
+        private void MedicalRecord_Click(object sender, RoutedEventArgs e)
+        {
+            Page medicalRecordPage = new MedicalRecord(_patientWindow);
+            this.frame.Navigate(medicalRecordPage);
+        }
+        private void Notes_Click(object sender, RoutedEventArgs e)
         {
             Content = _content;
         }
 
-        private void Notes_Click(object sender, RoutedEventArgs e)
+        private void Surveys_Click(object sender, RoutedEventArgs e)
         {
-
+            Page hospitalSurveyPage = new Surveys(_patientWindow);
+            this.frame.Navigate(hospitalSurveyPage);
         }
+        private void Notification_Click(object sender, RoutedEventArgs e)
+        {
+            Page notificationPage = new Notification(_patientWindow);
+            this.frame.Navigate(notificationPage);
+        }
+
+        
 
         private void MyAppointments_Click(object sender, RoutedEventArgs e)
         {
             _patientWindow.BackToPatientWindow();
+        }
+        private void MyTherapy_Click(object sender, RoutedEventArgs e)
+        {
+            Page myTherapyPage = new MyTherapy(_patientWindow);
+            this.frame.Navigate(myTherapyPage);
+        }
+
+        private void Calendar_Click(object sender, RoutedEventArgs e)
+        {
+            Page calendarPage = new Calendar(_patientWindow);
+            this.frame.Navigate(calendarPage);
         }
 
         public void BackToPatientWindow()
@@ -96,14 +133,18 @@ namespace Hospital.View.PatientView
         {
             if (dataGridNotes.SelectedItem != null)
             {
+                this.selectForDelete.Visibility = Visibility.Hidden;
                 Note note = (Note)dataGridNotes.SelectedItem;
                 app._noteController.Delete(note.Id);
             }
             else
             {
-                MessageBox.Show("Select a note You want to delete.", "Warning");
+                //MessageBox.Show("Select a note You want to delete.", "Warning");
+                this.selectForDelete.Visibility = Visibility.Visible;
             }
         }
+
+
 
         public void BackToNotes()
         {
@@ -115,6 +156,6 @@ namespace Hospital.View.PatientView
             dataGridNotes.ItemsSource = app._noteController.Read();
         }
 
-        
+       
     }
 }

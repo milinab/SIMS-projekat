@@ -1,3 +1,4 @@
+using System;
 using System.Collections.ObjectModel;
 using Hospital.Model;
 using Hospital.Service;
@@ -48,6 +49,15 @@ namespace Hospital.Controller
         public ObservableCollection<Appointment> ReadByDoctorId(int doctorId)
         {
             return _service.ReadByDoctorId(doctorId);
+        }
+        public ObservableCollection<Appointment> ReadByDateAndNotDoctor(int doctorId, DateTime date)
+        {
+            return _service.ReadByDateAndNotDoctor(doctorId, date);
+        }
+
+        public ObservableCollection<Appointment> ReadFutureAppointments()
+        {
+            return _service.ReadFutureAppointments();
         }
     }
 }

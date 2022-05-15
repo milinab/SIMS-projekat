@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
 using Hospital.Model;
+using Syncfusion.UI.Xaml.Scheduler;
 
 namespace Hospital.View.DoctorView.Appointments
 {
@@ -18,69 +19,74 @@ namespace Hospital.View.DoctorView.Appointments
         {
             _app = Application.Current as App;
             InitializeComponent();
+            var appointments = _app._appointmentController.Read();
             _frame = frame;
             LiveDateTimeLabel.Content = DateTime.Now.ToString("ddd, d.M.yyyy.\nH:mm");
             DataContext = this;
-            GridAppointments.ItemsSource = _app._appointmentController.Read();
             DispatcherTimer liveDateTime = new DispatcherTimer();
             liveDateTime.Interval = TimeSpan.FromSeconds(1);
             liveDateTime.Tick += TimerTick;
             liveDateTime.Start();
+            AppointmentsCalendar.ItemsSource = appointments;
         }
 
         private void AddClick(object sender, RoutedEventArgs e)
         {
 
-            Add addPage = new Add(this);
+            Add addPage = new Add(_frame);
             _frame.Navigate(addPage);
         }
         private void EditClick(object sender, RoutedEventArgs e)
         {
-            if (GridAppointments.SelectedItem != null)
-            {
-                Edit editPage = new Edit((Appointment)GridAppointments.SelectedItem, this);
-                _frame.Navigate(editPage);
-            }
-            else
-            {
-                MessageBox.Show("You must select a row first", "Warning");
-            }
+            // if (AppointmentsCalendar .SelectedItem != null)
+            // {
+            //     Edit editPage = new Edit((Appointment)GridAppointments.SelectedItem, this);
+            //     _frame.Navigate(editPage);
+            // }
+            // else
+            // {
+            //     MessageBox.Show("You must select a row first", "Warning");
+            // }
         }
         private void DeleteClick(object sender, RoutedEventArgs e)
         {
-            if (GridAppointments.SelectedItem != null)
-            {
-                Appointment appointment = (Appointment)GridAppointments.SelectedItem;
-                _app._appointmentController.Delete(appointment.Id);
-            }
-            else
-            {
-                MessageBox.Show("You must select a row first", "Warning");
-            }
+            // if (GridAppointments.SelectedItem != null)
+            // {
+            //     Appointment appointment = (Appointment)GridAppointments.SelectedItem;
+            //     _app._appointmentController.Delete(appointment.Id);
+            // }
+            // else
+            // {
+            //     MessageBox.Show("You must select a row first", "Warning");
+            // }
         }
         
         private void ViewClick(object sender, RoutedEventArgs e)
         {
-            if (GridAppointments.SelectedItem != null)
-            {
-                ViewPatientInformations view = new ViewPatientInformations((Appointment)GridAppointments.SelectedItem, this);
-                _frame.Navigate(view);
-            }
-            else
-            {
-                MessageBox.Show("You must select a row first", "Warning");
-            }
+            // if (GridAppointments.SelectedItem != null)
+            // {
+            //     ViewPatientInformations view = new ViewPatientInformations((Appointment)GridAppointments.SelectedItem, this);
+            //     _frame.Navigate(view);
+            // }
+            // else
+            // {
+            //     MessageBox.Show("You must select a row first", "Warning");
+            // }
         }
         
         public void SwitchPage() {
             _frame.Navigate(Content);
-            GridAppointments.ItemsSource = _app._appointmentController.Read();
+            AppointmentsCalendar.ItemsSource = _app._appointmentController.Read();
         }
 
         private void TimerTick(object sender, EventArgs e)
         {
             LiveDateTimeLabel.Content = DateTime.Now.ToString("ddd, d.M.yyyy.\nH:mm");
         }
-        
+
+        private void AppointmentsCalendar_OnAppointmentEditorOpening(object sender, AppointmentEditorOpeningEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

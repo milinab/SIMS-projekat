@@ -76,19 +76,54 @@ namespace Hospital.View.PatientView
             icTodoList.ItemsSource = questionAndRatingStarsNames;            
         }
 
-        private void Surveys_Click(object sender, RoutedEventArgs e)
+        private void HomePage_Click(object sender, RoutedEventArgs e)
         {
-            Content = _content;
+            Page homePage = new HomePage(_patientWindow);
+            this.frame.Navigate(homePage);
         }
 
-        private void FillTheSurvey(object sender, RoutedEventArgs e)
+        private void Profile_Click(object sender, RoutedEventArgs e)
         {
+            Page profilePage = new Profile(_patientWindow);
+            this.frame.Navigate(profilePage);
+        }
 
+        private void MedicalRecord_Click(object sender, RoutedEventArgs e)
+        {
+            Page medicalRecordPage = new MedicalRecord(_patientWindow);
+            this.frame.Navigate(medicalRecordPage);
         }
 
         private void MyAppointments_Click(object sender, RoutedEventArgs e)
         {
             _patientWindow.BackToPatientWindow();
+        }
+        private void MyTherapy_Click(object sender, RoutedEventArgs e)
+        {
+            Page myTherapyPage = new MyTherapy(_patientWindow);
+            this.frame.Navigate(myTherapyPage);
+        }
+
+        private void Calendar_Click(object sender, RoutedEventArgs e)
+        {
+            Page calendarPage = new Calendar(_patientWindow);
+            this.frame.Navigate(calendarPage);
+        }
+        private void Notes_Click(object sender, RoutedEventArgs e)
+        {
+            Page notesPage = new Notes(_patientWindow);
+            this.frame.Navigate(notesPage);
+        }
+
+        private void Surveys_Click(object sender, RoutedEventArgs e)
+        {
+            Page hospitalSurveyPage = new Surveys(_patientWindow);
+            this.frame.Navigate(hospitalSurveyPage);
+        }
+        private void Notification_Click(object sender, RoutedEventArgs e)
+        {
+            Page notificationPage = new Notification(_patientWindow);
+            this.frame.Navigate(notificationPage);
         }
 
         public void BackToPatientWindow()
@@ -103,12 +138,10 @@ namespace Hospital.View.PatientView
             _patientWindow.Close();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Back_Click(object sender, RoutedEventArgs e)
         {
-            _patientWindow.BackToPatientWindow();
-          //  PatientWindow patientWindow = new PatientWindow();
-          //  this.Visibility = Visibility.Hidden; 
-          //  patientWindow.Show();
+            Page pastAppointmentsPage = new PastAppointments(_patientWindow);
+            this.frame.Navigate(pastAppointmentsPage);
         }
 
         private void SendAnswers_Click(object sender, RoutedEventArgs e)

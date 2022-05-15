@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Hospital.View.PatientView"
+      xmlns:val="clr-namespace:Hospital.View.PatientView.Validations"
       mc:Ignorable="d" 
       d:DesignHeight="560" d:DesignWidth="800" Background="AntiqueWhite"
       Title="AddNote">
@@ -15,13 +16,29 @@
         <Border BorderBrush="Black" BorderThickness="1" Width="Auto" Height="1" Margin="0,32,0,470" />
 
         <Menu Width="Auto" Margin="0,40,0,450" Background="Bisque">
-            <MenuItem Height="60" Width="140" VerticalAlignment="Center" Padding="10,0,0,0" Header=" " Margin="10,0,0,0" HorizontalAlignment="Stretch" />
-            <MenuItem Height="60" Width="100" VerticalAlignment="Center" Padding="10,0,0,0" Header="Medical record" Foreground="Maroon"/>
+            <MenuItem Click="HomePage_Click">
+                <MenuItem.Icon>
+                    <Image Source="/images/home.png" Margin="0,0,-10,-2" />
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem Click="Profile_Click">
+                <MenuItem.Icon>
+                    <Image Source="/images/user.png" Margin="0,0,-10,-2" />
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem Height="60" Width="70" VerticalAlignment="Center" Padding="10,0,0,0" Header=" " Margin="10,0,0,0" HorizontalAlignment="Stretch" />
+            <MenuItem Height="60" Width="100" VerticalAlignment="Center" Padding="10,0,0,0" Header="Medical record" Foreground="Maroon" Click="MedicalRecord_Click"/>
             <MenuItem Height="60" Width="120" VerticalAlignment="Center" Padding="10,0,0,0" Header="My appointments" Margin="0,0,0,0" HorizontalAlignment="Stretch" Click="MyAppointments_Click" Foreground="Maroon"/>
-            <MenuItem Height="60" Width="85" VerticalAlignment="Center" Padding="10,0,0,0" Header="My therapy" Foreground="Maroon"/>
-            <MenuItem Height="60" Width="77" VerticalAlignment="Center" Padding="10,0,0,0" Header="Calendar" Foreground="Maroon"/>
-            <MenuItem Height="60" Width="55" VerticalAlignment="Center" Padding="10,0,0,0" Header="Notes" Foreground="Maroon"/>
-            <MenuItem Height="60" Width="65" VerticalAlignment="Center" Padding="10,0,0,0" Header="Surveys" Click="Surveys_Click" Foreground="Maroon"/>
+            <MenuItem Height="60" Width="85" VerticalAlignment="Center" Padding="10,0,0,0" Header="My therapy" Foreground="Maroon" Click="MyTherapy_Click"/>
+            <MenuItem Height="60" Width="77" VerticalAlignment="Center" Padding="10,0,0,0" Header="Calendar" Foreground="Maroon" Click="Calendar_Click"/>
+            <MenuItem Height="60" Width="55" VerticalAlignment="Center" Padding="10,0,0,0" Header="Notes" Foreground="Maroon" Click="Notes_Click"/>
+            <MenuItem Height="60" Width="65" VerticalAlignment="Center" Padding="10,0,0,0" Header="Surveys" Foreground="Maroon" Click="Surveys_Click"/>
+            <MenuItem Height="60" Width="80" VerticalAlignment="Center" Padding="10,0,0,0" Header=" " Margin="10,0,0,0" HorizontalAlignment="Stretch" />
+            <MenuItem Click="Notification_Click">
+                <MenuItem.Icon>
+                    <Image Source="/images/notifications.png" Margin="0,0,-10,-2" />
+                </MenuItem.Icon>
+            </MenuItem>
         </Menu>
         <Label Content="Notes" HorizontalAlignment="Left" Margin="350,80,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Georgia"/>
         <Border BorderBrush="Black" BorderThickness="1" Width="Auto" Height="1" Margin="0,85,0,364" />
@@ -29,22 +46,82 @@
 
 
         <Label Content="Name:" HorizontalAlignment="Left" Margin="10,134,0,0" VerticalAlignment="Top" FontSize="14"/>
-        <TextBox x:Name="noteName" HorizontalAlignment="Left" Margin="70,134,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="248" Height="27" BorderBrush="Maroon" TextChanged="NameTextBoxTextChanged">
+        <TextBox x:Name="noteName" HorizontalAlignment="Left" Margin="70,134,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="248" Height="27" TextChanged="NameTextBoxTextChanged">
+            <TextBox.Text>
+                <Binding Path="NoteName" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <val:NoEmptyInputsRule ValidationStep="RawProposedValue"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
             <TextBox.Background>
                 <ImageBrush ImageSource="insertNoteName.png" AlignmentX="Left" AlignmentY="Top" Stretch="None" />
             </TextBox.Background>
+            <Validation.ErrorTemplate>
+                <ControlTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <AdornedElementPlaceholder  Grid.Column="0" Grid.Row="0"/>
+                        <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding [0].ErrorContent}" Foreground="Red"/>
+                    </Grid>
+                </ControlTemplate>
+            </Validation.ErrorTemplate>
         </TextBox>
-        <Button Content="Back to all notes" HorizontalAlignment="Left" Margin="642,134,0,0" VerticalAlignment="Top" FontSize="14" Height="27" Width="130" Click="BackToAllNotes_Click"/>
-        <Button Content="Save changes" HorizontalAlignment="Left" Margin="674,472,0,0" VerticalAlignment="Top" Height="34" Width="83" Click="SaveChanges_Click"/>
-        <TextBox x:Name="noteText" HorizontalAlignment="Center" Margin="0,175,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="760" Height="284"  BorderBrush="Maroon" TextChanged="TextTextBoxTextChanged">
+        <Button Content="Back to all notes" Background="Bisque" HorizontalAlignment="Left" Margin="642,134,0,0" VerticalAlignment="Top" FontSize="14" Height="27" Width="130" Click="BackToAllNotes_Click"/>
+        <Button x:Name="buttonSave" IsDefault="True" Command="{Binding SaveProtocolCommand}"  Content="Save changes" Background="Bisque" HorizontalAlignment="Left" Margin="642,470,0,0" VerticalAlignment="Top" Height="27" Width="130" Click="SaveChanges_Click" >
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="IsEnabled" Value="False"/>
+                    <Style.Triggers>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Path=(Validation.HasError), ElementName=noteName}" Value="False"/>
+                                <Condition Binding="{Binding Path=(Validation.HasError), ElementName=noteText}" Value="False"/>
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="IsEnabled" Value="True"/>
+                        </MultiDataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        <TextBox x:Name="noteText" HorizontalAlignment="Center" Margin="-110,191,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="538" Height="268" TextChanged="TextTextBoxTextChanged">
+            <TextBox.Text>
+                <Binding Path="NoteText" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <val:NoEmptyInputsRule ValidationStep="RawProposedValue"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
             <TextBox.Background>
                 <ImageBrush ImageSource="insertNoteText.png" AlignmentX="Left" AlignmentY="Top" Stretch="None" />
             </TextBox.Background>
+            <Validation.ErrorTemplate>
+                <ControlTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <AdornedElementPlaceholder  Grid.Column="0" Grid.Row="0"/>
+                        <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding [0].ErrorContent}" Foreground="Red"/>
+                    </Grid>
+                </ControlTemplate>
+            </Validation.ErrorTemplate>
         </TextBox>
 
+        <Frame x:Name="frame" NavigationUIVisibility="Hidden" Margin="-1,0,1,0" RenderTransformOrigin="0.5,0.5" />
 
-
-        <Frame x:Name="frame" NavigationUIVisibility="Hidden" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" Grid.Column="1" />
 
     </Grid>
 </Page>
