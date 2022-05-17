@@ -6,32 +6,39 @@
         xmlns:local="clr-namespace:Hospital.View.ManagerView"
         mc:Ignorable="d"
         Title="EditRoom" Height="450" Width="800">
-    <Grid>
+    <Grid Background="Azure">
 
-        <DockPanel/>
+        <DockPanel Margin="0,2,0,-2"/>
 
-        <Label Content="New name:" FontSize="20" Margin="114,76,570,268" ></Label>
-        <TextBox x:Name="nameText" TextWrapping="Wrap" Margin="289,82,144,294" />
-        <Label Content="New floor:" FontSize="20" Margin="120,180,477,178" ></Label>
-        <TextBox x:Name="floorText" TextWrapping="Wrap" Margin="289,180,144,196" />
-        <Label Content="New type:" FontSize="20" Margin="125,291,514,56" ></Label>
-        <ComboBox x:Name="typeComboBox"  Margin="289,289,144,86" >
+        <Label Content="New name:" FontSize="20" Margin="114,91,570,253" ></Label>
+        <TextBox x:Name="nameText" TextWrapping="Wrap" Margin="289,97,144,279" />
+        <Label Content="New floor:" FontSize="20" Margin="120,195,477,163" ></Label>
+        <TextBox x:Name="floorText" TextWrapping="Wrap" Margin="289,195,144,181" />
+        <Label Content="New type:" FontSize="20" Margin="125,306,514,41" ></Label>
+        <ComboBox x:Name="typeComboBox"  Margin="289,304,144,71" >
             <ComboBoxItem IsSelected="True">Operation</ComboBoxItem>
             <ComboBoxItem>Conference</ComboBoxItem>
             <ComboBoxItem>Storage</ComboBoxItem>
         </ComboBox>
         <Button Content="Confirm" HorizontalAlignment="Left" Margin="570,387,0,0" VerticalAlignment="Top" Width="86" Height="25" Click="EditRoomClick"/>
         <Button Content="Cancel" HorizontalAlignment="Left" Margin="289,387,0,0" VerticalAlignment="Top" Width="86" Height="25" Click="CancelRoomClick"/>
-        <Menu Margin="0,1,0,381">
-            <MenuItem Header="Home" Height="47" Width="95" FontSize="20" Click="HomeClick" Margin="80,0,0,0"/>
-            <MenuItem Header="Medicine" Height="47" Width="123" FontSize="20" Click="MedicineClick"/>
-            <MenuItem Header="Equipment" Height="47" Width="134" FontSize="20" Click="EquipmentClick"/>
-            <MenuItem Header="Rooms" Height="47" Width="98" FontSize="20" Click="RoomClick"/>
-            <MenuItem Header="Room occupancy" Height="47" Width="160" FontSize="20" Click="OccupancyClick"/>
+        <Line X1="50" Y1="50" X2="1000" Y2="50" Stroke="White"  StrokeThickness="3" Margin="-50,18,1,318" />
+        <DockPanel Margin="0,-10,0,373">
+            <Menu DockPanel.Dock="Top" Background ="AliceBlue" Cursor="Hand" Height="66" >
+
+                <MenuItem Header="Home" Height="61" Width="95" FontSize="12" Click="HomeClick" HorizontalAlignment="Stretch" Margin="90,0,0,0" />
+                <MenuItem Header="Medicine" Height="65" Width="130" FontSize="12" Click="MedicineClick"/>
+                <MenuItem Header="Equipment" Height="65" Width="145" FontSize="12" Click="EquipmentClick"/>
+                <MenuItem Header="Rooms" Height="66" Width="105" FontSize="12" Click="RoomClick" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <MenuItem Header="Room occupancy" Height="64" Width="102" FontSize="12" Click="OccupancyClick"/>
 
 
 
-        </Menu>
+            </Menu>
+        </DockPanel>
+        <Image Source="/images/hospitalll.jpg" Margin="0,0,721,376" MouseLeftButtonUp="HomeClick" Cursor="Hand"/>
+        <Image Source="/images/sign_out.png" Margin="699,15,66,395" MouseLeftButtonUp="SignOutClick" Cursor="Hand"/>
+        <TextBlock Text="Sign out" FontSize="12" Margin="727,19,0,394" MouseLeftButtonUp="SignOutClick" Cursor="Hand" RenderTransformOrigin="0.512,0.042" HorizontalAlignment="Left" Width="84"/>
 
     </Grid>
 </Page>

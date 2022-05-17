@@ -45,7 +45,7 @@ namespace Hospital.View.ManagerView
                 roomType.Add(room.Type);
             }
             RoomComboBox.ItemsSource = roomName;
-            TypeComboBox.ItemsSource= roomType;
+            TypeComboBox.ItemsSource= roomType.Distinct();
         }
         private void CancelClick(object sender, RoutedEventArgs e)
         {
@@ -57,7 +57,7 @@ namespace Hospital.View.ManagerView
             Room newRoom = new Room
             {
                 Name = RoomName.Text,
-                Floor = "4",
+                Floor = "1",
                 Type = TypeComboBox.Text
             };
             _app._roomController.Create(newRoom);

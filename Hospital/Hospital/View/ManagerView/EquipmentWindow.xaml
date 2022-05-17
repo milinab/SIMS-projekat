@@ -12,14 +12,13 @@
     </Window.Resources>
     <Grid Background="Azure">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="17*"/>
-            <ColumnDefinition Width="783*"/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <TextBox Margin="589,89,28,323" TextChanged="TextBoxTextChanged" Grid.Column="1"/>
-        <ComboBox Margin="413,88,214,0" Name="eqComboBox" SelectionChanged="ComboBoxSelectionChanged" Grid.Column="1" FontSize="12" VerticalAlignment="Top" Height="25"/>
+        <TextBox Margin="606,89,28,323" TextChanged="SearchEquipment"/>
+        <ComboBox Margin="430,88,214,0" Name="eqComboBox" SelectionChanged="FilterEquipment" FontSize="12" VerticalAlignment="Top" Height="25" />
 
-        <DataGrid x:Name="dataGridEquipment" IsReadOnly="True"  Background="Azure" BorderBrush="White"
-                  SelectionMode="Single" AutoGenerateColumns="False" HorizontalAlignment="Left" CanUserAddRows="True" CanUserDeleteRows="True" Width="796"  RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2" Margin="2,122,0,0" VerticalAlignment="Top" Height="235">
+        <DataGrid x:Name="dataGridEquipment" IsReadOnly="True"  Background="Azure" BorderBrush="White" FontSize="12"
+                  SelectionMode="Single" AutoGenerateColumns="False" HorizontalAlignment="Left" CanUserAddRows="True" CanUserDeleteRows="True" Width="761"  RenderTransformOrigin="0.5,0.5" Margin="8,122,0,0" VerticalAlignment="Top" Height="235">
 
             <DataGrid.RenderTransform>
                 <TransformGroup>
@@ -56,10 +55,10 @@
                 </DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <TextBlock Text="Relocate" Margin="49,391,637,25" Cursor="Hand" FontSize="15" MouseLeftButtonDown="RelocationClick" Grid.Column="1"/>
-        <Image Margin="12,385,731,20" Source="/images/data-transfer.png" MouseLeftButtonUp="OccupancyClick" Cursor="Hand" MouseLeftButtonDown="RelocationClick" Grid.Column="1"/>
-        <Line X1="50" Y1="50" X2="1000" Y2="50" Stroke="White"  StrokeThickness="3" Margin="-50,18,1,318" Grid.ColumnSpan="2" />
-        <DockPanel Margin="0,-10,0,373" Grid.ColumnSpan="2">
+        <TextBlock Text="Relocate" Margin="66,391,637,25" Cursor="Hand" FontSize="15" MouseLeftButtonDown="RelocationClick"/>
+        <Image Margin="29,385,731,20" Source="/images/data-transfer.png" MouseLeftButtonUp="OccupancyClick" Cursor="Hand" MouseLeftButtonDown="RelocationClick"/>
+        <Line X1="50" Y1="50" X2="1000" Y2="50" Stroke="White"  StrokeThickness="3" Margin="-50,18,1,318" />
+        <DockPanel Margin="0,-10,0,373">
             <Menu DockPanel.Dock="Top" Background ="AliceBlue" Cursor="Hand" Height="66" >
 
                 <MenuItem Header="Home" Height="61" Width="95" FontSize="12" Click="HomeClick" HorizontalAlignment="Stretch" Margin="90,0,0,0" />
@@ -72,11 +71,11 @@
 
             </Menu>
         </DockPanel>
-        <Image Source="/images/hospitalll.jpg" Margin="0,0,721,376" MouseLeftButtonUp="HomeClick" Cursor="Hand" Grid.ColumnSpan="2"/>
-        <Image Source="/images/sign_out.png" Margin="682,15,66,395" MouseLeftButtonUp="SignOutClick" Cursor="Hand" Grid.Column="1"/>
-        <TextBlock Text="Sign out" FontSize="12" Margin="710,19,0,394" MouseLeftButtonUp="SignOutClick" Cursor="Hand" RenderTransformOrigin="0.512,0.042" HorizontalAlignment="Left" Width="84" Grid.Column="1"/>
+        <Image Source="/images/hospitalll.jpg" Margin="0,0,721,376" MouseLeftButtonUp="HomeClick" Cursor="Hand"/>
+        <Image Source="/images/sign_out.png" Margin="699,15,66,395" MouseLeftButtonUp="SignOutClick" Cursor="Hand"/>
+        <TextBlock Text="Sign out" FontSize="12" Margin="727,19,0,394" MouseLeftButtonUp="SignOutClick" Cursor="Hand" RenderTransformOrigin="0.512,0.042" HorizontalAlignment="Left" Width="84"/>
 
-        <Label Name="validacija" Content="Please select equipment you want to relocate" FontSize="12" Foreground="Red" Margin="8,96,483,300" Grid.ColumnSpan="2" Visibility="Hidden"/>
+        <Label Name="validacija" Content="Please select equipment you want to relocate" FontSize="12" Foreground="Red" Margin="8,96,483,300" Visibility="Hidden"/>
 
     </Grid>
 </Window>

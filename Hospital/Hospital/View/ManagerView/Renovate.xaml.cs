@@ -104,6 +104,39 @@ namespace Hospital.View.ManagerView
         {
 
         }
+
+        private void EquipmentClick(object sender, RoutedEventArgs e)
+        {
+            View.ManagerView.EquipmentWindow equipmentWindow = new View.ManagerView.EquipmentWindow(_app._equipmentController);
+            equipmentWindow.Show();
+        }
+        private void RoomClick(object sender, RoutedEventArgs e)
+        {
+
+            View.ManagerView.ManagerWindow roomWindow = new View.ManagerView.ManagerWindow(_app._roomController);
+            roomWindow.Show();
+        }
+
+        private void OccupancyClick(object sender, RoutedEventArgs e)
+        {
+            View.ManagerView.RoomOccupancy roomOccupancy = new View.ManagerView.RoomOccupancy(_app._appointmentController, _app._roomController);
+            roomOccupancy.Show();
+        }
+        private void HomeClick(object sender, RoutedEventArgs e)
+        {
+            View.ManagerView.ManagerHomeWindow managerHomeWindow = new ManagerHomeWindow();
+            managerHomeWindow.Show();
+        }
+        private void MedicineClick(object sender, RoutedEventArgs e)
+        {
+            MedicineWindow medicine = new MedicineWindow(_app._medicineController);
+            medicine.Show();
+        }
+        private void SignOutClick(object sender, RoutedEventArgs e)
+        {
+            LogIn login = new LogIn();
+            login.Show();
+        }
     }
 
 

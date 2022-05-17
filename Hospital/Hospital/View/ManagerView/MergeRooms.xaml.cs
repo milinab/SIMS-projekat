@@ -30,7 +30,6 @@ namespace Hospital.View.ManagerView
         
         public MergeRooms(RoomOccupancy roomOccupancy, RoomController roomController)
         {
-            
             InitializeComponent();
             _app = Application.Current as App;
             _roomController = roomController;
@@ -41,23 +40,43 @@ namespace Hospital.View.ManagerView
             {
                 roomName.Add(room.Name);
             }
-            Room1ComboBox.ItemsSource = roomName;
-            Room2ComboBox.ItemsSource = roomName;
+            disappearingRoomComboBox.ItemsSource = roomName;
+            expandingRoomComboBox.ItemsSource = roomName;
         }
 
-        private void MergeClick(object sender, RoutedEventArgs e)
+        private void DeleteRoom()
         {
-            string _room = Room2ComboBox.Text;
+            string _disappearingRoom = disappearingRoomComboBox.Text;
             ObservableCollection<Room> rooms = _app._roomController.Read();
-            foreach(Room room in rooms)
+            foreach (Room room in rooms)
             {
-                if (room.Name.Equals(_room))
+                if (room.Name.Equals(_disappearingRoom))
                 {
                     _app._roomController.Delete(room.Id);
                     break;
                 }
             }
+        }
 
+        private void ReplaceEquipment()
+        {
+            string _expandingRoom = expandingRoomComboBox.Text;
+            string _disappearingRoom = disappearingRoomComboBox.Text;
+            ObservableCollection<Equipment> equipments = _app._equipmentController.Read();
+            foreach (Equipment equipment in equipments)
+            {
+                if (equipment.Room.Equals(_disappearingRoom))
+                {
+                    Equipment equipment1 = new Equipment(equipment.Id, equipment.Number, equipment.Name, _expandingRoom);
+                    _app._equipmentController.Edit(equipment1);
+                }
+            }
+        }
+
+        private void MergeClick(object sender, RoutedEventArgs e)
+        {
+            DeleteRoom();
+            ReplaceEquipment();
             _roomOccupancy.BackToRoomOccupancy();
         }
 

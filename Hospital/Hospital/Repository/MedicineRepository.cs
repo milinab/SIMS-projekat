@@ -52,7 +52,7 @@ namespace Hospital.Repository
                 if(editMedicine.Id.Equals(m.Id))
                 {
                     m.Name = editMedicine.Name;
-                    m.Description = editMedicine.Description;
+                    m.Type = editMedicine.Type;
                     m.Number = editMedicine.Number;
                 }
             }

@@ -27,8 +27,9 @@ namespace Hospital.Model
 
         private int _id;
         private string _name;
-        private string _description;
+        private string _type;
         private int _number;
+        private string _ingredients;
 
         [DataMember]
         public int Id
@@ -59,16 +60,30 @@ namespace Hospital.Model
         }
 
         [DataMember]
-        public string Description
+        public string Type
         {
-            get { return _description; }
+            get { return _type; }
             set {
-                    if(value != _description)
+                    if(value != _type)
                     {
-                        _description = value;
+                    _type = value;
                     OnPropertyChanged("Description");
                     }
                 }
+        }
+
+        [DataMember]
+        public string Ingredients
+        {
+            get { return _ingredients; }
+            set
+            {
+                if (value != _ingredients)
+                {
+                    _ingredients = value;
+                    OnPropertyChanged("Description");
+                }
+            }
         }
 
         [DataMember]
@@ -90,19 +105,21 @@ namespace Hospital.Model
 
         }
 
-        public Medicine(int id, string name, string description, int number)
+        public Medicine(int id, string name, string type, int number, string ingredients)
         {
             Id = id;
             Name = name;
-            Description = description;
+            Type = type;
             Number = number;
+            Ingredients = ingredients;
         }
 
-        public Medicine(string name, string description, int number)
+        public Medicine(string name, string type, int number, string ingredients)
         {
             Name = name;
-            Description = description;
+            Type = type;
             Number = number;
+            Ingredients = ingredients;
         }
 
     }

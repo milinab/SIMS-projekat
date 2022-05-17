@@ -11,30 +11,30 @@ namespace Hospital.Repository
     public class MedicineReplaceRepository
     {
 
-        private ObservableCollection<MedicineReplace> _medicineReplace;
-        private readonly Serializer<MedicineReplace> _serializer;
+        private ObservableCollection<ReplacementMedicine> _medicineReplace;
+        private readonly Serializer<ReplacementMedicine> _serializer;
 
         public MedicineReplaceRepository() 
         {
-            _serializer = new Serializer<MedicineReplace>("medicineReplace.csv");
-            _medicineReplace = new ObservableCollection<MedicineReplace>();
+            _serializer = new Serializer<ReplacementMedicine>("medicineReplace.csv");
+            _medicineReplace = new ObservableCollection<ReplacementMedicine>();
         }
 
-        public ObservableCollection<MedicineReplace> Read()
+        public ObservableCollection<ReplacementMedicine> Read()
         {
             _medicineReplace = _serializer.Read();
             return _medicineReplace;
         }
-        public MedicineReplace ReadById(int id)
+        public ReplacementMedicine ReadById(int id)
         {
-            foreach(MedicineReplace medicineReplace in _medicineReplace)
+            foreach(ReplacementMedicine medicineReplace in _medicineReplace)
             {
                 if(medicineReplace.Id.Equals(id))
                     return medicineReplace;
             }    
             return null;
         }
-        public void Create(MedicineReplace newMedicineReplace)
+        public void Create(ReplacementMedicine newMedicineReplace)
         {
             _medicineReplace.Add(newMedicineReplace);
             Write();
@@ -45,14 +45,14 @@ namespace Hospital.Repository
             _serializer.Write(_medicineReplace);
         }
 
-        public void Edit(MedicineReplace editMedicineReplace)
+        public void Edit(ReplacementMedicine editMedicineReplace)
         {
-            foreach (MedicineReplace medicineReplace in _medicineReplace)
+            foreach (ReplacementMedicine medicineReplace in _medicineReplace)
             {
                 if(editMedicineReplace.Id.Equals(medicineReplace.Id))
                 {
                     medicineReplace.Name = editMedicineReplace.Name;
-                    medicineReplace.Description = editMedicineReplace.Description;
+                    medicineReplace.Type = editMedicineReplace.Type;
                     medicineReplace.Number = editMedicineReplace.Number;
                 }
             }

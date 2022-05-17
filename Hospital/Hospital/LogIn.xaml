@@ -5,17 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Hospital"
         mc:Ignorable="d"
-        Title="LogIn" Height="500" Width="700" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
-    <Grid>
-        <Rectangle HorizontalAlignment="Center" VerticalAlignment="Center" Height="400" Width="660" Margin="0,0,0,0" Stroke="Black"/>
-        <TextBlock Text="Username:" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,450,100" TextWrapping="Wrap" FontSize="25"/>
-        <TextBlock Text="Password:" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,100,442,0" TextWrapping="Wrap" FontSize="25"/>
-        <TextBox Name="UsernameBox" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="100,0,0,93" Width="400" Height="30" FontSize="20"/>
-        <PasswordBox Name="PasswordBox" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="100,108,0,0" Width="400" Height="30" FontSize="20"/>
-        <Button Content="Log in" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,300,0,0" Width="350" Height="70" Click="LogIn_Click" FontSize="30"/>
-        
-        <Label Name="InvalidFieldsLabel" Content="Invalid username or password. Please try again." HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,120,0,0" FontSize="15" Foreground="Red" Visibility="Hidden"/>
-        <Label Name="EnterUsernameLabel" Content="Enter an username." HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,130,25" FontSize="15" Foreground="Red" Visibility="Hidden"/>
-        <Label Name="EnterPasswordLabel" Content="Enter a password." HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,180,130,0" FontSize="15" Foreground="Red" Visibility="Hidden"/>
+        Title="LogIn" Height="400" Width="650" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid Background="Beige">
+        <Rectangle HorizontalAlignment="Center" VerticalAlignment="Center" Height="384" Width="650" Stroke="Black"/>
+        <TextBlock Text="Username:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="48,97,0,0" TextWrapping="Wrap" FontSize="25"/>
+        <TextBlock Text="Password:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="56,200,0,0" TextWrapping="Wrap" FontSize="25"/>
+        <TextBox Name="UsernameBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="181,100,0,0"  FontSize="20" Width="400" Height="35"/>
+        <PasswordBox Name="PasswordBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="181,202,0,0" Width="400" Height="35" FontSize="20"/>
+        <Button Content="Log in" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Height="30" Click="LogIn_Click" FontSize="18" Margin="481,300,0,0"/>
+
+        <Label Name="InvalidFieldsLabel" Content="Invalid username or password. Please try again." HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="15" Foreground="Red" Margin="176,244,0,0" Visibility="Hidden"/>
+        <Label Name="EnterUsernameLabel" Content="Please enter an username." HorizontalAlignment="Left" VerticalAlignment="Top" Margin="176,72,0,0" FontSize="15" Foreground="Red" Visibility="Hidden"/>
+        <Label Name="EnterPasswordLabel" Content="Please enter a password." HorizontalAlignment="Left" VerticalAlignment="Top" Margin="175,176,0,0" FontSize="15" Foreground="Red" Visibility="Hidden"/>
     </Grid>
 </Window>

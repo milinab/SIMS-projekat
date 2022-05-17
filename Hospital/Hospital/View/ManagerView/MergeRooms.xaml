@@ -10,9 +10,9 @@
 
     <Grid Background="Azure">
         <TextBlock Text="choose the room you want to merge:" Margin="178,126,397,286" />
-        <ComboBox Name="Room1ComboBox" Margin="435,228,161,174" />
+        <ComboBox Name="disappearingRoomComboBox" Margin="435,123,161,279" />
         <TextBlock Text="Select room you want to merge with:" Margin="179,236,402,176" RenderTransformOrigin="-0.155,1.881" />
-        <ComboBox Name="Room2ComboBox" Margin="435,121,161,281" />
+        <ComboBox Name="expandingRoomComboBox" Margin="435,231,161,171" />
         <Button Content="Merge" Margin="489,369,161,36" Click="MergeClick"/>
         <Button Content="Cancel" Margin="230,369,420,36" Click="CancelClick"  />
         <Line X1="50" Y1="50" X2="1000" Y2="50" Stroke="White"  StrokeThickness="3" Margin="-50,18,1,318" />

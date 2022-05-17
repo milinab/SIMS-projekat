@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Hospital.Model
 {
     [DataContract]
-    public class MedicineReplace
+    public class ReplacementMedicine
     {
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string name)
@@ -21,8 +21,9 @@ namespace Hospital.Model
         }
         private string _id;
         private string _name;
-        private string _description;
+        private string _type;
         private int _number;
+        private string _ingredients; 
 
         [DataMember]
         public string Id
@@ -53,14 +54,27 @@ namespace Hospital.Model
         }
 
         [DataMember]
-        public string Description
+        public string Type
         {
-            get { return _description; }
+            get { return _type; }
             set
             {
-                if (value != _description)
+                if (value != _type)
                 {
-                    _description = value;
+                    _type = value;
+                    OnPropertyChanged("Description");
+                }
+            }
+        }
+        [DataMember]
+        public string Ingredients
+        {
+            get { return _ingredients; }
+            set
+            {
+                if (value != _ingredients)
+                {
+                    _ingredients = value;
                     OnPropertyChanged("Description");
                 }
             }
@@ -80,23 +94,25 @@ namespace Hospital.Model
             }
         }
 
-        public MedicineReplace()
+        public ReplacementMedicine()
         {
 
         }
-        public MedicineReplace(string id, string name, string description, int number)
+        public ReplacementMedicine(string id, string name, string type, int number, string ingredients)
         {
             Id = id;
             Name = name;
-            Description = description;
+            Type = type;
             Number = number;
+            Ingredients = ingredients;
         }
 
-        public MedicineReplace(string name, string description, int number)
+        public ReplacementMedicine(string name, string type, int number, string ingredients)
         {
             Name = name;
-            Description = description;
+            Type = type;
             Number = number;
+            Ingredients = ingredients;
         }
 
     }

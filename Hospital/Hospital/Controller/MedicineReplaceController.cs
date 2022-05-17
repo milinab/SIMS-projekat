@@ -18,17 +18,17 @@ namespace Hospital.Controller
             _service = service;
         }
 
-        public MedicineReplace ReadById(int id)
+        public ReplacementMedicine ReadById(int id)
         {
             return _service.ReadById(id);
         }
 
-        public void Create(MedicineReplace newMedicineReplace)
+        public void Create(ReplacementMedicine newMedicineReplace)
         {
             _service.Create(newMedicineReplace);
         }
 
-        public void Edit(MedicineReplace editMedicineReplace)
+        public void Edit(ReplacementMedicine editMedicineReplace)
         {
             _service.Edit(editMedicineReplace);
         }
@@ -38,7 +38,7 @@ namespace Hospital.Controller
             _service.Delete(id);
         }
 
-        public ObservableCollection<MedicineReplace>Read()
+        public ObservableCollection<ReplacementMedicine>Read()
         {
             return _service.Read();
         }

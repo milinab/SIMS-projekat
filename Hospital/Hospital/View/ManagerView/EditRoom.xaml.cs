@@ -77,7 +77,11 @@ namespace Hospital.View.ManagerView
         {
             MedicineWindow medicine = new MedicineWindow();
             medicine.Show();
-            //Close();
+        }
+        private void SignOutClick(object sender, RoutedEventArgs e)
+        {
+            LogIn login = new LogIn();
+            login.Show();
         }
     }
 }

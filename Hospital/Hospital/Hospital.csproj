@@ -174,7 +174,7 @@
       <DependentUpon>LogIn.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\Medicine.cs" />
-    <Compile Include="Model\MedicineReplace.cs" />
+    <Compile Include="Model\ReplacementMedicine.cs" />
     <Compile Include="Model\Trol.cs" />
     <Compile Include="Model\Note.cs" />
     <Compile Include="Model\HospitalSurveyResponse.cs" />

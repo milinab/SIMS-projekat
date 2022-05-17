@@ -8,10 +8,10 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="MedicineReplacePage">
 
-    <Grid>
+    <Grid Background="Azure">
         <DataGrid x:Name="dataGridMedicine" IsReadOnly="True" Background="Azure" BorderBrush="White" 
             SelectionMode="Single" AutoGenerateColumns="False" HorizontalAlignment="Left" CanUserAddRows="True" CanUserDeleteRows="True"
-            Height="239" VerticalAlignment="Top" Width="784"  RenderTransformOrigin="0.5,0.5" Margin="10,119,0,0">
+            Height="239" VerticalAlignment="Top" Width="759"  RenderTransformOrigin="0.5,0.5" Margin="10,123,0,0">
 
 
             <DataGrid.RenderTransform>
@@ -32,7 +32,15 @@
                         </Style>
                     </DataGridTextColumn.CellStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="Description" Binding="{Binding Description}" Foreground="Black" Width="*">
+                <DataGridTextColumn Header="Type" Binding="{Binding Type}" Foreground="Black">
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="Background" 
+                                    Value="Azure" />
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Ingredients" Binding="{Binding Ingredients}" Foreground="Black" Width="*">
                     <DataGridTextColumn.CellStyle>
                         <Style TargetType="DataGridCell">
                             <Setter Property="Background" 
@@ -43,7 +51,26 @@
 
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="CancelReplacement" Content="Cancel" Click="CancelReplacementClick" Margin="157,391,499,26" />
-        <Button x:Name="Replacement" Content="Replace" Click="ReplacementClick" Margin="361,391,269,26" />
+        <Button x:Name="CancelReplacement" Content="Cancel" Click="CancelReplacementClick" Margin="214,374,486,35"/>
+        <Button x:Name="Replacement" Content="Replace" Click="ReplacementClick" Margin="485,374,215,35" />
+        <Line X1="50" Y1="50" X2="1000" Y2="50" Stroke="White"  StrokeThickness="3" Margin="-50,18,1,318" />
+        <DockPanel Margin="0,-10,0,373">
+            <Menu DockPanel.Dock="Top" Background ="AliceBlue" Cursor="Hand" Height="66" >
+
+                <MenuItem Header="Home" Height="61" Width="95" FontSize="12" Click="HomeClick" HorizontalAlignment="Stretch" Margin="90,0,0,0" />
+                <MenuItem Header="Medicine" Height="65" Width="130" FontSize="12" Click="MedicineClick"/>
+                <MenuItem Header="Equipment" Height="65" Width="145" FontSize="12" Click="EquipmentClick"/>
+                <MenuItem Header="Rooms" Height="66" Width="105" FontSize="12" Click="RoomClick" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <MenuItem Header="Room occupancy" Height="64" Width="102" FontSize="12" Click="OccupancyClick"/>
+
+
+
+            </Menu>
+        </DockPanel>
+        <Image Source="/images/hospitalll.jpg" Margin="0,0,721,376" MouseLeftButtonUp="HomeClick" Cursor="Hand"/>
+        <Image Source="/images/sign_out.png" Margin="699,15,66,395" MouseLeftButtonUp="SignOutClick" Cursor="Hand"/>
+        <TextBlock Text="Sign out" FontSize="12" Margin="727,19,0,394" MouseLeftButtonUp="SignOutClick" Cursor="Hand" RenderTransformOrigin="0.512,0.042" HorizontalAlignment="Left" Width="84"/>
+        <Label Name="validationSelection" Content="Please select the medicine with which you want to replace the selected drug" FontSize="12" Foreground="Red" Margin="8,96,350,300" Visibility="Hidden"/>
+
     </Grid>
 </Page>

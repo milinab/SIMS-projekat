@@ -17,19 +17,19 @@ namespace Hospital.Service
         public MedicineReplaceService(MedicineReplaceRepository medicineReplaceRepository)
         {
             _repository = medicineReplaceRepository;
-            ObservableCollection<MedicineReplace> medicineReplace = Read();
+            ObservableCollection<ReplacementMedicine> medicineReplace = Read();
             if(medicineReplace != null)
                 _id = int.Parse(medicineReplace.Last().Id);
             else
                 _id = 0;
 
         }
-        public MedicineReplace ReadById(int id)
+        public ReplacementMedicine ReadById(int id)
         {
             return _repository.ReadById(id);
         }
 
-        public void Create(MedicineReplace newMedicineReplace)
+        public void Create(ReplacementMedicine newMedicineReplace)
         {
             newMedicineReplace.Id = GenerateId().ToString();
             _repository.Create(newMedicineReplace);
@@ -38,11 +38,11 @@ namespace Hospital.Service
         {
             _repository.Delete(id);
         }
-        public void Edit(MedicineReplace editMedicineReplace)
+        public void Edit(ReplacementMedicine editMedicineReplace)
         {
             _repository.Edit(editMedicineReplace);
         }
-        public ObservableCollection<MedicineReplace>Read()
+        public ObservableCollection<ReplacementMedicine>Read()
         {
             return _repository.Read();
         }

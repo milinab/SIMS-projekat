@@ -17,9 +17,9 @@
         </Grid.ColumnDefinitions>
         <Label Grid.Column="1" Content="Label" HorizontalAlignment="Left" Margin="615,-1,0,0" VerticalAlignment="Top"/>
         <Line X1="50" Y1="50" X2="1000" Y2="50" Stroke="White"  StrokeThickness="3" Margin="-50,18,1,302" Grid.ColumnSpan="2" />
-        <DataGrid x:Name="dataGridRooms" ItemsSource="{Binding Rooms}" IsReadOnly="True"  Background ="Azure" BorderBrush="White"
+        <DataGrid x:Name="dataGridRooms" ItemsSource="{Binding Rooms}" IsReadOnly="True"  Background ="Azure" BorderBrush="White" FontSize="12"
             SelectionMode="Single" AutoGenerateColumns="False" HorizontalAlignment="Right" CanUserAddRows="True" CanUserDeleteRows="True"
-            Height="237" VerticalAlignment="Top" Width="775"  RenderTransformOrigin="0.5,0.5" Margin="0,122,0,0" Grid.ColumnSpan="2">
+            Height="237" VerticalAlignment="Top" Width="755"  RenderTransformOrigin="0.5,0.5" Margin="0,122,20,0" Grid.ColumnSpan="2">
 
             <DataGrid.RenderTransform>
                 <TransformGroup>

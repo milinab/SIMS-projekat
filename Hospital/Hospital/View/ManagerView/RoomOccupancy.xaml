@@ -9,7 +9,9 @@
         WindowStyle="None">
     <Grid Background="Azure">
 
-        <DataGrid x:Name="gridAppointment" AutoGenerateColumns="False" Height="236" Margin="0,123,0,0" VerticalAlignment="Top" CanUserAddRows="false" Background="Azure" BorderBrush="White" HorizontalAlignment="Right" Width="781">
+        <DataGrid x:Name="gridAppointment" AutoGenerateColumns="False" FontSize="12"
+                  Height="236" Margin="0,123,0,0" VerticalAlignment="Top" CanUserAddRows="false" Background="Azure"
+                  BorderBrush="White" HorizontalAlignment="Center" Width="761">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Room" Binding="{Binding Room.Name }" Width="3*" Foreground="Black">
                     <DataGridTextColumn.CellStyle>
