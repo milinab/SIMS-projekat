@@ -99,6 +99,7 @@ namespace Hospital.View.ManagerView
 
             View.ManagerView.ManagerWindow roomWindow = new View.ManagerView.ManagerWindow(_app._roomController);
             roomWindow.Show();
+
         }
 
         private void OccupancyClick(object sender, RoutedEventArgs e)
