@@ -17,8 +17,6 @@ using System.Collections.ObjectModel;
 using Hospital.Controller;
 using System.ComponentModel;
 using Hospital.View.PatientView.Validations;
-using System;
-
 namespace Hospital.View.PatientView
 {
     /// <summary>

@@ -147,6 +147,7 @@
     <Compile Include="Controller\AddressController.cs" />
     <Compile Include="Controller\AllergenController.cs" />
     <Compile Include="Controller\MedicineController.cs" />
+    <Compile Include="Controller\MedicineReplaceController.cs" />
     <Compile Include="Controller\TrolController.cs" />
     <Compile Include="Controller\NoteController.cs" />
     <Compile Include="Controller\HospitalSurveyResponseController.cs" />
@@ -173,6 +174,7 @@
       <DependentUpon>LogIn.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\Medicine.cs" />
+    <Compile Include="Model\ReplacementMedicine.cs" />
     <Compile Include="Model\Trol.cs" />
     <Compile Include="Model\Note.cs" />
     <Compile Include="Model\HospitalSurveyResponse.cs" />
@@ -183,6 +185,7 @@
     <Compile Include="Model\Allergen.cs" />
     <Compile Include="Model\AllergenList.cs" />
     <Compile Include="Repository\AddressRepository.cs" />
+    <Compile Include="Repository\MedicineReplaceRepository.cs" />
     <Compile Include="Repository\MedicineRepository.cs" />
     <Compile Include="Repository\TrolRepository.cs" />
     <Compile Include="Repository\NoteRepository.cs" />
@@ -206,6 +209,7 @@
     <Compile Include="Repository\UserRepository.cs" />
     <Compile Include="Service\AddressService.cs" />
     <Compile Include="Service\AllergenService.cs" />
+    <Compile Include="Service\MedicineReplaceService.cs" />
     <Compile Include="Service\MedicineService.cs" />
     <Compile Include="Service\TrolService.cs" />
     <Compile Include="Service\NoteService.cs" />
@@ -253,6 +257,9 @@
     <Compile Include="View\ManagerView\AddRoomWindow.xaml.cs">
       <DependentUpon>AddRoomWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ManagerView\DivideRoom.xaml.cs">
+      <DependentUpon>DivideRoom.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ManagerView\EditRoom.xaml.cs">
       <DependentUpon>EditRoom.xaml</DependentUpon>
     </Compile>
@@ -265,8 +272,14 @@
     <Compile Include="View\ManagerView\ManagerWindow.xaml.cs">
       <DependentUpon>ManagerWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ManagerView\MedicineReplacePage.xaml.cs">
+      <DependentUpon>MedicineReplacePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ManagerView\MedicineWindow.xaml.cs">
       <DependentUpon>MedicineWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ManagerView\MergeRooms.xaml.cs">
+      <DependentUpon>MergeRooms.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ManagerView\Relocation.xaml.cs">
       <DependentUpon>Relocation.xaml</DependentUpon>
@@ -393,6 +406,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="View\ManagerView\DivideRoom.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\ManagerView\EditRoom.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -408,7 +425,15 @@
     <Page Include="View\ManagerView\ManagerWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\ManagerView\MedicineReplacePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\ManagerView\MedicineWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ManagerView\MergeRooms.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -620,6 +645,13 @@
     <Resource Include="View\PatientView\insertNoteText.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="images\exchange.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\open-door.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\merge.png" />
     <Resource Include="images\secretaryZdravo.png" />
   </ItemGroup>
   <ItemGroup>

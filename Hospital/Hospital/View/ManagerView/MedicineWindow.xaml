@@ -8,7 +8,7 @@
         Title="Medicine" Height="450" Width="800"
         WindowStyle="None">
     <Grid Background="Azure">
-        <TextBlock Text="Add" Margin="62,390,639,24" FontSize="15" Cursor="Hand" MouseLeftButtonUp="AddMedicineClick"/>
+        <TextBlock Text="Add" Margin="62,390,693,24" FontSize="15" Cursor="Hand" MouseLeftButtonUp="AddMedicineClick"/>
         <DockPanel Margin="0,-10,0,373">
             <Menu DockPanel.Dock="Top" Background ="AliceBlue" Cursor="Hand" Height="66" >
 
@@ -25,9 +25,9 @@
         <Image Source="/images/hospitalll.jpg" Margin="0,0,721,376" MouseLeftButtonUp="HomeClick" Cursor="Hand"/>
         <Image Source="/images/sign_out.png" Margin="699,15,66,395" MouseLeftButtonUp="SignOutClick" Cursor="Hand"/>
         <TextBlock Text="Sign out" FontSize="12" Margin="727,19,0,394" MouseLeftButtonUp="SignOutClick" Cursor="Hand" RenderTransformOrigin="0.512,0.042" HorizontalAlignment="Left" Width="84"/>
-        <DataGrid x:Name="dataGridMedicine" IsReadOnly="True" Background="Azure" BorderBrush="White" 
-            SelectionMode="Single" AutoGenerateColumns="False" HorizontalAlignment="Center" CanUserAddRows="True" CanUserDeleteRows="True"
-            Height="284" VerticalAlignment="Top" Width="784"  RenderTransformOrigin="0.5,0.5" Margin="0,75,0,0">
+        <DataGrid x:Name="dataGridMedicine" IsReadOnly="True" Background="Azure" BorderBrush="White" FontSize="12"
+            SelectionMode="Single" AutoGenerateColumns="False" HorizontalAlignment="Left" CanUserAddRows="True" CanUserDeleteRows="True"
+            Height="235" VerticalAlignment="Top" Width="759"  RenderTransformOrigin="0.5,0.5" Margin="10,123,0,0">
 
 
             <DataGrid.RenderTransform>
@@ -39,8 +39,8 @@
                 </TransformGroup>
             </DataGrid.RenderTransform>
             <DataGrid.Columns>
-                
-                <DataGridTextColumn Header="Name" Binding="{Binding Name}" >
+
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Foreground="Black">
                     <DataGridTextColumn.CellStyle>
                         <Style TargetType="DataGridCell">
                             <Setter Property="Background" 
@@ -48,7 +48,7 @@
                         </Style>
                     </DataGridTextColumn.CellStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="Description" Binding="{Binding Description}">
+                <DataGridTextColumn Header="Type" Binding="{Binding Type}" Foreground="Black" >
                     <DataGridTextColumn.CellStyle>
                         <Style TargetType="DataGridCell">
                             <Setter Property="Background" 
@@ -56,7 +56,7 @@
                         </Style>
                     </DataGridTextColumn.CellStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="Number" Binding="{Binding Number}" Width="*">
+                <DataGridTextColumn Header="Ingredients" Binding="{Binding Ingredients}" Foreground="Black" Width="*">
                     <DataGridTextColumn.CellStyle>
                         <Style TargetType="DataGridCell">
                             <Setter Property="Background" 
@@ -64,15 +64,14 @@
                         </Style>
                     </DataGridTextColumn.CellStyle>
                 </DataGridTextColumn>
-                <DataGridTemplateColumn>
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate/>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
+
             </DataGrid.Columns>
         </DataGrid>
         <Image Margin="25,385,735,20" Source="/images/add.png" Cursor="Hand" MouseLeftButtonUp="AddMedicineClick"/>
         <Line X1="50" Y1="50" X2="1000" Y2="50" Stroke="White"  StrokeThickness="3" Margin="-50,18,1,302" />
+        <Image Margin="112,385,648,20" Source="/images/exchange.png" Cursor="Hand" MouseLeftButtonUp="ReplaceMedicineClick"/>
+        <TextBlock Text="Replace" Margin="147,390,579,24" FontSize="15" Cursor="Hand" MouseLeftButtonUp="ReplaceMedicineClick" />
+        <Label Name="selectValidation" Content="Please select medicine you want to replace" FontSize="12" Foreground="Red" Margin="8,96,483,300" Grid.ColumnSpan="2" Visibility="Hidden"/>
 
     </Grid>
 </Window>

@@ -1,4 +1,5 @@
 ﻿using Hospital.Controller;
+using Hospital.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,12 +33,11 @@ namespace Hospital.View.ManagerView
             _content = Content;
             _medicineController = medicineController;
             dataGridMedicine.ItemsSource = _medicineController.Read();
-
         }
 
-        private void AddMedicineClick(object sender, RoutedEventArgs e)
+        private void AddMedicineClick(object sender, RoutedEventArgs eventArgs)
         {
-            AddMedicine addMedicine = new AddMedicine(this, _medicineController);
+            AddMedicine addMedicine = new AddMedicine(_medicineController);
             addMedicine.ShowDialog();
             Close();
         }
@@ -47,22 +47,30 @@ namespace Hospital.View.ManagerView
             Content = _content;
         }
 
-        private void SignOutClick(object sender, RoutedEventArgs e)
+        private void SignOutClick(object sender, RoutedEventArgs eventArgs)
         {
             LogIn login = new LogIn();
             login.Show();
             Close();
         }
 
+        private void ReplaceMedicineClick(object sender, RoutedEventArgs eventArgs)
+        {
+            Medicine selectedMedicine = dataGridMedicine.SelectedValue as Medicine;
+            if (selectedMedicine == null)
+            {
+                IsSelectedValidation();
+                return;
+            }
+            selectValidation.Visibility = Visibility.Hidden;
+            MedicineReplacePage medicineReplacePage = new MedicineReplacePage(this, selectedMedicine, _medicineController);
+            Content = medicineReplacePage;
+        }
 
-
-
-
-
-
-
-
-
+        private void IsSelectedValidation()
+        {
+            selectValidation.Visibility = Visibility.Visible;
+        }
 
         public MedicineWindow()
         {
@@ -87,7 +95,7 @@ namespace Hospital.View.ManagerView
 
         private void OccupancyClick(object sender, RoutedEventArgs e)
         {
-            View.ManagerView.RoomOccupancy roomOccupancy = new View.ManagerView.RoomOccupancy(_app._appointmentController);
+            View.ManagerView.RoomOccupancy roomOccupancy = new View.ManagerView.RoomOccupancy(_app._appointmentController, _app._roomController);
             roomOccupancy.Show();
             Close();
         }

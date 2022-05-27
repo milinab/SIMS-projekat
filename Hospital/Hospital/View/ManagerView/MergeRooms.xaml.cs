@@ -13,98 +13,82 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Hospital.View.ManagerView
 {
     /// <summary>
-    /// Interaction logic for Renovate.xaml
+    /// Interaction logic for MergeRooms.xaml
     /// </summary>
-    public partial class Renovate : Page
+    public partial class MergeRooms : Page
     {
-        private App _app;
-        private readonly RoomOccupancy _roomOccupancy;
-        //private RoomController _roomController;
-        private AppointmentController _appointmentController;
 
-        public Renovate(RoomOccupancy roomOccupancy, AppointmentController appointmentController)
+        private App _app;
+        private readonly RoomController _roomController;
+        private readonly RoomOccupancy _roomOccupancy;
+        
+        public MergeRooms(RoomOccupancy roomOccupancy, RoomController roomController)
         {
-            _app = Application.Current as App;
-            _roomOccupancy = roomOccupancy;
-            _appointmentController = appointmentController;
             InitializeComponent();
-            datePicker.SelectedDate = DateTime.Now;
+            _app = Application.Current as App;
+            _roomController = roomController;
+            _roomOccupancy = roomOccupancy;
             ObservableCollection<Room> rooms = _app._roomController.Read();
-            ObservableCollection<String> roomNames = new ObservableCollection<string>();
-            foreach (Room room in rooms)
+            ObservableCollection<String> roomName = new ObservableCollection<string>();
+            foreach(Room room in rooms)
             {
-                roomNames.Add(room.Name);
+                roomName.Add(room.Name);
             }
-            roomComboBox.ItemsSource = roomNames;
+            disappearingRoomComboBox.ItemsSource = roomName;
+            expandingRoomComboBox.ItemsSource = roomName;
         }
 
-        private void Schedule(object sender, RoutedEventArgs e)
+        private void DeleteRoom()
         {
-            DateTime _date = datePicker.SelectedDate.Value;
-            string _room = roomComboBox.Text;
-            TimeSpan interval = new TimeSpan(23, 59, 59);
-
-            ObservableCollection<Appointment> appointments = _app._appointmentController.Read();
+            string _disappearingRoom = disappearingRoomComboBox.Text;
             ObservableCollection<Room> rooms = _app._roomController.Read();
-            Room tempRoom = new Room();
             foreach (Room room in rooms)
             {
-                if (room.Name.Equals(_room))
+                if (room.Name.Equals(_disappearingRoom))
                 {
-                    tempRoom = room;
+                    _app._roomController.Delete(room.Id);
+                    break;
                 }
             }
+        }
 
-            Appointment appointment = new Appointment(tempRoom, _date, interval);
-
-            bool nesto = false;
-
-            foreach (Appointment appointment1 in appointments.ToList())
+        private void ReplaceEquipment()
+        {
+            string _expandingRoom = expandingRoomComboBox.Text;
+            string _disappearingRoom = disappearingRoomComboBox.Text;
+            ObservableCollection<Equipment> equipments = _app._equipmentController.Read();
+            foreach (Equipment equipment in equipments)
             {
-                if (DateTime.Compare(appointment1.Date, appointment.Date) == 0)
+                if (equipment.Room.Equals(_disappearingRoom))
                 {
-                    if (appointment.RoomId == appointment1.RoomId)
-                    {
-                        MessageBox.Show("Ne moze!");
-                        nesto = true;
-                    }
+                    Equipment equipment1 = new Equipment(equipment.Id, equipment.Number, equipment.Name, _expandingRoom);
+                    _app._equipmentController.Edit(equipment1);
                 }
             }
-            if(nesto == false)
-            {
-                _appointmentController.Create(appointment);
-                _roomOccupancy.BackToRoomOccupancy();
-            }
+        }
 
+        private void MergeClick(object sender, RoutedEventArgs e)
+        {
+            DeleteRoom();
+            ReplaceEquipment();
             _roomOccupancy.BackToRoomOccupancy();
         }
 
-        private void CancelRenovateClick(object sender, RoutedEventArgs e)
+        private void CancelClick(object sender, RoutedEventArgs e)
         {
-            {
-                _roomOccupancy.BackToRoomOccupancy();
-                
-            }
+            _roomOccupancy.BackToRoomOccupancy();
         }
-
-        public Renovate()
+        private void SignOutClick(object sender, RoutedEventArgs e)
         {
-            
-            InitializeComponent();
-            
-
+            LogIn login = new LogIn();
+            login.Show();
         }
-
-        private void roomComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
         private void EquipmentClick(object sender, RoutedEventArgs e)
         {
             View.ManagerView.EquipmentWindow equipmentWindow = new View.ManagerView.EquipmentWindow(_app._equipmentController);
@@ -115,6 +99,7 @@ namespace Hospital.View.ManagerView
 
             View.ManagerView.ManagerWindow roomWindow = new View.ManagerView.ManagerWindow(_app._roomController);
             roomWindow.Show();
+
         }
 
         private void OccupancyClick(object sender, RoutedEventArgs e)
@@ -132,13 +117,5 @@ namespace Hospital.View.ManagerView
             MedicineWindow medicine = new MedicineWindow(_app._medicineController);
             medicine.Show();
         }
-        private void SignOutClick(object sender, RoutedEventArgs e)
-        {
-            LogIn login = new LogIn();
-            login.Show();
-        }
     }
-
-
-
 }

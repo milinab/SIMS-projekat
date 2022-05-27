@@ -44,7 +44,6 @@ namespace Hospital.Model
                     _room = value;
                     OnPropertyChanged("Room");
                 }
-                _room = value;
             }
         }
         [DataMember]

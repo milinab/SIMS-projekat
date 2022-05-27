@@ -41,17 +41,17 @@ namespace Hospital.View.ManagerView
             {
                 roomNames.Add(equipment.Room);
             }
-            eqComboBox.ItemsSource = roomNames;
+            eqComboBox.ItemsSource = roomNames.Distinct();
         }
 
-        private void TextBoxTextChanged(object sender, TextChangedEventArgs e)
+        private void SearchEquipment(object sender, TextChangedEventArgs e)
         {
-            var tbx = sender as TextBox;
-            if (tbx.Text != "")
+            var searchedEquipment = sender as TextBox;
+            if (searchedEquipment.Text != "")
             {
-                var filteredList = _equipmentController.Read().Where(x => x.Name.ToLower().Contains(tbx.Text.ToLower()));
+                var foundEquipment = _equipmentController.Read().Where(x => x.Name.ToLower().Contains(searchedEquipment.Text.ToLower()));
                 dataGridEquipment.ItemsSource = null;
-                dataGridEquipment.ItemsSource = filteredList;
+                dataGridEquipment.ItemsSource = foundEquipment;
             }
             else
             {
@@ -59,15 +59,15 @@ namespace Hospital.View.ManagerView
             } 
                 
         }
-        private void ComboBoxSelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void FilterEquipment(object sender, SelectionChangedEventArgs e)
 
         {
-            var tbx = sender as ComboBox;
-            if (tbx.SelectedItem != null)
+            var filteredEquipment = sender as ComboBox;
+            if (filteredEquipment.SelectedItem != null)
             {
-                var filteredList = _equipmentController.Read().Where(x => x.Room.Contains((string)tbx.SelectedItem));
+                var foundEquipment = _equipmentController.Read().Where(x => x.Room.Contains((string)filteredEquipment.SelectedItem));
                 dataGridEquipment.ItemsSource = null;
-                dataGridEquipment.ItemsSource = filteredList;
+                dataGridEquipment.ItemsSource = foundEquipment;
             }
             else
             {
@@ -79,8 +79,14 @@ namespace Hospital.View.ManagerView
         private void RelocationClick(object sender, RoutedEventArgs e)
         {
             Equipment equipment = dataGridEquipment.SelectedItem as Equipment;
+            if (equipment == null)
+            {
+                validacija.Visibility = Visibility.Visible;
+                return;
+            }
             var editEquipment = new Relocation(equipment, this, _equipmentController, _roomController);
             Content = editEquipment;
+            validacija.Visibility = Visibility.Hidden;
         }
         public void BackToEquipmentWindow()
         {
@@ -108,7 +114,7 @@ namespace Hospital.View.ManagerView
 
         private void OccupancyClick(object sender, RoutedEventArgs e)
         {
-            View.ManagerView.RoomOccupancy roomOccupancy = new View.ManagerView.RoomOccupancy(_app._appointmentController);
+            View.ManagerView.RoomOccupancy roomOccupancy = new View.ManagerView.RoomOccupancy(_app._appointmentController, _app._roomController);
             roomOccupancy.Show();
             Close();
         }

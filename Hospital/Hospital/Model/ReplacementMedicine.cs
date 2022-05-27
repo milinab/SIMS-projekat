@@ -6,33 +6,27 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-
 namespace Hospital.Model
 {
-    
-
-
-
     [DataContract]
-    public class Medicine
+    public class ReplacementMedicine
     {
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string name)
         {
-            if(PropertyChanged != null)
+            if (PropertyChanged != null)
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(name));
             }
         }
-
-        private int _id;
+        private string _id;
         private string _name;
         private string _type;
         private int _number;
-        private string _ingredients;
+        private string _ingredients; 
 
         [DataMember]
-        public int Id
+        public string Id
         {
             get { return _id; }
             set
@@ -63,15 +57,15 @@ namespace Hospital.Model
         public string Type
         {
             get { return _type; }
-            set {
-                    if(value != _type)
-                    {
+            set
+            {
+                if (value != _type)
+                {
                     _type = value;
                     OnPropertyChanged("Description");
-                    }
                 }
+            }
         }
-
         [DataMember]
         public string Ingredients
         {
@@ -100,12 +94,11 @@ namespace Hospital.Model
             }
         }
 
-        public Medicine()
+        public ReplacementMedicine()
         {
 
         }
-
-        public Medicine(int id, string name, string type, int number, string ingredients)
+        public ReplacementMedicine(string id, string name, string type, int number, string ingredients)
         {
             Id = id;
             Name = name;
@@ -114,7 +107,7 @@ namespace Hospital.Model
             Ingredients = ingredients;
         }
 
-        public Medicine(string name, string type, int number, string ingredients)
+        public ReplacementMedicine(string name, string type, int number, string ingredients)
         {
             Name = name;
             Type = type;

@@ -9,9 +9,11 @@
         WindowStyle="None">
     <Grid Background="Azure">
 
-        <DataGrid x:Name="gridAppointment" AutoGenerateColumns="False" Height="284" Margin="0,75,0,0" VerticalAlignment="Top" CanUserAddRows="false" Background="Azure" BorderBrush="White" HorizontalAlignment="Right" Width="790">
+        <DataGrid x:Name="gridAppointment" AutoGenerateColumns="False" FontSize="12"
+                  Height="236" Margin="0,123,0,0" VerticalAlignment="Top" CanUserAddRows="false" Background="Azure"
+                  BorderBrush="White" HorizontalAlignment="Center" Width="761">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Room" Binding="{Binding Room.Name }" Width="3*">
+                <DataGridTextColumn Header="Room" Binding="{Binding Room.Name }" Width="3*" Foreground="Black">
                     <DataGridTextColumn.CellStyle>
                         <Style TargetType="DataGridCell">
                             <Setter Property="Background" 
@@ -19,7 +21,7 @@
                         </Style>
                     </DataGridTextColumn.CellStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="Date" Binding="{Binding Date, StringFormat=\{0:d.M.yyyy\}}" Width="*">
+                <DataGridTextColumn Header="Date" Binding="{Binding Date, StringFormat=\{0:d.M.yyyy\}}" Width="*" Foreground="Black">
                     <DataGridTextColumn.CellStyle>
                         <Style TargetType="DataGridCell">
                             <Setter Property="Background" 
@@ -31,6 +33,10 @@
         </DataGrid>
         <TextBlock Text="Renovate" PreviewMouseDown ="RenovateClick" Margin="66,388,634,19" FontSize="15" Cursor="Hand"/>
         <Image Margin="29,385,731,20" Source="/images/maintenance.png" MouseLeftButtonUp="OccupancyClick" Cursor="Hand" PreviewMouseDown ="RenovateClick"/>
+        <Image Source="/images/merge.png" Margin="165,388,594,23"  Cursor="Hand" PreviewMouseDown="MergeClick"/>
+        <TextBlock Text="Merge rooms" PreviewMouseDown ="MergeClick" Margin="203,388,476,19" FontSize="15" Cursor="Hand"/>
+        <Image Source="/images/open-door.png" Margin="345,388,412,23"  Cursor="Hand" RenderTransformOrigin="0.517,1.028" PreviewMouseDown="DivideClick"/>
+        <TextBlock Text="Divide room" PreviewMouseDown ="DivideClick" Margin="380,388,300,19" FontSize="15" Cursor="Hand"/>
         <DockPanel Margin="0,-10,0,373">
             <Menu DockPanel.Dock="Top" Background ="AliceBlue" Cursor="Hand" Height="66" >
 
@@ -48,5 +54,6 @@
         <Image Source="/images/sign_out.png" Margin="699,15,66,395" MouseLeftButtonUp="SignOutClick" Cursor="Hand"/>
         <TextBlock Text="Sign out" FontSize="12" Margin="727,19,0,394" MouseLeftButtonUp="SignOutClick" Cursor="Hand" RenderTransformOrigin="0.512,0.042" HorizontalAlignment="Left" Width="84"/>
         <Line X1="50" Y1="50" X2="1000" Y2="50" Stroke="White"  StrokeThickness="3" Margin="-50,18,1,302" />
+
     </Grid>
 </Window>

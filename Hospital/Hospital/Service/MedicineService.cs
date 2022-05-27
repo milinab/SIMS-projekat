@@ -19,7 +19,7 @@ namespace Hospital.Service
             _repository = medicineRepository;
             ObservableCollection<Medicine> medicine = Read();
             if(medicine != null)
-                _id = int.Parse(medicine.Last().Id);
+                _id = medicine.Last().Id;
             else
                 _id = 0;
         }
@@ -31,7 +31,7 @@ namespace Hospital.Service
 
         public void Create(Medicine newMedicine)
         {
-            newMedicine.Id = GenerateId().ToString();
+            newMedicine.Id = GenerateId();
             _repository.Create(newMedicine);
         }
 
