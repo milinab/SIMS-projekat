@@ -1,33 +1,30 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Threading;
 using Hospital.Model;
 using Syncfusion.UI.Xaml.Scheduler;
-using MessageBox = Xceed.Wpf.Toolkit.MessageBox;
 
 namespace Hospital.View.DoctorView.Appointments
 {
     /// <summary>
     /// Interaction logic for AppointmentsPage.xaml
     /// </summary>
-    public partial class AppointmentsPage : Page
+    public partial class AppointmentsPage
     {
-        private App _app;
-        private Frame _frame;
+        private readonly App _app;
         public ObservableCollection<Appointment> Appointments { get; set; }
 
-        public AppointmentsPage(Frame frame)
+        public AppointmentsPage()
         {
             _app = Application.Current as App;
-            Appointments = _app._appointmentController.Read();
-            _frame = frame;
+            Appointments = _app?._appointmentController.Read();
             
             
-            DispatcherTimer liveDateTime = new DispatcherTimer();
-            liveDateTime.Interval = TimeSpan.FromSeconds(1);
+            DispatcherTimer liveDateTime = new DispatcherTimer
+            {
+                Interval = TimeSpan.FromSeconds(1)
+            };
             liveDateTime.Tick += TimerTick;
             liveDateTime.Start();
             
@@ -38,9 +35,7 @@ namespace Hospital.View.DoctorView.Appointments
 
         private void AddClick(object sender, RoutedEventArgs e)
         {
-
-            Add addPage = new Add(_frame);
-            _frame.Navigate(addPage);
+            MainWindow.MainFrame.Navigate(new Add());
         }
         private void EditClick(object sender, RoutedEventArgs e)
         {
@@ -81,7 +76,7 @@ namespace Hospital.View.DoctorView.Appointments
         }
         
         public void SwitchPage() {
-            _frame.Navigate(Content);
+            MainWindow.MainFrame.Navigate(Content);
             AppointmentsCalendar.ItemsSource = _app._appointmentController.Read();
         }
 
@@ -99,7 +94,7 @@ namespace Hospital.View.DoctorView.Appointments
                 if (app.Date == date)
                 {
                     Edit editPage = new Edit(app, this);
-                    _frame.Navigate(editPage);
+                    MainWindow.MainFrame.Navigate(editPage);
                 }
             }
         }

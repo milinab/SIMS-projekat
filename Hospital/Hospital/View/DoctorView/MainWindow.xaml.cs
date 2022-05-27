@@ -1,11 +1,8 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using System.Windows.Threading;
-using Hospital.Controller;
-using Hospital.Model;
 using Hospital.View.DoctorView.Appointments;
+using Hospital.View.DoctorView.Checkup;
 
 namespace Hospital.View.DoctorView {
     /// <summary>
@@ -28,7 +25,7 @@ namespace Hospital.View.DoctorView {
             selectedButtonTextColor = new SolidColorBrush(Color.FromRgb(15, 90, 150));
             ButtonColor = new SolidColorBrush(Color.FromRgb(15, 90, 150));
             ButtonTextColor = new SolidColorBrush(Color.FromRgb(192, 228, 252));
-            Frame.Content = new AppointmentsPage(Frame);
+            Frame.Content = new AppointmentsPage();
             SelectedButtonColors(AppointmentsButton);
             MainFrame = Frame;
         }
@@ -39,21 +36,21 @@ namespace Hospital.View.DoctorView {
 
         public void SwitchPage()
         {
-            Frame.Navigate(new AppointmentsPage(Frame));
+            Frame.Navigate(new AppointmentsPage());
         }
 
         private void CheckupPage(object sender, RoutedEventArgs e)
         {
             ResetSelectedButtons();
             SelectedButtonColors(CheckupButton);
-            Frame.Navigate(new Checkup(Frame));
+            Frame.Navigate(new CheckupPage());
         }
 
         private void AppointmentsPage(object sender, RoutedEventArgs e)
         {
             ResetSelectedButtons();
             SelectedButtonColors(AppointmentsButton);
-            Frame.Navigate(new AppointmentsPage(Frame));
+            Frame.Navigate(new AppointmentsPage());
         }
 
         private void PatientsPage(object sender, RoutedEventArgs e)

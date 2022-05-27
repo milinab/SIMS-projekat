@@ -237,15 +237,15 @@
     <Compile Include="View\DoctorView\Appointments\ViewPatientInformations.xaml.cs">
       <DependentUpon>ViewPatientInformations.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\DoctorView\Checkup.xaml.cs">
-      <DependentUpon>Checkup.xaml</DependentUpon>
+    <Compile Include="View\DoctorView\Checkup\CheckupPage.xaml.cs">
+      <DependentUpon>CheckupPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DoctorView\Checkup\TherapyPage.xaml.cs">
+      <DependentUpon>TherapyPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\DoctorView\CustomTimeSpanUpDown.cs" />
     <Compile Include="View\DoctorView\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\DoctorView\Menu.xaml.cs">
-      <DependentUpon>Menu.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ManagerView\AddMedicine.xaml.cs">
       <DependentUpon>AddMedicine.xaml</DependentUpon>
@@ -377,12 +377,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\DoctorView\Appointments\ViewPatientInformations.xaml" />
-    <Page Include="View\DoctorView\Checkup.xaml" />
+    <Page Include="View\DoctorView\Checkup\CheckupPage.xaml" />
+    <Page Include="View\DoctorView\Checkup\TherapyPage.xaml" />
     <Page Include="View\DoctorView\DoctorResourceDictionary.xaml" />
     <Page Include="View\DoctorView\MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\DoctorView\Menu.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ManagerView\AddMedicine.xaml">

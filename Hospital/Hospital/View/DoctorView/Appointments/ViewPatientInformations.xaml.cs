@@ -18,8 +18,8 @@ namespace Hospital.View.DoctorView.Appointments
             HealthInsuranceId.Text = patient.HealthInsuranceId;
             Gender.Text = patient.HealthInsuranceId;
             BloodType.Text = patient.BloodType;
-            // ChronicalDiseases.Items = patient.MedicalRecord.ChronicalDiseases;
-            // Allergies.Items = patient.MedicalRecord.Allergies;
+            ChronicalDiseasesItemsControl.ItemsSource = patient.MedicalRecord.ChronicalDiseases;
+            AllergiesItemsControl.ItemsSource = patient.MedicalRecord.AllergenIds;
         }
 
         private void Cancel(object sender, RoutedEventArgs e)
