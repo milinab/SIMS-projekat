@@ -24,7 +24,7 @@ namespace Hospital.View.DoctorView.Appointments
 
         private void Cancel(object sender, RoutedEventArgs e)
         {
-            _appointmentsPage.SwitchPage();
+            MainWindow.MainFrame.GoBack();
         }
     }
 }

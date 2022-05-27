@@ -71,7 +71,7 @@ namespace Hospital
             _noteController = new NoteController(services.NoteService);
             _trolController = new TrolController(services.TrolService);
 
-            _mainWindow = new MainWindow();
+           // _mainWindow = new MainWindow();
             
         }
     }

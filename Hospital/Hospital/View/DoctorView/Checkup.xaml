@@ -21,9 +21,14 @@
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
-            <Rectangle Style="{StaticResource CheckupRectangleStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,20,0,0"/>
-            <TextBox Name="PatientTextBox" Style="{StaticResource DiagnosisTextStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,20,0,0"/>
+            <Rectangle Style="{StaticResource CheckupRectangleStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0, 20, 0, 0"/>
+            <Label Content="Full name:" Style="{StaticResource LabelStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="208, 60, 0, 0" FontSize="18"/>
+            <Label Content="Health insurance ID:" Style="{StaticResource LabelStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="130, 100, 0, 0" FontSize="18"/>
             <Label Content="Patient information:" Style="{StaticResource LabelStyle}" HorizontalAlignment="Center" VerticalAlignment="Top" Name="PatientInformationLabel" FontSize="20" Margin="0,20,0,0"/>
+            <Label Content="Patient:" Style="{StaticResource LabelStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="230, 140, 0, 0" FontSize="18"/>
+            <TextBox Name="FullNameTextBox" Height="25" Width="250" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="160, 65, 0, 0"/>
+            <TextBox Name="HealthInsuranceIdTextBox" Height="25" Width="250" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="160, 105, 0, 0"/>
+            <ListView Name="PatientListView" Height="25" Width="250" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="160, 115, 0, 0"/>
         </Grid>
         <Grid Grid.Row="1">
             <Rectangle Style="{StaticResource CheckupRectangleStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,20,0,0"/>

@@ -24,12 +24,19 @@
             <Label Content="%DATETIME%" Style="{StaticResource ClockLabelStyle}" HorizontalAlignment="Center" VerticalAlignment="Top" Name="LiveDateTimeLabel" FontSize="18"/>
         </Grid>
         <Grid Grid.Row="1">
-            <syncfusion:SfScheduler Name="AppointmentsCalendar" 
+            <syncfusion:SfScheduler Name="AppointmentsCalendar"
+                                    ItemsSource="{Binding Appointments}"
                                     ViewType="Week"
                                     FirstDayOfWeek="Monday"
                                     ResourceGroupType="Date"
                                     AppointmentEditorOpening="AppointmentsCalendar_OnAppointmentEditorOpening"
                                     >
+                <syncfusion:SfScheduler.AppointmentMapping>
+                    <syncfusion:AppointmentMapping
+                            Subject="ShowAppointment"
+                            StartTime="Date"
+                            EndTime="End"/>
+                </syncfusion:SfScheduler.AppointmentMapping>
                 <syncfusion:SfScheduler.DaysViewSettings>
                     <syncfusion:DaysViewSettings TimeIntervalSize="100"
                                                  StartHour="7"

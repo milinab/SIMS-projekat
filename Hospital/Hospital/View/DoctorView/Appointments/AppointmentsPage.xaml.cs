@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
 using Hospital.Model;
 using Syncfusion.UI.Xaml.Scheduler;
+using MessageBox = Xceed.Wpf.Toolkit.MessageBox;
 
 namespace Hospital.View.DoctorView.Appointments
 {
@@ -14,20 +17,23 @@ namespace Hospital.View.DoctorView.Appointments
     {
         private App _app;
         private Frame _frame;
-        
+        public ObservableCollection<Appointment> Appointments { get; set; }
+
         public AppointmentsPage(Frame frame)
         {
             _app = Application.Current as App;
-            InitializeComponent();
-            var appointments = _app._appointmentController.Read();
+            Appointments = _app._appointmentController.Read();
             _frame = frame;
-            LiveDateTimeLabel.Content = DateTime.Now.ToString("ddd, d.M.yyyy.\nH:mm");
-            DataContext = this;
+            
+            
             DispatcherTimer liveDateTime = new DispatcherTimer();
             liveDateTime.Interval = TimeSpan.FromSeconds(1);
             liveDateTime.Tick += TimerTick;
             liveDateTime.Start();
-            AppointmentsCalendar.ItemsSource = appointments;
+            
+            InitializeComponent();
+            DataContext = this;
+            LiveDateTimeLabel.Content = DateTime.Now.ToString("ddd, d.M.yyyy.\nH:mm");
         }
 
         private void AddClick(object sender, RoutedEventArgs e)
@@ -86,7 +92,16 @@ namespace Hospital.View.DoctorView.Appointments
 
         private void AppointmentsCalendar_OnAppointmentEditorOpening(object sender, AppointmentEditorOpeningEventArgs e)
         {
-            throw new NotImplementedException();
+            e.Cancel = true;
+            var date = e.DateTime;
+            foreach (var app in Appointments)
+            {
+                if (app.Date == date)
+                {
+                    Edit editPage = new Edit(app, this);
+                    _frame.Navigate(editPage);
+                }
+            }
         }
     }
 }

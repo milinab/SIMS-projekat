@@ -144,10 +144,6 @@
         </Setter>
     </Style>
     
-    <DataTemplate x:Key="CustomSpinnerStyle">
-        <!-- <Path Fill="TO DO..."/> -->
-    </DataTemplate>
-    
     <!-- CustomTimeSpanUpDown -->
     <Style TargetType="xctk:TimeSpanUpDown" x:Key="TimeSpanUpDownStyle">
         <Setter Property="Background" Value="#95D8EB"/>
@@ -157,8 +153,6 @@
                 <RectangleGeometry Rect="0, 0, 260, 30" RadiusX="8" RadiusY="8"/>
             </Setter.Value>
         </Setter>
-        <Setter Property="ButtonSpinnerUpContentTemplate" Value="{StaticResource CustomSpinnerStyle}"/>
-        <Setter Property="ButtonSpinnerDownContentTemplate" Value="{StaticResource CustomSpinnerStyle}"/>
     </Style>
     
     <!-- TimePicker -->

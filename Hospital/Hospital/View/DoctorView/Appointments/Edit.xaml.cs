@@ -69,5 +69,10 @@ namespace Hospital.View.DoctorView.Appointments {
         private void Cancel(object sender, RoutedEventArgs e) {
             _appointmentsPage.SwitchPage();
         }
+
+        private void PatientInformationClick(object sender, RoutedEventArgs e)
+        {
+            MainWindow.MainFrame.Navigate(new ViewPatientInformations(_appointment, _appointmentsPage));
+        }
     }
 }

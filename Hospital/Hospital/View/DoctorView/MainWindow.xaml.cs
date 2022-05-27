@@ -18,6 +18,8 @@ namespace Hospital.View.DoctorView {
         private SolidColorBrush selectedButtonTextColor;
         private SolidColorBrush ButtonColor;
         private SolidColorBrush ButtonTextColor;
+
+        public static Frame MainFrame { get; set; }
         public MainWindow()
         {
             _app = Application.Current as App;
@@ -28,6 +30,7 @@ namespace Hospital.View.DoctorView {
             ButtonTextColor = new SolidColorBrush(Color.FromRgb(192, 228, 252));
             Frame.Content = new AppointmentsPage(Frame);
             SelectedButtonColors(AppointmentsButton);
+            MainFrame = Frame;
         }
 
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e) {
