@@ -46,5 +46,10 @@ namespace Hospital.Controller
         {
             return _service.IsLogInValid(username, password);
         }
+
+        public User GetLoggedUser(string username, string password)
+        {
+            return _service.GetLoggedUser(username, password);
+        }
     }
 }

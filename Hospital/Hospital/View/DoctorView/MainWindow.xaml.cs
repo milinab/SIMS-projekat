@@ -3,6 +3,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using Hospital.View.DoctorView.Appointments;
 using Hospital.View.DoctorView.Checkup;
+using Hospital.View.DoctorView.Requests;
 
 namespace Hospital.View.DoctorView {
     /// <summary>
@@ -63,6 +64,7 @@ namespace Hospital.View.DoctorView {
         {
             ResetSelectedButtons();
             SelectedButtonColors(RequestsButton);
+            Frame.Navigate(new RequestsPage());
         }
 
         private void MalfunctionReportPage(object sender, RoutedEventArgs e)

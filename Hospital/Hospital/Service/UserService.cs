@@ -78,6 +78,12 @@ namespace Hospital.Service
                 }
             }
             return (false, "notype");
-        } 
+        }
+
+        public User GetLoggedUser(string username, string password)
+        {
+            ObservableCollection<User> users = Read();
+            return users.FirstOrDefault(user => user.Username.Equals(username) && user.Password.Equals(password));
+        }
     }
 }

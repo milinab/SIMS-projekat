@@ -26,6 +26,7 @@
         public QuestionRepository QuestionRepository { get; set; }
         public NoteRepository NoteRepository { get; set; }
         public TrolRepository TrolRepository { get; set; }
+        public VacationRepository VacationRepository { get; set; }
 
         public Repositories()
         {
@@ -53,6 +54,7 @@
             QuestionRepository = new QuestionRepository(QuestionRepository);
             NoteRepository = new NoteRepository(NoteRepository);
             TrolRepository = new TrolRepository(TrolRepository);
+            VacationRepository = new VacationRepository();
         }
     }
 }

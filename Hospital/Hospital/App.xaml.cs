@@ -36,6 +36,7 @@ namespace Hospital
         internal QuestionController _questionController;
         internal NoteController _noteController;
         internal TrolController _trolController;
+        internal VacationController _vacationController;
 
         internal MainWindow _mainWindow;
 
@@ -70,9 +71,10 @@ namespace Hospital
             _questionController = new QuestionController(services.QuestionService);
             _noteController = new NoteController(services.NoteService);
             _trolController = new TrolController(services.TrolService);
+            _vacationController = new VacationController(services.VacationService);
 
-           // _mainWindow = new MainWindow();
-            
+            // _mainWindow = new MainWindow();
+
         }
     }
 }
