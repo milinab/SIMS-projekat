@@ -8,12 +8,12 @@ namespace Hospital.View.DoctorView.Appointments {
     /// <summary>
     /// Interaction logic for Create.xaml
     /// </summary>
-    public partial class Add : Page
+    public partial class Add
     {
-
         private App _app;
+        private Patient _patient;
         
-        public Add()
+        public Add(Patient patient)
         {
             _app = Application.Current as App;
             InitializeComponent();
@@ -25,6 +25,7 @@ namespace Hospital.View.DoctorView.Appointments {
                 roomNames.Add(room.Name);
             }
 
+            _patient = patient;
             RoomListBox.ItemsSource = roomNames;
             //equipmentListBox.ItemsSource =
         }
@@ -48,8 +49,8 @@ namespace Hospital.View.DoctorView.Appointments {
             string dur = Duration.Text;
             string[] durationParts = dur.Split(':');
             TimeSpan duration = new TimeSpan(int.Parse(durationParts[0]), int.Parse(durationParts[1]), 0);
-            Doctor tempDoctor = _app._doctorController.ReadById(4);
-            Patient tempPatient = _app._patientController.ReadById(1);
+            Doctor tempDoctor = _app._doctorController.ReadById(LogIn.LoggedUser.Id);
+            Patient tempPatient = _patient;
             string roomName = RoomListBox.SelectedItem.ToString();
             ObservableCollection<Room> rooms = _app._roomController.Read();
             Room tempRoom = new Room();

@@ -33,7 +33,7 @@ namespace Hospital.View.DoctorView.Checkup
 
         private void ScheduleAppointmentButton(object sender, RoutedEventArgs e)
         {
-            MainWindow.MainFrame.Navigate(new Add());
+            MainWindow.MainFrame.Navigate(new Add((Patient)PatientListView.SelectedItem));
         }
 
         private void FullNameTextBox_OnTextChanged(object sender, TextChangedEventArgs e)

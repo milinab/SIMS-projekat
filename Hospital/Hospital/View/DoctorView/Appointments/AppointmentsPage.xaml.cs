@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Threading;
 using Hospital.Model;
 using Syncfusion.UI.Xaml.Scheduler;
+using MessageBox = Xceed.Wpf.Toolkit.MessageBox;
 
 namespace Hospital.View.DoctorView.Appointments
 {
@@ -35,7 +36,7 @@ namespace Hospital.View.DoctorView.Appointments
 
         private void AddClick(object sender, RoutedEventArgs e)
         {
-            MainWindow.MainFrame.Navigate(new Add());
+            // MainWindow.MainFrame.Navigate(new Add());
         }
         private void EditClick(object sender, RoutedEventArgs e)
         {
@@ -93,8 +94,7 @@ namespace Hospital.View.DoctorView.Appointments
             {
                 if (app.Date == date)
                 {
-                    Edit editPage = new Edit(app, this);
-                    MainWindow.MainFrame.Navigate(editPage);
+                    MainWindow.MainFrame.Navigate(new Edit(app));
                 }
             }
         }

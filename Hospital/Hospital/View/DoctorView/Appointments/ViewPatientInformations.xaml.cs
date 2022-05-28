@@ -6,12 +6,10 @@ namespace Hospital.View.DoctorView.Appointments
 {
     public partial class ViewPatientInformations : Page
     {
-        private AppointmentsPage _appointmentsPage;
         
-        public ViewPatientInformations(Appointment app, AppointmentsPage appointmentsPage)
+        public ViewPatientInformations(Appointment app)
         {
             InitializeComponent();
-            _appointmentsPage = appointmentsPage;
             Patient patient = app.Patient;
             Name.Text = patient.Name;
             LastName.Text = patient.LastName;

@@ -22,17 +22,10 @@ namespace Hospital.View.DoctorView.Requests
         {
             if (UrgentCheckBox.IsChecked ?? false)
             {
-                string specialization = null;
                 if (StartDate.SelectedDate != null && EndDate.SelectedDate != null &&
                     !string.IsNullOrEmpty(ReasonTextBox.Text))
                 {
-                    foreach (var doctor in _app._doctorController.Read())
-                    {
-                        if (LogIn.LoggedUser.Id == doctor.Id)
-                        {
-                            specialization = doctor.Specialization;
-                        }
-                    }
+                    var specialization = _app._doctorController.ReadById(LogIn.LoggedUser.Id).Specialization;
 
                     Vacation vacation = new Vacation((DateTime)StartDate.SelectedDate, (DateTime)EndDate.SelectedDate,
                         ReasonTextBox.Text, specialization, VacationState.Awaiting);
@@ -52,17 +45,10 @@ namespace Hospital.View.DoctorView.Requests
             {
                 try
                 {
-                    string specialization = null;
                     if (StartDate.SelectedDate != null && EndDate.SelectedDate != null &&
                         !string.IsNullOrEmpty(ReasonTextBox.Text))
                     {
-                        foreach (var doctor in _app._doctorController.Read())
-                        {
-                            if (LogIn.LoggedUser.Id == doctor.Id)
-                            {
-                                specialization = doctor.Specialization;
-                            }
-                        }
+                        var specialization = _app._doctorController.ReadById(LogIn.LoggedUser.Id).Specialization;
 
                         Vacation vacation = new Vacation((DateTime)StartDate.SelectedDate, (DateTime)EndDate.SelectedDate,
                             ReasonTextBox.Text, specialization, VacationState.Awaiting);
