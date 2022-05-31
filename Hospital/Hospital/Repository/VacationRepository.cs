@@ -9,16 +9,25 @@ namespace Hospital.Repository
     {
         private List<Vacation> _vacations;
         private readonly Serializer<Vacation> _serializer;
+        private readonly DoctorRepository _doctorRepository;
 
-        public VacationRepository()
+        public VacationRepository(DoctorRepository doctorRepository)
         {
             _serializer = new Serializer<Vacation>("vacations.csv");
             _vacations = new List<Vacation>();
+            _doctorRepository = doctorRepository;
         }
 
         public List<Vacation> Read()
         {
             _vacations = _serializer.Read().ToList();
+            foreach (var vacation in _vacations)
+            {
+                var doctor = _doctorRepository.ReadById(vacation.DoctorId);
+                if (doctor == null) continue;
+                vacation.Doctor = doctor;
+            }
+            
             return _vacations;
         }
 
@@ -43,7 +52,7 @@ namespace Hospital.Repository
                     vacation.StartDate = editVacation.StartDate;
                     vacation.EndDate = editVacation.EndDate;
                     vacation.Reason = editVacation.Reason;
-                    vacation.Specialization = editVacation.Specialization;
+                    vacation.Doctor = editVacation.Doctor;
                 }
             }
 

@@ -171,6 +171,7 @@
     <Compile Include="Controller\VacationController.cs" />
     <Compile Include="Enums\SurveyType.cs" />
     <Compile Include="Enums\VacationState.cs" />
+    <Compile Include="Exceptions\VacationException.cs" />
     <Compile Include="LogIn.xaml.cs">
       <DependentUpon>LogIn.xaml</DependentUpon>
     </Compile>

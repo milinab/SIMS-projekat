@@ -1,7 +1,9 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Windows;
 using System.Windows.Controls;
 using Hospital.Enums;
+using Hospital.Exceptions;
 using Hospital.Model;
 using MessageBox = Xceed.Wpf.Toolkit.MessageBox;
 
@@ -18,56 +20,62 @@ namespace Hospital.View.DoctorView.Requests
             StartDate.DisplayDateStart = DateTime.Today.AddDays(2);
         }
 
+        [SuppressMessage("ReSharper", "PossibleInvalidOperationException")]
         private void Confirm(object sender, RoutedEventArgs e)
         {
             if (UrgentCheckBox.IsChecked ?? false)
             {
-                if (StartDate.SelectedDate != null && EndDate.SelectedDate != null &&
-                    !string.IsNullOrEmpty(ReasonTextBox.Text))
-                {
-                    var specialization = _app._doctorController.ReadById(LogIn.LoggedUser.Id).Specialization;
-
-                    Vacation vacation = new Vacation((DateTime)StartDate.SelectedDate, (DateTime)EndDate.SelectedDate,
-                        ReasonTextBox.Text, specialization, VacationState.Awaiting);
-                    if (!vacation.IsStartDateBeforeDate(DateTime.Today.AddDays(2)) &&
-                        !vacation.IsEndDateBeforeDate((DateTime)StartDate.SelectedDate))
-                    {
-                        _app._vacationController.Create(vacation);
-                        MainWindow.MainFrame.GoBack();
-                        return;
-                    }
-                }
-
-                MessageBox.Show("Greska");
-            }
-
-            else
-            {
+                if (!ValidateInput()) return;
+                var doctor = _app._doctorController.ReadById(LogIn.LoggedUser.Id);
+                var vacation = new Vacation((DateTime)StartDate.SelectedDate, (DateTime)EndDate.SelectedDate,
+                    ReasonTextBox.Text, doctor, VacationState.Awaiting);
                 try
                 {
-                    if (StartDate.SelectedDate != null && EndDate.SelectedDate != null &&
-                        !string.IsNullOrEmpty(ReasonTextBox.Text))
-                    {
-                        var specialization = _app._doctorController.ReadById(LogIn.LoggedUser.Id).Specialization;
-
-                        Vacation vacation = new Vacation((DateTime)StartDate.SelectedDate, (DateTime)EndDate.SelectedDate,
-                            ReasonTextBox.Text, specialization, VacationState.Awaiting);
-                        if (!vacation.IsStartDateBeforeDate(DateTime.Today.AddDays(2)) &&
-                            !vacation.IsEndDateBeforeDate((DateTime)StartDate.SelectedDate))
-                        {
-                            _app._vacationController.NoPriorityCreate(vacation);
-                            return;
-                        }
-                    }
-
-                    MessageBox.Show("Greska");
+                    _app._vacationController.Create(vacation);
                     MainWindow.MainFrame.GoBack();
                 }
-                catch
+                catch (VacationException exception)
                 {
-                    MessageBox.Show("Doctor with this specialization has already requested vacation");
+                    if (exception.Message.Equals("DoctorException"))
+                    {
+                        MessageBox.Show("You already have a pending request");
+                        return;
+                    } 
+                    MessageBox.Show("Wrong date");
                 }
             }
+            else
+            {
+                if (!ValidateInput()) return;
+                var doctor = _app._doctorController.ReadById(LogIn.LoggedUser.Id);
+
+                var vacation = new Vacation((DateTime)StartDate.SelectedDate, (DateTime)EndDate.SelectedDate,
+                    ReasonTextBox.Text, doctor, VacationState.Awaiting);
+                try
+                {
+                    _app._vacationController.NoPriorityCreate(vacation);
+                    MainWindow.MainFrame.GoBack();
+                }
+                catch (VacationException exception)
+                {
+                    if (exception.Message.Equals("DoctorException"))
+                    {
+                        MessageBox.Show("You already have a pending request");
+                        return;
+                    }
+                    if (exception.Message.Equals("SpecializationException"))
+                    {
+                        MessageBox.Show("Doctor with this specialization has already requested vacation");
+                        return;
+                    }
+                    MessageBox.Show("Wrong date");
+                }
+            }
+        }
+
+        private bool ValidateInput()
+        {
+            return StartDate.SelectedDate != null && EndDate.SelectedDate != null && !string.IsNullOrEmpty(ReasonTextBox.Text);
         }
 
         private void Cancel(object sender, RoutedEventArgs e)

@@ -16,25 +16,27 @@ namespace Hospital.Model
         [DataMember]
         public string Reason { get; set; }
         [DataMember]
-        public string Specialization { get; set; }
+        public int DoctorId { get; set; }
+        public Doctor Doctor { get; set; }
         [DataMember]
         public VacationState State { get; set; }
         
-        public Vacation(DateTime startDate, DateTime endDate, string reason, string specialization, VacationState state)
+        public Vacation(DateTime startDate, DateTime endDate, string reason, Doctor doctor, VacationState state)
         {
             StartDate = startDate;
             EndDate = endDate;
             Reason = reason;
-            Specialization = specialization;
+            Doctor = doctor;
+            DoctorId = doctor.Id;
             State = state;
         }
 
-        public bool IsStartDateBeforeDate(DateTime dateTime)
+        public bool IsStartDateBefore(DateTime dateTime)
         {
             return StartDate < dateTime;
         }
         
-        public bool IsEndDateBeforeDate(DateTime dateTime)
+        public bool IsEndDateBefore(DateTime dateTime)
         {
             return EndDate < dateTime;
         }

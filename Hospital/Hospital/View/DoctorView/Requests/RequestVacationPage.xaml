@@ -31,7 +31,7 @@
             <TextBox Name="ReasonTextBox" HorizontalAlignment="Center" VerticalAlignment="Center" Width="260" Height="150" Margin="40, 30, 0, 0"/>
             <CheckBox Name="UrgentCheckBox" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="150, 405, 0, 0">
                 <CheckBox.LayoutTransform>
-                    <ScaleTransform ScaleX="2" ScaleY="2" />
+                    <ScaleTransform ScaleX="2" ScaleY="2"/>
                 </CheckBox.LayoutTransform>
             </CheckBox>
             

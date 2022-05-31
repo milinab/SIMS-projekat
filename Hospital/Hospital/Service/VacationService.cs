@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Hospital.Exceptions;
 using Hospital.Model;
 using Hospital.Repository;
 
@@ -28,23 +29,45 @@ namespace Hospital.Service
         {
             return _repository.ReadById(id);
         }
+        
+        private static void ValidateVacationDate(Vacation newVacation)
+        {
+            if (newVacation.IsStartDateBefore(DateTime.Today.AddDays(2)) ||
+                newVacation.IsEndDateBefore(newVacation.StartDate.AddDays(1)))
+            {
+                throw new VacationException("VacationInvalidDate");
+            }
+        }
+        
+        private void ValidateDoctorSpecializationForVacation(Vacation newVacation)
+        {
+            if (Read().Any(vacation => vacation.Doctor.Specialization.Equals(newVacation.Doctor.Specialization)))
+            {
+                throw new VacationException("SpecializationException");
+            }
+        }
+        
+        private void ValidateDoctorForVacation(Vacation newVacation)
+        {
+            if (Read().Any(vacation => vacation.Doctor.Equals(newVacation.Doctor)))
+            {
+                throw new VacationException("DoctorException");
+            }
+        }
 
         public void NoPriorityCreate(Vacation newVacation)
         {
-            foreach (var vacation in Read())
-            {
-                if (vacation.Specialization.Equals(newVacation.Specialization))
-                {
-                    throw new Exception("SpecializatonException");
-                }
-            }
-            
+            ValidateDoctorForVacation(newVacation);
+            ValidateVacationDate(newVacation);
+            ValidateDoctorSpecializationForVacation(newVacation);
             newVacation.Id = GenerateId();
             _repository.Create(newVacation);
         }
 
         public void Create(Vacation newVacation)
         {
+            ValidateDoctorForVacation(newVacation);
+            ValidateVacationDate(newVacation);
             newVacation.Id = GenerateId();
             _repository.Create(newVacation);
         }

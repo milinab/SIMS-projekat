@@ -54,7 +54,7 @@
             QuestionRepository = new QuestionRepository(QuestionRepository);
             NoteRepository = new NoteRepository(NoteRepository);
             TrolRepository = new TrolRepository(TrolRepository);
-            VacationRepository = new VacationRepository();
+            VacationRepository = new VacationRepository(DoctorRepository);
         }
     }
 }
