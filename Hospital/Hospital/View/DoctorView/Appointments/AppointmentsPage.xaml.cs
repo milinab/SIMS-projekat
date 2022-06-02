@@ -1,40 +1,42 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Threading;
 using Hospital.Model;
 using Syncfusion.UI.Xaml.Scheduler;
+using MessageBox = Xceed.Wpf.Toolkit.MessageBox;
 
 namespace Hospital.View.DoctorView.Appointments
 {
     /// <summary>
     /// Interaction logic for AppointmentsPage.xaml
     /// </summary>
-    public partial class AppointmentsPage : Page
+    public partial class AppointmentsPage
     {
-        private App _app;
-        private Frame _frame;
-        
-        public AppointmentsPage(Frame frame)
+        private readonly App _app;
+        public ObservableCollection<Appointment> Appointments { get; set; }
+
+        public AppointmentsPage()
         {
             _app = Application.Current as App;
-            InitializeComponent();
-            var appointments = _app._appointmentController.Read();
-            _frame = frame;
-            LiveDateTimeLabel.Content = DateTime.Now.ToString("ddd, d.M.yyyy.\nH:mm");
-            DataContext = this;
-            DispatcherTimer liveDateTime = new DispatcherTimer();
-            liveDateTime.Interval = TimeSpan.FromSeconds(1);
+            Appointments = _app?._appointmentController.Read();
+            
+            
+            DispatcherTimer liveDateTime = new DispatcherTimer
+            {
+                Interval = TimeSpan.FromSeconds(1)
+            };
             liveDateTime.Tick += TimerTick;
             liveDateTime.Start();
-            AppointmentsCalendar.ItemsSource = appointments;
+            
+            InitializeComponent();
+            DataContext = this;
+            LiveDateTimeLabel.Content = DateTime.Now.ToString("ddd, d.M.yyyy.\nH:mm");
         }
 
         private void AddClick(object sender, RoutedEventArgs e)
         {
-
-            Add addPage = new Add(_frame);
-            _frame.Navigate(addPage);
+            // MainWindow.MainFrame.Navigate(new Add());
         }
         private void EditClick(object sender, RoutedEventArgs e)
         {
@@ -75,7 +77,7 @@ namespace Hospital.View.DoctorView.Appointments
         }
         
         public void SwitchPage() {
-            _frame.Navigate(Content);
+            MainWindow.MainFrame.Navigate(Content);
             AppointmentsCalendar.ItemsSource = _app._appointmentController.Read();
         }
 
@@ -86,7 +88,15 @@ namespace Hospital.View.DoctorView.Appointments
 
         private void AppointmentsCalendar_OnAppointmentEditorOpening(object sender, AppointmentEditorOpeningEventArgs e)
         {
-            throw new NotImplementedException();
+            e.Cancel = true;
+            var date = e.DateTime;
+            foreach (var app in Appointments)
+            {
+                if (app.Date == date)
+                {
+                    MainWindow.MainFrame.Navigate(new Edit(app));
+                }
+            }
         }
     }
 }

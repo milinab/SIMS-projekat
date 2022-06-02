@@ -6,25 +6,23 @@ namespace Hospital.View.DoctorView.Appointments
 {
     public partial class ViewPatientInformations : Page
     {
-        private AppointmentsPage _appointmentsPage;
         
-        public ViewPatientInformations(Appointment app, AppointmentsPage appointmentsPage)
+        public ViewPatientInformations(Appointment app)
         {
             InitializeComponent();
-            _appointmentsPage = appointmentsPage;
             Patient patient = app.Patient;
             Name.Text = patient.Name;
             LastName.Text = patient.LastName;
             HealthInsuranceId.Text = patient.HealthInsuranceId;
             Gender.Text = patient.HealthInsuranceId;
             BloodType.Text = patient.BloodType;
-            // ChronicalDiseases.Items = patient.MedicalRecord.ChronicalDiseases;
-            // Allergies.Items = patient.MedicalRecord.Allergies;
+            ChronicalDiseasesItemsControl.ItemsSource = patient.MedicalRecord.ChronicalDiseases;
+            AllergiesItemsControl.ItemsSource = patient.MedicalRecord.AllergenIds;
         }
 
         private void Cancel(object sender, RoutedEventArgs e)
         {
-            _appointmentsPage.SwitchPage();
+            MainWindow.MainFrame.GoBack();
         }
     }
 }
