@@ -5,10 +5,15 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Hospital.View.PatientView"
       xmlns:val="clr-namespace:Hospital.View.PatientView.Validations"
+      xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+      xmlns:syncfusion="http://schemas.syncfusion.com/wpf"       
       mc:Ignorable="d" 
       d:DesignHeight="560" d:DesignWidth="800" Background="AntiqueWhite"
       Title="AddNote">
 
+    <Page.Resources>
+        <ResourceDictionary Source="PatientResourceDictionary.xaml"></ResourceDictionary>
+    </Page.Resources>
     <Grid Margin="0,0,0,0">
 
         <Label Content="ZDRAVO CORPORATION" HorizontalAlignment="Left" Margin="7,6,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="18" Foreground="Maroon" FontFamily="Georgia"/>
@@ -45,15 +50,8 @@
         <Border BorderBrush="Black" BorderThickness="1" Width="Auto" Height="1" Margin="0,184,0,375" />
 
 
-        <Label Content="Name:" HorizontalAlignment="Left" Margin="10,134,0,0" VerticalAlignment="Top" FontSize="14"/>
-        <TextBox x:Name="noteName" HorizontalAlignment="Left" Margin="70,134,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="248" Height="27" TextChanged="NameTextBoxTextChanged">
-            <TextBox.Text>
-                <Binding Path="NoteName" UpdateSourceTrigger="PropertyChanged">
-                    <Binding.ValidationRules>
-                        <val:NoEmptyInputsRule ValidationStep="RawProposedValue"/>
-                    </Binding.ValidationRules>
-                </Binding>
-            </TextBox.Text>
+        <Label Content="Name:" HorizontalAlignment="Left" Margin="0,134,0,0" VerticalAlignment="Top" FontSize="14"/>
+        <TextBox x:Name="noteName" HorizontalAlignment="Left" Margin="50,134,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="248" Height="27" TextChanged="NameTextBoxTextChanged">
             <TextBox.Background>
                 <ImageBrush ImageSource="insertNoteName.png" AlignmentX="Left" AlignmentY="Top" Stretch="None" />
             </TextBox.Background>
@@ -73,17 +71,22 @@
                     </Grid>
                 </ControlTemplate>
             </Validation.ErrorTemplate>
+            <Binding Path="NoteName" UpdateSourceTrigger="PropertyChanged">
+                <Binding.ValidationRules>
+                    <val:NoEmptyInputsRule ValidationStep="RawProposedValue"/>
+                </Binding.ValidationRules>
+            </Binding>
         </TextBox>
-        <Button Content="Back to all notes" Background="Bisque" HorizontalAlignment="Left" Margin="642,134,0,0" VerticalAlignment="Top" FontSize="14" Height="27" Width="130" Click="BackToAllNotes_Click"/>
-        <Button x:Name="buttonSave" IsDefault="True" Command="{Binding SaveProtocolCommand}"  Content="Save changes" Background="Bisque" HorizontalAlignment="Left" Margin="642,470,0,0" VerticalAlignment="Top" Height="27" Width="130" Click="SaveChanges_Click" >
+        <Button Content="Back to all notes" Background="Bisque" HorizontalAlignment="Left" Margin="620,134,0,0" VerticalAlignment="Top" FontSize="14" Height="27" Width="130" Click="BackToAllNotes_Click"/>
+        <Button x:Name="buttonSave" IsDefault="True" Command="{Binding SaveProtocolCommand}"  Content="Save changes" Background="Bisque" HorizontalAlignment="Left" Margin="620,470,0,0" VerticalAlignment="Top" Height="27" Width="130" Click="SaveChanges_Click" >
             <Button.Style>
-                <Style TargetType="Button">
+                <Style TargetType="{x:Type Button}">
                     <Setter Property="IsEnabled" Value="False"/>
                     <Style.Triggers>
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding Path=(Validation.HasError), ElementName=noteName}" Value="False"/>
-                                <Condition Binding="{Binding Path=(Validation.HasError), ElementName=noteText}" Value="False"/>
+                                <Condition Binding="{Binding (Validation.HasError), ElementName=noteName}" Value="False"/>
+                                <Condition Binding="{Binding (Validation.HasError), ElementName=noteText}" Value="False"/>
                             </MultiDataTrigger.Conditions>
                             <Setter Property="IsEnabled" Value="True"/>
                         </MultiDataTrigger>
@@ -91,14 +94,7 @@
                 </Style>
             </Button.Style>
         </Button>
-        <TextBox x:Name="noteText" HorizontalAlignment="Center" Margin="-110,191,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="538" Height="268" TextChanged="TextTextBoxTextChanged">
-            <TextBox.Text>
-                <Binding Path="NoteText" UpdateSourceTrigger="PropertyChanged">
-                    <Binding.ValidationRules>
-                        <val:NoEmptyInputsRule ValidationStep="RawProposedValue"/>
-                    </Binding.ValidationRules>
-                </Binding>
-            </TextBox.Text>
+        <TextBox x:Name="noteText" HorizontalAlignment="Center" Margin="-110,191,40,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="538" Height="268" TextChanged="TextTextBoxTextChanged">
             <TextBox.Background>
                 <ImageBrush ImageSource="insertNoteText.png" AlignmentX="Left" AlignmentY="Top" Stretch="None" />
             </TextBox.Background>
@@ -118,10 +114,19 @@
                     </Grid>
                 </ControlTemplate>
             </Validation.ErrorTemplate>
+            <Binding Path="NoteText" UpdateSourceTrigger="PropertyChanged">
+                <Binding.ValidationRules>
+                    <val:NoEmptyInputsRule ValidationStep="RawProposedValue"/>
+                </Binding.ValidationRules>
+            </Binding>
         </TextBox>
 
-        <Frame x:Name="frame" NavigationUIVisibility="Hidden" Margin="-1,0,1,0" RenderTransformOrigin="0.5,0.5" />
+        <Label Content="select when you want" HorizontalAlignment="Left" Margin="623,183,0,0" VerticalAlignment="Top" Height="26"/>
+        <Label Content="to be notified:" HorizontalAlignment="Left" Margin="640,200,0,0" VerticalAlignment="Top" Height="26"/>
+        <Calendar x:Name="myCalendar" HorizontalAlignment="Left" Margin="600,225,0,0" VerticalAlignment="Top" Height="170" Width="171"/>
+        <xctk:TimePicker Name="TimePicker" Style="{StaticResource TimePickerStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="600,400,0,0" Width="171" Height="30" FontSize="18" StartTime="5:00" EndTime="20:00" TextAlignment="Center" TimeInterval="0:15" ShowButtonSpinner="False" AllowTextInput="False"/>
 
+        <Frame x:Name="frame" NavigationUIVisibility="Hidden" Margin="-1,0,1,0" RenderTransformOrigin="0.5,0.5" />
 
     </Grid>
 </Page>

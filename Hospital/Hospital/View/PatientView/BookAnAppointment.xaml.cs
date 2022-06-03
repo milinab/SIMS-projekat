@@ -29,7 +29,6 @@ namespace Hospital.View.PatientView
         private readonly PatientWindow _patientWindow;
         private readonly AppointmentController _appointmentController;
         private readonly UserController _userController;
-        private readonly DoctorController _doctorController;
 
         public ObservableCollection<Doctor> Doctors
         {
@@ -44,7 +43,6 @@ namespace Hospital.View.PatientView
             _content = Content;
             this.DataContext = this;
             dataGridAppointments.ItemsSource = patientWindow.dataGridAppointments.ItemsSource;
-            //dataGridAppointments.ItemsSource = app._appointmentController.Read();
             _patientWindow = patientWindow;
             _appointmentController = appointmentController;
             _userController = userController;
@@ -61,10 +59,7 @@ namespace Hospital.View.PatientView
             _content = Content;
             this.DataContext = this;
             dataGridAppointments.ItemsSource = patientWindow.dataGridAppointments.ItemsSource;
-            //dataGridAppointments.ItemsSource = app._appointmentController.Read();
             _patientWindow = patientWindow;
-            //_appointmentController = appointmentController;
-            //_userController = userController;
             Doctors = new ObservableCollection<Doctor>();
             Doctors = app._doctorController.Read();
             doctorsComboBox.ItemsSource = Doctors;
@@ -76,7 +71,7 @@ namespace Hospital.View.PatientView
             _userController = userController;
         }
 
-        private bool validate()
+        private bool Validate()
         {
          
             if(DoctorPriority.IsChecked == false && DatePriority.IsChecked == false)
@@ -89,11 +84,6 @@ namespace Hospital.View.PatientView
 
         private void AddAppointment_Click(object sender, RoutedEventArgs e)
         {
-
-            //if (!validate())
-            //{
-            //    return;
-            //}
 
             int DoctorId = Int32.Parse(((Model.User)doctorsComboBox.SelectedItem).Id.ToString());
             

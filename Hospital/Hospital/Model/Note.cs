@@ -14,6 +14,8 @@ namespace Hospital.Model
         public string NoteText { get; set; }
         [DataMember]
         public DateTime Date { get; set; }
+        [DataMember]
+        public DateTime NotificationDate { get; set; }
 
         public Note()
         {
@@ -30,6 +32,14 @@ namespace Hospital.Model
             Id = id;
             NoteText = noteText;
             Date = date;
+
+        }
+        public Note(string name, string noteText, DateTime date, DateTime notificationDate)
+        {
+            Name = name;
+            NoteText = noteText;
+            Date = date;
+            NotificationDate = notificationDate;
 
         }
 

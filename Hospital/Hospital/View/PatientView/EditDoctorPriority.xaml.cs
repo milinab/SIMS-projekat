@@ -66,11 +66,11 @@ namespace Hospital.View.PatientView
             _date = date;
             DoctorsAppointments = new ObservableCollection<Appointment>();
             AvailableAppointments = new ObservableCollection<Appointment>();
-            initializeData(doctorId, date);
+            InitializeData(doctorId, date);
             dataGridDoctorPriority.ItemsSource = AvailableAppointments;
             dataGridAppointments.ItemsSource = patientWindow.Appointments;
         }
-        private void initializeData(int doctorId, DateTime date)
+        private void InitializeData(int doctorId, DateTime date)
         {
             Doctor doctor = app._doctorController.ReadById(doctorId);
             this.doctor = doctor;
@@ -78,15 +78,17 @@ namespace Hospital.View.PatientView
             this.ChosenDoctor.Text = doctor.Name + " " + doctor.LastName;
 
             // radno vreme bolnice
-            List<TimeSpan> hospitalWorkingHours = new List<TimeSpan>();
-            hospitalWorkingHours.Add(new TimeSpan(7, 00, 00));
-            hospitalWorkingHours.Add(new TimeSpan(7, 30, 00));
-            hospitalWorkingHours.Add(new TimeSpan(8, 00, 00));
-            hospitalWorkingHours.Add(new TimeSpan(8, 30, 00));
-            hospitalWorkingHours.Add(new TimeSpan(9, 00, 00));
-            hospitalWorkingHours.Add(new TimeSpan(9, 30, 00));
-            hospitalWorkingHours.Add(new TimeSpan(10, 00, 00));
-            hospitalWorkingHours.Add(new TimeSpan(10, 30, 00));
+            List<TimeSpan> hospitalWorkingHours = new List<TimeSpan>
+            {
+                new TimeSpan(7, 00, 00),
+                new TimeSpan(7, 30, 00),
+                new TimeSpan(8, 00, 00),
+                new TimeSpan(8, 30, 00),
+                new TimeSpan(9, 00, 00),
+                new TimeSpan(9, 30, 00),
+                new TimeSpan(10, 00, 00),
+                new TimeSpan(10, 30, 00)
+            };
 
             List<TimeSpan> hospitalWorkingHoursListForCalculation = new List<TimeSpan>(hospitalWorkingHours);
 

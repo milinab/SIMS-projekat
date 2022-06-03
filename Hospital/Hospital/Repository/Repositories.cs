@@ -46,14 +46,14 @@
             SecretaryRepository = new SecretaryRepository();
             SurgeryRepository = new SurgeryRepository();
             UserRepository = new UserRepository(AddressRepository);
-            TherapyRepository = new TherapyRepository(TherapyRepository);
+            TherapyRepository = new TherapyRepository();
             MedicineRepository = new MedicineRepository();
-            SurveyRepository = new SurveyRepository(SurveyRepository);
-            DoctorSurveyResponseRepository = new DoctorSurveyResponseRepository(DoctorSurveyResponseRepository);
-            HospitalSurveyResponseRepository = new HospitalSurveyResponseRepository(HospitalSurveyResponseRepository);
-            QuestionRepository = new QuestionRepository(QuestionRepository);
-            NoteRepository = new NoteRepository(NoteRepository);
-            TrolRepository = new TrolRepository(TrolRepository);
+            SurveyRepository = new SurveyRepository();
+            DoctorSurveyResponseRepository = new DoctorSurveyResponseRepository();
+            HospitalSurveyResponseRepository = new HospitalSurveyResponseRepository();
+            QuestionRepository = new QuestionRepository();
+            NoteRepository = new NoteRepository();
+            TrolRepository = new TrolRepository();
             MedicineReplaceRepository = new MedicineReplaceRepository();
         }
     }

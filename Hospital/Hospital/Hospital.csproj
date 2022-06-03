@@ -290,6 +290,9 @@
     <Compile Include="View\ManagerView\RoomOccupancy.xaml.cs">
       <DependentUpon>RoomOccupancy.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\PatientView\AccountSettings.xaml.cs">
+      <DependentUpon>AccountSettings.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\PatientView\AddNote.xaml.cs">
       <DependentUpon>AddNote.xaml</DependentUpon>
     </Compile>
@@ -449,6 +452,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="View\PatientView\AccountSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\PatientView\AddNote.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -460,6 +467,9 @@
     <Page Include="View\PatientView\Calendar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PatientView\PatientResourceDictionary.xaml">
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\PatientView\EditDatePriority.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -661,6 +671,18 @@
   <ItemGroup>
     <Resource Include="images\home.png" />
     <Resource Include="images\user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\staff.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\location.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\profile.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\femaleUser.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

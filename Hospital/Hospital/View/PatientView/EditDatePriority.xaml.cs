@@ -65,27 +65,29 @@ namespace Hospital.View.PatientView
             _appointmentId = appointmentId;
             DoctorsAppointments = new ObservableCollection<Appointment>();
             AvailableAppointments = new ObservableCollection<Appointment>();
-            initializeData(doctorId, date);
+            InitializeData(doctorId, date);
             dataGridDatePriority.ItemsSource = AvailableAppointments;
             dataGridAppointments.ItemsSource = patientWindow.Appointments;
         }
 
-        private void initializeData(int doctorId, DateTime date)
+        private void InitializeData(int doctorId, DateTime date)
         {
             Doctor doctor = app._doctorController.ReadById(doctorId);
             this.doctor = doctor;
             this.ChosenDate.Text = _date.ToString("d.M.yyyy");
 
             // radno vreme bolnice
-            List<TimeSpan> hospitalWorkingHours = new List<TimeSpan>();
-            hospitalWorkingHours.Add(new TimeSpan(7, 00, 00));
-            hospitalWorkingHours.Add(new TimeSpan(7, 30, 00));
-            hospitalWorkingHours.Add(new TimeSpan(8, 00, 00));
-            hospitalWorkingHours.Add(new TimeSpan(8, 30, 00));
-            hospitalWorkingHours.Add(new TimeSpan(9, 00, 00));
-            hospitalWorkingHours.Add(new TimeSpan(9, 30, 00));
-            hospitalWorkingHours.Add(new TimeSpan(10, 00, 00));
-            hospitalWorkingHours.Add(new TimeSpan(10, 30, 00));
+            List<TimeSpan> hospitalWorkingHours = new List<TimeSpan>
+            {
+                new TimeSpan(7, 00, 00),
+                new TimeSpan(7, 30, 00),
+                new TimeSpan(8, 00, 00),
+                new TimeSpan(8, 30, 00),
+                new TimeSpan(9, 00, 00),
+                new TimeSpan(9, 30, 00),
+                new TimeSpan(10, 00, 00),
+                new TimeSpan(10, 30, 00)
+            };
 
             List<TimeSpan> hospitalWorkingHoursListForCalculation = new List<TimeSpan>(hospitalWorkingHours);
 
@@ -94,7 +96,7 @@ namespace Hospital.View.PatientView
             DoctorsAppointments = new ObservableCollection<Appointment>();
             DoctorsAppointments = app._appointmentController.ReadByDoctorId(doctorId);
 
-            findAvailabeAppointments(DoctorsAppointments, hospitalWorkingHours, hospitalWorkingHoursListForCalculation, date);
+            FindAvailabeAppointments(DoctorsAppointments, hospitalWorkingHours, hospitalWorkingHoursListForCalculation, date);
 
             if (AvailableAppointments.Count == 0)
             {
@@ -102,7 +104,7 @@ namespace Hospital.View.PatientView
                 DoctorsAppointments = app._appointmentController.ReadByDateAndNotDoctor(doctorId, date);
                
                 MessageBox.Show("Nazalost, nema dostupnih termina za trazeni datum. U listi ce vam se prikazati dostupni termini kod drugih doktora.");
-                findAvailabeAppointments(DoctorsAppointments, hospitalWorkingHours, hospitalWorkingHoursListForCalculation, date);
+                FindAvailabeAppointments(DoctorsAppointments, hospitalWorkingHours, hospitalWorkingHoursListForCalculation, date);
 
             }
         }
@@ -156,7 +158,7 @@ namespace Hospital.View.PatientView
             }
             _patientWindow.BackToPatientWindow();
         }
-        public void findAvailabeAppointments(ObservableCollection<Appointment> DoctorsAppointments,
+        public void FindAvailabeAppointments(ObservableCollection<Appointment> DoctorsAppointments,
             List<TimeSpan> hospitalWorkingHours, List<TimeSpan> hospitalWorkingHoursListForCalculation, DateTime date)
         {
 
@@ -171,7 +173,7 @@ namespace Hospital.View.PatientView
                 foreach (TimeSpan appTime in hospitalWorkingHours)
                 {
                     //DateTime dt = new DateTime(date);
-                    date = date + appTime;
+                    date += appTime;
                     if (DateTime.Compare(date, appStartTime) > 0)
                     {
                         if (DateTime.Compare(date, appEndTime) < 0)

@@ -16,15 +16,15 @@ using System.Windows.Shapes;
 namespace Hospital.View.PatientView
 {
     /// <summary>
-    /// Interaction logic for Profile.xaml
+    /// Interaction logic for AccountSettings.xaml
     /// </summary>
-    public partial class Profile : Page
+    public partial class AccountSettings : Page
     {
         private App app;
         private readonly object _content;
-        private Profile profile;
+        private AccountSettings accountSettings;
         private readonly PatientWindow _patientWindow;
-        public Profile(PatientWindow patientWindow)
+        public AccountSettings(PatientWindow patientWindow)
         {
             InitializeComponent();
             app = Application.Current as App;
@@ -80,12 +80,6 @@ namespace Hospital.View.PatientView
         {
             Page notificationPage = new Notification(_patientWindow);
             this.frame.Navigate(notificationPage);
-        }
-
-        private void AccountSettings_Click(object sender, RoutedEventArgs e)
-        {
-            Page accountSettingsPage = new AccountSettings(_patientWindow);
-            this.frame.Navigate(accountSettingsPage);
         }
 
         public void BackToPatientWindow()

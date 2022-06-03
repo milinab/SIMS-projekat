@@ -48,11 +48,11 @@ namespace Hospital.View.PatientView
             _patientWindow = patientWindow;
             _id = appointment.Id;
             myCalendar.SelectedDate = appointment.Date;
-            setDatePicker(appointment);
+            SetDatePicker(appointment);
 
         }
 
-        private void setDatePicker(Appointment appointment) { 
+        private void SetDatePicker(Appointment appointment) { 
             DateTime startTime = appointment.Date.AddDays(-5);
             DateTime endTime = appointment.Date.AddDays(5);
 
@@ -67,7 +67,7 @@ namespace Hospital.View.PatientView
             myCalendar.DisplayDateEnd = endTime;
         }
 
-        private bool validate()
+        private bool Validate()
         {
 
 

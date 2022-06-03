@@ -41,6 +41,12 @@ namespace Hospital.View.PatientView
             set;
         }
 
+        public ObservableCollection<Note> Notes
+        {
+            get;
+            set;
+        }
+
         public PatientWindow(Patient p)
         {
             InitializeComponent();
@@ -96,7 +102,32 @@ namespace Hospital.View.PatientView
             Console.WriteLine("Za pola sata je vreme da uzmes terapiju!");
             liveDateTime.Stop();
 
+        }
+        private void getNoteNotificationTime()
+        {
+            foreach (var note in Notes)
+            {
+                DateTime now = DateTime.Now;
+                DateTime notificationTime = note.NotificationDate;
+                int diffInSeconds = (int)(note.NotificationDate - now).TotalSeconds;
+                if (diffInSeconds > 0)
+                {
+                    liveDateTime.Interval = new TimeSpan(0, 0, diffInSeconds);
+                    liveDateTime.Tick += TimerTickForNotes;
+                    liveDateTime.Start();
+                }
+            }
+        }
 
+        private void TimerTickForNotes(object sender, EventArgs e)
+        {
+            PopupNotifier popup = new PopupNotifier();
+            popup.Image = Properties.Resources.notification;
+            popup.TitleText = "Note notification";
+            popup.ContentText = "ovde ce da ide tekst od notesa";
+            popup.Popup();
+            Console.WriteLine("ovde ce da ide tekst od notesa");
+            liveDateTime.Stop();
         }
 
         private void BookAnAppointmentClick(object sender, RoutedEventArgs e)

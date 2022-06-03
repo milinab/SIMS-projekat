@@ -38,9 +38,17 @@
                 </MenuItem.Icon>
             </MenuItem>
         </Menu>
-        <Label Content="Home Page" HorizontalAlignment="Left" Margin="350,80,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Georgia"/>
+        <Label Content="Who are we?" HorizontalAlignment="Left" Margin="350,80,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Georgia" FontWeight="Bold"/>
         <Border BorderBrush="Black" BorderThickness="1" Width="Auto" Height="1" Margin="0,85,0,364" />
 
+        <Image Source="/images/staff.png" Margin="4,128,505,222" />
+        <Image Source="/images/location.JPG" Margin="-7,325,479,11" />
+        <TextBlock Margin="300,133,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="190" Width="468" HorizontalAlignment="Left" FontStretch="Normal" TextAlignment="Justify" FontSize="14"><Run Text="Welcome!"/><LineBreak/><Run Text="We are a health clinic with a long career behind us. From the very beginning, we strive to provide our clients with the best and most enjoyable experience possible."/><LineBreak/><Run Text="The main location where we currently operate is in Novi Sad, Serbia. However, our goal is to expand to as many locations as possible, in order to provide our clients with easier access to our services."/><LineBreak/><Run Text="If You have questions, or want to receive our services, feel free to contact us by email, phone, or come to our address."/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="300,319,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="214" Width="482" FontSize="14"><Run Text="You can contact us by phone:&#x9;00/ 1231 21312"/><LineBreak/><Run Text="&#x9;&#x9;&#x9;&#x9;00/ 1231 21322"/><LineBreak/><Run Text="&#x9;&#x9;OR"/><LineBreak/><Run Text="You can fill out the next form:"/><LineBreak/><Run Text="E-mail:"/><LineBreak/><Run Text="Text:"/></TextBlock>
+        <TextBox HorizontalAlignment="Left" Margin="350,394,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="315" Height="21"/>
+        <TextBox HorizontalAlignment="Left" Margin="300,432,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="365" Height="82"/>
+
         <Frame x:Name="frame" NavigationUIVisibility="Hidden" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" Grid.Column="1"/>
+        
     </Grid>
 </Page>
