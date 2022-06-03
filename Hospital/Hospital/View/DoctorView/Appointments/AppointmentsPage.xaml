@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Hospital.View.DoctorView"
       xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
+      xmlns:viewModel="clr-namespace:Hospital.View.DoctorView.ViewModel"
       mc:Ignorable="d" 
       d:DesignHeight="768" d:DesignWidth="700"
       Title="AppointmentsPage">
@@ -12,6 +13,9 @@
     <Page.Resources>
         <ResourceDictionary Source="../DoctorResourceDictionary.xaml"></ResourceDictionary>
     </Page.Resources>
+    <Page.DataContext>
+        <viewModel:AppointmentsPageViewModel/>
+    </Page.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -21,29 +25,37 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
-            <Label Content="%DATETIME%" Style="{StaticResource ClockLabelStyle}" HorizontalAlignment="Center" VerticalAlignment="Top" Name="LiveDateTimeLabel" FontSize="18"/>
+            <Label 
+                Content="{Binding CurrentTime}" 
+                Style="{StaticResource ClockLabelStyle}" 
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Top"
+                FontSize="18"/>
         </Grid>
         <Grid Grid.Row="1">
-            <syncfusion:SfScheduler Name="AppointmentsCalendar"
-                                    ItemsSource="{Binding Appointments}"
-                                    ViewType="Week"
-                                    FirstDayOfWeek="Monday"
-                                    ResourceGroupType="Date"
-                                    AppointmentEditorOpening="AppointmentsCalendar_OnAppointmentEditorOpening"
-                                    >
-                <syncfusion:SfScheduler.AppointmentMapping>
-                    <syncfusion:AppointmentMapping
-                            Subject="ShowAppointment"
-                            StartTime="Date"
-                            EndTime="End"/>
-                </syncfusion:SfScheduler.AppointmentMapping>
-                <syncfusion:SfScheduler.DaysViewSettings>
-                    <syncfusion:DaysViewSettings TimeIntervalSize="100"
-                                                 StartHour="7"
-                                                 EndHour="20"
-                                                 ViewHeaderDayFormat="dddd"
-                    />
-                </syncfusion:SfScheduler.DaysViewSettings>
+            <syncfusion:SfScheduler 
+                Name="AppointmentsCalendar"
+                ItemsSource="{Binding Appointments}"
+                ViewType="Week"
+                FirstDayOfWeek="Monday"
+                ResourceGroupType="Date"
+                AllowDrop="False"
+                AppointmentResizing="AppointmentsCalendar_OnAppointmentResizing"
+                AppointmentDragStarting="AppointmentsCalendar_OnAppointmentDragStarting"
+                AppointmentEditorOpening="AppointmentsCalendar_OnAppointmentEditorOpening">
+                    <syncfusion:SfScheduler.AppointmentMapping>
+                        <syncfusion:AppointmentMapping
+                                Subject="AppointmentSubject"
+                                StartTime="Date"
+                                EndTime="End"/>
+                    </syncfusion:SfScheduler.AppointmentMapping>
+                    <syncfusion:SfScheduler.DaysViewSettings>
+                        <syncfusion:DaysViewSettings 
+                            TimeIntervalSize="100"
+                            StartHour="7"
+                            EndHour="20"
+                            ViewHeaderDayFormat="dddd"/>
+                    </syncfusion:SfScheduler.DaysViewSettings>
             </syncfusion:SfScheduler>
         </Grid>
     </Grid>
