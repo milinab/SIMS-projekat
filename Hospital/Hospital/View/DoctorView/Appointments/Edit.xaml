@@ -20,12 +20,13 @@
             <Rectangle HorizontalAlignment="Center" VerticalAlignment="Top" Height="40" Width="700" Margin="0,0,0,0" Stroke="Black"/>
             <TextBlock Text="Edit appointment" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,3,0,0" TextWrapping="Wrap" FontSize="24"/>
 
-            <TextBlock Text="Date:"     Style="" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,80,500,0" TextWrapping="Wrap" FontSize="20"/>
+            <TextBlock Text="Date:"      HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,80,500,0" TextWrapping="Wrap" FontSize="20"/>
             <TextBlock Text="Time:"      HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,140,500,0" TextWrapping="Wrap" FontSize="20"/>
             <TextBlock Text="Duration:"  HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,200,500,0" TextWrapping="Wrap" FontSize="20"/>
             <TextBlock Text="Room:"      HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,330,500,0" TextWrapping="Wrap" FontSize="20"/>
             <TextBlock Text="Equipment:" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,530,500,0" TextWrapping="Wrap" FontSize="20"/>
-
+            <Button Content="Patient informations" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0, 0, 0, 70" Width="250" Height="40" FontSize="20" Click="PatientInformationClick"/>
+            
             <DatePicker Name="DatePicker"           HorizontalAlignment="Left" VerticalAlignment="Top" Margin="220,80,0,0" Width="260" Height="30" FontSize="18" DisplayDateStart="{x:Static sys:DateTime.Today}"/>
             <xctk:TimePicker Name="TimePicker"      HorizontalAlignment="Left" VerticalAlignment="Top" Margin="220,140,0,0" Width="260" Height="30" FontSize="18" StartTime="7:00" EndTime="20:00" TextAlignment="Center" TimeInterval="0:15" ShowButtonSpinner="False" AllowTextInput="False"/>
             <local:CustomTimeSpanUpDown x:Name="Duration"    HorizontalAlignment="Left" VerticalAlignment="Top" Margin="220,200,0,0" Width="260" Height="30" FontSize="18" TextAlignment="Center" AllowTextInput="False" Minimum="0.00:10:00" Maximum="0.8:00:00" Value="0.00:10:00"/>

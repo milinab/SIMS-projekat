@@ -5,16 +5,16 @@
     
     <!-- Default button template -->
     <ControlTemplate TargetType="Button" x:Key="ButtonTemplate">
-        <Border BorderBrush="{TemplateBinding BorderBrush}" 
-                BorderThickness="{TemplateBinding BorderThickness}" 
+        <Border BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}"
                 Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
-            <ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}" 
-                              Content="{TemplateBinding Content}" 
-                              ContentStringFormat="{TemplateBinding ContentStringFormat}" 
-                              Focusable="False" 
-                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
-                              Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" 
-                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+            <ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}"
+                              Content="{TemplateBinding Content}"
+                              ContentStringFormat="{TemplateBinding ContentStringFormat}"
+                              Focusable="False"
+                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                              Margin="{TemplateBinding Padding}" RecognizesAccessKey="True"
+                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                               VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
         </Border>
     </ControlTemplate>
@@ -55,8 +55,6 @@
     
     <!-- Checkup buttons -->
     <Style TargetType="Button" x:Key="CheckupButton">
-        <Setter Property="Height" Value="70"/>
-        <Setter Property="Width" Value="270"/>
         <Setter Property="FontSize" Value="25"/>
         <Setter Property="Background" Value="#95D8EB"/>
         <Setter Property="TextElement.FontFamily" Value="Roboto"/>
@@ -76,7 +74,7 @@
     </Style>
     
     <!-- Big Checkup button -->
-    <Style TargetType="Button" BasedOn="{StaticResource CheckupButton}">
+    <Style TargetType="Button" BasedOn="{StaticResource CheckupButton}" x:Key="BigCheckupButton">
         <Setter Property="Width" Value="600"/>
     </Style>
     
@@ -144,10 +142,6 @@
         </Setter>
     </Style>
     
-    <DataTemplate x:Key="CustomSpinnerStyle">
-        <!-- <Path Fill="TO DO..."/> -->
-    </DataTemplate>
-    
     <!-- CustomTimeSpanUpDown -->
     <Style TargetType="xctk:TimeSpanUpDown" x:Key="TimeSpanUpDownStyle">
         <Setter Property="Background" Value="#95D8EB"/>
@@ -157,8 +151,6 @@
                 <RectangleGeometry Rect="0, 0, 260, 30" RadiusX="8" RadiusY="8"/>
             </Setter.Value>
         </Setter>
-        <Setter Property="ButtonSpinnerUpContentTemplate" Value="{StaticResource CustomSpinnerStyle}"/>
-        <Setter Property="ButtonSpinnerDownContentTemplate" Value="{StaticResource CustomSpinnerStyle}"/>
     </Style>
     
     <!-- TimePicker -->

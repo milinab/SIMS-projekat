@@ -23,6 +23,26 @@ namespace Hospital.Model
         public int RoomId { get; set; }
         public Room Room { get; set; }
 
+        //
+
+        public DateTime End 
+        { 
+            get
+            {
+                return Date + Duration;
+            } 
+        }
+
+        public string ShowAppointment
+        {
+            get
+            {
+                return Patient.Name + " " + Patient.LastName + "\n" + "Room: " + Room.Name;
+            }
+        }
+
+        //
+
 
         public Appointment()
         {

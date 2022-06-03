@@ -30,6 +30,13 @@ namespace Hospital.Model
             TherapyText = therapyText;
             PatientId = patientId;
         }
+        
+        public Therapy(string medicine, string therapyText, int patientId)
+        {
+            Medicine = medicine;
+            TherapyText = therapyText;
+            PatientId = patientId;
+        }
 
         private void OnPropertyChanged(string name = "")
         {

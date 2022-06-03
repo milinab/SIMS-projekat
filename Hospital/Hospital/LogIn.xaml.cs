@@ -19,6 +19,7 @@ namespace Hospital
     {
         private App _app;
         private readonly object _content;
+        public static User LoggedUser;
 
         public LogIn()
         {
@@ -42,6 +43,7 @@ namespace Hospital
                 return;
             }
             OpenTypeWindow(type, username);
+            LoggedUser = _app._userController.GetLoggedUser(username, password);
         }
 
         private bool PatientCheck(Patient p)
