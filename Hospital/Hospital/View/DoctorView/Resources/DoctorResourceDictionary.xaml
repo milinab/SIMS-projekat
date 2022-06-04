@@ -91,6 +91,14 @@
         </Setter>
     </Style>
     
+    <!-- Header Border -->
+    <Style TargetType="Border" x:Key="HeaderStyle">
+        <Setter Property="Background" Value="#95D8EB"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="BorderBrush" Value="#0F5A96"/>
+        <Setter Property="CornerRadius" Value="5"/>
+    </Style>
+    
     <!-- Diagnosis TextBox -->
     <Style TargetType="TextBox" x:Key="DiagnosisTextStyle">
         <Setter Property="Height" Value="125"/>

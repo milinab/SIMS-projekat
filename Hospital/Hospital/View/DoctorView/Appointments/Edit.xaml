@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:Hospital.View.DoctorView"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:resources="clr-namespace:Hospital.View.DoctorView.Resources"
         mc:Ignorable="d"
         d:DesignHeight="768" d:DesignWidth="700"
         Title="Edit">
@@ -29,7 +30,7 @@
             
             <DatePicker Name="DatePicker"           HorizontalAlignment="Left" VerticalAlignment="Top" Margin="220,80,0,0" Width="260" Height="30" FontSize="18" DisplayDateStart="{x:Static sys:DateTime.Today}"/>
             <xctk:TimePicker Name="TimePicker"      HorizontalAlignment="Left" VerticalAlignment="Top" Margin="220,140,0,0" Width="260" Height="30" FontSize="18" StartTime="7:00" EndTime="20:00" TextAlignment="Center" TimeInterval="0:15" ShowButtonSpinner="False" AllowTextInput="False"/>
-            <local:CustomTimeSpanUpDown x:Name="Duration"    HorizontalAlignment="Left" VerticalAlignment="Top" Margin="220,200,0,0" Width="260" Height="30" FontSize="18" TextAlignment="Center" AllowTextInput="False" Minimum="0.00:10:00" Maximum="0.8:00:00" Value="0.00:10:00"/>
+            <resources:CustomTimeSpanUpDown x:Name="Duration"    HorizontalAlignment="Left" VerticalAlignment="Top" Margin="220,200,0,0" Width="260" Height="30" FontSize="18" TextAlignment="Center" AllowTextInput="False" Minimum="0.00:10:00" Maximum="0.8:00:00" Value="0.00:10:00"/>
             <ListBox Name="RoomListBox"             HorizontalAlignment="Left" VerticalAlignment="Top" Margin="220,260,0,0" Width="260" Height="166" FontSize="18"/>
             <ListBox Name="EquipmentListBox"        HorizontalAlignment="Left" VerticalAlignment="Top" Margin="220,460,0,0" Width="260" Height="166" FontSize="18"/>
 

@@ -149,6 +149,7 @@
     </ApplicationDefinition>
     <Compile Include="Controller\AddressController.cs" />
     <Compile Include="Controller\AllergenController.cs" />
+    <Compile Include="Controller\AnamnesisController.cs" />
     <Compile Include="Controller\MedicineController.cs" />
     <Compile Include="Controller\MedicineReplaceController.cs" />
     <Compile Include="Controller\TrolController.cs" />
@@ -179,6 +180,7 @@
     <Compile Include="LogIn.xaml.cs">
       <DependentUpon>LogIn.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\Anamnesis.cs" />
     <Compile Include="Model\Medicine.cs" />
     <Compile Include="Model\ReplacementMedicine.cs" />
     <Compile Include="Model\Trol.cs" />
@@ -192,6 +194,7 @@
     <Compile Include="Model\AllergenList.cs" />
     <Compile Include="Model\Vacation.cs" />
     <Compile Include="Repository\AddressRepository.cs" />
+    <Compile Include="Repository\AnamnesisRepository.cs" />
     <Compile Include="Repository\MedicineReplaceRepository.cs" />
     <Compile Include="Repository\MedicineRepository.cs" />
     <Compile Include="Repository\TrolRepository.cs" />
@@ -217,6 +220,7 @@
     <Compile Include="Repository\VacationRepository.cs" />
     <Compile Include="Service\AddressService.cs" />
     <Compile Include="Service\AllergenService.cs" />
+    <Compile Include="Service\AnamnesisService.cs" />
     <Compile Include="Service\MedicineReplaceService.cs" />
     <Compile Include="Service\MedicineService.cs" />
     <Compile Include="Service\TrolService.cs" />
@@ -253,17 +257,35 @@
     <Compile Include="View\DoctorView\Checkup\CheckupPage.xaml.cs">
       <DependentUpon>CheckupPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\DoctorView\Checkup\HospitalTreatmentPage.xaml.cs">
+      <DependentUpon>HospitalTreatmentPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DoctorView\Checkup\PatientDischargeUC.xaml.cs">
+      <DependentUpon>PatientDischargeUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DoctorView\Checkup\ReferralPage.xaml.cs">
+      <DependentUpon>ReferralPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\DoctorView\Checkup\TherapyPage.xaml.cs">
       <DependentUpon>TherapyPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\DoctorView\CustomTimeSpanUpDown.cs" />
     <Compile Include="View\DoctorView\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\DoctorView\Requests\RequestsPage.xaml.cs" />
-    <Compile Include="View\DoctorView\Requests\RequestVacationPage.xaml.cs">
-      <DependentUpon>RequestVacationPage.xaml</DependentUpon>
+    <Compile Include="View\DoctorView\MalfunctionReport\MalfunctionReportPage.xaml.cs">
+      <DependentUpon>MalfunctionReportPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\DoctorView\Patients\PatientsPage.xaml.cs">
+      <DependentUpon>PatientsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DoctorView\Requests\EquipmentPage.xaml.cs">
+      <DependentUpon>EquipmentPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DoctorView\Requests\RequestsPage.xaml.cs" />
+    <Compile Include="View\DoctorView\Requests\VacationPage.xaml.cs">
+      <DependentUpon>VacationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DoctorView\Resources\CustomTimeSpanUpDown.cs" />
     <Compile Include="View\DoctorView\ViewModel\AppointmentsPageViewModel.cs" />
     <Compile Include="View\DoctorView\ViewModel\AppointmentViewModel.cs" />
     <Compile Include="View\DoctorView\ViewModel\ViewModelBase.cs" />
@@ -410,13 +432,19 @@
     </Page>
     <Page Include="View\DoctorView\Appointments\ViewPatientInformations.xaml" />
     <Page Include="View\DoctorView\Checkup\CheckupPage.xaml" />
+    <Page Include="View\DoctorView\Checkup\HospitalTreatmentPage.xaml" />
+    <Page Include="View\DoctorView\Checkup\PatientDischargeUC.xaml" />
+    <Page Include="View\DoctorView\Checkup\ReferralPage.xaml" />
     <Page Include="View\DoctorView\Checkup\TherapyPage.xaml" />
-    <Page Include="View\DoctorView\DoctorResourceDictionary.xaml" />
     <Page Include="View\DoctorView\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\DoctorView\MalfunctionReport\MalfunctionReportPage.xaml" />
+    <Page Include="View\DoctorView\Patients\PatientsPage.xaml" />
+    <Page Include="View\DoctorView\Requests\EquipmentPage.xaml" />
     <Page Include="View\DoctorView\Requests\RequestsPage.xaml" />
-    <Page Include="View\DoctorView\Requests\RequestVacationPage.xaml" />
+    <Page Include="View\DoctorView\Requests\VacationPage.xaml" />
+    <Page Include="View\DoctorView\Resources\DoctorResourceDictionary.xaml" />
     <Page Include="View\ManagerView\AddMedicine.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

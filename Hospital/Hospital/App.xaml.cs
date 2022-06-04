@@ -38,6 +38,7 @@ namespace Hospital
         internal TrolController _trolController;
         internal MedicineReplaceController _medicineReplaceController;
         internal VacationController _vacationController;
+        internal AnamnesisController _anamnesisController;
 
         //internal MainPage _mainPage;
         internal MainWindow _mainWindow;
@@ -75,6 +76,7 @@ namespace Hospital
             _trolController = new TrolController(services.TrolService);
             _medicineReplaceController = new MedicineReplaceController(services.MedicineReplaceService);
             _vacationController = new VacationController(services.VacationService);
+            _anamnesisController = new AnamnesisController(services.AnamnesisService);
 
             // _mainWindow = new MainWindow();
 
