@@ -11,7 +11,7 @@
       Title="AppointmentsPage">
 
     <Page.Resources>
-        <ResourceDictionary Source="../DoctorResourceDictionary.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="../Resources/DoctorResourceDictionary.xaml"></ResourceDictionary>
     </Page.Resources>
     <Page.DataContext>
         <viewModel:AppointmentsPageViewModel/>

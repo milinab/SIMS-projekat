@@ -7,7 +7,7 @@
       d:DesignHeight="768" d:DesignWidth="700"
       Title="TherapyPage">
     <Page.Resources>
-        <ResourceDictionary Source="../DoctorResourceDictionary.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="../Resources/DoctorResourceDictionary.xaml"></ResourceDictionary>
     </Page.Resources>
     <Grid>
         <Grid.ColumnDefinitions>

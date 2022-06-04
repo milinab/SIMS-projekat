@@ -32,7 +32,7 @@ namespace Hospital.View.DoctorView.ViewModel
         }
 
         /// <summary>
-        /// Maps Appointments from Model to ViewModel and adds them to _appointments field
+        /// Maps Appointments from Model to ViewModel and adds them to <see cref="_appointments"/> field
         /// </summary>
         /// <param name="app">Application object for the current AppDomain</param>
         private void SetAppointments(App app)

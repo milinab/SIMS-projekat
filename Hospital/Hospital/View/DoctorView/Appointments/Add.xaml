@@ -6,13 +6,14 @@
       xmlns:local="clr-namespace:Hospital.View.DoctorView"
       xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
       xmlns:sys="clr-namespace:System;assembly=mscorlib"
+      xmlns:resources="clr-namespace:Hospital.View.DoctorView.Resources"
       x:Class="Hospital.View.DoctorView.Appointments.Add"
       mc:Ignorable="d" 
       d:DesignHeight="768" d:DesignWidth="700"
       Title="Create">
 
     <Page.Resources>
-        <ResourceDictionary Source="../DoctorResourceDictionary.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="../Resources/DoctorResourceDictionary.xaml"></ResourceDictionary>
     </Page.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -33,7 +34,7 @@
 
             <DatePicker Name="DatePicker" Style="{StaticResource DatePickerStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="220,80,0,0" Width="260" Height="30" FontSize="18" SelectedDate="{Binding DatePicker, StringFormat=\{0:d.M.yyyy\}}" DisplayDateStart="{x:Static sys:DateTime.Today}"/>
             <xctk:TimePicker Name="TimePicker" Style="{StaticResource TimePickerStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="220,140,0,0" Width="260" Height="30" FontSize="18" StartTime="7:00" EndTime="20:00" TextAlignment="Center" TimeInterval="0:15" ShowButtonSpinner="False" AllowTextInput="False"/>
-            <local:CustomTimeSpanUpDown Style="{StaticResource TimeSpanUpDownStyle}" x:Name="Duration"    HorizontalAlignment="Left" VerticalAlignment="Top" Margin="220,200,0,0" Width="260" Height="30" FontSize="18" TextAlignment="Center" AllowTextInput="False" Minimum="0.00:10:00" Maximum="0.8:00:00" Value="0.00:10:00"/>
+            <resources:CustomTimeSpanUpDown Style="{StaticResource TimeSpanUpDownStyle}" x:Name="Duration"    HorizontalAlignment="Left" VerticalAlignment="Top" Margin="220,200,0,0" Width="260" Height="30" FontSize="18" TextAlignment="Center" AllowTextInput="False" Minimum="0.00:10:00" Maximum="0.8:00:00" Value="0.00:10:00"/>
             <ListBox Name="RoomListBox" Style="{StaticResource ListBoxStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="220,260,0,0" Width="260" Height="166" SelectionChanged="ListBox_SelectionChanged"/>
             <ListBox Name="EquipmentListBox" Style="{StaticResource ListBoxStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="220,460,0,0" Width="260" Height="166" SelectionChanged="ListBox_SelectionChanged" FontSize="18"/>
 
