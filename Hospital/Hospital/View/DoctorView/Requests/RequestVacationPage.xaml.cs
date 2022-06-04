@@ -23,6 +23,7 @@ namespace Hospital.View.DoctorView.Requests
         [SuppressMessage("ReSharper", "PossibleInvalidOperationException")]
         private void Confirm(object sender, RoutedEventArgs e)
         {
+            
             if (UrgentCheckBox.IsChecked ?? false)
             {
                 if (!ValidateInput()) return;
