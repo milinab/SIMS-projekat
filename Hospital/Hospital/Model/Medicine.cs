@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.Serialization;
+using Hospital.Enums;
 
 
 namespace Hospital.Model
@@ -94,6 +95,9 @@ namespace Hospital.Model
 
         [DataMember]
         public List<int> AllergenIds { get; set; }
+
+        [DataMember]
+        public MedicineStatus Status { get; set; }
 
         public Medicine()
         {
