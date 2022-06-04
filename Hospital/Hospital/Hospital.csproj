@@ -149,6 +149,7 @@
     </ApplicationDefinition>
     <Compile Include="Controller\AddressController.cs" />
     <Compile Include="Controller\AllergenController.cs" />
+    <Compile Include="Controller\AnamnesisController.cs" />
     <Compile Include="Controller\MedicineController.cs" />
     <Compile Include="Controller\MedicineReplaceController.cs" />
     <Compile Include="Controller\TrolController.cs" />
@@ -179,6 +180,7 @@
     <Compile Include="LogIn.xaml.cs">
       <DependentUpon>LogIn.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\Anamnesis.cs" />
     <Compile Include="Model\Medicine.cs" />
     <Compile Include="Model\ReplacementMedicine.cs" />
     <Compile Include="Model\Trol.cs" />
@@ -192,6 +194,7 @@
     <Compile Include="Model\AllergenList.cs" />
     <Compile Include="Model\Vacation.cs" />
     <Compile Include="Repository\AddressRepository.cs" />
+    <Compile Include="Repository\AnamnesisRepository.cs" />
     <Compile Include="Repository\MedicineReplaceRepository.cs" />
     <Compile Include="Repository\MedicineRepository.cs" />
     <Compile Include="Repository\TrolRepository.cs" />
@@ -217,6 +220,7 @@
     <Compile Include="Repository\VacationRepository.cs" />
     <Compile Include="Service\AddressService.cs" />
     <Compile Include="Service\AllergenService.cs" />
+    <Compile Include="Service\AnamnesisService.cs" />
     <Compile Include="Service\MedicineReplaceService.cs" />
     <Compile Include="Service\MedicineService.cs" />
     <Compile Include="Service\TrolService.cs" />

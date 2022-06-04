@@ -1,0 +1,89 @@
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using Hospital.Model;
+
+namespace Hospital.Repository
+{
+    public class AnamnesisRepository
+    {
+        private List<Anamnesis> _anamnesis;
+        private readonly Serializer<Anamnesis> _serializer;
+        private readonly TherapyRepository _therapyRepository;
+        private readonly AppointmentRepository _appointmentRepository;
+
+        public AnamnesisRepository(TherapyRepository therapyRepository, AppointmentRepository appointmentRepository)
+        {
+            _serializer = new Serializer<Anamnesis>("anamnesis.csv");
+            _anamnesis = new List<Anamnesis>();
+            _therapyRepository = therapyRepository;
+            _appointmentRepository = appointmentRepository;
+        }
+
+        public List<Anamnesis> Read()
+        {
+            _anamnesis = _serializer.Read().ToList();
+            foreach (var anamnesis in _anamnesis)
+            {
+                var therapy = _therapyRepository.ReadById(anamnesis.TherapyId);
+                var appointment = _appointmentRepository.ReadById(anamnesis.AppointmentId);
+                if (therapy == null || appointment == null) continue;
+                anamnesis.Therapy = therapy;
+                anamnesis.Appointment = appointment;
+            }
+            return _anamnesis;
+        }
+        
+        public Anamnesis ReadById(int id)
+        {
+            _anamnesis = _serializer.Read().ToList();
+            foreach (var anamnesis in _anamnesis)
+            {
+                if (anamnesis.Id != id) continue;
+                var therapy = _therapyRepository.ReadById(anamnesis.TherapyId);
+                var appointment = _appointmentRepository.ReadById(anamnesis.AppointmentId);
+                if (therapy == null || appointment == null) continue;
+                anamnesis.Therapy = therapy;
+                anamnesis.Appointment = appointment;
+                return anamnesis;
+            }
+            return null;
+        }
+        
+        public void Create(Anamnesis newAnamnesis)
+        {
+            _anamnesis.Add(newAnamnesis);
+            Write();
+        }
+        
+        public void Edit(Anamnesis editAnamnesis)
+        {
+            foreach (var anamnesis in _anamnesis.Where(anamnesis => editAnamnesis.Id.Equals(anamnesis.Id)))
+            {
+                anamnesis.Diagnosis = editAnamnesis.Diagnosis;
+                anamnesis.Referral = editAnamnesis.Referral;
+                anamnesis.Therapy = editAnamnesis.Therapy;
+            }
+
+            Write();
+        }
+        
+        public void Delete(int id)
+        {
+            for (int i = _anamnesis.Count - 1; i >= 0; i--)
+            {
+                if (_anamnesis[i].Id.Equals(id))
+                {
+                    _anamnesis.Remove(_anamnesis[i]);
+                }
+            }
+            Write();
+        }
+        
+        public void Write()
+        {
+            var collection = new ObservableCollection<Anamnesis>(_anamnesis);
+            _serializer.Write(collection);
+        }
+    }
+}

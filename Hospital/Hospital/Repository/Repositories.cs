@@ -28,6 +28,7 @@
         public TrolRepository TrolRepository { get; set; }
         public MedicineReplaceRepository MedicineReplaceRepository { get; set; }
         public VacationRepository VacationRepository { get; set; }
+        public AnamnesisRepository AnamnesisRepository { get; set; }
 
         public Repositories()
         {
@@ -57,6 +58,7 @@
             TrolRepository = new TrolRepository(TrolRepository);
             MedicineReplaceRepository = new MedicineReplaceRepository();
             VacationRepository = new VacationRepository(DoctorRepository);
+            AnamnesisRepository = new AnamnesisRepository(TherapyRepository, AppointmentRepository);
         }
     }
 }
