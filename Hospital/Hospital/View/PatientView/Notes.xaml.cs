@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using Hospital.Model;
 using System.Collections.ObjectModel;
 using Hospital.Controller;
+using Tulpep.NotificationWindow;
 
 namespace Hospital.View.PatientView
 {
@@ -60,7 +61,14 @@ namespace Hospital.View.PatientView
 
         private void MedicalRecord_Click(object sender, RoutedEventArgs e)
         {
-            Page medicalRecordPage = new MedicalRecord(_patientWindow);
+            User user = app._userController.ReadById(1);
+            Patient patient = app._patientController.ReadById(1);
+            Address address = app._addressController.ReadById(1);
+            City city = app._cityController.ReadById(1);
+            Country country = app._countryController.ReadById(1);
+            Model.MedicalRecord medicalRecord = app._medicalRecordController.ReadById(1);
+            Allergen allergen = app._allergenController.ReadById(1);
+            Page medicalRecordPage = new MedicalRecord(_patientWindow, user, patient, address, city, country, medicalRecord, allergen);
             this.frame.Navigate(medicalRecordPage);
         }
         private void Notes_Click(object sender, RoutedEventArgs e)
@@ -139,6 +147,11 @@ namespace Hospital.View.PatientView
             }
             else
             {
+                PopupNotifier popup = new PopupNotifier();
+                popup.Image = Properties.Resources.notification;
+                popup.TitleText = "Warning";
+                popup.ContentText = "Please, select the note You want to delete.";
+                popup.Popup();
                 //MessageBox.Show("Select a note You want to delete.", "Warning");
                 this.selectForDelete.Visibility = Visibility.Visible;
             }

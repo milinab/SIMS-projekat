@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Hospital.Controller;
 using Hospital.Model;
+using Tulpep.NotificationWindow;
 
 namespace Hospital.View.PatientView
 {
@@ -102,7 +103,12 @@ namespace Hospital.View.PatientView
             {
                 DateTime tommorow = date.AddDays(1); //uzmes sutradan
                 _date = tommorow;
-                MessageBox.Show("Nazalost, nema dostupnih termina za trazeni datum. U listi ce vam se prikazati dostupni termini za naredni datum.");
+                PopupNotifier popup = new PopupNotifier();
+                popup.Image = Properties.Resources.notification;
+                popup.TitleText = "Warning";
+                popup.ContentText = "Sorry to inform, but there is no available appointments for chosen date. In the following list, we are gonna show You available appointments for the next available day.";
+                popup.Popup();
+                //MessageBox.Show("Nazalost, nema dostupnih termina za trazeni datum. U listi ce vam se prikazati dostupni termini za naredni datum.");
                 FindAvailabeAppointments(DoctorsAppointments, hospitalWorkingHours, hospitalWorkingHoursListForCalculation, tommorow);
 
             }
@@ -192,7 +198,14 @@ namespace Hospital.View.PatientView
 
         private void MedicalRecord_Click(object sender, RoutedEventArgs e)
         {
-            Page medicalRecordPage = new MedicalRecord(_patientWindow);
+            User user = app._userController.ReadById(1);
+            Patient patient = app._patientController.ReadById(1);
+            Address address = app._addressController.ReadById(1);
+            City city = app._cityController.ReadById(1);
+            Country country = app._countryController.ReadById(1);
+            Model.MedicalRecord medicalRecord = app._medicalRecordController.ReadById(1);
+            Allergen allergen = app._allergenController.ReadById(1);
+            Page medicalRecordPage = new MedicalRecord(_patientWindow, user, patient, address, city, country, medicalRecord, allergen);
             this.frame.Navigate(medicalRecordPage);
         }
 

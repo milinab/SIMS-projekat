@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 using Hospital.Controller;
 using Hospital.Model;
 using System.Collections.ObjectModel;
-
+using Tulpep.NotificationWindow;
 
 namespace Hospital.View.PatientView
 {
@@ -143,7 +143,12 @@ namespace Hospital.View.PatientView
 
                         app._patientController.Edit(_patientWindow.patient);
                         app._trolController.Delete(troll.Id);
-                        MessageBox.Show("Your account is banned due to..");
+                        PopupNotifier popup = new PopupNotifier();
+                        popup.Image = Properties.Resources.notification;
+                        popup.TitleText = "Warning";
+                        popup.ContentText = "Your account is banned due to..";
+                        popup.Popup();
+                        //MessageBox.Show("Your account is banned due to..");
                         LogIn logIn = new LogIn();
                         logIn.Show();
                         _patientWindow.Close();
@@ -230,7 +235,14 @@ namespace Hospital.View.PatientView
 
         private void MedicalRecord_Click(object sender, RoutedEventArgs e)
         {
-            Page medicalRecordPage = new MedicalRecord(_patientWindow);
+            User user = app._userController.ReadById(1);
+            Patient patient = app._patientController.ReadById(1);
+            Address address = app._addressController.ReadById(1);
+            City city = app._cityController.ReadById(1);
+            Country country = app._countryController.ReadById(1);
+            Model.MedicalRecord medicalRecord = app._medicalRecordController.ReadById(1);
+            Allergen allergen = app._allergenController.ReadById(1);
+            Page medicalRecordPage = new MedicalRecord(_patientWindow, user, patient, address, city, country, medicalRecord, allergen);
             this.frame.Navigate(medicalRecordPage);
         }
 
