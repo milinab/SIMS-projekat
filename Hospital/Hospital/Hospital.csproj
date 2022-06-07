@@ -194,7 +194,6 @@
     <Compile Include="Model\Survey.cs" />
     <Compile Include="Model\Therapy.cs" />
     <Compile Include="Model\Allergen.cs" />
-    <Compile Include="Model\AllergenList.cs" />
     <Compile Include="Model\Vacation.cs" />
     <Compile Include="Repository\AddressRepository.cs" />
     <Compile Include="Repository\AnamnesisRepository.cs" />
