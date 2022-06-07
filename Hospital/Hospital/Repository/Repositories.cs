@@ -29,6 +29,7 @@
         public MedicineReplaceRepository MedicineReplaceRepository { get; set; }
         public VacationRepository VacationRepository { get; set; }
         public AnamnesisRepository AnamnesisRepository { get; set; }
+        public ReferralRepository ReferralRepository { get; set; }
 
         public Repositories()
         {
@@ -59,6 +60,7 @@
             MedicineReplaceRepository = new MedicineReplaceRepository();
             VacationRepository = new VacationRepository(DoctorRepository);
             AnamnesisRepository = new AnamnesisRepository(TherapyRepository, AppointmentRepository);
+            ReferralRepository = new ReferralRepository();
         }
     }
 }

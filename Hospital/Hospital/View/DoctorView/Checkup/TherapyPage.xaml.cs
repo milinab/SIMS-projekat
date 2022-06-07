@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using Hospital.Model;
 using ServiceStack;
+using Application = System.Windows.Application;
 using MessageBox = Xceed.Wpf.Toolkit.MessageBox;
 
 namespace Hospital.View.DoctorView.Checkup
@@ -51,19 +52,25 @@ namespace Hospital.View.DoctorView.Checkup
         private void MedicineListView_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             List<string> displayAllergens = new List<string>();
+            var allergens = _app._allergenController.Read();
             foreach (var medicine in _medicines)
             {
                 if (MedicineListView.SelectedItem == medicine)
                 {
                     var allergenIds = medicine.AllergenIds;
-                    var allergens = _app._allergenController.Read();
-                    
                     foreach (var allergen in allergens)
                     {
                         foreach (var allergenId in allergenIds)
                         {
-                            if (allergenId == allergen.Id)
-                            {   
+                            if (allergenId == allergen.Id && _patient.MedicalRecord.AllergenIds.Contains(allergen.Id))
+                            {
+                                if (MessageBox.Show(
+                                        "Patient is allergic to the chosen medicine. Are you sure you want to proceed?",
+                                        "Warning", MessageBoxButton.YesNo) == MessageBoxResult.No)
+                                {
+                                    MainWindow.MainFrame.Navigate(new TherapyPage(_patient));
+                                    return;
+                                }
                                 displayAllergens.Add(allergen.Name);
                             }
                         }
