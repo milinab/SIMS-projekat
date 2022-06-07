@@ -92,8 +92,8 @@
         <Label Content="Allergies:" HorizontalAlignment="Left" Margin="430,325,0,0"/>
         <TextBlock x:Name="allergies" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="560,330,0,0" TextWrapping="Wrap" Height="142" Width="181"/>
         
-        <Button Content="Past appointments" HorizontalAlignment="Left" Margin="434,437,0,0" VerticalAlignment="Top" Height="26" Width="126"/>
-        <Button Content="Future appointments" HorizontalAlignment="Left" Margin="570,437,0,0" VerticalAlignment="Top" Height="27" Width="125"/>
+        <Button Content="Past appointments" HorizontalAlignment="Left" Margin="434,437,0,0" VerticalAlignment="Top" Height="26" Width="126" Click="PastAppointments_Click" Background="Bisque"/>
+        <Button Content="Future appointments" HorizontalAlignment="Left" Margin="570,437,0,0" VerticalAlignment="Top" Height="27" Width="125" Click="MyAppointments_Click" Background="Bisque"/>
 
         <Frame x:Name="frame" NavigationUIVisibility="Hidden" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" Grid.Column="1"/>
     </Grid>

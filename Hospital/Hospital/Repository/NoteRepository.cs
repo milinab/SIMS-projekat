@@ -69,5 +69,21 @@ namespace Hospital.Repository
         {
             _serializer.Write(_notes);
         }
+
+        public ObservableCollection<Note> ReadByPatientId(int PatientId)
+        {
+
+            ObservableCollection<Note> result = new ObservableCollection<Note> ();
+
+            foreach (Note note in _notes)
+            {
+                if (note.PatientId.Equals(PatientId))
+                {
+                    result.Add(note);
+
+                }
+            }
+            return result;
+        }
     }
 }

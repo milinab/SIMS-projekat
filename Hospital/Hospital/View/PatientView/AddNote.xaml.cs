@@ -35,7 +35,6 @@ namespace Hospital.View.PatientView
         }
 
         private App app;
-        //private readonly object _content;
         private readonly PatientWindow _patientWindow;
         private readonly Notes _notes;
 
@@ -78,6 +77,7 @@ namespace Hospital.View.PatientView
             this.DataContext = this;
             _patientWindow = patientWindow;
             _notes = notes;
+            patient = app._patientController.ReadById(LogIn.LoggedUser.Id);
         }
 
         private void HomePage_Click(object sender, RoutedEventArgs e)
@@ -144,11 +144,9 @@ namespace Hospital.View.PatientView
             _patientWindow.Close();
         }
        
-
-
-
         private void SaveChanges_Click(object sender, RoutedEventArgs e)
         {
+            patient = app._patientController.ReadById(LogIn.LoggedUser.Id);
             DateTime date = myCalendar.SelectedDate.Value;
             string time = TimePicker.Text;
             string[] timeParts = time.Split(':');
@@ -156,16 +154,8 @@ namespace Hospital.View.PatientView
 
 
 
-            Note newNote = new Note(noteName.Text, noteText.Text, DateTime.Now, date);
-/*
-            Note newNote = new Note
-            {
-                Name = noteName.Text,
-                NoteText = noteText.Text,
-                Date = DateTime.Now,
-                NotificationDate = date
-            };
-*/
+            Note newNote = new Note(noteName.Text, noteText.Text, DateTime.Now, date, patient.Id);
+
             if (this.noteName.Text != "" && this.noteText.Text != "")
             {
                 app._noteController.Create(newNote);
@@ -186,8 +176,6 @@ namespace Hospital.View.PatientView
             this.frame.Navigate(note);
 
         }
-
-        
 
         void NameTextBoxTextChanged(object sender, TextChangedEventArgs e)
         {

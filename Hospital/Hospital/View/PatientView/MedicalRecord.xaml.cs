@@ -22,6 +22,7 @@ namespace Hospital.View.PatientView
             _content = Content;
             this.DataContext = this;
             _patientWindow = patientWindow;
+            patient = app._patientController.ReadById(LogIn.LoggedUser.Id);
 
             this.firstName.Text = user.Name;
             this.lastName.Text = user.LastName;
@@ -110,6 +111,11 @@ namespace Hospital.View.PatientView
         {
             Page notificationPage = new Notification(_patientWindow);
             this.frame.Navigate(notificationPage);
+        }
+        private void PastAppointments_Click(object sender, RoutedEventArgs e)
+        {
+            Page pastAppointmentsPage = new PastAppointments(_patientWindow);
+            this.frame.Navigate(pastAppointmentsPage);
         }
 
         public void BackToPatientWindow()

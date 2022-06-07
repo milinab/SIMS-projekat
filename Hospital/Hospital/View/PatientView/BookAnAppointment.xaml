@@ -84,8 +84,8 @@
         <RadioButton x:Name="DoctorPriority" GroupName="Priority"  Content="Doctor" HorizontalAlignment="Left" Margin="420,430,0,0" VerticalAlignment="Top" IsChecked="{Binding CurrentOption, ConverterParameter=DoctorPriority, Converter={StaticResource enumConverter}, Mode=TwoWay}"/>
         <RadioButton x:Name="DatePriority" GroupName="Priority" Content="Date" HorizontalAlignment="Left" Margin="500,430,0,0" VerticalAlignment="Top" IsChecked="{Binding CurrentOption, ConverterParameter=DatePriority, Converter={StaticResource enumConverter}, Mode=TwoWay}"/>
 
-        <Button x:Name="BTN_AddAppointment" Content="Continue" HorizontalAlignment="Left" Margin="420,465,0,0" VerticalAlignment="Top" Height="35" Width="80" Click="AddAppointment_Click"/>
-        <Button x:Name="BTN_close" Content="Cancel" HorizontalAlignment="Left" Margin="520,465,0,0" VerticalAlignment="Top" Height="35" Width="80" Click="Cancel_Click"/>
+        <Button x:Name="BTN_AddAppointment" Content="Continue" HorizontalAlignment="Left" Margin="420,465,0,0" VerticalAlignment="Top" Height="35" Width="80" Click="AddAppointment_Click" Background="Bisque"/>
+        <Button x:Name="BTN_close" Content="Cancel" HorizontalAlignment="Left" Margin="520,465,0,0" VerticalAlignment="Top" Height="35" Width="80" Click="Cancel_Click" Background="Bisque"/>
 
         <Frame x:Name="frame" NavigationUIVisibility="Hidden" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" Grid.Column="1"/>
 

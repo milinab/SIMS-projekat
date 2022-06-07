@@ -17,6 +17,9 @@ namespace Hospital.Model
         [DataMember]
         public DateTime NotificationDate { get; set; }
 
+        [DataMember]
+        public int PatientId { get; set; }
+
         public Note()
         {
         }
@@ -34,22 +37,25 @@ namespace Hospital.Model
             Date = date;
 
         }
-        public Note(string name, string noteText, DateTime date, DateTime notificationDate)
+       
+        public Note(string name, string noteText, DateTime date, DateTime notificationDate, int patientId)
         {
             Name = name;
             NoteText = noteText;
             Date = date;
             NotificationDate = notificationDate;
+            PatientId = patientId;
 
         }
 
-        public Note(string name, int id, string noteText)
+        public Note(string name, int id, string noteText, DateTime date, DateTime notificationDate, int patientId)
         {
             Name = name;
             Id = id;
             NoteText = noteText;
-            
-
+            Date = date;
+            NotificationDate = notificationDate;
+            PatientId = patientId;
         }
     }
 }

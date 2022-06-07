@@ -1,4 +1,4 @@
-﻿<Page x:Class="Hospital.View.PatientView.PastAppointments"
+﻿<Page x:Class="Hospital.View.PatientView.AppointmentInfo"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,10 +6,9 @@
       xmlns:local="clr-namespace:Hospital.View.PatientView"
       mc:Ignorable="d" 
       d:DesignHeight="560" d:DesignWidth="800" Background="AntiqueWhite"
-      Title="PastAppointments">
+      Title="AppointmentInfo">
 
-    <Grid>
-
+    <Grid Margin="0,0,0,0">
         <Label Content="ZDRAVO CORPORATION" HorizontalAlignment="Left" Margin="7,6,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="18" Foreground="Maroon" FontFamily="Georgia"/>
         <Button Content="Log out" BorderThickness="2" HorizontalAlignment="Left" Margin="700,6,0,0" VerticalAlignment="Top" Height="29" Width="82" Click="LogOut_Click" Background="IndianRed" FontFamily="Georgia"/>
         <Border BorderBrush="Black" BorderThickness="1" Width="Auto" Height="1" Margin="0,32,0,470" />
@@ -39,51 +38,25 @@
                 </MenuItem.Icon>
             </MenuItem>
         </Menu>
+        <Label Content="Appointment information" HorizontalAlignment="Left" Margin="285,80,285,0" VerticalAlignment="Top" FontSize="18" FontFamily="Georgia"/>
+        <Border BorderBrush="Black" BorderThickness="1" Width="Auto" Height="1" Margin="0,85,0,364" />
 
-        <Label Content="My past appointments" HorizontalAlignment="Left" Margin="300,105,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="18"/>
+        <Label Content="Appointment date:" HorizontalAlignment="Left" Margin="40,170,0,315" Background="Bisque" Width="140" Padding="10"/>
+        <TextBlock x:Name="appDate" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="180,170,0,0" TextWrapping="Wrap" Height="37" Width="250" Background="Bisque" Padding="10"/>
 
-        <DataGrid x:Name="dataGridPastAppointments" AutoGenerateColumns="False" Height="372" Margin="10,144,10,0" VerticalAlignment="Top" CanUserAddRows="false" Background="AntiqueWhite">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Doctor" Binding="{Binding Doctor.Name}" Width="2*">
-                    <DataGridTextColumn.CellStyle>
-                        <Style TargetType="DataGridCell">
-                            <Setter Property="Background" 
-                                Value="AntiqueWhite" />
-                        </Style>
-                    </DataGridTextColumn.CellStyle>
-                </DataGridTextColumn>
-                <DataGridTextColumn Header="Date" Binding="{Binding Date, StringFormat=\{0:d.M.yyyy\}}" Width="*">
-                    <DataGridTextColumn.CellStyle>
-                        <Style TargetType="DataGridCell">
-                            <Setter Property="Background" 
-                                Value="AntiqueWhite" />
-                        </Style>
-                    </DataGridTextColumn.CellStyle>
-                </DataGridTextColumn>
-                <DataGridTextColumn Header="Time" Binding="{Binding Date, StringFormat=\{0:H:mm\}}" Width="*">
-                    <DataGridTextColumn.CellStyle>
-                        <Style TargetType="DataGridCell">
-                            <Setter Property="Background" 
-                                Value="AntiqueWhite" />
-                        </Style>
-                    </DataGridTextColumn.CellStyle>
-                </DataGridTextColumn>
-                <DataGridTemplateColumn Width="Auto">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Click="FillOutSurveyButtonClick" Background="AliceBlue">Fill out survey</Button>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTemplateColumn Width="Auto">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Click="ViewInfoClick" Background="AliceBlue">Info</Button>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
-        </DataGrid>
+        <Label Content="Doctor:" HorizontalAlignment="Left" Margin="430,170,0,315" Background="Bisque" Width="130" Padding="10"/>
+        <TextBlock x:Name="appDoctor" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="560,170,0,0" TextWrapping="Wrap" Height="37" Width="200" Background="Bisque" Padding="10"/>
+
+        <Label Content="Diagnosis:" HorizontalAlignment="Left" Margin="40,205,0,0" Padding="10"/>
+        <TextBlock x:Name="diagnosis" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="40,235,0,0" TextWrapping="Wrap" Height="86" Width="715" Padding="10" Background="Beige"/>
+        
+        <Label Content="Prescribed medicine:" HorizontalAlignment="Left" Margin="45,325,0,0"/>
+        <TextBlock x:Name="prescribedMedicine" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="180,320,0,0" TextWrapping="Wrap" Height="30" Width="200" Padding="10"/>
+
+        <Label Content="Therapy:" HorizontalAlignment="Left" Margin="40,345,0,0" Padding="10"/>
+        <TextBlock x:Name="therapy" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="40,375,0,0" TextWrapping="Wrap" Height="100" Width="715" Background="Beige" Padding="10"/>
+
+        <Button Content="Back to past appointments" HorizontalAlignment="Left" Margin="605,485,0,0" VerticalAlignment="Top" Height="26" Width="151" Click="PastAppointments_Click" Background="Bisque" />
 
         <Frame x:Name="frame" NavigationUIVisibility="Hidden" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" Grid.Column="1"/>
     </Grid>

@@ -34,15 +34,18 @@ namespace Hospital.Repository
 
         public ObservableCollection<Therapy> ReadByPatientId(int PatientId)
         {
+
+            ObservableCollection<Therapy> result = new ObservableCollection<Therapy>(); 
+
             foreach (Therapy therapy in _therapies)
             {
                 if (therapy.PatientId.Equals(PatientId))
                 {
-                    _therapies.Add(therapy);
+                    result.Add(therapy);
 
                 }
             }
-            return _therapies;
+            return result;
         }
 
         public void Create(Therapy newTherapy)

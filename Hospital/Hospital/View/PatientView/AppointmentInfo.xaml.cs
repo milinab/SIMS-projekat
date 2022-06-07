@@ -1,101 +1,67 @@
-﻿using System;
+﻿using Hospital.Model;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using Hospital.Model;
-using System.Collections.ObjectModel;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
 
 namespace Hospital.View.PatientView
 {
     /// <summary>
-    /// Interaction logic for EditAnAppointment.xaml
+    /// Interaction logic for AppointmentInfo.xaml
     /// </summary>
-    public partial class EditAnAppointment : Page
+    public partial class AppointmentInfo : Page
     {
         private App app;
-        private readonly PatientWindow _patientWindow;
-        private int _id;
-        private DateTime Date;
+        private readonly object _content;
+        private PatientWindow _patientWindow;
+        private Appointment _appointment;
         public Patient patient;
 
-        public ObservableCollection<Doctor> Doctors
-        {
-            get;
-            set;
-        }
-
-        public EditAnAppointment(Appointment appointment, PatientWindow patientWindow)
+        public AppointmentInfo(PatientWindow patientWindow, Appointment appointment)
         {
             InitializeComponent();
             app = Application.Current as App;
-            dataGridAppointments.ItemsSource = patientWindow.dataGridAppointments.ItemsSource;
-            Doctors = new ObservableCollection<Doctor>();
-            Doctors = app._doctorController.Read();
-            doctorsComboBox.ItemsSource = Doctors;
+            _content = Content;
+            this.DataContext = this;
             _patientWindow = patientWindow;
-            _id = appointment.Id;
-            myCalendar.SelectedDate = appointment.Date;
-            SetDatePicker(appointment);
+            _appointment = appointment;
+            this.DataContext = this;
             patient = app._patientController.ReadById(LogIn.LoggedUser.Id);
-
+            InitializeData();
         }
 
-        private void SetDatePicker(Appointment appointment) { 
-            DateTime startTime = appointment.Date.AddDays(-5);
-            DateTime endTime = appointment.Date.AddDays(5);
-
-            if (appointment.Date.Date.Equals(DateTime.Now.Date)) {
-                startTime = DateTime.Now.Date.AddDays(1);
-                myCalendar.DisplayDateStart = startTime;
-            }
-            if (DateTime.Now.Date > startTime) {
-                startTime = DateTime.Now.Date;
-            }
-            myCalendar.DisplayDateStart = startTime;
-            myCalendar.DisplayDateEnd = endTime;
-        }
-
-        private bool Validate()
+        private void InitializeData()
         {
-
-            if (DoctorPriority.IsChecked == false && DatePriority.IsChecked == false)
+            Doctor doctor = app._doctorController.ReadById(this._appointment.DoctorId);
+            Anamnesis anamnesis = app._anamnesisController.ReadByAppointmentId(this._appointment.Id);
+            this.appDoctor.Text = doctor.Name;
+            this.appDate.Text = _appointment.Date.ToString("d.M.yyyy");
+            if (anamnesis != null)
             {
-                PopupNotification.sendPopupNotification("Warning", "You need to select a priority.");
-                return false;
+                this.diagnosis.Text = anamnesis.Diagnosis;
+                this.prescribedMedicine.Text = anamnesis.Therapy.Medicine;
+                this.therapy.Text = anamnesis.Therapy.TherapyText;
             }
-            return false;
+            
         }
 
-        private void AddAppointment_Click(object sender, RoutedEventArgs e)
+        private void PastAppointments_Click(object sender, RoutedEventArgs e)
         {
-
-            Validate();
-            int DoctorId = Int32.Parse(((Model.User)doctorsComboBox.SelectedItem).Id.ToString());
-
-            DateTime _date = myCalendar.SelectedDate.Value;
-
-            TimeSpan duration = new TimeSpan(0, 0, 30, 0);
-
-            Doctor doctor = new Doctor();
-            doctor.Id = DoctorId;
-            Patient patient = new Patient();
-            patient.Id = 1;
-
-            Room room = new Room();
-            patient.Id = 1;
-
-            if (DoctorPriority.IsChecked == true)
-            {
-                Page doctorPriority = new EditDoctorPriority(DoctorId, _date, this, _patientWindow, _id);
-                this.frame.Navigate(doctorPriority);
-            }
-           if (DatePriority.IsChecked == true)
-            {
-                Page datePriority = new EditDatePriority(DoctorId, _date, this, _patientWindow, _id);
-                this.frame.Navigate(datePriority);
-            }
-
+            Page pastAppointmentsPage = new PastAppointments(_patientWindow);
+            this.frame.Navigate(pastAppointmentsPage);
+            
         }
-
         private void HomePage_Click(object sender, RoutedEventArgs e)
         {
             Page homePage = new HomePage(_patientWindow);
@@ -153,9 +119,9 @@ namespace Hospital.View.PatientView
             this.frame.Navigate(notificationPage);
         }
 
-        private void Cancel_Click(object sender, RoutedEventArgs e)
+        public void BackToPatientWindow()
         {
-            _patientWindow.BackToPatientWindow();
+            Content = _content;
         }
 
         private void LogOut_Click(object sender, RoutedEventArgs e)
@@ -165,6 +131,4 @@ namespace Hospital.View.PatientView
             _patientWindow.Close();
         }
     }
-
-    
 }

@@ -41,9 +41,9 @@ namespace Hospital.Controller
             return _service.Read();
         }
 
-        public ObservableCollection<Appointment> ReadPastAppointments()
+        public ObservableCollection<Appointment> ReadPastAppointments(int patientId)
         {
-            return _service.ReadPastAppointments();
+            return _service.ReadPastAppointments(patientId);
         }
         
 

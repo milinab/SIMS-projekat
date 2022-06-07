@@ -37,6 +37,7 @@ namespace Hospital.View.PatientView
             answers = new List<int>();  
             questionAndRatingStarsNames = new ObservableCollection<QuestionAndRatingStarsName>();
             InitializeData();
+            patient = app._patientController.ReadById(LogIn.LoggedUser.Id);
         }
 
         public class QuestionAndRatingStarsName { 
@@ -49,7 +50,6 @@ namespace Hospital.View.PatientView
                 get;
                 set;
             }
-            
         }
 
         private void InitializeData() {
@@ -150,18 +150,16 @@ namespace Hospital.View.PatientView
             answers.Add(this.Pitanje4.Value);
             answers.Add(this.Pitanje5.Value);
 
-            //int sum = answers.Sum();
             int avrgGrade = answers.Sum() / answers.Count;
 
             DoctorSurveyResponse dsr = new DoctorSurveyResponse();
-            //ovde treba da izvucem survay na osnovu Id ankete na koju sam kliknula i da nju prosledim umesto da pravim novu
             Survey s = new Survey();
             s.Id = 2;
             dsr.HS = s;
-            dsr.UserId = _patientWindow.patient.Id; // takodje i ovde treba da setujem aktivnog pacijenta
+            dsr.UserId = _patientWindow.patient.Id; 
             dsr.Date = DateTime.Now;
             dsr.DoctorId = this._appointment.DoctorId;
-            dsr.Grade = avrgGrade; // ovo mozda da promenim u double?
+            dsr.Grade = avrgGrade; 
             app._doctorSurveyResponseController.Create(dsr);
             _patientWindow.BackToPatientWindow();
 

@@ -25,7 +25,6 @@ namespace Hospital.View.PatientView
         }
         private int _id;
         private App app;
-        //private readonly object _content;
         private readonly PatientWindow _patientWindow;
         private DateTime _date;
 
@@ -69,11 +68,13 @@ namespace Hospital.View.PatientView
 
             this.DataContext = this;
             _patientWindow = patientWindow;
+            patient = app._patientController.ReadById(LogIn.LoggedUser.Id);
 
             this.NoteText = note.NoteText;
             this.NoteName = note.Name;
             _date = note.Date;
             this.dateText.Text = note.Date.ToString("d.M.yyyy H:mm");
+            this.notifyDate.Text = note.NotificationDate.ToString("d.M.yyyy H:mm");
             _id = note.Id;
         }
         private void HomePage_Click(object sender, RoutedEventArgs e)
@@ -143,9 +144,16 @@ namespace Hospital.View.PatientView
 
         private void SaveChanges_Click(object sender, RoutedEventArgs e)
         {
+            patient = app._patientController.ReadById(LogIn.LoggedUser.Id);
+            DateTime date = myCalendar.SelectedDate.Value;
+            string time = TimePicker.Text;
+            string[] timeParts = time.Split(':');
+            date += new TimeSpan(int.Parse(timeParts[0]), int.Parse(timeParts[1]), 0);
+            Note note = new Note(noteName.Text, _id, noteText.Text, DateTime.Now, date, patient.Id);
+
             if (this.noteName.Text != "" || this.noteText.Text != "") {
-                Note note = new Note(noteName.Text, _id, noteText.Text, DateTime.Now);
                 app._noteController.Edit(note);
+                PopupNotification.sendPopupNotification("Success!", "Your note is edited successfully!");
             }
         }
 
@@ -155,5 +163,6 @@ namespace Hospital.View.PatientView
             this.frame.Navigate(note);
 
         }
+
     }
 }

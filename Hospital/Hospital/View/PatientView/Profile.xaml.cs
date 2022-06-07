@@ -14,6 +14,7 @@ namespace Hospital.View.PatientView
         private App app;
         private readonly object _content;
         private readonly PatientWindow _patientWindow;
+        public Patient patient;
         public Profile(PatientWindow patientWindow)
         {
             InitializeComponent();
@@ -21,6 +22,8 @@ namespace Hospital.View.PatientView
             _content = Content;
             this.DataContext = this;
             _patientWindow = patientWindow;
+            patient = app._patientController.ReadById(LogIn.LoggedUser.Id);
+            this.profileName.Text = patient.Name;
         }
         private void HomePage_Click(object sender, RoutedEventArgs e)
         {
@@ -36,13 +39,13 @@ namespace Hospital.View.PatientView
 
         private void MedicalRecord_Click(object sender, RoutedEventArgs e)
         {
-            User user = app._userController.ReadById(1);
-            Patient patient = app._patientController.ReadById(1);
-            Address address = app._addressController.ReadById(1);
-            City city = app._cityController.ReadById(1);
-            Country country = app._countryController.ReadById(1);
-            Model.MedicalRecord medicalRecord = app._medicalRecordController.ReadById(1);
+            User user = app._userController.ReadById(patient.Id);
+            Address address = app._addressController.ReadById(user.Address.Id);
+            City city = app._cityController.ReadById(user.Address.CityId);
+            Country country = app._countryController.ReadById(1); //country nije postavljen u address modelu
+            Model.MedicalRecord medicalRecord = app._medicalRecordController.ReadById(patient.MedicalRecordId);
             ObservableCollection<Allergen> allergens = app._allergenController.ReadByIds(medicalRecord.AllergenIds);
+
             Page medicalRecordPage = new MedicalRecord(_patientWindow, user, patient, address, city, country, medicalRecord, allergens);
             this.frame.Navigate(medicalRecordPage);
         }
@@ -78,7 +81,11 @@ namespace Hospital.View.PatientView
             Page notificationPage = new Notification(_patientWindow);
             this.frame.Navigate(notificationPage);
         }
-
+        private void PastAppointments_Click(object sender, RoutedEventArgs e)
+        {
+            Page pastAppointmentsPage = new PastAppointments(_patientWindow);
+            this.frame.Navigate(pastAppointmentsPage);
+        }
         private void AccountSettings_Click(object sender, RoutedEventArgs e)
         {
             Page accountSettingsPage = new AccountSettings(_patientWindow);

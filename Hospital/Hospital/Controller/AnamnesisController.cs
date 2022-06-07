@@ -42,5 +42,9 @@ namespace Hospital.Controller
         {
             _service.Write();
         }
+        public Anamnesis ReadByAppointmentId(int appointmentId)
+        {
+            return _service.ReadByAppointmentId(appointmentId);
+        }
     }
 }

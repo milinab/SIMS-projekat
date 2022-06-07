@@ -91,11 +91,11 @@ namespace Hospital.Service
             return ++_id;
         }
 
-        public ObservableCollection<Appointment> ReadPastAppointments()
+        public ObservableCollection<Appointment> ReadPastAppointments(int patientId)
         {
             ObservableCollection<Appointment> pastAppointments = new ObservableCollection<Appointment>();
 
-            ObservableCollection<Appointment> allAppointments = _repository.Read();
+            List<Appointment> allAppointments = _repository.ReadByPatientId(patientId);
             foreach (Appointment a in allAppointments) {
                 if (a.Date < DateTime.Now) {
                     pastAppointments.Add(a);

@@ -15,6 +15,7 @@ namespace Hospital.Model
         public DateTime Time { get; set; }
         [DataMember]
         public string TherapyText { get; set; }
+        [DataMember]
         public int PatientId { get; set; }
 
 
