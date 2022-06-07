@@ -1,17 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Hospital.Controller;
 using Hospital.Model;
 using System.Collections.ObjectModel;
@@ -27,11 +17,13 @@ namespace Hospital.View.PatientView
         private App app;
         private readonly BookAnAppointment _bookAnAppointment;
         private readonly PatientWindow _patientWindow;
-        private readonly AppointmentController _appointmentController;
+        //private readonly AppointmentController _appointmentController;
         private int _doctorId;
         private DateTime _date;
         private String chosenDoctor;
         private Doctor doctor;
+        private Doctor selectedDoctor;
+        public Patient patient;
 
         private String DoctorName
         {
@@ -43,14 +35,14 @@ namespace Hospital.View.PatientView
 
         ObservableCollection<Appointment> AvailableAppointments { get; set; }
 
-        public DatePriority(PatientWindow patientWindow, BookAnAppointment bookAnAppointment, AppointmentController appointmentController)
+        /*public DatePriority(PatientWindow patientWindow, BookAnAppointment bookAnAppointment, AppointmentController appointmentController)
         {
             InitializeComponent();
             _bookAnAppointment = bookAnAppointment;
             _patientWindow = patientWindow;
             _appointmentController = appointmentController;
            
-        }
+        }*/
 
         public DatePriority(int doctorId, DateTime date, BookAnAppointment bookAnAppointment, PatientWindow patientWindow)
         {
@@ -66,6 +58,7 @@ namespace Hospital.View.PatientView
             InitializeData(doctorId, date);
             dataGridDatePriority.ItemsSource = AvailableAppointments;
             dataGridAppointments.ItemsSource = patientWindow.Appointments;
+            selectedDoctor = this.doctor;
         }
 
         private void InitializeData(int doctorId, DateTime date)
@@ -94,20 +87,16 @@ namespace Hospital.View.PatientView
             DoctorsAppointments = new ObservableCollection<Appointment>();
             DoctorsAppointments = app._appointmentController.ReadByDoctorId(doctorId);
 
-            FindAvailabeAppointments(DoctorsAppointments, hospitalWorkingHours, hospitalWorkingHoursListForCalculation, date);
+            //FindAvailabeAppointments(DoctorsAppointments, hospitalWorkingHours, hospitalWorkingHoursListForCalculation, date);
+            AvailableAppointments =  app._appointmentController.FindAvailableAppointments(selectedDoctor, _date, DoctorName, DoctorsAppointments, hospitalWorkingHours, hospitalWorkingHoursListForCalculation, date);
 
             if (AvailableAppointments.Count == 0)
             {
                 DoctorsAppointments.Clear();
                 DoctorsAppointments = app._appointmentController.ReadByDateAndNotDoctor(doctorId, date);
-                PopupNotifier popup = new PopupNotifier();
-                popup.Image = Properties.Resources.notification;
-                popup.TitleText = "Warning";
-                popup.ContentText = "Sorry to inform, but there is no available appointments for chosen date. In the following list, we are gonna show You available appointments for the next available doctor.";
-                popup.Popup();
-                //MessageBox.Show("Nazalost, nema dostupnih termina za trazeni datum. U listi ce vam se prikazati dostupni termini kod drugih doktora.");
-                FindAvailabeAppointments(DoctorsAppointments, hospitalWorkingHours, hospitalWorkingHoursListForCalculation, date);
-
+                PopupNotification.sendPopupNotification("Warning", "Sorry to inform, but there is no available appointments for chosen date. In the following list, we are gonna show You available appointments for the next available doctor.");
+                //FindAvailabeAppointments(DoctorsAppointments, hospitalWorkingHours, hospitalWorkingHoursListForCalculation, date);
+                AvailableAppointments = app._appointmentController.FindAvailableAppointments(selectedDoctor, _date, DoctorName, DoctorsAppointments, hospitalWorkingHours, hospitalWorkingHoursListForCalculation, date);
             }
         }
 
@@ -123,11 +112,12 @@ namespace Hospital.View.PatientView
             room.Id = 2;
             var a = SelectedItem.Date;
 
-            Appointment appointment = new Appointment(a, new TimeSpan(0, 30, 00), doctor, patient, room);
+            Appointment appointment = new Appointment(a, new TimeSpan(0, 30, 00), SelectedItem.Doctor, patient, room);
             app._appointmentController.Create(appointment);
             _patientWindow.BackToPatientWindow();
         }
-        public void FindAvailabeAppointments(ObservableCollection<Appointment> DoctorsAppointments,
+
+        /*public void FindAvailabeAppointments(Doctor doctor, ObservableCollection<Appointment> AvailableAppointments, Doctor selectedDoctor, DateTime _date, string DoctorName, ObservableCollection<Appointment> DoctorsAppointments,
             List<TimeSpan> hospitalWorkingHours, List<TimeSpan> hospitalWorkingHoursListForCalculation, DateTime date)
         {
 
@@ -183,7 +173,7 @@ namespace Hospital.View.PatientView
 
                 AvailableAppointments.Add(app);
             }
-        }
+        }*/
 
         private void HomePage_Click(object sender, RoutedEventArgs e)
         {
@@ -199,14 +189,14 @@ namespace Hospital.View.PatientView
 
         private void MedicalRecord_Click(object sender, RoutedEventArgs e)
         {
-            User user = app._userController.ReadById(1);
-            Patient patient = app._patientController.ReadById(1);
-            Address address = app._addressController.ReadById(1);
-            City city = app._cityController.ReadById(1);
-            Country country = app._countryController.ReadById(1);
-            Model.MedicalRecord medicalRecord = app._medicalRecordController.ReadById(1);
-            Allergen allergen = app._allergenController.ReadById(1);
-            Page medicalRecordPage = new MedicalRecord(_patientWindow, user, patient, address, city, country, medicalRecord, allergen);
+            User user = app._userController.ReadById(patient.Id);
+            Address address = app._addressController.ReadById(user.Address.Id);
+            City city = app._cityController.ReadById(user.Address.CityId);
+            Country country = app._countryController.ReadById(1); //country nije postavljen u address modelu
+            Model.MedicalRecord medicalRecord = app._medicalRecordController.ReadById(patient.MedicalRecordId);
+            ObservableCollection<Allergen> allergens = app._allergenController.ReadByIds(medicalRecord.AllergenIds);
+
+            Page medicalRecordPage = new MedicalRecord(_patientWindow, user, patient, address, city, country, medicalRecord, allergens);
             this.frame.Navigate(medicalRecordPage);
         }
 

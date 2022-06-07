@@ -1,18 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Hospital.Controller;
 using Hospital.Model;
 using System.Collections.ObjectModel;
 
@@ -24,12 +12,10 @@ namespace Hospital.View.PatientView
     public partial class EditAnAppointment : Page
     {
         private App app;
-        private readonly object _content;
         private readonly PatientWindow _patientWindow;
-        private readonly UserController _userController;
-        private readonly DoctorController _doctorController;
         private int _id;
         private DateTime Date;
+        public Patient patient;
 
         public ObservableCollection<Doctor> Doctors
         {
@@ -70,10 +56,9 @@ namespace Hospital.View.PatientView
         private bool Validate()
         {
 
-
             if (DoctorPriority.IsChecked == false && DatePriority.IsChecked == false)
             {
-                MessageBox.Show("You need to select a priority.", "Warning");
+                PopupNotification.sendPopupNotification("Warning", "You need to select a priority.");
                 return false;
             }
             return false;
@@ -82,26 +67,7 @@ namespace Hospital.View.PatientView
         private void AddAppointment_Click(object sender, RoutedEventArgs e)
         {
 
-            //if (!validate())
-            //{
-            //    return;
-            //}
-
-            //if (DoctorPriority.IsChecked == true)
-            //{
-            //DoctorPriorityDateAvailable DoctorPriorityDateAvailablePage = new DoctorPriorityDateAvailable(_patientWindow ,this,app._appointmentController);
-            //Content = DoctorPriorityDateAvailablePage;
-            //}
-            // if (DatePriority.IsChecked == true)
-            //{
-            //BookAnAppointment bookAnAppointmentPage = new BookAnAppointment(this, app._appointmentController);
-            //Content = bookAnAppointmentPage;
-
-            // }
-
-            //doctorsComboBox.ItemsSource = app._userController.ReadAll();
-
-
+            Validate();
             int DoctorId = Int32.Parse(((Model.User)doctorsComboBox.SelectedItem).Id.ToString());
 
             DateTime _date = myCalendar.SelectedDate.Value;
@@ -127,43 +93,6 @@ namespace Hospital.View.PatientView
                 this.frame.Navigate(datePriority);
             }
 
-
-/*            Appointment ap = new Appointment(_id, _date, duration, doctor, patient, room);
-            app._appointmentController.Edit(ap);
-            Trol troll = app._trolController.ReadByPatientId(_patientWindow.patient.Id);
-            if(troll == null)
-            {
-                Trol tr = new Trol(_patientWindow.patient.Id, DateTime.Now, 1);
-                app._trolController.Create(tr);
-            }
-            else
-            {
-                if((DateTime.Now-troll.StartDate).TotalDays < 30)
-                {
-                    //ovo je okej, dozvoli
-                    troll.NumberOfCancellations += 1;
-                    app._trolController.Edit(troll);
-                    Trol newTroll = app._trolController.ReadById(troll.Id);
-                    if (newTroll.NumberOfCancellations >= 5)
-                    {
-                        _patientWindow.patient.IsActive = false;
-                        
-                        app._patientController.Edit(_patientWindow.patient);
-                        app._trolController.Delete(troll.Id);
-                        MessageBox.Show("Your account is banned due to..");
-                        LogIn logIn = new LogIn();
-                        logIn.Show();
-                        _patientWindow.Close();
-                    }
-                }
-                else
-                {
-                    app._trolController.Delete(troll.Id);
-                    Trol tr = new Trol(_patientWindow.patient.Id, DateTime.Now, 1);
-                    app._trolController.Create(tr);
-                }
-            }*/
-            //_patientWindow.BackToPatientWindow();
         }
 
         private void HomePage_Click(object sender, RoutedEventArgs e)
@@ -180,14 +109,14 @@ namespace Hospital.View.PatientView
 
         private void MedicalRecord_Click(object sender, RoutedEventArgs e)
         {
-            User user = app._userController.ReadById(1);
-            Patient patient = app._patientController.ReadById(1);
-            Address address = app._addressController.ReadById(1);
-            City city = app._cityController.ReadById(1);
-            Country country = app._countryController.ReadById(1);
-            Model.MedicalRecord medicalRecord = app._medicalRecordController.ReadById(1);
-            Allergen allergen = app._allergenController.ReadById(1);
-            Page medicalRecordPage = new MedicalRecord(_patientWindow, user, patient, address, city, country, medicalRecord, allergen);
+            User user = app._userController.ReadById(patient.Id);
+            Address address = app._addressController.ReadById(user.Address.Id);
+            City city = app._cityController.ReadById(user.Address.CityId);
+            Country country = app._countryController.ReadById(1); //country nije postavljen u address modelu
+            Model.MedicalRecord medicalRecord = app._medicalRecordController.ReadById(patient.MedicalRecordId);
+            ObservableCollection<Allergen> allergens = app._allergenController.ReadByIds(medicalRecord.AllergenIds);
+
+            Page medicalRecordPage = new MedicalRecord(_patientWindow, user, patient, address, city, country, medicalRecord, allergens);
             this.frame.Navigate(medicalRecordPage);
         }
 

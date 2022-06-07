@@ -1,18 +1,8 @@
 ﻿using Hospital.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Collections.ObjectModel;
+
 
 namespace Hospital.View.PatientView
 {
@@ -23,8 +13,8 @@ namespace Hospital.View.PatientView
     {
         private App app;
         private readonly object _content;
-        private Notification notification;
         private readonly PatientWindow _patientWindow;
+        public Patient patient;
         public Notification(PatientWindow patientWindow)
         {
             InitializeComponent();
@@ -47,14 +37,14 @@ namespace Hospital.View.PatientView
 
         private void MedicalRecord_Click(object sender, RoutedEventArgs e)
         {
-            User user = app._userController.ReadById(1);
-            Patient patient = app._patientController.ReadById(1);
-            Address address = app._addressController.ReadById(1);
-            City city = app._cityController.ReadById(1);
-            Country country = app._countryController.ReadById(1);
-            Model.MedicalRecord medicalRecord = app._medicalRecordController.ReadById(1);
-            Allergen allergen = app._allergenController.ReadById(1);
-            Page medicalRecordPage = new MedicalRecord(_patientWindow, user, patient, address, city, country, medicalRecord, allergen);
+            User user = app._userController.ReadById(patient.Id);
+            Address address = app._addressController.ReadById(user.Address.Id);
+            City city = app._cityController.ReadById(user.Address.CityId);
+            Country country = app._countryController.ReadById(1); //country nije postavljen u address modelu
+            Model.MedicalRecord medicalRecord = app._medicalRecordController.ReadById(patient.MedicalRecordId);
+            ObservableCollection<Allergen> allergens = app._allergenController.ReadByIds(medicalRecord.AllergenIds);
+
+            Page medicalRecordPage = new MedicalRecord(_patientWindow, user, patient, address, city, country, medicalRecord, allergens);
             this.frame.Navigate(medicalRecordPage);
         }
 

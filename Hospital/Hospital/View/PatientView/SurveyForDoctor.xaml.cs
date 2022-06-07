@@ -3,18 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Hospital.View.PatientView
 {
@@ -31,6 +21,7 @@ namespace Hospital.View.PatientView
         private readonly PatientWindow _patientWindow;
         private List<int> answers;
         private Appointment _appointment;
+        public Patient patient;
 
         ObservableCollection<QuestionAndRatingStarsName> questionAndRatingStarsNames;
 
@@ -45,7 +36,7 @@ namespace Hospital.View.PatientView
             this.DataContext = this;
             answers = new List<int>();  
             questionAndRatingStarsNames = new ObservableCollection<QuestionAndRatingStarsName>();
-            initializeData();
+            InitializeData();
         }
 
         public class QuestionAndRatingStarsName { 
@@ -61,7 +52,7 @@ namespace Hospital.View.PatientView
             
         }
 
-        private void initializeData() {
+        private void InitializeData() {
 
             ObservableCollection<Question> questions = app._questionController.Read();
 
@@ -90,14 +81,14 @@ namespace Hospital.View.PatientView
 
         private void MedicalRecord_Click(object sender, RoutedEventArgs e)
         {
-            User user = app._userController.ReadById(1);
-            Patient patient = app._patientController.ReadById(1);
-            Address address = app._addressController.ReadById(1);
-            City city = app._cityController.ReadById(1);
-            Country country = app._countryController.ReadById(1);
-            Model.MedicalRecord medicalRecord = app._medicalRecordController.ReadById(1);
-            Allergen allergen = app._allergenController.ReadById(1);
-            Page medicalRecordPage = new MedicalRecord(_patientWindow, user, patient, address, city, country, medicalRecord, allergen);
+            User user = app._userController.ReadById(patient.Id);
+            Address address = app._addressController.ReadById(user.Address.Id);
+            City city = app._cityController.ReadById(user.Address.CityId);
+            Country country = app._countryController.ReadById(1); //country nije postavljen u address modelu
+            Model.MedicalRecord medicalRecord = app._medicalRecordController.ReadById(patient.MedicalRecordId);
+            ObservableCollection<Allergen> allergens = app._allergenController.ReadByIds(medicalRecord.AllergenIds);
+
+            Page medicalRecordPage = new MedicalRecord(_patientWindow, user, patient, address, city, country, medicalRecord, allergens);
             this.frame.Navigate(medicalRecordPage);
         }
 
@@ -159,7 +150,7 @@ namespace Hospital.View.PatientView
             answers.Add(this.Pitanje4.Value);
             answers.Add(this.Pitanje5.Value);
 
-            int sum = answers.Sum();
+            //int sum = answers.Sum();
             int avrgGrade = answers.Sum() / answers.Count;
 
             DoctorSurveyResponse dsr = new DoctorSurveyResponse();

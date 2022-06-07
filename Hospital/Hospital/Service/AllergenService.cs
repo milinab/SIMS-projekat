@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using Hospital.Model;
 using Hospital.Repository;
@@ -48,6 +49,15 @@ namespace Hospital.Service
         public ObservableCollection<Allergen> Read()
         {
             return _repository.Read();
+        }
+
+        public ObservableCollection<Allergen> ReadByIds(AllergenList ids)
+        {
+            ObservableCollection<Allergen> ret = new ObservableCollection<Allergen>();
+            foreach (int al in ids) {
+                ret.Add(_repository.ReadById(al));
+            }
+            return ret;
         }
 
         private int GenerateId()

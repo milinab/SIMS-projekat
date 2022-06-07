@@ -1,10 +1,7 @@
 ﻿using Hospital.Model;
-using Prism.Commands;
 using System;
 using System.Collections.ObjectModel;
 using System.Windows;
-using System.Windows.Controls;
-using Hospital.Controller;
 using System.Windows.Threading;
 using Tulpep.NotificationWindow;
 
@@ -47,20 +44,21 @@ namespace Hospital.View.PatientView
             set;
         }
 
-        public PatientWindow(Patient p)
+        public PatientWindow()
         {
             InitializeComponent();
             app = Application.Current as App;
             _content = Content;
             this.DataContext = this;
-            patient = p;
-            dataGridAppointments.ItemsSource = app._appointmentController.ReadFutureAppointments();
+            patient = app._patientController.ReadById(LogIn.LoggedUser.Id);
+            //patient = p;
+            dataGridAppointments.ItemsSource = app._appointmentController.ReadFutureAppointments(patient.Id);
 
             Appointments = new ObservableCollection<Appointment>();
             Doctors = new ObservableCollection<Doctor>();
-            Appointments = app._appointmentController.ReadFutureAppointments();
+            Appointments = app._appointmentController.ReadFutureAppointments(patient.Id);
             Therapies = app._therapyController.ReadBypatientId(1);
-            getTherapyTime();
+            GetTherapyTime();
 
 
             foreach (var a in Appointments) {
@@ -70,7 +68,7 @@ namespace Hospital.View.PatientView
 
         }
 
-        private void getTherapyTime()
+        private void GetTherapyTime()
         {
             foreach (var th in Therapies)
             {
@@ -94,12 +92,8 @@ namespace Hospital.View.PatientView
         private void TimerTick(object sender, EventArgs e)
         {
             //MessageBox.Show("Please, take your therapy in half an hour..", "Therapy reminder");
-            PopupNotifier popup = new PopupNotifier();
-            popup.Image = Properties.Resources.notification;
-            popup.TitleText = "Therapy reminder";
-            popup.ContentText = "Please, take your therapy in half an hour.";
-            popup.Popup();
-            Console.WriteLine("Za pola sata je vreme da uzmes terapiju!");
+            PopupNotification.sendPopupNotification("Therapy reminder", "Please, take your therapy in half an hour.");
+            Console.WriteLine("Please, take your therapy in half an hour.");
             liveDateTime.Stop();
 
         }
@@ -121,11 +115,7 @@ namespace Hospital.View.PatientView
 
         private void TimerTickForNotes(object sender, EventArgs e)
         {
-            PopupNotifier popup = new PopupNotifier();
-            popup.Image = Properties.Resources.notification;
-            popup.TitleText = "Note notification";
-            popup.ContentText = "ovde ce da ide tekst od notesa";
-            popup.Popup();
+            PopupNotification.sendPopupNotification("Note notification", "ovde ce da ide tekst od notesa");
             Console.WriteLine("ovde ce da ide tekst od notesa");
             liveDateTime.Stop();
         }
@@ -133,12 +123,12 @@ namespace Hospital.View.PatientView
         private void BookAnAppointmentClick(object sender, RoutedEventArgs e)
         {
 
-            BookAnAppointment bookAnAppointmentPage = new BookAnAppointment(this, app._appointmentController, app._userController);
+            BookAnAppointment bookAnAppointmentPage = new BookAnAppointment(this);
             Content = bookAnAppointmentPage;
             
         }
 
-        private void EditAnAppointmentClick(object sender, RoutedEventArgs e)
+        /*private void EditAnAppointmentClick(object sender, RoutedEventArgs e)
         {
             if (dataGridAppointments.SelectedItem != null)
             {
@@ -149,7 +139,7 @@ namespace Hospital.View.PatientView
             {
                 MessageBox.Show("Select an appointment You want to edit.", "Warning");
             }
-        }
+        }*/
 
         private void EditButtonClick(object sender, RoutedEventArgs e)
         {
@@ -166,7 +156,7 @@ namespace Hospital.View.PatientView
                 Appointment appointment = (Appointment)dataGridAppointments.SelectedItem;
                 app._appointmentController.Delete(appointment.Id);
 
-                Trol troll = app._trolController.ReadByPatientId(this.patient.Id);
+                /*Trol troll = app._trolController.ReadByPatientId(this.patient.Id);
                 if (troll == null)
                 {
                     Trol tr = new Trol(this.patient.Id, DateTime.Now, 1);
@@ -203,17 +193,13 @@ namespace Hospital.View.PatientView
                         Trol tr = new Trol(this.patient.Id, DateTime.Now, 1);
                         app._trolController.Create(tr);
                     }
-                }
-
-
-            } else
+                }*/
+                TrollSystem.troll(this, app);
+                this.BackToPatientWindow();
+            }
+            else
             {
-                PopupNotifier popup = new PopupNotifier();
-                popup.Image = Properties.Resources.notification;
-                popup.TitleText = "Warning";
-                popup.ContentText = "Please, select an appointment You want to cancel.";
-                popup.Popup();
-                //MessageBox.Show("Select an appointment You want to cancel.", "Warning");
+                PopupNotification.sendPopupNotification("Warning", "Please, select an appointment You want to cancel.");
             }
         }
 
@@ -227,17 +213,17 @@ namespace Hospital.View.PatientView
             Profile profilePage = new Profile(this);
             Content = profilePage;
         }
-        
+
         private void MedicalRecord_Click(object sender, RoutedEventArgs e)
         {
-            User user = app._userController.ReadById(1);
-            Patient patient = app._patientController.ReadById(1);
-            Address address = app._addressController.ReadById(1);
-            City city = app._cityController.ReadById(1);
-            Country country = app._countryController.ReadById(1);
-            Model.MedicalRecord medicalRecord = app._medicalRecordController.ReadById(1);
-            Allergen allergen = app._allergenController.ReadById(1);
-            var medicalRecordPage = new MedicalRecord(this, user, patient, address, city, country, medicalRecord, allergen);
+            User user = app._userController.ReadById(patient.Id);
+            Address address = app._addressController.ReadById(user.Address.Id);
+            City city = app._cityController.ReadById(user.Address.CityId);
+            Country country = app._countryController.ReadById(1); //country nije postavljen u address modelu
+            Model.MedicalRecord medicalRecord = app._medicalRecordController.ReadById(patient.MedicalRecordId);
+            ObservableCollection<Allergen> allergens = app._allergenController.ReadByIds(medicalRecord.AllergenIds);
+
+            var medicalRecordPage = new MedicalRecord(this, user, patient, address, city, country, medicalRecord, allergens);
             Content = medicalRecordPage;
         }
 
@@ -277,11 +263,11 @@ namespace Hospital.View.PatientView
         public void BackToPatientWindow()
         {
             Content = _content;
-            refresh();
+            Refresh();
         }
-        public void refresh()
+        public void Refresh()
         {
-            dataGridAppointments.ItemsSource = app._appointmentController.ReadFutureAppointments();
+            dataGridAppointments.ItemsSource = app._appointmentController.ReadFutureAppointments(patient.Id);
         }
 
         private void LogOut_Click(object sender, RoutedEventArgs e)

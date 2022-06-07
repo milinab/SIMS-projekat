@@ -42,8 +42,9 @@ namespace Hospital
                 InvalidFieldsLabel.Visibility = Visibility.Visible;
                 return;
             }
-            OpenTypeWindow(type, username);
+
             LoggedUser = _app._userController.GetLoggedUser(username, password);
+            OpenTypeWindow(type, username);
         }
 
         private bool PatientCheck(Patient p)
@@ -94,7 +95,7 @@ namespace Hospital
                     Patient p = _app._patientController.ReadByUsername(username);
                     if (PatientCheck(p))
                     {
-                        PatientWindow patientWindow = new PatientWindow(p);
+                        PatientWindow patientWindow = new PatientWindow();
                         patientWindow.Show();
                         Close();
                         return null;
