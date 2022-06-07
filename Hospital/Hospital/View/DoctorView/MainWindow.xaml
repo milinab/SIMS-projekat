@@ -9,7 +9,7 @@
         Height="768" Width="1024" ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen" WindowStyle="None">
     <Window.Resources>
-        <ResourceDictionary Source="DoctorResourceDictionary.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="Resources/DoctorResourceDictionary.xaml"></ResourceDictionary>
     </Window.Resources>
     <Window.Style>
         <StaticResource ResourceKey="MainWindowStyle"></StaticResource>

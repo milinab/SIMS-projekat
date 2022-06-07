@@ -6,6 +6,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Hospital.View.SecretaryView"
       xmlns:local1="clr-namespace:Hospital.View.DoctorView"
+      xmlns:resources="clr-namespace:Hospital.View.DoctorView.Resources"
       mc:Ignorable="d" 
       Title="AddAppointment" Width="800" Height="600"
       WindowStyle="None"
@@ -110,7 +111,7 @@
 
             <TextBlock Grid.Row="3" Margin="0,10,0,10" 
                    HorizontalAlignment="Right" Width="110">Duration:</TextBlock>
-            <local1:CustomTimeSpanUpDown x:Name="Duration" Foreground="#2218a7" Background="#bbc4eb" Grid.Row="3" Grid.Column="1" Margin="0,10,20,10" AllowTextInput="False" Minimum="0.00:10:00" Maximum="0.8:00:00" Value="0.00:10:00"/>
+            <resources:CustomTimeSpanUpDown x:Name="Duration" Foreground="#2218a7" Background="#bbc4eb" Grid.Row="3" Grid.Column="1" Margin="0,10,20,10" AllowTextInput="False" Minimum="0.00:10:00" Maximum="0.8:00:00" Value="0.00:10:00"/>
 
             <TextBlock Grid.Row="4" Margin="0,10,0,10" HorizontalAlignment="Right" Width="110">Doctor:</TextBlock>
             <ListBox Name="DoctorListBox" Grid.Row="4" Grid.Column="1" Grid.RowSpan="2"  SelectionChanged="ListBox_SelectionChanged" Margin="0,10,20,10"/>
