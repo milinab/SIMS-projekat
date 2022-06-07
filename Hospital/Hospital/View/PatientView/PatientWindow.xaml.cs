@@ -144,7 +144,8 @@ namespace Hospital.View.PatientView
                 Appointment appointment = (Appointment)dataGridAppointments.SelectedItem;
                 app._appointmentController.Delete(appointment.Id);
 
-                TrollSystem.troll(this, app);
+                TrollSystem ts = new TrollSystem(this, app);
+                ts.troll();
                 this.BackToPatientWindow();
             }
             else

@@ -76,14 +76,14 @@ namespace Hospital.View.PatientView
             DoctorsAppointments = new ObservableCollection<Appointment>();
             DoctorsAppointments = app._appointmentController.ReadByDoctorId(doctorId);
 
-           AvailableAppointments = app._appointmentController.FindAvailableAppointments(selectedDoctor, _date, DoctorName, DoctorsAppointments, hospitalWorkingHours, hospitalWorkingHoursListForCalculation, date);
+           AvailableAppointments = app._appointmentController.FindAvailableAppointments(selectedDoctor, _date, DoctorsAppointments, hospitalWorkingHours, hospitalWorkingHoursListForCalculation, date);
 
             if (AvailableAppointments.Count == 0)
             {
                 DoctorsAppointments.Clear();
                 DoctorsAppointments = app._appointmentController.ReadByDateAndNotDoctor(doctorId, date);
                 PopupNotification.sendPopupNotification("Warning", "Sorry to inform, but there is no available appointments for chosen date. In the following list, we are gonna show You available appointments for the next available doctor.");
-               AvailableAppointments = app._appointmentController.FindAvailableAppointments(selectedDoctor, _date, DoctorName, DoctorsAppointments, hospitalWorkingHours, hospitalWorkingHoursListForCalculation, date);
+               AvailableAppointments = app._appointmentController.FindAvailableAppointments(selectedDoctor, _date, DoctorsAppointments, hospitalWorkingHours, hospitalWorkingHoursListForCalculation, date);
             }
         }
 
@@ -101,7 +101,8 @@ namespace Hospital.View.PatientView
             Appointment appointment = new Appointment(_appointmentId, a, new TimeSpan(0, 30, 00), doctor, patient, room);
             app._appointmentController.Edit(appointment);
 
-            TrollSystem.troll(_patientWindow, app);
+            TrollSystem ts = new TrollSystem(_patientWindow, app);
+            ts.troll();
             _patientWindow.BackToPatientWindow();
         }
        
