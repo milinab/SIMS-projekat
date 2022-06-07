@@ -380,6 +380,8 @@
     <Compile Include="View\PatientView\MyTherapy.xaml.cs">
       <DependentUpon>MyTherapy.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\PatientView\PopupNotification.cs" />
+    <Compile Include="View\PatientView\TrollSystem.cs" />
     <Compile Include="View\PatientView\Validations\InverseAndBooleansToBooleansConverter.cs" />
     <Compile Include="View\PatientView\Validations\NoEmptyInputsRule.cs" />
     <Compile Include="View\PatientView\NoteInfo.xaml.cs">
