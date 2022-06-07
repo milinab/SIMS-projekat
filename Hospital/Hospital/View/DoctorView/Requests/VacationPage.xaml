@@ -1,4 +1,4 @@
-<Page x:Class="Hospital.View.DoctorView.Requests.RequestVacationPage"
+<Page x:Class="Hospital.View.DoctorView.Requests.VacationPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -8,7 +8,7 @@
       d:DesignHeight="768" d:DesignWidth="700"
       Title="RequestVacationPage">
     <Page.Resources>
-        <ResourceDictionary Source="../Resources/DoctorResourceDictionary.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="../Resources/DoctorResourceDictionary.xaml"/>
     </Page.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -18,25 +18,72 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid>
-            <Rectangle Style="{StaticResource HeaderRectangleStyle}" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-            <Label Style="{StaticResource LabelStyle}" Content="Vacation" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="24"/>
-
-            <TextBlock Text="Start date:" Style="{StaticResource TextBlockStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="100, 120, 0, 0" FontSize="25"/>
-            <TextBlock Text="End date:" Style="{StaticResource TextBlockStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="109, 220, 0, 0" FontSize="25"/>
-            <TextBlock Text="Reason:" Style="{StaticResource TextBlockStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="127, 320, 0, 0" FontSize="25"/>
-            <TextBlock Text="Urgent request?" Style="{StaticResource TextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0, 400, 100, 0" FontSize="25"/>
+            <Rectangle 
+                Style="{StaticResource HeaderRectangleStyle}" 
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Top"/>
+            <Label 
+                Style="{StaticResource LabelStyle}" 
+                Content="Vacation" 
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Top" 
+                FontSize="24"/>
+            <DataGrid
+                Name="VacationDataGrid"
+                CanUserAddRows="False"
+                AutoGenerateColumns="False"
+                Width="550"
+                Height="550"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top"
+                Margin="0 100 0 0"
+                RowHeaderWidth="0"
+                CanUserSortColumns="False"
+                CanUserDeleteRows="False"
+                CanUserReorderColumns="False"
+                IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn 
+                        Header="Start date" 
+                        Width="*" 
+                        Binding="{Binding Path=StartDate, StringFormat={}{0:d.M.yyyy.}}"/>
+                    <DataGridTextColumn 
+                        Header="End date" 
+                        Width="*"
+                        Binding="{Binding Path=EndDate, StringFormat={}{0:d.M.yyyy.}}"/>
+                    <DataGridTextColumn 
+                        Header="Reason" 
+                        Width="*"
+                        Binding="{Binding Path=Reason}"/>
+                    <DataGridTextColumn 
+                        Header="Status" 
+                        Width="*"
+                        Binding="{Binding Path=State}"/>
+                    <DataGridTextColumn
+                        Header="Reject reason"
+                        Width="*"
+                        Binding="{Binding Path=RejectReason}"/>
+                </DataGrid.Columns>
+            </DataGrid>
             
-            <DatePicker Name="StartDate" Style="{StaticResource DatePickerStyle}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="40, 124, 0, 0" Width="260" Height="30" FontSize="18" SelectedDateChanged="StartDate_OnSelectedDateChanged"/>
-            <DatePicker Name="EndDate" Style="{StaticResource DatePickerStyle}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="40, 224, 0, 0" Width="260" Height="30" FontSize="18"/>
-            <TextBox Name="ReasonTextBox" HorizontalAlignment="Center" VerticalAlignment="Center" Width="260" Height="150" Margin="40, 30, 0, 0"/>
-            <CheckBox Name="UrgentCheckBox" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="150, 405, 0, 0">
-                <CheckBox.LayoutTransform>
-                    <ScaleTransform ScaleX="2" ScaleY="2"/>
-                </CheckBox.LayoutTransform>
-            </CheckBox>
-            
-            <Button Content="Confirm" HorizontalAlignment="Left"  VerticalAlignment="Bottom" Margin="0,0,0,0" Width="350" Height="50" Click="Confirm" FontSize="25"/>
-            <Button Content="Cancel"  HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,0,0" Width="350" Height="50" Click="Cancel" FontSize="25"/>
+            <Button 
+                Content="New request" 
+                HorizontalAlignment="Left"  
+                VerticalAlignment="Bottom" 
+                Margin="0,0,0,0" 
+                Width="350" 
+                Height="50" 
+                FontSize="25"
+                Click="NewRequest_OnClick"/>
+            <Button 
+                Content="Back"  
+                HorizontalAlignment="Right" 
+                VerticalAlignment="Bottom" 
+                Margin="0,0,0,0" 
+                Width="350" 
+                Height="50"  
+                FontSize="25"
+                Click="Back_OnClick"/>
         </Grid>
     </Grid>
 </Page>

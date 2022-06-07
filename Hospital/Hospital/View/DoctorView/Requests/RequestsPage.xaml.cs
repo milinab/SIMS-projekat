@@ -17,7 +17,7 @@ namespace Hospital.View.DoctorView.Requests
 
         private void Vacation_OnClick(object sender, RoutedEventArgs e)
         {
-            MainWindow.MainFrame.Navigate(new RequestVacationPage());
+            MainWindow.MainFrame.Navigate(new VacationPage());
         }
     }
 }

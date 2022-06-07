@@ -282,6 +282,9 @@
     <Compile Include="View\DoctorView\Patients\PatientsPage.xaml.cs">
       <DependentUpon>PatientsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\DoctorView\Requests\CreateRequestPage.xaml.cs">
+      <DependentUpon>CreateRequestPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\DoctorView\Requests\EquipmentPage.xaml.cs">
       <DependentUpon>EquipmentPage.xaml</DependentUpon>
     </Compile>
@@ -447,6 +450,7 @@
     </Page>
     <Page Include="View\DoctorView\MalfunctionReport\MalfunctionReportPage.xaml" />
     <Page Include="View\DoctorView\Patients\PatientsPage.xaml" />
+    <Page Include="View\DoctorView\Requests\CreateRequestPage.xaml" />
     <Page Include="View\DoctorView\Requests\EquipmentPage.xaml" />
     <Page Include="View\DoctorView\Requests\RequestsPage.xaml" />
     <Page Include="View\DoctorView\Requests\VacationPage.xaml" />
