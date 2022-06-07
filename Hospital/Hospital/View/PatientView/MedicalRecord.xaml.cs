@@ -39,11 +39,11 @@ namespace Hospital.View.PatientView
             this.bloodType.Text = patient.BloodType;
             this.country.Text = country.Name;
             this.chronicalDisease.Text = medicalRecord.ChronicalDiseases;
-            this.allergies.Text = showAllergens(allergens);
+            this.allergies.Text = ShowAllergens(allergens);
 
         }
 
-        private string showAllergens(ObservableCollection<Allergen> allergens) {
+        private string ShowAllergens(ObservableCollection<Allergen> allergens) {
             var patientAllergens = new System.Text.StringBuilder();
             foreach (Allergen a in allergens) {
                 if (allergens.Count == 1) {

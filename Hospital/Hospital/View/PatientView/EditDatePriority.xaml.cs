@@ -4,7 +4,6 @@ using System.Windows;
 using System.Windows.Controls;
 using Hospital.Model;
 using System.Collections.ObjectModel;
-using Tulpep.NotificationWindow;
 
 namespace Hospital.View.PatientView
 {
@@ -18,17 +17,11 @@ namespace Hospital.View.PatientView
         private readonly PatientWindow _patientWindow;
         private int _doctorId;
         private DateTime _date;
-        private String chosenDoctor;
         private Doctor doctor;
         private int _appointmentId;
         private Doctor selectedDoctor;
         public Patient patient;
 
-        private String DoctorName
-        {
-            set { chosenDoctor = value; }
-            get { return chosenDoctor; }
-        }
 
         ObservableCollection<Appointment> DoctorsAppointments { get; set; }
 
@@ -48,7 +41,7 @@ namespace Hospital.View.PatientView
             AvailableAppointments = new ObservableCollection<Appointment>();
             InitializeData(doctorId, date);
             dataGridDatePriority.ItemsSource = AvailableAppointments;
-            dataGridAppointments.ItemsSource = patientWindow.Appointments;
+            dataGridAppointments.ItemsSource = patientWindow.dataGridAppointments.ItemsSource;
             selectedDoctor = this.doctor;
             patient = app._patientController.ReadById(LogIn.LoggedUser.Id);
         }
@@ -82,7 +75,7 @@ namespace Hospital.View.PatientView
             {
                 DoctorsAppointments.Clear();
                 DoctorsAppointments = app._appointmentController.ReadByDateAndNotDoctor(doctorId, date);
-                PopupNotification.sendPopupNotification("Warning", "Sorry to inform, but there is no available appointments for chosen date. In the following list, we are gonna show You available appointments for the next available doctor.");
+                PopupNotification.SendPopupNotification("Warning", "Sorry to inform, but there is no available appointments for chosen date. In the following list, we are gonna show You available appointments for the next available doctor.");
                AvailableAppointments = app._appointmentController.FindAvailableAppointments(selectedDoctor, _date, DoctorsAppointments, hospitalWorkingHours, hospitalWorkingHoursListForCalculation, date);
             }
         }
@@ -102,7 +95,7 @@ namespace Hospital.View.PatientView
             app._appointmentController.Edit(appointment);
 
             TrollSystem ts = new TrollSystem(_patientWindow, app);
-            ts.troll();
+            ts.Troll();
             _patientWindow.BackToPatientWindow();
         }
        

@@ -17,45 +17,45 @@ namespace Hospital.View.PatientView
             this.app = app;
         }
 
-        public void troll() {
+        public void Troll() {
 
             Trol troll = app._trolController.ReadByPatientId(_patientWindow.patient.Id);
             if (troll == null) {
-                createTroll(_patientWindow.patient.Id, DateTime.Now, 1, app);
+                CreateTroll(_patientWindow.patient.Id, DateTime.Now, 1, app);
             }
             else {
                 if ((DateTime.Now - troll.StartDate).TotalDays < 30) {
-                    increaseNumberOfCancelation(troll);
+                    IncreaseNumberOfCancelation(troll);
                 } else {
-                    deleteTrollPastDate(troll);
+                    DeleteTrollPastDate(troll);
                 }
             }
 
         }
 
-        private void createTroll(int patientId, DateTime date, int counter, App app) {
+        private void CreateTroll(int patientId, DateTime date, int counter, App app) {
 
             Trol tr = new Trol(patientId, date, counter);
             app._trolController.Create(tr);
         }
 
-        private void deleteTrollPastDate(Trol troll) {
+        private void DeleteTrollPastDate(Trol troll) {
 
             app._trolController.Delete(troll.Id);
             Trol tr = new Trol(_patientWindow.patient.Id, DateTime.Now, 1);
             app._trolController.Create(tr);
         }
 
-        private void increaseNumberOfCancelation(Trol troll) {
+        private void IncreaseNumberOfCancelation(Trol troll) {
 
             troll.NumberOfCancellations += 1;
             app._trolController.Edit(troll);
 
-            checkNumberOfCancelation(troll);
+            CheckNumberOfCancelation(troll);
 
         }
 
-        private void checkNumberOfCancelation(Trol troll) {
+        private void CheckNumberOfCancelation(Trol troll) {
 
             Trol newTroll = app._trolController.ReadById(troll.Id);
             if (newTroll.NumberOfCancellations >= 5) {
@@ -64,13 +64,13 @@ namespace Hospital.View.PatientView
                 app._patientController.Edit(_patientWindow.patient);
                 app._trolController.Delete(troll.Id);
 
-                PopupNotification.sendPopupNotification("Warning", "Your account is banned due to..");
-                logut();
+                PopupNotification.SendPopupNotification("Warning", "Your account is banned due to..");
+                LogOut();
             }
 
         }
 
-        private void logut() {
+        private void LogOut() {
 
             LogIn logIn = new LogIn();
             logIn.Show();

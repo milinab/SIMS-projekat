@@ -6,7 +6,7 @@ namespace Hospital.View.PatientView
     internal class PopupNotification
     {
 
-        public static void sendPopupNotification(String titleText, String contentText) {
+        public static void SendPopupNotification(String titleText, String contentText) {
             PopupNotifier popup = new PopupNotifier();
             popup.Image = Properties.Resources.notification;
             popup.TitleText = titleText;

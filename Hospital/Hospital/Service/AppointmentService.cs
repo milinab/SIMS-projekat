@@ -137,15 +137,15 @@ namespace Hospital.Service
                 foreach (TimeSpan appTime in hospitalWorkingHours)
                 {
                     date += appTime;
-                    cloneList = compareTimes(appTime, cloneList, date, appStartTime, appEndTime);
+                    cloneList = CompareTimes(appTime, cloneList, date, appStartTime, appEndTime);
                     date = _date;
                 }
             }
 
-            return makeNewAppointmantList(cloneList, selectedDoctor, _date, AvailableAppointments);
+            return MakeNewAppointmantList(cloneList, selectedDoctor, _date, AvailableAppointments);
         }
 
-        private List<TimeSpan> compareTimes(TimeSpan appTime, List<TimeSpan> cloneList, DateTime date, DateTime appStartTime, DateTime appEndTime)
+        private List<TimeSpan> CompareTimes(TimeSpan appTime, List<TimeSpan> cloneList, DateTime date, DateTime appStartTime, DateTime appEndTime)
         {
             if (DateTime.Compare(date, appStartTime) > 0)
             {
@@ -175,7 +175,7 @@ namespace Hospital.Service
             return cloneList;
         }
 
-        private ObservableCollection<Appointment> makeNewAppointmantList(List<TimeSpan> cloneList, Doctor selectedDoctor, DateTime _date, ObservableCollection<Appointment> AvailableAppointments) {
+        private ObservableCollection<Appointment> MakeNewAppointmantList(List<TimeSpan> cloneList, Doctor selectedDoctor, DateTime _date, ObservableCollection<Appointment> AvailableAppointments) {
 
             String doctorName = selectedDoctor.Name + " " + selectedDoctor.LastName;
 
