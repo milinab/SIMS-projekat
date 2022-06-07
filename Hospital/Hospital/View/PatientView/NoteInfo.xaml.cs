@@ -153,7 +153,7 @@ namespace Hospital.View.PatientView
 
             if (this.noteName.Text != "" || this.noteText.Text != "") {
                 app._noteController.Edit(note);
-                PopupNotification.sendPopupNotification("Success!", "Your note is edited successfully!");
+                PopupNotification.SendPopupNotification("Success!", "Your note is edited successfully!");
             }
         }
 

@@ -60,7 +60,7 @@ namespace Hospital.View.PatientView
             Therapies = app._therapyController.ReadBypatientId(patient.Id);
             Notes = app._noteController.ReadByPatientId(patient.Id);
             GetTherapyTime();
-            getNoteNotificationTime();
+            GetNoteNotificationTime();
 
 
             foreach (var a in Appointments) {
@@ -92,12 +92,12 @@ namespace Hospital.View.PatientView
 
         private void TimerTick(object sender, EventArgs e)
         {
-            PopupNotification.sendPopupNotification("Therapy reminder", "Please, take your therapy in half an hour.");
+            PopupNotification.SendPopupNotification("Therapy reminder", "Please, take your therapy in half an hour.");
             Console.WriteLine("Please, take your therapy in half an hour.");
             liveDateTime.Stop();
 
         }
-        private void getNoteNotificationTime()
+        private void GetNoteNotificationTime()
         {
             foreach (var note in Notes)
             {
@@ -117,7 +117,7 @@ namespace Hospital.View.PatientView
         private void TimerTickForNotes(object sender, EventArgs e)
         {
 
-            PopupNotification.sendPopupNotification(this.notifyNote.Name, this.notifyNote.NoteText);
+            PopupNotification.SendPopupNotification(this.notifyNote.Name, this.notifyNote.NoteText);
             Console.WriteLine("Note notification");
             liveDateTime.Stop();
         }
@@ -144,12 +144,13 @@ namespace Hospital.View.PatientView
                 Appointment appointment = (Appointment)dataGridAppointments.SelectedItem;
                 app._appointmentController.Delete(appointment.Id);
 
-                TrollSystem.troll(this, app);
+                TrollSystem ts = new TrollSystem(this, app);
+                ts.Troll();
                 this.BackToPatientWindow();
             }
             else
             {
-                PopupNotification.sendPopupNotification("Warning", "Please, select an appointment You want to cancel.");
+                PopupNotification.SendPopupNotification("Warning", "Please, select an appointment You want to cancel.");
             }
         }
 

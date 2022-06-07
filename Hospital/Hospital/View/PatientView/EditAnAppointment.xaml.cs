@@ -14,7 +14,6 @@ namespace Hospital.View.PatientView
         private App app;
         private readonly PatientWindow _patientWindow;
         private int _id;
-        private DateTime Date;
         public Patient patient;
 
         public ObservableCollection<Doctor> Doctors
@@ -59,7 +58,7 @@ namespace Hospital.View.PatientView
 
             if (DoctorPriority.IsChecked == false && DatePriority.IsChecked == false)
             {
-                PopupNotification.sendPopupNotification("Warning", "You need to select a priority.");
+                PopupNotification.SendPopupNotification("Warning", "You need to select a priority.");
                 return false;
             }
             return false;

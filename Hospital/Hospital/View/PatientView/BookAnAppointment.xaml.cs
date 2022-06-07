@@ -3,7 +3,6 @@ using System.Windows;
 using System.Windows.Controls;
 using Hospital.Model;
 using System.Collections.ObjectModel;
-using System.Collections.Generic;
 
 namespace Hospital.View.PatientView
 {
@@ -43,7 +42,7 @@ namespace Hospital.View.PatientView
          
             if(DoctorPriority.IsChecked == false && DatePriority.IsChecked == false)
             {
-                PopupNotification.sendPopupNotification("Warning", "You need to select a priority.");
+                PopupNotification.SendPopupNotification("Warning", "You need to select a priority.");
                 return false;
             }
             return false;
@@ -51,6 +50,7 @@ namespace Hospital.View.PatientView
 
         private void AddAppointment_Click(object sender, RoutedEventArgs e)
         {
+            Validate();
 
             int DoctorId = Int32.Parse(((Model.User)doctorsComboBox.SelectedItem).Id.ToString());
             

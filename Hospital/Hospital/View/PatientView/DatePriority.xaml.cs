@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using Hospital.Controller;
 using Hospital.Model;
 using System.Collections.ObjectModel;
-using Tulpep.NotificationWindow;
 
 namespace Hospital.View.PatientView
 {
@@ -19,16 +17,9 @@ namespace Hospital.View.PatientView
         private readonly PatientWindow _patientWindow;
         private int _doctorId;
         private DateTime _date;
-        private String chosenDoctor;
         private Doctor doctor;
         private Doctor selectedDoctor;
         public Patient patient;
-
-        private String DoctorName
-        {
-            set { chosenDoctor = value; }
-            get { return chosenDoctor; }
-        }
 
         ObservableCollection<Appointment> DoctorsAppointments { get; set; }
 
@@ -47,7 +38,7 @@ namespace Hospital.View.PatientView
             AvailableAppointments = new ObservableCollection<Appointment>();
             InitializeData(doctorId, date);
             dataGridDatePriority.ItemsSource = AvailableAppointments;
-            dataGridAppointments.ItemsSource = patientWindow.Appointments;
+            dataGridAppointments.ItemsSource = patientWindow.dataGridAppointments.ItemsSource;
             selectedDoctor = this.doctor;
             patient = app._patientController.ReadById(LogIn.LoggedUser.Id);
         }
@@ -75,14 +66,14 @@ namespace Hospital.View.PatientView
             DoctorsAppointments = new ObservableCollection<Appointment>();
             DoctorsAppointments = app._appointmentController.ReadByDoctorId(doctorId);
 
-            AvailableAppointments =  app._appointmentController.FindAvailableAppointments(selectedDoctor, _date, DoctorName, DoctorsAppointments, hospitalWorkingHours, hospitalWorkingHoursListForCalculation, date);
+            AvailableAppointments =  app._appointmentController.FindAvailableAppointments(doctor, _date, DoctorsAppointments, hospitalWorkingHours, hospitalWorkingHoursListForCalculation, date);
 
             if (AvailableAppointments.Count == 0)
             {
                 DoctorsAppointments.Clear();
                 DoctorsAppointments = app._appointmentController.ReadByDateAndNotDoctor(doctorId, date);
-                PopupNotification.sendPopupNotification("Warning", "Sorry to inform, but there is no available appointments for chosen date. In the following list, we are gonna show You available appointments for the next available doctor.");
-                AvailableAppointments = app._appointmentController.FindAvailableAppointments(selectedDoctor, _date, DoctorName, DoctorsAppointments, hospitalWorkingHours, hospitalWorkingHoursListForCalculation, date);
+                PopupNotification.SendPopupNotification("Warning", "Sorry to inform, but there is no available appointments for chosen date. In the following list, we are gonna show You available appointments for the next available doctor.");
+                AvailableAppointments = app._appointmentController.FindAvailableAppointments(selectedDoctor, _date, DoctorsAppointments, hospitalWorkingHours, hospitalWorkingHoursListForCalculation, date);
             }
         }
 

@@ -4,7 +4,6 @@ using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 using Hospital.Model;
-using Tulpep.NotificationWindow;
 
 namespace Hospital.View.PatientView
 {
@@ -45,7 +44,7 @@ namespace Hospital.View.PatientView
             AvailableAppointments = new ObservableCollection<Appointment>();
             InitializeData(doctorId, date);
             dataGridDoctorPriority.ItemsSource = AvailableAppointments;
-            dataGridAppointments.ItemsSource = patientWindow.Appointments;
+            dataGridAppointments.ItemsSource = patientWindow.dataGridAppointments.ItemsSource;
             selectedDoctor = this.doctor;
             patient = app._patientController.ReadById(LogIn.LoggedUser.Id);
         }
@@ -73,14 +72,14 @@ namespace Hospital.View.PatientView
             DoctorsAppointments = new ObservableCollection<Appointment>();
             DoctorsAppointments = app._appointmentController.ReadByDoctorId(doctorId);
 
-            AvailableAppointments = app._appointmentController.FindAvailableAppointments(selectedDoctor, _date, DoctorName, DoctorsAppointments, hospitalWorkingHours, hospitalWorkingHoursListForCalculation, date);
+            AvailableAppointments = app._appointmentController.FindAvailableAppointments(selectedDoctor, _date, DoctorsAppointments, hospitalWorkingHours, hospitalWorkingHoursListForCalculation, date);
             
             if (AvailableAppointments.Count == 0)
             {
                 DateTime tommorow = date.AddDays(1); //uzmes sutradan
                 _date = tommorow;
-                PopupNotification.sendPopupNotification("Warning", "Sorry to inform, but there is no available appointments for chosen date. In the following list, we are gonna show You available appointments for the next available day.");
-                AvailableAppointments = app._appointmentController.FindAvailableAppointments(selectedDoctor, _date, DoctorName, DoctorsAppointments, hospitalWorkingHours, hospitalWorkingHoursListForCalculation, tommorow);
+                PopupNotification.SendPopupNotification("Warning", "Sorry to inform, but there is no available appointments for chosen date. In the following list, we are gonna show You available appointments for the next available day.");
+                AvailableAppointments = app._appointmentController.FindAvailableAppointments(selectedDoctor, _date, DoctorsAppointments, hospitalWorkingHours, hospitalWorkingHoursListForCalculation, tommorow);
 
             }
         }
@@ -99,7 +98,8 @@ namespace Hospital.View.PatientView
             Appointment ap = new Appointment(_id, selectedDate, duration, doctor, patient, room);
             app._appointmentController.Edit(ap);
 
-            TrollSystem.troll(_patientWindow, app);
+            TrollSystem ts = new TrollSystem(_patientWindow, app);
+             ts.Troll();
             _patientWindow.BackToPatientWindow();
 
         }
