@@ -37,8 +37,10 @@ namespace Hospital
         internal NoteController _noteController;
         internal TrolController _trolController;
         internal MedicineReplaceController _medicineReplaceController;
-        //internal MainPage _mainPage;
+        internal VacationController _vacationController;
+        internal AnamnesisController _anamnesisController;
 
+        //internal MainPage _mainPage;
         internal MainWindow _mainWindow;
 
         public App()
@@ -73,9 +75,11 @@ namespace Hospital
             _noteController = new NoteController(services.NoteService);
             _trolController = new TrolController(services.TrolService);
             _medicineReplaceController = new MedicineReplaceController(services.MedicineReplaceService);
+            _vacationController = new VacationController(services.VacationService);
+            _anamnesisController = new AnamnesisController(services.AnamnesisService);
 
-            _mainWindow = new MainWindow();
-            
+            // _mainWindow = new MainWindow();
+
         }
     }
 }

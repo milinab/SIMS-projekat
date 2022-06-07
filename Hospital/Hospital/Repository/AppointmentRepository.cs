@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
 using Hospital.Model;
@@ -174,6 +175,35 @@ namespace Hospital.Repository
                     }
                     itemsToReturn.Add(appointment);
                     
+                }
+            }
+            return itemsToReturn;
+        }
+
+        public List<Appointment> ReadByPatientId(int patientId)
+        {
+            var itemsToReturn = new List<Appointment>();
+            _appointments = _serializer.Read();
+            foreach (Appointment appointment in _appointments)
+            {
+                if (appointment.PatientId == patientId)
+                {
+                    Doctor doctor = _doctorRepository.ReadById(appointment.DoctorId);
+                    Patient patient = _patientRepository.ReadById(appointment.PatientId);
+                    Room room = _roomRepository.ReadById(appointment.RoomId);
+                    if (doctor != null)
+                    {
+                        appointment.Doctor = doctor;
+                    }
+                    if (patient != null)
+                    {
+                        appointment.Patient = patient;
+                    }
+                    if (room != null)
+                    {
+                        appointment.Room = room;
+                    }
+                    itemsToReturn.Add(appointment);
                 }
             }
             return itemsToReturn;

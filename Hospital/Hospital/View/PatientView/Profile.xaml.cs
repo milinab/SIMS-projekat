@@ -1,17 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Hospital.Model;
 using System.Windows;
+using System.Collections.ObjectModel;
+
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Hospital.View.PatientView
 {
@@ -22,7 +13,6 @@ namespace Hospital.View.PatientView
     {
         private App app;
         private readonly object _content;
-        private Profile profile;
         private readonly PatientWindow _patientWindow;
         public Profile(PatientWindow patientWindow)
         {
@@ -46,7 +36,14 @@ namespace Hospital.View.PatientView
 
         private void MedicalRecord_Click(object sender, RoutedEventArgs e)
         {
-            Page medicalRecordPage = new MedicalRecord(_patientWindow);
+            User user = app._userController.ReadById(1);
+            Patient patient = app._patientController.ReadById(1);
+            Address address = app._addressController.ReadById(1);
+            City city = app._cityController.ReadById(1);
+            Country country = app._countryController.ReadById(1);
+            Model.MedicalRecord medicalRecord = app._medicalRecordController.ReadById(1);
+            ObservableCollection<Allergen> allergens = app._allergenController.ReadByIds(medicalRecord.AllergenIds);
+            Page medicalRecordPage = new MedicalRecord(_patientWindow, user, patient, address, city, country, medicalRecord, allergens);
             this.frame.Navigate(medicalRecordPage);
         }
 
@@ -80,6 +77,12 @@ namespace Hospital.View.PatientView
         {
             Page notificationPage = new Notification(_patientWindow);
             this.frame.Navigate(notificationPage);
+        }
+
+        private void AccountSettings_Click(object sender, RoutedEventArgs e)
+        {
+            Page accountSettingsPage = new AccountSettings(_patientWindow);
+            this.frame.Navigate(accountSettingsPage);
         }
 
         public void BackToPatientWindow()

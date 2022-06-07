@@ -35,12 +35,13 @@ namespace Hospital.View.PatientView
         }
 
         private App app;
-        private readonly object _content;
+        //private readonly object _content;
         private readonly PatientWindow _patientWindow;
         private readonly Notes _notes;
 
         private string _noteName;
         private string _noteText;
+        public Patient patient;
 
         public string NoteName {
 
@@ -93,7 +94,14 @@ namespace Hospital.View.PatientView
 
         private void MedicalRecord_Click(object sender, RoutedEventArgs e)
         {
-            Page medicalRecordPage = new MedicalRecord(_patientWindow);
+            User user = app._userController.ReadById(patient.Id);
+            Address address = app._addressController.ReadById(user.Address.Id);
+            City city = app._cityController.ReadById(user.Address.CityId);
+            Country country = app._countryController.ReadById(1); //country nije postavljen u address modelu
+            Model.MedicalRecord medicalRecord = app._medicalRecordController.ReadById(patient.MedicalRecordId);
+            ObservableCollection<Allergen> allergens = app._allergenController.ReadByIds(medicalRecord.AllergenIds);
+
+            Page medicalRecordPage = new MedicalRecord(_patientWindow, user, patient, address, city, country, medicalRecord, allergens);
             this.frame.Navigate(medicalRecordPage);
         }
 
@@ -141,13 +149,23 @@ namespace Hospital.View.PatientView
 
         private void SaveChanges_Click(object sender, RoutedEventArgs e)
         {
+            DateTime date = myCalendar.SelectedDate.Value;
+            string time = TimePicker.Text;
+            string[] timeParts = time.Split(':');
+            date += new TimeSpan(int.Parse(timeParts[0]), int.Parse(timeParts[1]), 0);
+
+
+
+            Note newNote = new Note(noteName.Text, noteText.Text, DateTime.Now, date);
+/*
             Note newNote = new Note
             {
                 Name = noteName.Text,
                 NoteText = noteText.Text,
-                Date = DateTime.Now
+                Date = DateTime.Now,
+                NotificationDate = date
             };
-
+*/
             if (this.noteName.Text != "" && this.noteText.Text != "")
             {
                 app._noteController.Create(newNote);
@@ -176,20 +194,16 @@ namespace Hospital.View.PatientView
 
             if (noteName.Text == "")
             {
-                // Create an ImageBrush.
-                ImageBrush textImageBrush = new ImageBrush();
-                textImageBrush.ImageSource =
-                    new BitmapImage(
-                        new Uri(@"insertNoteName.png", UriKind.Relative)
-                    );
-                textImageBrush.AlignmentX = AlignmentX.Left;
-                textImageBrush.Stretch = Stretch.None;
-                // Use the brush to paint the button's background.
+                ImageBrush textImageBrush = new ImageBrush
+                {
+                    ImageSource = new BitmapImage(new Uri(@"insertNoteName.png", UriKind.Relative)),
+                    AlignmentX = AlignmentX.Left,
+                    Stretch = Stretch.None
+                };
                 noteName.Background = textImageBrush;
             }
             else
             {
-
                 noteName.Background = null;
             }
         }
@@ -199,21 +213,17 @@ namespace Hospital.View.PatientView
 
             if (noteText.Text == "")
             {
-                // Create an ImageBrush.
-                ImageBrush textImageBrush = new ImageBrush();
-                textImageBrush.ImageSource =
-                    new BitmapImage(
-                        new Uri(@"insertNoteText.png", UriKind.Relative)
-                    );
-                textImageBrush.AlignmentX = AlignmentX.Left;
-                textImageBrush.AlignmentY = AlignmentY.Top;
-                textImageBrush.Stretch = Stretch.None;
-                // Use the brush to paint the button's background.
+                ImageBrush textImageBrush = new ImageBrush
+                {
+                    ImageSource = new BitmapImage(new Uri(@"insertNoteText.png", UriKind.Relative)),
+                    AlignmentX = AlignmentX.Left,
+                    AlignmentY = AlignmentY.Top,
+                    Stretch = Stretch.None
+                };
                 noteText.Background = textImageBrush;
             }
             else
             {
-
                 noteText.Background = null;
             }
         }

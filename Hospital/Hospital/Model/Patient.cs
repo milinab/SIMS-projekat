@@ -14,6 +14,7 @@ namespace Hospital.Model
         public MedicalRecord MedicalRecord { get; set; }
         [DataMember]
         public Boolean IsActive { get; set; }
+        [DataMember]
         public string Gender
         {
             get

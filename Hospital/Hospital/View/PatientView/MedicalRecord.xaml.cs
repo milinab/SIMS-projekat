@@ -1,17 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Hospital.Model;
+using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Hospital.View.PatientView
 {
@@ -22,15 +12,47 @@ namespace Hospital.View.PatientView
     {
         private App app;
         private readonly object _content;
-        private MedicalRecord medicalRecord;
         private readonly PatientWindow _patientWindow;
-        public MedicalRecord(PatientWindow patientWindow)
+        public Patient patient;
+
+        public MedicalRecord(PatientWindow patientWindow, User user, Patient patient, Address address, City city, Country country, Model.MedicalRecord medicalRecord, ObservableCollection<Allergen> allergens)
         {
             InitializeComponent();
             app = Application.Current as App;
             _content = Content;
             this.DataContext = this;
             _patientWindow = patientWindow;
+
+            this.firstName.Text = user.Name;
+            this.lastName.Text = user.LastName;
+            this.dateOfBirth.Text = user.DateOfBirth.ToString("d.M.yyyy");
+            this.jmbg.Text = user.IdNumber;
+            this.email.Text = user.Email;
+            this.phoneNumber.Text = user.Phone;
+            this.gender.Text = patient.Gender;
+            this.streetName.Text = address.Street;
+            this.streetNumber.Text = address.Number;
+            this.city.Text = city.Name;
+            this.postalCode.Text = city.Zip;
+            this.healthInsuranceID.Text = patient.HealthInsuranceId;
+            this.bloodType.Text = patient.BloodType;
+            this.country.Text = country.Name;
+            this.chronicalDisease.Text = medicalRecord.ChronicalDiseases;
+            this.allergies.Text = showAllergens(allergens);
+
+        }
+
+        private string showAllergens(ObservableCollection<Allergen> allergens) {
+            var patientAllergens = new System.Text.StringBuilder();
+            foreach (Allergen a in allergens) {
+                if (allergens.Count == 1) {
+                    patientAllergens.AppendLine(a.Name).ToString();
+                } else {
+                    patientAllergens.AppendLine(a.Name).ToString();
+                }
+            }
+
+            return patientAllergens.ToString();
         }
 
         private void HomePage_Click(object sender, RoutedEventArgs e)
@@ -47,7 +69,14 @@ namespace Hospital.View.PatientView
 
         private void MedicalRecord_Click(object sender, RoutedEventArgs e)
         {
-            Page medicalRecordPage = new MedicalRecord(_patientWindow);
+            User user = app._userController.ReadById(patient.Id);
+            Address address = app._addressController.ReadById(user.Address.Id);
+            City city = app._cityController.ReadById(user.Address.CityId);
+            Country country = app._countryController.ReadById(1); //country nije postavljen u address modelu
+            Model.MedicalRecord medicalRecord = app._medicalRecordController.ReadById(patient.MedicalRecordId);
+            ObservableCollection<Allergen> allergens = app._allergenController.ReadByIds(medicalRecord.AllergenIds);
+
+            Page medicalRecordPage = new MedicalRecord(_patientWindow, user, patient, address, city, country, medicalRecord, allergens);
             this.frame.Navigate(medicalRecordPage);
         }
 

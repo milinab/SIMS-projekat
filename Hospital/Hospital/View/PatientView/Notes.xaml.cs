@@ -1,20 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Hospital.Model;
 using System.Collections.ObjectModel;
-using Hospital.Controller;
+using Tulpep.NotificationWindow;
 
 namespace Hospital.View.PatientView
 {
@@ -25,9 +13,8 @@ namespace Hospital.View.PatientView
     {
         private App app;
         private readonly object _content;
-        private Note note;
         private readonly PatientWindow _patientWindow;
-        
+        public Patient patient;
 
         public ObservableCollection<Note> NotesList
         {
@@ -60,7 +47,14 @@ namespace Hospital.View.PatientView
 
         private void MedicalRecord_Click(object sender, RoutedEventArgs e)
         {
-            Page medicalRecordPage = new MedicalRecord(_patientWindow);
+            User user = app._userController.ReadById(patient.Id);
+            Address address = app._addressController.ReadById(user.Address.Id);
+            City city = app._cityController.ReadById(user.Address.CityId);
+            Country country = app._countryController.ReadById(1); //country nije postavljen u address modelu
+            Model.MedicalRecord medicalRecord = app._medicalRecordController.ReadById(patient.MedicalRecordId);
+            ObservableCollection<Allergen> allergens = app._allergenController.ReadByIds(medicalRecord.AllergenIds);
+
+            Page medicalRecordPage = new MedicalRecord(_patientWindow, user, patient, address, city, country, medicalRecord, allergens);
             this.frame.Navigate(medicalRecordPage);
         }
         private void Notes_Click(object sender, RoutedEventArgs e)
@@ -139,7 +133,7 @@ namespace Hospital.View.PatientView
             }
             else
             {
-                //MessageBox.Show("Select a note You want to delete.", "Warning");
+                PopupNotification.sendPopupNotification("Warning", "Please, select the note You want to delete.");
                 this.selectForDelete.Visibility = Visibility.Visible;
             }
         }
@@ -149,9 +143,9 @@ namespace Hospital.View.PatientView
         public void BackToNotes()
         {
             Content = _content;
-            refresh();
+            Refresh();
         }
-        public void refresh()
+        public void Refresh()
         {
             dataGridNotes.ItemsSource = app._noteController.Read();
         }

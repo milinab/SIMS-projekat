@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Hospital.Model;
 using Hospital.Service;
@@ -55,9 +56,15 @@ namespace Hospital.Controller
             return _service.ReadByDateAndNotDoctor(doctorId, date);
         }
 
-        public ObservableCollection<Appointment> ReadFutureAppointments()
+        public ObservableCollection<Appointment> ReadFutureAppointments(int patientId)
         {
-            return _service.ReadFutureAppointments();
+            return _service.ReadFutureAppointments(patientId);
+        }
+
+        public ObservableCollection<Appointment> FindAvailableAppointments(Doctor selectedDoctor, DateTime _date, string DoctorName, ObservableCollection<Appointment> DoctorsAppointments,
+            List<TimeSpan> hospitalWorkingHours, List<TimeSpan> hospitalWorkingHoursListForCalculation, DateTime date)
+        {
+            return _service.FindAvailabeAppointments(selectedDoctor, _date, DoctorName, DoctorsAppointments, hospitalWorkingHours, hospitalWorkingHoursListForCalculation, date);
         }
     }
 }
