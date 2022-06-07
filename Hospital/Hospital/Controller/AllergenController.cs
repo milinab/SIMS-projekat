@@ -39,7 +39,7 @@ namespace Hospital.Controller
             return _service.Read();
         }
 
-        public ObservableCollection<Allergen> ReadByIds(AllergenList alergenIds) {
+        public ObservableCollection<Allergen> ReadByIds(List<int> alergenIds) {
 
             return _service.ReadByIds(alergenIds);
 

@@ -9,87 +9,25 @@ using MessageBox = Xceed.Wpf.Toolkit.MessageBox;
 
 namespace Hospital.View.DoctorView.Requests
 {
-    public partial class RequestVacationPage
+    public partial class VacationPage
     {
         private App _app;
-        public RequestVacationPage()
+        public VacationPage()
         {
-            _app = Application.Current as App;
             InitializeComponent();
-            StartDate.SelectedDate = DateTime.Today.AddDays(2);
-            StartDate.DisplayDateStart = DateTime.Today.AddDays(2);
+            _app = Application.Current as App;
+            DataContext = this;
+            VacationDataGrid.ItemsSource = _app?._vacationController.Read();
         }
 
-        [SuppressMessage("ReSharper", "PossibleInvalidOperationException")]
-        private void Confirm(object sender, RoutedEventArgs e)
+        private void NewRequest_OnClick(object sender, RoutedEventArgs e)
         {
-            
-            if (UrgentCheckBox.IsChecked ?? false)
-            {
-                if (!ValidateInput()) return;
-                var doctor = _app._doctorController.ReadById(LogIn.LoggedUser.Id);
-                var vacation = new Vacation((DateTime)StartDate.SelectedDate, (DateTime)EndDate.SelectedDate,
-                    ReasonTextBox.Text, doctor, VacationState.Awaiting);
-                try
-                {
-                    _app._vacationController.Create(vacation);
-                    MainWindow.MainFrame.GoBack();
-                }
-                catch (VacationException exception)
-                {
-                    if (exception.Message.Equals("DoctorException"))
-                    {
-                        MessageBox.Show("You already have a pending request");
-                        return;
-                    } 
-                    MessageBox.Show("Wrong date");
-                }
-            }
-            else
-            {
-                if (!ValidateInput()) return;
-                var doctor = _app._doctorController.ReadById(LogIn.LoggedUser.Id);
-
-                var vacation = new Vacation((DateTime)StartDate.SelectedDate, (DateTime)EndDate.SelectedDate,
-                    ReasonTextBox.Text, doctor, VacationState.Awaiting);
-                try
-                {
-                    _app._vacationController.NoPriorityCreate(vacation);
-                    MainWindow.MainFrame.GoBack();
-                }
-                catch (VacationException exception)
-                {
-                    if (exception.Message.Equals("DoctorException"))
-                    {
-                        MessageBox.Show("You already have a pending request");
-                        return;
-                    }
-                    if (exception.Message.Equals("SpecializationException"))
-                    {
-                        MessageBox.Show("Doctor with this specialization has already requested vacation");
-                        return;
-                    }
-                    MessageBox.Show("Wrong date");
-                }
-            }
+            MainWindow.MainFrame.Navigate(new CreateRequestPage());
         }
 
-        private bool ValidateInput()
-        {
-            return StartDate.SelectedDate != null && EndDate.SelectedDate != null && !string.IsNullOrEmpty(ReasonTextBox.Text);
-        }
-
-        private void Cancel(object sender, RoutedEventArgs e)
+        private void Back_OnClick(object sender, RoutedEventArgs e)
         {
             MainWindow.MainFrame.GoBack();
-        }
-
-        private void StartDate_OnSelectedDateChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (StartDate.SelectedDate == null) return;
-            var startDate = (DateTime) StartDate.SelectedDate;
-            EndDate.DisplayDateStart = startDate.AddDays(1);
-            EndDate.SelectedDate = startDate.AddDays(1);
         }
     }
 }

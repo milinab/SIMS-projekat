@@ -11,9 +11,9 @@ namespace Hospital.Service
         private int _id;
         private readonly AllergenRepository _repository;
 
-        public AllergenService(AllergenRepository AllergenRepository)
+        public AllergenService(AllergenRepository allergenRepository)
         {
-            _repository = AllergenRepository;
+            _repository = allergenRepository;
             ObservableCollection<Allergen> allergens = Read();
             if (allergens.Count == 0)
             {
@@ -51,7 +51,7 @@ namespace Hospital.Service
             return _repository.Read();
         }
 
-        public ObservableCollection<Allergen> ReadByIds(AllergenList ids)
+        public ObservableCollection<Allergen> ReadByIds(List<int> ids)
         {
             ObservableCollection<Allergen> ret = new ObservableCollection<Allergen>();
             foreach (int al in ids) {
