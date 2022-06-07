@@ -5,23 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Hospital.View.ManagerView"
         mc:Ignorable="d"
-        Title="AddRoomWindow" Height="450" Width="800">
-    <Grid Background="Azure">
+        Title="AddRoomWindow" Height="450" Width="800"
+        WindowStyle="None">
+    <Grid Background="Azure"
+          >
 
-        <Label Content="Name:" FontSize="20" Margin="163,82,521,262" ></Label>
-        <TextBox x:Name="idText" TextWrapping="Wrap" Margin="289,84,144,292" />
-        <Label Content="Floor:" FontSize="20" Margin="169,182,507,176" ></Label>
-        <Label Content="Choose type:" FontSize="20" Margin="110,293,529,54" ></Label>
-        <ComboBox x:Name="typeComboBox"  Margin="289,301,144,74" >
+        <Label Content="Name:" FontSize="20" Margin="200,102,492,296" ></Label>
+        <TextBox x:Name="idText" TextWrapping="Wrap" Margin="320,111,180,289" />
+        <Label Content="Floor:" FontSize="20" Margin="207,196,490,205" ></Label>
+        <Label Content="Choose type:" FontSize="20" Margin="142,285,513,112" ></Label>
+        <ComboBox x:Name="typeComboBox"  Margin="320,293,180,107" >
             <ComboBoxItem IsSelected="True">Operation</ComboBoxItem>
             <ComboBoxItem>Conference</ComboBoxItem>
             <ComboBoxItem>Storage</ComboBoxItem>
         </ComboBox>
-        <Button Content="Add" HorizontalAlignment="Left" Margin="570,387,0,0" VerticalAlignment="Top" Width="86" Height="25" Click="AddRoomClick"/>
-        <Button Content="Cancel" HorizontalAlignment="Left" Margin="289,387,0,0" VerticalAlignment="Top" Width="86" Height="25" Click="CancelRoomClick"/>
-        <TextBox x:Name="floorText" TextWrapping="Wrap" Margin="289,182,144,194" />
-        <Line X1="50" Y1="50" X2="1000" Y2="50" Stroke="White"  StrokeThickness="3" Margin="-50,18,1,302" />
-        <DockPanel Margin="0,-10,0,357">
+        <Button Content="Add" HorizontalAlignment="Left" Margin="507,379,0,0" VerticalAlignment="Top" Width="100" Height="30" Click="AddRoomClick"/>
+        <Button Content="Cancel" HorizontalAlignment="Left" Margin="319,379,0,0" VerticalAlignment="Top" Width="100" Height="30" Click="CancelRoomClick"/>
+        <TextBox x:Name="floorText" TextWrapping="Wrap" Margin="319,202,181,198" />
+        <Line X1="50" Y1="50" X2="1000" Y2="50" Stroke="White"  StrokeThickness="3" Margin="-50,18,1,318" />
+        <DockPanel Margin="0,-10,0,373">
             <Menu DockPanel.Dock="Top" Background ="AliceBlue" Cursor="Hand" Height="66" >
 
                 <MenuItem Header="Home" Height="61" Width="95" FontSize="12" Click="HomeClick" HorizontalAlignment="Stretch" Margin="90,0,0,0" />
@@ -34,9 +36,27 @@
 
             </Menu>
         </DockPanel>
-        <Image Source="/images/hospitalll.jpg" Margin="0,0,721,360" MouseLeftButtonUp="HomeClick" Cursor="Hand"/>
-        <Image Source="/images/sign_out.png" Margin="699,15,66,379" MouseLeftButtonUp="SignOutClick" Cursor="Hand"/>
-        <TextBlock Text="Sign out" FontSize="12" Margin="727,19,0,378" MouseLeftButtonUp="SignOutClick" Cursor="Hand" RenderTransformOrigin="0.512,0.042" HorizontalAlignment="Left" Width="84"/>
+        <Image Source="/images/hospitalll.jpg" Margin="0,0,721,376" MouseLeftButtonUp="HomeClick" Cursor="Hand"/>
+        <Image Source="/images/sign_out.png" Margin="699,15,66,395" MouseLeftButtonUp="SignOutClick" Cursor="Hand"/>
+        <TextBlock Text="Sign out" FontSize="12" Margin="727,19,0,394" MouseLeftButtonUp="SignOutClick" Cursor="Hand" RenderTransformOrigin="0.512,0.042" HorizontalAlignment="Left" Width="84"/>
+        <Line X1="50" Y1="50" X2="1000" Y2="50" Stroke="White"  StrokeThickness="3" Margin="-50,18,1,318" />
+        <DockPanel Margin="0,-10,0,373">
+            <Menu DockPanel.Dock="Top" Background ="AliceBlue" Cursor="Hand" Height="66" HorizontalAlignment="Stretch" Margin="50,0,0,0" >
+
+                <MenuItem Header="Home" Height="62" Width="84" FontSize="12" Click="HomeClick" Margin="50,0,0,0" />
+                <MenuItem Header="Medicine" Height="66" Width="98" FontSize="12" Click="MedicineClick"/>
+                <MenuItem Header="Equipment" Height="66" Width="110" FontSize="12" Click="EquipmentClick"/>
+                <MenuItem Header="Rooms" Height="66" Width="90" FontSize="12" Click="RoomClick" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <MenuItem Header="Room occupancy" Height="64" Width="132" FontSize="12" Click="OccupancyClick"/>
+                <MenuItem Header="Survey" Width="70" Click="SurveyClick"/>
+
+
+
+            </Menu>
+        </DockPanel>
+        <Image Source="/images/hospitalll.jpg" Margin="0,0,721,376" MouseLeftButtonUp="HomeClick" Cursor="Hand"/>
+        <Image Source="/images/sign_out.png" Margin="699,15,66,395" MouseLeftButtonUp="SignOutClick" Cursor="Hand"/>
+        <TextBlock Text="Sign out" FontSize="12" Margin="727,19,0,394" MouseLeftButtonUp="SignOutClick" Cursor="Hand" RenderTransformOrigin="0.512,0.042" HorizontalAlignment="Left" Width="84"/>
 
     </Grid>
 </Window>

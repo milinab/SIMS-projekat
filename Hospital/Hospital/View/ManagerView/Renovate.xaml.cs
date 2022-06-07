@@ -137,8 +137,10 @@ namespace Hospital.View.ManagerView
             LogIn login = new LogIn();
             login.Show();
         }
+        private void SurveyClick(object sender, RoutedEventArgs e)
+        {
+            SurveySelect surveySelect = new SurveySelect();
+            surveySelect.Show();
+        }
     }
-
-
-
 }

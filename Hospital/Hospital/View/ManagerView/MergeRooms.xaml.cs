@@ -117,5 +117,10 @@ namespace Hospital.View.ManagerView
             MedicineWindow medicine = new MedicineWindow(_app._medicineController);
             medicine.Show();
         }
+        private void SurveyClick(object sender, RoutedEventArgs e)
+        {
+            SurveySelect surveySelect = new SurveySelect();
+            surveySelect.Show();
+        }
     }
 }

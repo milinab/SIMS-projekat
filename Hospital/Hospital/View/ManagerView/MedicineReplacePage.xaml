@@ -11,7 +11,7 @@
     <Grid Background="Azure">
         <DataGrid x:Name="dataGridMedicine" IsReadOnly="True" Background="Azure" BorderBrush="White" 
             SelectionMode="Single" AutoGenerateColumns="False" HorizontalAlignment="Left" CanUserAddRows="True" CanUserDeleteRows="True"
-            Height="239" VerticalAlignment="Top" Width="759"  RenderTransformOrigin="0.5,0.5" Margin="10,123,0,0">
+            Height="240" VerticalAlignment="Top" Width="759"  RenderTransformOrigin="0.5,0.5" Margin="10,123,0,0">
 
 
             <DataGrid.RenderTransform>
@@ -51,8 +51,8 @@
 
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="CancelReplacement" Content="Cancel" Click="CancelReplacementClick" Margin="214,374,486,35"/>
-        <Button x:Name="Replacement" Content="Replace" Click="ReplacementClick" Margin="485,374,215,35" />
+        <Button x:Name="CancelReplacement" Content="Cancel" Click="CancelReplacementClick" Margin="450,376,240,32"/>
+        <Button x:Name="Replacement" Content="Replace" Click="ReplacementClick" Margin="662,376,28,32" />
         <Line X1="50" Y1="50" X2="1000" Y2="50" Stroke="White"  StrokeThickness="3" Margin="-50,18,1,318" />
         <DockPanel Margin="0,-10,0,373">
             <Menu DockPanel.Dock="Top" Background ="AliceBlue" Cursor="Hand" Height="66" >
@@ -70,7 +70,25 @@
         <Image Source="/images/hospitalll.jpg" Margin="0,0,721,376" MouseLeftButtonUp="HomeClick" Cursor="Hand"/>
         <Image Source="/images/sign_out.png" Margin="699,15,66,395" MouseLeftButtonUp="SignOutClick" Cursor="Hand"/>
         <TextBlock Text="Sign out" FontSize="12" Margin="727,19,0,394" MouseLeftButtonUp="SignOutClick" Cursor="Hand" RenderTransformOrigin="0.512,0.042" HorizontalAlignment="Left" Width="84"/>
-        <Label Name="validationSelection" Content="Please select the medicine with which you want to replace the selected drug" FontSize="12" Foreground="Red" Margin="8,96,350,300" Visibility="Hidden"/>
+        <Label Name="validationSelection" Content="Please select the medicine with which you want to replace the selected medicine" FontSize="12" Foreground="Red" Margin="8,96,306,300" Visibility="Hidden" />
+        <Line X1="50" Y1="50" X2="1000" Y2="50" Stroke="White"  StrokeThickness="3" Margin="-50,18,1,318" />
+        <DockPanel Margin="0,-10,0,373">
+            <Menu DockPanel.Dock="Top" Background ="AliceBlue" Cursor="Hand" Height="66" HorizontalAlignment="Stretch" Margin="50,0,0,0" >
+
+                <MenuItem Header="Home" Height="62" Width="84" FontSize="12" Click="HomeClick" Margin="50,0,0,0" />
+                <MenuItem Header="Medicine" Height="66" Width="98" FontSize="12" Click="MedicineClick"/>
+                <MenuItem Header="Equipment" Height="66" Width="110" FontSize="12" Click="EquipmentClick"/>
+                <MenuItem Header="Rooms" Height="66" Width="90" FontSize="12" Click="RoomClick" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <MenuItem Header="Room occupancy" Height="64" Width="132" FontSize="12" Click="OccupancyClick"/>
+                <MenuItem Header="Survey" Width="70" Click="SurveyClick"/>
+
+
+
+            </Menu>
+        </DockPanel>
+        <Image Source="/images/hospitalll.jpg" Margin="0,0,721,376" MouseLeftButtonUp="HomeClick" Cursor="Hand"/>
+        <Image Source="/images/sign_out.png" Margin="699,15,66,395" MouseLeftButtonUp="SignOutClick" Cursor="Hand"/>
+        <TextBlock Text="Sign out" FontSize="12" Margin="727,19,0,394" MouseLeftButtonUp="SignOutClick" Cursor="Hand" RenderTransformOrigin="0.512,0.042" HorizontalAlignment="Left" Width="84"/>
 
     </Grid>
 </Page>

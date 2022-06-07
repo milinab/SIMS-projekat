@@ -9,12 +9,12 @@
       Title="MergeRooms">
 
     <Grid Background="Azure">
-        <TextBlock Text="choose the room you want to merge:" Margin="178,126,397,286" />
-        <ComboBox Name="disappearingRoomComboBox" Margin="435,123,161,279" />
-        <TextBlock Text="Select room you want to merge with:" Margin="179,236,402,176" RenderTransformOrigin="-0.155,1.881" />
-        <ComboBox Name="expandingRoomComboBox" Margin="435,231,161,171" />
-        <Button Content="Merge" Margin="489,369,161,36" Click="MergeClick"/>
-        <Button Content="Cancel" Margin="230,369,420,36" Click="CancelClick"  />
+        <TextBlock Text="Choose the room you want to merge:" Margin="40,147,397,240" FontSize="20" />
+        <ComboBox Name="disappearingRoomComboBox" Margin="434,148,66,256" />
+        <TextBlock Text="Select room you want to merge with:" Margin="45,258,397,136" RenderTransformOrigin="-0.155,1.881" FontSize="20"/>
+        <ComboBox Name="expandingRoomComboBox" Margin="434,255,66,149" />
+        <Button Content="Merge" Margin="634,378,66,28" Click="MergeClick"/>
+        <Button Content="Cancel" Margin="434,378,266,28" Click="CancelClick"  />
         <Line X1="50" Y1="50" X2="1000" Y2="50" Stroke="White"  StrokeThickness="3" Margin="-50,18,1,318" />
         <DockPanel Margin="0,-10,0,373">
             <Menu DockPanel.Dock="Top" Background ="AliceBlue" Cursor="Hand" Height="66" >
@@ -24,6 +24,24 @@
                 <MenuItem Header="Equipment" Height="65" Width="145" FontSize="12" Click="EquipmentClick"/>
                 <MenuItem Header="Rooms" Height="66" Width="105" FontSize="12" Click="RoomClick" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <MenuItem Header="Room occupancy" Height="64" Width="102" FontSize="12" Click="OccupancyClick"/>
+
+
+
+            </Menu>
+        </DockPanel>
+        <Image Source="/images/hospitalll.jpg" Margin="0,0,721,376" MouseLeftButtonUp="HomeClick" Cursor="Hand"/>
+        <Image Source="/images/sign_out.png" Margin="699,15,66,395" MouseLeftButtonUp="SignOutClick" Cursor="Hand"/>
+        <TextBlock Text="Sign out" FontSize="12" Margin="727,19,0,394" MouseLeftButtonUp="SignOutClick" Cursor="Hand" RenderTransformOrigin="0.512,0.042" HorizontalAlignment="Left" Width="84"/>
+        <Line X1="50" Y1="50" X2="1000" Y2="50" Stroke="White"  StrokeThickness="3" Margin="-50,18,1,318" />
+        <DockPanel Margin="0,-10,0,373">
+            <Menu DockPanel.Dock="Top" Background ="AliceBlue" Cursor="Hand" Height="66" HorizontalAlignment="Stretch" Margin="50,0,0,0" >
+
+                <MenuItem Header="Home" Height="62" Width="84" FontSize="12" Click="HomeClick" Margin="50,0,0,0" />
+                <MenuItem Header="Medicine" Height="66" Width="98" FontSize="12" Click="MedicineClick"/>
+                <MenuItem Header="Equipment" Height="66" Width="110" FontSize="12" Click="EquipmentClick"/>
+                <MenuItem Header="Rooms" Height="66" Width="90" FontSize="12" Click="RoomClick" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <MenuItem Header="Room occupancy" Height="64" Width="132" FontSize="12" Click="OccupancyClick"/>
+                <MenuItem Header="Survey" Width="70" Click="SurveyClick"/>
 
 
 

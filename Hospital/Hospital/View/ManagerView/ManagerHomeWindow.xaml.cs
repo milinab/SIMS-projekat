@@ -74,5 +74,11 @@ namespace Hospital.View.ManagerView
             Close();
         }
 
+        private void SurveyClick(object sender, RoutedEventArgs e)
+        {
+            SurveySelect surveySelect = new SurveySelect();
+            surveySelect.Show();
+            Close();
+        }
     }
 }

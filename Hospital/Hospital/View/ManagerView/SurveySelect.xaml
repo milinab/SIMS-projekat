@@ -1,14 +1,38 @@
-﻿<Window x:Class="Hospital.View.ManagerView.MedicineWindow"
+﻿<Window x:Class="Hospital.View.ManagerView.SurveySelect"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Hospital.View.ManagerView"
+        xmlns:wf="clr-namespace:System.Windows.Forms.DataVisualization.Charting;assembly=System.Windows.Forms.DataVisualization"
         mc:Ignorable="d"
-        Title="Medicine" Height="450" Width="800"
+        Title="SurveySelect" Height="450" Width="800"
         WindowStyle="None">
     <Grid Background="Azure">
-        <TextBlock Text="Add" Margin="62,390,693,24" FontSize="15" Cursor="Hand" MouseLeftButtonUp="AddMedicineClick"/>
+        <Line X1="50" Y1="50" X2="1000" Y2="50" Stroke="White"  StrokeThickness="3" Margin="-50,18,1,318" />
+
+        <WindowsFormsHost Margin="66,154,502,154">
+            <wf:Chart x:Name ="Chart1">
+                <wf:Chart.Series>
+                    <wf:Series ChartType="Column"/>
+                </wf:Chart.Series>
+                <wf:Chart.ChartAreas>
+                    <wf:ChartArea/>
+                </wf:Chart.ChartAreas>
+            </wf:Chart>
+        </WindowsFormsHost>
+
+        <WindowsFormsHost Margin="484,155,84,153">
+            <wf:Chart x:Name ="Chart2">
+                <wf:Chart.Series>
+                    <wf:Series ChartType="Column"/>
+                </wf:Chart.Series>
+                <wf:Chart.ChartAreas>
+                    <wf:ChartArea/>
+                </wf:Chart.ChartAreas>
+            </wf:Chart>
+        </WindowsFormsHost>
+
         <DockPanel Margin="0,-10,0,373">
             <Menu DockPanel.Dock="Top" Background ="AliceBlue" Cursor="Hand" Height="66" >
 
@@ -25,53 +49,6 @@
         <Image Source="/images/hospitalll.jpg" Margin="0,0,721,376" MouseLeftButtonUp="HomeClick" Cursor="Hand"/>
         <Image Source="/images/sign_out.png" Margin="699,15,66,395" MouseLeftButtonUp="SignOutClick" Cursor="Hand"/>
         <TextBlock Text="Sign out" FontSize="12" Margin="727,19,0,394" MouseLeftButtonUp="SignOutClick" Cursor="Hand" RenderTransformOrigin="0.512,0.042" HorizontalAlignment="Left" Width="84"/>
-        <DataGrid x:Name="dataGridMedicine" IsReadOnly="True" Background="Azure" BorderBrush="White" FontSize="12"
-            SelectionMode="Single" AutoGenerateColumns="False" HorizontalAlignment="Left" CanUserAddRows="True" CanUserDeleteRows="True"
-            Height="235" VerticalAlignment="Top" Width="759"  RenderTransformOrigin="0.5,0.5" Margin="10,123,0,0">
-
-
-            <DataGrid.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform ScaleX="1"/>
-                    <SkewTransform/>
-                    <RotateTransform/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </DataGrid.RenderTransform>
-            <DataGrid.Columns>
-
-                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Foreground="Black">
-                    <DataGridTextColumn.CellStyle>
-                        <Style TargetType="DataGridCell">
-                            <Setter Property="Background" 
-                                    Value="Azure" />
-                        </Style>
-                    </DataGridTextColumn.CellStyle>
-                </DataGridTextColumn>
-                <DataGridTextColumn Header="Type" Binding="{Binding Type}" Foreground="Black" >
-                    <DataGridTextColumn.CellStyle>
-                        <Style TargetType="DataGridCell">
-                            <Setter Property="Background" 
-                                    Value="Azure" />
-                        </Style>
-                    </DataGridTextColumn.CellStyle>
-                </DataGridTextColumn>
-                <DataGridTextColumn Header="Ingredients" Binding="{Binding Ingredients}" Foreground="Black" Width="*">
-                    <DataGridTextColumn.CellStyle>
-                        <Style TargetType="DataGridCell">
-                            <Setter Property="Background" 
-                                    Value="Azure" />
-                        </Style>
-                    </DataGridTextColumn.CellStyle>
-                </DataGridTextColumn>
-
-            </DataGrid.Columns>
-        </DataGrid>
-        <Image Margin="25,385,735,20" Source="/images/add.png" Cursor="Hand" MouseLeftButtonUp="AddMedicineClick"/>
-        <Line X1="50" Y1="50" X2="1000" Y2="50" Stroke="White"  StrokeThickness="3" Margin="-50,18,1,302" />
-        <Image Margin="112,385,648,20" Source="/images/exchange.png" Cursor="Hand" MouseLeftButtonUp="ReplaceMedicineClick"/>
-        <TextBlock Text="Replace" Margin="147,390,579,24" FontSize="15" Cursor="Hand" MouseLeftButtonUp="ReplaceMedicineClick" />
-        <Label Name="selectValidation" Content="Please select medicine you want to replace" FontSize="12" Foreground="Red" Margin="8,96,483,300" Grid.ColumnSpan="2" Visibility="Hidden"/>
         <Line X1="50" Y1="50" X2="1000" Y2="50" Stroke="White"  StrokeThickness="3" Margin="-50,18,1,318" />
         <DockPanel Margin="0,-10,0,373">
             <Menu DockPanel.Dock="Top" Background ="AliceBlue" Cursor="Hand" Height="66" HorizontalAlignment="Stretch" Margin="50,0,0,0" >
@@ -90,6 +67,33 @@
         <Image Source="/images/hospitalll.jpg" Margin="0,0,721,376" MouseLeftButtonUp="HomeClick" Cursor="Hand"/>
         <Image Source="/images/sign_out.png" Margin="699,15,66,395" MouseLeftButtonUp="SignOutClick" Cursor="Hand"/>
         <TextBlock Text="Sign out" FontSize="12" Margin="727,19,0,394" MouseLeftButtonUp="SignOutClick" Cursor="Hand" RenderTransformOrigin="0.512,0.042" HorizontalAlignment="Left" Width="84"/>
+        <TextBlock Text="Doctor's survey" Margin="118,94,553,306" FontSize="15"/>
+        <TextBlock Text="Hospital surveys" FontSize="15" Margin="550,94,84,300" />
+        <TextBlock Text="Average:" Margin="110,402,600,9" FontSize="10"/>
+        <TextBlock Text="Number of ones:" Margin="75,308,635,117" FontSize="10"/>
+        <TextBlock Text="Number of twos:" Margin="75,327,635,98" FontSize="10"/>
+        <TextBlock Text="Number of threes:" Margin="69,346,636,79" FontSize="10"/>
+        <TextBlock Text="Number of fours:" Margin="74,365,636,60" FontSize="10"/>
+        <TextBlock Text="Number of fives:" Margin="77,384,633,0" FontSize="10" Height="25" VerticalAlignment="Top"/>
+        <TextBlock Name="jedinice"  Margin="172,308,544,110" />
+        <TextBlock Name="dvojke"  Margin="172,327,561,91" />
+        <TextBlock Name="trojke"  Margin="172,346,544,77" />
+        <TextBlock Name="cetvorke"  Margin="172,365,549,58" />
+        <TextBlock Name="petice"  Margin="172,383,518,37" />
+        <TextBlock Name="prosek"  Margin="172,402,518,10" />
+
+        <TextBlock Text="Average:" Margin="528,402,182,9" FontSize="10"/>
+        <TextBlock Text="Number of ones:" Margin="493,308,217,117" FontSize="10"/>
+        <TextBlock Text="Number of twos:" Margin="493,327,217,98" FontSize="10"/>
+        <TextBlock Text="Number of threes:" Margin="487,346,218,79" FontSize="10"/>
+        <TextBlock Text="Number of fours:" Margin="492,365,218,60" FontSize="10"/>
+        <TextBlock Text="Number of fives:" Margin="495,384,215,0" FontSize="10" Height="25" VerticalAlignment="Top"/>
+        <TextBlock Name="jediniceHospital"  Margin="590,308,126,110" />
+        <TextBlock Name="dvojkeHospital"  Margin="590,327,143,91" />
+        <TextBlock Name="trojkeHospital"  Margin="590,346,126,77" />
+        <TextBlock Name="cetvorkeHospital"  Margin="590,365,131,58" />
+        <TextBlock Name="peticeHospital"  Margin="590,383,100,37" />
+        <TextBlock Name="prosekHospital"  Margin="590,402,100,10" />
 
     </Grid>
 </Window>
