@@ -1,5 +1,6 @@
 ﻿using Hospital.Model;
 using System;
+using System.Collections.Generic;
 using System.Windows;
 using Hospital.Controller;
 using System.Windows.Controls;
@@ -16,7 +17,7 @@ namespace Hospital.View.SecretaryView
     {
         private App _app;
         private readonly SecretaryWindow _secretaryWindow;
-        private AllergenList allergies;
+        private List<int> allergies;
         private ObservableCollection<Allergen> allergens;
         public AddPatient(SecretaryWindow secretaryWindow)
         {
@@ -39,7 +40,7 @@ namespace Hospital.View.SecretaryView
             User user = new User(nameText.Text, lastNameText.Text, idNumberText.Text, usernameText.Text,
                 passwordText.Text, tempAddress, phoneText.Text, emailText.Text, "patient",
                 (DateTime)datePicker.SelectedDate);
-            AllergenList patientAllergies = new AllergenList();
+            var patientAllergies = new List<int>();
             foreach (Allergen allergen in AllergenListBox.SelectedItems)
             {
                 patientAllergies.Add(allergen.Id);

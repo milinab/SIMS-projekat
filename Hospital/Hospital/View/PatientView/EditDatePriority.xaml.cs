@@ -1,21 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Hospital.Controller;
 using Hospital.Model;
 using System.Collections.ObjectModel;
-
+using Tulpep.NotificationWindow;
 
 namespace Hospital.View.PatientView
 {
@@ -27,12 +16,14 @@ namespace Hospital.View.PatientView
         private App app;
         private readonly EditAnAppointment _editAnAppointment;
         private readonly PatientWindow _patientWindow;
-        private readonly AppointmentController _appointmentController;
+        //private readonly AppointmentController _appointmentController;
         private int _doctorId;
         private DateTime _date;
         private String chosenDoctor;
         private Doctor doctor;
         private int _appointmentId;
+        private Doctor selectedDoctor;
+        public Patient patient;
 
         private String DoctorName
         {
@@ -44,14 +35,14 @@ namespace Hospital.View.PatientView
 
         ObservableCollection<Appointment> AvailableAppointments { get; set; }
 
-        public EditDatePriority(PatientWindow patientWindow, EditAnAppointment editAnAppointment, AppointmentController appointmentController)
+        /*public EditDatePriority(PatientWindow patientWindow, EditAnAppointment editAnAppointment, AppointmentController appointmentController)
         {
             InitializeComponent();
             _editAnAppointment = editAnAppointment;
             _patientWindow = patientWindow;
             _appointmentController = appointmentController;
            
-        }
+        }*/
 
         public EditDatePriority(int doctorId, DateTime date, EditAnAppointment editAnAppointment, PatientWindow patientWindow, int appointmentId)
         {
@@ -65,54 +56,53 @@ namespace Hospital.View.PatientView
             _appointmentId = appointmentId;
             DoctorsAppointments = new ObservableCollection<Appointment>();
             AvailableAppointments = new ObservableCollection<Appointment>();
-            initializeData(doctorId, date);
+            InitializeData(doctorId, date);
             dataGridDatePriority.ItemsSource = AvailableAppointments;
             dataGridAppointments.ItemsSource = patientWindow.Appointments;
+            selectedDoctor = this.doctor;
         }
 
-        private void initializeData(int doctorId, DateTime date)
+        private void InitializeData(int doctorId, DateTime date)
         {
             Doctor doctor = app._doctorController.ReadById(doctorId);
             this.doctor = doctor;
             this.ChosenDate.Text = _date.ToString("d.M.yyyy");
 
-            // radno vreme bolnice
-            List<TimeSpan> hospitalWorkingHours = new List<TimeSpan>();
-            hospitalWorkingHours.Add(new TimeSpan(7, 00, 00));
-            hospitalWorkingHours.Add(new TimeSpan(7, 30, 00));
-            hospitalWorkingHours.Add(new TimeSpan(8, 00, 00));
-            hospitalWorkingHours.Add(new TimeSpan(8, 30, 00));
-            hospitalWorkingHours.Add(new TimeSpan(9, 00, 00));
-            hospitalWorkingHours.Add(new TimeSpan(9, 30, 00));
-            hospitalWorkingHours.Add(new TimeSpan(10, 00, 00));
-            hospitalWorkingHours.Add(new TimeSpan(10, 30, 00));
+            List<TimeSpan> hospitalWorkingHours = new List<TimeSpan>
+            {
+                new TimeSpan(7, 00, 00),
+                new TimeSpan(7, 30, 00),
+                new TimeSpan(8, 00, 00),
+                new TimeSpan(8, 30, 00),
+                new TimeSpan(9, 00, 00),
+                new TimeSpan(9, 30, 00),
+                new TimeSpan(10, 00, 00),
+                new TimeSpan(10, 30, 00)
+            };
 
             List<TimeSpan> hospitalWorkingHoursListForCalculation = new List<TimeSpan>(hospitalWorkingHours);
-
-            // pronadji sve appointmente tog lekara, uzmi njigovo pocetno vreme i izbrisi iz liste allAppointmentTImes ako se poklapaju
 
             DoctorsAppointments = new ObservableCollection<Appointment>();
             DoctorsAppointments = app._appointmentController.ReadByDoctorId(doctorId);
 
-            findAvailabeAppointments(DoctorsAppointments, hospitalWorkingHours, hospitalWorkingHoursListForCalculation, date);
+            //FindAvailabeAppointments(DoctorsAppointments, hospitalWorkingHours, hospitalWorkingHoursListForCalculation, date);
+            AvailableAppointments = app._appointmentController.FindAvailableAppointments(selectedDoctor, _date, DoctorName, DoctorsAppointments, hospitalWorkingHours, hospitalWorkingHoursListForCalculation, date);
 
             if (AvailableAppointments.Count == 0)
             {
                 DoctorsAppointments.Clear();
                 DoctorsAppointments = app._appointmentController.ReadByDateAndNotDoctor(doctorId, date);
-               
-                MessageBox.Show("Nazalost, nema dostupnih termina za trazeni datum. U listi ce vam se prikazati dostupni termini kod drugih doktora.");
-                findAvailabeAppointments(DoctorsAppointments, hospitalWorkingHours, hospitalWorkingHoursListForCalculation, date);
-
+                PopupNotification.sendPopupNotification("Warning", "Sorry to inform, but there is no available appointments for chosen date. In the following list, we are gonna show You available appointments for the next available doctor.");
+                //FindAvailabeAppointments(DoctorsAppointments, hospitalWorkingHours, hospitalWorkingHoursListForCalculation, date);
+                AvailableAppointments = app._appointmentController.FindAvailableAppointments(selectedDoctor, _date, DoctorName, DoctorsAppointments, hospitalWorkingHours, hospitalWorkingHoursListForCalculation, date);
             }
         }
 
         private void ConfirmAppointment_Click(object sender, RoutedEventArgs e)
         {
-            var viewModel = this.dataGridDatePriority.DataContext as Appointment;
+            //var viewModel = this.dataGridDatePriority.DataContext as Appointment;
             var SelectedItem = dataGridDatePriority.SelectedItem as Appointment;
 
-            //zameniti za prave vrednosti koje cu dobiti kroz view-e
             Patient patient = new Patient();
             patient.Id = _patientWindow.patient.Id;
             Room room = new Room();
@@ -121,7 +111,9 @@ namespace Hospital.View.PatientView
 
             Appointment appointment = new Appointment(_appointmentId, a, new TimeSpan(0, 30, 00), doctor, patient, room);
             app._appointmentController.Edit(appointment);
-            Trol troll = app._trolController.ReadByPatientId(_patientWindow.patient.Id);
+
+            TrollSystem.troll(_patientWindow, app);
+            /*Trol troll = app._trolController.ReadByPatientId(_patientWindow.patient.Id);
             if (troll == null)
             {
                 Trol tr = new Trol(_patientWindow.patient.Id, DateTime.Now, 1);
@@ -141,7 +133,12 @@ namespace Hospital.View.PatientView
 
                         app._patientController.Edit(_patientWindow.patient);
                         app._trolController.Delete(troll.Id);
-                        MessageBox.Show("Your account is banned due to..");
+                        PopupNotifier popup = new PopupNotifier();
+                        popup.Image = Properties.Resources.notification;
+                        popup.TitleText = "Warning";
+                        popup.ContentText = "Your account is banned due to..";
+                        popup.Popup();
+                        //MessageBox.Show("Your account is banned due to..");
                         LogIn logIn = new LogIn();
                         logIn.Show();
                         _patientWindow.Close();
@@ -153,10 +150,10 @@ namespace Hospital.View.PatientView
                     Trol tr = new Trol(_patientWindow.patient.Id, DateTime.Now, 1);
                     app._trolController.Create(tr);
                 }
-            }
+            }*/
             _patientWindow.BackToPatientWindow();
         }
-        public void findAvailabeAppointments(ObservableCollection<Appointment> DoctorsAppointments,
+        /*public void FindAvailabeAppointments(ObservableCollection<Appointment> DoctorsAppointments,
             List<TimeSpan> hospitalWorkingHours, List<TimeSpan> hospitalWorkingHoursListForCalculation, DateTime date)
         {
 
@@ -171,7 +168,7 @@ namespace Hospital.View.PatientView
                 foreach (TimeSpan appTime in hospitalWorkingHours)
                 {
                     //DateTime dt = new DateTime(date);
-                    date = date + appTime;
+                    date += appTime;
                     if (DateTime.Compare(date, appStartTime) > 0)
                     {
                         if (DateTime.Compare(date, appEndTime) < 0)
@@ -212,7 +209,7 @@ namespace Hospital.View.PatientView
 
                 AvailableAppointments.Add(app);
             }
-        }
+        }*/
 
         private void HomePage_Click(object sender, RoutedEventArgs e)
         {
@@ -228,7 +225,14 @@ namespace Hospital.View.PatientView
 
         private void MedicalRecord_Click(object sender, RoutedEventArgs e)
         {
-            Page medicalRecordPage = new MedicalRecord(_patientWindow);
+            User user = app._userController.ReadById(patient.Id);
+            Address address = app._addressController.ReadById(user.Address.Id);
+            City city = app._cityController.ReadById(user.Address.CityId);
+            Country country = app._countryController.ReadById(1); //country nije postavljen u address modelu
+            Model.MedicalRecord medicalRecord = app._medicalRecordController.ReadById(patient.MedicalRecordId);
+            ObservableCollection<Allergen> allergens = app._allergenController.ReadByIds(medicalRecord.AllergenIds);
+
+            Page medicalRecordPage = new MedicalRecord(_patientWindow, user, patient, address, city, country, medicalRecord, allergens);
             this.frame.Navigate(medicalRecordPage);
         }
 

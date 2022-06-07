@@ -18,7 +18,7 @@
             <Rectangle HorizontalAlignment="Center" VerticalAlignment="Top" Height="40" Width="700" Margin="0,0,0,0" Stroke="Black"/>
             <TextBlock Text="Patient informations" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,3,0,0" FontSize="24"/>
             
-            <TextBlock Text="Name:" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,80,450,0" FontSize="20"/>
+            <TextBlock Text="Name:" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,80,450,0" FontSize="20" />
             <TextBlock Text="Last Name:" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,140,450,0" FontSize="20"/>
             <TextBlock Text="Health Insurance ID:" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,200,450,0" FontSize="20"/>
             <TextBlock Text="Gender:" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,260,450,0" FontSize="20"/>
@@ -26,13 +26,13 @@
             <TextBlock Text="Chronical Diseases:" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,380,450,0" FontSize="20"/>
             <TextBlock Text="Allergies:" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,530,450,0" FontSize="20"/>
             
-            <TextBox Name="Name" HorizontalAlignment="Right" VerticalAlignment="Top" Height="30" Width="260" Margin="0,80,150,0" FontSize="20"/>
-            <TextBox Name="LastName" HorizontalAlignment="Right" VerticalAlignment="Top" Height="30" Width="260" Margin="0,140,150,0" FontSize="20"/>
-            <TextBox Name="HealthInsuranceId" HorizontalAlignment="Right" VerticalAlignment="Top" Height="30" Width="260" Margin="0,200,150,0" FontSize="20"/>
-            <TextBox Name="Gender" HorizontalAlignment="Right" VerticalAlignment="Top" Height="30" Width="260" Margin="0,260,150,0" FontSize="20"/>
-            <TextBox Name="BloodType" HorizontalAlignment="Right" VerticalAlignment="Top" Height="30" Width="260" Margin="0,320,150,0" FontSize="20"/>
-            <ListBox Name="ChronicalDiseases" HorizontalAlignment="Right" VerticalAlignment="Top" Height="120" Width="260" Margin="0,380,150,0" FontSize="20"/>
-            <ListBox Name="Allergies" HorizontalAlignment="Right" VerticalAlignment="Top" Height="120" Width="260" Margin="0,530,150,0" FontSize="20"/>
+            <TextBox Name="Name" HorizontalAlignment="Right" VerticalAlignment="Top" Height="30" Width="260" Margin="0,80,150,0" FontSize="20" IsReadOnly="True"/>
+            <TextBox Name="LastName" HorizontalAlignment="Right" VerticalAlignment="Top" Height="30" Width="260" Margin="0,140,150,0" FontSize="20" IsReadOnly="True"/>
+            <TextBox Name="HealthInsuranceId" HorizontalAlignment="Right" VerticalAlignment="Top" Height="30" Width="260" Margin="0,200,150,0" FontSize="20" IsReadOnly="True"/>
+            <TextBox Name="Gender" HorizontalAlignment="Right" VerticalAlignment="Top" Height="30" Width="260" Margin="0,260,150,0" FontSize="20" IsReadOnly="True"/>
+            <TextBox Name="BloodType" HorizontalAlignment="Right" VerticalAlignment="Top" Height="30" Width="260" Margin="0,320,150,0" FontSize="20" IsReadOnly="True"/>
+            <ItemsControl Name="ChronicalDiseasesItemsControl" HorizontalAlignment="Right" VerticalAlignment="Top" Height="120" Width="260" Margin="0,380,150,0" FontSize="20"/>
+            <ItemsControl Name="AllergiesItemsControl" HorizontalAlignment="Right" VerticalAlignment="Top" Height="120" Width="260" Margin="0,530,150,0" FontSize="20"/>
             
             <Button Content="Back" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="700" Height="50" Click="Cancel" FontSize="25"/>
         </Grid>

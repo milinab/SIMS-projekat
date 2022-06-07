@@ -10,8 +10,8 @@
 
     <Grid>
 
-        <Label Content="ZDRAVO CORPORATION" HorizontalAlignment="Left" Margin="7,6,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="18"/>
-        <Button Content="Log out" BorderThickness="2" HorizontalAlignment="Left" Margin="700,6,0,0" VerticalAlignment="Top" Height="29" Width="82" Click="LogOut_Click"/>
+        <Label Content="ZDRAVO CORPORATION" HorizontalAlignment="Left" Margin="7,6,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="18" Foreground="Maroon" FontFamily="Georgia"/>
+        <Button Content="Log out" BorderThickness="2" HorizontalAlignment="Left" Margin="700,6,0,0" VerticalAlignment="Top" Height="29" Width="82" Click="LogOut_Click" Background="IndianRed" FontFamily="Georgia"/>
         <Border BorderBrush="Black" BorderThickness="1" Width="Auto" Height="1" Margin="0,32,0,470" />
 
         <Menu Width="Auto" Margin="0,40,0,450" Background="Bisque">
@@ -42,11 +42,32 @@
 
         <Label Content="Book an appointment" HorizontalAlignment="Left" Margin="500,105,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="18"/>
 
-        <DataGrid x:Name="dataGridAppointments" AutoGenerateColumns="False" Height="411" Margin="10,105,380,0" VerticalAlignment="Top" CanUserAddRows="false">
+        <DataGrid x:Name="dataGridAppointments" AutoGenerateColumns="False" Height="411" Margin="10,105,380,0" VerticalAlignment="Top" CanUserAddRows="false" Background="AntiqueWhite">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Doctor" Binding="{Binding Doctor.Name}" Width="2*"/>
-                <DataGridTextColumn Header="Date" Binding="{Binding Date, StringFormat=\{0:d.M.yyyy\}}" Width="*"/>
-                <DataGridTextColumn Header="Time" Binding="{Binding Date, StringFormat=\{0:H:mm\}}" Width="*"/>
+                <DataGridTextColumn Header="Doctor" Binding="{Binding Doctor.Name}" Width="2*">
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="Background" 
+                                Value="AntiqueWhite" />
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Date" Binding="{Binding Date, StringFormat=\{0:d.M.yyyy\}}" Width="*">
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="Background" 
+                                Value="AntiqueWhite" />
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Time" Binding="{Binding Date, StringFormat=\{0:H:mm\}}" Width="*">
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="Background" 
+                                Value="AntiqueWhite" />
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
 
@@ -55,10 +76,24 @@
         <TextBlock x:Name="ChosenDate" HorizontalAlignment="Left" Height="29" Margin="425,184,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="125"/>
 
         <Label Content="Choose an appointment:" HorizontalAlignment="Left" Margin="420,220,0,0" VerticalAlignment="Top" Width="210" FontSize="16" Height="34" FontWeight="Bold"/>
-        <DataGrid x:Name="dataGridDatePriority" AutoGenerateColumns="False" Height="195" Margin="425,254,10,0" VerticalAlignment="Top" CanUserAddRows="false">
+        <DataGrid x:Name="dataGridDatePriority" AutoGenerateColumns="False" Height="195" Margin="425,254,10,0" VerticalAlignment="Top" CanUserAddRows="false" Background="AntiqueWhite">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Doctor" Binding="{Binding Doctor.Name}" Width="*"/>
-                <DataGridTextColumn Header="Time" Binding="{Binding Date, StringFormat=\{0:H:mm\}}" Width="*"/>
+                <DataGridTextColumn Header="Doctor" Binding="{Binding Doctor.Name}" Width="*">
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="Background" 
+                                Value="AntiqueWhite" />
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Time" Binding="{Binding Date, StringFormat=\{0:H:mm\}}" Width="*">
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="Background" 
+                                Value="AntiqueWhite" />
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
 

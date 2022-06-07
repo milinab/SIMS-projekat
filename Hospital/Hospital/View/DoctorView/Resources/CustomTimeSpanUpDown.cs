@@ -1,6 +1,6 @@
-﻿using System;
+using System;
 
-namespace Hospital.View.DoctorView
+namespace Hospital.View.DoctorView.Resources
 {
     class CustomTimeSpanUpDown : Xceed.Wpf.Toolkit.TimeSpanUpDown
     {

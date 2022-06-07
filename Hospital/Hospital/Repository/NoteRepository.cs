@@ -7,19 +7,11 @@ namespace Hospital.Repository
     {
         private ObservableCollection<Note> _notes;
         private readonly Serializer<Note> _serializer;
-        private readonly NoteRepository _notesRepository;
 
         public NoteRepository()
         {
             _serializer = new Serializer<Note>("notes.csv");
             _notes = new ObservableCollection<Note>();
-        }
-
-        public NoteRepository(NoteRepository noteRepository)
-        {
-            _serializer = new Serializer<Note>("notes.csv");
-            _notes = new ObservableCollection<Note>();
-            _notesRepository = noteRepository;
         }
 
         public ObservableCollection<Note> Read()
@@ -55,6 +47,7 @@ namespace Hospital.Repository
                     note.Name = editNote.Name;
                     note.NoteText = editNote.NoteText;
                     note.Date = editNote.Date;
+                    note.NotificationDate = editNote.NotificationDate;
                 }
             }
             Write();

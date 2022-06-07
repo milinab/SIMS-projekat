@@ -7,19 +7,11 @@ namespace Hospital.Repository
     {
         private ObservableCollection<Therapy> _therapies;
         private readonly Serializer<Therapy> _serializer;
-        private readonly TherapyRepository _therapyRepository;
 
         public TherapyRepository()
         {
             _serializer = new Serializer<Therapy>("therapies.csv");
             _therapies = new ObservableCollection<Therapy>();
-        }
-
-        public TherapyRepository(TherapyRepository therapyRepository)
-        {
-            _serializer = new Serializer<Therapy>("therapies.csv");
-            _therapies = new ObservableCollection<Therapy>();
-            _therapyRepository = therapyRepository;
         }
 
         public ObservableCollection<Therapy> Read()

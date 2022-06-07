@@ -17,5 +17,7 @@
         <Label Name="InvalidFieldsLabel" Content="Invalid username or password. Please try again." HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="15" Foreground="Red" Margin="176,244,0,0" Visibility="Hidden"/>
         <Label Name="EnterUsernameLabel" Content="Please enter an username." HorizontalAlignment="Left" VerticalAlignment="Top" Margin="176,72,0,0" FontSize="15" Foreground="Red" Visibility="Hidden"/>
         <Label Name="EnterPasswordLabel" Content="Please enter a password." HorizontalAlignment="Left" VerticalAlignment="Top" Margin="175,176,0,0" FontSize="15" Foreground="Red" Visibility="Hidden"/>
+
+        <Frame x:Name="frame" NavigationUIVisibility="Hidden" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" Grid.Column="1"/>
     </Grid>
 </Window>

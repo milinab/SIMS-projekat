@@ -27,6 +27,9 @@
         public NoteRepository NoteRepository { get; set; }
         public TrolRepository TrolRepository { get; set; }
         public MedicineReplaceRepository MedicineReplaceRepository { get; set; }
+        public VacationRepository VacationRepository { get; set; }
+        public AnamnesisRepository AnamnesisRepository { get; set; }
+        public ReferralRepository ReferralRepository { get; set; }
 
         public Repositories()
         {
@@ -46,15 +49,18 @@
             SecretaryRepository = new SecretaryRepository();
             SurgeryRepository = new SurgeryRepository();
             UserRepository = new UserRepository(AddressRepository);
-            TherapyRepository = new TherapyRepository(TherapyRepository);
+            TherapyRepository = new TherapyRepository();
             MedicineRepository = new MedicineRepository();
-            SurveyRepository = new SurveyRepository(SurveyRepository);
-            DoctorSurveyResponseRepository = new DoctorSurveyResponseRepository(DoctorSurveyResponseRepository);
-            HospitalSurveyResponseRepository = new HospitalSurveyResponseRepository(HospitalSurveyResponseRepository);
-            QuestionRepository = new QuestionRepository(QuestionRepository);
-            NoteRepository = new NoteRepository(NoteRepository);
-            TrolRepository = new TrolRepository(TrolRepository);
+            SurveyRepository = new SurveyRepository();
+            DoctorSurveyResponseRepository = new DoctorSurveyResponseRepository();
+            HospitalSurveyResponseRepository = new HospitalSurveyResponseRepository();
+            QuestionRepository = new QuestionRepository();
+            NoteRepository = new NoteRepository();
+            TrolRepository = new TrolRepository();
             MedicineReplaceRepository = new MedicineReplaceRepository();
+            VacationRepository = new VacationRepository(DoctorRepository);
+            AnamnesisRepository = new AnamnesisRepository(TherapyRepository, AppointmentRepository);
+            ReferralRepository = new ReferralRepository();
         }
     }
 }

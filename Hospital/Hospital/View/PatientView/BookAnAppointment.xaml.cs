@@ -1,21 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Hospital.Controller;
 using Hospital.Model;
 using System.Collections.ObjectModel;
-
+using System.Collections.Generic;
 
 namespace Hospital.View.PatientView
 {
@@ -27,31 +15,13 @@ namespace Hospital.View.PatientView
         private App app;
         private readonly object _content;
         private readonly PatientWindow _patientWindow;
-        private readonly AppointmentController _appointmentController;
-        private readonly UserController _userController;
-        private readonly DoctorController _doctorController;
+        public Patient patient;
+        //private readonly UserController _userController;
 
         public ObservableCollection<Doctor> Doctors
         {
             get;
             set;
-        }
-
-        public BookAnAppointment(PatientWindow patientWindow, AppointmentController appointmentController, UserController userController)
-        {
-            InitializeComponent();
-            app = Application.Current as App;
-            _content = Content;
-            this.DataContext = this;
-            dataGridAppointments.ItemsSource = patientWindow.dataGridAppointments.ItemsSource;
-            //dataGridAppointments.ItemsSource = app._appointmentController.Read();
-            _patientWindow = patientWindow;
-            _appointmentController = appointmentController;
-            _userController = userController;
-            Doctors = new ObservableCollection<Doctor>();
-            Doctors = app._doctorController.Read();
-            doctorsComboBox.ItemsSource = Doctors;
-
         }
 
         public BookAnAppointment(PatientWindow patientWindow)
@@ -61,27 +31,40 @@ namespace Hospital.View.PatientView
             _content = Content;
             this.DataContext = this;
             dataGridAppointments.ItemsSource = patientWindow.dataGridAppointments.ItemsSource;
-            //dataGridAppointments.ItemsSource = app._appointmentController.Read();
+            patient = app._patientController.ReadById(LogIn.LoggedUser.Id);
             _patientWindow = patientWindow;
-            //_appointmentController = appointmentController;
-            //_userController = userController;
+            Doctors = new ObservableCollection<Doctor>();
+            Doctors = app._doctorController.Read();
+            doctorsComboBox.ItemsSource = Doctors;
+            myCalendar.DisplayDateStart = DateTime.Now.AddDays(1);
+        }
+
+        /*public BookAnAppointment(PatientWindow patientWindow)
+        {
+            InitializeComponent();
+            app = Application.Current as App;
+            _content = Content;
+            this.DataContext = this;
+            dataGridAppointments.ItemsSource = patientWindow.dataGridAppointments.ItemsSource;
+            _patientWindow = patientWindow;
             Doctors = new ObservableCollection<Doctor>();
             Doctors = app._doctorController.Read();
             doctorsComboBox.ItemsSource = Doctors;
 
-        }
+        }*/
 
-        public BookAnAppointment(UserController userController)
+        /*public BookAnAppointment(UserController userController)
         {
             _userController = userController;
-        }
+        }*/
 
-        private bool validate()
+        private bool Validate()
         {
          
             if(DoctorPriority.IsChecked == false && DatePriority.IsChecked == false)
             {
-                MessageBox.Show("You need to select a priority.", "Warning");
+                PopupNotification.sendPopupNotification("Warning", "You need to select a priority.");
+                //MessageBox.Show("You need to select a priority.", "Warning");
                 return false;
             }
             return false;
@@ -89,11 +72,6 @@ namespace Hospital.View.PatientView
 
         private void AddAppointment_Click(object sender, RoutedEventArgs e)
         {
-
-            //if (!validate())
-            //{
-            //    return;
-            //}
 
             int DoctorId = Int32.Parse(((Model.User)doctorsComboBox.SelectedItem).Id.ToString());
             
@@ -125,7 +103,14 @@ namespace Hospital.View.PatientView
 
         private void MedicalRecord_Click(object sender, RoutedEventArgs e)
         {
-            Page medicalRecordPage = new MedicalRecord(_patientWindow);
+            User user = app._userController.ReadById(patient.Id);
+            Address address = app._addressController.ReadById(user.Address.Id);
+            City city = app._cityController.ReadById(user.Address.CityId);
+            Country country = app._countryController.ReadById(1); //country nije postavljen u address modelu
+            Model.MedicalRecord medicalRecord = app._medicalRecordController.ReadById(patient.MedicalRecordId);
+            ObservableCollection<Allergen> allergens = app._allergenController.ReadByIds(medicalRecord.AllergenIds);
+
+            Page medicalRecordPage = new MedicalRecord(_patientWindow, user, patient, address, city, country, medicalRecord, allergens);
             this.frame.Navigate(medicalRecordPage);
         }
 

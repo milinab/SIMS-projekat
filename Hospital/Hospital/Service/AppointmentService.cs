@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Hospital.Model;
@@ -103,11 +104,11 @@ namespace Hospital.Service
             return pastAppointments;
         }
 
-        public ObservableCollection<Appointment> ReadFutureAppointments()
+        public ObservableCollection<Appointment> ReadFutureAppointments(int patientId)
         {
             ObservableCollection<Appointment> futureAppointments = new ObservableCollection<Appointment>();
 
-            ObservableCollection<Appointment> allAppointments = _repository.Read();
+            List<Appointment> allAppointments = _repository.ReadByPatientId(patientId);
             foreach (Appointment a in allAppointments)
             {
                 if (a.Date > DateTime.Now)
@@ -118,5 +119,69 @@ namespace Hospital.Service
             return futureAppointments;
         }
 
+        public ObservableCollection<Appointment> FindAvailabeAppointments(Doctor selectedDoctor, DateTime _date, string DoctorName, ObservableCollection<Appointment> DoctorsAppointments,
+            List<TimeSpan> hospitalWorkingHours, List<TimeSpan> hospitalWorkingHoursListForCalculation, DateTime date)
+        {
+
+            ObservableCollection<Appointment> AvailableAppointments = new ObservableCollection<Appointment>();
+            List<TimeSpan> cloneList = new List<TimeSpan>(hospitalWorkingHoursListForCalculation);
+            foreach (Appointment a in DoctorsAppointments)
+            {
+                DoctorName = a.Doctor.Name + " " + a.Doctor.LastName;
+                //this.doctor = a.Doctor;
+                selectedDoctor = a.Doctor;
+                var appStartTime = a.Date;
+                var appEndTime = a.Date + a.Duration;
+
+                foreach (TimeSpan appTime in hospitalWorkingHours)
+                {
+                    //DateTime dt = new DateTime(date);
+                    date += appTime;
+                    if (DateTime.Compare(date, appStartTime) > 0)
+                    {
+                        if (DateTime.Compare(date, appEndTime) < 0)
+                        {
+                            if (cloneList.Contains(appTime))
+                            {
+                                cloneList.Remove(appTime);
+                            }
+
+                        }
+                        else if (DateTime.Compare(date, appEndTime) == 0)
+                        {
+                            cloneList.Remove(appTime);
+                        }
+                    }
+                    else if (DateTime.Compare(date, appStartTime) == 0)
+                    {
+                        if (DateTime.Compare(date, appEndTime) < 0)
+                        {
+                            if (cloneList.Contains(appTime))
+                            {
+                                cloneList.Remove(appTime);
+                            }
+                        }
+                    }
+                    date = _date;
+                }
+            }
+
+            foreach (TimeSpan time in cloneList)
+            {
+                Appointment app = new Appointment();
+                Doctor newDoctor = new Doctor
+                {
+                    Name = DoctorName,
+                    Id = selectedDoctor.Id
+                };
+                app.Date = _date + time;
+                app.Doctor = newDoctor;
+                app.DoctorId = selectedDoctor.Id;
+
+                AvailableAppointments.Add(app);
+            }
+
+            return AvailableAppointments;
+        }
     }
 }

@@ -29,7 +29,9 @@ namespace Hospital.Service
         public NoteService NoteService { get; set; }
         public TrolService TrolService { get; set; }
         public MedicineReplaceService MedicineReplaceService { get; set; }
-
+        public VacationService VacationService { get; set; }
+        public AnamnesisService AnamnesisService { get; set; }
+        public ReferralService ReferralService { get; set; }
 
         public Services(Repositories repositories)
         {
@@ -58,6 +60,9 @@ namespace Hospital.Service
             NoteService = new NoteService(repositories.NoteRepository);
             TrolService = new TrolService(repositories.TrolRepository);
             MedicineReplaceService = new MedicineReplaceService(repositories.MedicineReplaceRepository);
+            VacationService = new VacationService(repositories.VacationRepository);
+            AnamnesisService = new AnamnesisService(repositories.AnamnesisRepository);
+            ReferralService = new ReferralService(repositories.ReferralRepository);
         }
     }
 }
