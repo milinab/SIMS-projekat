@@ -39,6 +39,7 @@ namespace Hospital
         internal MedicineReplaceController _medicineReplaceController;
         internal VacationController _vacationController;
         internal AnamnesisController _anamnesisController;
+        internal ReferralController _referralController;
 
         //internal MainPage _mainPage;
         internal MainWindow _mainWindow;
@@ -77,6 +78,7 @@ namespace Hospital
             _medicineReplaceController = new MedicineReplaceController(services.MedicineReplaceService);
             _vacationController = new VacationController(services.VacationService);
             _anamnesisController = new AnamnesisController(services.AnamnesisService);
+            _referralController = new ReferralController(services.ReferralService);
 
             // _mainWindow = new MainWindow();
 

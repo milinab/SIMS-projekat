@@ -31,6 +31,7 @@ namespace Hospital.Service
         public MedicineReplaceService MedicineReplaceService { get; set; }
         public VacationService VacationService { get; set; }
         public AnamnesisService AnamnesisService { get; set; }
+        public ReferralService ReferralService { get; set; }
 
         public Services(Repositories repositories)
         {
@@ -61,6 +62,7 @@ namespace Hospital.Service
             MedicineReplaceService = new MedicineReplaceService(repositories.MedicineReplaceRepository);
             VacationService = new VacationService(repositories.VacationRepository);
             AnamnesisService = new AnamnesisService(repositories.AnamnesisRepository);
+            ReferralService = new ReferralService(repositories.ReferralRepository);
         }
     }
 }

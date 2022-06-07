@@ -152,6 +152,7 @@
     <Compile Include="Controller\AnamnesisController.cs" />
     <Compile Include="Controller\MedicineController.cs" />
     <Compile Include="Controller\MedicineReplaceController.cs" />
+    <Compile Include="Controller\ReferralController.cs" />
     <Compile Include="Controller\TrolController.cs" />
     <Compile Include="Controller\NoteController.cs" />
     <Compile Include="Controller\HospitalSurveyResponseController.cs" />
@@ -183,6 +184,7 @@
     </Compile>
     <Compile Include="Model\Anamnesis.cs" />
     <Compile Include="Model\Medicine.cs" />
+    <Compile Include="Model\Referral.cs" />
     <Compile Include="Model\ReplacementMedicine.cs" />
     <Compile Include="Model\Trol.cs" />
     <Compile Include="Model\Note.cs" />
@@ -198,6 +200,7 @@
     <Compile Include="Repository\AnamnesisRepository.cs" />
     <Compile Include="Repository\MedicineReplaceRepository.cs" />
     <Compile Include="Repository\MedicineRepository.cs" />
+    <Compile Include="Repository\ReferralRepository.cs" />
     <Compile Include="Repository\TrolRepository.cs" />
     <Compile Include="Repository\NoteRepository.cs" />
     <Compile Include="Repository\HospitalSurveyResponseRepository.cs" />
@@ -224,6 +227,7 @@
     <Compile Include="Service\AnamnesisService.cs" />
     <Compile Include="Service\MedicineReplaceService.cs" />
     <Compile Include="Service\MedicineService.cs" />
+    <Compile Include="Service\ReferralService.cs" />
     <Compile Include="Service\TrolService.cs" />
     <Compile Include="Service\NoteService.cs" />
     <Compile Include="Service\HospitalSurveyResponseService.cs" />

@@ -93,5 +93,10 @@ namespace Hospital.View.DoctorView.Checkup
         {
             MainWindow.MainFrame.Navigate(new TherapyPage((Patient) PatientListView.SelectedItem));
         }
+
+        private void ReferralButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            MainWindow.MainFrame.Navigate(new ReferralPage((Patient) PatientListView.SelectedItem));
+        }
     }
 }
