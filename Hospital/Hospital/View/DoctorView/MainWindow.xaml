@@ -31,6 +31,7 @@
             <Button Content="Malfunction report" Name="MalfunctionReportButton" Style="{StaticResource MenuButtonStyle}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,450,0,0" Click="MalfunctionReportPage"/>
             <Button Content="Account" Name="AccountButton" Style="{StaticResource MenuButtonStyle}" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,134" Click="AccountPage"/>
             <Button Content="Log out" Name="LogOutButton" Style="{StaticResource MenuButtonStyle}" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,0" Click="LogOutPage"/>
+            <Button Content="Verify medicine" Name="VerifyMedicine" Style="{StaticResource MenuButtonStyle}" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,200" Click="VerifyMedicine_OnClick" Visibility="Hidden"/>
         </Grid>
         <Grid Grid.Column="1">
             <Frame Name="Frame" NavigationUIVisibility="Hidden">

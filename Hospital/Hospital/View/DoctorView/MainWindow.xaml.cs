@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using Hospital.Enums;
 using Hospital.View.DoctorView.Appointments;
 using Hospital.View.DoctorView.Checkup;
 using Hospital.View.DoctorView.Requests;
@@ -18,6 +19,7 @@ namespace Hospital.View.DoctorView {
         private SolidColorBrush ButtonTextColor;
 
         public static Frame MainFrame { get; set; }
+        public static Button MedicineButton { get; set; }
         public MainWindow()
         {
             _app = Application.Current as App;
@@ -29,6 +31,15 @@ namespace Hospital.View.DoctorView {
             Frame.Content = new AppointmentsPage();
             SelectedButtonColors(AppointmentsButton);
             MainFrame = Frame;
+            var medicines = _app._medicineController.Read();
+            foreach (var medicine in medicines)
+            {
+                if (medicine.Status == MedicineStatus.Awaiting)
+                {
+                    VerifyMedicine.Visibility = Visibility.Visible;
+                }
+            }
+            MedicineButton = VerifyMedicine;
         }
 
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e) {
@@ -105,6 +116,11 @@ namespace Hospital.View.DoctorView {
         {
             button.Background = ButtonColor;
             button.Foreground = ButtonTextColor;
+        }
+
+        private void VerifyMedicine_OnClick(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new VerifyMedicineUC());
         }
     }
 }

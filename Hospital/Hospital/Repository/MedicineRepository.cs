@@ -54,6 +54,9 @@ namespace Hospital.Repository
                     m.Name = editMedicine.Name;
                     m.Type = editMedicine.Type;
                     m.Number = editMedicine.Number;
+                    m.Status = editMedicine.Status;
+                    m.Ingredients = editMedicine.Ingredients;
+                    m.AllergenIds = editMedicine.AllergenIds;
                 }
             }
             Write();

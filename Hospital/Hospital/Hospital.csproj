@@ -293,6 +293,9 @@
       <DependentUpon>VacationPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\DoctorView\Resources\CustomTimeSpanUpDown.cs" />
+    <Compile Include="View\DoctorView\VerifyMedicineUC.xaml.cs">
+      <DependentUpon>VerifyMedicineUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\DoctorView\ViewModel\AppointmentsPageViewModel.cs" />
     <Compile Include="View\DoctorView\ViewModel\AppointmentViewModel.cs" />
     <Compile Include="View\DoctorView\ViewModel\ViewModelBase.cs" />
@@ -458,6 +461,7 @@
     <Page Include="View\DoctorView\Requests\RequestsPage.xaml" />
     <Page Include="View\DoctorView\Requests\VacationPage.xaml" />
     <Page Include="View\DoctorView\Resources\DoctorResourceDictionary.xaml" />
+    <Page Include="View\DoctorView\VerifyMedicineUC.xaml" />
     <Page Include="View\ManagerView\AddMedicine.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
