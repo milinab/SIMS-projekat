@@ -99,6 +99,7 @@
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -366,6 +367,15 @@
       <DependentUpon>EditAnAppointment.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\PatientView\EnumMatchToBooleanConverter.cs" />
+    <Compile Include="View\PatientView\Graph.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\PatientView\Graph.Designer.cs">
+      <DependentUpon>Graph.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientView\Graphics.xaml.cs">
+      <DependentUpon>Graphics.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\PatientView\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
@@ -406,6 +416,8 @@
     <Compile Include="View\PatientView\Surveys.xaml.cs">
       <DependentUpon>Surveys.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\PatientView\ViewModel\PastAppontmentsViewModel.cs" />
+    <Compile Include="View\PatientView\ViewModel\ViewModelPatient.cs" />
     <Compile Include="View\SecretaryView\AddPatient.xaml.cs">
       <DependentUpon>AddPatient.xaml</DependentUpon>
     </Compile>
@@ -526,6 +538,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\PatientView\Calendar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PatientView\Graphics.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -662,6 +678,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientView\Graph.resx">
+      <DependentUpon>Graph.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="..\.editorconfig">
       <Link>.editorconfig</Link>
     </None>
@@ -745,9 +764,7 @@
   <ItemGroup>
     <Resource Include="images\femaleUser.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="View\PatientView\ViewModel\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
