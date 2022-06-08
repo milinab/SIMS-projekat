@@ -64,7 +64,8 @@ namespace Hospital.View.PatientView
                 app._patientController.Edit(_patientWindow.patient);
                 app._trolController.Delete(troll.Id);
 
-                PopupNotification.SendPopupNotification("Warning", "Your account is banned due to..");
+                PopupNotification.SendPopupNotification("Warning", "your account has been banned due to overreaching maximum " +
+                                                        "of 5 cancellations/shifts of appointment in the period of 30 days.");
                 LogOut();
             }
 

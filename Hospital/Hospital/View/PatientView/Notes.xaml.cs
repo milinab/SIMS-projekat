@@ -130,6 +130,7 @@ namespace Hospital.View.PatientView
                 this.selectForDelete.Visibility = Visibility.Hidden;
                 Note note = (Note)dataGridNotes.SelectedItem;
                 app._noteController.Delete(note.Id);
+                dataGridNotes.ItemsSource = app._noteController.ReadByPatientId(patient.Id);
             }
             else
             {

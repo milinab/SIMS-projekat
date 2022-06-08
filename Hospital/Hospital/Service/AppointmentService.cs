@@ -120,7 +120,7 @@ namespace Hospital.Service
             return futureAppointments;
         }
 
-        public List<Appointment> FindAvailabeAppointments(Doctor selectedDoctor, DateTime _date, List<Appointment> DoctorsAppointments,
+        public List<Appointment> FindAvailableAppointments(Doctor selectedDoctor, DateTime _date, List<Appointment> DoctorsAppointments,
             List<TimeSpan> hospitalWorkingHours, List<TimeSpan> hospitalWorkingHoursListForCalculation, DateTime date)
         {
 
@@ -141,7 +141,7 @@ namespace Hospital.Service
                 }
             }
 
-            return MakeNewAppointmantList(cloneList, selectedDoctor, _date, AvailableAppointments);
+            return MakeNewAppointmentList(cloneList, selectedDoctor, _date, AvailableAppointments);
         }
 
         private List<TimeSpan> CompareTimes(TimeSpan appTime, List<TimeSpan> cloneList, DateTime date, DateTime appStartTime, DateTime appEndTime)
@@ -174,7 +174,7 @@ namespace Hospital.Service
             return cloneList;
         }
 
-        private List<Appointment> MakeNewAppointmantList(List<TimeSpan> cloneList, Doctor selectedDoctor, DateTime _date, List<Appointment> AvailableAppointments) {
+        private List<Appointment> MakeNewAppointmentList(List<TimeSpan> cloneList, Doctor selectedDoctor, DateTime _date, List<Appointment> AvailableAppointments) {
 
             String doctorName = selectedDoctor.Name + " " + selectedDoctor.LastName;
 
