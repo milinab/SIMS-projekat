@@ -84,7 +84,8 @@ namespace Hospital.View.ManagerView
         {
             if (ReplacementValidation())
                 return;
-            ObservableCollection<Medicine> medicines = _app._medicineController.Read();
+            List<Medicine> newMedicineList = _app._medicineController.Read();
+            ObservableCollection<Medicine> medicines = new ObservableCollection<Medicine>(newMedicineList);
             foreach (Medicine medic in medicines)
             {
                 if (medic.Id.Equals(_id))

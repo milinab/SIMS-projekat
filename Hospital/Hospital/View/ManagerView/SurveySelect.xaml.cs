@@ -33,9 +33,11 @@ namespace Hospital.View.ManagerView
             _app = Application.Current as App;
             this.WindowStartupLocation= WindowStartupLocation.CenterScreen;
             InitializeComponent();
-            ObservableCollection<HospitalSurveyResponse> hospitalSurveyResponses = _app._hospitalSurveyResponseController.Read();
+            List<HospitalSurveyResponse>hospitalSurveyResponsesList = _app._hospitalSurveyResponseController.Read();
+            ObservableCollection<HospitalSurveyResponse> hospitalSurveyResponses = new ObservableCollection<HospitalSurveyResponse>(hospitalSurveyResponsesList);
             ObservableCollection<int> gradeHospital = new ObservableCollection<int>();
-            ObservableCollection<DoctorSurveyResponse> doctorSurveyResponse = _app._doctorSurveyResponseController.Read();
+            List<DoctorSurveyResponse> doctorSurveyResponsesList = _app._doctorSurveyResponseController.Read();
+            ObservableCollection<DoctorSurveyResponse> doctorSurveyResponse = new ObservableCollection<DoctorSurveyResponse>(doctorSurveyResponsesList);
             ObservableCollection<int> grade = new ObservableCollection<int>();
             int num1 = 0;
             int num2 = 0;
