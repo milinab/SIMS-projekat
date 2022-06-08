@@ -33,7 +33,8 @@ namespace Hospital.View.ManagerView
             _app = Application.Current as App;
             _roomController = roomController;
             _roomOccupancy = roomOccupancy;
-            ObservableCollection<Room> rooms = _app._roomController.Read();
+            List<Room> roomList = _app._roomController.Read();
+            ObservableCollection<Room> rooms = new ObservableCollection<Room>(roomList);
             ObservableCollection<String> roomName = new ObservableCollection<string>();
             ObservableCollection<String> roomType = new ObservableCollection<string>();
             foreach (Room room in rooms)

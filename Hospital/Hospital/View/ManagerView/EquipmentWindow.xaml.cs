@@ -35,7 +35,8 @@ namespace Hospital.View.ManagerView
             _content = Content;
             _equipmentController = equipmentController;
             dataGridEquipment.ItemsSource = _equipmentController.Read();
-            ObservableCollection<Equipment> equipments = _app._equipmentController.Read();
+            List<Equipment> equipmentList = _app._equipmentController.Read();
+            ObservableCollection<Equipment> equipments = new ObservableCollection<Equipment>(equipmentList);
             ObservableCollection<String> roomNames = new ObservableCollection<string>();
             foreach (Equipment equipment in equipments)
             {

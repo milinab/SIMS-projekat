@@ -13,15 +13,17 @@ namespace Hospital.View.DoctorView.Appointments {
         private App _app;
         private Appointment _appointment;
         private Patient _patient;
-        
+        private ObservableCollection<Room> _rooms;
+
         public Edit(Appointment app)
         {
             _appointment = app;
             _app = Application.Current as App;
             InitializeComponent();
-            ObservableCollection<Room> rooms = _app._roomController.Read();
+            var rooms = _app._roomController.Read();
+            _rooms = new ObservableCollection<Room>(rooms);
             ObservableCollection<string> roomNames = new ObservableCollection<string>();
-            foreach (var room in rooms)
+            foreach (var room in _rooms)
             {
                 roomNames.Add(room.Name);
             }
@@ -51,9 +53,8 @@ namespace Hospital.View.DoctorView.Appointments {
             Doctor tempDoctor = _app._doctorController.ReadById(LogIn.LoggedUser.Id);
             Patient tempPatient = _patient;
             string roomName = RoomListBox.SelectedItem.ToString();
-            ObservableCollection<Room> rooms = _app._roomController.Read();
             Room tempRoom = new Room();
-            foreach (var room in rooms)
+            foreach (var room in _rooms)
             {
                 if (room.Name.Equals(roomName))
                 {
