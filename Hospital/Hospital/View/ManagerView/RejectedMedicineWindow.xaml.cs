@@ -23,13 +23,26 @@ namespace Hospital.View.ManagerView
     {
         private MedicineController _medicineController;
         private App _app;
-
+        private Medicine medicine1;
         public RejectedMedicineWindow(MedicineController medicineController)
         {
             _app = Application.Current as App;
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
             _medicineController = medicineController;
+            medicine1 = new Medicine();
+            var medicines = _app._medicineController.Read();
+            foreach (var medicine in medicines)
+            {
+                if(medicine.Status == Enums.MedicineStatus.Rejected)
+                {
+                    medicine1 = medicine;
+                }
+            }
+            nameText.Text = medicine1.Name;
+            TypeText.Text = medicine1.Type;
+            quantityText.Text = medicine1.Number.ToString();
+            ingredientsText.Text = medicine1.Ingredients;
         }
 
         private void NameValidation()
@@ -84,12 +97,14 @@ namespace Hospital.View.ManagerView
         {
             Medicine newMedicine = new Medicine
             {
+                Id = medicine1.Id,
                 Name = nameText.Text,
                 Type = TypeText.Text,
                 Number = int.Parse(quantityText.Text),
-                Ingredients = ingredientsText.Text
+                Ingredients = ingredientsText.Text,
+                Status = Enums.MedicineStatus.Awaiting
             };
-            _medicineController.Create(newMedicine);
+            _medicineController.Edit(newMedicine);
         }
 
         private void AddMedicineClick(object sender, RoutedEventArgs e)

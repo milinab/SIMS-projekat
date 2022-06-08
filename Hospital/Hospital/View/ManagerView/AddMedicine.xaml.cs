@@ -87,7 +87,8 @@ namespace Hospital.View.ManagerView
                 Name = nameText.Text,
                 Type = TypeText.Text,
                 Number = int.Parse(quantityText.Text),
-                Ingredients = ingredientsText.Text
+                Ingredients = ingredientsText.Text,
+                Status = Enums.MedicineStatus.Awaiting
             };
             _medicineController.Create(newMedicine);
         }
