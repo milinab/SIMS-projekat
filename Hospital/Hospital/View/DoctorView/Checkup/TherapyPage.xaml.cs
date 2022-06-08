@@ -19,7 +19,8 @@ namespace Hospital.View.DoctorView.Checkup
         public TherapyPage(Patient patient)
         {
             _app = Application.Current as App;
-            _medicines = _app?._medicineController.Read();
+            var medicines = _app?._medicineController.Read();
+            if (medicines != null) _medicines = new ObservableCollection<Medicine>(medicines);
             InitializeComponent();
             DataContext = this;
             MedicineListView.ItemsSource = _medicines;

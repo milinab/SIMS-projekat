@@ -18,12 +18,13 @@ namespace Hospital.View.SecretaryView
         private App _app;
         private readonly SecretaryWindow _secretaryWindow;
         private List<int> allergies;
-        private ObservableCollection<Allergen> allergens;
+        private ObservableCollection<Allergen> _allergens;
         public AddPatient(SecretaryWindow secretaryWindow)
         {
             _app = Application.Current as App;
             InitializeComponent();
-            allergens = _app._allergenController.Read();
+            var allergens = _app._allergenController.Read();
+            _allergens = new ObservableCollection<Allergen>(allergens);
             AllergenListBox.ItemsSource = allergens;
             _secretaryWindow = secretaryWindow;
 
@@ -81,7 +82,7 @@ namespace Hospital.View.SecretaryView
             _app._allergenController.Create(allergen);
             AllergiesText.Text = "";
             AllergenListBox.Items.Refresh();
-            AllergenListBox.ItemsSource = allergens;
+            AllergenListBox.ItemsSource = _allergens;
         }
 
         private void SignOut_Click(object sender, RoutedEventArgs e)

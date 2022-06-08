@@ -16,7 +16,8 @@ namespace Hospital.View.DoctorView.Checkup
         public CheckupPage()
         {
             var app = Application.Current as App;
-            Patients = app?._patientController.Read();
+            var patients = app?._patientController.Read();
+            if (patients != null) Patients = new ObservableCollection<Patient>(patients);
             InitializeComponent();
             DataContext = this;
         }

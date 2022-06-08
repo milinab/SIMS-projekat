@@ -29,7 +29,8 @@ namespace Hospital.View.SecretaryView
             _app = Application.Current as App;
             InitializeComponent();
 
-            _allergens = _app._allergenController.Read();
+            var allergens = _app._allergenController.Read();
+            _allergens = new ObservableCollection<Allergen>(allergens);
             AllergenListBox.ItemsSource = _allergens;
             _secretaryWindow = secretaryWindow;
             this.nameText.Text = patient.Name;
