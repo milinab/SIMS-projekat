@@ -1,19 +1,20 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Hospital.Model;
 
 namespace Hospital.Repository
 {
     public class SecretaryRepository
     {
-        private ObservableCollection<Secretary> _secretaries;
+        private List<Secretary> _secretaries;
         private readonly Serializer<Secretary> _serializer;
         public SecretaryRepository()
         {
             _serializer = new Serializer<Secretary>("secretaries.csv");
-            _secretaries = new ObservableCollection<Secretary>();
+            _secretaries = new List<Secretary>();
         }
 
-        public ObservableCollection<Secretary> Read()
+        public List<Secretary> Read()
         {
             _secretaries = _serializer.Read();
             return _secretaries;

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Hospital.Model;
 
@@ -5,16 +6,16 @@ namespace Hospital.Repository
 {
     public class TherapyRepository
     {
-        private ObservableCollection<Therapy> _therapies;
+        private List<Therapy> _therapies;
         private readonly Serializer<Therapy> _serializer;
 
         public TherapyRepository()
         {
             _serializer = new Serializer<Therapy>("therapies.csv");
-            _therapies = new ObservableCollection<Therapy>();
+            _therapies = new List<Therapy>();
         }
 
-        public ObservableCollection<Therapy> Read()
+        public List<Therapy> Read()
         {
             _therapies = _serializer.Read();
             return _therapies;
@@ -32,10 +33,10 @@ namespace Hospital.Repository
             return null;
         }
 
-        public ObservableCollection<Therapy> ReadByPatientId(int PatientId)
+        public List<Therapy> ReadByPatientId(int PatientId)
         {
 
-            ObservableCollection<Therapy> result = new ObservableCollection<Therapy>(); 
+            List<Therapy> result = new List<Therapy>(); 
 
             foreach (Therapy therapy in _therapies)
             {

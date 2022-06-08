@@ -74,8 +74,7 @@ namespace Hospital.Repository
 
         public void Write()
         {
-            ObservableCollection<Vacation> collection = new ObservableCollection<Vacation>(_vacations);
-            _serializer.Write(collection);
+            _serializer.Write(_vacations);
         }
     }
 }
