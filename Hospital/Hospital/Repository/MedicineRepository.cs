@@ -10,16 +10,16 @@ namespace Hospital.Repository
 {
     public class MedicineRepository
     {
-        private ObservableCollection<Medicine> _medicine;
+        private List<Medicine> _medicine;
         private readonly Serializer<Medicine> _serializer;
 
         public MedicineRepository()
         {
             _serializer = new Serializer<Medicine>("medicine.csv");
-            _medicine = new ObservableCollection<Medicine>();
+            _medicine = new List<Medicine>();
         }
 
-        public ObservableCollection<Medicine> Read()
+        public List<Medicine> Read()
         {
             _medicine = _serializer.Read();
             return _medicine;

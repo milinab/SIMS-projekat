@@ -1,20 +1,21 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Hospital.Model;
 
 namespace Hospital.Repository
 {
     public class NoteRepository
     {
-        private ObservableCollection<Note> _notes;
+        private List<Note> _notes;
         private readonly Serializer<Note> _serializer;
 
         public NoteRepository()
         {
             _serializer = new Serializer<Note>("notes.csv");
-            _notes = new ObservableCollection<Note>();
+            _notes = new List<Note>();
         }
 
-        public ObservableCollection<Note> Read()
+        public List<Note> Read()
         {
             _notes = _serializer.Read();
             return _notes;
@@ -70,10 +71,10 @@ namespace Hospital.Repository
             _serializer.Write(_notes);
         }
 
-        public ObservableCollection<Note> ReadByPatientId(int PatientId)
+        public List<Note> ReadByPatientId(int PatientId)
         {
 
-            ObservableCollection<Note> result = new ObservableCollection<Note> ();
+            List<Note> result = new List<Note> ();
 
             foreach (Note note in _notes)
             {

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Hospital.Model;
 
@@ -5,14 +6,14 @@ namespace Hospital.Repository
 {
     public class MedicalRecordRepository
     {
-        private ObservableCollection<MedicalRecord> _medicalRecords;
+        private List<MedicalRecord> _medicalRecords;
         private readonly Serializer<MedicalRecord> _serializer;
        
 
         public MedicalRecordRepository()
         {
             _serializer = new Serializer<MedicalRecord>("medicalrecords.csv");
-            _medicalRecords = new ObservableCollection<MedicalRecord>();
+            _medicalRecords = new List<MedicalRecord>();
            
           
         }
@@ -61,7 +62,7 @@ namespace Hospital.Repository
             }
             Write();
         }
-        public ObservableCollection<MedicalRecord> Read()
+        public List<MedicalRecord> Read()
         {
             _medicalRecords = _serializer.Read();
             return _medicalRecords;
