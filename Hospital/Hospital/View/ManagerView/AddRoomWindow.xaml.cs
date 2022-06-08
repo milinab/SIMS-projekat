@@ -30,10 +30,24 @@ namespace Hospital.View.ManagerView
                 Name = idText.Text,
                 Floor = floorText.Text,
                 Type = typeComboBox.Text
-
-
-
             };
+
+            if (idText.Text.Equals(""))
+            {
+                validationName.Visibility = Visibility.Visible;
+                validationFloor.Visibility = Visibility.Hidden;
+                return;
+            }
+
+            if (floorText.Text.Equals(""))
+            {
+                validationFloor.Visibility = Visibility.Visible;
+                validationName.Visibility = Visibility.Hidden;
+                return;
+            }
+
+            validationFloor.Visibility = Visibility.Hidden;
+            validationName.Visibility = Visibility.Hidden;
             _roomController.Create(newRoom);
             ManagerWindow managerWindow = new ManagerWindow(_app._roomController);
             managerWindow.Show();

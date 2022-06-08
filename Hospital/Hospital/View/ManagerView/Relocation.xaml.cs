@@ -55,9 +55,12 @@ namespace Hospital.View.ManagerView
                 eqName.Add(eq.Name);
             }
             eqComboBox.ItemsSource = eqName;
+            roomComboBox.ItemsSource = roomName;
+            roomComboBox2.ItemsSource = roomName;
             this.eqComboBox.Text = equipments.Name;
             this.quantityTextBox.Text = equipments.Number;
             this.roomComboBox.Text = equipments.Room;
+            this.roomComboBox2.Text = equipments.Room;
             _id = equipments.Id;
 
 
@@ -67,20 +70,14 @@ namespace Hospital.View.ManagerView
         {
             foreach (var a in equipment)
             {
-                TimeSpan dt = (TimeSpan)this.timePicker.Value;
-                DateTime now = DateTime.Now;
-                DateTime neww = now + dt;
-                int diff =(int)(neww - now).TotalSeconds;
-                if (diff > 0)
+                if (quantityTextBox.Text.Equals(""))
                 {
-                    Equipment equipment = new Equipment(_id, quantityTextBox.Text, eqComboBox.Text, roomComboBox2.Text);
-                    _app._equipmentController.Edit(equipment);
-                    _equipmentWindow.BackToEquipmentWindow();
+                    validationQuantity.Visibility = Visibility.Visible;
+                    return;
                 }
-                else
-                {
-                    
-                }
+                Equipment equipment = new Equipment(_id, quantityTextBox.Text, eqComboBox.Text, roomComboBox2.Text);
+                _app._equipmentController.Edit(equipment);
+                _equipmentWindow.BackToEquipmentWindow();
             }
             
         }

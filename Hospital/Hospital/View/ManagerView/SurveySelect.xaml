@@ -11,7 +11,7 @@
     <Grid Background="Azure">
         <Line X1="50" Y1="50" X2="1000" Y2="50" Stroke="White"  StrokeThickness="3" Margin="-50,18,1,318" />
 
-        <WindowsFormsHost Margin="66,154,502,154">
+        <WindowsFormsHost Margin="89,155,481,155">
             <wf:Chart x:Name ="Chart1">
                 <wf:Chart.Series>
                     <wf:Series ChartType="Column"/>
@@ -22,7 +22,7 @@
             </wf:Chart>
         </WindowsFormsHost>
 
-        <WindowsFormsHost Margin="484,155,84,153">
+        <WindowsFormsHost Margin="480,155,90,155">
             <wf:Chart x:Name ="Chart2">
                 <wf:Chart.Series>
                     <wf:Series ChartType="Column"/>
@@ -67,33 +67,33 @@
         <Image Source="/images/hospitalll.jpg" Margin="0,0,721,376" MouseLeftButtonUp="HomeClick" Cursor="Hand"/>
         <Image Source="/images/sign_out.png" Margin="699,15,66,395" MouseLeftButtonUp="SignOutClick" Cursor="Hand"/>
         <TextBlock Text="Sign out" FontSize="12" Margin="727,19,0,394" MouseLeftButtonUp="SignOutClick" Cursor="Hand" RenderTransformOrigin="0.512,0.042" HorizontalAlignment="Left" Width="84"/>
-        <TextBlock Text="Doctor's survey" Margin="118,94,553,306" FontSize="15"/>
-        <TextBlock Text="Hospital surveys" FontSize="15" Margin="550,94,84,300" />
-        <TextBlock Text="Average:" Margin="110,402,600,9" FontSize="10"/>
-        <TextBlock Text="Number of ones:" Margin="75,308,635,117" FontSize="10"/>
-        <TextBlock Text="Number of twos:" Margin="75,327,635,98" FontSize="10"/>
-        <TextBlock Text="Number of threes:" Margin="69,346,636,79" FontSize="10"/>
-        <TextBlock Text="Number of fours:" Margin="74,365,636,60" FontSize="10"/>
-        <TextBlock Text="Number of fives:" Margin="77,384,633,0" FontSize="10" Height="25" VerticalAlignment="Top"/>
-        <TextBlock Name="jedinice"  Margin="172,308,544,110" />
-        <TextBlock Name="dvojke"  Margin="172,327,561,91" />
-        <TextBlock Name="trojke"  Margin="172,346,544,77" />
-        <TextBlock Name="cetvorke"  Margin="172,365,549,58" />
-        <TextBlock Name="petice"  Margin="172,383,518,37" />
-        <TextBlock Name="prosek"  Margin="172,402,518,10" />
+        <TextBlock Text="Doctor's survey" Margin="147,94,524,306" FontSize="15"/>
+        <TextBlock Text="Hospital surveys" FontSize="15" Margin="547,94,87,300" />
+        <TextBlock Text="Average:" Margin="133,402,577,9" FontSize="10"/>
+        <TextBlock Text="Number of ones:" Margin="98,308,612,117" FontSize="10"/>
+        <TextBlock Text="Number of twos:" Margin="98,327,612,98" FontSize="10"/>
+        <TextBlock Text="Number of threes:" Margin="92,346,613,79" FontSize="10"/>
+        <TextBlock Text="Number of fours:" Margin="97,365,613,60" FontSize="10"/>
+        <TextBlock Text="Number of fives:" Margin="100,384,610,0" FontSize="10" Height="25" VerticalAlignment="Top"/>
+        <TextBlock Name="jedinice"  Margin="195,308,521,110" />
+        <TextBlock Name="dvojke"  Margin="195,327,538,91" />
+        <TextBlock Name="trojke"  Margin="195,346,521,77" />
+        <TextBlock Name="cetvorke"  Margin="195,365,526,58" />
+        <TextBlock Name="petice"  Margin="195,383,495,37" />
+        <TextBlock Name="prosek"  Margin="195,402,495,10" />
 
-        <TextBlock Text="Average:" Margin="528,402,182,9" FontSize="10"/>
-        <TextBlock Text="Number of ones:" Margin="493,308,217,117" FontSize="10"/>
-        <TextBlock Text="Number of twos:" Margin="493,327,217,98" FontSize="10"/>
-        <TextBlock Text="Number of threes:" Margin="487,346,218,79" FontSize="10"/>
-        <TextBlock Text="Number of fours:" Margin="492,365,218,60" FontSize="10"/>
-        <TextBlock Text="Number of fives:" Margin="495,384,215,0" FontSize="10" Height="25" VerticalAlignment="Top"/>
-        <TextBlock Name="jediniceHospital"  Margin="590,308,126,110" />
-        <TextBlock Name="dvojkeHospital"  Margin="590,327,143,91" />
-        <TextBlock Name="trojkeHospital"  Margin="590,346,126,77" />
-        <TextBlock Name="cetvorkeHospital"  Margin="590,365,131,58" />
-        <TextBlock Name="peticeHospital"  Margin="590,383,100,37" />
-        <TextBlock Name="prosekHospital"  Margin="590,402,100,10" />
+        <TextBlock Text="Average:" Margin="524,402,186,9" FontSize="10"/>
+        <TextBlock Text="Number of ones:" Margin="489,308,221,117" FontSize="10"/>
+        <TextBlock Text="Number of twos:" Margin="489,327,221,98" FontSize="10"/>
+        <TextBlock Text="Number of threes:" Margin="483,346,222,79" FontSize="10"/>
+        <TextBlock Text="Number of fours:" Margin="488,365,222,60" FontSize="10"/>
+        <TextBlock Text="Number of fives:" Margin="491,384,219,0" FontSize="10" Height="25" VerticalAlignment="Top"/>
+        <TextBlock Name="jediniceHospital"  Margin="586,308,130,110" />
+        <TextBlock Name="dvojkeHospital"  Margin="586,327,147,91" />
+        <TextBlock Name="trojkeHospital"  Margin="586,346,130,77" />
+        <TextBlock Name="cetvorkeHospital"  Margin="586,365,135,58" />
+        <TextBlock Name="peticeHospital"  Margin="586,383,104,37" />
+        <TextBlock Name="prosekHospital"  Margin="586,402,104,10" />
 
     </Grid>
 </Window>

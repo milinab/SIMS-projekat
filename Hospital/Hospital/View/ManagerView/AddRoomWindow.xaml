@@ -57,6 +57,8 @@
         <Image Source="/images/hospitalll.jpg" Margin="0,0,721,376" MouseLeftButtonUp="HomeClick" Cursor="Hand"/>
         <Image Source="/images/sign_out.png" Margin="699,15,66,395" MouseLeftButtonUp="SignOutClick" Cursor="Hand"/>
         <TextBlock Text="Sign out" FontSize="12" Margin="727,19,0,394" MouseLeftButtonUp="SignOutClick" Cursor="Hand" RenderTransformOrigin="0.512,0.042" HorizontalAlignment="Left" Width="84"/>
-
+        <Label Name="validationName" Content="Please enter your new rooms name" FontSize="12" Foreground="Red" Margin="315,89,175,307" Visibility="Hidden"/>
+        <Label Name="validationFloor" Content="Please enter your new rooms floor" FontSize="12" Foreground="Red" Margin="315,180,175,216" Visibility="Hidden"/>
+     
     </Grid>
 </Window>

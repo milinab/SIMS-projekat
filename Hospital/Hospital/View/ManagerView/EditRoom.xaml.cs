@@ -46,6 +46,22 @@ namespace Hospital.View.ManagerView
 
         public void EditRoomClick(Object sender, RoutedEventArgs e)
         {
+
+            if (nameText.Text.Equals(""))
+            {
+                validationName.Visibility = Visibility.Visible;
+                validationFloor.Visibility = Visibility.Hidden;
+                return;
+            }
+
+            if (floorText.Text.Equals(""))
+            {
+                validationFloor.Visibility = Visibility.Visible;
+                validationName.Visibility = Visibility.Hidden;
+                return;
+            }
+
+
             Room room = new Room(nameText.Text, floorText.Text, typeComboBox.Text, _id);
             _app._roomController.Edit(room);
             _managerWindow.BackToManagerWindow();

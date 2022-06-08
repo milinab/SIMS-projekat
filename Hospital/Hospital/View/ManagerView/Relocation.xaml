@@ -21,7 +21,7 @@
                 </TransformGroup>
             </Label.RenderTransform>
         </Label>
-        <ComboBox x:Name="roomComboBox" IsEditable="False"  Margin="323,163,177,242"/>
+        <ComboBox x:Name="roomComboBox"  Margin="323,163,177,242"/>
         <Label Content="Quantity:" FontSize ="20" Margin="180,206,491,183" />
         <TextBox x:Name="quantityTextBox"   Margin="323,214,177,191" />
         <Label Content="To:" FontSize="20" Margin="236,258,491,141" ></Label>
@@ -83,7 +83,7 @@
         <Image Source="/images/hospitalll.jpg" Margin="0,0,721,376" MouseLeftButtonUp="HomeClick" Cursor="Hand"/>
         <Image Source="/images/sign_out.png" Margin="699,15,66,395" MouseLeftButtonUp="SignOutClick" Cursor="Hand"/>
         <TextBlock Text="Sign out" FontSize="12" Margin="727,19,0,394" MouseLeftButtonUp="SignOutClick" Cursor="Hand" RenderTransformOrigin="0.512,0.042" HorizontalAlignment="Left" Width="84"/>
-
+        <TextBlock Text="Please insert quantity." Name="validationQuantity" FontSize="12" Margin="323,196,177,225" Foreground="Red" Visibility="Hidden"/>
 
     </Grid>
 </Page>

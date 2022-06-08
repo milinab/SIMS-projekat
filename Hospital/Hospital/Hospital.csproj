@@ -331,6 +331,9 @@
     <Compile Include="View\ManagerView\MergeRooms.xaml.cs">
       <DependentUpon>MergeRooms.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ManagerView\RejectedMedicineWindow.xaml.cs">
+      <DependentUpon>RejectedMedicineWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ManagerView\Relocation.xaml.cs">
       <DependentUpon>Relocation.xaml</DependentUpon>
     </Compile>
@@ -498,6 +501,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ManagerView\MergeRooms.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ManagerView\RejectedMedicineWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

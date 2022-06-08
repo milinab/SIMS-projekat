@@ -60,6 +60,32 @@ namespace Hospital.View.ManagerView
                 Floor = "1",
                 Type = TypeComboBox.Text
             };
+
+
+            if (RoomComboBox.Text.Equals(""))
+            {
+                validationRoom.Visibility = Visibility.Visible;
+                validationName.Visibility = Visibility.Hidden;
+                validationType.Visibility = Visibility.Hidden;
+                return;
+            }
+
+            if (RoomName.Text.Equals(""))
+            {
+                validationRoom.Visibility = Visibility.Hidden;
+                validationName.Visibility = Visibility.Visible;
+                validationType.Visibility = Visibility.Hidden;
+                return;
+            }
+
+            if (TypeComboBox.Text.Equals(""))
+            {
+                validationRoom.Visibility = Visibility.Hidden;
+                validationName.Visibility = Visibility.Hidden;
+                validationType.Visibility = Visibility.Visible;
+                return;
+            }
+
             _app._roomController.Create(newRoom);
             _roomOccupancy.BackToRoomOccupancy();
 

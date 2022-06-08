@@ -2,6 +2,7 @@
 using Hospital.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,13 +33,39 @@ namespace Hospital.View.ManagerView
             InitializeComponent();
             _content = Content;
             _medicineController = medicineController;
-            dataGridMedicine.ItemsSource = _medicineController.Read();
+            var medicines = _medicineController.Read();
+
+            ObservableCollection<Medicine> displayMedicine = new ObservableCollection<Medicine>();
+
+            foreach (var me in medicines)
+            {
+                if (me.Status == Enums.MedicineStatus.Rejected)
+                {
+                    validation.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    validation.Visibility = Visibility.Hidden;
+                }
+                if (me.Status == Enums.MedicineStatus.Accepted)
+                {
+                    displayMedicine.Add(me);
+                }
+            }
+            dataGridMedicine.ItemsSource = displayMedicine;
+            
         }
 
         private void AddMedicineClick(object sender, RoutedEventArgs eventArgs)
         {
             AddMedicine addMedicine = new AddMedicine(_medicineController);
             addMedicine.ShowDialog();
+            Close();
+        }
+        private void RejectedMedicineClick(object sender, RoutedEventArgs eventArgs)
+        {
+            RejectedMedicineWindow rejectedMedicine = new RejectedMedicineWindow(_medicineController);
+            rejectedMedicine.ShowDialog();
             Close();
         }
 

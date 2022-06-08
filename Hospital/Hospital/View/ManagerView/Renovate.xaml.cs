@@ -77,6 +77,15 @@ namespace Hospital.View.ManagerView
             }
             if(nesto == false)
             {
+
+                if (roomComboBox.Text.Equals(""))
+                {
+                    validationRoom.Visibility = Visibility.Visible;
+                    validationDate.Visibility = Visibility.Hidden;
+                    return;
+                }
+
+
                 _appointmentController.Create(appointment);
                 _roomOccupancy.BackToRoomOccupancy();
             }

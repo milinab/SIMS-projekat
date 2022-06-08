@@ -62,13 +62,13 @@ namespace Hospital.View.ManagerView
                 sum += doctorSurveyResponseItem.Grade;
             }
 
+            avg = sum / i;
             this.jedinice.Text = num1.ToString();
             this.dvojke.Text = num2.ToString();
             this.trojke.Text = num3.ToString();
             this.cetvorke.Text = num4.ToString();
             this.petice.Text = num5.ToString();
-            this.prosek.Text = avg.ToString();
-            avg = sum / i;
+            this.prosek.Text = avg.ToString("n2");
 
 
             int num12 = 0;
@@ -97,14 +97,14 @@ namespace Hospital.View.ManagerView
                 sum2 += hospitalSurveyResponseItem.Grade;
             }
             _content = Content;
+            avg2 = sum2 / j;
 
             this.jediniceHospital.Text = num12.ToString();
             this.dvojkeHospital.Text = num22.ToString();
             this.trojkeHospital.Text = num32.ToString();
             this.cetvorkeHospital.Text = num42.ToString();
             this.peticeHospital.Text = num52.ToString();
-            this.prosekHospital.Text = avg2.ToString();
-            avg2 = sum / i;
+            this.prosekHospital.Text = avg2.ToString("n2");
 
         }
 

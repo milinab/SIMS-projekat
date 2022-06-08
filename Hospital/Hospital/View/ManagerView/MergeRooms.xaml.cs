@@ -75,6 +75,20 @@ namespace Hospital.View.ManagerView
 
         private void MergeClick(object sender, RoutedEventArgs e)
         {
+            if (disappearingRoomComboBox.Text.Equals(""))
+            {
+                validationRoom1.Visibility = Visibility.Visible;
+                validationRoom2.Visibility = Visibility.Hidden;
+                return;
+            }
+
+            if (expandingRoomComboBox.Text.Equals(""))
+            {
+                validationRoom1.Visibility = Visibility.Hidden;
+                validationRoom2.Visibility = Visibility.Visible;
+                return;
+            }
+
             DeleteRoom();
             ReplaceEquipment();
             _roomOccupancy.BackToRoomOccupancy();
