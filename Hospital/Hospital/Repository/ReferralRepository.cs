@@ -56,7 +56,7 @@ namespace Hospital.Repository
 
         public void Write()
         {
-            var collection = new ObservableCollection<Referral>(_referrals);
+            var collection = new List<Referral>(_referrals);
             _serializer.Write(collection);
         }
     }

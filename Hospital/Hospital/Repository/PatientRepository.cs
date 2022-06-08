@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Hospital.Model;
 
@@ -6,7 +7,7 @@ namespace Hospital.Repository
 {
     public class PatientRepository
     {
-        private ObservableCollection<Patient> _patients;
+        private List<Patient> _patients;
         private readonly Serializer<Patient> _serializer;
         private readonly AddressRepository _addressRepository;
         private readonly MedicalRecordRepository _medicalRecordRepository;
@@ -14,12 +15,12 @@ namespace Hospital.Repository
         public PatientRepository(AddressRepository addressRepository, MedicalRecordRepository medicalRecordRepository)
         {
             _serializer = new Serializer<Patient>("patients.csv");
-            _patients = new ObservableCollection<Patient>();
+            _patients = new List<Patient>();
             _addressRepository = addressRepository;
             _medicalRecordRepository = medicalRecordRepository;
         }
 
-        public ObservableCollection<Patient> Read()
+        public List<Patient> Read()
         {
             _patients = _serializer.Read();
             

@@ -17,7 +17,7 @@ namespace Hospital.Service
         public MedicineService(MedicineRepository medicineRepository)
         {
             _repository = medicineRepository;
-            ObservableCollection<Medicine> medicine = Read();
+            List<Medicine> medicine = Read();
             if(medicine != null)
                 _id = medicine.Last().Id;
             else
@@ -43,7 +43,7 @@ namespace Hospital.Service
         {
             _repository.Edit(editMedicine);
         }
-        public ObservableCollection<Medicine>Read()
+        public List<Medicine>Read()
         {
             return _repository.Read();
         }

@@ -11,16 +11,16 @@ namespace Hospital.Repository
     public class MedicineReplaceRepository
     {
 
-        private ObservableCollection<ReplacementMedicine> _medicineReplace;
+        private List<ReplacementMedicine> _medicineReplace;
         private readonly Serializer<ReplacementMedicine> _serializer;
 
         public MedicineReplaceRepository() 
         {
             _serializer = new Serializer<ReplacementMedicine>("medicineReplace.csv");
-            _medicineReplace = new ObservableCollection<ReplacementMedicine>();
+            _medicineReplace = new List<ReplacementMedicine>();
         }
 
-        public ObservableCollection<ReplacementMedicine> Read()
+        public List<ReplacementMedicine> Read()
         {
             _medicineReplace = _serializer.Read();
             return _medicineReplace;
