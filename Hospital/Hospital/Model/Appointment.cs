@@ -65,5 +65,19 @@ namespace Hospital.Model
             Room = room;
             RoomId = room.Id;
         }
+
+        public bool Overlaps(Appointment appointment)
+        {
+            var endDate = Date + Duration;
+            var appointmentEndDate = appointment.Date + appointment.Duration;
+            return (appointmentEndDate <= Date && appointment.Date <= endDate) || 
+                   (appointment.Date < Date && appointmentEndDate > endDate);
+        }
+
+        public bool IsAppointmentDateCorrect(Appointment appointment)
+        {
+            var appointmentEndDate = appointment.Date + appointment.Duration;
+            return appointment.Date < appointmentEndDate;
+        }
     }
 }
