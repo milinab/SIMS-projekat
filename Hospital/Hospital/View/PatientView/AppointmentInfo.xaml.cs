@@ -1,4 +1,5 @@
 ﻿using Hospital.Model;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
@@ -69,7 +70,8 @@ namespace Hospital.View.PatientView
             City city = app._cityController.ReadById(user.Address.CityId);
             Country country = app._countryController.ReadById(1); //country nije postavljen u address modelu
             Model.MedicalRecord medicalRecord = app._medicalRecordController.ReadById(patient.MedicalRecordId);
-            ObservableCollection<Allergen> allergens = app._allergenController.ReadByIds(medicalRecord.AllergenIds);
+            List<Allergen> allergenList = app._allergenController.ReadByIds(medicalRecord.AllergenIds);
+            ObservableCollection<Allergen> allergens = new ObservableCollection<Allergen>(allergenList);
 
             Page medicalRecordPage = new MedicalRecord(_patientWindow, user, patient, address, city, country, medicalRecord, allergens);
             this.frame.Navigate(medicalRecordPage);

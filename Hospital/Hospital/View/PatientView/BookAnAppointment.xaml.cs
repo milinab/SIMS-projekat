@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using Hospital.Model;
 using System.Collections.ObjectModel;
+using System.Collections.Generic;
 
 namespace Hospital.View.PatientView
 {
@@ -31,8 +32,10 @@ namespace Hospital.View.PatientView
             dataGridAppointments.ItemsSource = patientWindow.dataGridAppointments.ItemsSource;
             patient = app._patientController.ReadById(LogIn.LoggedUser.Id);
             _patientWindow = patientWindow;
-            Doctors = new ObservableCollection<Doctor>();
-            Doctors = app._doctorController.Read();
+
+            List<Doctor> doctorList = app._doctorController.Read();
+            ObservableCollection<Doctor> Doctors = new ObservableCollection<Doctor>(doctorList);
+
             doctorsComboBox.ItemsSource = Doctors;
             myCalendar.DisplayDateStart = DateTime.Now.AddDays(1);
         }
@@ -87,7 +90,8 @@ namespace Hospital.View.PatientView
             City city = app._cityController.ReadById(user.Address.CityId);
             Country country = app._countryController.ReadById(1); //country nije postavljen u address modelu
             Model.MedicalRecord medicalRecord = app._medicalRecordController.ReadById(patient.MedicalRecordId);
-            ObservableCollection<Allergen> allergens = app._allergenController.ReadByIds(medicalRecord.AllergenIds);
+            List<Allergen> allergenList = app._allergenController.ReadByIds(medicalRecord.AllergenIds);
+            ObservableCollection<Allergen> allergens = new ObservableCollection<Allergen>(allergenList);
 
             Page medicalRecordPage = new MedicalRecord(_patientWindow, user, patient, address, city, country, medicalRecord, allergens);
             this.frame.Navigate(medicalRecordPage);

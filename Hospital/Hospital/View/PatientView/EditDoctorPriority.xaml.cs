@@ -69,18 +69,19 @@ namespace Hospital.View.PatientView
 
             List<TimeSpan> hospitalWorkingHoursListForCalculation = new List<TimeSpan>(hospitalWorkingHours);
 
-            DoctorsAppointments = new ObservableCollection<Appointment>();
-            DoctorsAppointments = app._appointmentController.ReadByDoctorId(doctorId);
+            List<Appointment> appointmentList = app._appointmentController.ReadByDoctorId(doctorId);
+            List<Appointment> DoctorsAppointments = new List<Appointment>(appointmentList);
 
-            AvailableAppointments = app._appointmentController.FindAvailableAppointments(selectedDoctor, _date, DoctorsAppointments, hospitalWorkingHours, hospitalWorkingHoursListForCalculation, date);
-            
+            var availableAppointments = app._appointmentController.FindAvailableAppointments(selectedDoctor, _date, DoctorsAppointments, hospitalWorkingHours, hospitalWorkingHoursListForCalculation, date);
+            AvailableAppointments = new ObservableCollection<Appointment>(availableAppointments);
+
             if (AvailableAppointments.Count == 0)
             {
                 DateTime tommorow = date.AddDays(1); //uzmes sutradan
                 _date = tommorow;
                 PopupNotification.SendPopupNotification("Warning", "Sorry to inform, but there is no available appointments for chosen date. In the following list, we are gonna show You available appointments for the next available day.");
-                AvailableAppointments = app._appointmentController.FindAvailableAppointments(selectedDoctor, _date, DoctorsAppointments, hospitalWorkingHours, hospitalWorkingHoursListForCalculation, tommorow);
-
+                var availableAppointmentsNoDate = app._appointmentController.FindAvailableAppointments(selectedDoctor, _date, DoctorsAppointments, hospitalWorkingHours, hospitalWorkingHoursListForCalculation, tommorow);
+                AvailableAppointments = new ObservableCollection<Appointment>(availableAppointmentsNoDate);
             }
         }
             
@@ -123,7 +124,8 @@ namespace Hospital.View.PatientView
             City city = app._cityController.ReadById(user.Address.CityId);
             Country country = app._countryController.ReadById(1); //country nije postavljen u address modelu
             Model.MedicalRecord medicalRecord = app._medicalRecordController.ReadById(patient.MedicalRecordId);
-            ObservableCollection<Allergen> allergens = app._allergenController.ReadByIds(medicalRecord.AllergenIds);
+            List<Allergen> allergenList = app._allergenController.ReadByIds(medicalRecord.AllergenIds);
+            ObservableCollection<Allergen> allergens = new ObservableCollection<Allergen>(allergenList);
 
             Page medicalRecordPage = new MedicalRecord(_patientWindow, user, patient, address, city, country, medicalRecord, allergens);
             this.frame.Navigate(medicalRecordPage);

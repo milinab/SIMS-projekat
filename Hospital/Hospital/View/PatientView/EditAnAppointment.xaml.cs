@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using Hospital.Model;
 using System.Collections.ObjectModel;
+using System.Collections.Generic;
 
 namespace Hospital.View.PatientView
 {
@@ -27,8 +28,12 @@ namespace Hospital.View.PatientView
             InitializeComponent();
             app = Application.Current as App;
             dataGridAppointments.ItemsSource = patientWindow.dataGridAppointments.ItemsSource;
-            Doctors = new ObservableCollection<Doctor>();
-            Doctors = app._doctorController.Read();
+            List<Doctor> doctorList = app._doctorController.Read();
+            ObservableCollection<Doctor> Doctors = new ObservableCollection<Doctor>(doctorList);
+
+            //Doctors = new ObservableCollection<Doctor>();
+            //Doctors = app._doctorController.Read();
+
             doctorsComboBox.ItemsSource = Doctors;
             _patientWindow = patientWindow;
             _id = appointment.Id;
@@ -114,7 +119,8 @@ namespace Hospital.View.PatientView
             City city = app._cityController.ReadById(user.Address.CityId);
             Country country = app._countryController.ReadById(1); //country nije postavljen u address modelu
             Model.MedicalRecord medicalRecord = app._medicalRecordController.ReadById(patient.MedicalRecordId);
-            ObservableCollection<Allergen> allergens = app._allergenController.ReadByIds(medicalRecord.AllergenIds);
+            List<Allergen> allergenList = app._allergenController.ReadByIds(medicalRecord.AllergenIds);
+            ObservableCollection<Allergen> allergens = new ObservableCollection<Allergen>(allergenList);
 
             Page medicalRecordPage = new MedicalRecord(_patientWindow, user, patient, address, city, country, medicalRecord, allergens);
             this.frame.Navigate(medicalRecordPage);

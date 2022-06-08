@@ -1,5 +1,6 @@
 ﻿using Hospital.Model;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Threading;
@@ -54,11 +55,17 @@ namespace Hospital.View.PatientView
             patient = app._patientController.ReadById(LogIn.LoggedUser.Id);
             dataGridAppointments.ItemsSource = app._appointmentController.ReadFutureAppointments(patient.Id);
 
-            Appointments = new ObservableCollection<Appointment>();
+            List<Appointment> appointmentList = app._appointmentController.ReadFutureAppointments(patient.Id);
+            ObservableCollection<Appointment> Appointments = new ObservableCollection<Appointment>(appointmentList);
+            
+            List<Therapy> therapiesList = app._therapyController.ReadBypatientId(patient.Id);
+            ObservableCollection<Therapy> Therapies = new ObservableCollection<Therapy>(therapiesList);
+
+            List<Note> noteList = app._noteController.ReadByPatientId(patient.Id);
+            ObservableCollection<Note> Notes = new ObservableCollection<Note>(noteList);
+
             Doctors = new ObservableCollection<Doctor>();
-            Appointments = app._appointmentController.ReadFutureAppointments(patient.Id);
-            Therapies = app._therapyController.ReadBypatientId(patient.Id);
-            Notes = app._noteController.ReadByPatientId(patient.Id);
+
             GetTherapyTime();
             GetNoteNotificationTime();
 
@@ -172,7 +179,8 @@ namespace Hospital.View.PatientView
             City city = app._cityController.ReadById(user.Address.CityId);
             Country country = app._countryController.ReadById(1); //country nije postavljen u address modelu
             Model.MedicalRecord medicalRecord = app._medicalRecordController.ReadById(patient.MedicalRecordId);
-            ObservableCollection<Allergen> allergens = app._allergenController.ReadByIds(medicalRecord.AllergenIds);
+            List<Allergen> allergenList = app._allergenController.ReadByIds(medicalRecord.AllergenIds);
+            ObservableCollection<Allergen> allergens = new ObservableCollection<Allergen>(allergenList);
 
             var medicalRecordPage = new MedicalRecord(this, user, patient, address, city, country, medicalRecord, allergens);
             Content = medicalRecordPage;
