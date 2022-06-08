@@ -41,9 +41,11 @@ namespace Hospital.View.ManagerView
             _equipmentWindow = equipmentWindow;
             _equipmentController = equipmentController;
             _roomController = roomController;
-            ObservableCollection<Room> rooms = _app._roomController.Read();
+            List<Room> roomList = _app._roomController.Read();
+            ObservableCollection<Room> rooms = new ObservableCollection<Room>(roomList);
             ObservableCollection<String> roomName = new ObservableCollection<string>();
-            equipment = _app._equipmentController.Read();
+            List<Equipment>equipmentList = _app._equipmentController.Read();
+            equipment = new ObservableCollection<Equipment>(equipmentList);
             ObservableCollection<String> eqName = new ObservableCollection<string>();
 
             foreach (Room room in rooms)

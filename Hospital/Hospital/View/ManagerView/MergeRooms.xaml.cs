@@ -34,7 +34,8 @@ namespace Hospital.View.ManagerView
             _app = Application.Current as App;
             _roomController = roomController;
             _roomOccupancy = roomOccupancy;
-            ObservableCollection<Room> rooms = _app._roomController.Read();
+            List<Room> roomList = _app._roomController.Read();
+            ObservableCollection<Room> rooms = new ObservableCollection<Room>(roomList);
             ObservableCollection<String> roomName = new ObservableCollection<string>();
             foreach(Room room in rooms)
             {
@@ -47,7 +48,8 @@ namespace Hospital.View.ManagerView
         private void DeleteRoom()
         {
             string _disappearingRoom = disappearingRoomComboBox.Text;
-            ObservableCollection<Room> rooms = _app._roomController.Read();
+            List<Room> roomList = _app._roomController.Read();
+            ObservableCollection<Room> rooms = new ObservableCollection<Room>(roomList);
             foreach (Room room in rooms)
             {
                 if (room.Name.Equals(_disappearingRoom))
@@ -62,7 +64,8 @@ namespace Hospital.View.ManagerView
         {
             string _expandingRoom = expandingRoomComboBox.Text;
             string _disappearingRoom = disappearingRoomComboBox.Text;
-            ObservableCollection<Equipment> equipments = _app._equipmentController.Read();
+            List<Equipment>equipmentList = _app._equipmentController.Read();
+            ObservableCollection<Equipment> equipments = new ObservableCollection<Equipment>(equipmentList);
             foreach (Equipment equipment in equipments)
             {
                 if (equipment.Room.Equals(_disappearingRoom))

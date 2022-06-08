@@ -34,7 +34,8 @@ namespace Hospital.View.ManagerView
             _appointmentController = appointmentController;
             InitializeComponent();
             datePicker.SelectedDate = DateTime.Now;
-            ObservableCollection<Room> rooms = _app._roomController.Read();
+            List<Room>roomList = _app._roomController.Read();
+            ObservableCollection<Room> rooms = new ObservableCollection<Room>(roomList);
             ObservableCollection<String> roomNames = new ObservableCollection<string>();
             foreach (Room room in rooms)
             {
@@ -48,9 +49,10 @@ namespace Hospital.View.ManagerView
             DateTime _date = datePicker.SelectedDate.Value;
             string _room = roomComboBox.Text;
             TimeSpan interval = new TimeSpan(23, 59, 59);
-
-            ObservableCollection<Appointment> appointments = _app._appointmentController.Read();
-            ObservableCollection<Room> rooms = _app._roomController.Read();
+            List<Appointment> appointmentList = _app._appointmentController.Read();
+            ObservableCollection<Appointment> appointments = new ObservableCollection<Appointment>(appointmentList);
+            List<Room>roomList = _app._roomController.Read();
+            ObservableCollection<Room> rooms = new ObservableCollection<Room>(roomList);
             Room tempRoom = new Room();
             foreach (Room room in rooms)
             {
