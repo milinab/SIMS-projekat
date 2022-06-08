@@ -1,4 +1,4 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Hospital.Model;
 using Hospital.Repository;
@@ -13,7 +13,7 @@ namespace Hospital.Service
         public DoctorService(DoctorRepository doctorRepository)
         {
             _repository = doctorRepository;
-            ObservableCollection<Doctor> doctors = Read();
+            List<Doctor> doctors = Read();
             if (doctors.Count == 0)
             {
                 _id = 0;
@@ -44,7 +44,7 @@ namespace Hospital.Service
             _repository.Delete(id);
         }
 
-        public ObservableCollection<Doctor> Read()
+        public List<Doctor> Read()
         {
             return _repository.Read();
         }

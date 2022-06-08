@@ -1,22 +1,23 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Hospital.Model;
 
 namespace Hospital.Repository
 {
     public class AddressRepository
     {
-        private ObservableCollection<Address> _addresses;
+        private List<Address> _addresses;
         private readonly Serializer<Address> _serializer;
         private readonly CityRepository _cityRepository;
 
         public AddressRepository(CityRepository cityRepository)
         {
             _serializer = new Serializer<Address>("addresses.csv");
-            _addresses = new ObservableCollection<Address>();
+            _addresses = new List<Address>();
             _cityRepository = cityRepository;
         }
 
-        public ObservableCollection<Address> Read()
+        public List<Address> Read()
         {
             _addresses = _serializer.Read();
             

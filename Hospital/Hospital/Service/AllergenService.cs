@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using Hospital.Model;
 using Hospital.Repository;
@@ -14,7 +13,7 @@ namespace Hospital.Service
         public AllergenService(AllergenRepository allergenRepository)
         {
             _repository = allergenRepository;
-            ObservableCollection<Allergen> allergens = Read();
+            List<Allergen> allergens = Read();
             if (allergens.Count == 0)
             {
                 _id = 0;
@@ -46,14 +45,14 @@ namespace Hospital.Service
             _repository.Delete(id);
         }
 
-        public ObservableCollection<Allergen> Read()
+        public List<Allergen> Read()
         {
             return _repository.Read();
         }
 
-        public ObservableCollection<Allergen> ReadByIds(List<int> ids)
+        public List<Allergen> ReadByIds(List<int> ids)
         {
-            ObservableCollection<Allergen> ret = new ObservableCollection<Allergen>();
+            List<Allergen> ret = new List<Allergen>();
             foreach (int al in ids) {
                 ret.Add(_repository.ReadById(al));
             }
