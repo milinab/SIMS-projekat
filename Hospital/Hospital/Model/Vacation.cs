@@ -20,6 +20,8 @@ namespace Hospital.Model
         public Doctor Doctor { get; set; }
         [DataMember]
         public VacationState State { get; set; }
+        [DataMember]
+        public string RejectReason { get; set; }
         
         public Vacation(DateTime startDate, DateTime endDate, string reason, Doctor doctor, VacationState state)
         {

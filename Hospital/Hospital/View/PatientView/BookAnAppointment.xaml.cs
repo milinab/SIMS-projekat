@@ -3,7 +3,6 @@ using System.Windows;
 using System.Windows.Controls;
 using Hospital.Model;
 using System.Collections.ObjectModel;
-using System.Collections.Generic;
 
 namespace Hospital.View.PatientView
 {
@@ -16,7 +15,6 @@ namespace Hospital.View.PatientView
         private readonly object _content;
         private readonly PatientWindow _patientWindow;
         public Patient patient;
-        //private readonly UserController _userController;
 
         public ObservableCollection<Doctor> Doctors
         {
@@ -39,32 +37,12 @@ namespace Hospital.View.PatientView
             myCalendar.DisplayDateStart = DateTime.Now.AddDays(1);
         }
 
-        /*public BookAnAppointment(PatientWindow patientWindow)
-        {
-            InitializeComponent();
-            app = Application.Current as App;
-            _content = Content;
-            this.DataContext = this;
-            dataGridAppointments.ItemsSource = patientWindow.dataGridAppointments.ItemsSource;
-            _patientWindow = patientWindow;
-            Doctors = new ObservableCollection<Doctor>();
-            Doctors = app._doctorController.Read();
-            doctorsComboBox.ItemsSource = Doctors;
-
-        }*/
-
-        /*public BookAnAppointment(UserController userController)
-        {
-            _userController = userController;
-        }*/
-
         private bool Validate()
         {
          
             if(DoctorPriority.IsChecked == false && DatePriority.IsChecked == false)
             {
-                PopupNotification.sendPopupNotification("Warning", "You need to select a priority.");
-                //MessageBox.Show("You need to select a priority.", "Warning");
+                PopupNotification.SendPopupNotification("Warning", "You need to select a priority.");
                 return false;
             }
             return false;
@@ -72,6 +50,7 @@ namespace Hospital.View.PatientView
 
         private void AddAppointment_Click(object sender, RoutedEventArgs e)
         {
+            Validate();
 
             int DoctorId = Int32.Parse(((Model.User)doctorsComboBox.SelectedItem).Id.ToString());
             

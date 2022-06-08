@@ -4,7 +4,6 @@ using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 using Hospital.Model;
-using Tulpep.NotificationWindow;
 
 namespace Hospital.View.PatientView
 {
@@ -14,9 +13,7 @@ namespace Hospital.View.PatientView
     public partial class EditDoctorPriority : Page
     {
         private App app;
-        //private readonly EditAnAppointment _editAnAppointment;
         private readonly PatientWindow _patientWindow;
-        //private readonly AppointmentController _appointmentController;
         private int _doctorId;
         private DateTime _date;
         private String chosenDoctor;
@@ -35,23 +32,10 @@ namespace Hospital.View.PatientView
 
         ObservableCollection<Appointment> AvailableAppointments { get; set; }
 
-
-
-        /*public EditDoctorPriority(PatientWindow patientWindow, EditAnAppointment editAnAppointment, AppointmentController appointmentController)
-        {
-            InitializeComponent();
-            _editAnAppointment = editAnAppointment;
-            _patientWindow = patientWindow;
-            _appointmentController = appointmentController;
-        }*/
-
         public EditDoctorPriority(int doctorId, DateTime date, EditAnAppointment editAnAppointment, PatientWindow patientWindow, int appointmantId)
         {
             InitializeComponent();
             app = Application.Current as App;
-            //this.frame.Content = null;
-            //this.frame.NavigationService.RemoveBackEntry();
-            //_editAnAppointment = editAnAppointment;
             _id = appointmantId;
             _patientWindow = patientWindow;
             _doctorId = doctorId;
@@ -60,8 +44,9 @@ namespace Hospital.View.PatientView
             AvailableAppointments = new ObservableCollection<Appointment>();
             InitializeData(doctorId, date);
             dataGridDoctorPriority.ItemsSource = AvailableAppointments;
-            dataGridAppointments.ItemsSource = patientWindow.Appointments;
+            dataGridAppointments.ItemsSource = patientWindow.dataGridAppointments.ItemsSource;
             selectedDoctor = this.doctor;
+            patient = app._patientController.ReadById(LogIn.LoggedUser.Id);
         }
         private void InitializeData(int doctorId, DateTime date)
         {
@@ -70,7 +55,6 @@ namespace Hospital.View.PatientView
             DoctorName = doctor.Name;
             this.ChosenDoctor.Text = doctor.Name + " " + doctor.LastName;
 
-            // radno vreme bolnice
             List<TimeSpan> hospitalWorkingHours = new List<TimeSpan>
             {
                 new TimeSpan(7, 00, 00),
@@ -85,21 +69,17 @@ namespace Hospital.View.PatientView
 
             List<TimeSpan> hospitalWorkingHoursListForCalculation = new List<TimeSpan>(hospitalWorkingHours);
 
-            // pronadji sve appointmente tog lekara, uzmi njigovo pocetno vreme i izbrisi iz liste allAppointmentTImes ako se poklapaju
-
             DoctorsAppointments = new ObservableCollection<Appointment>();
             DoctorsAppointments = app._appointmentController.ReadByDoctorId(doctorId);
 
-            AvailableAppointments = app._appointmentController.FindAvailableAppointments(selectedDoctor, _date, DoctorName, DoctorsAppointments, hospitalWorkingHours, hospitalWorkingHoursListForCalculation, date);
-            //findAvailabeAppointments(DoctorsAppointments, hospitalWorkingHours, hospitalWorkingHoursListForCalculation, date);
-
+            AvailableAppointments = app._appointmentController.FindAvailableAppointments(selectedDoctor, _date, DoctorsAppointments, hospitalWorkingHours, hospitalWorkingHoursListForCalculation, date);
+            
             if (AvailableAppointments.Count == 0)
             {
                 DateTime tommorow = date.AddDays(1); //uzmes sutradan
                 _date = tommorow;
-                PopupNotification.sendPopupNotification("Warning", "Sorry to inform, but there is no available appointments for chosen date. In the following list, we are gonna show You available appointments for the next available day.");
-                //findAvailabeAppointments(DoctorsAppointments, hospitalWorkingHours, hospitalWorkingHoursListForCalculation, tommorow);
-                AvailableAppointments = app._appointmentController.FindAvailableAppointments(selectedDoctor, _date, DoctorName, DoctorsAppointments, hospitalWorkingHours, hospitalWorkingHoursListForCalculation, tommorow);
+                PopupNotification.SendPopupNotification("Warning", "Sorry to inform, but there is no available appointments for chosen date. In the following list, we are gonna show You available appointments for the next available day.");
+                AvailableAppointments = app._appointmentController.FindAvailableAppointments(selectedDoctor, _date, DoctorsAppointments, hospitalWorkingHours, hospitalWorkingHoursListForCalculation, tommorow);
 
             }
         }
@@ -118,106 +98,11 @@ namespace Hospital.View.PatientView
             Appointment ap = new Appointment(_id, selectedDate, duration, doctor, patient, room);
             app._appointmentController.Edit(ap);
 
-            TrollSystem.troll(_patientWindow, app);
-
-            /*Trol troll = app._trolController.ReadByPatientId(_patientWindow.patient.Id);
-            if (troll == null)
-            {
-                Trol tr = new Trol(_patientWindow.patient.Id, DateTime.Now, 1);
-                app._trolController.Create(tr);
-            }
-            else
-            {
-                if ((DateTime.Now - troll.StartDate).TotalDays < 30)
-                {
-                    //ovo je okej, dozvoli
-                    troll.NumberOfCancellations += 1;
-                    app._trolController.Edit(troll);
-                    Trol newTroll = app._trolController.ReadById(troll.Id);
-                    if (newTroll.NumberOfCancellations >= 5)
-                    {
-                        _patientWindow.patient.IsActive = false;
-
-                        app._patientController.Edit(_patientWindow.patient);
-                        app._trolController.Delete(troll.Id);
-                        PopupNotifier popup = new PopupNotifier();
-                        popup.Image = Properties.Resources.notification;
-                        popup.TitleText = "Warning";
-                        popup.ContentText = "Your account is banned due to..";
-                        popup.Popup();
-                        //MessageBox.Show("Your account is banned due to..");
-                        LogIn logIn = new LogIn();
-                        logIn.Show();
-                        _patientWindow.Close();
-                    }
-                }
-                else
-                {
-                    app._trolController.Delete(troll.Id);
-                    Trol tr = new Trol(_patientWindow.patient.Id, DateTime.Now, 1);
-                    app._trolController.Create(tr);
-                }
-            }*/
+            TrollSystem ts = new TrollSystem(_patientWindow, app);
+             ts.Troll();
             _patientWindow.BackToPatientWindow();
 
-/*            Appointment appointment = new Appointment(a, new TimeSpan(0, 30, 00), doctor, patient, room);
-            app._appointmentController.Create(appointment);
-            _patientWindow.BackToPatientWindow();*/
         }
-
-        /*public void findAvailabeAppointments(ObservableCollection<Appointment> DoctorsAppointments,
-            List<TimeSpan> hospitalWorkingHours, List<TimeSpan> hospitalWorkingHoursListForCalculation, DateTime date)
-        {
-
-            List<TimeSpan> cloneList = new List<TimeSpan>(hospitalWorkingHoursListForCalculation);
-            foreach (Appointment a in DoctorsAppointments)
-            {
-
-                var appStartTime = a.Date;
-                var appEndTime = a.Date + a.Duration;
-
-                foreach (TimeSpan appTime in hospitalWorkingHours)
-                {
-                    //DateTime dt = new DateTime(date);
-                    date = date + appTime;
-                    if (DateTime.Compare(date, appStartTime) > 0)
-                    {
-                        if (DateTime.Compare(date, appEndTime) < 0)
-                        {
-                            if (cloneList.Contains(appTime))
-                            {
-                                cloneList.Remove(appTime);
-                            }
-
-                        }
-                        else if (DateTime.Compare(date, appEndTime) == 0)
-                        {
-                            cloneList.Remove(appTime);
-                        }
-                    }
-                    else if (DateTime.Compare(date, appStartTime) == 0)
-                    {
-                        if (DateTime.Compare(date, appEndTime) < 0)
-                        {
-                            if (cloneList.Contains(appTime))
-                            {
-                                cloneList.Remove(appTime);
-                            }
-                        }
-                    }
-                    date = _date;
-                }
-            }
-
-            foreach (TimeSpan time in cloneList)
-            {
-                Appointment app = new Appointment();
-                app.Date = _date + time;
-
-                AvailableAppointments.Add(app);
-            }
-
-        }*/
 
         private void HomePage_Click(object sender, RoutedEventArgs e)
         {

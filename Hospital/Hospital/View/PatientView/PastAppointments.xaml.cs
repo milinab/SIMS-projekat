@@ -22,7 +22,8 @@ namespace Hospital.View.PatientView
             _content = Content;
             this.DataContext = this;
             _patientWindow = patientWindow;
-            dataGridPastAppointments.ItemsSource = app._appointmentController.ReadPastAppointments();
+            patient = app._patientController.ReadById(LogIn.LoggedUser.Id);
+            dataGridPastAppointments.ItemsSource = app._appointmentController.ReadPastAppointments(patient.Id);
         }
 
         private void FillOutSurveyButtonClick(object sender, RoutedEventArgs e)
@@ -33,6 +34,14 @@ namespace Hospital.View.PatientView
 
         }
 
+        private void ViewInfoClick(object sender, RoutedEventArgs e)
+        {
+            Appointment appointment = dataGridPastAppointments.SelectedValue as Appointment;
+            
+            Page page = new AppointmentInfo(_patientWindow, appointment);
+            this.frame.Navigate(page);
+
+        }
         private void HomePage_Click(object sender, RoutedEventArgs e)
         {
             Page homePage = new HomePage(_patientWindow);

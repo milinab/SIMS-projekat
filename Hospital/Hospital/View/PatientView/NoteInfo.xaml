@@ -9,7 +9,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="560" d:DesignWidth="800" Background="AntiqueWhite"
       Title="NoteInfo">
-    
+
     <Page.Resources>
         <ResourceDictionary Source="PatientResourceDictionary.xaml"></ResourceDictionary>
     </Page.Resources>
@@ -118,6 +118,8 @@
             </Validation.ErrorTemplate>
         </TextBox>
         <TextBlock x:Name="dateText" HorizontalAlignment="Left" Margin="47,470,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="248" Height="27" Background="AntiqueWhite"/>
+        <Label Content="Notify me at:" HorizontalAlignment="Left" Margin="415,465,0,0" VerticalAlignment="Top" Foreground="Maroon"/>
+        <TextBlock x:Name="notifyDate" HorizontalAlignment="Left" Margin="500,470,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="115" Height="27" Background="AntiqueWhite" Foreground="Maroon"/>
 
         <Label Content="select when you want" HorizontalAlignment="Left" Margin="623,183,0,0" VerticalAlignment="Top" Height="26"/>
         <Label Content="to be notified:" HorizontalAlignment="Left" Margin="640,200,0,0" VerticalAlignment="Top" Height="26"/>

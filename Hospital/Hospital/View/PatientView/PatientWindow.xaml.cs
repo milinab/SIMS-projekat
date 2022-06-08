@@ -18,6 +18,7 @@ namespace Hospital.View.PatientView
         private readonly object _content;
         private Doctor doctor;
         public Patient patient;
+        public Note notifyNote;
         DispatcherTimer liveDateTime = new DispatcherTimer();
 
         public ObservableCollection<Appointment> Appointments
@@ -51,14 +52,15 @@ namespace Hospital.View.PatientView
             _content = Content;
             this.DataContext = this;
             patient = app._patientController.ReadById(LogIn.LoggedUser.Id);
-            //patient = p;
             dataGridAppointments.ItemsSource = app._appointmentController.ReadFutureAppointments(patient.Id);
 
             Appointments = new ObservableCollection<Appointment>();
             Doctors = new ObservableCollection<Doctor>();
             Appointments = app._appointmentController.ReadFutureAppointments(patient.Id);
-            Therapies = app._therapyController.ReadBypatientId(1);
+            Therapies = app._therapyController.ReadBypatientId(patient.Id);
+            Notes = app._noteController.ReadByPatientId(patient.Id);
             GetTherapyTime();
+            GetNoteNotificationTime();
 
 
             foreach (var a in Appointments) {
@@ -77,7 +79,6 @@ namespace Hospital.View.PatientView
                 TimeSpan ts = new TimeSpan(0, 30, 00);
                 DateTime newTimespan = th.Time - ts;
                 int diffInSeconds = (int)(th.Time - ts - now).TotalSeconds;
-                //liveDateTime.Interval = newTimespan.TimeOfDay; // specify interval time as you want
                 if (diffInSeconds > 0)
                 {
                     liveDateTime.Interval = new TimeSpan(0, 0, diffInSeconds);
@@ -91,16 +92,16 @@ namespace Hospital.View.PatientView
 
         private void TimerTick(object sender, EventArgs e)
         {
-            //MessageBox.Show("Please, take your therapy in half an hour..", "Therapy reminder");
-            PopupNotification.sendPopupNotification("Therapy reminder", "Please, take your therapy in half an hour.");
+            PopupNotification.SendPopupNotification("Therapy reminder", "Please, take your therapy in half an hour.");
             Console.WriteLine("Please, take your therapy in half an hour.");
             liveDateTime.Stop();
 
         }
-        private void getNoteNotificationTime()
+        private void GetNoteNotificationTime()
         {
             foreach (var note in Notes)
             {
+                notifyNote = note;
                 DateTime now = DateTime.Now;
                 DateTime notificationTime = note.NotificationDate;
                 int diffInSeconds = (int)(note.NotificationDate - now).TotalSeconds;
@@ -115,8 +116,9 @@ namespace Hospital.View.PatientView
 
         private void TimerTickForNotes(object sender, EventArgs e)
         {
-            PopupNotification.sendPopupNotification("Note notification", "ovde ce da ide tekst od notesa");
-            Console.WriteLine("ovde ce da ide tekst od notesa");
+
+            PopupNotification.SendPopupNotification(this.notifyNote.Name, this.notifyNote.NoteText);
+            Console.WriteLine("Note notification");
             liveDateTime.Stop();
         }
 
@@ -128,23 +130,9 @@ namespace Hospital.View.PatientView
             
         }
 
-        /*private void EditAnAppointmentClick(object sender, RoutedEventArgs e)
-        {
-            if (dataGridAppointments.SelectedItem != null)
-            {
-                Appointment appointment = (Appointment)dataGridAppointments.SelectedItem;
-                //editAnAppointment.Show();
-            }
-            else
-            {
-                MessageBox.Show("Select an appointment You want to edit.", "Warning");
-            }
-        }*/
-
         private void EditButtonClick(object sender, RoutedEventArgs e)
         {
             Appointment appointment = dataGridAppointments.SelectedValue as Appointment;
-            //int appointmentId = app._appointmentController.ReadById(appointment.Id);
             var editAnAppointmentPage = new EditAnAppointment(appointment, this);
             Content = editAnAppointmentPage;
         }
@@ -156,50 +144,13 @@ namespace Hospital.View.PatientView
                 Appointment appointment = (Appointment)dataGridAppointments.SelectedItem;
                 app._appointmentController.Delete(appointment.Id);
 
-                /*Trol troll = app._trolController.ReadByPatientId(this.patient.Id);
-                if (troll == null)
-                {
-                    Trol tr = new Trol(this.patient.Id, DateTime.Now, 1);
-                    app._trolController.Create(tr);
-                }
-                else
-                {
-                    if ((DateTime.Now - troll.StartDate).TotalDays < 30)
-                    {
-                        //ovo je okej, dozvoli
-                        troll.NumberOfCancellations += 1;
-                        app._trolController.Edit(troll);
-                        Trol newTroll = app._trolController.ReadById(troll.Id);
-                        if (newTroll.NumberOfCancellations >= 5)
-                        {
-                            this.patient.IsActive = false;
-
-                            app._patientController.Edit(this.patient);
-                            app._trolController.Delete(troll.Id);
-                            PopupNotifier popup = new PopupNotifier();
-                            popup.Image = Properties.Resources.notification;
-                            popup.TitleText = "Warning";
-                            popup.ContentText = "Your account is banned due to ...";
-                            popup.Popup();
-                            //MessageBox.Show("Your account is banned due to..");
-                            LogIn logIn = new LogIn();
-                            logIn.Show();
-                            this.Close();
-                        }
-                    }
-                    else
-                    {
-                        app._trolController.Delete(troll.Id);
-                        Trol tr = new Trol(this.patient.Id, DateTime.Now, 1);
-                        app._trolController.Create(tr);
-                    }
-                }*/
-                TrollSystem.troll(this, app);
+                TrollSystem ts = new TrollSystem(this, app);
+                ts.Troll();
                 this.BackToPatientWindow();
             }
             else
             {
-                PopupNotification.sendPopupNotification("Warning", "Please, select an appointment You want to cancel.");
+                PopupNotification.SendPopupNotification("Warning", "Please, select an appointment You want to cancel.");
             }
         }
 

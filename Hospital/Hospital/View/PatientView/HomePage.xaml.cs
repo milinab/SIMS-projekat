@@ -22,6 +22,7 @@ namespace Hospital.View.PatientView
             _content = Content;
             this.DataContext = this;
             _patientWindow = patientWindow;
+            patient = app._patientController.ReadById(LogIn.LoggedUser.Id);
         }
         private void HomePage_Click(object sender, RoutedEventArgs e)
         {

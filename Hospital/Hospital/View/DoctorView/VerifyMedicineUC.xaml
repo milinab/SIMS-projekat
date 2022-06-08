@@ -1,0 +1,67 @@
+<UserControl x:Class="Hospital.View.DoctorView.VerifyMedicineUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Hospital.View.DoctorView"
+             mc:Ignorable="d"
+             d:DesignHeight="768" d:DesignWidth="700">
+    <UserControl.Resources>
+        <ResourceDictionary Source="Resources/DoctorResourceDictionary.xaml"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <DataGrid
+            Name="MedicineDataGrid"
+            CanUserAddRows="False"
+            AutoGenerateColumns="False"
+            Width="500"
+            Height="350"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            Margin="0 100 0 0"
+            RowHeaderWidth="0"
+            CanUserSortColumns="False"
+            CanUserDeleteRows="False"
+            CanUserReorderColumns="False"
+            IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn 
+                    Header="Name" 
+                    Width="*" 
+                    Binding="{Binding Path=Name}"/>
+                <DataGridTextColumn 
+                    Header="Type" 
+                    Width="*"
+                    Binding="{Binding Path=Type}"/>
+                <DataGridTextColumn 
+                    Header="Ingredients" 
+                    Width="*"
+                    Binding="{Binding Path=Ingredients}"/>
+                <DataGridTextColumn 
+                    Header="Allergens" 
+                    Width="*"
+                    Binding="{Binding Path=AllergenIds}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Grid Grid.Row="1">
+        <Button 
+            Content="Accept" 
+            HorizontalAlignment="Left"
+            Width="350" 
+            Height="50" 
+            FontSize="25"
+            Click="Accepted_OnClick"/>
+        <Button 
+            Content="Reject" 
+            HorizontalAlignment="Right"
+            Width="350" 
+            Height="50" 
+            FontSize="25"
+            Click="Cancel_OnClick"/>
+        </Grid>
+    </Grid>
+</UserControl>

@@ -52,5 +52,10 @@ namespace Hospital.Service
         {
             _repository.Write();
         }
+
+        public Anamnesis ReadByAppointmentId(int appointmentId)
+        {
+            return _repository.ReadByAppointmentId(appointmentId);
+        }
     }
 }

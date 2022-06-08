@@ -37,5 +37,10 @@ namespace Hospital.Controller
         {
             return _service.Read();
         }
+
+        public ObservableCollection<Note> ReadByPatientId(int patientId)
+        {
+            return _service.ReadByPatientId(patientId);
+        }
     }
 }

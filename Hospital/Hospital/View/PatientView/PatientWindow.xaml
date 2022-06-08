@@ -72,7 +72,7 @@
                 <DataGridTemplateColumn Width="50">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Click="EditButtonClick">Edit</Button>
+                            <Button Click="EditButtonClick" Background="AliceBlue">Edit</Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

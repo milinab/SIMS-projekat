@@ -290,6 +290,9 @@
     <Compile Include="View\DoctorView\Patients\PatientsPage.xaml.cs">
       <DependentUpon>PatientsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\DoctorView\Requests\CreateRequestPage.xaml.cs">
+      <DependentUpon>CreateRequestPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\DoctorView\Requests\EquipmentPage.xaml.cs">
       <DependentUpon>EquipmentPage.xaml</DependentUpon>
     </Compile>
@@ -298,6 +301,9 @@
       <DependentUpon>VacationPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\DoctorView\Resources\CustomTimeSpanUpDown.cs" />
+    <Compile Include="View\DoctorView\VerifyMedicineUC.xaml.cs">
+      <DependentUpon>VerifyMedicineUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\DoctorView\ViewModel\AppointmentsPageViewModel.cs" />
     <Compile Include="View\DoctorView\ViewModel\AppointmentViewModel.cs" />
     <Compile Include="View\DoctorView\ViewModel\ViewModelBase.cs" />
@@ -352,6 +358,9 @@
     <Compile Include="View\PatientView\AddNote.xaml.cs">
       <DependentUpon>AddNote.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\PatientView\AppointmentInfo.xaml.cs">
+      <DependentUpon>AppointmentInfo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\PatientView\BookAnAppointment.xaml.cs">
       <DependentUpon>BookAnAppointment.xaml</DependentUpon>
     </Compile>
@@ -374,6 +383,15 @@
       <DependentUpon>EditAnAppointment.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\PatientView\EnumMatchToBooleanConverter.cs" />
+    <Compile Include="View\PatientView\Graph.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\PatientView\Graph.Designer.cs">
+      <DependentUpon>Graph.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientView\Graphics.xaml.cs">
+      <DependentUpon>Graphics.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\PatientView\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
@@ -414,6 +432,8 @@
     <Compile Include="View\PatientView\Surveys.xaml.cs">
       <DependentUpon>Surveys.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\PatientView\ViewModel\PastAppontmentsViewModel.cs" />
+    <Compile Include="View\PatientView\ViewModel\ViewModelPatient.cs" />
     <Compile Include="View\SecretaryView\AddPatient.xaml.cs">
       <DependentUpon>AddPatient.xaml</DependentUpon>
     </Compile>
@@ -461,10 +481,12 @@
     </Page>
     <Page Include="View\DoctorView\MalfunctionReport\MalfunctionReportPage.xaml" />
     <Page Include="View\DoctorView\Patients\PatientsPage.xaml" />
+    <Page Include="View\DoctorView\Requests\CreateRequestPage.xaml" />
     <Page Include="View\DoctorView\Requests\EquipmentPage.xaml" />
     <Page Include="View\DoctorView\Requests\RequestsPage.xaml" />
     <Page Include="View\DoctorView\Requests\VacationPage.xaml" />
     <Page Include="View\DoctorView\Resources\DoctorResourceDictionary.xaml" />
+    <Page Include="View\DoctorView\VerifyMedicineUC.xaml" />
     <Page Include="View\ManagerView\AddMedicine.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -532,11 +554,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\PatientView\AppointmentInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\PatientView\BookAnAppointment.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\PatientView\Calendar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PatientView\Graphics.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -673,6 +703,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientView\Graph.resx">
+      <DependentUpon>Graph.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="..\.editorconfig">
       <Link>.editorconfig</Link>
     </None>
@@ -757,9 +790,7 @@
   <ItemGroup>
     <Resource Include="images\femaleUser.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="View\PatientView\ViewModel\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

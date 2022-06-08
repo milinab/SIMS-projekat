@@ -85,5 +85,32 @@ namespace Hospital.Repository
             var collection = new ObservableCollection<Anamnesis>(_anamnesis);
             _serializer.Write(collection);
         }
+        public Anamnesis ReadByAppointmentId(int appointmentId)
+        {
+            _anamnesis = _serializer.Read().ToList();
+            foreach (Anamnesis anamnesis in _anamnesis)
+            {
+                if (anamnesis.AppointmentId == appointmentId)
+                {
+                    Appointment appointment = _appointmentRepository.ReadById(anamnesis.AppointmentId);
+                    Therapy therapy = _therapyRepository.ReadById(anamnesis.TherapyId);
+
+                    if (appointment != null)
+                    {
+                        anamnesis.Appointment = appointment;
+                    }
+                    if (therapy != null)
+                    {
+                        anamnesis.Therapy = therapy;
+                    }
+
+                    return anamnesis;
+                   
+                }
+            }
+
+            return null;
+            
+        }
     }
 }

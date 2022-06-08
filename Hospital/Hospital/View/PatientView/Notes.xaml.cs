@@ -2,7 +2,6 @@
 using System.Windows.Controls;
 using Hospital.Model;
 using System.Collections.ObjectModel;
-using Tulpep.NotificationWindow;
 
 namespace Hospital.View.PatientView
 {
@@ -29,7 +28,8 @@ namespace Hospital.View.PatientView
             _content = Content;
             this.DataContext = this;
             _patientWindow = patientWindow;
-            dataGridNotes.ItemsSource = app._noteController.Read();
+            patient = app._patientController.ReadById(LogIn.LoggedUser.Id);
+            dataGridNotes.ItemsSource = app._noteController.ReadByPatientId(patient.Id);
             this.selectForDelete.Visibility = Visibility.Hidden;
         }
 
@@ -72,8 +72,6 @@ namespace Hospital.View.PatientView
             Page notificationPage = new Notification(_patientWindow);
             this.frame.Navigate(notificationPage);
         }
-
-        
 
         private void MyAppointments_Click(object sender, RoutedEventArgs e)
         {
@@ -133,12 +131,10 @@ namespace Hospital.View.PatientView
             }
             else
             {
-                PopupNotification.sendPopupNotification("Warning", "Please, select the note You want to delete.");
+                PopupNotification.SendPopupNotification("Warning", "Please, select the note You want to delete.");
                 this.selectForDelete.Visibility = Visibility.Visible;
             }
         }
-
-
 
         public void BackToNotes()
         {

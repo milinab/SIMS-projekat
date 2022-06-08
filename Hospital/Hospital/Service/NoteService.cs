@@ -54,5 +54,10 @@ namespace Hospital.Service
         {
             return ++_id;
         }
+
+        public ObservableCollection<Note> ReadByPatientId(int patientId)
+        {
+            return _repository.ReadByPatientId(patientId);
+        }
     }
 }

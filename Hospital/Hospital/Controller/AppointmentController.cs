@@ -41,9 +41,9 @@ namespace Hospital.Controller
             return _service.Read();
         }
 
-        public ObservableCollection<Appointment> ReadPastAppointments()
+        public ObservableCollection<Appointment> ReadPastAppointments(int patientId)
         {
-            return _service.ReadPastAppointments();
+            return _service.ReadPastAppointments(patientId);
         }
         
 
@@ -61,10 +61,10 @@ namespace Hospital.Controller
             return _service.ReadFutureAppointments(patientId);
         }
 
-        public ObservableCollection<Appointment> FindAvailableAppointments(Doctor selectedDoctor, DateTime _date, string DoctorName, ObservableCollection<Appointment> DoctorsAppointments,
+        public ObservableCollection<Appointment> FindAvailableAppointments(Doctor selectedDoctor, DateTime _date, ObservableCollection<Appointment> DoctorsAppointments,
             List<TimeSpan> hospitalWorkingHours, List<TimeSpan> hospitalWorkingHoursListForCalculation, DateTime date)
         {
-            return _service.FindAvailabeAppointments(selectedDoctor, _date, DoctorName, DoctorsAppointments, hospitalWorkingHours, hospitalWorkingHoursListForCalculation, date);
+            return _service.FindAvailabeAppointments(selectedDoctor, _date, DoctorsAppointments, hospitalWorkingHours, hospitalWorkingHoursListForCalculation, date);
         }
     }
 }

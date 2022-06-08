@@ -97,8 +97,8 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <Button x:Name="ConfirmAppointment" Content="Confirm" HorizontalAlignment="Left" Margin="420,465,0,0" VerticalAlignment="Top" Height="35" Width="80" Click="ConfirmAppointment_Click"/>
-        <Button x:Name="Back" Content="Back" HorizontalAlignment="Left" Margin="520,465,0,0" VerticalAlignment="Top" Height="35" Width="80" Click="Back_Click"/>
+        <Button x:Name="ConfirmAppointment" Content="Confirm" HorizontalAlignment="Left" Margin="420,465,0,0" VerticalAlignment="Top" Height="35" Width="80" Click="ConfirmAppointment_Click" Background="Bisque"/>
+        <Button x:Name="Back" Content="Back" HorizontalAlignment="Left" Margin="520,465,0,0" VerticalAlignment="Top" Height="35" Width="80" Click="Back_Click" Background="Bisque"/>
 
         <Frame x:Name="frame" NavigationUIVisibility="Hidden" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" Grid.Column="1"/>
     </Grid>
