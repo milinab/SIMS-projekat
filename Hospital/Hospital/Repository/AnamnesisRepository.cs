@@ -82,8 +82,7 @@ namespace Hospital.Repository
         
         public void Write()
         {
-            var collection = new ObservableCollection<Anamnesis>(_anamnesis);
-            _serializer.Write(collection);
+            _serializer.Write(_anamnesis);
         }
         public Anamnesis ReadByAppointmentId(int appointmentId)
         {

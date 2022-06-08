@@ -1,20 +1,21 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Hospital.Model;
 
 namespace Hospital.Repository
 {
     public class AllergenRepository
     {
-        private ObservableCollection<Allergen> _allergens;
+        private List<Allergen> _allergens;
         private readonly Serializer<Allergen> _serializer;
 
         public AllergenRepository()
         {
             _serializer = new Serializer<Allergen>("allergens.csv");
-            _allergens = new ObservableCollection<Allergen>();
+            _allergens = new List<Allergen>();
         }
 
-        public ObservableCollection<Allergen> Read()
+        public List<Allergen> Read()
         {
             _allergens = _serializer.Read();
             return _allergens;
@@ -22,14 +23,7 @@ namespace Hospital.Repository
 
         public Allergen ReadById(int id)
         {
-            foreach (Allergen Allergen in _allergens)
-            {
-                if (Allergen.Id.Equals(id))
-                {
-                    return Allergen;
-                }
-            }
-            return null;
+            return _allergens.FirstOrDefault(allergen => allergen.Id.Equals(id));
         }
 
         public void Create(Allergen newAllergen)
@@ -40,13 +34,11 @@ namespace Hospital.Repository
 
         public void Edit(Allergen editAllergen)
         {
-            foreach (Allergen Allergen in _allergens)
+            foreach (var allergen in _allergens.Where(allergen => editAllergen.Id.Equals(allergen.Id)))
             {
-                if (editAllergen.Id.Equals(Allergen.Id))
-                {
-                    Allergen.Name = editAllergen.Name;
-                }
+                allergen.Name = editAllergen.Name;
             }
+
             Write();
         }
 

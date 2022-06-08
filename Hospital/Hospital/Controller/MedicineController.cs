@@ -37,7 +37,7 @@ namespace Hospital.Controller
         {
             _service.Delete(id);
         }
-        public ObservableCollection<Medicine>Read()
+        public List<Medicine>Read()
         {
             return _service.Read();
         }

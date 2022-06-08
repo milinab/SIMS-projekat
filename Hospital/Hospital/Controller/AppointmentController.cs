@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using Hospital.Model;
 using Hospital.Service;
 
@@ -36,32 +35,32 @@ namespace Hospital.Controller
             _service.Delete(id);
         }
 
-        public ObservableCollection<Appointment> Read()
+        public List<Appointment> Read()
         {
             return _service.Read();
         }
 
-        public ObservableCollection<Appointment> ReadPastAppointments(int patientId)
+        public List<Appointment> ReadPastAppointments(int patientId)
         {
             return _service.ReadPastAppointments(patientId);
         }
         
 
-        public ObservableCollection<Appointment> ReadByDoctorId(int doctorId)
+        public List<Appointment> ReadByDoctorId(int doctorId)
         {
             return _service.ReadByDoctorId(doctorId);
         }
-        public ObservableCollection<Appointment> ReadByDateAndNotDoctor(int doctorId, DateTime date)
+        public List<Appointment> ReadByDateAndNotDoctor(int doctorId, DateTime date)
         {
             return _service.ReadByDateAndNotDoctor(doctorId, date);
         }
 
-        public ObservableCollection<Appointment> ReadFutureAppointments(int patientId)
+        public List<Appointment> ReadFutureAppointments(int patientId)
         {
             return _service.ReadFutureAppointments(patientId);
         }
 
-        public ObservableCollection<Appointment> FindAvailableAppointments(Doctor selectedDoctor, DateTime _date, ObservableCollection<Appointment> DoctorsAppointments,
+        public List<Appointment> FindAvailableAppointments(Doctor selectedDoctor, DateTime _date, List<Appointment> DoctorsAppointments,
             List<TimeSpan> hospitalWorkingHours, List<TimeSpan> hospitalWorkingHoursListForCalculation, DateTime date)
         {
             return _service.FindAvailabeAppointments(selectedDoctor, _date, DoctorsAppointments, hospitalWorkingHours, hospitalWorkingHoursListForCalculation, date);

@@ -1,14 +1,12 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Windows;
 using Hospital.Model;
 
 namespace Hospital.Repository
 {
    public class AppointmentRepository
    {
-        private ObservableCollection<Appointment> _appointments;
+        private List<Appointment> _appointments;
         private readonly Serializer<Appointment> _serializer;
         private readonly DoctorRepository _doctorRepository;
         private readonly PatientRepository _patientRepository;
@@ -18,13 +16,13 @@ namespace Hospital.Repository
             RoomRepository roomRepository)
         {
             _serializer = new Serializer<Appointment>("appointments.csv");
-            _appointments = new ObservableCollection<Appointment>();
+            _appointments = new List<Appointment>();
             _doctorRepository = doctorRepository;
             _patientRepository = patientRepository;
             _roomRepository = roomRepository;
         }
 
-        public ObservableCollection<Appointment> Read()
+        public List<Appointment> Read()
         {
             _appointments = _serializer.Read();
 
@@ -119,9 +117,9 @@ namespace Hospital.Repository
         {
             _serializer.Write(_appointments);
         }
-        public ObservableCollection<Appointment> ReadByDoctorId(int doctorId)
+        public List<Appointment> ReadByDoctorId(int doctorId)
         {
-            var itemsToReturn = new ObservableCollection<Appointment>();
+            var itemsToReturn = new List<Appointment>();
             _appointments = _serializer.Read();
             foreach (Appointment appointment in _appointments)
             {
@@ -149,9 +147,9 @@ namespace Hospital.Repository
             return itemsToReturn;
         }
 
-        public ObservableCollection<Appointment> ReadByDateAndNotDoctor(int doctorId, DateTime date)
+        public List<Appointment> ReadByDateAndNotDoctor(int doctorId, DateTime date)
         {
-            var itemsToReturn = new ObservableCollection<Appointment>();
+            var itemsToReturn = new List<Appointment>();
             _appointments = _serializer.Read();
             foreach (Appointment appointment in _appointments)
             {

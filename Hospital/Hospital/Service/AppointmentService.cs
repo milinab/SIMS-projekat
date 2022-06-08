@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using Hospital.Model;
 using Hospital.Repository;
@@ -16,7 +15,7 @@ namespace Hospital.Service
         public AppointmentService(AppointmentRepository appointmentRepository)
         {
             _repository = appointmentRepository;
-            ObservableCollection<Appointment> appointments = Read();
+            List<Appointment> appointments = Read();
             if (appointments.Count == 0)
             {
                 _id = 0;
@@ -72,16 +71,16 @@ namespace Hospital.Service
             _repository.Delete(id);
         }
 
-        public ObservableCollection<Appointment> Read()
+        public List<Appointment> Read()
         {
             return _repository.Read();
         }
-        public ObservableCollection<Appointment> ReadByDoctorId(int doctorId)
+        public List<Appointment> ReadByDoctorId(int doctorId)
         {
             return _repository.ReadByDoctorId(doctorId);
         }
 
-        public ObservableCollection<Appointment> ReadByDateAndNotDoctor(int doctorId, DateTime date)
+        public List<Appointment> ReadByDateAndNotDoctor(int doctorId, DateTime date)
         {
             return _repository.ReadByDateAndNotDoctor(doctorId, date);
         }
@@ -91,9 +90,9 @@ namespace Hospital.Service
             return ++_id;
         }
 
-        public ObservableCollection<Appointment> ReadPastAppointments(int patientId)
+        public List<Appointment> ReadPastAppointments(int patientId)
         {
-            ObservableCollection<Appointment> pastAppointments = new ObservableCollection<Appointment>();
+            List<Appointment> pastAppointments = new List<Appointment>();
 
             List<Appointment> allAppointments = _repository.ReadByPatientId(patientId);
             foreach (Appointment a in allAppointments)
@@ -106,9 +105,9 @@ namespace Hospital.Service
             return pastAppointments;
         }
 
-        public ObservableCollection<Appointment> ReadFutureAppointments(int patientId)
+        public List<Appointment> ReadFutureAppointments(int patientId)
         {
-            ObservableCollection<Appointment> futureAppointments = new ObservableCollection<Appointment>();
+            List<Appointment> futureAppointments = new List<Appointment>();
 
             List<Appointment> allAppointments = _repository.ReadByPatientId(patientId);
             foreach (Appointment a in allAppointments)
@@ -121,11 +120,11 @@ namespace Hospital.Service
             return futureAppointments;
         }
 
-        public ObservableCollection<Appointment> FindAvailabeAppointments(Doctor selectedDoctor, DateTime _date, ObservableCollection<Appointment> DoctorsAppointments,
+        public List<Appointment> FindAvailabeAppointments(Doctor selectedDoctor, DateTime _date, List<Appointment> DoctorsAppointments,
             List<TimeSpan> hospitalWorkingHours, List<TimeSpan> hospitalWorkingHoursListForCalculation, DateTime date)
         {
 
-            ObservableCollection<Appointment> AvailableAppointments = new ObservableCollection<Appointment>();
+            List<Appointment> AvailableAppointments = new List<Appointment>();
             List<TimeSpan> cloneList = new List<TimeSpan>(hospitalWorkingHoursListForCalculation);
 
             foreach (Appointment a in DoctorsAppointments)
@@ -175,7 +174,7 @@ namespace Hospital.Service
             return cloneList;
         }
 
-        private ObservableCollection<Appointment> MakeNewAppointmantList(List<TimeSpan> cloneList, Doctor selectedDoctor, DateTime _date, ObservableCollection<Appointment> AvailableAppointments) {
+        private List<Appointment> MakeNewAppointmantList(List<TimeSpan> cloneList, Doctor selectedDoctor, DateTime _date, List<Appointment> AvailableAppointments) {
 
             String doctorName = selectedDoctor.Name + " " + selectedDoctor.LastName;
 
