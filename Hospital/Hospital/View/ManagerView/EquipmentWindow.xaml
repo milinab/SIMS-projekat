@@ -7,9 +7,6 @@
         mc:Ignorable="d"
         Title="EquipmentWindow" Height="450" Width="800"
         WindowStyle="None">
-    <Window.Resources>
-        <SolidColorBrush x:Key="clBr" Color="AliceBlue" />
-    </Window.Resources>
     <Grid Background="Azure">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -94,6 +91,8 @@
         <Image Source="/images/hospitalll.jpg" Margin="0,0,721,376" MouseLeftButtonUp="HomeClick" Cursor="Hand"/>
         <Image Source="/images/sign_out.png" Margin="699,15,66,395" MouseLeftButtonUp="SignOutClick" Cursor="Hand"/>
         <TextBlock Text="Sign out" FontSize="12" Margin="727,19,0,394" MouseLeftButtonUp="SignOutClick" Cursor="Hand" RenderTransformOrigin="0.512,0.042" HorizontalAlignment="Left" Width="84"/>
-
+        <TextBlock Text="Report" Margin="703,391,0,25" Cursor="Hand" FontSize="15" MouseLeftButtonDown="ReportClick"/>
+        <Image Source="/images/clipboard.png" Margin="658,382,93,16" MouseLeftButtonUp="ReportClick" Cursor="Hand" RenderTransformOrigin="0.581,-0.016"/>
+        <Label Name="reportText" Content="Report created!" FontSize="12" Foreground="Blue" Margin="658,354,0,42" Visibility="Hidden"/>
     </Grid>
 </Window>

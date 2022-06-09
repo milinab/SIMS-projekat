@@ -128,5 +128,7 @@ namespace Hospital.View.ManagerView
             surveySelect.Show();
             Close();
         }
+
+
     }
 }
