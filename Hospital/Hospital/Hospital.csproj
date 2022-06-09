@@ -234,6 +234,7 @@
     <Compile Include="Model\Vacation.cs" />
     <Compile Include="Repository\AddressRepository.cs" />
     <Compile Include="Repository\AnamnesisRepository.cs" />
+    <Compile Include="Repository\IRepositoryBase.cs" />
     <Compile Include="Repository\MedicineReplaceRepository.cs" />
     <Compile Include="Repository\MedicineRepository.cs" />
     <Compile Include="Repository\ReferralRepository.cs" />

@@ -16,14 +16,7 @@ namespace Hospital.Service
         {
             _repository = appointmentRepository;
             List<Appointment> appointments = Read();
-            if (appointments.Count == 0)
-            {
-                _id = 0;
-            }
-            else
-            {
-                _id = appointments.Last().Id;
-            }
+            _id = appointments.Count == 0 ? 0 : appointments.Last().Id;
         }
 
         public Appointment ReadById(int id)
@@ -33,32 +26,35 @@ namespace Hospital.Service
 
         public void Create(Appointment newAppointment)
         {
+            if (!ValidateAppointmentForCreate(newAppointment)) return;
+            newAppointment.Id = GenerateId();
+            _repository.Create(newAppointment);
+        }
+
+        private bool ValidateAppointmentForCreate(Appointment newAppointment)
+        {
             var appointments = Read();
             foreach (var appointment in appointments)
             {
-                var startTime = appointment.Date;
-                var tempTime = startTime;
-                var endTime = tempTime.AddMinutes(appointment.Duration.Hours * 60 + appointment.Duration.Minutes);
-
-                var appointmentStarTime = newAppointment.Date;
-                var appointmentTempTime = appointmentStarTime;
-                var appointmentEndTime = appointmentTempTime.AddMinutes(newAppointment.Duration.Hours * 60 +
-                                                                        newAppointment.Duration.Minutes);
-
-                if (DateTime.Compare(newAppointment.Date, startTime) > 0 && DateTime.Compare(newAppointment.Date, endTime) < 0)
-                {
-                    MessageBox.Show("There is already an appointment at the selected time!");
-                    return;
-                }
-
-                if (DateTime.Compare(appointmentEndTime, appointment.Date) > 0 && DateTime.Compare(appointmentEndTime, endTime) < 0)
-                {
-                    MessageBox.Show("There is already an appointment at the selected time!");
-                    return;
-                }
+                if (!ValidateAppointmentDate(newAppointment, appointment)) return false;
+                if (!ValidateAppointmentOverlap(newAppointment, appointment)) return false;
             }
-            newAppointment.Id = GenerateId();
-            _repository.Create(newAppointment);
+            return true;
+        }
+
+        private static bool ValidateAppointmentOverlap(Appointment newAppointment, Appointment appointment)
+        {
+            if (!appointment.Overlaps(newAppointment)) return true;
+            MessageBox.Show("There is already an appointment at the selected time!");
+            return false;
+
+        }
+
+        private static bool ValidateAppointmentDate(Appointment newAppointment, Appointment appointment)
+        {
+            if (appointment.IsAppointmentDateCorrect(newAppointment)) return true;
+            MessageBox.Show("Start date must be before end date!");
+            return false;
         }
 
         public void Edit(Appointment editAppointment)
@@ -120,7 +116,7 @@ namespace Hospital.Service
             return futureAppointments;
         }
 
-        public List<Appointment> FindAvailabeAppointments(Doctor selectedDoctor, DateTime _date, List<Appointment> DoctorsAppointments,
+        public List<Appointment> FindAvailableAppointments(Doctor selectedDoctor, DateTime _date, List<Appointment> DoctorsAppointments,
             List<TimeSpan> hospitalWorkingHours, List<TimeSpan> hospitalWorkingHoursListForCalculation, DateTime date)
         {
 
@@ -141,7 +137,7 @@ namespace Hospital.Service
                 }
             }
 
-            return MakeNewAppointmantList(cloneList, selectedDoctor, _date, AvailableAppointments);
+            return MakeNewAppointmentList(cloneList, selectedDoctor, _date, AvailableAppointments);
         }
 
         private List<TimeSpan> CompareTimes(TimeSpan appTime, List<TimeSpan> cloneList, DateTime date, DateTime appStartTime, DateTime appEndTime)
@@ -174,7 +170,7 @@ namespace Hospital.Service
             return cloneList;
         }
 
-        private List<Appointment> MakeNewAppointmantList(List<TimeSpan> cloneList, Doctor selectedDoctor, DateTime _date, List<Appointment> AvailableAppointments) {
+        private List<Appointment> MakeNewAppointmentList(List<TimeSpan> cloneList, Doctor selectedDoctor, DateTime _date, List<Appointment> AvailableAppointments) {
 
             String doctorName = selectedDoctor.Name + " " + selectedDoctor.LastName;
 

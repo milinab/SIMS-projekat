@@ -63,7 +63,7 @@ namespace Hospital.Controller
         public List<Appointment> FindAvailableAppointments(Doctor selectedDoctor, DateTime _date, List<Appointment> DoctorsAppointments,
             List<TimeSpan> hospitalWorkingHours, List<TimeSpan> hospitalWorkingHoursListForCalculation, DateTime date)
         {
-            return _service.FindAvailabeAppointments(selectedDoctor, _date, DoctorsAppointments, hospitalWorkingHours, hospitalWorkingHoursListForCalculation, date);
+            return _service.FindAvailableAppointments(selectedDoctor, _date, DoctorsAppointments, hospitalWorkingHours, hospitalWorkingHoursListForCalculation, date);
         }
     }
 }
