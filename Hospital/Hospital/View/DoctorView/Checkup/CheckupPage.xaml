@@ -21,45 +21,203 @@
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
-            <Rectangle Style="{StaticResource CheckupRectangleStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0, 20, 0, 0"/>
-            <Label Content="Full name:" Style="{StaticResource LabelStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="208, 60, 0, 0" FontSize="18"/>
-            <Label Content="Health insurance ID:" Style="{StaticResource LabelStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="130, 100, 0, 0" FontSize="18"/>
-            <Label Content="Patient information:" Style="{StaticResource LabelStyle}" HorizontalAlignment="Center" VerticalAlignment="Top" Name="PatientInformationLabel" FontSize="20" Margin="0,20,0,0"/>
-            <Label Content="Patient:" Style="{StaticResource LabelStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="230, 140, 0, 0" FontSize="18"/>
-            <TextBox Name="FullNameTextBox" Height="25" Width="250" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="160, 65, 0, 0" TextChanged="FullNameTextBox_OnTextChanged"/>
-            <TextBox Name="HealthInsuranceIdTextBox" Height="25" Width="250" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="160, 105, 0, 0" TextChanged="HealthInsuranceIdTextBox_OnTextChanged"/>
-            <ListView Name="PatientListView" Height="50" Width="250" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="160, 130, 0, 0" SelectionChanged="PatientListView_OnSelectionChanged">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Header="Full name" Width="130">
-                            <GridViewColumn.DisplayMemberBinding>
-                                <MultiBinding StringFormat="{}{0} {1}">
-                                    <Binding Path="Name"/>
-                                    <Binding Path="LastName"/>
-                                </MultiBinding>
-                            </GridViewColumn.DisplayMemberBinding>
-                        </GridViewColumn>
-                        <GridViewColumn Header="Health Insurance ID" Width="110" DisplayMemberBinding="{Binding HealthInsuranceId}"/>
-                    </GridView>
-                </ListView.View>
-            </ListView>
+            <Border 
+                Style="{StaticResource BorderStyle}"
+                Height="170"
+                Width="600"
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Center" 
+                Margin="0, 20, 0, 0"/>
+            <Label 
+                Content="Full name:" 
+                Style="{StaticResource LabelStyle}" 
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Top"
+                Margin="208, 60, 0, 0"
+                FontSize="18"/>
+            <Label 
+                Content="Health insurance ID:" 
+                Style="{StaticResource LabelStyle}" 
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Top" 
+                Margin="130, 100, 0, 0" 
+                FontSize="18"/>
+            <Label 
+                Content="Patient information:" 
+                Style="{StaticResource LabelStyle}" 
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Top" 
+                Margin="0,25,0,0"/>
+            <Label 
+                Content="Patient:" 
+                Style="{StaticResource LabelStyle}" 
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Top" 
+                Margin="230, 140, 0, 0" 
+                FontSize="18"/>
+            <Border 
+                Style="{StaticResource BorderStyle}"
+                Margin="160, 62, 0, 0"  
+                Width="250" 
+                Height="25" 
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Top">
+                <TextBox 
+                    Name="FullNameTextBox" 
+                    Height="25" 
+                    Width="250"
+                    Background="Transparent"
+                    BorderThickness="0"
+                    FontFamily="Roboto"
+                    Foreground="#0F5A96"
+                    Padding="0 5 0 0"
+                    TextChanged="FullNameTextBox_OnTextChanged"/>
+            </Border>
+            <Border 
+                Style="{StaticResource BorderStyle}"
+                Margin="160, 102, 0, 0" 
+                Width="250" 
+                Height="25" 
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Top">
+                <TextBox 
+                    Name="HealthInsuranceIdTextBox" 
+                    Height="25" 
+                    Width="250" 
+                    Background="Transparent"
+                    BorderThickness="0"
+                    FontFamily="Roboto"
+                    Foreground="#0F5A96"
+                    Padding="0 5 0 0"
+                    TextChanged="HealthInsuranceIdTextBox_OnTextChanged"/>
+            </Border>
+            <Border 
+                Style="{StaticResource BorderStyle}"
+                Margin="160, 130, 0, 0" 
+                Width="250" 
+                Height="50" 
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Center">
+                <ListView
+                    Name="PatientListView" 
+                    Height="50" 
+                    Width="250" 
+                    Background="Transparent"
+                    BorderThickness="0"
+                    SelectionChanged="PatientListView_OnSelectionChanged">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Full name" Width="130">
+                                <GridViewColumn.DisplayMemberBinding>
+                                    <MultiBinding StringFormat="{}{0} {1}">
+                                        <Binding Path="Name"/>
+                                        <Binding Path="LastName"/>
+                                    </MultiBinding>
+                                </GridViewColumn.DisplayMemberBinding>
+                            </GridViewColumn>
+                            <GridViewColumn Header="Health Insurance ID" Width="110" DisplayMemberBinding="{Binding HealthInsuranceId}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Border>
         </Grid>
         <Grid Grid.Row="1">
-            <Rectangle Style="{StaticResource CheckupRectangleStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,20,0,0"/>
-            <TextBox Name="DiagnosisTextBox" Style="{StaticResource DiagnosisTextStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,20,0,0"/>
-            <Label Content="Diagnosis:" Style="{StaticResource LabelStyle}" HorizontalAlignment="Center" VerticalAlignment="Top" Name="DiagnosisLabel" FontSize="20" Margin="0,20,0,0"/>
+            <Border 
+                Style="{StaticResource BorderStyle}"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center" 
+                Height="170"
+                Width="600"
+                Margin="0,20,0,0"/>
+            <TextBox 
+                Name="DiagnosisTextBox"
+                Style="{StaticResource DiagnosisTextStyle}" 
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Center" 
+                Margin="0,20,0,0"
+                Padding="10 5 10 0"
+                TextWrapping="Wrap"/>
+            <Label 
+                Content="Diagnosis:" 
+                Style="{StaticResource LabelStyle}"
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Top" 
+                Name="DiagnosisLabel"  
+                Margin="0,25,0,0"/>
         </Grid>
         <Grid Grid.Row="2">
-            <Button Name="AppointmentButton" Content="Schedule an appointment" Style="{StaticResource BigCheckupButton}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,20,0,0" Height="70" Click="ScheduleAppointmentButton" IsEnabled="False"/>
-            <Button Name="TherapyButton" Content="Prescribe a therapy" Style="{StaticResource CheckupButton}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="270" Height="70" Margin="50,120,0,0" Click="TherapyButton_OnClick" IsEnabled="False"/>
-            <Button Name="HospitalTreatmentButton" Content="Hospital treatment" Style="{StaticResource CheckupButton}" HorizontalAlignment="Right" VerticalAlignment="Top" Width="270" Height="70" Margin="0,120,50,0" IsEnabled="False"/> 
-            <Button Name="ReferralButton" Content="Issue a referral" Style="{StaticResource CheckupButton}" HorizontalAlignment="Left"  VerticalAlignment="Bottom" Width="270" Height="70" Margin="50,0,0,30" Click="ReferralButton_OnClick" IsEnabled="False"/>
-            <Button Name="DischargeButton" Content="Patient discharge" Style="{StaticResource CheckupButton}" HorizontalAlignment="Right"  VerticalAlignment="Bottom" Width="270" Height="70" Margin="0,0,50,30" IsEnabled="False"/>
+            <Button 
+                Name="AppointmentButton" 
+                Content="Schedule an appointment" 
+                Style="{StaticResource BigCheckupButton}" 
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Top" 
+                Margin="0,20,0,0" 
+                Height="70" Click="ScheduleAppointmentButton" 
+                IsEnabled="False"/>
+            <Button 
+                Name="TherapyButton" 
+                Content="Prescribe a therapy" 
+                Style="{StaticResource CheckupButton}" 
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Width="270"
+                 Height="70"
+                Margin="50,120,0,0" 
+                Click="TherapyButton_OnClick" 
+                IsEnabled="False"/>
+            <Button 
+                Name="HospitalTreatmentButton" 
+                Content="Hospital treatment"
+                Style="{StaticResource CheckupButton}" 
+                HorizontalAlignment="Right" 
+                VerticalAlignment="Top" 
+                Width="270" 
+                Height="70" 
+                Margin="0,120,50,0"
+                IsEnabled="False"/> 
+            <Button 
+                Name="ReferralButton" 
+                Content="Issue a referral" 
+                Style="{StaticResource CheckupButton}" 
+                HorizontalAlignment="Left"  
+                VerticalAlignment="Bottom"
+                Width="270" 
+                Height="70" 
+                Margin="50,0,0,30" 
+                Click="ReferralButton_OnClick" 
+                IsEnabled="False"/>
+            <Button 
+                Name="DischargeButton" 
+                Content="Patient discharge"
+                Style="{StaticResource CheckupButton}"
+                HorizontalAlignment="Right"  
+                VerticalAlignment="Bottom"
+                Width="270"
+                Height="70"
+                Margin="0,0,50,30" 
+                IsEnabled="False"/>
             
         </Grid>
         <Grid Grid.Row="3">
-            <Button Content="Confirm" HorizontalAlignment="Left"  VerticalAlignment="Bottom" Margin="0,0,0,0" Width="350" Height="50" Click="Confirm" FontSize="25"/>
-            <Button Content="Cancel"  HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,0,0" Width="350" Height="50" Click="Cancel" FontSize="25"/>
+            <Button 
+                Content="Confirm" 
+                Style="{StaticResource DefaultButton}"
+                HorizontalAlignment="Left"  
+                VerticalAlignment="Bottom" 
+                Margin="0,0,0,0" 
+                Width="350" 
+                Height="50" 
+                Click="Confirm"/>
+            <Button 
+                Content="Cancel"  
+                Style="{StaticResource DefaultButton}"
+                HorizontalAlignment="Right" 
+                VerticalAlignment="Bottom" 
+                Margin="0,0,0,0"
+                Width="350" 
+                Height="50" 
+                Click="Cancel"/>
         </Grid>
     </Grid>
 </Page>

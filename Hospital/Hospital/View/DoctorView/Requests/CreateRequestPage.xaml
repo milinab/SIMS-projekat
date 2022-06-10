@@ -92,22 +92,22 @@
             
             <Button 
                 Content="Confirm" 
+                Style="{StaticResource DefaultButton}"
                 HorizontalAlignment="Left"  
                 VerticalAlignment="Bottom" 
                 Margin="0,0,0,0" 
                 Width="350" 
                 Height="50" 
-                Click="Confirm" 
-                FontSize="25"/>
+                Click="Confirm"/>
             <Button 
                 Content="Cancel"  
+                Style="{StaticResource DefaultButton}"
                 HorizontalAlignment="Right" 
                 VerticalAlignment="Bottom" 
                 Margin="0,0,0,0" 
                 Width="350" 
                 Height="50" 
-                Click="Cancel" 
-                FontSize="25"/>
+                Click="Cancel"/>
         </Grid>
     </Grid>
 </Page>

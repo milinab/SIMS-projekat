@@ -66,16 +66,16 @@
         <Grid Grid.Row="2">
             <Button 
                 Content="Confirm" 
+                Style="{StaticResource DefaultButton}"
                 HorizontalAlignment="Left"
                 Width="350" 
-                Height="50" 
-                FontSize="25"/>
+                Height="50" />
             <Button 
                 Content="Cancel" 
+                Style="{StaticResource DefaultButton}"
                 HorizontalAlignment="Right"
                 Width="350" 
-                Height="50" 
-                FontSize="25"/>
+                Height="50" />
         </Grid>
     </Grid>
 </Page>

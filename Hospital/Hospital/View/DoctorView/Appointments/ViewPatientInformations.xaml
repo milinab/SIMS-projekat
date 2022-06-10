@@ -7,6 +7,9 @@
       mc:Ignorable="d"
       d:DesignHeight="768" d:DesignWidth="700"
       Title="View" >
+    <Page.Resources>
+        <ResourceDictionary Source="../Resources/DoctorResourceDictionary.xaml"></ResourceDictionary>
+    </Page.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -15,26 +18,176 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid>
-            <Rectangle HorizontalAlignment="Center" VerticalAlignment="Top" Height="40" Width="700" Margin="0,0,0,0" Stroke="Black"/>
-            <TextBlock Text="Patient informations" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,3,0,0" FontSize="24"/>
+             <Border 
+                Style="{StaticResource HeaderBorderStyle}" 
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Top">
+                <Label 
+                    Style="{StaticResource LabelStyle}" 
+                    Content="Patient information" 
+                    HorizontalAlignment="Center"
+                    FontSize="24"/>
+            </Border>
             
-            <TextBlock Text="Name:" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,80,450,0" FontSize="20" />
-            <TextBlock Text="Last Name:" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,140,450,0" FontSize="20"/>
-            <TextBlock Text="Health Insurance ID:" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,200,450,0" FontSize="20"/>
-            <TextBlock Text="Gender:" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,260,450,0" FontSize="20"/>
-            <TextBlock Text="Blood Type:" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,320,450,0" FontSize="20"/>
-            <TextBlock Text="Chronical Diseases:" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,380,450,0" FontSize="20"/>
-            <TextBlock Text="Allergies:" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,530,450,0" FontSize="20"/>
+            <TextBlock 
+                Text="Name:" 
+                Style="{StaticResource TextBlockStyle}"
+                HorizontalAlignment="Right" 
+                VerticalAlignment="Top" 
+                Margin="0,80,450,0"/>
+            <TextBlock 
+                Text="Last name:" 
+                Style="{StaticResource TextBlockStyle}"
+                HorizontalAlignment="Right" 
+                VerticalAlignment="Top" 
+                Margin="0,140,450,0"/>
+            <TextBlock 
+                Text="Health insurance ID:" 
+                Style="{StaticResource TextBlockStyle}"
+                HorizontalAlignment="Right" 
+                VerticalAlignment="Top" 
+                Margin="0,200,450,0"/>
+            <TextBlock 
+                Text="Gender:" 
+                Style="{StaticResource TextBlockStyle}"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top" 
+                Margin="0,260,450,0"/>
+            <TextBlock 
+                Text="Blood type:" 
+                Style="{StaticResource TextBlockStyle}"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top" 
+                Margin="0,320,450,0"/>
+            <TextBlock 
+                Text="Chronic diseases:" 
+                Style="{StaticResource TextBlockStyle}"
+                HorizontalAlignment="Right" 
+                VerticalAlignment="Top" 
+                Margin="0,425,450,0"/>
+            <TextBlock 
+                Text="Allergies:"
+                Style="{StaticResource TextBlockStyle}"
+                HorizontalAlignment="Right" 
+                VerticalAlignment="Top" 
+                Margin="0,580,450,0"/>
             
-            <TextBox Name="Name" HorizontalAlignment="Right" VerticalAlignment="Top" Height="30" Width="260" Margin="0,80,150,0" FontSize="20" IsReadOnly="True"/>
-            <TextBox Name="LastName" HorizontalAlignment="Right" VerticalAlignment="Top" Height="30" Width="260" Margin="0,140,150,0" FontSize="20" IsReadOnly="True"/>
-            <TextBox Name="HealthInsuranceId" HorizontalAlignment="Right" VerticalAlignment="Top" Height="30" Width="260" Margin="0,200,150,0" FontSize="20" IsReadOnly="True"/>
-            <TextBox Name="Gender" HorizontalAlignment="Right" VerticalAlignment="Top" Height="30" Width="260" Margin="0,260,150,0" FontSize="20" IsReadOnly="True"/>
-            <TextBox Name="BloodType" HorizontalAlignment="Right" VerticalAlignment="Top" Height="30" Width="260" Margin="0,320,150,0" FontSize="20" IsReadOnly="True"/>
-            <ItemsControl Name="ChronicalDiseasesItemsControl" HorizontalAlignment="Right" VerticalAlignment="Top" Height="120" Width="260" Margin="0,380,150,0" FontSize="20"/>
-            <ItemsControl Name="AllergiesItemsControl" HorizontalAlignment="Right" VerticalAlignment="Top" Height="120" Width="260" Margin="0,530,150,0" FontSize="20"/>
+            <Border 
+                Style="{StaticResource BorderStyle}"
+                Margin="0,80,150,0" 
+                Width="260" 
+                Height="30" 
+                HorizontalAlignment="Right" 
+                VerticalAlignment="Top">
+                <TextBox 
+                    Name="Name" 
+                    Style="{StaticResource DiagnosisTextStyle}"
+                    Height="30"
+                    Width="260"
+                    FontSize="20"
+                    IsReadOnly="True"/>
+            </Border>
+            <Border 
+                Style="{StaticResource BorderStyle}"
+                Margin="0,140,150,0"
+                Width="260" 
+                Height="30" 
+                HorizontalAlignment="Right" 
+                VerticalAlignment="Top">
+                <TextBox 
+                    Name="LastName"
+                    Style="{StaticResource DiagnosisTextStyle}"
+                    Height="30"
+                    Width="260"
+                    FontSize="20"
+                    IsReadOnly="True"/>
+            </Border>
+            <Border 
+                Style="{StaticResource BorderStyle}"
+                Margin="0,200,150,0"
+                Width="260" 
+                Height="30" 
+                HorizontalAlignment="Right" 
+                VerticalAlignment="Top">
+                <TextBox 
+                    Name="HealthInsuranceId"
+                    Style="{StaticResource DiagnosisTextStyle}"
+                    Height="30"
+                    Width="260"
+                    FontSize="20"
+                    IsReadOnly="True"/>
+            </Border>
+            <Border 
+                Style="{StaticResource BorderStyle}"
+                Margin="0,260,150,0"
+                Width="260" 
+                Height="30" 
+                HorizontalAlignment="Right" 
+                VerticalAlignment="Top">
+                <TextBox 
+                    Name="Gender"
+                    Style="{StaticResource DiagnosisTextStyle}"
+                    Height="30"
+                    Width="260"
+                    FontSize="20"
+                    IsReadOnly="True"/>
+            </Border>
+            <Border 
+                Style="{StaticResource BorderStyle}"
+                Margin="0,320,150,0"
+                Width="260" 
+                Height="30" 
+                HorizontalAlignment="Right" 
+                VerticalAlignment="Top">
+                <TextBox 
+                    Name="BloodType"
+                    Style="{StaticResource DiagnosisTextStyle}"
+                    Height="30"
+                    Width="260"
+                    FontSize="20"
+                    IsReadOnly="True"/>
+            </Border>
+            <Border 
+                Style="{StaticResource BorderStyle}"
+                Margin="0,380,150,0"
+                Width="260" 
+                Height="120" 
+                HorizontalAlignment="Right" 
+                VerticalAlignment="Top">
+                <ItemsControl 
+                    Name="ChronicDiseasesItemsControl"
+                    Height="120" 
+                    Width="260" 
+                    FontSize="20"
+                    Padding="2 0 0 0"
+                    FontFamily="Roboto"
+                    Foreground="#0F5A96"/>
+            </Border>
+            <Border 
+                Style="{StaticResource BorderStyle}"
+                Margin="0,530,150,0" 
+                Width="260" 
+                Height="120" 
+                HorizontalAlignment="Right" 
+                VerticalAlignment="Top">
+                <ItemsControl 
+                    Name="AllergiesItemsControl"
+                    Height="120" 
+                    Width="260" 
+                    FontSize="20"
+                    Padding="2 0 0 0"
+                    FontFamily="Roboto"
+                    Foreground="#0F5A96"/>
+            </Border>
             
-            <Button Content="Back" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="700" Height="50" Click="Cancel" FontSize="25"/>
+            <Button 
+                Style="{StaticResource DefaultButton}"
+                Content="Back" 
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Bottom" 
+                Width="700" 
+                Height="50" 
+                Click="Cancel"/>
         </Grid>
     </Grid>
 </Page>

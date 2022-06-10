@@ -19,6 +19,26 @@
         </Border>
     </ControlTemplate>
     
+    <Style TargetType="Button" x:Key="DefaultButton">
+        <Setter Property="Background" Value="#0F5A96"/>
+        <Setter Property="FontFamily" Value="Roboto"/>
+        <Setter Property="FontSize" Value="25"/>
+        <Setter Property="Padding" Value="0 3 0 0"/>
+        <Setter Property="Foreground" Value="#95D8EB"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="Template" Value="{StaticResource ButtonTemplate}"/>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Cursor" Value="Hand"/>
+            </Trigger>
+        </Style.Triggers>
+        <Style.Resources>
+            <Style TargetType="Border">
+                <Setter Property="CornerRadius" Value="6" />
+            </Style>
+        </Style.Resources>
+    </Style>
+    
     <!-- Menu buttons -->
     <Style TargetType="Button" x:Key="MenuButtonStyle">
         <Setter Property="Height" Value="50"/>
@@ -57,7 +77,7 @@
     <Style TargetType="Button" x:Key="CheckupButton">
         <Setter Property="FontSize" Value="25"/>
         <Setter Property="Background" Value="#95D8EB"/>
-        <Setter Property="TextElement.FontFamily" Value="Roboto"/>
+        <Setter Property="FontFamily" Value="Roboto"/>
         <Setter Property="Foreground" Value="#0F5A96"/>
         <Setter Property="BorderBrush" Value="#0F5A96"/>
         <Setter Property="Template" Value="{StaticResource ButtonTemplate}"/>
@@ -107,12 +127,14 @@
         <Setter Property="Foreground" Value="#0F5A96"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="FontSize" Value="18"/>
-        <Setter Property="TextElement.FontFamily" Value="Roboto"/>
+        <Setter Property="FontFamily" Value="Roboto"/>
     </Style>
     
     <!-- Label -->
     <Style TargetType="Label" x:Key="LabelStyle">
         <Setter Property="Foreground" Value="#0F5A96"/>
+        <Setter Property="FontFamily" Value="Roboto"/>
+        <Setter Property="FontSize" Value="20"/>
     </Style>
     
     <!-- Clock Label -->
@@ -123,18 +145,16 @@
     <!-- TextBlock  -->
     <Style TargetType="TextBlock" x:Key="TextBlockStyle">
         <Setter Property="Foreground" Value="#95D8EB"/>
+        <Setter Property="FontFamily" Value="Roboto"/>
+        <Setter Property="FontSize" Value="20"/>
     </Style>
     
     <!-- ListBox -->
     <Style TargetType="ListBox" x:Key="ListBoxStyle">
-        <Setter Property="Background" Value="#95D8EB"/>
         <Setter Property="Foreground" Value="#0F5A96"/>
         <Setter Property="FontSize" Value="25"/>
-        <Setter Property="Clip">
-            <Setter.Value>
-                <RectangleGeometry Rect="0, 0, 260, 166" RadiusX="8" RadiusY="8"/>
-            </Setter.Value>
-        </Setter>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Background" Value="Transparent"/>
     </Style>
     
     <!-- Header Rectangle -->
@@ -152,35 +172,97 @@
     
     <!-- CustomTimeSpanUpDown -->
     <Style TargetType="xctk:TimeSpanUpDown" x:Key="TimeSpanUpDownStyle">
-        <Setter Property="Background" Value="#95D8EB"/>
         <Setter Property="Foreground" Value="#0F5A96"/>
-        <Setter Property="Clip">
-            <Setter.Value>
-                <RectangleGeometry Rect="0, 0, 260, 30" RadiusX="8" RadiusY="8"/>
-            </Setter.Value>
-        </Setter>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Background" Value="Transparent"/>
     </Style>
     
     <!-- TimePicker -->
     <Style TargetType="xctk:TimePicker" x:Key="TimePickerStyle">
-        <Setter Property="Background" Value="#95D8EB"/>
         <Setter Property="Foreground" Value="#0F5A96"/>
-        <Setter Property="Clip">
-            <Setter.Value>
-                <RectangleGeometry Rect="0, 0, 260, 30" RadiusX="8" RadiusY="8"/>
-            </Setter.Value>
-        </Setter>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Background" Value="Transparent"/>
     </Style>
     
     <!-- DatePicker -->
     <Style TargetType="DatePicker" x:Key="DatePickerStyle">
-        <Setter Property="Background" Value="#95D8EB"/>
+        <Style.Resources>
+            <Style TargetType="DatePickerTextBox">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type DatePickerTextBox}">
+                            <Grid>
+                                <Grid.Resources>
+                                    <SolidColorBrush x:Key="WatermarkBrush" Color="#FFAAAAAA"/>
+                                </Grid.Resources>
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup x:Name="CommonStates">
+                                        <VisualStateGroup.Transitions>
+                                            <VisualTransition GeneratedDuration="0"/>
+                                            <VisualTransition GeneratedDuration="0:0:0.1" To="MouseOver"/>
+                                        </VisualStateGroup.Transitions>
+                                        <VisualState x:Name="Normal"/>
+                                        <VisualState x:Name="MouseOver" />
+                                    </VisualStateGroup>
+                                    <VisualStateGroup x:Name="WatermarkStates">
+                                        <VisualStateGroup.Transitions>
+                                            <VisualTransition GeneratedDuration="0"/>
+                                        </VisualStateGroup.Transitions>
+                                        <VisualState x:Name="Unwatermarked"/>
+                                        <VisualState x:Name="Watermarked">
+                                            <Storyboard>
+                                                <DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="ContentElement"/>
+                                                <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="PART_Watermark"/>
+                                            </Storyboard>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                    <VisualStateGroup x:Name="FocusStates">
+                                        <VisualStateGroup.Transitions>
+                                            <VisualTransition GeneratedDuration="0"/>
+                                        </VisualStateGroup.Transitions>
+                                        <VisualState x:Name="Unfocused"/>
+                                        <VisualState x:Name="Focused" />
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+                                <Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" CornerRadius="1" Opacity="1" Padding="{TemplateBinding Padding}">
+                                    <Grid x:Name="WatermarkContent" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                                        <Border x:Name="ContentElement" BorderBrush="#FFFFFFFF" BorderThickness="0"/>
+                                        <Border x:Name="watermark_decorator" BorderBrush="#FFFFFFFF" BorderThickness="0">
+                                            <ContentControl x:Name="PART_Watermark" Focusable="False" IsHitTestVisible="False" Opacity="0" Padding="2"/>
+                                        </Border>
+                                        <ScrollViewer x:Name="PART_ContentHost" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="0" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                    </Grid>
+                                </Border>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+            </Setter>
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="Padding" Value="12 0 0 0"/>
+            </Style>
+        </Style.Resources> 
         <Setter Property="Foreground" Value="#0F5A96"/>
-        <Setter Property="Clip">
-            <Setter.Value>
-                <RectangleGeometry Rect="0, 0, 260, 30" RadiusX="8" RadiusY="8"/>
-            </Setter.Value>
-        </Setter>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Background" Value="Transparent"/>
+    </Style>
+    
+    <!-- Border with corner radius -->
+    <Style TargetType="Border" x:Key="BorderStyle">
+        <Setter Property="CornerRadius" Value="5"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="BorderBrush" Value="#0F5A96"/>
+        <Setter Property="Background" Value="#95D8EB"/>
+    </Style>
+    
+    <Style TargetType="Border" x:Key="HeaderBorderStyle">
+        <Setter Property="CornerRadius" Value="5"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="BorderBrush" Value="#0F5A96"/>
+        <Setter Property="Background" Value="#95D8EB"/>
+        <Setter Property="Height" Value="40"/>
+        <Setter Property="Width" Value="700"/>
     </Style>
     
 </ResourceDictionary>

@@ -47,7 +47,8 @@
                         <syncfusion:AppointmentMapping
                                 Subject="AppointmentSubject"
                                 StartTime="Date"
-                                EndTime="End"/>
+                                EndTime="End"
+                                MinimumAppointmentHeight="50"/>
                     </syncfusion:SfScheduler.AppointmentMapping>
                     <syncfusion:SfScheduler.DaysViewSettings>
                         <syncfusion:DaysViewSettings 

@@ -27,8 +27,24 @@
             <TextBlock Name="AllergensTextBlock" Style="{StaticResource TextBlockStyle}" Text="Allergens:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="149, 0, 0, 30" FontSize="20" Visibility="Hidden"/>
             <ItemsControl Name="AllergensItemsControl" HorizontalAlignment="Center" VerticalAlignment="Center" Height="100" Width="250" Margin="100, 0, 0, 30" Visibility="Hidden"/>
             
-            <Button Content="Confirm" HorizontalAlignment="Left"  VerticalAlignment="Bottom" Margin="0,0,0,0" Width="350" Height="50" Click="Confirm" FontSize="25"/>
-            <Button Content="Cancel"  HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,0,0" Width="350" Height="50" Click="Cancel" FontSize="25"/>
+            <Button 
+                Content="Confirm" 
+                Style="{StaticResource DefaultButton}"
+                HorizontalAlignment="Left"  
+                VerticalAlignment="Bottom" 
+                Margin="0,0,0,0" 
+                Width="350" 
+                Height="50"
+                Click="Confirm"/>
+            <Button 
+                Content="Cancel" 
+                Style="{StaticResource DefaultButton}"
+                HorizontalAlignment="Right" 
+                VerticalAlignment="Bottom" 
+                Margin="0,0,0,0" 
+                Width="350" 
+                Height="50" 
+                Click="Cancel"/>
         </Grid>
     </Grid>
 </Page>

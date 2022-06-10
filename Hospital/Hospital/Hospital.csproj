@@ -282,6 +282,7 @@
     <Compile Include="View\DoctorView\Checkup\TherapyPage.xaml.cs">
       <DependentUpon>TherapyPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\DoctorView\Commands\CommandBase.cs" />
     <Compile Include="View\DoctorView\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
@@ -791,7 +792,11 @@
   <ItemGroup>
     <Resource Include="images\femaleUser.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="View\DoctorView\Resources\Images\logo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

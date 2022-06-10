@@ -22,6 +22,7 @@ namespace Hospital.View.DoctorView {
         public static Button MedicineButton { get; set; }
         public MainWindow()
         {
+            FontFamily = new FontFamily("Roboto");
             _app = Application.Current as App;
             InitializeComponent();
             selectedButtonColor = new SolidColorBrush(Color.FromRgb(149, 216, 235));

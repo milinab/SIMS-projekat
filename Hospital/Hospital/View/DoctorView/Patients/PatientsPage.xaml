@@ -49,6 +49,7 @@
             </Grid>
             <Grid Grid.Row="2">
                 <Button 
+                    Style="{StaticResource DefaultButton}"
                     Content="Patient relocation"
                     Height="50"/>
             </Grid>
