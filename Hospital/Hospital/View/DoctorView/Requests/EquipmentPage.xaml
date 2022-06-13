@@ -18,13 +18,10 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Border 
-                Style="{StaticResource HeaderStyle}"/>
+                Style="{StaticResource HeaderBorderStyle}"/>
             <Label 
-                Style="{StaticResource LabelStyle}" 
-                Content="Equipment" 
-                HorizontalAlignment="Center" 
-                VerticalAlignment="Top" 
-                FontSize="24"/>
+                Style="{StaticResource HeaderLabelStyle}" 
+                Content="Equipment"/>
         </Grid>
         <Grid Grid.Row="1" Margin="120 250 70 0">
             <Grid.RowDefinitions>
@@ -38,39 +35,55 @@
             <Grid Grid.Row="0" Grid.Column="0">
                 <Label
                     Content="Name of equipment:"
+                    Style="{StaticResource LabelStyle}"
                     Padding="5"
                     HorizontalAlignment="Right"
-                    Style="{StaticResource LabelStyle}"
                     FontSize="18"/>
             </Grid>
             <Grid Grid.Row="0" Grid.Column="1" Margin="0 5 0 50">
-                <TextBox
-                    Height="30"
-                    Width="250"/>
+                <Border 
+                    Style="{StaticResource BorderStyle}"
+                    Width="250" 
+                    Height="30" 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center">
+                    <TextBox
+                        Style="{StaticResource TextBoxStyle}"
+                        Height="30"
+                        Width="250"/>
+                </Border>
             </Grid>
             <Grid Grid.Row="1" Grid.Column="0">
                 <Label
                     Content="Quantity:"
-                    HorizontalAlignment="Right"
                     Style="{StaticResource LabelStyle}"
+                    HorizontalAlignment="Right"
                     FontSize="18"/>
             </Grid>
             <Grid Grid.Row="1" Grid.Column="1" Margin="0 5 0 0">
-                <TextBox
-                    Height="30"
-                    Width="250"/>
+                <Border 
+                    Style="{StaticResource BorderStyle}"
+                    Width="250" 
+                    Height="30" 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center">
+                    <TextBox
+                        Style="{StaticResource TextBoxStyle}"
+                        Height="30"
+                        Width="250"/>
+                </Border>
             </Grid>
         </Grid>
         <Grid Grid.Row="2">
             <Button 
                 Content="Confirm" 
-                Style="{StaticResource DefaultButton}"
+                Style="{StaticResource ConfirmButton}"
                 HorizontalAlignment="Left"
                 Width="350" 
                 Height="50"/>
             <Button 
                 Content="Cancel" 
-                Style="{StaticResource DefaultButton}"
+                Style="{StaticResource CancelButton}"
                 HorizontalAlignment="Right"
                 Width="350" 
                 Height="50"/>

@@ -29,45 +29,45 @@
                     FontSize="24"/>
             </Border>
             
-            <TextBlock 
-                Text="Name:" 
-                Style="{StaticResource TextBlockStyle}"
+            <Label 
+                Content="Name:" 
+                Style="{StaticResource LabelStyle}"
                 HorizontalAlignment="Right" 
                 VerticalAlignment="Top" 
                 Margin="0,80,450,0"/>
-            <TextBlock 
-                Text="Last name:" 
-                Style="{StaticResource TextBlockStyle}"
+            <Label 
+                Content="Last name:" 
+                Style="{StaticResource LabelStyle}"
                 HorizontalAlignment="Right" 
                 VerticalAlignment="Top" 
                 Margin="0,140,450,0"/>
-            <TextBlock 
-                Text="Health insurance ID:" 
-                Style="{StaticResource TextBlockStyle}"
+            <Label 
+                Content="Health insurance ID:" 
+                Style="{StaticResource LabelStyle}"
                 HorizontalAlignment="Right" 
                 VerticalAlignment="Top" 
                 Margin="0,200,450,0"/>
-            <TextBlock 
-                Text="Gender:" 
-                Style="{StaticResource TextBlockStyle}"
+            <Label 
+                Content="Gender:" 
+                Style="{StaticResource LabelStyle}"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Top" 
                 Margin="0,260,450,0"/>
-            <TextBlock 
-                Text="Blood type:" 
-                Style="{StaticResource TextBlockStyle}"
+            <Label 
+                Content="Blood type:" 
+                Style="{StaticResource LabelStyle}"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Top" 
                 Margin="0,320,450,0"/>
-            <TextBlock 
-                Text="Chronic diseases:" 
-                Style="{StaticResource TextBlockStyle}"
+            <Label 
+                Content="Chronic diseases:" 
+                Style="{StaticResource LabelStyle}"
                 HorizontalAlignment="Right" 
                 VerticalAlignment="Top" 
                 Margin="0,425,450,0"/>
-            <TextBlock 
-                Text="Allergies:"
-                Style="{StaticResource TextBlockStyle}"
+            <Label 
+                Content="Allergies:"
+                Style="{StaticResource LabelStyle}"
                 HorizontalAlignment="Right" 
                 VerticalAlignment="Top" 
                 Margin="0,580,450,0"/>
@@ -81,7 +81,7 @@
                 VerticalAlignment="Top">
                 <TextBox 
                     Name="Name" 
-                    Style="{StaticResource DiagnosisTextStyle}"
+                    Style="{StaticResource TextBoxStyle}"
                     Height="30"
                     Width="260"
                     FontSize="20"
@@ -96,7 +96,7 @@
                 VerticalAlignment="Top">
                 <TextBox 
                     Name="LastName"
-                    Style="{StaticResource DiagnosisTextStyle}"
+                    Style="{StaticResource TextBoxStyle}"
                     Height="30"
                     Width="260"
                     FontSize="20"
@@ -111,7 +111,7 @@
                 VerticalAlignment="Top">
                 <TextBox 
                     Name="HealthInsuranceId"
-                    Style="{StaticResource DiagnosisTextStyle}"
+                    Style="{StaticResource TextBoxStyle}"
                     Height="30"
                     Width="260"
                     FontSize="20"
@@ -126,7 +126,7 @@
                 VerticalAlignment="Top">
                 <TextBox 
                     Name="Gender"
-                    Style="{StaticResource DiagnosisTextStyle}"
+                    Style="{StaticResource TextBoxStyle}"
                     Height="30"
                     Width="260"
                     FontSize="20"
@@ -141,7 +141,7 @@
                 VerticalAlignment="Top">
                 <TextBox 
                     Name="BloodType"
-                    Style="{StaticResource DiagnosisTextStyle}"
+                    Style="{StaticResource TextBoxStyle}"
                     Height="30"
                     Width="260"
                     FontSize="20"
@@ -181,7 +181,7 @@
             </Border>
             
             <Button 
-                Style="{StaticResource DefaultButton}"
+                Style="{StaticResource CancelButton}"
                 Content="Back" 
                 HorizontalAlignment="Center" 
                 VerticalAlignment="Bottom" 

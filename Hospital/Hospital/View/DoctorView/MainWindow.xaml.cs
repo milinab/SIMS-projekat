@@ -2,8 +2,11 @@
 using System.Windows.Controls;
 using System.Windows.Media;
 using Hospital.Enums;
+using Hospital.View.DoctorView.Account;
 using Hospital.View.DoctorView.Appointments;
 using Hospital.View.DoctorView.Checkup;
+using Hospital.View.DoctorView.MalfunctionReport;
+using Hospital.View.DoctorView.Patients;
 using Hospital.View.DoctorView.Requests;
 
 namespace Hospital.View.DoctorView {
@@ -13,10 +16,10 @@ namespace Hospital.View.DoctorView {
     public partial class MainWindow
     {
         private App _app;
-        private SolidColorBrush selectedButtonColor;
-        private SolidColorBrush selectedButtonTextColor;
-        private SolidColorBrush ButtonColor;
-        private SolidColorBrush ButtonTextColor;
+        private readonly SolidColorBrush _selectedButtonColor;
+        private readonly SolidColorBrush _selectedButtonTextColor;
+        private readonly SolidColorBrush _buttonColor;
+        private readonly SolidColorBrush _buttonTextColor;
 
         public static Frame MainFrame { get; set; }
         public static Button MedicineButton { get; set; }
@@ -25,10 +28,14 @@ namespace Hospital.View.DoctorView {
             FontFamily = new FontFamily("Roboto");
             _app = Application.Current as App;
             InitializeComponent();
-            selectedButtonColor = new SolidColorBrush(Color.FromRgb(149, 216, 235));
-            selectedButtonTextColor = new SolidColorBrush(Color.FromRgb(15, 90, 150));
-            ButtonColor = new SolidColorBrush(Color.FromRgb(15, 90, 150));
-            ButtonTextColor = new SolidColorBrush(Color.FromRgb(192, 228, 252));
+            // ReSharper disable PossibleNullReferenceException
+            var primaryColor = (Color)ColorConverter.ConvertFromString("#9FA8DA");
+            var themeColor = (Color)ColorConverter.ConvertFromString("#121212");
+            var white = (Color)ColorConverter.ConvertFromString("#FFFFFF");
+            _selectedButtonColor = new SolidColorBrush(primaryColor);
+            _selectedButtonTextColor = new SolidColorBrush(themeColor);
+            _buttonColor = new SolidColorBrush(themeColor);
+            _buttonTextColor = new SolidColorBrush(white);
             Frame.Content = new AppointmentsPage();
             SelectedButtonColors(AppointmentsButton);
             MainFrame = Frame;
@@ -41,15 +48,6 @@ namespace Hospital.View.DoctorView {
                 }
             }
             MedicineButton = VerifyMedicine;
-        }
-
-        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-
-        }
-
-        public void SwitchPage()
-        {
-            Frame.Navigate(new AppointmentsPage());
         }
 
         private void CheckupPage(object sender, RoutedEventArgs e)
@@ -70,6 +68,7 @@ namespace Hospital.View.DoctorView {
         {
             ResetSelectedButtons();
             SelectedButtonColors(PatientsButton);
+            Frame.Navigate(new PatientsPage());
         }
 
         private void RequestsPage(object sender, RoutedEventArgs e)
@@ -83,12 +82,14 @@ namespace Hospital.View.DoctorView {
         {
             ResetSelectedButtons();
             SelectedButtonColors(MalfunctionReportButton);
+            Frame.Navigate(new MalfunctionReportPage());
         }
 
         private void AccountPage(object sender, RoutedEventArgs e)
         {
             ResetSelectedButtons();
             SelectedButtonColors(AccountButton);
+            Frame.Navigate(new AccountPage());
         }
 
         private void LogOutPage(object sender, RoutedEventArgs e)
@@ -109,14 +110,14 @@ namespace Hospital.View.DoctorView {
 
         private void SelectedButtonColors(Button button)
         {
-            button.Background = selectedButtonColor;
-            button.Foreground = selectedButtonTextColor;
+            button.Background = _selectedButtonColor;
+            button.Foreground = _selectedButtonTextColor;
         }
         
         private void ButtonColors(Button button)
         {
-            button.Background = ButtonColor;
-            button.Foreground = ButtonTextColor;
+            button.Background = _buttonColor;
+            button.Foreground = _buttonTextColor;
         }
 
         private void VerifyMedicine_OnClick(object sender, RoutedEventArgs e)

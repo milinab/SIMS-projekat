@@ -24,14 +24,14 @@
         </Grid>
         <Grid Grid.Row="1">
             <Button 
-                Style="{StaticResource DefaultButton}"
+                Style="{StaticResource ConfirmButton}"
                 Content="Confirm" 
                 HorizontalAlignment="Left"
                 Width="325" 
                 Height="50" />
             <Button 
                 Content="Cancel" 
-                Style="{StaticResource DefaultButton}"
+                Style="{StaticResource CancelButton}"
                 HorizontalAlignment="Right"
                 Width="325" 
                 Height="50" />

@@ -32,42 +32,42 @@
                     FontSize="24"/>
             </Border>
 
-            <TextBlock 
-                Text="Date:"     
-                Style="{StaticResource TextBlockStyle}"
+            <Label 
+                Content="Date:"     
+                Style="{StaticResource LabelStyle}"
                 HorizontalAlignment="Right" 
                 VerticalAlignment="Top" 
-                Margin="0,80,500,0"/>
-            <TextBlock
-                Text="Time:"     
-                Style="{StaticResource TextBlockStyle}"
+                Margin="0 80 450 0"/>
+            <Label
+                Content="Time:"     
+                Style="{StaticResource LabelStyle}"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Top"
-                Margin="0,140,500,0"/>
-            <TextBlock 
-                Text="Duration:"  
-                Style="{StaticResource TextBlockStyle}"
+                Margin="0 140 450 0"/>
+            <Label 
+                Content="Duration:"  
+                Style="{StaticResource LabelStyle}"
                 HorizontalAlignment="Right" 
                 VerticalAlignment="Top" 
-                Margin="0,200,500,0"/>
-            <TextBlock 
-                Text="Room:"      
-                Style="{StaticResource TextBlockStyle}"
+                Margin="0 200 450 0"/>
+            <Label 
+                Content="Room:"      
+                Style="{StaticResource LabelStyle}"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Top"
-                Margin="0,330,500,0"/>
-            <TextBlock 
-                Text="Equipment:"
-                Style="{StaticResource TextBlockStyle}"
+                Margin="0 330 450 0"/>
+            <Label 
+                Content="Equipment:"
+                Style="{StaticResource LabelStyle}"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Top" 
-                Margin="0,530,500,0"/>
+                Margin="0 530 450 0"/>
             <Button 
                 Content="Patient information" 
                 Style="{StaticResource DefaultButton}"
                 HorizontalAlignment="Center" 
                 VerticalAlignment="Bottom" 
-                Margin="60, 0, 0, 70" 
+                Margin="100 0 0 70" 
                 Width="250" Height="40" 
                 FontSize="20" 
                 Click="PatientInformationClick">
@@ -80,7 +80,7 @@
             
             <Border 
                 Style="{StaticResource BorderStyle}"
-                Margin="220,80,0,0" 
+                Margin="270 80 0 0" 
                 Width="260" 
                 Height="30" 
                 HorizontalAlignment="Left" 
@@ -95,7 +95,7 @@
             </Border>
             <Border 
                 Style="{StaticResource BorderStyle}"
-                Margin="220,140,0,0" 
+                Margin="270 140 0 0" 
                 Width="260" 
                 Height="30" 
                 HorizontalAlignment="Left" 
@@ -115,7 +115,7 @@
             </Border>
             <Border 
                 Style="{StaticResource BorderStyle}"
-                Margin="220,200,0,0"
+                Margin="270 200 0 0"
                 Width="260" 
                 Height="30" 
                 HorizontalAlignment="Left" 
@@ -134,7 +134,7 @@
             </Border>
             <Border 
                 Style="{StaticResource BorderStyle}"
-                Margin="220,260,0,0" 
+                Margin="270 260 0 0" 
                 Width="260" 
                 Height="166" 
                 HorizontalAlignment="Left" 
@@ -148,7 +148,7 @@
             </Border>
             <Border 
                 Style="{StaticResource BorderStyle}"
-                Margin="220,460,0,0"
+                Margin="270 460 0 0"
                 Width="260" 
                 Height="166" 
                 HorizontalAlignment="Left" 
@@ -162,7 +162,7 @@
             </Border>
             <Button
                 Content="Confirm" 
-                Style="{StaticResource DefaultButton}"
+                Style="{StaticResource ConfirmButton}"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Bottom"
                 Margin="0,0,0,0"
@@ -171,7 +171,7 @@
                 Click="Confirm"/>
             <Button 
                 Content="Cancel" 
-                Style="{StaticResource DefaultButton}"
+                Style="{StaticResource CancelButton}"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Bottom"
                 Margin="0,0,0,0"

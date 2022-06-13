@@ -18,13 +18,10 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Border 
-                Style="{StaticResource HeaderStyle}"/>
+                Style="{StaticResource HeaderBorderStyle}"/>
             <Label 
-                Style="{StaticResource LabelStyle}" 
-                Content="Hospital treatment" 
-                HorizontalAlignment="Center" 
-                VerticalAlignment="Top" 
-                FontSize="24"/>
+                Style="{StaticResource HeaderLabelStyle}" 
+                Content="Hospital treatment"/>
         </Grid>
         <Grid Grid.Row="1" Margin="170 130 70 0">
             <Grid.RowDefinitions>
@@ -40,39 +37,57 @@
                     Content="Room:"
                     Padding="5"
                     HorizontalAlignment="Right"
+                    Margin="0 80 0 0"
                     Style="{StaticResource LabelStyle}"
                     FontSize="18"/>
             </Grid>
             <Grid Grid.Row="0" Grid.Column="1">
-                <ListView
-                    Margin="5 0 0 70"
-                    Height="200"
-                    Width="250"/>
+                <Border 
+                Style="{StaticResource BorderStyle}"
+                Margin="5 0 0 70" 
+                Width="250" 
+                Height="200" 
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Top">
+                    <ListView
+                        Style="{StaticResource ListViewStyle}"
+                        Height="200"
+                        Width="250"/>
+                </Border>
             </Grid>
             <Grid Grid.Row="1" Grid.Column="0">
                 <Label
                     Content="Bed:"
                     HorizontalAlignment="Right"
+                    Margin="0 60 0 0"
                     Style="{StaticResource LabelStyle}"
                     FontSize="18"/>
             </Grid>
             <Grid Grid.Row="1" Grid.Column="1">
-                <ListView
-                    Margin="5 0 0 40"
-                    Height="150"
-                    Width="250"/>
+                <Border 
+                Style="{StaticResource BorderStyle}"
+                Margin="5 0 0 40" 
+                Width="250" 
+                Height="150" 
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Top">
+                    <ListView
+                        Style="{StaticResource ListViewStyle}"
+                        Height="150"
+                        Width="250"/>
+                </Border>
             </Grid>
         </Grid>
         <Grid Grid.Row="2">
             <Button 
                 Content="Confirm" 
-                Style="{StaticResource DefaultButton}"
+                Style="{StaticResource ConfirmButton}"
                 HorizontalAlignment="Left"
                 Width="350" 
                 Height="50" />
             <Button 
                 Content="Cancel" 
-                Style="{StaticResource DefaultButton}"
+                Style="{StaticResource CancelButton}"
                 HorizontalAlignment="Right"
                 Width="350" 
                 Height="50" />

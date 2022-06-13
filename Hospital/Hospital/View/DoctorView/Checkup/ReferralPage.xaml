@@ -18,13 +18,10 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Border 
-                Style="{StaticResource HeaderStyle}"/>
+                Style="{StaticResource HeaderBorderStyle}"/>
             <Label 
-                Style="{StaticResource LabelStyle}" 
-                Content="Referral" 
-                HorizontalAlignment="Center" 
-                VerticalAlignment="Top" 
-                FontSize="24"/>
+                Style="{StaticResource HeaderLabelStyle}" 
+                Content="Referral"/>
         </Grid>
         <Grid Grid.Row="1" Margin="110 60 70 0">
             <Grid.RowDefinitions>
@@ -45,19 +42,36 @@
                     FontSize="18"/>
             </Grid>
             <Grid Grid.Row="0" Grid.Column="1">
-                <TextBox
-                    Name="SpecializationTextBox"
-                    Height="30"
-                    Width="250"
+                <Border 
+                    Style="{StaticResource BorderStyle}"
+                    Margin="5 0 0 0" 
+                    Width="250" 
+                    Height="30" 
+                    HorizontalAlignment="Left" 
                     VerticalAlignment="Top"
-                    Margin="5 0 0 0"/>
-                
-                <ListView
-                    Name="SpecializationListView"
+                    BorderThickness="0.5"
+                    BorderBrush="#42A5F5">
+                    <TextBox
+                        Style="{StaticResource TextBoxStyle}"
+                        Name="SpecializationTextBox"
+                        Height="30"
+                        Width="250"
+                        FontSize="18"/>
+                </Border>
+                <Border 
+                    Style="{StaticResource BorderStyle}"
                     Margin="5 30 0 40"
-                    Height="150"
-                    Width="250"
-                    SelectionChanged="SpecializationListView_OnSelectionChanged"/>
+                    Width="250" 
+                    Height="150" 
+                    HorizontalAlignment="Left" 
+                    VerticalAlignment="Top">
+                    <ListView
+                        Style="{StaticResource ListViewStyle}"
+                        Name="SpecializationListView"
+                        Height="150"
+                        Width="250"
+                        SelectionChanged="SpecializationListView_OnSelectionChanged"/>
+                </Border>
             </Grid>
             <Grid Grid.Row="1" Grid.Column="0">
                 <Label
@@ -67,11 +81,19 @@
                     FontSize="18"/>
             </Grid>
             <Grid Grid.Row="1" Grid.Column="1">
-                <ListView
-                    Name="SpecialistListView"
-                    Margin="5 0 0 40"
-                    Height="150"
-                    Width="250"/>
+                <Border 
+                    Style="{StaticResource BorderStyle}"
+                        Margin="5 0 0 40"
+                    Width="250" 
+                    Height="150" 
+                    HorizontalAlignment="Left" 
+                    VerticalAlignment="Top">
+                    <ListView
+                        Style="{StaticResource ListViewStyle}"
+                        Name="SpecialistListView"
+                        Height="150"
+                        Width="250"/>
+                </Border>
             </Grid>
             <Grid Grid.Row="2" Grid.Column="0">
                 <Label
@@ -81,23 +103,32 @@
                     FontSize="18"/>
             </Grid>
             <Grid Grid.Row="2" Grid.Column="1">
-                <TextBox
-                    Name="ReasonTextBox"
-                    Height="150"
-                    Width="250"/>
+                <Border 
+                    Style="{StaticResource BorderStyle}"
+                    Margin="5 0 0 40"
+                    Width="250" 
+                    Height="150" 
+                    HorizontalAlignment="Left" 
+                    VerticalAlignment="Top">
+                    <TextBox
+                        Style="{StaticResource TextBoxStyle}"
+                        Name="ReasonTextBox"
+                        Height="150"
+                        Width="250"/>
+                </Border>
             </Grid>
         </Grid>
         <Grid Grid.Row="2">
             <Button 
                 Content="Confirm" 
-                Style="{StaticResource DefaultButton}"
+                Style="{StaticResource ConfirmButton}"
                 HorizontalAlignment="Left"
                 Width="350" 
                 Height="50" 
                 Click="Confirm_OnClick"/>
             <Button 
                 Content="Cancel" 
-                Style="{StaticResource DefaultButton}"
+                Style="{StaticResource CancelButton}"
                 HorizontalAlignment="Right"
                 Width="350" 
                 Height="50" 

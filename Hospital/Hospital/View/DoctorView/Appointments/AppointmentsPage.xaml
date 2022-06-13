@@ -27,19 +27,18 @@
         <Grid Grid.Row="0">
             <Label 
                 Content="{Binding CurrentTime}" 
-                Style="{StaticResource ClockLabelStyle}" 
-                HorizontalAlignment="Center" 
-                VerticalAlignment="Top"
-                FontSize="18"/>
+                Style="{StaticResource ClockLabelStyle}"/>
         </Grid>
         <Grid Grid.Row="1">
             <syncfusion:SfScheduler 
+                syncfusion:SfSkinManager.Theme="{syncfusion:SkinManager ThemeName=FluentDark}"
                 Name="AppointmentsCalendar"
                 ItemsSource="{Binding Appointments}"
                 ViewType="Week"
                 FirstDayOfWeek="Monday"
                 ResourceGroupType="Date"
                 AllowDrop="False"
+                BorderThickness="0"
                 AppointmentResizing="AppointmentsCalendar_OnAppointmentResizing"
                 AppointmentDragStarting="AppointmentsCalendar_OnAppointmentDragStarting"
                 AppointmentEditorOpening="AppointmentsCalendar_OnAppointmentEditorOpening">
@@ -47,16 +46,18 @@
                         <syncfusion:AppointmentMapping
                                 Subject="AppointmentSubject"
                                 StartTime="Date"
-                                EndTime="End"
-                                MinimumAppointmentHeight="50"/>
+                                EndTime="End"/>
                     </syncfusion:SfScheduler.AppointmentMapping>
-                    <syncfusion:SfScheduler.DaysViewSettings>
-                        <syncfusion:DaysViewSettings 
-                            TimeIntervalSize="100"
-                            StartHour="7"
-                            EndHour="20"
-                            ViewHeaderDayFormat="dddd"/>
-                    </syncfusion:SfScheduler.DaysViewSettings>
+                <syncfusion:SfScheduler.DaysViewSettings>
+                    <syncfusion:DaysViewSettings 
+                        TimeIntervalSize="150"
+                        StartHour="7"
+                        EndHour="20"
+                        ViewHeaderDayFormat="dddd"
+                        TimeRulerFormat="hh:mm"
+                        TimeRulerSize="35"
+                        />
+                </syncfusion:SfScheduler.DaysViewSettings>
             </syncfusion:SfScheduler>
         </Grid>
     </Grid>

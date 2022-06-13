@@ -25,7 +25,8 @@
         <Grid Grid.Column="0">
             <Rectangle 
                 Name="MenuRectangle" 
-                Style="{StaticResource MenuRectangleStyle}"/>
+                Style="{StaticResource MenuRectangleStyle}"
+                Opacity="0.05"/>
             <Image 
                 Margin="0 -8 0 0"
                 HorizontalAlignment="Center"

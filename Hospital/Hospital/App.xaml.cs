@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Input;
 using Hospital.Controller;
 using Hospital.Model;
 using Hospital.Repository;
@@ -41,13 +42,12 @@ namespace Hospital
         internal AnamnesisController _anamnesisController;
         internal ReferralController _referralController;
 
-        //internal MainPage _mainPage;
-        internal MainWindow _mainWindow;
-
         public App()
         {
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjM3MDMyQDMyMzAyZTMxMmUzMGcxWFBwNGZOQ2g3WjlkbzRHNVljWmpmZnh4a2FJbVNZQW5qUFJNVFlCWmc9");
-
+            NavigationCommands.BrowseBack.InputGestures.Clear();
+            NavigationCommands.BrowseForward.InputGestures.Clear();
+            
             Repositories repositories = new Repositories();
             Services services = new Services(repositories);
 
@@ -79,9 +79,6 @@ namespace Hospital
             _vacationController = new VacationController(services.VacationService);
             _anamnesisController = new AnamnesisController(services.AnamnesisService);
             _referralController = new ReferralController(services.ReferralService);
-
-            // _mainWindow = new MainWindow();
-
         }
     }
 }
