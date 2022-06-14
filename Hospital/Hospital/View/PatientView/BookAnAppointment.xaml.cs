@@ -48,6 +48,19 @@ namespace Hospital.View.PatientView
                 PopupNotification.SendPopupNotification("Warning", "You need to select a priority.");
                 return false;
             }
+            
+            if(doctorsComboBox.SelectedItem==null)
+            {
+                PopupNotification.SendPopupNotification("Warning", "You need to select a doctor");
+                return false;
+            }
+
+            if (myCalendar.SelectedDate.Value == null)
+            {
+                PopupNotification.SendPopupNotification("Warning", "You need to select a date");
+                return false;
+            }
+
             return false;
         }
 

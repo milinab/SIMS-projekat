@@ -68,8 +68,10 @@
         <Button Content="Send asnwers" Height="42" Width="114" Margin="350,377,256,31" Background="Green" FontFamily="Georgia" Click="SendAnswers_Click"/>
 
         <Button Content="Discard" Height="42" Width="114" Margin="550,377,112,31" Background="IndianRed" FontFamily="Georgia" Click="Discard_Click"/>
-
+        
+        <Image Source="/images/notification.png" Margin="696,423,28,77" PreviewMouseDown="SurveyInfo_Click"/>
         <Frame x:Name="frame" NavigationUIVisibility="Hidden" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" Grid.Column="1"/>
+        
 
 
     </Grid>

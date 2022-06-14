@@ -133,6 +133,11 @@ namespace Hospital.View.PatientView
             Page notificationPage = new Notification(_patientWindow);
             this.frame.Navigate(notificationPage);
         }
+        private void SurveyInfo_Click(object sender, RoutedEventArgs e)
+        {
+            Page surveyInfoPage = new SurveyGraph(_patientWindow);
+            this.frame.Navigate(surveyInfoPage);
+        }
 
         public void BackToPatientWindow()
         {

@@ -85,9 +85,22 @@ namespace Hospital.View.PatientView
                 AvailableAppointments = new ObservableCollection<Appointment>(availableAppointmentsNoDate);
             }
         }
-            
+
+        private bool Validate()
+        {
+            if(dataGridDoctorPriority.SelectedItem == null)
+            {
+                PopupNotification.SendPopupNotification("Warning", "You need to select an appointment.");
+                return false;
+            }
+            return false;
+        }
+
+
         private void ConfirmAppointment_Click(object sender, RoutedEventArgs e)
         {
+            Validate();
+
             var viewModel = this.dataGridDoctorPriority.DataContext as Appointment;
             var SelectedItem = dataGridDoctorPriority.SelectedItem as Appointment;
 

@@ -47,17 +47,21 @@
         <Image Source="/images/femaleUser.png" Margin="-15,217,524,133" />
         <Label Content="Choose Your favorite doctor:" HorizontalAlignment="Left" Margin="300,290,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Left" FontSize="14"/>
         <ComboBox HorizontalAlignment="Center" Margin="12,321,0,0" VerticalAlignment="Top" Width="200" Height="30"/>
-        
+
         <TextBlock HorizontalAlignment="Left" Margin="291,166,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="70" Width="450" TextAlignment="Center" FontSize="14"><Run Text="Manage appointments"/><LineBreak/><Run/><LineBreak/><Run Text="Past appointments&#x9;&#x9;&#x9;Future appointments"/><LineBreak/><Run/></TextBlock>
         <Button Content="Past appointments" HorizontalAlignment="Left" Margin="300,232,0,0" VerticalAlignment="Top" Height="30" Width="145" Background="Bisque" Click="PastAppointments_Click" Foreground="Tan"/>
         <Button Content="Future appointments" HorizontalAlignment="Left" Margin="585,232,0,0" VerticalAlignment="Top" Height="30" Width="145" Background="Bisque" Click="MyAppointments_Click" Foreground="Tan"/>
-        
+
         <Label Content="See Your notes:" HorizontalAlignment="Left" Margin="300,366,0,0" VerticalAlignment="Top" FontSize="14"/>
         <Button Content="Notes" HorizontalAlignment="Left" Margin="300,396,0,0" VerticalAlignment="Top" Height="30" Width="145" Background="Bisque" Click="Notes_Click" Foreground="Tan"/>
-        
+
         <Label Content="Account settings:" HorizontalAlignment="Left" Margin="600,366,0,0" VerticalAlignment="Top" FontSize="14"/>
         <Button Content="Settings" HorizontalAlignment="Left" Margin="585,397,0,0" VerticalAlignment="Top" Height="30" Width="145" Background="Bisque" Click="AccountSettings_Click" Foreground="Tan"/>
 
+        <TextBlock HorizontalAlignment="Left" Margin="300,466,0,0" TextWrapping="Wrap" Text="Click                              to see statistics about Your appointments." VerticalAlignment="Top" Width="357"/>
+        <Button Content="HERE" HorizontalAlignment="Left" Margin="333,464,0,0" VerticalAlignment="Top" Click="AppointmentsGraph_Click" Width="82" Background="Bisque"/>
+        
         <Frame x:Name="frame" NavigationUIVisibility="Hidden" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" Grid.Column="1"/>
+
     </Grid>
 </Page>

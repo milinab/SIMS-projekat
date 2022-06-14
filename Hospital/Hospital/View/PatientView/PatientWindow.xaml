@@ -24,14 +24,14 @@
                     <Image Source="/images/user.png" Margin="0,0,-10,-2" />
                 </MenuItem.Icon>
             </MenuItem>
-            <MenuItem Height="60" Width="70" VerticalAlignment="Center" Padding="10,0,0,0" Header=" " Margin="10,0,0,0" HorizontalAlignment="Stretch" />
+            <MenuItem Height="60" Width="51" VerticalAlignment="Center" Padding="10,0,0,0" Header=" " />
             <MenuItem Height="60" Width="100" VerticalAlignment="Center" Padding="10,0,0,0" Header="Medical record" Foreground="Maroon" Click="MedicalRecord_Click"/>
-            <MenuItem Height="60" Width="120" VerticalAlignment="Center" Padding="10,0,0,0" Header="My appointments" Margin="0,0,0,0" HorizontalAlignment="Stretch" Click="MyAppointments_Click" Foreground="Maroon"/>
+            <MenuItem Height="60" Width="140" VerticalAlignment="Center" Padding="10,0,0,0" Header="Manage appointments" Click="MyAppointments_Click" Foreground="Maroon"/>
             <MenuItem Height="60" Width="85" VerticalAlignment="Center" Padding="10,0,0,0" Header="My therapy" Foreground="Maroon" Click="MyTherapy_Click"/>
-            <MenuItem Height="60" Width="77" VerticalAlignment="Center" Padding="10,0,0,0" Header="Calendar" Foreground="Maroon" Click="Calendar_Click"/>
+            <MenuItem Height="60" Width="120" VerticalAlignment="Center" Padding="10,0,0,0" Header="Past appointments" Foreground="Maroon" Click="PastAppointments_Click"/>
             <MenuItem Height="60" Width="55" VerticalAlignment="Center" Padding="10,0,0,0" Header="Notes" Foreground="Maroon" Click="Notes_Click"/>
             <MenuItem Height="60" Width="65" VerticalAlignment="Center" Padding="10,0,0,0" Header="Surveys" Foreground="Maroon" Click="Surveys_Click" />
-            <MenuItem Height="60" Width="80" VerticalAlignment="Center" Padding="10,0,0,0" Header=" " Margin="10,0,0,0" HorizontalAlignment="Stretch" />
+            <MenuItem Height="60" Width="62" VerticalAlignment="Center" Padding="10,0,0,0" Header=" " />
             <MenuItem Click="Notification_Click">
                 <MenuItem.Icon>
                     <Image Source="/images/notifications.png" Margin="0,0,-10,-2" />
@@ -79,5 +79,6 @@
             </DataGrid.Columns>
         </DataGrid>
 
+        
     </Grid>
 </Window>

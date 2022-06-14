@@ -120,6 +120,19 @@ namespace Hospital.Service
             return futureAppointments;
         }
 
+        public List<Appointment> ReadAllAppointments(int patientId)
+        {
+            List<Appointment> allPatientAppointments = new List<Appointment>();
+
+            List<Appointment> allAppointments = _repository.ReadByPatientId(patientId);
+            foreach (Appointment a in allAppointments)
+            {
+                allPatientAppointments.Add(a);
+                
+            }
+            return allPatientAppointments;
+        }
+
         public List<Appointment> FindAvailableAppointments(Doctor selectedDoctor, DateTime _date, List<Appointment> DoctorsAppointments,
             List<TimeSpan> hospitalWorkingHours, List<TimeSpan> hospitalWorkingHoursListForCalculation, DateTime date)
         {

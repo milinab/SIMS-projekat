@@ -74,7 +74,6 @@ namespace Hospital.View.PatientView
                 doctor = app._doctorController.ReadById(a.DoctorId);
                 Doctors.Add(doctor);
             }
-
         }
 
         private void GetTherapyTime()
@@ -92,9 +91,7 @@ namespace Hospital.View.PatientView
                     liveDateTime.Tick += TimerTick;
                     liveDateTime.Start();
                 }
-
             }
-
         }
 
         private void TimerTick(object sender, EventArgs e)
@@ -185,8 +182,13 @@ namespace Hospital.View.PatientView
             var medicalRecordPage = new MedicalRecord(this, user, patient, address, city, country, medicalRecord, allergens);
             Content = medicalRecordPage;
         }
-
         private void MyAppointments_Click(object sender, RoutedEventArgs e)
+        {
+            this.BackToPatientWindow();
+        }
+
+
+        private void PastAppointments_Click(object sender, RoutedEventArgs e)
         {
             PastAppointments pastAppointmentsPage = new PastAppointments(this);
             Content = pastAppointmentsPage;

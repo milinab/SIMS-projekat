@@ -60,7 +60,7 @@ namespace Hospital.View.PatientView
             this.frame.Navigate(myTherapyPage);
         }
 
-        private void Calendar_Click(object sender, RoutedEventArgs e)
+        private void PastAppointments_Click(object sender, RoutedEventArgs e)
         {
             Page calendarPage = new Calendar(_patientWindow);
             this.frame.Navigate(calendarPage);

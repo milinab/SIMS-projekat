@@ -93,6 +93,11 @@ namespace Hospital.View.PatientView
             Page accountSettingsPage = new AccountSettings(_patientWindow);
             this.frame.Navigate(accountSettingsPage);
         }
+        private void AppointmentsGraph_Click(object sender, RoutedEventArgs e)
+        {
+            Page appointmentsGraphPage = new AppointmentsGraph(_patientWindow);
+            this.frame.Navigate(appointmentsGraphPage);
+        }
 
         public void BackToPatientWindow()
         {
@@ -105,5 +110,7 @@ namespace Hospital.View.PatientView
             logIn.Show();
             _patientWindow.Close();
         }
+
+     
     }
 }

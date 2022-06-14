@@ -383,14 +383,11 @@
       <DependentUpon>EditAnAppointment.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\PatientView\EnumMatchToBooleanConverter.cs" />
-    <Compile Include="View\PatientView\Graph.cs">
-      <SubType>Form</SubType>
+    <Compile Include="View\PatientView\AppointmentsGraph.xaml.cs">
+      <DependentUpon>AppointmentsGraph.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\PatientView\Graph.Designer.cs">
-      <DependentUpon>Graph.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\PatientView\Graphics.xaml.cs">
-      <DependentUpon>Graphics.xaml</DependentUpon>
+    <Compile Include="View\PatientView\SurveyGraph.xaml.cs">
+      <DependentUpon>SurveyGraph.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\PatientView\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
@@ -566,7 +563,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\PatientView\Graphics.xaml">
+    <Page Include="View\PatientView\AppointmentsGraph.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PatientView\SurveyGraph.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -703,9 +704,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\PatientView\Graph.resx">
-      <DependentUpon>Graph.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="..\.editorconfig">
       <Link>.editorconfig</Link>
     </None>
@@ -790,7 +788,9 @@
   <ItemGroup>
     <Resource Include="images\femaleUser.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="images\notification.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

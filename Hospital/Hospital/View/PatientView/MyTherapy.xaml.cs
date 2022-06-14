@@ -23,6 +23,8 @@ namespace Hospital.View.PatientView
             this.DataContext = this;
             _patientWindow = patientWindow;
             patient = app._patientController.ReadById(LogIn.LoggedUser.Id);
+            
+            TherapyCalendar.ItemsSource = app._therapyController.ReadBypatientId(patient.Id);
         }
         private void HomePage_Click(object sender, RoutedEventArgs e)
         {
