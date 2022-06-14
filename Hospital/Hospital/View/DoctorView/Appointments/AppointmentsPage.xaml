@@ -54,8 +54,8 @@
                         StartHour="7"
                         EndHour="20"
                         ViewHeaderDayFormat="dddd"
-                        TimeRulerFormat="hh:mm"
-                        TimeRulerSize="35"
+                        TimeRulerFormat="H:mm"
+                        TimeRulerSize="40"
                         />
                 </syncfusion:SfScheduler.DaysViewSettings>
             </syncfusion:SfScheduler>

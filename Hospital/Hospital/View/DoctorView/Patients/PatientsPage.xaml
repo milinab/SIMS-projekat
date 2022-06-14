@@ -22,7 +22,9 @@
                 Style="{StaticResource BorderStyle}"
                 Width="550" 
                 Height="34.5"
-                VerticalAlignment="Bottom">
+                VerticalAlignment="Bottom"
+                BorderThickness="0.3"
+                BorderBrush="#42A5F5">
                 <xctk:WatermarkTextBox
                     Width="550"
                     Height="34.5"

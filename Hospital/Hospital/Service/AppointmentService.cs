@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Hospital.Exceptions;
 using Hospital.Model;
 using Hospital.Repository;
-using Xceed.Wpf.Toolkit;
 
 namespace Hospital.Service
 {
@@ -45,16 +45,13 @@ namespace Hospital.Service
         private static bool ValidateAppointmentOverlap(Appointment newAppointment, Appointment appointment)
         {
             if (!appointment.Overlaps(newAppointment)) return true;
-            MessageBox.Show("There is already an appointment at the selected time!");
-            return false;
-
+            throw new AppointmentException("AlreadyExists");
         }
 
         private static bool ValidateAppointmentDate(Appointment newAppointment, Appointment appointment)
         {
             if (appointment.IsAppointmentDateCorrect(newAppointment)) return true;
-            MessageBox.Show("Start date must be before end date!");
-            return false;
+            throw new AppointmentException("StartDateBeforeEndDate");
         }
 
         public void Edit(Appointment editAppointment)

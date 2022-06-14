@@ -70,8 +70,12 @@ namespace Hospital.Model
         {
             var endDate = Date + Duration;
             var appointmentEndDate = appointment.Date + appointment.Duration;
-            return (appointmentEndDate <= Date && appointment.Date <= endDate) || 
-                   (appointment.Date < Date && appointmentEndDate > endDate);
+            // return (appointmentEndDate <= Date && appointment.Date <= endDate) || 
+            //        (appointment.Date < Date && appointmentEndDate > endDate);
+
+            if (Date <= appointment.Date && endDate > appointment.Date) return true;
+            if (Date < appointmentEndDate && endDate >= appointmentEndDate) return true;
+            return false;
         }
 
         public bool IsAppointmentDateCorrect(Appointment appointment)

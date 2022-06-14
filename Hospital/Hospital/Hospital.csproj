@@ -189,6 +189,7 @@
     <Compile Include="Enums\MedicineStatus.cs" />
     <Compile Include="Enums\SurveyType.cs" />
     <Compile Include="Enums\VacationState.cs" />
+    <Compile Include="Exceptions\AppointmentException.cs" />
     <Compile Include="Exceptions\VacationException.cs" />
     <Compile Include="LogIn.xaml.cs">
       <DependentUpon>LogIn.xaml</DependentUpon>
@@ -288,6 +289,8 @@
     <Compile Include="View\DoctorView\Checkup\TherapyPage.xaml.cs">
       <DependentUpon>TherapyPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\DoctorView\Commands\AddAppointment\ConfirmCommand.cs" />
+    <Compile Include="View\DoctorView\Commands\CancelCommand.cs" />
     <Compile Include="View\DoctorView\Commands\CommandBase.cs" />
     <Compile Include="View\DoctorView\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -309,9 +312,15 @@
       <DependentUpon>VacationPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\DoctorView\Resources\CustomTimeSpanUpDown.cs" />
+    <Compile Include="View\DoctorView\Validation\BindableBase.cs" />
+    <Compile Include="View\DoctorView\Validation\Converter.cs" />
+    <Compile Include="View\DoctorView\Validation\AppointmentValidation.cs" />
+    <Compile Include="View\DoctorView\Validation\ValidationBase.cs" />
+    <Compile Include="View\DoctorView\Validation\ValidationErrors.cs" />
     <Compile Include="View\DoctorView\VerifyMedicineUC.xaml.cs">
       <DependentUpon>VerifyMedicineUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\DoctorView\ViewModel\AddAppointmentViewModel.cs" />
     <Compile Include="View\DoctorView\ViewModel\AppointmentsPageViewModel.cs" />
     <Compile Include="View\DoctorView\ViewModel\AppointmentViewModel.cs" />
     <Compile Include="View\DoctorView\ViewModel\ViewModelBase.cs" />

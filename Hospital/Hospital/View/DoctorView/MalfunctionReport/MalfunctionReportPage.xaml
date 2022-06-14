@@ -48,7 +48,7 @@
                     Width="250" 
                     Height="30"
                     VerticalAlignment="Top"
-                    BorderThickness="0.5"
+                    BorderThickness="0.3"
                     BorderBrush="#42A5F5">
                     <TextBox
                         Style="{StaticResource TextBoxStyle}"
