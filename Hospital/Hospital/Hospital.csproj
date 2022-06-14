@@ -430,6 +430,7 @@
       <DependentUpon>MyTherapy.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\PatientView\PopupNotification.cs" />
+    <Compile Include="View\PatientView\TherapyReport.cs" />
     <Compile Include="View\PatientView\TrollSystem.cs" />
     <Compile Include="View\PatientView\Validations\InverseAndBooleansToBooleansConverter.cs" />
     <Compile Include="View\PatientView\Validations\NoEmptyInputsRule.cs" />
@@ -821,10 +822,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\notification.png" />
-    <Folder Include="Report\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\clipboard.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Report\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

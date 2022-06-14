@@ -83,6 +83,12 @@ namespace Hospital.View.PatientView
             Page notificationPage = new Notification(_patientWindow);
             this.frame.Navigate(notificationPage);
         }
+        private void Report_Click(object sender, RoutedEventArgs e)
+        {
+            TherapyReport therapyReport = new TherapyReport(_patientWindow);
+            therapyReport.GenerateReport();
+            PopupNotification.SendPopupNotification("Successful!", "You succesfully downloaded PDF therapy report.");
+        }
 
         public void BackToPatientWindow()
         {

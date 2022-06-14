@@ -55,33 +55,33 @@ namespace Hospital.View.PatientView
                 return false;
             }
 
-            if (myCalendar.SelectedDate.Value == null)
+            if(myCalendar.SelectedDate.HasValue==false)
             {
                 PopupNotification.SendPopupNotification("Warning", "You need to select a date");
                 return false;
             }
-
-            return false;
+            return true;
         }
 
         private void AddAppointment_Click(object sender, RoutedEventArgs e)
         {
-            Validate();
-
-            int DoctorId = Int32.Parse(((Model.User)doctorsComboBox.SelectedItem).Id.ToString());
-            
-            DateTime date = myCalendar.SelectedDate.Value;
-
-            if (DoctorPriority.IsChecked == true)
+            if (Validate())
             {
-                Page doctorPriority = new DoctorPriorityDateAvailable(DoctorId, date, this, _patientWindow);
-                this.frame.Navigate(doctorPriority);
-            }
-            if (DatePriority.IsChecked == true)
-            {
-                Page datePriority = new DatePriority(DoctorId, date, this, _patientWindow);
-                this.frame.Navigate(datePriority);
-            }
+                int DoctorId = Int32.Parse(((Model.User)doctorsComboBox.SelectedItem).Id.ToString());
+
+                DateTime date = myCalendar.SelectedDate.Value;
+
+                if (DoctorPriority.IsChecked == true)
+                {
+                    Page doctorPriority = new DoctorPriorityDateAvailable(DoctorId, date, this, _patientWindow);
+                    this.frame.Navigate(doctorPriority);
+                }
+                if (DatePriority.IsChecked == true)
+                {
+                    Page datePriority = new DatePriority(DoctorId, date, this, _patientWindow);
+                    this.frame.Navigate(datePriority);
+                }
+            }            
         }
 
         private void HomePage_Click(object sender, RoutedEventArgs e)

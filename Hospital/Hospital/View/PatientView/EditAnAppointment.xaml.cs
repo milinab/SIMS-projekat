@@ -66,38 +66,51 @@ namespace Hospital.View.PatientView
                 PopupNotification.SendPopupNotification("Warning", "You need to select a priority.");
                 return false;
             }
-            return false;
+
+            if (doctorsComboBox.SelectedItem == null)
+            {
+                PopupNotification.SendPopupNotification("Warning", "You need to select a doctor");
+                return false;
+            }
+
+            if (myCalendar.SelectedDate.HasValue == false)
+            {
+                PopupNotification.SendPopupNotification("Warning", "You need to select a date");
+                return false;
+            }
+            return true;
         }
 
         private void AddAppointment_Click(object sender, RoutedEventArgs e)
         {
 
-            Validate();
-            int DoctorId = Int32.Parse(((Model.User)doctorsComboBox.SelectedItem).Id.ToString());
-
-            DateTime _date = myCalendar.SelectedDate.Value;
-
-            TimeSpan duration = new TimeSpan(0, 0, 30, 0);
-
-            Doctor doctor = new Doctor();
-            doctor.Id = DoctorId;
-            Patient patient = new Patient();
-            patient.Id = 1;
-
-            Room room = new Room();
-            patient.Id = 1;
-
-            if (DoctorPriority.IsChecked == true)
+            if (Validate())
             {
-                Page doctorPriority = new EditDoctorPriority(DoctorId, _date, this, _patientWindow, _id);
-                this.frame.Navigate(doctorPriority);
-            }
-           if (DatePriority.IsChecked == true)
-            {
-                Page datePriority = new EditDatePriority(DoctorId, _date, this, _patientWindow, _id);
-                this.frame.Navigate(datePriority);
-            }
+                int DoctorId = Int32.Parse(((Model.User)doctorsComboBox.SelectedItem).Id.ToString());
 
+                DateTime _date = myCalendar.SelectedDate.Value;
+
+                TimeSpan duration = new TimeSpan(0, 0, 30, 0);
+
+                Doctor doctor = new Doctor();
+                doctor.Id = DoctorId;
+                Patient patient = new Patient();
+                patient.Id = 1;
+
+                Room room = new Room();
+                patient.Id = 1;
+
+                if (DoctorPriority.IsChecked == true)
+                {
+                    Page doctorPriority = new EditDoctorPriority(DoctorId, _date, this, _patientWindow, _id);
+                    this.frame.Navigate(doctorPriority);
+                }
+                if (DatePriority.IsChecked == true)
+                {
+                    Page datePriority = new EditDatePriority(DoctorId, _date, this, _patientWindow, _id);
+                    this.frame.Navigate(datePriority);
+                }
+            }
         }
 
         private void HomePage_Click(object sender, RoutedEventArgs e)

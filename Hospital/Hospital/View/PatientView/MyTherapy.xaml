@@ -56,7 +56,8 @@
                                 VerticalAlignment="Top" 
                                 Height="418" 
                                 Width="800"/>
-
+        <Button Content="Report" HorizontalAlignment="Left" Margin="700,115,0,0" VerticalAlignment="Top" Click="Report_Click"/>
         <Frame x:Name="frame" NavigationUIVisibility="Hidden" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" Grid.Column="1"/>
+        
     </Grid>
 </Page>
