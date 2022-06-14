@@ -43,6 +43,8 @@ namespace Hospital.View.ManagerView
                 roomNames.Add(equipment.Room);
             }
             eqComboBox.ItemsSource = roomNames.Distinct();
+
+            reportText.Visibility = Visibility.Hidden;
         }
 
         private void SearchEquipment(object sender, TextChangedEventArgs e)
@@ -88,6 +90,7 @@ namespace Hospital.View.ManagerView
             var editEquipment = new Relocation(equipment, this, _equipmentController, _roomController);
             Content = editEquipment;
             validacija.Visibility = Visibility.Hidden;
+            reportText.Visibility = Visibility.Hidden;
         }
         public void BackToEquipmentWindow()
         {
@@ -142,6 +145,12 @@ namespace Hospital.View.ManagerView
             SurveySelect surveySelect = new SurveySelect();
             surveySelect.Show();
             Close();
+        }
+        private void ReportClick(object sender, RoutedEventArgs e)
+        {
+            ManagerReport manager = new ManagerReport();
+            manager.GenerateReport();
+            reportText.Visibility = Visibility.Visible;
         }
     }
 }

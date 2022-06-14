@@ -42,11 +42,16 @@ namespace Hospital.View.ManagerView
                 if (me.Status == Enums.MedicineStatus.Rejected)
                 {
                     validation.Visibility = Visibility.Visible;
+                    break;
                 }
                 else
                 {
                     validation.Visibility = Visibility.Hidden;
                 }
+            }
+
+            foreach (var me in medicines)
+            {
                 if (me.Status == Enums.MedicineStatus.Accepted)
                 {
                     displayMedicine.Add(me);
