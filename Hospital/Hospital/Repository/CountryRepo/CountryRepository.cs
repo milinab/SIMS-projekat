@@ -4,7 +4,7 @@ using Hospital.Model;
 
 namespace Hospital.Repository.CountryRepo
 {
-    public class CountryRepository
+    public class CountryRepository : ICountryRepository
     {
         private List<Country> _countries;
         private readonly Serializer<Country> _serializer;

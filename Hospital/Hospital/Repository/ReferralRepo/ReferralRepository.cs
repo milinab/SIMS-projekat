@@ -5,7 +5,7 @@ using Hospital.Model;
 
 namespace Hospital.Repository.ReferralRepo
 {
-    public class ReferralRepository
+    public class ReferralRepository : IReferralRepository
     {
         private List<Referral> _referrals;
         private readonly Serializer<Referral> _serializer;

@@ -1,17 +1,16 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using Hospital.Model;
-using Hospital.Repository;
+using Hospital.Repository.NoteRepo;
 
 namespace Hospital.Service
 {
     public class NoteService
     {
         private int _id;
-        private readonly NoteRepository _repository;
+        private readonly INoteRepository _repository;
 
-        public NoteService(NoteRepository noteRepository)
+        public NoteService(INoteRepository noteRepository)
         {
             _repository = noteRepository;
             List<Note> notes = Read();

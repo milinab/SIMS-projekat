@@ -2,15 +2,16 @@ using System.Collections.Generic;
 using Hospital.Model;
 using Hospital.Repository;
 using System.Linq;
+using Hospital.Repository.EquipmentRepo;
 
 namespace Hospital.Service
 {
     public class EquipmentService
     {
         private int _id;
-        private readonly EquipmentRepository _repository;
+        private readonly IEquipmentRepository _repository;
 
-        public EquipmentService(EquipmentRepository equipmentRepository)
+        public EquipmentService(IEquipmentRepository equipmentRepository)
         {
             _repository = equipmentRepository;
             List<Equipment> equipments = Read();

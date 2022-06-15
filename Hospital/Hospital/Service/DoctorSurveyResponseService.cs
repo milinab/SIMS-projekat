@@ -2,15 +2,16 @@
 using System.Linq;
 using Hospital.Model;
 using Hospital.Repository;
+using Hospital.Repository.DoctorSurveyResponseRepo;
 
 namespace Hospital.Service
 {
     public class DoctorSurveyResponseService
     {
         private int _id;
-        private readonly DoctorSurveyResponseRepository _repository;
+        private readonly IDoctorSurveyResponseRepository _repository;
 
-        public DoctorSurveyResponseService(DoctorSurveyResponseRepository doctorSurveyResponseRepository)
+        public DoctorSurveyResponseService(IDoctorSurveyResponseRepository doctorSurveyResponseRepository)
         {
             _repository = doctorSurveyResponseRepository;
             List<DoctorSurveyResponse> doctorSurveyResponses = Read();

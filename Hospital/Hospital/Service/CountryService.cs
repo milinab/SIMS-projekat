@@ -2,15 +2,16 @@
 using System.Linq;
 using Hospital.Model;
 using Hospital.Repository;
+using Hospital.Repository.CountryRepo;
 
 namespace Hospital.Service
 {
     public class CountryService
     {
         private int _id;
-        private readonly CountryRepository _repository;
+        private readonly ICountryRepository _repository;
 
-        public CountryService(CountryRepository countryRepository)
+        public CountryService(ICountryRepository countryRepository)
         {
             _repository = countryRepository;
             List<Country> countries = Read();

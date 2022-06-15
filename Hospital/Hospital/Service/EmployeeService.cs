@@ -2,15 +2,16 @@
 using Hospital.Repository;
 using System.Linq;
 using Hospital.Model;
+using Hospital.Repository.EmployeeRepo;
 
 namespace Hospital.Service
 {
     public class EmployeeService
     {
         private int _id;
-        private readonly EmployeeRepository _repository;
+        private readonly IEmployeeRepository _repository;
         
-        public EmployeeService(EmployeeRepository employeeRepository)
+        public EmployeeService(IEmployeeRepository employeeRepository)
         {
             _repository = employeeRepository;
             List<Employee> employees = Read();

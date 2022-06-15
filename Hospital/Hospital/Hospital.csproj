@@ -236,9 +236,27 @@
     <Compile Include="Repository\AddressRepo\IAddressRepository.cs" />
     <Compile Include="Repository\AllergenRepo\IAllergenRepository.cs" />
     <Compile Include="Repository\AnamnesisRepo\AnamnesisRepository.cs" />
+    <Compile Include="Repository\HospitalSurveyResponseRepo\IHospitalSurveyResponseRepository.cs" />
+    <Compile Include="Repository\AnamnesisRepo\IAnamnesisRepository.cs" />
+    <Compile Include="Repository\AppointmentRepo\IAppointmentRepository.cs" />
+    <Compile Include="Repository\CityRepo\ICityRepository.cs" />
+    <Compile Include="Repository\CountryRepo\ICountryRepository.cs" />
+    <Compile Include="Repository\DoctorRepo\IDoctorRepository.cs" />
+    <Compile Include="Repository\DoctorSurveyResponseRepo\IDoctorSurveyResponseRepository.cs" />
+    <Compile Include="Repository\EmployeeRepo\IEmployeeRepository.cs" />
+    <Compile Include="Repository\EquipmentRepo\IEquipmentRepository.cs" />
+    <Compile Include="Repository\GuestRepo\IGuestRepository.cs" />
     <Compile Include="Repository\IRepositoryBase.cs" />
+    <Compile Include="Repository\ManagerRepo\IManagerRepository.cs" />
+    <Compile Include="Repository\MedicalRecordRepo\IMedicalRecordRepository.cs" />
+    <Compile Include="Repository\MedicineReplaceRepo\IMedicineReplaceRepository.cs" />
     <Compile Include="Repository\MedicineReplaceRepo\MedicineReplaceRepository.cs" />
+    <Compile Include="Repository\MedicineRepo\IMedicineRepository.cs" />
     <Compile Include="Repository\MedicineRepo\MedicineRepository.cs" />
+    <Compile Include="Repository\NoteRepo\INoteRepository.cs" />
+    <Compile Include="Repository\PatientRepo\IPatientRepository.cs" />
+    <Compile Include="Repository\QuestionRepo\IQuestionRepository.cs" />
+    <Compile Include="Repository\ReferralRepo\IReferralRepository.cs" />
     <Compile Include="Repository\ReferralRepo\ReferralRepository.cs" />
     <Compile Include="Repository\TrollRepo\TrolRepository.cs" />
     <Compile Include="Repository\NoteRepo\NoteRepository.cs" />
@@ -841,6 +859,21 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Report\" />
+    <Resource Include="View\DoctorView\Resources\Images\logo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Report\" />
+    <Folder Include="View\DoctorView\Resources\Reports\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\DoctorView\Resources\Images\user.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="View\DoctorView\Resources\tutorial.mp4" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

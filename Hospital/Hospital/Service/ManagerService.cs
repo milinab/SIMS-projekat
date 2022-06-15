@@ -1,16 +1,15 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using Hospital.Model;
-using Hospital.Repository;
+using Hospital.Repository.ManagerRepo;
 
 namespace Hospital.Service
 {
     public class ManagerService
     {
         private int _id;
-        private readonly ManagerRepository _repository;
-        public ManagerService(ManagerRepository managerRepository)
+        private readonly IManagerRepository _repository;
+        public ManagerService(IManagerRepository managerRepository)
         {
             _repository = managerRepository;
             List<Manager> managers = Read();

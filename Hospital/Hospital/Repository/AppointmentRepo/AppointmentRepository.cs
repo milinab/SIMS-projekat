@@ -7,7 +7,7 @@ using Hospital.Repository.RoomRepo;
 
 namespace Hospital.Repository.AppointmentRepo
 {
-   public class AppointmentRepository
+   public class AppointmentRepository : IAppointmentRepository
    {
         private List<Appointment> _appointments;
         private readonly Serializer<Appointment> _serializer;
