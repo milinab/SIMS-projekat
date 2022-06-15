@@ -1,19 +1,19 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Hospital.Model;
-using Hospital.Repository;
+using Hospital.Repository.AddressRepository;
 
 namespace Hospital.Service
 {
     public class AddressService
     {
         private int _id;
-        private readonly AddressRepository _repository;
+        private readonly IAddressRepository _repository;
 
-        public AddressService(AddressRepository addressRepository)
+        public AddressService(IAddressRepository addressRepository)
         {
             _repository = addressRepository;
-            ObservableCollection<Address> addresses = Read();
+            List<Address> addresses = Read();
             if (addresses.Count == 0)
             {
                 _id = 0;
@@ -45,7 +45,7 @@ namespace Hospital.Service
             _repository.Delete(id);
         }
 
-        public ObservableCollection<Address> Read()
+        public List<Address> Read()
         {
             return _repository.Read();
         }

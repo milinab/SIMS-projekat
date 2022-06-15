@@ -1,20 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Hospital.Model;
 using System.Collections.ObjectModel;
-using Hospital.Controller;
+using System.Collections.Generic;
 
 namespace Hospital.View.PatientView
 {
@@ -25,9 +13,8 @@ namespace Hospital.View.PatientView
     {
         private App app;
         private readonly object _content;
-        private Note note;
         private readonly PatientWindow _patientWindow;
-        
+        public Patient patient;
 
         public ObservableCollection<Note> NotesList
         {
@@ -42,91 +29,30 @@ namespace Hospital.View.PatientView
             _content = Content;
             this.DataContext = this;
             _patientWindow = patientWindow;
-            dataGridNotes.ItemsSource = app._noteController.Read();
+            patient = app._patientController.ReadById(LogIn.LoggedUser.Id);
+            dataGridNotes.ItemsSource = app._noteController.ReadByPatientId(patient.Id);
             this.selectForDelete.Visibility = Visibility.Hidden;
         }
 
-        private void HomePage_Click(object sender, RoutedEventArgs e)
-        {
-            Page homePage = new HomePage(_patientWindow);
-            this.frame.Navigate(homePage);
-        }
-
-        private void Profile_Click(object sender, RoutedEventArgs e)
-        {
-            Page profilePage = new Profile(_patientWindow);
-            this.frame.Navigate(profilePage);
-        }
-
-        private void MedicalRecord_Click(object sender, RoutedEventArgs e)
-        {
-            Page medicalRecordPage = new MedicalRecord(_patientWindow);
-            this.frame.Navigate(medicalRecordPage);
-        }
-        private void Notes_Click(object sender, RoutedEventArgs e)
-        {
-            Content = _content;
-        }
-
-        private void Surveys_Click(object sender, RoutedEventArgs e)
-        {
-            Page hospitalSurveyPage = new Surveys(_patientWindow);
-            this.frame.Navigate(hospitalSurveyPage);
-        }
-        private void Notification_Click(object sender, RoutedEventArgs e)
-        {
-            Page notificationPage = new Notification(_patientWindow);
-            this.frame.Navigate(notificationPage);
-        }
-
-        
-
-        private void MyAppointments_Click(object sender, RoutedEventArgs e)
-        {
-            _patientWindow.BackToPatientWindow();
-        }
-        private void MyTherapy_Click(object sender, RoutedEventArgs e)
-        {
-            Page myTherapyPage = new MyTherapy(_patientWindow);
-            this.frame.Navigate(myTherapyPage);
-        }
-
-        private void Calendar_Click(object sender, RoutedEventArgs e)
-        {
-            Page calendarPage = new Calendar(_patientWindow);
-            this.frame.Navigate(calendarPage);
-        }
-
-        public void BackToPatientWindow()
-        {
-            Content = _content;
-        }
-
-        private void LogOut_Click(object sender, RoutedEventArgs e)
-        {
-            LogIn logIn = new LogIn();
-            logIn.Show();
-            _patientWindow.Close();
-        }
 
         private void InfoButtonClick(object sender, RoutedEventArgs e)
         {
             Note note = dataGridNotes.SelectedValue as Note;
             Page infoNote = new NoteInfo(_patientWindow, note);
-            this.frame.NavigationService.RemoveBackEntry();
-            this.frame.Content = null;
-            this.frame.Navigate(infoNote);
-   
+            //this.frame.NavigationService.RemoveBackEntry();
+            PatientWindow.getInstance().frame.Content = null;
+            PatientWindow.getInstance().frame.Navigate(infoNote);
+
         }
 
         private void AddNote_Click(object sender, RoutedEventArgs e)
         {
             Page addNote = new AddNote(_patientWindow, this);
-            this.frame.NavigationService.RemoveBackEntry();
-            this.frame.Content = null;
-            this.frame.Navigate(addNote);
-            
-            
+            //this.frame.NavigationService.RemoveBackEntry();
+            PatientWindow.getInstance().frame.Content = null;
+            PatientWindow.getInstance().frame.Navigate(addNote);
+
+
         }
 
         private void DeleteNote_Click(object sender, RoutedEventArgs e)
@@ -136,22 +62,21 @@ namespace Hospital.View.PatientView
                 this.selectForDelete.Visibility = Visibility.Hidden;
                 Note note = (Note)dataGridNotes.SelectedItem;
                 app._noteController.Delete(note.Id);
+                Refresh();
             }
             else
             {
-                //MessageBox.Show("Select a note You want to delete.", "Warning");
+                PopupNotification.SendPopupNotification("Warning", "Please, select the note You want to delete.");
                 this.selectForDelete.Visibility = Visibility.Visible;
             }
         }
 
-
-
         public void BackToNotes()
         {
             Content = _content;
-            refresh();
+            Refresh();
         }
-        public void refresh()
+        public void Refresh()
         {
             dataGridNotes.ItemsSource = app._noteController.Read();
         }

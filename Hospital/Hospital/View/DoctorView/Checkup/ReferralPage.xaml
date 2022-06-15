@@ -1,0 +1,138 @@
+<Page x:Class="Hospital.View.DoctorView.Checkup.ReferralPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:Hospital.View.DoctorView.Checkup"
+      mc:Ignorable="d"
+      d:DesignHeight="768" d:DesignWidth="700"
+      Title="ReferralPage">
+    <Page.Resources>
+        <ResourceDictionary Source="../Resources/DoctorResourceDictionary.xaml"/>
+    </Page.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Border 
+                Style="{StaticResource HeaderBorderStyle}"/>
+            <Label 
+                Style="{StaticResource HeaderLabelStyle}" 
+                Content="Referral"/>
+        </Grid>
+        <Grid Grid.Row="1" Margin="110 60 70 0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Row="0" Grid.Column="0">
+                <Label
+                    Content="Specialization:"
+                    Padding="5"
+                    HorizontalAlignment="Right"
+                    Style="{StaticResource LabelStyle}"
+                    FontSize="18"/>
+            </Grid>
+            <Grid Grid.Row="0" Grid.Column="1">
+                <Border 
+                    Style="{StaticResource BorderStyle}"
+                    Margin="5 0 0 0" 
+                    Width="250" 
+                    Height="30" 
+                    HorizontalAlignment="Left" 
+                    VerticalAlignment="Top"
+                    BorderThickness="0.5"
+                    BorderBrush="#42A5F5">
+                    <TextBox
+                        Style="{StaticResource TextBoxStyle}"
+                        Name="SpecializationTextBox"
+                        Height="30"
+                        Width="250"
+                        FontSize="18"/>
+                </Border>
+                <Border 
+                    Style="{StaticResource BorderStyle}"
+                    Margin="5 30 0 40"
+                    Width="250" 
+                    Height="150" 
+                    HorizontalAlignment="Left" 
+                    VerticalAlignment="Top">
+                    <ListView
+                        Style="{StaticResource ListViewStyle}"
+                        Name="SpecializationListView"
+                        Height="150"
+                        Width="250"
+                        SelectionChanged="SpecializationListView_OnSelectionChanged"/>
+                </Border>
+            </Grid>
+            <Grid Grid.Row="1" Grid.Column="0">
+                <Label
+                    Content="Specialist:"
+                    HorizontalAlignment="Right"
+                    Style="{StaticResource LabelStyle}"
+                    FontSize="18"/>
+            </Grid>
+            <Grid Grid.Row="1" Grid.Column="1">
+                <Border 
+                    Style="{StaticResource BorderStyle}"
+                        Margin="5 0 0 40"
+                    Width="250" 
+                    Height="150" 
+                    HorizontalAlignment="Left" 
+                    VerticalAlignment="Top">
+                    <ListView
+                        Style="{StaticResource ListViewStyle}"
+                        Name="SpecialistListView"
+                        Height="150"
+                        Width="250"/>
+                </Border>
+            </Grid>
+            <Grid Grid.Row="2" Grid.Column="0">
+                <Label
+                    Content="Reason for referral:"
+                    HorizontalAlignment="Right"
+                    Style="{StaticResource LabelStyle}"
+                    FontSize="18"/>
+            </Grid>
+            <Grid Grid.Row="2" Grid.Column="1">
+                <Border 
+                    Style="{StaticResource BorderStyle}"
+                    Margin="5 0 0 40"
+                    Width="250" 
+                    Height="150" 
+                    HorizontalAlignment="Left" 
+                    VerticalAlignment="Top">
+                    <TextBox
+                        Style="{StaticResource TextBoxStyle}"
+                        Name="ReasonTextBox"
+                        Height="150"
+                        Width="250"/>
+                </Border>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Button 
+                Content="Confirm" 
+                Style="{StaticResource ConfirmButton}"
+                HorizontalAlignment="Left"
+                Width="350" 
+                Height="50" 
+                Click="Confirm_OnClick"/>
+            <Button 
+                Content="Cancel" 
+                Style="{StaticResource CancelButton}"
+                HorizontalAlignment="Right"
+                Width="350" 
+                Height="50" 
+                Click="Cancel_OnClick"/>
+        </Grid>
+    </Grid>
+</Page>

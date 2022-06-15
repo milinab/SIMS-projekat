@@ -1,0 +1,43 @@
+﻿<Page x:Class="Hospital.View.DoctorView.Requests.RequestsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Hospital.View.DoctorView.Requests"
+      mc:Ignorable="d" 
+      d:DesignHeight="768" d:DesignWidth="700"
+      Title="RequestsPage">
+    <Page.Resources>
+        <ResourceDictionary Source="../Resources/DoctorResourceDictionary.xaml"></ResourceDictionary>
+    </Page.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Column="0" Row="0">
+            <Button 
+                Name="EquipmentProcurement" 
+                Style="{StaticResource CheckupButton}" 
+                Content="Equipment procurement"
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Top" 
+                Width="500" 
+                Height="300" 
+                Margin="0 50 0 0"
+                Click="EquipmentProcurement_OnClick"/>
+            <Button 
+                Name="Vacation" 
+                Style="{StaticResource CheckupButton}" 
+                Content="Vacation" 
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Bottom" 
+                Width="500" 
+                Height="300" 
+                Margin="0 0 0 50"
+                Click="Vacation_OnClick"/>
+        </Grid>
+    </Grid>
+</Page>

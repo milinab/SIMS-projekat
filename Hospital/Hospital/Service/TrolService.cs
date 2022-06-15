@@ -1,19 +1,21 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using Hospital.Model;
 using Hospital.Repository;
+using Hospital.Repository.TrollRepo;
 
 namespace Hospital.Service
 {
     public class TrolService
     {
         private int _id;
-        private readonly TrolRepository _repository;
+        private readonly ITrolRepository _repository;
 
-        public TrolService(TrolRepository trolRepository)
+        public TrolService(ITrolRepository trolRepository)
         {
             _repository = trolRepository;
-            ObservableCollection<Trol> trols = Read();
+            List<Trol> trols = Read();
             if (trols.Count == 0)
             {
                 _id = 0;
@@ -45,7 +47,7 @@ namespace Hospital.Service
             _repository.Delete(id);
         }
 
-        public ObservableCollection<Trol> Read()
+        public List<Trol> Read()
         {
             return _repository.Read();
         }

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Hospital.Model;
 using Hospital.Service;
@@ -33,7 +34,7 @@ namespace Hospital.Controller
         }
 
 
-        public ObservableCollection<MedicalRecord> Read()
+        public List<MedicalRecord> Read()
         {
             return _service.Read();
         }

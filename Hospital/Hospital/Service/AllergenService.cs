@@ -1,19 +1,19 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Hospital.Model;
-using Hospital.Repository;
+using Hospital.Repository.AllergenRepository;
 
 namespace Hospital.Service
 {
     public class AllergenService
     {
         private int _id;
-        private readonly AllergenRepository _repository;
+        private readonly IAllergenRepository _repository;
 
-        public AllergenService(AllergenRepository AllergenRepository)
+        public AllergenService(IAllergenRepository allergenRepository)
         {
-            _repository = AllergenRepository;
-            ObservableCollection<Allergen> allergens = Read();
+            _repository = allergenRepository;
+            List<Allergen> allergens = Read();
             if (allergens.Count == 0)
             {
                 _id = 0;
@@ -45,9 +45,18 @@ namespace Hospital.Service
             _repository.Delete(id);
         }
 
-        public ObservableCollection<Allergen> Read()
+        public List<Allergen> Read()
         {
             return _repository.Read();
+        }
+
+        public List<Allergen> ReadByIds(List<int> ids)
+        {
+            List<Allergen> ret = new List<Allergen>();
+            foreach (int al in ids) {
+                ret.Add(_repository.ReadById(al));
+            }
+            return ret;
         }
 
         private int GenerateId()

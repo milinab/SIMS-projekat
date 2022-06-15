@@ -101,5 +101,11 @@ namespace Hospital.View.ManagerView
             DivideRoom divideRoom = new DivideRoom(this, _roomController);
             Content = divideRoom;
         }
+        private void SurveyClick(object sender, RoutedEventArgs e)
+        {
+            SurveySelect surveySelect = new SurveySelect();
+            surveySelect.Show();
+            Close();
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using ServiceStack;
@@ -17,14 +18,14 @@ namespace Hospital.Repository
             _dataPath = _projectPath + dataPath;
         }
 
-        public ObservableCollection<T> Read()
+        public List<T> Read()
         {
             string csvText = File.ReadAllText(_dataPath);
-            ObservableCollection<T> objects = csvText.FromCsv<ObservableCollection<T>>();
+            List<T> objects = csvText.FromCsv<List<T>>();
             return objects;
         }
 
-        public void Write(ObservableCollection<T> objects)
+        public void Write(List<T> objects)
         {
             string csvText = CsvSerializer.SerializeToCsv(objects);
             File.WriteAllText(_dataPath, csvText);

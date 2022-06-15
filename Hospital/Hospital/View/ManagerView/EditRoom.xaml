@@ -5,23 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Hospital.View.ManagerView"
         mc:Ignorable="d"
-        Title="EditRoom" Height="450" Width="800">
+        Title="EditRoom"
+      d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="Azure">
 
         <DockPanel Margin="0,2,0,-2"/>
 
-        <Label Content="New name:" FontSize="20" Margin="114,91,570,253" ></Label>
-        <TextBox x:Name="nameText" TextWrapping="Wrap" Margin="289,97,144,279" />
-        <Label Content="New floor:" FontSize="20" Margin="120,195,477,163" ></Label>
-        <TextBox x:Name="floorText" TextWrapping="Wrap" Margin="289,195,144,181" />
-        <Label Content="New type:" FontSize="20" Margin="125,306,514,41" ></Label>
-        <ComboBox x:Name="typeComboBox"  Margin="289,304,144,71" >
+        <Label Content="New name:" FontSize="20" Margin="157,109,497,288" ></Label>
+        <TextBox x:Name="nameText" TextWrapping="Wrap" Margin="320,118,180,287" />
+        <Label Content="New floor:" FontSize="20" Margin="165,191,497,203" ></Label>
+        <TextBox x:Name="floorText" TextWrapping="Wrap" Margin="320,200,180,207" />
+        <Label Content="New type:" FontSize="20" Margin="168,270,521,118" ></Label>
+        <ComboBox x:Name="typeComboBox"  Margin="320,279,180,126" >
             <ComboBoxItem IsSelected="True">Operation</ComboBoxItem>
             <ComboBoxItem>Conference</ComboBoxItem>
             <ComboBoxItem>Storage</ComboBoxItem>
         </ComboBox>
-        <Button Content="Confirm" HorizontalAlignment="Left" Margin="570,387,0,0" VerticalAlignment="Top" Width="86" Height="25" Click="EditRoomClick"/>
-        <Button Content="Cancel" HorizontalAlignment="Left" Margin="289,387,0,0" VerticalAlignment="Top" Width="86" Height="25" Click="CancelRoomClick"/>
+        <Button Content="Confirm" HorizontalAlignment="Left" Margin="507,379,0,0" VerticalAlignment="Top" Width="100" Height="30" Click="EditRoomClick" />
+        <Button Content="Cancel" HorizontalAlignment="Left" Margin="320,379,0,0" VerticalAlignment="Top" Width="100" Height="30" Click="CancelRoomClick"/>
         <Line X1="50" Y1="50" X2="1000" Y2="50" Stroke="White"  StrokeThickness="3" Margin="-50,18,1,318" />
         <DockPanel Margin="0,-10,0,373">
             <Menu DockPanel.Dock="Top" Background ="AliceBlue" Cursor="Hand" Height="66" >
@@ -39,6 +40,26 @@
         <Image Source="/images/hospitalll.jpg" Margin="0,0,721,376" MouseLeftButtonUp="HomeClick" Cursor="Hand"/>
         <Image Source="/images/sign_out.png" Margin="699,15,66,395" MouseLeftButtonUp="SignOutClick" Cursor="Hand"/>
         <TextBlock Text="Sign out" FontSize="12" Margin="727,19,0,394" MouseLeftButtonUp="SignOutClick" Cursor="Hand" RenderTransformOrigin="0.512,0.042" HorizontalAlignment="Left" Width="84"/>
+        <Line X1="50" Y1="50" X2="1000" Y2="50" Stroke="White"  StrokeThickness="3" Margin="-50,18,1,318" />
+        <DockPanel Margin="0,-10,0,373">
+            <Menu DockPanel.Dock="Top" Background ="AliceBlue" Cursor="Hand" Height="66" HorizontalAlignment="Stretch" Margin="50,0,0,0" >
 
+                <MenuItem Header="Home" Height="62" Width="84" FontSize="12" Click="HomeClick" Margin="50,0,0,0" />
+                <MenuItem Header="Medicine" Height="66" Width="98" FontSize="12" Click="MedicineClick"/>
+                <MenuItem Header="Equipment" Height="66" Width="110" FontSize="12" Click="EquipmentClick"/>
+                <MenuItem Header="Rooms" Height="66" Width="90" FontSize="12" Click="RoomClick" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <MenuItem Header="Room occupancy" Height="64" Width="132" FontSize="12" Click="OccupancyClick"/>
+                <MenuItem Header="Survey" Width="70" Click="SurveyClick"/>
+
+
+
+            </Menu>
+        </DockPanel>
+        <Image Source="/images/hospitalll.jpg" Margin="0,0,721,376" MouseLeftButtonUp="HomeClick" Cursor="Hand"/>
+        <Image Source="/images/sign_out.png" Margin="699,15,66,395" MouseLeftButtonUp="SignOutClick" Cursor="Hand"/>
+        <TextBlock Text="Sign out" FontSize="12" Margin="727,19,0,394" MouseLeftButtonUp="SignOutClick" Cursor="Hand" RenderTransformOrigin="0.512,0.042" HorizontalAlignment="Left" Width="84"/>
+        <Label Name="validationName" Content="Please enter rooms name" FontSize="12" Foreground="Red" Margin="315,95,175,301" Visibility="Hidden"/>
+        <Label Name="validationFloor" Content="Please enter rooms floor" FontSize="12" Foreground="Red" Margin="315,177,175,219" Visibility="Hidden"/>
+        <Label Name="validationFloorInt" Content="Floor has to be number" FontSize="12" Foreground="Red" Margin="315,177,175,219" Visibility="Hidden"/>
     </Grid>
 </Page>

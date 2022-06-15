@@ -33,7 +33,8 @@ namespace Hospital.View.ManagerView
             _app = Application.Current as App;
             _roomController = roomController;
             _roomOccupancy = roomOccupancy;
-            ObservableCollection<Room> rooms = _app._roomController.Read();
+            List<Room> roomList = _app._roomController.Read();
+            ObservableCollection<Room> rooms = new ObservableCollection<Room>(roomList);
             ObservableCollection<String> roomName = new ObservableCollection<string>();
             ObservableCollection<String> roomType = new ObservableCollection<string>();
             foreach (Room room in rooms)
@@ -60,6 +61,32 @@ namespace Hospital.View.ManagerView
                 Floor = "1",
                 Type = TypeComboBox.Text
             };
+
+
+            if (RoomComboBox.Text.Equals(""))
+            {
+                validationRoom.Visibility = Visibility.Visible;
+                validationName.Visibility = Visibility.Hidden;
+                validationType.Visibility = Visibility.Hidden;
+                return;
+            }
+
+            if (RoomName.Text.Equals(""))
+            {
+                validationRoom.Visibility = Visibility.Hidden;
+                validationName.Visibility = Visibility.Visible;
+                validationType.Visibility = Visibility.Hidden;
+                return;
+            }
+
+            if (TypeComboBox.Text.Equals(""))
+            {
+                validationRoom.Visibility = Visibility.Hidden;
+                validationName.Visibility = Visibility.Hidden;
+                validationType.Visibility = Visibility.Visible;
+                return;
+            }
+
             _app._roomController.Create(newRoom);
             _roomOccupancy.BackToRoomOccupancy();
 
@@ -96,6 +123,11 @@ namespace Hospital.View.ManagerView
         {
             LogIn login = new LogIn();
             login.Show();
+        }
+        private void SurveyClick(object sender, RoutedEventArgs e)
+        {
+            SurveySelect surveySelect = new SurveySelect();
+            surveySelect.Show();
         }
     }
 }

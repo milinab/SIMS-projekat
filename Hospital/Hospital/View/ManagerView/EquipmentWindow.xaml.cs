@@ -35,13 +35,16 @@ namespace Hospital.View.ManagerView
             _content = Content;
             _equipmentController = equipmentController;
             dataGridEquipment.ItemsSource = _equipmentController.Read();
-            ObservableCollection<Equipment> equipments = _app._equipmentController.Read();
+            List<Equipment> equipmentList = _app._equipmentController.Read();
+            ObservableCollection<Equipment> equipments = new ObservableCollection<Equipment>(equipmentList);
             ObservableCollection<String> roomNames = new ObservableCollection<string>();
             foreach (Equipment equipment in equipments)
             {
                 roomNames.Add(equipment.Room);
             }
             eqComboBox.ItemsSource = roomNames.Distinct();
+
+            reportText.Visibility = Visibility.Hidden;
         }
 
         private void SearchEquipment(object sender, TextChangedEventArgs e)
@@ -87,6 +90,7 @@ namespace Hospital.View.ManagerView
             var editEquipment = new Relocation(equipment, this, _equipmentController, _roomController);
             Content = editEquipment;
             validacija.Visibility = Visibility.Hidden;
+            reportText.Visibility = Visibility.Hidden;
         }
         public void BackToEquipmentWindow()
         {
@@ -135,6 +139,18 @@ namespace Hospital.View.ManagerView
             LogIn login = new LogIn();
             login.Show();
             Close();
+        }
+        private void SurveyClick(object sender, RoutedEventArgs e)
+        {
+            SurveySelect surveySelect = new SurveySelect();
+            surveySelect.Show();
+            Close();
+        }
+        private void ReportClick(object sender, RoutedEventArgs e)
+        {
+            ManagerReport manager = new ManagerReport();
+            manager.GenerateReport();
+            reportText.Visibility = Visibility.Visible;
         }
     }
 }

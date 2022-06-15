@@ -1,0 +1,42 @@
+<UserControl x:Class="Hospital.View.DoctorView.Checkup.PatientDischargeUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Hospital.View.DoctorView.Checkup"
+             mc:Ignorable="d"
+             d:DesignHeight="768" d:DesignWidth="700">
+    <UserControl.Resources>
+        <ResourceDictionary Source="../Resources/DoctorResourceDictionary.xaml"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Label
+                Style="{StaticResource LabelStyle}"
+                Content="Confirm a patient discharge"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                FontSize="24"/>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Button 
+                Style="{StaticResource ConfirmButton}"
+                Content="Confirm" 
+                HorizontalAlignment="Left"
+                Width="350" 
+                Height="50" 
+                Click="Confirm_OnClick"/>
+            <Button 
+                Content="Cancel" 
+                Style="{StaticResource CancelButton}"
+                HorizontalAlignment="Right"
+                Width="350" 
+                Height="50" 
+                Click="Cancel_OnClick"/>
+        </Grid>
+    </Grid>
+</UserControl>

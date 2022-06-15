@@ -1,26 +1,27 @@
+using System.Collections.Generic;
 using Hospital.Model;
 using Hospital.Repository;
-using System.Collections.ObjectModel;
 using System.Linq;
+using Hospital.Repository.EquipmentRepo;
 
 namespace Hospital.Service
 {
     public class EquipmentService
     {
         private int _id;
-        private readonly EquipmentRepository _repository;
+        private readonly IEquipmentRepository _repository;
 
-        public EquipmentService(EquipmentRepository equipmentRepository)
+        public EquipmentService(IEquipmentRepository equipmentRepository)
         {
             _repository = equipmentRepository;
-            ObservableCollection<Equipment> equipments = Read();
+            List<Equipment> equipments = Read();
             if (equipments.Count == 0)
             {
                 _id = 0;
             }
             else
             {
-                _id = int.Parse(equipments.Last().Id);
+                _id = equipments.Last().Id;
             }
         }
 
@@ -31,7 +32,7 @@ namespace Hospital.Service
       
         public void Create(Equipment newEquipment)
         {
-            newEquipment.Id = GenerateId().ToString();
+            newEquipment.Id = GenerateId();
             _repository.Create(newEquipment);
         }
       
@@ -45,7 +46,7 @@ namespace Hospital.Service
             _repository.Delete(id);
         }
       
-        public ObservableCollection<Equipment> Read()
+        public List<Equipment> Read()
         {
             return _repository.Read();
         }

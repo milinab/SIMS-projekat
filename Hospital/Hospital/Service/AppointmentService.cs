@@ -1,29 +1,22 @@
 using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Linq;
+using Hospital.Exceptions;
 using Hospital.Model;
-using Hospital.Repository;
-using Xceed.Wpf.Toolkit;
+using Hospital.Repository.AppointmentRepo;
 
 namespace Hospital.Service
 {
     public class AppointmentService
     {
         private int _id;
-        private readonly AppointmentRepository _repository;
+        private readonly IAppointmentRepository _repository;
 
-        public AppointmentService(AppointmentRepository appointmentRepository)
+        public AppointmentService(IAppointmentRepository appointmentRepository)
         {
             _repository = appointmentRepository;
-            ObservableCollection<Appointment> appointments = Read();
-            if (appointments.Count == 0)
-            {
-                _id = 0;
-            }
-            else
-            {
-                _id = appointments.Last().Id;
-            }
+            List<Appointment> appointments = Read();
+            _id = appointments.Count == 0 ? 0 : appointments.Last().Id;
         }
 
         public Appointment ReadById(int id)
@@ -33,32 +26,35 @@ namespace Hospital.Service
 
         public void Create(Appointment newAppointment)
         {
+            if (!ValidateAppointmentForCreate(newAppointment)) return;
+            newAppointment.Id = GenerateId();
+            _repository.Create(newAppointment);
+        }
+
+        private bool ValidateAppointmentForCreate(Appointment newAppointment)
+        {
             var appointments = Read();
             foreach (var appointment in appointments)
             {
-                var startTime = appointment.Date;
-                var tempTime = startTime;
-                var endTime = tempTime.AddMinutes(appointment.Duration.Hours * 60 + appointment.Duration.Minutes);
-
-                var appointmentStarTime = newAppointment.Date;
-                var appointmentTempTime = appointmentStarTime;
-                var appointmentEndTime = appointmentTempTime.AddMinutes(newAppointment.Duration.Hours * 60 +
-                                                                        newAppointment.Duration.Minutes);
-                
-                if (DateTime.Compare(newAppointment.Date, startTime) > 0 && DateTime.Compare(newAppointment.Date, endTime) < 0)
-                {
-                    MessageBox.Show("There is already an appointment at the selected time!");
-                    return;
-                }
-
-                if (DateTime.Compare(appointmentEndTime, appointment.Date) > 0 && DateTime.Compare(appointmentEndTime, endTime) < 0)
-                {
-                    MessageBox.Show("There is already an appointment at the selected time!");
-                    return;
-                }
+                if (!ValidateAppointmentDate(newAppointment, appointment)) return false;
+                if (!ValidateAppointmentOverlap(newAppointment, appointment)) return false;
             }
-            newAppointment.Id = GenerateId();
-            _repository.Create(newAppointment);
+            return true;
+        }
+
+        private static bool ValidateAppointmentOverlap(Appointment newAppointment, Appointment appointment)
+        {
+            if (!appointment.Overlaps(newAppointment))
+            {
+                return true;
+            }
+            throw new AppointmentException("AlreadyExists");    
+        }
+
+        private static bool ValidateAppointmentDate(Appointment newAppointment, Appointment appointment)
+        {
+            if (appointment.IsAppointmentDateCorrect(newAppointment)) return true;
+            throw new AppointmentException("StartDateBeforeEndDate");
         }
 
         public void Edit(Appointment editAppointment)
@@ -71,16 +67,16 @@ namespace Hospital.Service
             _repository.Delete(id);
         }
 
-        public ObservableCollection<Appointment> Read()
+        public List<Appointment> Read()
         {
             return _repository.Read();
         }
-        public ObservableCollection<Appointment> ReadByDoctorId(int doctorId)
+        public List<Appointment> ReadByDoctorId(int doctorId)
         {
             return _repository.ReadByDoctorId(doctorId);
         }
 
-        public ObservableCollection<Appointment> ReadByDateAndNotDoctor(int doctorId, DateTime date)
+        public List<Appointment> ReadByDateAndNotDoctor(int doctorId, DateTime date)
         {
             return _repository.ReadByDateAndNotDoctor(doctorId, date);
         }
@@ -90,24 +86,26 @@ namespace Hospital.Service
             return ++_id;
         }
 
-        public ObservableCollection<Appointment> ReadPastAppointments()
+        public List<Appointment> ReadPastAppointments(int patientId)
         {
-            ObservableCollection<Appointment> pastAppointments = new ObservableCollection<Appointment>();
+            List<Appointment> pastAppointments = new List<Appointment>();
 
-            ObservableCollection<Appointment> allAppointments = _repository.Read();
-            foreach (Appointment a in allAppointments) {
-                if (a.Date < DateTime.Now) {
+            List<Appointment> allAppointments = _repository.ReadByPatientId(patientId);
+            foreach (Appointment a in allAppointments)
+            {
+                if (a.Date < DateTime.Now)
+                {
                     pastAppointments.Add(a);
                 }
             }
             return pastAppointments;
         }
 
-        public ObservableCollection<Appointment> ReadFutureAppointments()
+        public List<Appointment> ReadFutureAppointments(int patientId)
         {
-            ObservableCollection<Appointment> futureAppointments = new ObservableCollection<Appointment>();
+            List<Appointment> futureAppointments = new List<Appointment>();
 
-            ObservableCollection<Appointment> allAppointments = _repository.Read();
+            List<Appointment> allAppointments = _repository.ReadByPatientId(patientId);
             foreach (Appointment a in allAppointments)
             {
                 if (a.Date > DateTime.Now)
@@ -118,5 +116,94 @@ namespace Hospital.Service
             return futureAppointments;
         }
 
+        public List<Appointment> ReadAllAppointments(int patientId)
+        {
+            List<Appointment> allPatientAppointments = new List<Appointment>();
+
+            List<Appointment> allAppointments = _repository.ReadByPatientId(patientId);
+            foreach (Appointment a in allAppointments)
+            {
+                allPatientAppointments.Add(a);
+                
+            }
+            return allPatientAppointments;
+        }
+
+        public List<Appointment> FindAvailableAppointments(Doctor selectedDoctor, DateTime _date, List<Appointment> DoctorsAppointments,
+            List<TimeSpan> hospitalWorkingHours, List<TimeSpan> hospitalWorkingHoursListForCalculation, DateTime date)
+        {
+
+            List<Appointment> AvailableAppointments = new List<Appointment>();
+            List<TimeSpan> cloneList = new List<TimeSpan>(hospitalWorkingHoursListForCalculation);
+
+            foreach (Appointment a in DoctorsAppointments)
+            {
+                selectedDoctor = a.Doctor;
+                DateTime appStartTime = a.Date;
+                DateTime appEndTime = a.Date + a.Duration;
+
+                foreach (TimeSpan appTime in hospitalWorkingHours)
+                {
+                    date += appTime;
+                    cloneList = CompareTimes(appTime, cloneList, date, appStartTime, appEndTime);
+                    date = _date;
+                }
+            }
+
+            return MakeNewAppointmentList(cloneList, selectedDoctor, _date, AvailableAppointments);
+        }
+
+        private List<TimeSpan> CompareTimes(TimeSpan appTime, List<TimeSpan> cloneList, DateTime date, DateTime appStartTime, DateTime appEndTime)
+        {
+            if (DateTime.Compare(date, appStartTime) > 0)
+            {
+                if (DateTime.Compare(date, appEndTime) < 0)
+                {
+                    if (cloneList.Contains(appTime))
+                    {
+                        cloneList.Remove(appTime);
+                    }
+
+                }
+                else if (DateTime.Compare(date, appEndTime) == 0)
+                {
+                    cloneList.Remove(appTime);
+                }
+            }
+            else if (DateTime.Compare(date, appStartTime) == 0)
+            {
+                if (DateTime.Compare(date, appEndTime) < 0)
+                {
+                    if (cloneList.Contains(appTime))
+                    {
+                        cloneList.Remove(appTime);
+                    }
+                }
+            }
+            return cloneList;
+        }
+
+        private List<Appointment> MakeNewAppointmentList(List<TimeSpan> cloneList, Doctor selectedDoctor, DateTime _date, List<Appointment> AvailableAppointments) {
+
+            String doctorName = selectedDoctor.Name + " " + selectedDoctor.LastName;
+
+            foreach (TimeSpan time in cloneList)
+            {
+                Appointment app = new Appointment();
+                Doctor newDoctor = new Doctor
+                {
+                    Name = doctorName,
+                    Id = selectedDoctor.Id
+                };
+                app.Date = _date + time;
+                app.Doctor = newDoctor;
+                app.DoctorId = selectedDoctor.Id;
+
+                AvailableAppointments.Add(app);
+            }
+
+            return AvailableAppointments;
+
+        }
     }
 }

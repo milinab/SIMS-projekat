@@ -1,6 +1,7 @@
 using Hospital.Model;
 using System.Collections.ObjectModel;
 using Hospital.Service;
+using System.Collections.Generic;
 
 namespace Hospital.Controller
 {
@@ -33,7 +34,7 @@ namespace Hospital.Controller
             _service.Delete(id);
         }
       
-        public ObservableCollection<Room> Read()
+        public List<Room> Read()
         {
             return _service.Read();
         }

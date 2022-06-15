@@ -16,6 +16,9 @@ namespace Hospital.View.SecretaryView
 
         private App _app;
         private readonly object _content;
+        private ObservableCollection<Room> _rooms;
+        private ObservableCollection<Doctor> _doctors;
+        private ObservableCollection<Patient> _patients;
 
         public AddAppointment(AppointmentPage appointmentPage)
         {
@@ -23,9 +26,12 @@ namespace Hospital.View.SecretaryView
             this.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             InitializeComponent();
            
-            ObservableCollection<Room> rooms = _app._roomController.Read();
-            ObservableCollection<Doctor> doctors = _app._doctorController.Read();
-            ObservableCollection<Patient> patients = _app._patientController.Read();
+            var rooms = _app._roomController.Read();
+            var doctors = _app._doctorController.Read();
+            var patients = _app._patientController.Read();
+            _rooms = new ObservableCollection<Room>(rooms);
+            _doctors = new ObservableCollection<Doctor>(doctors);
+            _patients = new ObservableCollection<Patient>(patients);
             ObservableCollection<string> patientNames = new ObservableCollection<string>();
             ObservableCollection<string> doctorNames = new ObservableCollection<string>();
             foreach (var doctor in doctors)
@@ -72,12 +78,11 @@ namespace Hospital.View.SecretaryView
             string dur = Duration.Text;
             string[] durationParts = dur.Split(':');
             TimeSpan duration = new TimeSpan(int.Parse(durationParts[0]), int.Parse(durationParts[1]), 0);
-            ObservableCollection<Doctor> doctors = _app._doctorController.Read();
             Doctor tempDoctor = new Doctor();
 
             string[] temp = (DoctorListBox.SelectedItem).ToString().Split(',');
 
-            foreach (var doctor in doctors)
+            foreach (var doctor in _doctors)
             {
                 if (doctor.Id == int.Parse(temp[0]))
                 {
@@ -85,11 +90,10 @@ namespace Hospital.View.SecretaryView
                 }
             }
 
-            ObservableCollection<Patient> patients = _app._patientController.Read();
             Patient tempPatient = new Patient();
 
             string[] temp2 = PatientListBox.SelectedItem.ToString().Split(',');
-            foreach (var patient in patients)
+            foreach (var patient in _patients)
             {
                 if (patient.Id == int.Parse(temp2[0]))
                 {
@@ -98,9 +102,8 @@ namespace Hospital.View.SecretaryView
             }
 
             string roomName = RoomListBox.SelectedItem.ToString();
-            ObservableCollection<Room> rooms = _app._roomController.Read();
             Room tempRoom = new Room();
-            foreach (var room in rooms)
+            foreach (var room in _rooms)
             {
                 if (room.Name.Equals(roomName))
                 {

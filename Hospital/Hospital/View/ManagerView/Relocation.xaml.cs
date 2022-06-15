@@ -22,7 +22,7 @@ namespace Hospital.View.ManagerView
     /// </summary>
     public partial class Relocation : Page
     {
-        private string _id;
+        private int _id;
         private App _app;
         private readonly EquipmentWindow _equipmentWindow;
         private EquipmentController _equipmentController;
@@ -41,9 +41,11 @@ namespace Hospital.View.ManagerView
             _equipmentWindow = equipmentWindow;
             _equipmentController = equipmentController;
             _roomController = roomController;
-            ObservableCollection<Room> rooms = _app._roomController.Read();
+            List<Room> roomList = _app._roomController.Read();
+            ObservableCollection<Room> rooms = new ObservableCollection<Room>(roomList);
             ObservableCollection<String> roomName = new ObservableCollection<string>();
-            equipment = _app._equipmentController.Read();
+            List<Equipment>equipmentList = _app._equipmentController.Read();
+            equipment = new ObservableCollection<Equipment>(equipmentList);
             ObservableCollection<String> eqName = new ObservableCollection<string>();
 
             foreach (Room room in rooms)
@@ -55,9 +57,12 @@ namespace Hospital.View.ManagerView
                 eqName.Add(eq.Name);
             }
             eqComboBox.ItemsSource = eqName;
-            this.eqComboBox.Text = equipments.Name;
-            this.quantityTextBox.Text = equipments.Number;
-            this.roomComboBox.Text = equipments.Room;
+            roomComboBox.ItemsSource = roomName;
+            roomComboBox2.ItemsSource = roomName;
+            eqComboBox.Text = equipments.Name;
+            quantityTextBox.Text = equipments.Number;
+            roomComboBox.Text = equipments.Room;
+            roomComboBox2.Text = equipments.Room;
             _id = equipments.Id;
 
 
@@ -67,20 +72,14 @@ namespace Hospital.View.ManagerView
         {
             foreach (var a in equipment)
             {
-                TimeSpan dt = (TimeSpan)this.timePicker.Value;
-                DateTime now = DateTime.Now;
-                DateTime neww = now + dt;
-                int diff =(int)(neww - now).TotalSeconds;
-                if (diff > 0)
+                if (quantityTextBox.Text.Equals(""))
                 {
-                    Equipment equipment = new Equipment(_id, quantityTextBox.Text, eqComboBox.Text, roomComboBox2.Text);
-                    _app._equipmentController.Edit(equipment);
-                    _equipmentWindow.BackToEquipmentWindow();
+                    validationQuantity.Visibility = Visibility.Visible;
+                    return;
                 }
-                else
-                {
-                    
-                }
+                Equipment equipment = new Equipment(_id, quantityTextBox.Text, eqComboBox.Text, roomComboBox2.Text);
+                _app._equipmentController.Edit(equipment);
+                _equipmentWindow.BackToEquipmentWindow();
             }
             
         }
@@ -120,6 +119,11 @@ namespace Hospital.View.ManagerView
         {
             LogIn login = new LogIn();
             login.Show();
+        }
+        private void SurveyClick(object sender, RoutedEventArgs e)
+        {
+            SurveySelect surveySelect = new SurveySelect();
+            surveySelect.Show();
         }
     }
 }

@@ -11,24 +11,12 @@
     <Grid Background="Azure">
 
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="349*"/>
-            <ColumnDefinition Width="451*"/>
-        </Grid.ColumnDefinitions>
+
         <Label Grid.Column="1" Content="Label" HorizontalAlignment="Left" Margin="615,-1,0,0" VerticalAlignment="Top"/>
-        <Line X1="50" Y1="50" X2="1000" Y2="50" Stroke="White"  StrokeThickness="3" Margin="-50,18,1,302" Grid.ColumnSpan="2" />
         <DataGrid x:Name="dataGridRooms" ItemsSource="{Binding Rooms}" IsReadOnly="True"  Background ="Azure" BorderBrush="White" FontSize="12"
             SelectionMode="Single" AutoGenerateColumns="False" HorizontalAlignment="Right" CanUserAddRows="True" CanUserDeleteRows="True"
-            Height="237" VerticalAlignment="Top" Width="755"  RenderTransformOrigin="0.5,0.5" Margin="0,122,20,0" Grid.ColumnSpan="2">
+            Height="235" VerticalAlignment="Top" Width="765"  RenderTransformOrigin="0.5,0.5" Margin="0,122,10,0">
 
-            <DataGrid.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform ScaleX="1"/>
-                    <SkewTransform/>
-                    <RotateTransform/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </DataGrid.RenderTransform>
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}" Foreground="Black">
                     <DataGridTextColumn.CellStyle>
@@ -65,46 +53,31 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <TextBlock Text="Add room" Margin="66,389,197,5" FontSize="15" Cursor="Hand" PreviewMouseDown="AddRoomsClick"/>
-        <Image Margin="25,385,284,20" Source="/images/add.png" PreviewMouseDown="AddRoomsClick" Cursor="Hand"/>
-        <Image Margin="160,385,149,20" Source="/images/edit.png" MouseLeftButtonUp="EditRoomClick" Cursor="Hand"/>
-        <TextBlock Text="Edit room" Margin="192,391,71,3" FontSize="15" Cursor="Hand" MouseLeftButtonUp="EditRoomClick"/>
-        <DockPanel Margin="0,-10,0,373" Grid.ColumnSpan="2">
-            <Menu DockPanel.Dock="Top" Background ="AliceBlue" Cursor="Hand" Height="66" >
-
-                <MenuItem Header="Home" Height="61" Width="95" FontSize="12" Click="HomeClick" HorizontalAlignment="Stretch" Margin="90,0,0,0" />
-                <MenuItem Header="Medicine" Height="65" Width="130" FontSize="12" Click="MedicineClick"/>
-                <MenuItem Header="Equipment" Height="65" Width="145" FontSize="12" Click="EquipmentClick"/>
-                <MenuItem Header="Rooms" Height="66" Width="105" FontSize="12" Click="RoomClick" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <MenuItem Header="Room occupancy" Height="64" Width="102" FontSize="12" Click="OccupancyClick"/>
-
-
-
-            </Menu>
-        </DockPanel>
-        <Image Source="/images/hospitalll.jpg" Margin="-3,0,273,376" MouseLeftButtonUp="HomeClick" Cursor="Hand"/>
-        <Image Source="/images/sign_out.png" Margin="350,15,66,395" MouseLeftButtonUp="SignOutClick" Cursor="Hand" Grid.Column="1"/>
-        <TextBlock Text="Sign out" FontSize="12" Margin="378,19,0,394" MouseLeftButtonUp="SignOutClick" Cursor="Hand" RenderTransformOrigin="0.512,0.042" HorizontalAlignment="Left" Width="84" Grid.Column="1"/>
-        <Line X1="50" Y1="50" X2="1000" Y2="50" Stroke="White"  StrokeThickness="3" Margin="-50,18,1,318" Grid.ColumnSpan="2" />
-        <DockPanel Margin="0,-10,0,373" Grid.ColumnSpan="2">
-            <Menu DockPanel.Dock="Top" Background ="AliceBlue" Cursor="Hand" Height="66" >
-
-                <MenuItem Header="Home" Height="61" Width="95" FontSize="12" Click="HomeClick" HorizontalAlignment="Stretch" Margin="90,0,0,0" />
-                <MenuItem Header="Medicine" Height="65" Width="130" FontSize="12" Click="MedicineClick"/>
-                <MenuItem Header="Equipment" Height="65" Width="145" FontSize="12" Click="EquipmentClick"/>
-                <MenuItem Header="Rooms" Height="66" Width="105" FontSize="12" Click="RoomClick" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <MenuItem Header="Room occupancy" Height="64" Width="102" FontSize="12" Click="OccupancyClick"/>
-
-
-
-            </Menu>
-        </DockPanel>
-        <Image Source="/images/hospitalll.jpg" Margin="-3,0,273,376" MouseLeftButtonUp="HomeClick" Cursor="Hand"/>
-        <Image Source="/images/sign_out.png" Margin="350,15,66,395" MouseLeftButtonUp="SignOutClick" Cursor="Hand" Grid.Column="1"/>
-        <TextBlock Text="Sign out" FontSize="12" Margin="378,19,0,394" MouseLeftButtonUp="SignOutClick" Cursor="Hand" RenderTransformOrigin="0.512,0.042" HorizontalAlignment="Left" Width="84" Grid.Column="1"/>
+        <TextBlock Text="Add" Margin="55,391,668,23" FontSize="15" Cursor="Hand" PreviewMouseDown="AddRoomsClick"/>
+        <Image Margin="25,385,736,20" Source="/images/add.png" PreviewMouseDown="AddRoomsClick" Cursor="Hand"/>
+        <Image Margin="110,388,650,23" Source="/images/edit.png" MouseLeftButtonUp="EditRoomClick" Cursor="Hand"/>
+        <TextBlock Text="Edit" Margin="142,391,536,23" FontSize="15" Cursor="Hand" MouseLeftButtonUp="EditRoomClick"/>
 
 
         <Label Name="validacija" Content="Please select room you want to edit" FontSize="12" Foreground="Red" Margin="8,96,483,300" Grid.ColumnSpan="2" Visibility="Hidden"/>
+        <Line X1="50" Y1="50" X2="1000" Y2="50" Stroke="White"  StrokeThickness="3" Margin="-50,18,1,318" />
+        <DockPanel Margin="0,-10,0,373">
+            <Menu DockPanel.Dock="Top" Background ="AliceBlue" Cursor="Hand" Height="66" HorizontalAlignment="Stretch" Margin="50,0,0,0" >
+
+                <MenuItem Header="Home" Height="62" Width="84" FontSize="12" Click="HomeClick" Margin="50,0,0,0" />
+                <MenuItem Header="Medicine" Height="66" Width="98" FontSize="12" Click="MedicineClick"/>
+                <MenuItem Header="Equipment" Height="66" Width="110" FontSize="12" Click="EquipmentClick"/>
+                <MenuItem Header="Rooms" Height="66" Width="90" FontSize="12" Click="RoomClick" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <MenuItem Header="Room occupancy" Height="64" Width="132" FontSize="12" Click="OccupancyClick"/>
+                <MenuItem Header="Survey" Width="70" Click="SurveyClick"/>
+
+
+
+            </Menu>
+        </DockPanel>
+        <Image Source="/images/hospitalll.jpg" Margin="0,0,721,376" MouseLeftButtonUp="HomeClick" Cursor="Hand"/>
+        <Image Source="/images/sign_out.png" Margin="699,15,66,395" MouseLeftButtonUp="SignOutClick" Cursor="Hand"/>
+        <TextBlock Text="Sign out" FontSize="12" Margin="727,19,0,394" MouseLeftButtonUp="SignOutClick" Cursor="Hand" RenderTransformOrigin="0.512,0.042" HorizontalAlignment="Left" Width="84"/>
     </Grid>
 </Window>
  

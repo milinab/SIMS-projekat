@@ -1,18 +1,20 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using Hospital.Model;
 using Hospital.Repository;
+using Hospital.Repository.SecretaryRepo;
 
 namespace Hospital.Service
 {
     public class SecretaryService
     {
         private int _id;
-        private readonly SecretaryRepository _repository;
-        public SecretaryService(SecretaryRepository secretaryRepository)
+        private readonly ISecretaryRepository _repository;
+        public SecretaryService(ISecretaryRepository secretaryRepository)
         {
             _repository = secretaryRepository;
-            ObservableCollection<Secretary> secretaries = Read();
+            List<Secretary> secretaries = Read();
             if (secretaries.Count == 0)
             {
                 _id = 0;
@@ -43,7 +45,7 @@ namespace Hospital.Service
             _repository.Delete(id);
         }
 
-        public ObservableCollection<Secretary> Read()
+        public List<Secretary> Read()
         {
             return _repository.Read();
         }

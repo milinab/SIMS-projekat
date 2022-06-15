@@ -1,0 +1,99 @@
+﻿<Window x:Class="Hospital.View.ManagerView.SurveySelect"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Hospital.View.ManagerView"
+        xmlns:wf="clr-namespace:System.Windows.Forms.DataVisualization.Charting;assembly=System.Windows.Forms.DataVisualization"
+        mc:Ignorable="d"
+        Title="SurveySelect" Height="450" Width="800"
+        WindowStyle="None">
+    <Grid Background="Azure">
+        <Line X1="50" Y1="50" X2="1000" Y2="50" Stroke="White"  StrokeThickness="3" Margin="-50,18,1,318" />
+
+        <WindowsFormsHost Margin="89,155,481,155">
+            <wf:Chart x:Name ="Chart1">
+                <wf:Chart.Series>
+                    <wf:Series ChartType="Column"/>
+                </wf:Chart.Series>
+                <wf:Chart.ChartAreas>
+                    <wf:ChartArea/>
+                </wf:Chart.ChartAreas>
+            </wf:Chart>
+        </WindowsFormsHost>
+
+        <WindowsFormsHost Margin="480,155,90,155">
+            <wf:Chart x:Name ="Chart2">
+                <wf:Chart.Series>
+                    <wf:Series ChartType="Column"/>
+                </wf:Chart.Series>
+                <wf:Chart.ChartAreas>
+                    <wf:ChartArea/>
+                </wf:Chart.ChartAreas>
+            </wf:Chart>
+        </WindowsFormsHost>
+
+        <DockPanel Margin="0,-10,0,373">
+            <Menu DockPanel.Dock="Top" Background ="AliceBlue" Cursor="Hand" Height="66" >
+
+                <MenuItem Header="Home" Height="61" Width="95" FontSize="12" Click="HomeClick" HorizontalAlignment="Stretch" Margin="90,0,0,0" />
+                <MenuItem Header="Medicine" Height="65" Width="130" FontSize="12" Click="MedicineClick"/>
+                <MenuItem Header="Equipment" Height="65" Width="145" FontSize="12" Click="EquipmentClick"/>
+                <MenuItem Header="Rooms" Height="66" Width="105" FontSize="12" Click="RoomClick" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <MenuItem Header="Room occupancy" Height="64" Width="102" FontSize="12" Click="OccupancyClick"/>
+
+
+
+            </Menu>
+        </DockPanel>
+        <Image Source="/images/hospitalll.jpg" Margin="0,0,721,376" MouseLeftButtonUp="HomeClick" Cursor="Hand"/>
+        <Image Source="/images/sign_out.png" Margin="699,15,66,395" MouseLeftButtonUp="SignOutClick" Cursor="Hand"/>
+        <TextBlock Text="Sign out" FontSize="12" Margin="727,19,0,394" MouseLeftButtonUp="SignOutClick" Cursor="Hand" RenderTransformOrigin="0.512,0.042" HorizontalAlignment="Left" Width="84"/>
+        <Line X1="50" Y1="50" X2="1000" Y2="50" Stroke="White"  StrokeThickness="3" Margin="-50,18,1,318" />
+        <DockPanel Margin="0,-10,0,373">
+            <Menu DockPanel.Dock="Top" Background ="AliceBlue" Cursor="Hand" Height="66" HorizontalAlignment="Stretch" Margin="50,0,0,0" >
+
+                <MenuItem Header="Home" Height="62" Width="84" FontSize="12" Click="HomeClick" Margin="50,0,0,0" />
+                <MenuItem Header="Medicine" Height="66" Width="98" FontSize="12" Click="MedicineClick"/>
+                <MenuItem Header="Equipment" Height="66" Width="110" FontSize="12" Click="EquipmentClick"/>
+                <MenuItem Header="Rooms" Height="66" Width="90" FontSize="12" Click="RoomClick" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <MenuItem Header="Room occupancy" Height="64" Width="132" FontSize="12" Click="OccupancyClick"/>
+                <MenuItem Header="Survey" Width="70" Click="SurveyClick"/>
+
+
+
+            </Menu>
+        </DockPanel>
+        <Image Source="/images/hospitalll.jpg" Margin="0,0,721,376" MouseLeftButtonUp="HomeClick" Cursor="Hand"/>
+        <Image Source="/images/sign_out.png" Margin="699,15,66,395" MouseLeftButtonUp="SignOutClick" Cursor="Hand"/>
+        <TextBlock Text="Sign out" FontSize="12" Margin="727,19,0,394" MouseLeftButtonUp="SignOutClick" Cursor="Hand" RenderTransformOrigin="0.512,0.042" HorizontalAlignment="Left" Width="84"/>
+        <TextBlock Text="Doctor's survey" Margin="147,94,524,306" FontSize="15"/>
+        <TextBlock Text="Hospital surveys" FontSize="15" Margin="533,94,101,300" />
+        <TextBlock Text="Average:" Margin="133,402,577,9" FontSize="10"/>
+        <TextBlock Text="Number of ones:" Margin="98,308,612,117" FontSize="10"/>
+        <TextBlock Text="Number of twos:" Margin="98,327,612,98" FontSize="10"/>
+        <TextBlock Text="Number of threes:" Margin="92,346,613,79" FontSize="10"/>
+        <TextBlock Text="Number of fours:" Margin="97,365,613,60" FontSize="10"/>
+        <TextBlock Text="Number of fives:" Margin="100,384,610,0" FontSize="10" Height="25" VerticalAlignment="Top"/>
+        <TextBlock Name="jedinice"  Margin="195,308,521,110" />
+        <TextBlock Name="dvojke"  Margin="195,327,538,91" />
+        <TextBlock Name="trojke"  Margin="195,346,521,77" />
+        <TextBlock Name="cetvorke"  Margin="195,365,526,58" />
+        <TextBlock Name="petice"  Margin="195,383,495,37" />
+        <TextBlock Name="prosek"  Margin="195,402,495,10" />
+
+        <TextBlock Text="Average:" Margin="524,402,186,9" FontSize="10"/>
+        <TextBlock Text="Number of ones:" Margin="489,308,221,117" FontSize="10"/>
+        <TextBlock Text="Number of twos:" Margin="489,327,221,98" FontSize="10"/>
+        <TextBlock Text="Number of threes:" Margin="483,346,222,79" FontSize="10"/>
+        <TextBlock Text="Number of fours:" Margin="488,365,222,60" FontSize="10"/>
+        <TextBlock Text="Number of fives:" Margin="491,384,219,0" FontSize="10" Height="25" VerticalAlignment="Top"/>
+        <TextBlock Name="jediniceHospital"  Margin="586,308,130,110" />
+        <TextBlock Name="dvojkeHospital"  Margin="586,327,147,91" />
+        <TextBlock Name="trojkeHospital"  Margin="586,346,130,77" />
+        <TextBlock Name="cetvorkeHospital"  Margin="586,365,135,58" />
+        <TextBlock Name="peticeHospital"  Margin="586,383,104,37" />
+        <TextBlock Name="prosekHospital"  Margin="586,402,104,10" />
+
+    </Grid>
+</Window>

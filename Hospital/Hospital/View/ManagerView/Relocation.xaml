@@ -5,12 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Hospital.View.ManagerView" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
       mc:Ignorable="d"
-        Title="Relocation" Height="450" Width="800">
+      d:DesignHeight="450" d:DesignWidth="800"
+        Title="Relocation" >
     <Grid Background="Azure">
 
         <DockPanel/>
-        <Label Content="Equipmnent:" FontSize="20" Margin="86,97,584,315" ></Label>
-        <Label Content="From:" FontSize="20" Margin="145,135,584,277" RenderTransformOrigin="0.5,0.5" >
+        <Label Content="Equipmnent:" FontSize="20" Margin="149,103,492,272" ></Label>
+        <Label Content="From:" FontSize="20" Margin="211,155,491,247" RenderTransformOrigin="0.5,0.5" >
             <Label.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleX="1"/>
@@ -20,16 +21,16 @@
                 </TransformGroup>
             </Label.RenderTransform>
         </Label>
-        <ComboBox x:Name="roomComboBox" IsEditable="False"  Margin="313,143,120,277" Height="30"/>
-        <Label Content="Quantity:" FontSize ="20" Margin="115,173,584,234" />
-        <TextBox x:Name="quantityTextBox"   Margin="313,181,120,239" Height="30" />
-        <Label Content="To:" FontSize="20" Margin="170,211,584,198" ></Label>
-        <Button Content="Relocate" HorizontalAlignment="Left" Margin="581,372,0,0" VerticalAlignment="Top" Width="100" Height="40" Click="RelocateClick" />
-        <ComboBox x:Name="eqComboBox" IsEditable="False"  Margin="313,105,120,315" Height="30"/>
-        <ComboBox x:Name="roomComboBox2"   Margin="313,219,120,201" Height="30"/>
-        <Button Content="Cancel" HorizontalAlignment="Left" Margin="383,372,0,0" VerticalAlignment="Top" Width="100" Height="40" Click="CancelClick" />
-        <Label Content="Number of days:" FontSize="20" Margin="49,252,557,157" />
-        <xctk:TimeSpanUpDown x:Name="timePicker" Margin="313,261,120,157" />
+        <ComboBox x:Name="roomComboBox"  Margin="323,163,177,242"/>
+        <Label Content="Quantity:" FontSize ="20" Margin="180,206,491,183" />
+        <TextBox x:Name="quantityTextBox"   Margin="323,214,177,191" />
+        <Label Content="To:" FontSize="20" Margin="236,258,491,141" ></Label>
+        <Button Content="Relocate" HorizontalAlignment="Left" Margin="509,380,0,0" VerticalAlignment="Top" Width="100" Height="30" Click="RelocateClick" />
+        <ComboBox x:Name="eqComboBox" IsEditable="False"  Margin="323,112,177,293"/>
+        <ComboBox x:Name="roomComboBox2"   Margin="323,266,177,139"/>
+        <Button Content="Cancel" HorizontalAlignment="Left" Margin="323,380,0,0" VerticalAlignment="Top" Width="100" Height="30" Click="CancelClick" />
+        <Label Content="Number of days:" FontSize="20" Margin="113,309,493,64" />
+        <xctk:TimeSpanUpDown x:Name="timePicker" Margin="323,317,177,88" />
         <Line X1="50" Y1="50" X2="1000" Y2="50" Stroke="White"  StrokeThickness="3" Margin="-50,18,1,318" />
         <DockPanel Margin="0,-10,0,373">
             <Menu DockPanel.Dock="Top" Background ="AliceBlue" Cursor="Hand" Height="66" >
@@ -47,7 +48,42 @@
         <Image Source="/images/hospitalll.jpg" Margin="0,0,721,376" MouseLeftButtonUp="HomeClick" Cursor="Hand"/>
         <Image Source="/images/sign_out.png" Margin="699,15,66,395" MouseLeftButtonUp="SignOutClick" Cursor="Hand"/>
         <TextBlock Text="Sign out" FontSize="12" Margin="727,19,0,394" MouseLeftButtonUp="SignOutClick" Cursor="Hand" RenderTransformOrigin="0.512,0.042" HorizontalAlignment="Left" Width="84"/>
+        <Line X1="50" Y1="50" X2="1000" Y2="50" Stroke="White"  StrokeThickness="3" Margin="-50,18,1,318" />
+        <DockPanel Margin="0,-10,0,373">
+            <Menu DockPanel.Dock="Top" Background ="AliceBlue" Cursor="Hand" Height="66" >
 
+                <MenuItem Header="Home" Height="61" Width="95" FontSize="12" Click="HomeClick" HorizontalAlignment="Stretch" Margin="90,0,0,0" />
+                <MenuItem Header="Medicine" Height="65" Width="130" FontSize="12" Click="MedicineClick"/>
+                <MenuItem Header="Equipment" Height="65" Width="145" FontSize="12" Click="EquipmentClick"/>
+                <MenuItem Header="Rooms" Height="66" Width="105" FontSize="12" Click="RoomClick" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <MenuItem Header="Room occupancy" Height="64" Width="102" FontSize="12" Click="OccupancyClick"/>
+
+
+
+            </Menu>
+        </DockPanel>
+        <Image Source="/images/hospitalll.jpg" Margin="0,0,721,376" MouseLeftButtonUp="HomeClick" Cursor="Hand"/>
+        <Image Source="/images/sign_out.png" Margin="699,15,66,395" MouseLeftButtonUp="SignOutClick" Cursor="Hand"/>
+        <TextBlock Text="Sign out" FontSize="12" Margin="727,19,0,394" MouseLeftButtonUp="SignOutClick" Cursor="Hand" RenderTransformOrigin="0.512,0.042" HorizontalAlignment="Left" Width="84"/>
+        <Line X1="50" Y1="50" X2="1000" Y2="50" Stroke="White"  StrokeThickness="3" Margin="-50,18,1,318" />
+        <DockPanel Margin="0,-10,0,373">
+            <Menu DockPanel.Dock="Top" Background ="AliceBlue" Cursor="Hand" Height="66" HorizontalAlignment="Stretch" Margin="50,0,0,0" >
+
+                <MenuItem Header="Home" Height="62" Width="84" FontSize="12" Click="HomeClick" Margin="50,0,0,0" />
+                <MenuItem Header="Medicine" Height="66" Width="98" FontSize="12" Click="MedicineClick"/>
+                <MenuItem Header="Equipment" Height="66" Width="110" FontSize="12" Click="EquipmentClick"/>
+                <MenuItem Header="Rooms" Height="66" Width="90" FontSize="12" Click="RoomClick" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <MenuItem Header="Room occupancy" Height="64" Width="132" FontSize="12" Click="OccupancyClick"/>
+                <MenuItem Header="Survey" Width="70" Click="SurveyClick"/>
+
+
+
+            </Menu>
+        </DockPanel>
+        <Image Source="/images/hospitalll.jpg" Margin="0,0,721,376" MouseLeftButtonUp="HomeClick" Cursor="Hand"/>
+        <Image Source="/images/sign_out.png" Margin="699,15,66,395" MouseLeftButtonUp="SignOutClick" Cursor="Hand"/>
+        <TextBlock Text="Sign out" FontSize="12" Margin="727,19,0,394" MouseLeftButtonUp="SignOutClick" Cursor="Hand" RenderTransformOrigin="0.512,0.042" HorizontalAlignment="Left" Width="84"/>
+        <TextBlock Text="Please insert quantity." Name="validationQuantity" FontSize="12" Margin="323,196,177,225" Foreground="Red" Visibility="Hidden"/>
 
     </Grid>
 </Page>

@@ -1,19 +1,21 @@
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Hospital.Model;
 using Hospital.Repository;
+using Hospital.Repository.TherapyRepo;
 
 namespace Hospital.Service
 {
     public class TherapyService
     {
         private int _id;
-        private readonly TherapyRepository _repository;
+        private readonly ITherapyRepository _repository;
 
-        public TherapyService(TherapyRepository therapyRepository)
+        public TherapyService(ITherapyRepository therapyRepository)
         {
             _repository = therapyRepository;
-            ObservableCollection<Therapy> therapies = Read();
+            List<Therapy> therapies = Read();
             if (therapies.Count == 0)
             {
                 _id = 0;
@@ -29,7 +31,7 @@ namespace Hospital.Service
             return _repository.ReadById(id);
         }
 
-        public ObservableCollection<Therapy> ReadByPatientId(int patientId)
+        public List<Therapy> ReadByPatientId(int patientId)
         {
             return _repository.ReadByPatientId(patientId);
         }
@@ -50,7 +52,7 @@ namespace Hospital.Service
             _repository.Delete(id);
         }
 
-        public ObservableCollection<Therapy> Read()
+        public List<Therapy> Read()
         {
             return _repository.Read();
         }

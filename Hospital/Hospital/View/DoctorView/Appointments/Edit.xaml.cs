@@ -11,18 +11,19 @@ namespace Hospital.View.DoctorView.Appointments {
     {
 
         private App _app;
-        private AppointmentsPage _appointmentsPage;
         private Appointment _appointment;
-        
-        public Edit(Appointment app, AppointmentsPage appointmentsPage)
+        private Patient _patient;
+        private ObservableCollection<Room> _rooms;
+
+        public Edit(Appointment app)
         {
             _appointment = app;
             _app = Application.Current as App;
             InitializeComponent();
-            _appointmentsPage = appointmentsPage;
-            ObservableCollection<Room> rooms = _app._roomController.Read();
+            var rooms = _app._roomController.Read();
+            _rooms = new ObservableCollection<Room>(rooms);
             ObservableCollection<string> roomNames = new ObservableCollection<string>();
-            foreach (var room in rooms)
+            foreach (var room in _rooms)
             {
                 roomNames.Add(room.Name);
             }
@@ -30,6 +31,7 @@ namespace Hospital.View.DoctorView.Appointments {
             RoomListBox.ItemsSource = roomNames;
             
             Appointment appointment = app;
+            _patient = app.Patient;
             DatePicker.SelectedDate = appointment.Date;
             TimePicker.Value = appointment.Date;
             Duration.Value = appointment.Duration;
@@ -48,12 +50,11 @@ namespace Hospital.View.DoctorView.Appointments {
             string dur = Duration.Text;
             string[] durationParts = dur.Split(':');
             TimeSpan duration = new TimeSpan(int.Parse(durationParts[0]), int.Parse(durationParts[1]), 0);
-            Doctor tempDoctor = _app._doctorController.ReadById(1);
-            Patient tempPatient = _app._patientController.ReadById(1);
+            Doctor tempDoctor = _app._doctorController.ReadById(LogIn.LoggedUser.Id);
+            Patient tempPatient = _patient;
             string roomName = RoomListBox.SelectedItem.ToString();
-            ObservableCollection<Room> rooms = _app._roomController.Read();
             Room tempRoom = new Room();
-            foreach (var room in rooms)
+            foreach (var room in _rooms)
             {
                 if (room.Name.Equals(roomName))
                 {
@@ -63,11 +64,16 @@ namespace Hospital.View.DoctorView.Appointments {
 
             Appointment app = new Appointment(_appointment.Id, date, duration, tempDoctor, tempPatient, tempRoom);
             _app._appointmentController.Edit(app);
-            _appointmentsPage.SwitchPage();
+            MainWindow.MainFrame.Navigate(new AppointmentsPage());
         }
 
         private void Cancel(object sender, RoutedEventArgs e) {
-            _appointmentsPage.SwitchPage();
+            MainWindow.MainFrame.GoBack();
+        }
+
+        private void PatientInformationClick(object sender, RoutedEventArgs e)
+        {
+            MainWindow.MainFrame.Navigate(new PatientInformationPage(_appointment));
         }
     }
 }

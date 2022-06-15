@@ -76,7 +76,7 @@ namespace Hospital.Model
         {
             _type = type;
             Name = name;
-            EquipmentId = int.Parse(equipment.Id);
+            EquipmentId = equipment.Id;
             Equipment = equipment;
         }
 

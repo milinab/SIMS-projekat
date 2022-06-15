@@ -1,19 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Hospital.Controller;
 using Hospital.Model;
 
 namespace Hospital.View.PatientView
@@ -26,11 +15,12 @@ namespace Hospital.View.PatientView
         private App app;
         private readonly BookAnAppointment _bookAnAppointment;
         private readonly PatientWindow _patientWindow;
-        private readonly AppointmentController _appointmentController;
         private int _doctorId;
         private DateTime _date;
         private String chosenDoctor;
         private Doctor doctor;
+        private Doctor selectedDoctor;
+        public Patient patient;
 
         private String DoctorName
         {
@@ -42,22 +32,10 @@ namespace Hospital.View.PatientView
 
         ObservableCollection<Appointment> AvailableAppointments { get; set; }
 
-
-
-        public DoctorPriorityDateAvailable(PatientWindow patientWindow, BookAnAppointment bookAnAppointment, AppointmentController appointmentController)
-        {
-            InitializeComponent();
-            _bookAnAppointment = bookAnAppointment;
-            _patientWindow = patientWindow;
-            _appointmentController = appointmentController;
-        }
-
         public DoctorPriorityDateAvailable(int doctorId, DateTime date, BookAnAppointment bookAnAppointment, PatientWindow patientWindow)
         {
             InitializeComponent();
             app = Application.Current as App;
-            //this.frame.Content = null;
-            //this.frame.NavigationService.RemoveBackEntry();
 
             _bookAnAppointment = bookAnAppointment;
             _patientWindow = patientWindow;
@@ -65,180 +43,94 @@ namespace Hospital.View.PatientView
             _date = date;
             DoctorsAppointments = new ObservableCollection<Appointment>();
             AvailableAppointments = new ObservableCollection<Appointment>();
-            initializeData(doctorId, date);
+            InitializeData(doctorId, date);
             dataGridDoctorPriority.ItemsSource = AvailableAppointments;
-            dataGridAppointments.ItemsSource = patientWindow.Appointments;
+            patient = app._patientController.ReadById(LogIn.LoggedUser.Id);
+            dataGridAppointments.ItemsSource = app._appointmentController.ReadFutureAppointments(patient.Id);
+            selectedDoctor = this.doctor;
+            
         }
-        private void initializeData(int doctorId, DateTime date)
+        private void InitializeData(int doctorId, DateTime date)
         {
             Doctor doctor = app._doctorController.ReadById(doctorId);
             this.doctor = doctor;
             DoctorName = doctor.Name;
             this.ChosenDoctor.Text = doctor.Name + " " + doctor.LastName;
 
-            // radno vreme bolnice
-            List<TimeSpan> hospitalWorkingHours = new List<TimeSpan>();
-            hospitalWorkingHours.Add(new TimeSpan(7, 00, 00));
-            hospitalWorkingHours.Add(new TimeSpan(7, 30, 00));
-            hospitalWorkingHours.Add(new TimeSpan(8, 00, 00));
-            hospitalWorkingHours.Add(new TimeSpan(8, 30, 00));
-            hospitalWorkingHours.Add(new TimeSpan(9, 00, 00));
-            hospitalWorkingHours.Add(new TimeSpan(9, 30, 00));
-            hospitalWorkingHours.Add(new TimeSpan(10, 00, 00));
-            hospitalWorkingHours.Add(new TimeSpan(10, 30, 00));
+            List<TimeSpan> hospitalWorkingHours = new List<TimeSpan>
+            {
+                new TimeSpan(7, 00, 00),
+                new TimeSpan(7, 30, 00),
+                new TimeSpan(8, 00, 00),
+                new TimeSpan(8, 30, 00),
+                new TimeSpan(9, 00, 00),
+                new TimeSpan(9, 30, 00),
+                new TimeSpan(10, 00, 00),
+                new TimeSpan(10, 30, 00)
+            };
 
             List<TimeSpan> hospitalWorkingHoursListForCalculation = new List<TimeSpan>(hospitalWorkingHours);
 
-            // pronadji sve appointmente tog lekara, uzmi njigovo pocetno vreme i izbrisi iz liste allAppointmentTImes ako se poklapaju
+            List<Appointment> appointmentList = app._appointmentController.ReadByDoctorId(doctorId);
+            List<Appointment> DoctorsAppointments = new List<Appointment>(appointmentList);
 
-            DoctorsAppointments = new ObservableCollection<Appointment>();
-            DoctorsAppointments = app._appointmentController.ReadByDoctorId(doctorId);
-
-            findAvailabeAppointments(DoctorsAppointments, hospitalWorkingHours, hospitalWorkingHoursListForCalculation, date);
+            var availableAppointments = app._appointmentController.FindAvailableAppointments(selectedDoctor, _date, DoctorsAppointments, hospitalWorkingHours, hospitalWorkingHoursListForCalculation, date);
+            AvailableAppointments = new ObservableCollection<Appointment>(availableAppointments);
 
             if (AvailableAppointments.Count == 0)
             {
-                DateTime tommorow = date.AddDays(1); //uzmes sutradan
+                DateTime tommorow = date.AddDays(1);
                 _date = tommorow;
-                MessageBox.Show("Nazalost, nema dostupnih termina za trazeni datum. U listi ce vam se prikazati dostupni termini za naredni datum.");
-                findAvailabeAppointments(DoctorsAppointments, hospitalWorkingHours, hospitalWorkingHoursListForCalculation, tommorow);
-
+                PopupNotification.SendPopupNotification("Warning", "Sorry to inform, but there is no available appointments for chosen date. In the following list, we are gonna show You available appointments for the next available day.");
+                var availableAppointmentsNoDate = app._appointmentController.FindAvailableAppointments(selectedDoctor, _date, DoctorsAppointments, hospitalWorkingHours, hospitalWorkingHoursListForCalculation, tommorow);
+                AvailableAppointments = new ObservableCollection<Appointment>(availableAppointmentsNoDate);
             }
         }
-            
+
+        private bool Validate()
+        {
+            if(dataGridDoctorPriority.SelectedItem == null)
+            {
+                PopupNotification.SendPopupNotification("Warning", "You need to select an appointment.");
+                return false;
+            }
+            return true;
+        }
+
+
         private void ConfirmAppointment_Click(object sender, RoutedEventArgs e)
         {
-            var viewModel = this.dataGridDoctorPriority.DataContext as Appointment;
-            var SelectedItem = dataGridDoctorPriority.SelectedItem as Appointment;
-
-            //zameniti za prave vrednosti koje cu dobiti kroz view-e
-            Patient patient = new Patient();
-            patient.Id = _patientWindow.patient.Id;
-            Room room = new Room();
-            room.Id = 2;
-            var a = SelectedItem.Date;
-
-            Appointment appointment = new Appointment(a, new TimeSpan(0, 30, 00), doctor, patient, room);
-            app._appointmentController.Create(appointment);
-            _patientWindow.BackToPatientWindow();
-        }
-
-        public void findAvailabeAppointments(ObservableCollection<Appointment> DoctorsAppointments,
-            List<TimeSpan> hospitalWorkingHours, List<TimeSpan> hospitalWorkingHoursListForCalculation, DateTime date)
-        {
-
-            List<TimeSpan> cloneList = new List<TimeSpan>(hospitalWorkingHoursListForCalculation);
-            foreach (Appointment a in DoctorsAppointments)
+            if(Validate())
             {
+                var viewModel = this.dataGridDoctorPriority.DataContext as Appointment;
+                var SelectedItem = dataGridDoctorPriority.SelectedItem as Appointment;
 
-                var appStartTime = a.Date;
-                var appEndTime = a.Date + a.Duration;
+                Patient patient = new Patient();
+                patient.Id = _patientWindow.patient.Id;
+                Room room = new Room();
+                room.Id = 2;
+                var date = SelectedItem.Date;
 
-                foreach (TimeSpan appTime in hospitalWorkingHours)
+                Appointment appointment = new Appointment(date, new TimeSpan(0, 30, 00), doctor, patient, room);
+                try
                 {
-                    //DateTime dt = new DateTime(date);
-                    date = date + appTime;
-                    if (DateTime.Compare(date, appStartTime) > 0)
-                    {
-                        if (DateTime.Compare(date, appEndTime) < 0)
-                        {
-                            if (cloneList.Contains(appTime))
-                            {
-                                cloneList.Remove(appTime);
-                            }
-
-                        }
-                        else if (DateTime.Compare(date, appEndTime) == 0)
-                        {
-                            cloneList.Remove(appTime);
-                        }
-                    }
-                    else if (DateTime.Compare(date, appStartTime) == 0)
-                    {
-                        if (DateTime.Compare(date, appEndTime) < 0)
-                        {
-                            if (cloneList.Contains(appTime))
-                            {
-                                cloneList.Remove(appTime);
-                            }
-                        }
-                    }
-                    date = _date;
+                    app._appointmentController.Create(appointment);
                 }
+                catch (Exception AppointmentException)
+                {
+
+                }
+                _patientWindow.BackToPatientWindow();
             }
-
-            foreach (TimeSpan time in cloneList)
-            {
-                Appointment app = new Appointment();
-                app.Date = _date + time;
-
-                AvailableAppointments.Add(app);
-            }
-
-        }
-        private void HomePage_Click(object sender, RoutedEventArgs e)
-        {
-            Page homePage = new HomePage(_patientWindow);
-            this.frame.Navigate(homePage);
-        }
-
-        private void Profile_Click(object sender, RoutedEventArgs e)
-        {
-            Page profilePage = new Profile(_patientWindow);
-            this.frame.Navigate(profilePage);
-        }
-
-        private void MedicalRecord_Click(object sender, RoutedEventArgs e)
-        {
-            Page medicalRecordPage = new MedicalRecord(_patientWindow);
-            this.frame.Navigate(medicalRecordPage);
-        }
-
-        private void MyAppointments_Click(object sender, RoutedEventArgs e)
-        {
-            _patientWindow.BackToPatientWindow();
-        }
-        private void MyTherapy_Click(object sender, RoutedEventArgs e)
-        {
-            Page myTherapyPage = new MyTherapy(_patientWindow);
-            this.frame.Navigate(myTherapyPage);
-        }
-
-        private void Calendar_Click(object sender, RoutedEventArgs e)
-        {
-            Page calendarPage = new Calendar(_patientWindow);
-            this.frame.Navigate(calendarPage);
-        }
-        private void Notes_Click(object sender, RoutedEventArgs e)
-        {
-            Page notesPage = new Notes(_patientWindow);
-            this.frame.Navigate(notesPage);
-        }
-
-        private void Surveys_Click(object sender, RoutedEventArgs e)
-        {
-            Page hospitalSurveyPage = new Surveys(_patientWindow);
-            this.frame.Navigate(hospitalSurveyPage);
-        }
-        private void Notification_Click(object sender, RoutedEventArgs e)
-        {
-            Page notificationPage = new Notification(_patientWindow);
-            this.frame.Navigate(notificationPage);
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
             Page page = new BookAnAppointment(_patientWindow);
-            this.frame.Navigate(page);
+            PatientWindow.getInstance().frame.Navigate(page);
 
             _bookAnAppointment.BackToBookAnAppointmentWindow();
         }
 
-        private void LogOut_Click(object sender, RoutedEventArgs e)
-        {
-            LogIn logIn = new LogIn();
-            logIn.Show();
-            _patientWindow.Close();
-        }
     }
 }

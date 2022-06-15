@@ -6,9 +6,13 @@
         xmlns:local="clr-namespace:Hospital.View.DoctorView"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:resources="clr-namespace:Hospital.View.DoctorView.Resources"
         mc:Ignorable="d"
         d:DesignHeight="768" d:DesignWidth="700"
         Title="Edit">
+    <Page.Resources>
+        <ResourceDictionary Source="../Resources/DoctorResourceDictionary.xaml"></ResourceDictionary>
+    </Page.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -17,23 +21,175 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid x:Name="EditAppointment" Grid.Column="0" Grid.Row="0">
-            <Rectangle HorizontalAlignment="Center" VerticalAlignment="Top" Height="40" Width="700" Margin="0,0,0,0" Stroke="Black"/>
-            <TextBlock Text="Edit appointment" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,3,0,0" TextWrapping="Wrap" FontSize="24"/>
+            <Border 
+                Style="{StaticResource HeaderBorderStyle}" 
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Top">
+                <Label 
+                    Style="{StaticResource LabelStyle}" 
+                    Content="Edit appointment" 
+                    HorizontalAlignment="Center"
+                    FontSize="24"/>
+            </Border>
 
-            <TextBlock Text="Date:"     Style="" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,80,500,0" TextWrapping="Wrap" FontSize="20"/>
-            <TextBlock Text="Time:"      HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,140,500,0" TextWrapping="Wrap" FontSize="20"/>
-            <TextBlock Text="Duration:"  HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,200,500,0" TextWrapping="Wrap" FontSize="20"/>
-            <TextBlock Text="Room:"      HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,330,500,0" TextWrapping="Wrap" FontSize="20"/>
-            <TextBlock Text="Equipment:" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,530,500,0" TextWrapping="Wrap" FontSize="20"/>
-
-            <DatePicker Name="DatePicker"           HorizontalAlignment="Left" VerticalAlignment="Top" Margin="220,80,0,0" Width="260" Height="30" FontSize="18" DisplayDateStart="{x:Static sys:DateTime.Today}"/>
-            <xctk:TimePicker Name="TimePicker"      HorizontalAlignment="Left" VerticalAlignment="Top" Margin="220,140,0,0" Width="260" Height="30" FontSize="18" StartTime="7:00" EndTime="20:00" TextAlignment="Center" TimeInterval="0:15" ShowButtonSpinner="False" AllowTextInput="False"/>
-            <local:CustomTimeSpanUpDown x:Name="Duration"    HorizontalAlignment="Left" VerticalAlignment="Top" Margin="220,200,0,0" Width="260" Height="30" FontSize="18" TextAlignment="Center" AllowTextInput="False" Minimum="0.00:10:00" Maximum="0.8:00:00" Value="0.00:10:00"/>
-            <ListBox Name="RoomListBox"             HorizontalAlignment="Left" VerticalAlignment="Top" Margin="220,260,0,0" Width="260" Height="166" FontSize="18"/>
-            <ListBox Name="EquipmentListBox"        HorizontalAlignment="Left" VerticalAlignment="Top" Margin="220,460,0,0" Width="260" Height="166" FontSize="18"/>
-
-            <Button Content="Confirm" HorizontalAlignment="Left"  VerticalAlignment="Bottom" Margin="0,0,0,0" Width="350" Height="50" Click="Confirm" FontSize="25"/>
-            <Button Content="Cancel"  HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,0,0" Width="350" Height="50" Click="Cancel" FontSize="25"/>
+            <Label 
+                Content="Date:"     
+                Style="{StaticResource LabelStyle}"
+                HorizontalAlignment="Right" 
+                VerticalAlignment="Top" 
+                Margin="0 80 450 0"/>
+            <Label
+                Content="Time:"     
+                Style="{StaticResource LabelStyle}"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                Margin="0 140 450 0"/>
+            <Label 
+                Content="Duration:"  
+                Style="{StaticResource LabelStyle}"
+                HorizontalAlignment="Right" 
+                VerticalAlignment="Top" 
+                Margin="0 200 450 0"/>
+            <Label 
+                Content="Room:"      
+                Style="{StaticResource LabelStyle}"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                Margin="0 330 450 0"/>
+            <Label 
+                Content="Equipment:"
+                Style="{StaticResource LabelStyle}"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top" 
+                Margin="0 530 450 0"/>
+            <Button 
+                Content="Patient information" 
+                Style="{StaticResource DefaultButton}"
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Bottom" 
+                Margin="100 0 0 70" 
+                Width="250" Height="40" 
+                FontSize="20" 
+                Click="PatientInformationClick">
+                <Button.Template>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <ContentPresenter/>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            
+            <Border 
+                Style="{StaticResource BorderStyle}"
+                Margin="270 80 0 0" 
+                Width="260" 
+                Height="30" 
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Top">
+                <DatePicker 
+                    Name="DatePicker"   
+                    Style="{StaticResource DatePickerStyle}"
+                    Width="260" 
+                    Height="30" 
+                    FontSize="18" 
+                    DisplayDateStart="{x:Static sys:DateTime.Today}"/>
+            </Border>
+            <Border 
+                Style="{StaticResource BorderStyle}"
+                Margin="270 140 0 0" 
+                Width="260" 
+                Height="30" 
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Top">
+                <xctk:TimePicker 
+                    Name="TimePicker"     
+                    Style="{StaticResource TimePickerStyle}"
+                    Width="260" 
+                    Height="30" 
+                    FontSize="18" 
+                    StartTime="7:00"
+                    EndTime="20:00"
+                    TextAlignment="Center" 
+                    TimeInterval="0:15" 
+                    ShowButtonSpinner="False"
+                    AllowTextInput="False"/>
+            </Border>
+            <Border 
+                Style="{StaticResource BorderStyle}"
+                Margin="270 200 0 0"
+                Width="260" 
+                Height="30" 
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Top" >
+                <resources:CustomTimeSpanUpDown 
+                    x:Name="Duration" 
+                    Style="{StaticResource TimeSpanUpDownStyle}"
+                    Width="260"
+                    Height="30"
+                    FontSize="18" 
+                    TextAlignment="Center"
+                    AllowTextInput="False"
+                    Minimum="0.00:10:00" 
+                    Maximum="0.8:00:00" 
+                    Value="0.00:10:00"/>
+            </Border>
+            <Border 
+                Style="{StaticResource BorderStyle}"
+                Margin="270 260 0 0" 
+                Width="260" 
+                Height="166" 
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Top">
+                <ListBox 
+                    Name="RoomListBox"     
+                    Style="{StaticResource ListBoxStyle}"
+                    Width="260" 
+                    Height="166"
+                    FontSize="18">
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel HorizontalAlignment="Center" Margin="0 0 12 0"/>
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                </ListBox>
+            </Border>
+            <Border 
+                Style="{StaticResource BorderStyle}"
+                Margin="270 460 0 0"
+                Width="260" 
+                Height="166" 
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Top">
+                <ListBox 
+                    Name="EquipmentListBox" 
+                    Style="{StaticResource ListBoxStyle}"
+                    Width="260" 
+                    Height="166"
+                    FontSize="18">
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel HorizontalAlignment="Center" Margin="0 0 12 0"/>
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                </ListBox>
+            </Border>
+            <Button
+                Content="Confirm" 
+                Style="{StaticResource ConfirmButton}"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Bottom"
+                Margin="0,0,0,0"
+                Width="350" 
+                Height="50" 
+                Click="Confirm"/>
+            <Button 
+                Content="Cancel" 
+                Style="{StaticResource CancelButton}"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Margin="0,0,0,0"
+                Width="350"
+                Height="50"
+                Click="Cancel"/>
         </Grid>
     </Grid>
 </Page>

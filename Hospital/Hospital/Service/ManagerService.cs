@@ -1,18 +1,18 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Hospital.Model;
-using Hospital.Repository;
+using Hospital.Repository.ManagerRepo;
 
 namespace Hospital.Service
 {
     public class ManagerService
     {
         private int _id;
-        private readonly ManagerRepository _repository;
-        public ManagerService(ManagerRepository managerRepository)
+        private readonly IManagerRepository _repository;
+        public ManagerService(IManagerRepository managerRepository)
         {
             _repository = managerRepository;
-            ObservableCollection<Manager> managers = Read();
+            List<Manager> managers = Read();
             if (managers.Count == 0)
             {
                 _id = 0;
@@ -43,7 +43,7 @@ namespace Hospital.Service
             _repository.Delete(id);
         }
 
-        public ObservableCollection<Manager> Read()
+        public List<Manager> Read()
         {
             return _repository.Read();
         }

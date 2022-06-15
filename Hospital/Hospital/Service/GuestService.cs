@@ -1,19 +1,21 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using Hospital.Model;
 using Hospital.Repository;
+using Hospital.Repository.GuestRepo;
 
 namespace Hospital.Service
 {
     public class GuestService
     {
         private int _id;
-        private readonly GuestRepository _repository;
+        private readonly IGuestRepository _repository;
 
-        public GuestService(GuestRepository guestRepository)
+        public GuestService(IGuestRepository guestRepository)
         {
             _repository = guestRepository;
-            ObservableCollection<Guest> guests = Read();
+            List<Guest> guests = Read();
             if (guests.Count == 0)
             {
                 _id = 0;
@@ -45,7 +47,7 @@ namespace Hospital.Service
             _repository.Delete(id);
         }
 
-        public ObservableCollection<Guest> Read()
+        public List<Guest> Read()
         {
             return _repository.Read();
         }

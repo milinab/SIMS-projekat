@@ -1,18 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
+using Hospital.Enums;
 
 
 namespace Hospital.Model
 {
-    
-
-
-
     [DataContract]
     public class Medicine
     {
@@ -99,6 +92,12 @@ namespace Hospital.Model
                 }
             }
         }
+
+        [DataMember]
+        public List<int> AllergenIds { get; set; }
+
+        [DataMember]
+        public MedicineStatus Status { get; set; }
 
         public Medicine()
         {

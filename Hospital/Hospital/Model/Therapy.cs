@@ -15,6 +15,7 @@ namespace Hospital.Model
         public DateTime Time { get; set; }
         [DataMember]
         public string TherapyText { get; set; }
+        [DataMember]
         public int PatientId { get; set; }
 
 
@@ -27,6 +28,13 @@ namespace Hospital.Model
             Id = id;
             Medicine = medicine;
             Time = time;
+            TherapyText = therapyText;
+            PatientId = patientId;
+        }
+        
+        public Therapy(string medicine, string therapyText, int patientId)
+        {
+            Medicine = medicine;
             TherapyText = therapyText;
             PatientId = patientId;
         }

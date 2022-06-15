@@ -1,19 +1,20 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Hospital.Model;
 using Hospital.Repository;
+using Hospital.Repository.CityRepo;
 
 namespace Hospital.Service
 {
     public class CityService
     {
         private int _id;
-        private readonly CityRepository _repository;
+        private readonly ICityRepository _repository;
 
-        public CityService(CityRepository cityRepository)
+        public CityService(ICityRepository cityRepository)
         {
             _repository = cityRepository;
-            ObservableCollection<City> cities = Read();
+            List<City> cities = Read();
             if (cities.Count == 0)
             {
                 _id = 0;
@@ -45,7 +46,7 @@ namespace Hospital.Service
             _repository.Delete(id);
         }
 
-        public ObservableCollection<City> Read()
+        public List<City> Read()
         {
             return _repository.Read();
         }

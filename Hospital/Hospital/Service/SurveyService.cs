@@ -1,19 +1,21 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using Hospital.Model;
 using Hospital.Repository;
+using Hospital.Repository.SurveyRepo;
 
 namespace Hospital.Service
 {
     public class SurveyService
     {
         private int _id;
-        private readonly SurveyRepository _repository;
+        private readonly ISurveyRepository _repository;
 
-        public SurveyService(SurveyRepository surveyRepository)
+        public SurveyService(ISurveyRepository surveyRepository)
         {
             _repository = surveyRepository;
-            ObservableCollection<Survey> surveys = Read();
+            List<Survey> surveys = Read();
             if (surveys.Count == 0)
             {
                 _id = 0;
@@ -45,7 +47,7 @@ namespace Hospital.Service
             _repository.Delete(id);
         }
 
-        public ObservableCollection<Survey> Read()
+        public List<Survey> Read()
         {
             return _repository.Read();
         }

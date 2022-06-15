@@ -5,47 +5,22 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Hospital.View.PatientView"
       xmlns:val="clr-namespace:Hospital.View.PatientView.Validations"
+      xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
       mc:Ignorable="d" 
       d:DesignHeight="560" d:DesignWidth="800" Background="AntiqueWhite"
       Title="NoteInfo">
 
+    <Page.Resources>
+        <ResourceDictionary Source="PatientResourceDictionary.xaml"></ResourceDictionary>
+    </Page.Resources>
     <Grid Margin="0,0,0,0">
 
-        <Label Content="ZDRAVO CORPORATION" HorizontalAlignment="Left" Margin="7,6,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="18" Foreground="Maroon" FontFamily="Georgia"/>
-        <Button Content="Log out" BorderThickness="2" HorizontalAlignment="Left" Margin="700,6,0,0" VerticalAlignment="Top" Height="29" Width="82" Click="LogOut_Click" Background="IndianRed" FontFamily="Georgia"/>
-        <Border BorderBrush="Black" BorderThickness="1" Width="Auto" Height="1" Margin="0,32,0,470" />
 
-        <Menu Width="Auto" Margin="0,40,0,450" Background="Bisque">
-            <MenuItem Click="HomePage_Click">
-                <MenuItem.Icon>
-                    <Image Source="/images/home.png" Margin="0,0,-10,-2" />
-                </MenuItem.Icon>
-            </MenuItem>
-            <MenuItem Click="Profile_Click">
-                <MenuItem.Icon>
-                    <Image Source="/images/user.png" Margin="0,0,-10,-2" />
-                </MenuItem.Icon>
-            </MenuItem>
-            <MenuItem Height="60" Width="70" VerticalAlignment="Center" Padding="10,0,0,0" Header=" " Margin="10,0,0,0" HorizontalAlignment="Stretch" />
-            <MenuItem Height="60" Width="100" VerticalAlignment="Center" Padding="10,0,0,0" Header="Medical record" Foreground="Maroon" Click="MedicalRecord_Click"/>
-            <MenuItem Height="60" Width="120" VerticalAlignment="Center" Padding="10,0,0,0" Header="My appointments" Margin="0,0,0,0" HorizontalAlignment="Stretch" Click="MyAppointments_Click" Foreground="Maroon"/>
-            <MenuItem Height="60" Width="85" VerticalAlignment="Center" Padding="10,0,0,0" Header="My therapy" Foreground="Maroon" Click="MyTherapy_Click"/>
-            <MenuItem Height="60" Width="77" VerticalAlignment="Center" Padding="10,0,0,0" Header="Calendar" Foreground="Maroon" Click="Calendar_Click"/>
-            <MenuItem Height="60" Width="55" VerticalAlignment="Center" Padding="10,0,0,0" Header="Notes" Foreground="Maroon" Click="Notes_Click"/>
-            <MenuItem Height="60" Width="65" VerticalAlignment="Center" Padding="10,0,0,0" Header="Surveys" Foreground="Maroon" Click="Surveys_Click" />
-            <MenuItem Height="60" Width="80" VerticalAlignment="Center" Padding="10,0,0,0" Header=" " Margin="10,0,0,0" HorizontalAlignment="Stretch" />
-            <MenuItem Click="Notification_Click">
-                <MenuItem.Icon>
-                    <Image Source="/images/notifications.png" Margin="0,0,-10,-2" />
-                </MenuItem.Icon>
-            </MenuItem>
-        </Menu>
-        <Label Content="Notes" HorizontalAlignment="Left" Margin="350,80,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Georgia"/>
-        <Border BorderBrush="Black" BorderThickness="1" Width="Auto" Height="1" Margin="0,85,0,364" />
-        <Border BorderBrush="Black" BorderThickness="1" Width="Auto" Height="1" Margin="0,184,0,375" />
+        <Label Content="Notes" HorizontalAlignment="Left" Margin="350,10,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Georgia"/>
+        <Border BorderBrush="Black" BorderThickness="1" Width="Auto" Height="1" Margin="0,50,0,0" VerticalAlignment="Top"/>
 
-        <Label Content="Name:" HorizontalAlignment="Left" Margin="10,134,0,0" VerticalAlignment="Top" FontSize="14"/>
-        <TextBox x:Name="noteName" HorizontalAlignment="Left" Margin="70,134,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="248" Height="27" Background="AntiqueWhite">
+        <Label Content="Name:" HorizontalAlignment="Left" Margin="0,64,0,0" VerticalAlignment="Top" FontSize="14"/>
+        <TextBox x:Name="noteName" HorizontalAlignment="Left" Margin="50,69,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="248" Height="27" Background="AntiqueWhite">
             <TextBox.Text>
                 <Binding Path="NoteName" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
@@ -71,8 +46,8 @@
             </Validation.ErrorTemplate>
 
         </TextBox>
-        <Button Content="Back to all notes" Background="Bisque" HorizontalAlignment="Left" Margin="642,134,0,0" VerticalAlignment="Top" FontSize="14" Height="27" Width="130" Click="BackToAllNotes_Click"/>
-        <Button Content="Save changes" IsDefault="True" Command="{Binding SaveProtocolCommand}" Background="Bisque" HorizontalAlignment="Left" Margin="642,470,0,0" VerticalAlignment="Top" Height="27" Width="130" Click="SaveChanges_Click">
+        <Button Content="Back to all notes" Background="Bisque" HorizontalAlignment="Left" Margin="620,69,0,0" VerticalAlignment="Top" FontSize="14" Height="27" Width="130" Click="BackToAllNotes_Click"/>
+        <Button Content="Save changes" IsDefault="True" Command="{Binding SaveProtocolCommand}" Background="Bisque" HorizontalAlignment="Left" Margin="620,375,0,0" VerticalAlignment="Top" Height="27" Width="130" Click="SaveChanges_Click">
             <Button.Style>
                 <Style TargetType="Button">
                     <Setter Property="IsEnabled" Value="False"/>
@@ -88,7 +63,7 @@
                 </Style>
             </Button.Style>
         </Button>
-        <TextBox x:Name="noteText" HorizontalAlignment="Center" Margin="-110,191,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="538" Height="268" Background="AntiqueWhite">
+        <TextBox x:Name="noteText" HorizontalAlignment="Left" Margin="50,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="538" Height="268" Background="AntiqueWhite">
             <TextBox.Text>
                 <Binding Path="NoteText" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
@@ -113,9 +88,15 @@
                 </ControlTemplate>
             </Validation.ErrorTemplate>
         </TextBox>
-        <TextBlock x:Name="dateText" HorizontalAlignment="Left" Margin="15,470,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="248" Height="27" Background="AntiqueWhite"/>
+        <TextBlock x:Name="dateText" HorizontalAlignment="Left" Margin="47,380,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="248" Height="27" Background="AntiqueWhite"/>
+        <Label Content="Notify me at:" HorizontalAlignment="Left" Margin="415,374,0,0" VerticalAlignment="Top" Foreground="Maroon"/>
+        <TextBlock x:Name="notifyDate" HorizontalAlignment="Left" Margin="500,380,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="115" Height="27" Background="AntiqueWhite" Foreground="Maroon"/>
 
-        <Frame x:Name="frame" NavigationUIVisibility="Hidden" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" Grid.Column="1" />
+        <Label Content="select when you want" HorizontalAlignment="Left" Margin="623,108,0,0" VerticalAlignment="Top" Height="26"/>
+        <Label Content="to be notified:" HorizontalAlignment="Left" Margin="640,125,0,0" VerticalAlignment="Top" Height="26"/>
+        <Calendar x:Name="myCalendar" HorizontalAlignment="Left" Margin="600,154,0,0" VerticalAlignment="Top" Height="170" Width="171"/>
+        <xctk:TimePicker Name="TimePicker" Style="{StaticResource TimePickerStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="600,329,0,0" Width="171" Height="30" FontSize="18" StartTime="5:00" EndTime="20:00" TextAlignment="Center" TimeInterval="0:15" ShowButtonSpinner="False" AllowTextInput="False"/>
+
 
     </Grid>
 </Page>

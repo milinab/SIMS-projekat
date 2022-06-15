@@ -1,0 +1,34 @@
+﻿<Page x:Class="Hospital.View.PatientView.AppointmentInfo"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Hospital.View.PatientView"
+      mc:Ignorable="d" 
+      d:DesignHeight="560" d:DesignWidth="800" Background="AntiqueWhite"
+      Title="AppointmentInfo">
+
+    <Grid Margin="0,0,0,0">
+
+        <Label Content="Appointment information" HorizontalAlignment="Left" Margin="285,10,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Georgia"/>
+        <Border BorderBrush="Black" BorderThickness="1" Width="Auto" Height="1" Margin="0,50,0,0" VerticalAlignment="Top"/>
+
+        <Label Content="Appointment date:" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="40,70,0,0" Background="Bisque" Width="140" Padding="10" Height="37"/>
+        <TextBlock x:Name="appDate" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="180,70,0,0" TextWrapping="Wrap" Height="37" Width="250" Background="Bisque" Padding="10"/>
+
+        <Label Content="Doctor:" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="430,70,0,0" Background="Bisque" Width="130" Padding="10" Height="37"/>
+        <TextBlock x:Name="appDoctor" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="560,70,0,0" TextWrapping="Wrap" Height="37" Width="200" Background="Bisque" Padding="10"/>
+
+        <Label Content="Diagnosis:" HorizontalAlignment="Left" Margin="40,107,0,98" Padding="10"/>
+        <TextBlock x:Name="diagnosis" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="40,139,0,0" TextWrapping="Wrap" Height="86" Width="715" Padding="10" Background="Beige"/>
+
+        <Label Content="Prescribed medicine:" HorizontalAlignment="Left" Margin="45,227,0,98"/>
+        <TextBlock x:Name="prescribedMedicine" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="184,223,0,0" TextWrapping="Wrap" Height="30" Width="200" Padding="10"/>
+
+        <Label Content="Therapy:" HorizontalAlignment="Left" Margin="40,249,0,96" Padding="10"/>
+        <TextBlock x:Name="therapy" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="40,281,0,0" TextWrapping="Wrap" Height="100" Width="715" Background="Beige" Padding="10"/>
+
+        <Button Content="Back to past appointments" HorizontalAlignment="Left" Margin="605,389,0,0" VerticalAlignment="Top" Height="26" Width="151" Click="PastAppointments_Click" Background="Bisque" />
+
+    </Grid>
+</Page>

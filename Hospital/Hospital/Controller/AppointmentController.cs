@@ -1,5 +1,5 @@
 using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using Hospital.Model;
 using Hospital.Service;
 
@@ -35,29 +35,39 @@ namespace Hospital.Controller
             _service.Delete(id);
         }
 
-        public ObservableCollection<Appointment> Read()
+        public List<Appointment> Read()
         {
             return _service.Read();
         }
 
-        public ObservableCollection<Appointment> ReadPastAppointments()
+        public List<Appointment> ReadPastAppointments(int patientId)
         {
-            return _service.ReadPastAppointments();
+            return _service.ReadPastAppointments(patientId);
         }
-        
 
-        public ObservableCollection<Appointment> ReadByDoctorId(int doctorId)
+        public List<Appointment> ReadByDoctorId(int doctorId)
         {
             return _service.ReadByDoctorId(doctorId);
         }
-        public ObservableCollection<Appointment> ReadByDateAndNotDoctor(int doctorId, DateTime date)
+        public List<Appointment> ReadByDateAndNotDoctor(int doctorId, DateTime date)
         {
             return _service.ReadByDateAndNotDoctor(doctorId, date);
         }
 
-        public ObservableCollection<Appointment> ReadFutureAppointments()
+        public List<Appointment> ReadFutureAppointments(int patientId)
         {
-            return _service.ReadFutureAppointments();
+            return _service.ReadFutureAppointments(patientId);
+        }
+
+        public List<Appointment> ReadAllAppointments(int patientId)
+        {
+            return _service.ReadAllAppointments(patientId);
+        }
+
+        public List<Appointment> FindAvailableAppointments(Doctor selectedDoctor, DateTime _date, List<Appointment> DoctorsAppointments,
+            List<TimeSpan> hospitalWorkingHours, List<TimeSpan> hospitalWorkingHoursListForCalculation, DateTime date)
+        {
+            return _service.FindAvailableAppointments(selectedDoctor, _date, DoctorsAppointments, hospitalWorkingHours, hospitalWorkingHoursListForCalculation, date);
         }
     }
 }

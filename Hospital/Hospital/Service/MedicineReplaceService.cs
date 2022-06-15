@@ -6,20 +6,21 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Hospital.Repository.MedicineReplaceRepo;
 
 namespace Hospital.Service
 {
     public class MedicineReplaceService
     {
         private int _id;
-        private readonly MedicineReplaceRepository _repository;
+        private readonly IMedicineReplaceRepository _repository;
 
-        public MedicineReplaceService(MedicineReplaceRepository medicineReplaceRepository)
+        public MedicineReplaceService(IMedicineReplaceRepository medicineReplaceRepository)
         {
             _repository = medicineReplaceRepository;
-            ObservableCollection<ReplacementMedicine> medicineReplace = Read();
+            List<ReplacementMedicine> medicineReplace = Read();
             if(medicineReplace != null)
-                _id = int.Parse(medicineReplace.Last().Id);
+                _id = medicineReplace.Last().Id;
             else
                 _id = 0;
 
@@ -31,7 +32,7 @@ namespace Hospital.Service
 
         public void Create(ReplacementMedicine newMedicineReplace)
         {
-            newMedicineReplace.Id = GenerateId().ToString();
+            newMedicineReplace.Id = GenerateId();
             _repository.Create(newMedicineReplace);
         }
         public void Delete(int id)
@@ -42,7 +43,7 @@ namespace Hospital.Service
         {
             _repository.Edit(editMedicineReplace);
         }
-        public ObservableCollection<ReplacementMedicine>Read()
+        public List<ReplacementMedicine>Read()
         {
             return _repository.Read();
         }

@@ -19,6 +19,7 @@ namespace Hospital
     {
         private App _app;
         private readonly object _content;
+        public static User LoggedUser;
 
         public LogIn()
         {
@@ -41,6 +42,8 @@ namespace Hospital
                 InvalidFieldsLabel.Visibility = Visibility.Visible;
                 return;
             }
+
+            LoggedUser = _app._userController.GetLoggedUser(username, password);
             OpenTypeWindow(type, username);
         }
 
@@ -92,7 +95,7 @@ namespace Hospital
                     Patient p = _app._patientController.ReadByUsername(username);
                     if (PatientCheck(p))
                     {
-                        PatientWindow patientWindow = new PatientWindow(p);
+                        PatientWindow patientWindow = PatientWindow.getInstance();
                         patientWindow.Show();
                         Close();
                         return null;

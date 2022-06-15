@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Hospital.Model;
 using Hospital.Service;
 
@@ -33,7 +34,7 @@ namespace Hospital.Controller
             _service.Delete(id);
         }
 
-        public ObservableCollection<User> ReadAll()
+        public List<User> ReadAll()
         {
             return _service.Read();
         }
@@ -45,6 +46,11 @@ namespace Hospital.Controller
         public (bool isValid, string type) IsLogInValid(string username, string password)
         {
             return _service.IsLogInValid(username, password);
+        }
+
+        public User GetLoggedUser(string username, string password)
+        {
+            return _service.GetLoggedUser(username, password);
         }
     }
 }

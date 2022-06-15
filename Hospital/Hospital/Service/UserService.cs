@@ -1,19 +1,21 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using Hospital.Model;
 using Hospital.Repository;
+using Hospital.Repository.UserRepo;
 
 namespace Hospital.Service
 {
     public class UserService
     {
         private int _id;
-        private readonly UserRepository _repository;
+        private readonly IUserRepository _repository;
 
-        public UserService(UserRepository userRepository)
+        public UserService(IUserRepository userRepository)
         {
             _repository = userRepository;
-            ObservableCollection<User> users = Read();
+            List<User> users = Read();
             if (users.Count == 0)
             {
                 _id = 0;
@@ -45,7 +47,7 @@ namespace Hospital.Service
             _repository.Delete(id);
         }
 
-        public ObservableCollection<User> Read()
+        public List<User> Read()
         {
             return _repository.Read();
         }
@@ -69,7 +71,7 @@ namespace Hospital.Service
 
         public (bool isValid, string type) IsLogInValid(string username, string password)
         {
-            ObservableCollection<User> users = Read();
+            List<User> users = Read();
             foreach (User user in users)
             {
                 if (user.Username.Equals(username) && user.Password.Equals(password))
@@ -78,6 +80,12 @@ namespace Hospital.Service
                 }
             }
             return (false, "notype");
-        } 
+        }
+
+        public User GetLoggedUser(string username, string password)
+        {
+            List<User> users = Read();
+            return users.FirstOrDefault(user => user.Username.Equals(username) && user.Password.Equals(password));
+        }
     }
 }

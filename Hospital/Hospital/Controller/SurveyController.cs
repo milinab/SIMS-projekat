@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Hospital.Model;
 using Hospital.Service;
 
@@ -33,12 +34,12 @@ namespace Hospital.Controller
             _service.Delete(id);
         }
 
-        public ObservableCollection<Survey> Read()
+        public List<Survey> Read()
         {
             return _service.Read();
         }
 
-        public ObservableCollection<Survey> GetAllByType()
+        public List<Survey> GetAllByType()
         {
             return _service.Read();
         }

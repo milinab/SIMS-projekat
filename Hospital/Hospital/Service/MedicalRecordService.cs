@@ -1,19 +1,19 @@
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Linq;
 using Hospital.Model;
-using Hospital.Repository;
+using Hospital.Repository.MedicalRecordRepo;
 
 namespace Hospital.Service
 {
     public class MedicalRecordService
     {
         private int _id;
-        private readonly MedicalRecordRepository _repository;
+        private readonly IMedicalRecordRepository _repository;
 
-        public MedicalRecordService(MedicalRecordRepository medicalRecordRepository)
+        public MedicalRecordService(IMedicalRecordRepository medicalRecordRepository)
         {
             _repository = medicalRecordRepository;
-            ObservableCollection<MedicalRecord> medicalRecords = Read();
+            List<MedicalRecord> medicalRecords = Read();
             if (medicalRecords.Count == 0)
             {
                 _id = 0;
@@ -45,7 +45,7 @@ namespace Hospital.Service
             _repository.Delete(id);
         }
       
-        public ObservableCollection<MedicalRecord> Read()
+        public List<MedicalRecord> Read()
         {
             return _repository.Read();
         }

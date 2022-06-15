@@ -1,19 +1,19 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Hospital.Model;
-using Hospital.Repository;
+using Hospital.Repository.NoteRepo;
 
 namespace Hospital.Service
 {
     public class NoteService
     {
         private int _id;
-        private readonly NoteRepository _repository;
+        private readonly INoteRepository _repository;
 
-        public NoteService(NoteRepository noteRepository)
+        public NoteService(INoteRepository noteRepository)
         {
             _repository = noteRepository;
-            ObservableCollection<Note> notes = Read();
+            List<Note> notes = Read();
             if (notes.Count == 0)
             {
                 _id = 0;
@@ -45,7 +45,7 @@ namespace Hospital.Service
             _repository.Delete(id);
         }
 
-        public ObservableCollection<Note> Read()
+        public List<Note> Read()
         {
             return _repository.Read();
         }
@@ -53,6 +53,11 @@ namespace Hospital.Service
         private int GenerateId()
         {
             return ++_id;
+        }
+
+        public List<Note> ReadByPatientId(int patientId)
+        {
+            return _repository.ReadByPatientId(patientId);
         }
     }
 }
