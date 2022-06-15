@@ -21,6 +21,10 @@ namespace Hospital.View.DoctorView.Checkup
 
         private void Confirm_OnClick(object sender, RoutedEventArgs e)
         {
+            if (SpecializationListView.SelectedItem == null || SpecialistListView.SelectedItem == null || ReasonTextBox.Text.Length == 0)
+            {
+                return;
+            }
             var fullName = SpecialistListView.SelectedItem.ToString();
             var parts = fullName.Split(' ');
             var doctors = _app._doctorController.Read();

@@ -271,6 +271,12 @@
     <Compile Include="View\DoctorView\Account\AccountPage.xaml.cs">
       <DependentUpon>AccountPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\DoctorView\Account\ChangePasswordPage.xaml.cs">
+      <DependentUpon>ChangePasswordPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DoctorView\Account\TutorialPage.xaml.cs">
+      <DependentUpon>TutorialPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\DoctorView\Appointments\Add.xaml.cs">
       <DependentUpon>Add.xaml</DependentUpon>
     </Compile>
@@ -303,7 +309,9 @@
     </Compile>
     <Compile Include="View\DoctorView\Commands\AddAppointment\ConfirmCommand.cs" />
     <Compile Include="View\DoctorView\Commands\CancelCommand.cs" />
+    <Compile Include="View\DoctorView\Commands\ChangePasswordCommand.cs" />
     <Compile Include="View\DoctorView\Commands\CommandBase.cs" />
+    <Compile Include="View\DoctorView\Commands\TutorialCommand.cs" />
     <Compile Include="View\DoctorView\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
@@ -332,9 +340,12 @@
     <Compile Include="View\DoctorView\VerifyMedicineUC.xaml.cs">
       <DependentUpon>VerifyMedicineUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\DoctorView\ViewModel\AccountPageViewModel.cs" />
     <Compile Include="View\DoctorView\ViewModel\AddAppointmentViewModel.cs" />
     <Compile Include="View\DoctorView\ViewModel\AppointmentsPageViewModel.cs" />
     <Compile Include="View\DoctorView\ViewModel\AppointmentViewModel.cs" />
+    <Compile Include="View\DoctorView\ViewModel\PatientsViewModel.cs" />
+    <Compile Include="View\DoctorView\ViewModel\PatientViewModel.cs" />
     <Compile Include="View\DoctorView\ViewModel\ViewModelBase.cs" />
     <Compile Include="View\ManagerView\AddMedicine.xaml.cs">
       <DependentUpon>AddMedicine.xaml</DependentUpon>
@@ -490,6 +501,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="View\DoctorView\Account\AccountPage.xaml" />
+    <Page Include="View\DoctorView\Account\ChangePasswordPage.xaml" />
+    <Page Include="View\DoctorView\Account\TutorialPage.xaml" />
     <Page Include="View\DoctorView\Appointments\Add.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -827,7 +840,17 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="View\DoctorView\Resources\Reports" />
+    <Folder Include="View\DoctorView\Resources\Reports\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\DoctorView\Resources\Images\user.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\DoctorView\Resources\tutorial.mkv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

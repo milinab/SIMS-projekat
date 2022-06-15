@@ -1,0 +1,41 @@
+<Page x:Class="Hospital.View.DoctorView.Account.TutorialPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:Hospital.View.DoctorView.Account"
+      mc:Ignorable="d"
+      d:DesignHeight="768" d:DesignWidth="700"
+      Title="TutorialPage">
+    <Page.Resources>
+        <ResourceDictionary Source="../Resources/DoctorResourceDictionary.xaml"/>
+    </Page.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Border 
+                Style="{StaticResource HeaderBorderStyle}"/>
+            <Label 
+                Style="{StaticResource HeaderLabelStyle}" 
+                Content="Change password"/>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <MediaElement Source="../Resources/tutorial.mkv"/>
+        </Grid>
+
+        <Grid Grid.Row="2">
+            <Button 
+                Content="Back" 
+                Style="{StaticResource ConfirmButton}"
+                HorizontalAlignment="Left"
+                Width="700" 
+                Height="50" 
+                Click="Back_OnClick"/>
+        </Grid>
+    </Grid>
+</Page>

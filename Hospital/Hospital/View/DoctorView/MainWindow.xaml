@@ -31,8 +31,8 @@
                 Margin="0 -8 0 0"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Top"
-                Height="200"
-                Width="200"
+                Height="180"
+                Width="180"
                 Source="Resources/Images/logo.png">
             </Image>
             

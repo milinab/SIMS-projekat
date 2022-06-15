@@ -102,8 +102,16 @@
                     <ScaleTransform ScaleX="2" ScaleY="2"/>
                 </CheckBox.LayoutTransform>
             </CheckBox>
-            
-            <Button 
+
+            <TextBlock
+                Name="ErrorTextBlock"
+                VerticalAlignment="Bottom"
+                HorizontalAlignment="Center"
+                Margin="0 0 0 100"
+                Foreground="#CF6679"
+                TextWrapping="Wrap"/>
+
+                <Button 
                 Content="Confirm" 
                 Style="{StaticResource ConfirmButton}"
                 HorizontalAlignment="Left"  

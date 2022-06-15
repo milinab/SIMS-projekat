@@ -28,13 +28,15 @@
                 Content="Confirm" 
                 HorizontalAlignment="Left"
                 Width="350" 
-                Height="50" />
+                Height="50" 
+                Click="Confirm_OnClick"/>
             <Button 
                 Content="Cancel" 
                 Style="{StaticResource CancelButton}"
                 HorizontalAlignment="Right"
                 Width="350" 
-                Height="50" />
+                Height="50" 
+                Click="Cancel_OnClick"/>
         </Grid>
     </Grid>
 </UserControl>

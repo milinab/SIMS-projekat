@@ -5,35 +5,38 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:Hospital.View.DoctorView.Patients"
       xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" x:Class="Hospital.View.DoctorView.Patients.PatientsPage"
+      xmlns:viewModel="clr-namespace:Hospital.View.DoctorView.ViewModel"
       mc:Ignorable="d"
       d:DesignHeight="768" d:DesignWidth="700"
       Title="PatientsPage">
     <Page.Resources>
         <ResourceDictionary Source="../Resources/DoctorResourceDictionary.xaml"/>
     </Page.Resources>
+    <Page.DataContext>
+        <viewModel:PatientsViewModel/>
+    </Page.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="100"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
-            <Border 
-                Style="{StaticResource BorderStyle}"
-                Width="550" 
-                Height="34.5"
-                VerticalAlignment="Bottom"
-                BorderThickness="0.3"
-                BorderBrush="#42A5F5">
-                <xctk:WatermarkTextBox
-                    Width="550"
-                    Height="34.5"
-                    Watermark="Search..."
-                    FontSize="20"
-                    Background="Transparent"
-                    BorderThickness="0"/>
-            </Border>
-        </Grid>
+        <!-- <Grid Grid.Row="0"> -->
+        <!--     <Border  -->
+        <!--         Style="{StaticResource BorderStyle}" -->
+        <!--         Width="550"  -->
+        <!--         Height="34.5" -->
+        <!--         VerticalAlignment="Bottom" -->
+        <!--         BorderThickness="0.3" -->
+        <!--         BorderBrush="#42A5F5"> -->
+        <!--         <xctk:WatermarkTextBox -->
+        <!--             Width="550" -->
+        <!--             Height="34.5" -->
+        <!--             Watermark="Search..." -->
+        <!--             FontSize="20" -->
+        <!--             Background="Transparent" -->
+        <!--             BorderThickness="0"/> -->
+        <!--     </Border> -->
+        <!-- </Grid> -->
         <Grid Grid.Row="1">
             <Border 
                 Style="{StaticResource BorderStyle}"
@@ -41,6 +44,8 @@
                 Height="550"
                 VerticalAlignment="Top">
                 <DataGrid
+                    ItemsSource="{Binding Patients}"
+                    RowStyle="{StaticResource PatientsDataGridRowStyle}"
                     CanUserAddRows="False"
                     Width="550"
                     Height="550"
@@ -55,34 +60,34 @@
                     <DataGrid.Columns>
                         <DataGridTextColumn 
                             Header="Patient"
-                            Width="Auto"/>
+                            Width="*"
+                            Binding="{Binding Patient}"/>
                         <DataGridTextColumn 
                             Header="Age"
-                            Width="Auto"/>
+                            Width="Auto"
+                            Binding="{Binding Age}"/>
                         <DataGridTextColumn 
                             Header="Health insurance ID"
                             Width="Auto"
-                            CanUserSort="False"/>
+                            CanUserSort="False"
+                            Binding="{Binding HealthInsuranceId}"/>
                         <DataGridTextColumn 
                             Header="Gender"
-                            Width="Auto"/>
+                            Width="Auto"
+                            Binding="{Binding Gender}"/>
                         <DataGridTextColumn 
                             Header="Blood type"
                             Width="Auto"
-                            CanUserSort="False"/>
+                            CanUserSort="False"
+                            Binding="{Binding BloodType}"/>
                         <DataGridTextColumn 
                             Header="Phone"
-                            Width="Auto"
-                            CanUserSort="False"/>
+                            Width="0.8*"
+                            CanUserSort="False"
+                            Binding="{Binding Phone}"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </Border>
-        </Grid>
-        <Grid Grid.Row="2">
-            <Button 
-                Style="{StaticResource ConfirmButton}"
-                Content="Patient relocation"
-                Height="50"/>
         </Grid>
     </Grid>
 </Page>

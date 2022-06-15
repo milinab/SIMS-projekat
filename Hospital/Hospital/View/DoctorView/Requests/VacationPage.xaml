@@ -33,6 +33,7 @@
                 VerticalAlignment="Top"
                 Margin="0 100 0 0">
                 <DataGrid
+                    RowStyle="{StaticResource PatientsDataGridRowStyle}"
                     Name="VacationDataGrid"
                     CanUserAddRows="False"
                     AutoGenerateColumns="False"
