@@ -38,6 +38,7 @@ namespace Hospital.View.ManagerView
             validationType.Visibility = Visibility.Hidden;
             validationName.Visibility = Visibility.Visible;
             validationIngredients.Visibility = Visibility.Hidden;
+            validationQuantityInt.Visibility = Visibility.Hidden;
         }
 
         private void TypeValidation()
@@ -46,6 +47,7 @@ namespace Hospital.View.ManagerView
             validationName.Visibility = Visibility.Hidden;
             validationType.Visibility = Visibility.Visible;
             validationIngredients.Visibility = Visibility.Hidden;
+            validationQuantityInt.Visibility = Visibility.Hidden;
         }
 
         private void QuantityValidation()
@@ -54,6 +56,7 @@ namespace Hospital.View.ManagerView
             validationType.Visibility = Visibility.Hidden;
             validationQuantity.Visibility = Visibility.Visible;
             validationIngredients.Visibility = Visibility.Hidden;
+            validationQuantityInt.Visibility = Visibility.Hidden;
         }
 
         private void IngredientsValidation()
@@ -62,6 +65,7 @@ namespace Hospital.View.ManagerView
             validationName.Visibility = Visibility.Hidden;
             validationType.Visibility = Visibility.Hidden;
             validationQuantity.Visibility = Visibility.Hidden;
+            validationQuantityInt.Visibility = Visibility.Hidden;
 
         }
 
@@ -69,9 +73,19 @@ namespace Hospital.View.ManagerView
         {
             validationName.Visibility = Visibility.Hidden;
             validationQuantity.Visibility = Visibility.Hidden;
+            validationQuantityInt.Visibility = Visibility.Hidden;
             validationType.Visibility = Visibility.Hidden;
             validationIngredients.Visibility= Visibility.Hidden;
         }
+        private void QuantityIntValidationMessages()
+        {
+            validationName.Visibility = Visibility.Hidden;
+            validationQuantity.Visibility = Visibility.Hidden;
+            validationQuantityInt.Visibility = Visibility.Visible;
+            validationType.Visibility = Visibility.Hidden;
+            validationIngredients.Visibility = Visibility.Hidden;
+        }
+
 
         private void ReopenMedicineWindow()
         {
@@ -116,12 +130,24 @@ namespace Hospital.View.ManagerView
                 return;
             }
             HideValidationMessages();
+
+            isNumber = Int32.TryParse(quantityText.Text, out outputValue);
+
+            if (!isNumber)
+            {
+                QuantityIntValidationMessages();
+                return;
+            }
+
             CreateMedicine();
             DialogResult = true;
             ReopenMedicineWindow();
         }
+        int outputValue = 0;
+        bool isNumber = false;
 
-        private void CancelClick(object sender, RoutedEventArgs e)
+       
+    private void CancelClick(object sender, RoutedEventArgs e)
         {
             MedicineWindow medicineWindow = new MedicineWindow(_app._medicineController);
             medicineWindow.Show();

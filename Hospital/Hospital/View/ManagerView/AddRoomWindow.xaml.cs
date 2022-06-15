@@ -1,6 +1,9 @@
 ﻿using Hospital.Controller;
 using Hospital.Model;
+using Hospital.View.ManagerView.ViewModel;
+using System;
 using System.Collections.ObjectModel;
+using System.Text.RegularExpressions;
 using System.Windows;
 
 namespace Hospital.View.ManagerView
@@ -10,6 +13,26 @@ namespace Hospital.View.ManagerView
     /// </summary>
     public partial class AddRoomWindow : Window
     {
+        private App _app;
+        private Room room;
+        private RoomController _roomController;
+        public AddRoomWindow(ManagerWindow managerWindow, RoomController roomController)
+        {
+            _app = Application.Current as App;
+            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            _roomController = roomController;
+            room = new Room();
+            InitializeComponent();
+            var viewModel = new AddRoomViewModel(_app._roomController);
+            DataContext = viewModel;
+            viewModel.OnRequestClose += (s, e) => Close();
+
+        }
+        
+
+
+        /*
+        
         private RoomController _roomController;
         private Room Room;
         private App _app;
@@ -28,7 +51,7 @@ namespace Hospital.View.ManagerView
             Room newRoom = new Room
             {
                 Name = idText.Text,
-                Floor = floorText.Text,
+                Floor =floorText.Text,
                 Type = typeComboBox.Text
             };
 
@@ -36,6 +59,7 @@ namespace Hospital.View.ManagerView
             {
                 validationName.Visibility = Visibility.Visible;
                 validationFloor.Visibility = Visibility.Hidden;
+                validationFloorInt.Visibility = Visibility.Hidden;
                 return;
             }
 
@@ -43,6 +67,20 @@ namespace Hospital.View.ManagerView
             {
                 validationFloor.Visibility = Visibility.Visible;
                 validationName.Visibility = Visibility.Hidden;
+                validationFloorInt.Visibility = Visibility.Hidden;
+                return;
+            }
+
+            int outputValue = 0;
+            bool isNumber = false;
+
+            isNumber = Int32.TryParse(floorText.Text, out outputValue);
+
+            if(!isNumber)
+            {
+                validationFloor.Visibility = Visibility.Hidden;
+                validationName.Visibility = Visibility.Hidden;
+                validationFloorInt.Visibility = Visibility.Visible;
                 return;
             }
 
@@ -52,8 +90,8 @@ namespace Hospital.View.ManagerView
             ManagerWindow managerWindow = new ManagerWindow(_app._roomController);
             managerWindow.Show();
             Close();
-        }
-
+        }*/
+        
         private void CancelRoomClick(object sender, RoutedEventArgs e)
             {
             ManagerWindow managerWindow = new ManagerWindow(_app._roomController);
@@ -61,7 +99,7 @@ namespace Hospital.View.ManagerView
             Close();
             }
 
-
+        
         public AddRoomWindow()
         {
             InitializeComponent();
@@ -81,7 +119,6 @@ namespace Hospital.View.ManagerView
         }
         private void RoomClick(object sender, RoutedEventArgs e)
         {
-
             View.ManagerView.ManagerWindow roomWindow = new View.ManagerView.ManagerWindow(_app._roomController);
             roomWindow.Show();
             Close();
@@ -101,7 +138,7 @@ namespace Hospital.View.ManagerView
         }
         private void MedicineClick(object sender, RoutedEventArgs e)
         {
-            MedicineWindow medicine = new MedicineWindow();
+            View.ManagerView.MedicineWindow medicine = new View.ManagerView.MedicineWindow(_app._medicineController);
             medicine.Show();
             Close();
         }
@@ -117,5 +154,6 @@ namespace Hospital.View.ManagerView
             surveySelect.Show();
             Close();
         }
+
     }
 }

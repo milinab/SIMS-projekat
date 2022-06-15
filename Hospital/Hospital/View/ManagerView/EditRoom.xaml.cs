@@ -21,6 +21,23 @@ namespace Hospital.View.ManagerView
     /// </summary>
     public partial class EditRoom : Page
     {
+        /*
+        private App _app;
+        private Room room;
+        private RoomController _roomController;
+        private readonly ManagerWindow _managerWindow;
+        private readonly EquipmentWindow _equipmentWindow;
+        private readonly RoomOccupancy _roomOccupancy;
+        private readonly ManagerHomeWindow _managerHomeWindow;
+        public EditRoom(Room room, ManagerWindow managerWindow)
+        {
+            _managerWindow = managerWindow;
+            InitializeComponent();
+            
+        }
+        */
+
+        
         private int _id;
         private string _name;
         private int _floor;
@@ -51,6 +68,7 @@ namespace Hospital.View.ManagerView
             {
                 validationName.Visibility = Visibility.Visible;
                 validationFloor.Visibility = Visibility.Hidden;
+                validationFloorInt.Visibility = Visibility.Hidden;
                 return;
             }
 
@@ -58,9 +76,22 @@ namespace Hospital.View.ManagerView
             {
                 validationFloor.Visibility = Visibility.Visible;
                 validationName.Visibility = Visibility.Hidden;
+                validationFloorInt.Visibility = Visibility.Hidden;
                 return;
             }
 
+            int outputValue = 0;
+            bool isNumber = false;
+
+            isNumber = Int32.TryParse(floorText.Text, out outputValue);
+
+            if (!isNumber)
+            {
+                validationFloor.Visibility = Visibility.Hidden;
+                validationName.Visibility = Visibility.Hidden;
+                validationFloorInt.Visibility = Visibility.Visible;
+                return;
+            }
 
             Room room = new Room(nameText.Text, floorText.Text, typeComboBox.Text, _id);
             _app._roomController.Edit(room);

@@ -55,24 +55,17 @@ namespace Hospital.View.ManagerView
         private void AddRoomsClick(object sender, RoutedEventArgs e)
         {
             View.ManagerView.AddRoomWindow addRoomWindow = new View.ManagerView.AddRoomWindow(this, _roomController);
-            addRoomWindow.ShowDialog();
             Close();
-
+            addRoomWindow.ShowDialog();
 
         }
 
 
         private void DeleteRoom(object sender, RoutedEventArgs e)
         {
-            if (dataGridRooms.SelectedItem != null)
-            {
                 Room room = dataGridRooms.SelectedValue as Room;
                 _roomController.Delete(room.Id);
-            }
-            else
-            {
-                MessageBox.Show("You must select a row first", "Warning");
-            }
+                refresh();
         }
         public void BackToManagerWindow()
         {

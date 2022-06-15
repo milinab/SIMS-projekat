@@ -66,18 +66,19 @@ namespace Hospital.View.ManagerView
 
             bool nesto = false;
 
-            foreach (Appointment appointment1 in appointments.ToList())
+            foreach (Appointment appointment1 in appointments)
             {
                 if (DateTime.Compare(appointment1.Date, appointment.Date) == 0)
                 {
                     if (appointment.RoomId == appointment1.RoomId)
                     {
-                        MessageBox.Show("Ne moze!");
+                        validationDateRoom.Visibility = Visibility.Visible;
                         nesto = true;
                     }
                 }
             }
-            if(nesto == false)
+
+            if (nesto == false)
             {
 
                 if (roomComboBox.Text.Equals(""))
@@ -87,12 +88,11 @@ namespace Hospital.View.ManagerView
                     return;
                 }
 
-
                 _appointmentController.Create(appointment);
                 _roomOccupancy.BackToRoomOccupancy();
             }
 
-            _roomOccupancy.BackToRoomOccupancy();
+           // _roomOccupancy.BackToRoomOccupancy();
         }
 
         private void CancelRenovateClick(object sender, RoutedEventArgs e)

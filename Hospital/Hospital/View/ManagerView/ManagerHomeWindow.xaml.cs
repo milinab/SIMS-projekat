@@ -1,4 +1,5 @@
 ﻿using Hospital.Controller;
+using Hospital.View.ManagerView.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,8 +28,53 @@ namespace Hospital.View.ManagerView
             _app = Application.Current as App;
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
-            _content = Content;
+            var viewModel = new ManagerHomeWindowViewModel();
+            DataContext = viewModel;
+           // _content = Content;
         }
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         private void EquipmentClick(object sender, RoutedEventArgs e)
         {

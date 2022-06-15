@@ -25,9 +25,12 @@ namespace Hospital.View.ManagerView
             {
                 PdfPage page = doc.Pages.Add();
                 PdfGraphics graphics = page.Graphics;
-                PdfFont font = new PdfStandardFont(PdfFontFamily.Helvetica, 12);
-                string textPDF = "Hospital equipment report";
-                graphics.DrawString(textPDF, font, PdfBrushes.Black, new PointF(0, 0));
+                PdfFont font = new PdfStandardFont(PdfFontFamily.Helvetica, 12, PdfFontStyle.Bold);
+                string textPDF = "Hospital equipment report:";
+                string textPDF2 = "Zdravo Bolnica";
+                graphics.DrawString(textPDF2, font, PdfBrushes.Black, new PointF(0, 0));
+                graphics.DrawString(textPDF, font, PdfBrushes.Black, new PointF(0, 170));
+                graphics.DrawLine(new PdfPen(color: Color.Black), new PointF(0, 30), new PointF(600, 30));
                 PdfLightTable pdfLightTable = new PdfLightTable();
                 DataTable table = new DataTable();
                 table.Columns.Add("Id");
@@ -46,8 +49,8 @@ namespace Hospital.View.ManagerView
                 }
                 pdfLightTable.DataSource = table;
                 pdfLightTable.Style.ShowHeader = true;
-                pdfLightTable.Draw(page, new PointF(0, 100));
-                doc.Save(@"C:\Users\Nemanja\Desktop\SIMS\SIMS-projekat\Hospital\Hospital\Report\ManagerReport.pdf");
+                pdfLightTable.Draw(page, new PointF(0, 200));
+                doc.Save(@"C:\Users\Nemanja\Desktop\SIMS\SIMS-projekat\Hospital\Hospital\Report\managerReport.pdf");
                 doc.Close(true);
             }
         }

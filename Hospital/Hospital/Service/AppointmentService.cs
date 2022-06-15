@@ -45,7 +45,7 @@ namespace Hospital.Service
         private static bool ValidateAppointmentOverlap(Appointment newAppointment, Appointment appointment)
         {
             if (!appointment.Overlaps(newAppointment)) return true;
-            MessageBox.Show("There is already an appointment at the selected time!");
+           // MessageBox.Show("There is already an appointment at the selected time!");
             return false;
 
         }

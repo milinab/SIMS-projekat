@@ -26,7 +26,7 @@
                 </TransformGroup>
             </DataGrid.RenderTransform>
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Number" Binding="{Binding Name}" Foreground="Black">
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Foreground="Black">
                     <DataGridTextColumn.CellStyle>
                         <Style TargetType="DataGridCell">
                             <Setter Property="Background" 
@@ -34,7 +34,7 @@
                         </Style>
                     </DataGridTextColumn.CellStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="Number" Binding="{Binding Number}" Foreground="Black">
+                <DataGridTextColumn Header="Quantity" Binding="{Binding Number}" Foreground="Black">
                     <DataGridTextColumn.CellStyle>
                         <Style TargetType="DataGridCell">
                             <Setter Property="Background" 

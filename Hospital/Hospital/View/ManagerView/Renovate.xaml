@@ -91,5 +91,6 @@
         <TextBlock Text="Sign out" FontSize="12" Margin="727,19,0,394" MouseLeftButtonUp="SignOutClick" Cursor="Hand" RenderTransformOrigin="0.512,0.042" HorizontalAlignment="Left" Width="84"/>
         <Label Name="validationRoom" Content="Please choose room" FontSize="12" Foreground="Red" Margin="331,107,159,289" Visibility="Hidden"/>
         <Label Name="validationDate" Content="Please select date" FontSize="12" Foreground="Red" Margin="329,216,161,180" Visibility="Hidden"/>
+        <Label Name="validationDateRoom" Content="The room is occupied that day!" FontSize="12" Foreground="Red" Margin="333,99,157,297" Visibility="Hidden"/>
     </Grid>
 </Page>

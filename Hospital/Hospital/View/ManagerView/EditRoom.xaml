@@ -21,7 +21,7 @@
             <ComboBoxItem>Conference</ComboBoxItem>
             <ComboBoxItem>Storage</ComboBoxItem>
         </ComboBox>
-        <Button Content="Confirm" HorizontalAlignment="Left" Margin="505,379,0,0" VerticalAlignment="Top" Width="100" Height="30" Click="EditRoomClick"/>
+        <Button Content="Confirm" HorizontalAlignment="Left" Margin="507,379,0,0" VerticalAlignment="Top" Width="100" Height="30" Click="EditRoomClick" />
         <Button Content="Cancel" HorizontalAlignment="Left" Margin="320,379,0,0" VerticalAlignment="Top" Width="100" Height="30" Click="CancelRoomClick"/>
         <Line X1="50" Y1="50" X2="1000" Y2="50" Stroke="White"  StrokeThickness="3" Margin="-50,18,1,318" />
         <DockPanel Margin="0,-10,0,373">
@@ -60,5 +60,6 @@
         <TextBlock Text="Sign out" FontSize="12" Margin="727,19,0,394" MouseLeftButtonUp="SignOutClick" Cursor="Hand" RenderTransformOrigin="0.512,0.042" HorizontalAlignment="Left" Width="84"/>
         <Label Name="validationName" Content="Please enter rooms name" FontSize="12" Foreground="Red" Margin="315,95,175,301" Visibility="Hidden"/>
         <Label Name="validationFloor" Content="Please enter rooms floor" FontSize="12" Foreground="Red" Margin="315,177,175,219" Visibility="Hidden"/>
+        <Label Name="validationFloorInt" Content="Floor has to be number" FontSize="12" Foreground="Red" Margin="315,177,175,219" Visibility="Hidden"/>
     </Grid>
 </Page>

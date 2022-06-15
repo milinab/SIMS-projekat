@@ -11,17 +11,14 @@
           >
 
         <Label Content="Name:" FontSize="20" Margin="200,102,492,296" ></Label>
-        <TextBox x:Name="idText" TextWrapping="Wrap" Margin="320,111,180,289" />
+        <TextBox x:Name="idText" TextWrapping="Wrap" Margin="320,111,180,289" Text="{Binding RoomName}"/>
         <Label Content="Floor:" FontSize="20" Margin="207,196,490,205" ></Label>
         <Label Content="Choose type:" FontSize="20" Margin="142,285,513,112" ></Label>
-        <ComboBox x:Name="typeComboBox"  Margin="320,293,180,107" >
-            <ComboBoxItem IsSelected="True">Operation</ComboBoxItem>
-            <ComboBoxItem>Conference</ComboBoxItem>
-            <ComboBoxItem>Storage</ComboBoxItem>
-        </ComboBox>
-        <Button Content="Add" HorizontalAlignment="Left" Margin="507,379,0,0" VerticalAlignment="Top" Width="100" Height="30" Click="AddRoomClick"/>
-        <Button Content="Cancel" HorizontalAlignment="Left" Margin="319,379,0,0" VerticalAlignment="Top" Width="100" Height="30" Click="CancelRoomClick"/>
-        <TextBox x:Name="floorText" TextWrapping="Wrap" Margin="319,202,181,198" />
+        <ComboBox x:Name="typeComboBox"  Margin="320,293,180,107" ItemsSource="{Binding RoomTypes}" SelectedItem="{Binding Path=RoomType , Mode=TwoWay}"/>
+
+        <Button Content="Add" HorizontalAlignment="Left" Margin="507,379,0,0" VerticalAlignment="Top" Width="100" Height="30" Command="{Binding FinishCommand}"/>
+        
+        <TextBox x:Name="floorText" TextWrapping="Wrap" Margin="319,202,181,198" Text="{Binding Floor}"/>
         <Line X1="50" Y1="50" X2="1000" Y2="50" Stroke="White"  StrokeThickness="3" Margin="-50,18,1,318" />
         <DockPanel Margin="0,-10,0,373">
             <Menu DockPanel.Dock="Top" Background ="AliceBlue" Cursor="Hand" Height="66" >
@@ -40,6 +37,7 @@
         <Image Source="/images/sign_out.png" Margin="699,15,66,395" MouseLeftButtonUp="SignOutClick" Cursor="Hand"/>
         <TextBlock Text="Sign out" FontSize="12" Margin="727,19,0,394" MouseLeftButtonUp="SignOutClick" Cursor="Hand" RenderTransformOrigin="0.512,0.042" HorizontalAlignment="Left" Width="84"/>
         <Line X1="50" Y1="50" X2="1000" Y2="50" Stroke="White"  StrokeThickness="3" Margin="-50,18,1,318" />
+        <Button Content="Cancel" HorizontalAlignment="Left" Margin="319,379,0,0" VerticalAlignment="Top" Width="100" Height="30" Click="CancelRoomClick"/>
         <DockPanel Margin="0,-10,0,373">
             <Menu DockPanel.Dock="Top" Background ="AliceBlue" Cursor="Hand" Height="66" HorizontalAlignment="Stretch" Margin="50,0,0,0" >
 
@@ -59,6 +57,7 @@
         <TextBlock Text="Sign out" FontSize="12" Margin="727,19,0,394" MouseLeftButtonUp="SignOutClick" Cursor="Hand" RenderTransformOrigin="0.512,0.042" HorizontalAlignment="Left" Width="84"/>
         <Label Name="validationName" Content="Please enter your new rooms name" FontSize="12" Foreground="Red" Margin="315,89,175,307" Visibility="Hidden"/>
         <Label Name="validationFloor" Content="Please enter your new rooms floor" FontSize="12" Foreground="Red" Margin="315,180,175,216" Visibility="Hidden"/>
-     
+        <Label Name="validationFloorInt" Content="Floor has to be number" FontSize="12" Foreground="Red" Margin="315,180,175,216" Visibility="Hidden"/>
+
     </Grid>
 </Window>

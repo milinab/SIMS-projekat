@@ -212,6 +212,8 @@
     <Compile Include="Controller\GuestController.cs" />
     <Compile Include="Controller\UserController.cs" />
     <Compile Include="Controller\VacationController.cs" />
+    <Compile Include="Core\RelayCommand.cs" />
+    <Compile Include="Core\ViewModelBase.cs" />
     <Compile Include="Enums\MedicineStatus.cs" />
     <Compile Include="Enums\SurveyType.cs" />
     <Compile Include="Enums\VacationState.cs" />
@@ -383,6 +385,9 @@
     <Compile Include="View\ManagerView\SurveySelect.xaml.cs">
       <DependentUpon>SurveySelect.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ManagerView\ViewModel\AddRoomViewModel.cs" />
+    <Compile Include="View\ManagerView\ViewModel\EditRoomViewModel.cs" />
+    <Compile Include="View\ManagerView\ViewModel\ManagerHomeWindowViewModel.cs" />
     <Compile Include="View\PatientView\AccountSettings.xaml.cs">
       <DependentUpon>AccountSettings.xaml</DependentUpon>
     </Compile>
