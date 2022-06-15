@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Hospital.Model;
 using Hospital.Repository.AddressRepository;
 using Hospital.Repository.CityRepo;
@@ -7,35 +8,23 @@ namespace Hospital.Repository.AddressRepo
 {
     public class AddressRepository : IAddressRepository
     {
-        private List<Address> _addresses;
         private readonly Serializer<Address> _serializer;
         private readonly CityRepository _cityRepository;
 
         public AddressRepository(CityRepository cityRepository)
         {
             _serializer = new Serializer<Address>("addresses.csv");
-            _addresses = new List<Address>();
             _cityRepository = cityRepository;
         }
 
         public List<Address> Read()
         {
-            _addresses = _serializer.Read();
-            
-            foreach (var address in _addresses)
-            {
-                City city = _cityRepository.ReadById(address.CityId);
-                if (city != null)
-                {
-                    address.City = city;
-                }
-            }
-            return _addresses;
+            return _serializer.Read();
         }
 
         public Address ReadById(int id)
         {
-            foreach (var address in _addresses)
+            foreach (var address in Read())
             {
                 if (address.Id == id)
                 {
@@ -52,13 +41,15 @@ namespace Hospital.Repository.AddressRepo
 
         public void Create(Address newAddress)
         {
-            _addresses.Add(newAddress);
-            Write();
+            var list = Read();
+            list.Add(newAddress);
+            Write(list);
         }
 
         public void Edit(Address editAddress)
         {
-            foreach (Address address in _addresses)
+            var list = Read();
+            foreach (Address address in list)
             {
                 if (editAddress.Id.Equals(address.Id))
                 {
@@ -67,24 +58,22 @@ namespace Hospital.Repository.AddressRepo
                     address.Street = editAddress.Street;
                 }
             }
-            Write();
+            Write(list);
         }
 
         public void Delete(int id)
         {
-            for (int i = _addresses.Count - 1; i >= 0; i--)
+            var list = Read();
+            foreach (var resp in list.Where(resp => resp.Id == id))
             {
-                if (_addresses[i].Id.Equals(id))
-                {
-                    _addresses.Remove(_addresses[i]);
-                }
+                list.Remove(resp);
             }
-            Write();
+            Write(list);
         }
 
-        public void Write()
+        public void Write(List<Address> list)
         {
-            _serializer.Write(_addresses);
+            _serializer.Write(list);
         }
     }
 }

@@ -1,76 +1,59 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using Hospital.Model;
 
 namespace Hospital.Repository.MedicalRecordRepo
 {
     public class MedicalRecordRepository : IMedicalRecordRepository
     {
-        private List<MedicalRecord> _medicalRecords;
         private readonly Serializer<MedicalRecord> _serializer;
        
-
         public MedicalRecordRepository()
         {
             _serializer = new Serializer<MedicalRecord>("medicalrecords.csv");
-            _medicalRecords = new List<MedicalRecord>();
-           
-          
         }
 
         public MedicalRecord ReadById(int id)
         {
-            _medicalRecords = _serializer.Read();
-            foreach (MedicalRecord medicalRecord in _medicalRecords)
-            {
-                
-                if (medicalRecord.Id == id)
-                { 
-                    return medicalRecord;
-                }
-            }
-            return null;
+            return Read().FirstOrDefault(medicalRecord => medicalRecord.Id == id);
         }
 
         public void Create(MedicalRecord newMedicalRecord)
         {
-            _medicalRecords.Add(newMedicalRecord);
-            Write();
+            var list = Read();
+            list.Add(newMedicalRecord);
+            Write(list);
         }
 
         public void Edit(MedicalRecord editMedicalRecord)
         {
-            foreach (MedicalRecord medicalRecord in _medicalRecords)
+            var list = Read();
+            foreach (var medicalRecord in list.Where(medicalRecord => medicalRecord.Id.Equals(editMedicalRecord.Id)))
             {
-                if (medicalRecord.Id.Equals(editMedicalRecord.Id))
-                {
-                    medicalRecord.ChronicalDiseases = editMedicalRecord.ChronicalDiseases;
-                    medicalRecord.AllergenIds = editMedicalRecord.AllergenIds;
-                }
+                medicalRecord.ChronicalDiseases = editMedicalRecord.ChronicalDiseases;
+                medicalRecord.AllergenIds = editMedicalRecord.AllergenIds;
             }
-            Write();
+            Write(list);
         }
 
         public void Delete(int id)
         {
-            for (int i = _medicalRecords.Count - 1; i >= 0; i--)
+            var list = Read();
+            foreach (var resp in list.Where(resp => resp.Id == id))
             {
-                if (_medicalRecords[i].Id.Equals(id))
-                {
-                    _medicalRecords.Remove(_medicalRecords[i]);
-                }
+                list.Remove(resp);
             }
-            Write();
+            Write(list);
         }
         public List<MedicalRecord> Read()
         {
-            _medicalRecords = _serializer.Read();
-            return _medicalRecords;
+            return _serializer.Read();
         }
       
-        public void Write()
+        public void Write(List<MedicalRecord> list)
         {
-            _serializer.Write(_medicalRecords);
+            _serializer.Write(list);
         }
     }
 }

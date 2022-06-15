@@ -1,29 +1,27 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using Hospital.Model;
 
 namespace Hospital.Repository.CountryRepo
 {
     public class CountryRepository : ICountryRepository
     {
-        private List<Country> _countries;
         private readonly Serializer<Country> _serializer;
 
         public CountryRepository()
         {
             _serializer = new Serializer<Country>("countries.csv");
-            _countries = new List<Country>();
         }
 
         public List<Country> Read()
         {
-            _countries = _serializer.Read();
-            return _countries;
+            return _serializer.Read();
         }
 
         public Country ReadById(int id)
         {
-            foreach (Country country in _countries)
+            foreach (Country country in Read())
             {
                 if (country.Id.Equals(id))
                 {
@@ -35,13 +33,15 @@ namespace Hospital.Repository.CountryRepo
 
         public void Create(Country newCountry)
         {
-            _countries.Add(newCountry);
-            Write();
+            var list = Read();
+            list.Add(newCountry);
+            Write(list);
         }
 
         public void Edit(Country editCountry)
         {
-            foreach (Country country in _countries)
+            var list = Read();
+            foreach (Country country in list)
             {
                 if (editCountry.Id.Equals(country.Id))
                 {
@@ -53,19 +53,17 @@ namespace Hospital.Repository.CountryRepo
 
         public void Delete(int id)
         {
-            for (int i = _countries.Count - 1; i >= 0; i--)
+            var list = Read();
+            foreach (var resp in list.Where(resp => resp.Id == id))
             {
-                if (_countries[i].Id.Equals(id))
-                {
-                    _countries.Remove(_countries[i]);
-                }
+                list.Remove(resp);
             }
-            Write();
+            Write(list);
         }
 
-        public void Write()
+        public void Write(List<Country> list)
         {
-            _serializer.Write(_countries);
+            _serializer.Write(list);
         }
     }
 }

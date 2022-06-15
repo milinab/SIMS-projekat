@@ -10,19 +10,16 @@ namespace Hospital.Model
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string name)
         {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(name));
-            }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
-        private string _id;
+        private int _id;
         private string _number;
         private string _name;
         private string _room;
 
         [DataMember]
-        public string Id
+        public int Id
         {
             get { return _id; }
             set
@@ -72,38 +69,23 @@ namespace Hospital.Model
                 }
             }
         }
-        //[DataMember]
-        //public BindingList<int> QuantityByRoom;
-
-        //[DataMember]
-        //public BindingList<Room> rooms;
-
 
         public Equipment()
         {
 
         }
-        public Equipment(string id, string num, string name)
+        public Equipment(int id, string num, string name)
         {
             Id = id;
             Number = num;
             Name = name;
         }
-        public Equipment(string id, string num, string name, string room)
+        public Equipment(int id, string num, string name, string room)
         {
             Id = id;
             Number = num;
             Name = name;
             Room = room;
         }
-
-        /*public Equipment(string name, string num, BindingList<int> quantityByRoom, BindingList<Room> rooms)
-        {
-            Name = name;
-            Number = num;
-            this.QuantityByRoom = quantityByRoom;
-            this.rooms = rooms;
-        }*/
-
     }
 }

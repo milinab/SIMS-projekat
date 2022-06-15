@@ -1,71 +1,59 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using Hospital.Model;
 
 namespace Hospital.Repository.QuestionRepo
 {
     public class QuestionRepository : IQuestionRepository
     {
-        private List<Question> _questions;
         private readonly Serializer<Question> _serializer;
 
         public QuestionRepository()
         {
             _serializer = new Serializer<Question>("questions.csv");
-            _questions = new List<Question>();
         }
 
         public List<Question> Read()
         {
-            _questions = _serializer.Read();
-            return _questions;
+            return _serializer.Read();
         }
 
         public Question ReadById(int id)
         {
-            foreach (Question question in _questions)
-            {
-                if (question.Id.Equals(id))
-                {
-                    return question;
-                }
-            }
-            return null;
+            return Read().FirstOrDefault(question => question.Id == id);
         }
 
         public void Create(Question newQuestion)
         {
-            _questions.Add(newQuestion);
-            Write();
+            var list = Read();
+            list.Add(newQuestion);
+            Write(list);
         }
 
         public void Edit(Question editQuestion)
         {
-            foreach (Question question in _questions)
+            var list = Read();
+            foreach (var question in list.Where(question => editQuestion.Id.Equals(question.Id)))
             {
-                if (editQuestion.Id.Equals(question.Id))
-                {
-                    question.QuestionText = editQuestion.QuestionText;
-                }
+                question.QuestionText = editQuestion.QuestionText;
             }
-            Write();
+            Write(list);
         }
 
         public void Delete(int id)
         {
-            for (int i = _questions.Count - 1; i >= 0; i--)
+            var list = Read();
+            foreach (var resp in list.Where(resp => resp.Id == id))
             {
-                if (_questions[i].Id.Equals(id))
-                {
-                    _questions.Remove(_questions[i]);
-                }
+                list.Remove(resp);
             }
-            Write();
+            Write(list);
         }
 
-        public void Write()
+        public void Write(List<Question> list)
         {
-            _serializer.Write(_questions);
+            _serializer.Write(list);
         }
     }
 }

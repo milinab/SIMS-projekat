@@ -10,67 +10,57 @@ namespace Hospital.Repository.MedicineRepo
 {
     public class MedicineRepository: IMedicineRepository
     {
-        private List<Medicine> _medicine;
         private readonly Serializer<Medicine> _serializer;
 
         public MedicineRepository()
         {
             _serializer = new Serializer<Medicine>("medicine.csv");
-            _medicine = new List<Medicine>();
         }
 
         public List<Medicine> Read()
         {
-            _medicine = _serializer.Read();
-            return _medicine;
+            return _serializer.Read();
         }
 
         public Medicine ReadById(int id)
         {
-            foreach (Medicine m in _medicine)
-            {
-                if (m.Id.Equals(id))
-                    return m;
-            }
-            return null;
+            return Read().FirstOrDefault(m => m.Id.Equals(id));
         }
         public void Create(Medicine newMedicine)
         {
-            _medicine.Add(newMedicine);
-            Write();
+            var list = Read();
+            list.Add(newMedicine);
+            Write(list);
         }
 
-        public void Write()
+        public void Write(List<Medicine> list)
         {
-            _serializer.Write(_medicine);
+            _serializer.Write(list);
         }
 
         public void Edit(Medicine editMedicine)
         {
-            foreach (Medicine m in _medicine)
+            var list = Read();
+            foreach (var m in list.Where(m => editMedicine.Id.Equals(m.Id)))
             {
-                if(editMedicine.Id.Equals(m.Id))
-                {
-                    m.Name = editMedicine.Name;
-                    m.Type = editMedicine.Type;
-                    m.Number = editMedicine.Number;
-                    m.Status = editMedicine.Status;
-                    m.Ingredients = editMedicine.Ingredients;
-                    m.AllergenIds = editMedicine.AllergenIds;
-                  
-                }
+                m.Name = editMedicine.Name;
+                m.Type = editMedicine.Type;
+                m.Number = editMedicine.Number;
+                m.Status = editMedicine.Status;
+                m.Ingredients = editMedicine.Ingredients;
+                m.AllergenIds = editMedicine.AllergenIds;
             }
-            Write();
+            Write(list);
         }
 
         public void Delete(int id)
         {
-            for(int i = _medicine.Count - 1; i>= 0; i--)
+            var list = Read();
+            foreach (var resp in list.Where(resp => resp.Id == id))
             {
-                if(_medicine[i].Id.Equals(id))
-                    _medicine.Remove(_medicine[i]);
+                list.Remove(resp);
             }
-            Write();
+            Write(list);
         }
     }
 
