@@ -1,6 +1,8 @@
 using System;
 using System.Data;
 using System.Drawing;
+using System.IO;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using Hospital.Model;
@@ -23,12 +25,12 @@ namespace Hospital.View.DoctorView.Checkup
 
         private void Confirm_OnClick(object sender, RoutedEventArgs e)
         {
-            if (CheckupToggleSwitch.IsEnabled)
+            if (CheckupToggleSwitch.IsChecked)
             {
                 CreateCheckupPDF();
             }
 
-            if (PrescriptionToggleSwitch.IsEnabled)
+            if (PrescriptionToggleSwitch.IsChecked)
             {
                 CreatePrescriptionPDF();
             }
@@ -116,6 +118,15 @@ namespace Hospital.View.DoctorView.Checkup
             doc.Save("../../View/DoctorView/Resources/Reports/Checkup--" + DateTime.Now.ToString("dd-MM-yyyy--HH-mm-ss") +
                      ".pdf");
             doc.Close(true);
+            
+            
+            var directoryInfo = new DirectoryInfo("../../View/DoctorView/Resources/Reports/");
+            var latestFile = directoryInfo.GetFiles()
+                .Where(f => f.Name.StartsWith("Checkup"))
+                .OrderByDescending(f => f.CreationTime)
+                .FirstOrDefault();
+
+            if (latestFile != null) System.Diagnostics.Process.Start(latestFile.DirectoryName + "/" + latestFile.Name);
         }
 
         private void CreatePrescriptionPDF()

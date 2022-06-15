@@ -25,7 +25,10 @@
         </Grid>
 
         <Grid Grid.Row="1">
-            <MediaElement Source="../Resources/tutorial.mkv"/>
+            <MediaElement 
+                Source="D:\FAKULTET\SIMS\SIMS-projekat\Hospital\Hospital\View\DoctorView\Resources\tutorial.mp4"
+                LoadedBehavior="Play"
+                Visibility="Visible"/>
         </Grid>
 
         <Grid Grid.Row="2">

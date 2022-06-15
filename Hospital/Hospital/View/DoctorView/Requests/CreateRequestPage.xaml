@@ -92,7 +92,8 @@
                     Name="ReasonTextBox"  
                     Style="{StaticResource TextBoxStyle}"
                     Width="260" 
-                    Height="150"/>
+                    Height="150"
+                    Padding="5 5 5 5"/>
             </Border>
             <CheckBox Name="UrgentCheckBox" 
                       HorizontalAlignment="Center" 

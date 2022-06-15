@@ -848,9 +848,7 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="View\DoctorView\Resources\tutorial.mkv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
+    <None Include="View\DoctorView\Resources\tutorial.mp4" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
