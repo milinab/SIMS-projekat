@@ -9,5 +9,8 @@ namespace Hospital.Repository.AppointmentRepo
 {
     public interface IAppointmentRepository : IRepositoryBase<Appointment, int>
     {
+        List<Appointment> ReadByDoctorId(int doctorId);
+        List<Appointment> ReadByDateAndNotDoctor(int doctorId, DateTime date);
+        List<Appointment> ReadByPatientId(int patientId);
     }
 }

@@ -9,5 +9,7 @@ namespace Hospital.Repository.AnamnesisRepo
 {
     public interface IAnamnesisRepository : IRepositoryBase<Anamnesis, int>
     {
+        Anamnesis ReadByAppointmentId(int appointmentId);
+        
     }
 }

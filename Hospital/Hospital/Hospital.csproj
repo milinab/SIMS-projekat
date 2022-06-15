@@ -95,11 +95,14 @@
     <Reference Include="Syncfusion.SfScheduler.WPF, Version=20.1460.0.55, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
       <HintPath>..\packages\Syncfusion.SfScheduler.WPF.20.1.0.55\lib\net46\Syncfusion.SfScheduler.WPF.dll</HintPath>
     </Reference>
-    <Reference Include="Syncfusion.SfSkinManager.WPF, Version=20.1460.0.55, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
-      <HintPath>..\packages\Syncfusion.SfSkinManager.WPF.20.1.0.55\lib\net46\Syncfusion.SfSkinManager.WPF.dll</HintPath>
+    <Reference Include="Syncfusion.SfSkinManager.WPF, Version=20.1460.0.60, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.SfSkinManager.WPF.20.1.0.60\lib\net46\Syncfusion.SfSkinManager.WPF.dll</HintPath>
     </Reference>
     <Reference Include="Syncfusion.Shared.WPF, Version=20.1460.0.55, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
       <HintPath>..\packages\Syncfusion.Shared.WPF.20.1.0.55\lib\net46\Syncfusion.Shared.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Themes.FluentDark.WPF, Version=20.1460.0.60, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Themes.FluentDark.WPF.20.1.0.60\lib\net46\Syncfusion.Themes.FluentDark.WPF.dll</HintPath>
     </Reference>
     <Reference Include="Syncfusion.Themes.MaterialLight.WPF, Version=20.1460.0.55, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
       <HintPath>..\packages\Syncfusion.Themes.MaterialLight.WPF.20.1.0.55\lib\net46\Syncfusion.Themes.MaterialLight.WPF.dll</HintPath>
@@ -143,6 +146,9 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="ToggleSwitch, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ToggleSwitch.1.2.0\lib\net46\ToggleSwitch.dll</HintPath>
     </Reference>
     <Reference Include="Tulpep.NotificationWindow, Version=1.1.38.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Tulpep.NotificationWindow.1.1.38\lib\net40\Tulpep.NotificationWindow.dll</HintPath>
@@ -212,9 +218,12 @@
     <Compile Include="Controller\GuestController.cs" />
     <Compile Include="Controller\UserController.cs" />
     <Compile Include="Controller\VacationController.cs" />
+    <Compile Include="Core\RelayCommand.cs" />
+    <Compile Include="Core\ViewModelBase.cs" />
     <Compile Include="Enums\MedicineStatus.cs" />
     <Compile Include="Enums\SurveyType.cs" />
     <Compile Include="Enums\VacationState.cs" />
+    <Compile Include="Exceptions\AppointmentException.cs" />
     <Compile Include="Exceptions\VacationException.cs" />
     <Compile Include="LogIn.xaml.cs">
       <DependentUpon>LogIn.xaml</DependentUpon>
@@ -258,6 +267,12 @@
     <Compile Include="Repository\QuestionRepo\IQuestionRepository.cs" />
     <Compile Include="Repository\ReferralRepo\IReferralRepository.cs" />
     <Compile Include="Repository\ReferralRepo\ReferralRepository.cs" />
+    <Compile Include="Repository\RoomRepo\IRoomRepository.cs" />
+    <Compile Include="Repository\SecretaryRepo\ISecretaryRepository.cs" />
+    <Compile Include="Repository\SurgeryRepo\ISurgeryRepository.cs" />
+    <Compile Include="Repository\SurveyRepo\ISurveyRepository.cs" />
+    <Compile Include="Repository\TherapyRepo\ITherapyRepository.cs" />
+    <Compile Include="Repository\TrollRepo\ITrolRepository.cs" />
     <Compile Include="Repository\TrollRepo\TrolRepository.cs" />
     <Compile Include="Repository\NoteRepo\NoteRepository.cs" />
     <Compile Include="Repository\HospitalSurveyResponseRepo\HospitalSurveyResponseRepository.cs" />
@@ -277,7 +292,9 @@
     <Compile Include="Repository\EmployeeRepo\EmployeeRepository.cs" />
     <Compile Include="Repository\CountryRepo\CountryRepository.cs" />
     <Compile Include="Repository\Serializer.cs" />
+    <Compile Include="Repository\UserRepo\IUserRepository.cs" />
     <Compile Include="Repository\UserRepo\UserRepository.cs" />
+    <Compile Include="Repository\VacationRepo\IVacationRepository.cs" />
     <Compile Include="Repository\VacationRepo\VacationRepository.cs" />
     <Compile Include="Service\AddressService.cs" />
     <Compile Include="Service\AllergenService.cs" />
@@ -304,6 +321,9 @@
     <Compile Include="Service\GuestService.cs" />
     <Compile Include="Service\UserService.cs" />
     <Compile Include="Service\VacationService.cs" />
+    <Compile Include="View\DoctorView\Account\AccountPage.xaml.cs" />
+    <Compile Include="View\DoctorView\Account\ChangePasswordPage.xaml.cs" />
+    <Compile Include="View\DoctorView\Account\TutorialPage.xaml.cs" />
     <Compile Include="View\DoctorView\Appointments\Add.xaml.cs">
       <DependentUpon>Add.xaml</DependentUpon>
     </Compile>
@@ -328,9 +348,15 @@
     <Compile Include="View\DoctorView\Checkup\ReferralPage.xaml.cs">
       <DependentUpon>ReferralPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\DoctorView\Checkup\ReportUC.xaml.cs" />
     <Compile Include="View\DoctorView\Checkup\TherapyPage.xaml.cs">
       <DependentUpon>TherapyPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\DoctorView\Commands\AddAppointment\ConfirmCommand.cs" />
+    <Compile Include="View\DoctorView\Commands\CancelCommand.cs" />
+    <Compile Include="View\DoctorView\Commands\ChangePasswordCommand.cs" />
+    <Compile Include="View\DoctorView\Commands\CommandBase.cs" />
+    <Compile Include="View\DoctorView\Commands\TutorialCommand.cs" />
     <Compile Include="View\DoctorView\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
@@ -351,11 +377,20 @@
       <DependentUpon>VacationPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\DoctorView\Resources\CustomTimeSpanUpDown.cs" />
+    <Compile Include="View\DoctorView\Validation\AppointmentValidation.cs" />
+    <Compile Include="View\DoctorView\Validation\BindableBase.cs" />
+    <Compile Include="View\DoctorView\Validation\Converter.cs" />
+    <Compile Include="View\DoctorView\Validation\ValidationBase.cs" />
+    <Compile Include="View\DoctorView\Validation\ValidationErrors.cs" />
     <Compile Include="View\DoctorView\VerifyMedicineUC.xaml.cs">
       <DependentUpon>VerifyMedicineUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\DoctorView\ViewModel\AccountPageViewModel.cs" />
+    <Compile Include="View\DoctorView\ViewModel\AddAppointmentViewModel.cs" />
     <Compile Include="View\DoctorView\ViewModel\AppointmentsPageViewModel.cs" />
     <Compile Include="View\DoctorView\ViewModel\AppointmentViewModel.cs" />
+    <Compile Include="View\DoctorView\ViewModel\PatientsViewModel.cs" />
+    <Compile Include="View\DoctorView\ViewModel\PatientViewModel.cs" />
     <Compile Include="View\DoctorView\ViewModel\ViewModelBase.cs" />
     <Compile Include="View\ManagerView\AddMedicine.xaml.cs">
       <DependentUpon>AddMedicine.xaml</DependentUpon>
@@ -403,6 +438,9 @@
     <Compile Include="View\ManagerView\SurveySelect.xaml.cs">
       <DependentUpon>SurveySelect.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ManagerView\ViewModel\AddRoomViewModel.cs" />
+    <Compile Include="View\ManagerView\ViewModel\EditRoomViewModel.cs" />
+    <Compile Include="View\ManagerView\ViewModel\ManagerHomeWindowViewModel.cs" />
     <Compile Include="View\PatientView\AccountSettings.xaml.cs">
       <DependentUpon>AccountSettings.xaml</DependentUpon>
     </Compile>
@@ -516,6 +554,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\DoctorView\Account\AccountPage.xaml" />
+    <Page Include="View\DoctorView\Account\ChangePasswordPage.xaml" />
+    <Page Include="View\DoctorView\Account\TutorialPage.xaml" />
     <Page Include="View\DoctorView\Appointments\Add.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -531,6 +572,7 @@
     <Page Include="View\DoctorView\Checkup\HospitalTreatmentPage.xaml" />
     <Page Include="View\DoctorView\Checkup\PatientDischargeUC.xaml" />
     <Page Include="View\DoctorView\Checkup\ReferralPage.xaml" />
+    <Page Include="View\DoctorView\Checkup\ReportUC.xaml" />
     <Page Include="View\DoctorView\Checkup\TherapyPage.xaml" />
     <Page Include="View\DoctorView\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

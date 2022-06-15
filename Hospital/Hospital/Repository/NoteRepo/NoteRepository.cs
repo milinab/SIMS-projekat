@@ -4,7 +4,7 @@ using Hospital.Model;
 
 namespace Hospital.Repository.NoteRepo
 {
-    public class NoteRepository
+    public class NoteRepository : INoteRepository
     {
         private List<Note> _notes;
         private readonly Serializer<Note> _serializer;
