@@ -1,9 +1,6 @@
-using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using Hospital.Model;
 using Hospital.Repository.MedicalRecordRepo;
-using Hospital.Repository.AddressRepo;
 
 namespace Hospital.Repository.PatientRepo
 {
@@ -11,10 +8,10 @@ namespace Hospital.Repository.PatientRepo
     {
         private List<Patient> _patients;
         private readonly Serializer<Patient> _serializer;
-        private readonly AddressRepository _addressRepository;
+        private readonly AddressRepo.AddressRepository _addressRepository;
         private readonly MedicalRecordRepository _medicalRecordRepository;
         
-        public PatientRepository(AddressRepository addressRepository, MedicalRecordRepository medicalRecordRepository)
+        public PatientRepository(AddressRepo.AddressRepository addressRepository, MedicalRecordRepository medicalRecordRepository)
         {
             _serializer = new Serializer<Patient>("patients.csv");
             _patients = new List<Patient>();

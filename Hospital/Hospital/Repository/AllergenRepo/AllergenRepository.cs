@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Hospital.Model;
+using Hospital.Repository.AllergenRepository;
 
 namespace Hospital.Repository.AllergenRepos
 {
-    public class AllergenRepository
+    public class AllergenRepository : IAllergenRepository
     {
         private List<Allergen> _allergens;
         private readonly Serializer<Allergen> _serializer;

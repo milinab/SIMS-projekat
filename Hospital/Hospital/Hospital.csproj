@@ -65,7 +65,6 @@
     <Reference Include="ServiceStack.Text, Version=6.0.0.0, Culture=neutral, PublicKeyToken=02c12cbda47e6587, processorArchitecture=MSIL">
       <HintPath>..\packages\ServiceStack.Text.6.0.2\lib\net472\ServiceStack.Text.dll</HintPath>
     </Reference>
-
     <Reference Include="Syncfusion.Compression.Portable, Version=20.1200.0.59, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
       <HintPath>..\packages\Syncfusion.Compression.Net.Core.20.1.0.59\lib\netstandard2.0\Syncfusion.Compression.Portable.dll</HintPath>
     </Reference>
@@ -77,6 +76,7 @@
     </Reference>
     <Reference Include="Syncfusion.OfficeChart.Base, Version=20.1460.0.59, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
       <HintPath>..\packages\Syncfusion.OfficeChart.Base.20.1.0.59\lib\net46\Syncfusion.OfficeChart.Base.dll</HintPath>
+    </Reference>
     <Reference Include="Syncfusion.Compression.Base, Version=20.1460.0.60, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
       <HintPath>..\packages\Syncfusion.Compression.Base.20.1.0.60\lib\net46\Syncfusion.Compression.Base.dll</HintPath>
     </Reference>

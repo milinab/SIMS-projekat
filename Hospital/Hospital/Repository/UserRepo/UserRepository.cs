@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using Hospital.Model;
 
 namespace Hospital.Repository.UserRepo
@@ -9,9 +8,9 @@ namespace Hospital.Repository.UserRepo
         private List<User> _users;
         private readonly Serializer<User> _serializer;
         private List<Address> _addresses;
-        private readonly AddressRepository _addressRepository;
+        private readonly AddressRepo.AddressRepository _addressRepository;
 
-        public UserRepository(AddressRepository addressRepository)
+        public UserRepository(AddressRepo.AddressRepository addressRepository)
         {
             _serializer = new Serializer<User>("users.csv");
             _users = new List<User>();

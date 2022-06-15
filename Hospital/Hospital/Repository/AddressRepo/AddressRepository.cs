@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using Hospital.Model;
+using Hospital.Repository.AddressRepository;
 using Hospital.Repository.CityRepo;
 
 namespace Hospital.Repository.AddressRepo
 {
-    public class AddressRepository
+    public class AddressRepository : IAddressRepository
     {
         private List<Address> _addresses;
         private readonly Serializer<Address> _serializer;
