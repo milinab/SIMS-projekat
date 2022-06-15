@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Hospital.Model;
 using Hospital.Repository.DoctorRepo;
 using Hospital.Repository.PatientRepo;
@@ -9,7 +10,6 @@ namespace Hospital.Repository.AppointmentRepo
 {
    public class AppointmentRepository : IAppointmentRepository
    {
-        private List<Appointment> _appointments;
         private readonly Serializer<Appointment> _serializer;
         private readonly DoctorRepository _doctorRepository;
         private readonly PatientRepository _patientRepository;
@@ -19,7 +19,6 @@ namespace Hospital.Repository.AppointmentRepo
             RoomRepository roomRepository)
         {
             _serializer = new Serializer<Appointment>("appointments.csv");
-            _appointments = new List<Appointment>();
             _doctorRepository = doctorRepository;
             _patientRepository = patientRepository;
             _roomRepository = roomRepository;
@@ -27,9 +26,9 @@ namespace Hospital.Repository.AppointmentRepo
 
         public List<Appointment> Read()
         {
-            _appointments = _serializer.Read();
+            var list = _serializer.Read();
 
-            foreach (var appointment in _appointments)
+            foreach (var appointment in list)
             {
                 Doctor doctor = _doctorRepository.ReadById(appointment.DoctorId);
                 Patient patient = _patientRepository.ReadById(appointment.PatientId);
@@ -47,13 +46,12 @@ namespace Hospital.Repository.AppointmentRepo
                     appointment.Room = room;
                 }
             }
-            return _appointments;
+            return list;
         }
 
         public Appointment ReadById(int id)
         {
-            _appointments = _serializer.Read();
-            foreach (Appointment appointment in _appointments)
+            foreach (Appointment appointment in Read())
             {
                 if (appointment.Id == id)
                 {
@@ -80,72 +78,69 @@ namespace Hospital.Repository.AppointmentRepo
 
         public void Create(Appointment newAppointment)
         {
-            _appointments.Add(newAppointment);
-            Write();
+            var list = Read();
+            list.Add(newAppointment);
+            Write(list);
         }
 
         public void Edit(Appointment editAppointment)
         {
-            _appointments = _serializer.Read();
-            foreach (Appointment appointment in _appointments)
+            var list = _serializer.Read();
+            foreach (var appointment in list.Where(appointment => editAppointment.Id == appointment.Id))
             {
-                if (editAppointment.Id == appointment.Id)
-                {
-                    appointment.Date = editAppointment.Date;
-                    appointment.Duration = editAppointment.Duration;
-                    appointment.Room = editAppointment.Room;
-                    appointment.Patient = editAppointment.Patient;
-                    appointment.Doctor = editAppointment.Doctor;
-                    appointment.RoomId = editAppointment.RoomId;
-                    appointment.PatientId = editAppointment.PatientId;
-                    appointment.DoctorId = editAppointment.DoctorId;
-                }
+                appointment.Date = editAppointment.Date;
+                appointment.Duration = editAppointment.Duration;
+                appointment.Room = editAppointment.Room;
+                appointment.Patient = editAppointment.Patient;
+                appointment.Doctor = editAppointment.Doctor;
+                appointment.RoomId = editAppointment.RoomId;
+                appointment.PatientId = editAppointment.PatientId;
+                appointment.DoctorId = editAppointment.DoctorId;
             }
-            Write();
+            Write(list);
         }
 
         public void Delete(int id)
         {
-            for (int i = _appointments.Count - 1; i >= 0; i--)
+            var list = Read();
+            foreach (var resp in list.Where(resp => resp.Id == id))
             {
-                if (_appointments[i].Id.Equals(id))
-                {
-                    _appointments.Remove(_appointments[i]);
-                }
+                list.Remove(resp);
             }
-            Write();
+            Write(list);
         }
 
-        public void Write()
+        public void Write(List<Appointment> list)
         {
-            _serializer.Write(_appointments);
+            _serializer.Write(list);
         }
         public List<Appointment> ReadByDoctorId(int doctorId)
         {
             var itemsToReturn = new List<Appointment>();
-            _appointments = _serializer.Read();
-            foreach (Appointment appointment in _appointments)
+            foreach (Appointment appointment in Read())
             {
-                if (appointment.DoctorId == doctorId)
+                if (appointment.DoctorId != doctorId)
                 {
-                    Doctor doctor = _doctorRepository.ReadById(appointment.DoctorId);
-                    Patient patient = _patientRepository.ReadById(appointment.PatientId);
-                    Room room = _roomRepository.ReadById(appointment.RoomId);
-                    if (doctor != null)
-                    {
-                        appointment.Doctor = doctor;
-                    }
-                    if (patient != null)
-                    {
-                        appointment.Patient = patient;
-                    }
-                    if (room != null)
-                    {
-                        appointment.Room = room;
-                    }
-
-                    itemsToReturn.Add(appointment);
+                    continue;
                 }
+
+                Doctor doctor = _doctorRepository.ReadById(appointment.DoctorId);
+                Patient patient = _patientRepository.ReadById(appointment.PatientId);
+                Room room = _roomRepository.ReadById(appointment.RoomId);
+                if (doctor != null)
+                {
+                    appointment.Doctor = doctor;
+                }
+                if (patient != null)
+                {
+                    appointment.Patient = patient;
+                }
+                if (room != null)
+                {
+                    appointment.Room = room;
+                }
+
+                itemsToReturn.Add(appointment);
             }
             return itemsToReturn;
         }
@@ -153,30 +148,29 @@ namespace Hospital.Repository.AppointmentRepo
         public List<Appointment> ReadByDateAndNotDoctor(int doctorId, DateTime date)
         {
             var itemsToReturn = new List<Appointment>();
-            _appointments = _serializer.Read();
-            foreach (Appointment appointment in _appointments)
+            foreach (Appointment appointment in Read())
             {
-                if (appointment.Date.Date == date && appointment.DoctorId != doctorId)
+                if (appointment.Date.Date != date || appointment.DoctorId == doctorId)
                 {
-                    
-                    Doctor doctor = _doctorRepository.ReadById(appointment.DoctorId);
-                    Patient patient = _patientRepository.ReadById(appointment.PatientId);
-                    Room room = _roomRepository.ReadById(appointment.RoomId);
-                    if (doctor != null)
-                    {
-                        appointment.Doctor = doctor;
-                    }
-                    if (patient != null)
-                    {
-                        appointment.Patient = patient;
-                    }
-                    if (room != null)
-                    {
-                        appointment.Room = room;
-                    }
-                    itemsToReturn.Add(appointment);
-                    
+                    continue;
                 }
+
+                Doctor doctor = _doctorRepository.ReadById(appointment.DoctorId);
+                Patient patient = _patientRepository.ReadById(appointment.PatientId);
+                Room room = _roomRepository.ReadById(appointment.RoomId);
+                if (doctor != null)
+                {
+                    appointment.Doctor = doctor;
+                }
+                if (patient != null)
+                {
+                    appointment.Patient = patient;
+                }
+                if (room != null)
+                {
+                    appointment.Room = room;
+                }
+                itemsToReturn.Add(appointment);
             }
             return itemsToReturn;
         }
@@ -184,28 +178,29 @@ namespace Hospital.Repository.AppointmentRepo
         public List<Appointment> ReadByPatientId(int patientId)
         {
             var itemsToReturn = new List<Appointment>();
-            _appointments = _serializer.Read();
-            foreach (Appointment appointment in _appointments)
+            foreach (Appointment appointment in Read())
             {
-                if (appointment.PatientId == patientId)
+                if (appointment.PatientId != patientId)
                 {
-                    Doctor doctor = _doctorRepository.ReadById(appointment.DoctorId);
-                    Patient patient = _patientRepository.ReadById(appointment.PatientId);
-                    Room room = _roomRepository.ReadById(appointment.RoomId);
-                    if (doctor != null)
-                    {
-                        appointment.Doctor = doctor;
-                    }
-                    if (patient != null)
-                    {
-                        appointment.Patient = patient;
-                    }
-                    if (room != null)
-                    {
-                        appointment.Room = room;
-                    }
-                    itemsToReturn.Add(appointment);
+                    continue;
                 }
+
+                Doctor doctor = _doctorRepository.ReadById(appointment.DoctorId);
+                Patient patient = _patientRepository.ReadById(appointment.PatientId);
+                Room room = _roomRepository.ReadById(appointment.RoomId);
+                if (doctor != null)
+                {
+                    appointment.Doctor = doctor;
+                }
+                if (patient != null)
+                {
+                    appointment.Patient = patient;
+                }
+                if (room != null)
+                {
+                    appointment.Room = room;
+                }
+                itemsToReturn.Add(appointment);
             }
             return itemsToReturn;
         }

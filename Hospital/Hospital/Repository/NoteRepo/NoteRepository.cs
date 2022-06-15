@@ -1,90 +1,67 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using Hospital.Model;
 
 namespace Hospital.Repository.NoteRepo
 {
     public class NoteRepository : INoteRepository
     {
-        private List<Note> _notes;
         private readonly Serializer<Note> _serializer;
 
         public NoteRepository()
         {
             _serializer = new Serializer<Note>("notes.csv");
-            _notes = new List<Note>();
         }
 
         public List<Note> Read()
         {
-            _notes = _serializer.Read();
-            return _notes;
+            return _serializer.Read();
         }
 
         public Note ReadById(int id)
         {
-            foreach (Note note in _notes)
-            {
-                if (note.Id.Equals(id))
-                {
-                    return note;
-                }
-            }
-            return null;
+            return Read().FirstOrDefault(note => note.Id.Equals(id));
         }
 
         public void Create(Note newNote)
         {
-            _notes.Add(newNote);
-            Write();
+            var list = Read();
+            list.Add(newNote);
+            Write(list);
         }
 
         public void Edit(Note editNote)
         {
-            foreach (Note note in _notes)
+            var list = Read();
+            foreach (var note in list.Where(note => editNote.Id.Equals(note.Id)))
             {
-                if (editNote.Id.Equals(note.Id))
-                {
-                    note.Name = editNote.Name;
-                    note.NoteText = editNote.NoteText;
-                    note.Date = editNote.Date;
-                    note.NotificationDate = editNote.NotificationDate;
-                }
+                note.Name = editNote.Name;
+                note.NoteText = editNote.NoteText;
+                note.Date = editNote.Date;
+                note.NotificationDate = editNote.NotificationDate;
             }
-            Write();
+            Write(list);
         }
 
         public void Delete(int id)
         {
-            for (int i = _notes.Count - 1; i >= 0; i--)
+            var list = Read();
+            foreach (var resp in list.Where(resp => resp.Id == id))
             {
-                if (_notes[i].Id.Equals(id))
-                {
-                    _notes.Remove(_notes[i]);
-                }
+                list.Remove(resp);
             }
-            Write();
+            Write(list);
         }
 
-        public void Write()
+        public void Write(List<Note> list)
         {
-            _serializer.Write(_notes);
+            _serializer.Write(list);
         }
 
-        public List<Note> ReadByPatientId(int PatientId)
+        public List<Note> ReadByPatientId(int patientId)
         {
-
-            List<Note> result = new List<Note> ();
-
-            foreach (Note note in _notes)
-            {
-                if (note.PatientId.Equals(PatientId))
-                {
-                    result.Add(note);
-
-                }
-            }
-            return result;
+            return Read().Where(note => note.PatientId.Equals(patientId)).ToList();
         }
     }
 }

@@ -19,14 +19,14 @@ namespace Hospital.Model
                 PropertyChanged(this, new PropertyChangedEventArgs(name));
             }
         }
-        private string _id;
+        private int _id;
         private string _name;
         private string _type;
         private int _number;
         private string _ingredients; 
 
         [DataMember]
-        public string Id
+        public int Id
         {
             get { return _id; }
             set
@@ -98,7 +98,7 @@ namespace Hospital.Model
         {
 
         }
-        public ReplacementMedicine(string id, string name, string type, int number, string ingredients)
+        public ReplacementMedicine(int id, string name, string type, int number, string ingredients)
         {
             Id = id;
             Name = name;

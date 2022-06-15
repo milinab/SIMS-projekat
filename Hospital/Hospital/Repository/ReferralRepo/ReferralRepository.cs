@@ -7,57 +7,56 @@ namespace Hospital.Repository.ReferralRepo
 {
     public class ReferralRepository : IReferralRepository
     {
-        private List<Referral> _referrals;
         private readonly Serializer<Referral> _serializer;
 
         public ReferralRepository()
         {
             _serializer = new Serializer<Referral>("referrals.csv");
-            _referrals = new List<Referral>();
         }
         
         public List<Referral> Read()
         {
-            _referrals = _serializer.Read().ToList();
-            return _referrals;
+            return _serializer.Read().ToList();
         }
 
         public Referral ReadById(int id)
         {
-            return _referrals.FirstOrDefault(referral => referral.Id == id);
+            return Read().FirstOrDefault(referral => referral.Id == id);
         }
 
         public void Create(Referral newReferral)
         {
-            _referrals.Add(newReferral);
-            Write();
+            var list = Read();
+            list.Add(newReferral);
+            Write(list);
         }
 
         public void Edit(Referral editReferral)
         {
-            foreach (var referral in _referrals.Where(referral => editReferral.Id == referral.Id))
+            var list = Read();
+            foreach (var referral in list.Where(referral => editReferral.Id == referral.Id))
             {
                 referral.Reason = editReferral.Reason;
                 referral.Specialization = editReferral.Specialization;
                 referral.DoctorId = editReferral.DoctorId;
                 referral.PatientId = editReferral.PatientId;
             }
-            Write();
+            Write(list);
         }
 
         public void Delete(int id)
         {
-            foreach (var referral in _referrals.Where(referral => referral.Id == id))
+            var list = Read();
+            foreach (var resp in list.Where(resp => resp.Id == id))
             {
-                _referrals.Remove(referral);
+                list.Remove(resp);
             }
-            Write();
+            Write(list);
         }
 
-        public void Write()
+        public void Write(List<Referral> list)
         {
-            var collection = new List<Referral>(_referrals);
-            _serializer.Write(collection);
+            _serializer.Write(list);
         }
     }
 }

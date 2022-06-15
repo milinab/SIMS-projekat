@@ -1,72 +1,60 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Hospital.Model;
 
 namespace Hospital.Repository.EquipmentRepo
 {
     public class EquipmentRepository : IEquipmentRepository
     {
-        private List<Equipment> _equipments;
         private readonly Serializer<Equipment> _serializer;
 
         public EquipmentRepository()
         {
             _serializer = new Serializer<Equipment>("equipment.csv");
-            _equipments = new List<Equipment>();
         }
 
         public List<Equipment> Read()
         {
-            _equipments = _serializer.Read();
-            return _equipments;
+            return _serializer.Read();
         }
 
         public Equipment ReadById(int id)
         {
-            foreach (Equipment equipment in _equipments)
-            {
-                if (equipment.Id.Equals(id))
-                {
-                    return equipment;
-                }
-            }
-            return null;
+            return Read().FirstOrDefault(equipment => equipment.Id.Equals(id));
         }
 
         public void Create(Equipment newEquipment)
         {
-            _equipments.Add(newEquipment);
-            Write();
+            var list = Read();
+            list.Add(newEquipment);
+            Write(list);
         }
 
         public void Edit(Equipment editEquipment)
         {
-            foreach (Equipment equipment in _equipments)
+            var list = Read();
+            foreach (var equipment in list.Where(equipment => editEquipment.Id.Equals(equipment.Id)))
             {
-                if (editEquipment.Id.Equals(equipment.Id))
-                {
-                    equipment.Name = editEquipment.Name;
-                    equipment.Number = editEquipment.Number;
-                    equipment.Room = editEquipment.Room;
-                }
+                equipment.Name = editEquipment.Name;
+                equipment.Number = editEquipment.Number;
+                equipment.Room = editEquipment.Room;
             }
-            Write();
+            Write(list);
         }
 
         public void Delete(int id)
         {
-            for (int i = _equipments.Count - 1; i >= 0; i--)
+            var list = Read();
+            foreach (var resp in list.Where(resp => resp.Id == id))
             {
-                if (_equipments[i].Id.Equals(id))
-                {
-                    _equipments.Remove(_equipments[i]);
-                }
+                list.Remove(resp);
             }
-            Write();
+            Write(list);
         }
 
-        public void Write()
+        public void Write(List<Equipment> list)
         {
-            _serializer.Write(_equipments);
+            _serializer.Write(list);
         }
     }
 }
