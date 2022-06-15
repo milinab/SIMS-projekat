@@ -95,7 +95,7 @@ namespace Hospital
                     Patient p = _app._patientController.ReadByUsername(username);
                     if (PatientCheck(p))
                     {
-                        PatientWindow patientWindow = new PatientWindow();
+                        PatientWindow patientWindow = PatientWindow.getInstance();
                         patientWindow.Show();
                         Close();
                         return null;

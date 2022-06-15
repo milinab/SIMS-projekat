@@ -5,7 +5,6 @@ using System.Windows.Controls;
 using Hospital.Enums;
 using Hospital.Exceptions;
 using Hospital.Model;
-using MessageBox = Xceed.Wpf.Toolkit.MessageBox;
 
 namespace Hospital.View.DoctorView.Requests
 {
@@ -23,7 +22,7 @@ namespace Hospital.View.DoctorView.Requests
         [SuppressMessage("ReSharper", "PossibleInvalidOperationException")]
         private void Confirm(object sender, RoutedEventArgs e)
         {
-            
+            ErrorTextBlock.Text = "";
             if (UrgentCheckBox.IsChecked ?? false)
             {
                 if (!ValidateInput()) return;
@@ -39,10 +38,10 @@ namespace Hospital.View.DoctorView.Requests
                 {
                     if (exception.Message.Equals("DoctorException"))
                     {
-                        MessageBox.Show("You already have a pending request");
+                        ErrorTextBlock.Text = "You already have a pending request";
                         return;
-                    } 
-                    MessageBox.Show("Wrong date");
+                    }
+                    ErrorTextBlock.Text = "Wrong date";
                 }
             }
             else
@@ -61,15 +60,15 @@ namespace Hospital.View.DoctorView.Requests
                 {
                     if (exception.Message.Equals("DoctorException"))
                     {
-                        MessageBox.Show("You already have a pending request");
+                        ErrorTextBlock.Text = "You already have a pending request";
                         return;
                     }
                     if (exception.Message.Equals("SpecializationException"))
                     {
-                        MessageBox.Show("Doctor with this specialization has already requested vacation");
+                        ErrorTextBlock.Text = "Doctor with this specialization has already requested vacation";
                         return;
                     }
-                    MessageBox.Show("Wrong date");
+                    ErrorTextBlock.Text = "Wrong date" ;
                 }
             }
         }

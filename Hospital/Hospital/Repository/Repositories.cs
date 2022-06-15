@@ -1,9 +1,36 @@
-﻿namespace Hospital.Repository
+﻿using Hospital.Repository.AnamnesisRepo;
+using Hospital.Repository.AppointmentRepo;
+using Hospital.Repository.CityRepo;
+using Hospital.Repository.CountryRepo;
+using Hospital.Repository.DoctorRepo;
+using Hospital.Repository.DoctorSurveyResponseRepo;
+using Hospital.Repository.EmployeeRepo;
+using Hospital.Repository.EquipmentRepo;
+using Hospital.Repository.GuestRepo;
+using Hospital.Repository.HospitalSurveyResponseRepo;
+using Hospital.Repository.ManagerRepo;
+using Hospital.Repository.MedicalRecordRepo;
+using Hospital.Repository.MedicineReplaceRepo;
+using Hospital.Repository.MedicineRepo;
+using Hospital.Repository.NoteRepo;
+using Hospital.Repository.PatientRepo;
+using Hospital.Repository.QuestionRepo;
+using Hospital.Repository.ReferralRepo;
+using Hospital.Repository.RoomRepo;
+using Hospital.Repository.SecretaryRepo;
+using Hospital.Repository.SurgeryRepo;
+using Hospital.Repository.SurveyRepo;
+using Hospital.Repository.TherapyRepo;
+using Hospital.Repository.TrollRepo;
+using Hospital.Repository.UserRepo;
+using Hospital.Repository.VacationRepo;
+
+namespace Hospital.Repository
 {
     public class Repositories
     {
-        public AllergenRepository AllergenRepository { get; set; }
-        public AddressRepository AddressRepository { get; set; }
+        public AllergenRepos.AllergenRepository AllergenRepository { get; set; }
+        public AddressRepo.AddressRepository AddressRepository { get; set; }
         public AppointmentRepository AppointmentRepository { get; set; }
         public CityRepository CityRepository { get; set; }
         public CountryRepository CountryRepository { get; set; }
@@ -33,10 +60,10 @@
 
         public Repositories()
         {
-            AllergenRepository = new AllergenRepository();
+            AllergenRepository = new AllergenRepos.AllergenRepository();
             CountryRepository = new CountryRepository();
             CityRepository = new CityRepository(CountryRepository);
-            AddressRepository = new AddressRepository(CityRepository);
+            AddressRepository = new AddressRepo.AddressRepository(CityRepository);
             MedicalRecordRepository = new MedicalRecordRepository();
             PatientRepository = new PatientRepository(AddressRepository, MedicalRecordRepository);
             DoctorRepository = new DoctorRepository();

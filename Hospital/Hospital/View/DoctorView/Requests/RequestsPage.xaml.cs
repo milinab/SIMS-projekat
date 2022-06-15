@@ -12,7 +12,7 @@ namespace Hospital.View.DoctorView.Requests
 
         private void EquipmentProcurement_OnClick(object sender, RoutedEventArgs e)
         {
-            
+            MainWindow.MainFrame.Navigate(new EquipmentPage());
         }
 
         private void Vacation_OnClick(object sender, RoutedEventArgs e)

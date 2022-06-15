@@ -9,55 +9,26 @@
       Title="AppointmentInfo">
 
     <Grid Margin="0,0,0,0">
-        <Label Content="ZDRAVO CORPORATION" HorizontalAlignment="Left" Margin="7,6,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="18" Foreground="Maroon" FontFamily="Georgia"/>
-        <Button Content="Log out" BorderThickness="2" HorizontalAlignment="Left" Margin="700,6,0,0" VerticalAlignment="Top" Height="29" Width="82" Click="LogOut_Click" Background="IndianRed" FontFamily="Georgia"/>
-        <Border BorderBrush="Black" BorderThickness="1" Width="Auto" Height="1" Margin="0,32,0,470" />
 
-        <Menu Width="Auto" Margin="0,40,0,450" Background="Bisque">
-            <MenuItem Click="HomePage_Click">
-                <MenuItem.Icon>
-                    <Image Source="/images/home.png" Margin="0,0,-10,-2" />
-                </MenuItem.Icon>
-            </MenuItem>
-            <MenuItem Click="Profile_Click">
-                <MenuItem.Icon>
-                    <Image Source="/images/user.png" Margin="0,0,-10,-2" />
-                </MenuItem.Icon>
-            </MenuItem>
-            <MenuItem Height="60" Width="70" VerticalAlignment="Center" Padding="10,0,0,0" Header=" " Margin="10,0,0,0" HorizontalAlignment="Stretch" />
-            <MenuItem Height="60" Width="100" VerticalAlignment="Center" Padding="10,0,0,0" Header="Medical record" Foreground="Maroon" Click="MedicalRecord_Click"/>
-            <MenuItem Height="60" Width="120" VerticalAlignment="Center" Padding="10,0,0,0" Header="My appointments" Margin="0,0,0,0" HorizontalAlignment="Stretch" Click="MyAppointments_Click" Foreground="Maroon"/>
-            <MenuItem Height="60" Width="85" VerticalAlignment="Center" Padding="10,0,0,0" Header="My therapy" Foreground="Maroon" Click="MyTherapy_Click"/>
-            <MenuItem Height="60" Width="77" VerticalAlignment="Center" Padding="10,0,0,0" Header="Calendar" Foreground="Maroon" Click="Calendar_Click"/>
-            <MenuItem Height="60" Width="55" VerticalAlignment="Center" Padding="10,0,0,0" Header="Notes" Foreground="Maroon" Click="Notes_Click"/>
-            <MenuItem Height="60" Width="65" VerticalAlignment="Center" Padding="10,0,0,0" Header="Surveys" Foreground="Maroon" Click="Surveys_Click" />
-            <MenuItem Height="60" Width="80" VerticalAlignment="Center" Padding="10,0,0,0" Header=" " Margin="10,0,0,0" HorizontalAlignment="Stretch" />
-            <MenuItem Click="Notification_Click">
-                <MenuItem.Icon>
-                    <Image Source="/images/notifications.png" Margin="0,0,-10,-2" />
-                </MenuItem.Icon>
-            </MenuItem>
-        </Menu>
-        <Label Content="Appointment information" HorizontalAlignment="Left" Margin="285,80,285,0" VerticalAlignment="Top" FontSize="18" FontFamily="Georgia"/>
-        <Border BorderBrush="Black" BorderThickness="1" Width="Auto" Height="1" Margin="0,85,0,364" />
+        <Label Content="Appointment information" HorizontalAlignment="Left" Margin="285,10,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Georgia"/>
+        <Border BorderBrush="Black" BorderThickness="1" Width="Auto" Height="1" Margin="0,50,0,0" VerticalAlignment="Top"/>
 
-        <Label Content="Appointment date:" HorizontalAlignment="Left" Margin="40,170,0,315" Background="Bisque" Width="140" Padding="10"/>
-        <TextBlock x:Name="appDate" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="180,170,0,0" TextWrapping="Wrap" Height="37" Width="250" Background="Bisque" Padding="10"/>
+        <Label Content="Appointment date:" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="40,70,0,0" Background="Bisque" Width="140" Padding="10" Height="37"/>
+        <TextBlock x:Name="appDate" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="180,70,0,0" TextWrapping="Wrap" Height="37" Width="250" Background="Bisque" Padding="10"/>
 
-        <Label Content="Doctor:" HorizontalAlignment="Left" Margin="430,170,0,315" Background="Bisque" Width="130" Padding="10"/>
-        <TextBlock x:Name="appDoctor" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="560,170,0,0" TextWrapping="Wrap" Height="37" Width="200" Background="Bisque" Padding="10"/>
+        <Label Content="Doctor:" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="430,70,0,0" Background="Bisque" Width="130" Padding="10" Height="37"/>
+        <TextBlock x:Name="appDoctor" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="560,70,0,0" TextWrapping="Wrap" Height="37" Width="200" Background="Bisque" Padding="10"/>
 
-        <Label Content="Diagnosis:" HorizontalAlignment="Left" Margin="40,205,0,0" Padding="10"/>
-        <TextBlock x:Name="diagnosis" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="40,235,0,0" TextWrapping="Wrap" Height="86" Width="715" Padding="10" Background="Beige"/>
-        
-        <Label Content="Prescribed medicine:" HorizontalAlignment="Left" Margin="45,325,0,0"/>
-        <TextBlock x:Name="prescribedMedicine" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="180,320,0,0" TextWrapping="Wrap" Height="30" Width="200" Padding="10"/>
+        <Label Content="Diagnosis:" HorizontalAlignment="Left" Margin="40,107,0,98" Padding="10"/>
+        <TextBlock x:Name="diagnosis" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="40,139,0,0" TextWrapping="Wrap" Height="86" Width="715" Padding="10" Background="Beige"/>
 
-        <Label Content="Therapy:" HorizontalAlignment="Left" Margin="40,345,0,0" Padding="10"/>
-        <TextBlock x:Name="therapy" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="40,375,0,0" TextWrapping="Wrap" Height="100" Width="715" Background="Beige" Padding="10"/>
+        <Label Content="Prescribed medicine:" HorizontalAlignment="Left" Margin="45,227,0,98"/>
+        <TextBlock x:Name="prescribedMedicine" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="184,223,0,0" TextWrapping="Wrap" Height="30" Width="200" Padding="10"/>
 
-        <Button Content="Back to past appointments" HorizontalAlignment="Left" Margin="605,485,0,0" VerticalAlignment="Top" Height="26" Width="151" Click="PastAppointments_Click" Background="Bisque" />
+        <Label Content="Therapy:" HorizontalAlignment="Left" Margin="40,249,0,96" Padding="10"/>
+        <TextBlock x:Name="therapy" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="40,281,0,0" TextWrapping="Wrap" Height="100" Width="715" Background="Beige" Padding="10"/>
 
-        <Frame x:Name="frame" NavigationUIVisibility="Hidden" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" Grid.Column="1"/>
+        <Button Content="Back to past appointments" HorizontalAlignment="Left" Margin="605,389,0,0" VerticalAlignment="Top" Height="26" Width="151" Click="PastAppointments_Click" Background="Bisque" />
+
     </Grid>
 </Page>

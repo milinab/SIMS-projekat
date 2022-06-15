@@ -12,21 +12,10 @@
     </Page.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
-            <Border 
-                Style="{StaticResource HeaderStyle}"/>
-            <Label 
-                Style="{StaticResource LabelStyle}" 
-                Content="Malfunction report" 
-                HorizontalAlignment="Center" 
-                VerticalAlignment="Top" 
-                FontSize="24"/>
-        </Grid>
-        <Grid Grid.Row="1" Margin="110 60 70 0">
+        <Grid Grid.Row="0" Margin="30 60 70 0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -45,16 +34,29 @@
                     FontSize="18"/>
             </Grid>
             <Grid Grid.Row="0" Grid.Column="1">
-                <TextBox
+                <Border 
+                    Style="{StaticResource BorderStyle}"
+                    Margin="5 0 0 0"
+                    Width="250" 
                     Height="30"
-                    Width="250"
                     VerticalAlignment="Top"
-                    Margin="5 0 0 0"/>
-                
-                <ListView
+                    BorderThickness="0.3"
+                    BorderBrush="#42A5F5">
+                    <TextBox
+                        Style="{StaticResource TextBoxStyle}"
+                        Height="30"
+                        Width="250"/>
+                </Border>
+                <Border 
+                    Style="{StaticResource BorderStyle}"
                     Margin="5 30 0 40"
-                    Height="150"
-                    Width="250"/>
+                    Width="250" 
+                    Height="150">
+                    <ListView
+                        Style="{StaticResource ListViewStyle}"
+                        Height="150"
+                        Width="250"/>
+                </Border>
             </Grid>
             <Grid Grid.Row="1" Grid.Column="0">
                 <Label
@@ -64,37 +66,49 @@
                     FontSize="18"/>
             </Grid>
             <Grid Grid.Row="1" Grid.Column="1">
-                <ListView
+                <Border 
+                    Style="{StaticResource BorderStyle}"
                     Margin="5 0 0 40"
-                    Height="150"
-                    Width="250"/>
+                    Width="250" 
+                    Height="150">
+                    <ListView
+                        Style="{StaticResource ListViewStyle}"
+                        Height="150"
+                        Width="250"/>
+                </Border>
             </Grid>
             <Grid Grid.Row="2" Grid.Column="0">
                 <Label
-                    Content="Malfunction report:"
+                    Content="Malfunction description:"
                     HorizontalAlignment="Right"
                     Style="{StaticResource LabelStyle}"
                     FontSize="18"/>
             </Grid>
             <Grid Grid.Row="2" Grid.Column="1">
-                <ListView
-                    Height="150"
-                    Width="250"/>
+                <Border 
+                    Style="{StaticResource BorderStyle}"
+                    Width="250" 
+                    Height="150">
+                    <ListView
+                        Style="{StaticResource ListViewStyle}"
+                        Height="150"
+                        Width="250"/>
+                </Border>
             </Grid>
         </Grid>
-        <Grid Grid.Row="2">
+        <Grid Grid.Row="1">
             <Button 
                 Content="Confirm" 
+                Style="{StaticResource ConfirmButton}"
                 HorizontalAlignment="Left"
                 Width="350" 
-                Height="50" 
-                FontSize="25"/>
+                Height="50"/>
             <Button 
                 Content="Cancel" 
+                Style="{StaticResource CancelButton}"
                 HorizontalAlignment="Right"
                 Width="350" 
-                Height="50" 
-                FontSize="25"/>
+                Height="50"/>
         </Grid>
     </Grid>
 </Page>

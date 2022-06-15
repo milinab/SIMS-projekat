@@ -1,4 +1,7 @@
 ﻿using System.Windows;
+using System.Windows.Media;
+using Syncfusion.SfSkinManager;
+using Syncfusion.Themes.FluentDark.WPF;
 using Syncfusion.UI.Xaml.Scheduler;
 
 namespace Hospital.View.DoctorView.Appointments
@@ -10,6 +13,26 @@ namespace Hospital.View.DoctorView.Appointments
     {
         public AppointmentsPage()
         {
+            FluentDarkThemeSettings themeSettings = new FluentDarkThemeSettings();
+            var sfScheduler = new SfScheduler();
+            // ReSharper disable PossibleNullReferenceException
+            var primaryColor = (Color)ColorConverter.ConvertFromString("#9FA8DA");
+            var themeColor = (Color)ColorConverter.ConvertFromString("#121212");
+            themeSettings.PrimaryBackground = new SolidColorBrush(primaryColor);
+            themeSettings.PrimaryForeground = new SolidColorBrush(themeColor);
+            themeSettings.BodyFontSize = 15;
+            themeSettings.HeaderFontSize = 18;
+            themeSettings.SubHeaderFontSize = 17;
+            themeSettings.TitleFontSize = 17;
+            themeSettings.SubTitleFontSize = 16;
+            themeSettings.BodyAltFontSize = 15;
+            themeSettings.FontFamily = new FontFamily("Roboto");
+            SfSkinManager.RegisterThemeSettings("FluentDark", themeSettings);
+            SfSkinManager.SetTheme(sfScheduler, new Theme
+            {
+                ThemeName = "FluentDark", 
+                ScrollBarMode = ScrollBarMode.Compact
+            });
             InitializeComponent();
         }
         

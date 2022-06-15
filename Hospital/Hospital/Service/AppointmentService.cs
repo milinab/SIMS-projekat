@@ -1,9 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Hospital.Exceptions;
 using Hospital.Model;
 using Hospital.Repository;
-using Xceed.Wpf.Toolkit;
+using Hospital.Repository.AppointmentRepo;
 
 namespace Hospital.Service
 {
@@ -44,17 +45,17 @@ namespace Hospital.Service
 
         private static bool ValidateAppointmentOverlap(Appointment newAppointment, Appointment appointment)
         {
-            if (!appointment.Overlaps(newAppointment)) return true;
-           // MessageBox.Show("There is already an appointment at the selected time!");
-            return false;
-
+            if (!appointment.Overlaps(newAppointment))
+            {
+                return true;
+            }
+            throw new AppointmentException("AlreadyExists");    
         }
 
         private static bool ValidateAppointmentDate(Appointment newAppointment, Appointment appointment)
         {
             if (appointment.IsAppointmentDateCorrect(newAppointment)) return true;
-            MessageBox.Show("Start date must be before end date!");
-            return false;
+            throw new AppointmentException("StartDateBeforeEndDate");
         }
 
         public void Edit(Appointment editAppointment)
@@ -114,6 +115,19 @@ namespace Hospital.Service
                 }
             }
             return futureAppointments;
+        }
+
+        public List<Appointment> ReadAllAppointments(int patientId)
+        {
+            List<Appointment> allPatientAppointments = new List<Appointment>();
+
+            List<Appointment> allAppointments = _repository.ReadByPatientId(patientId);
+            foreach (Appointment a in allAppointments)
+            {
+                allPatientAppointments.Add(a);
+                
+            }
+            return allPatientAppointments;
         }
 
         public List<Appointment> FindAvailableAppointments(Doctor selectedDoctor, DateTime _date, List<Appointment> DoctorsAppointments,
@@ -192,7 +206,5 @@ namespace Hospital.Service
             return AvailableAppointments;
 
         }
-
-
     }
 }

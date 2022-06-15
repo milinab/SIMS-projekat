@@ -44,7 +44,6 @@ namespace Hospital.Controller
         {
             return _service.ReadPastAppointments(patientId);
         }
-        
 
         public List<Appointment> ReadByDoctorId(int doctorId)
         {
@@ -58,6 +57,11 @@ namespace Hospital.Controller
         public List<Appointment> ReadFutureAppointments(int patientId)
         {
             return _service.ReadFutureAppointments(patientId);
+        }
+
+        public List<Appointment> ReadAllAppointments(int patientId)
+        {
+            return _service.ReadAllAppointments(patientId);
         }
 
         public List<Appointment> FindAvailableAppointments(Doctor selectedDoctor, DateTime _date, List<Appointment> DoctorsAppointments,

@@ -12,6 +12,7 @@ namespace Hospital.View.DoctorView.ViewModel
     {
         private ObservableCollection<AppointmentViewModel> _appointments;
         public IEnumerable<AppointmentViewModel> Appointments => _appointments;
+        
         private string _currentTime;
         public string CurrentTime
         {

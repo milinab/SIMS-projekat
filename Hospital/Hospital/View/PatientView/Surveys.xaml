@@ -10,67 +10,86 @@
       Title="Surveys">
 
     <Grid Margin="0,0,0,0">
+        <Label Content="Survey" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="18" FontFamily="Georgia" Margin="350,10,0,0"/>
+        <Border BorderBrush="Black" BorderThickness="1" Width="Auto" Height="1" Margin="0,50,0,0" VerticalAlignment="Top"/>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="400"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-        <Label Content="ZDRAVO CORPORATION" HorizontalAlignment="Left" Margin="7,6,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="18" Foreground="Maroon" FontFamily="Georgia"/>
-        <Button Content="Log out" BorderThickness="2" HorizontalAlignment="Left" Margin="700,6,0,0" VerticalAlignment="Top" Height="29" Width="82" Click="LogOut_Click" Background="IndianRed" FontFamily="Georgia"/>
-        <Border BorderBrush="Black" BorderThickness="1" Width="Auto" Height="1" Margin="0,32,0,470" />
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="400"/>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
 
-        <Menu Width="Auto" Margin="0,40,0,450" Background="Bisque">
-            <MenuItem Click="HomePage_Click">
-                <MenuItem.Icon>
-                    <Image Source="/images/home.png" Margin="0,0,-10,-2" />
-                </MenuItem.Icon>
-            </MenuItem>
-            <MenuItem Click="Profile_Click">
-                <MenuItem.Icon>
-                    <Image Source="/images/user.png" Margin="0,0,-10,-2" />
-                </MenuItem.Icon>
-            </MenuItem>
-            <MenuItem Height="60" Width="70" VerticalAlignment="Center" Padding="10,0,0,0" Header=" " Margin="10,0,0,0" HorizontalAlignment="Stretch" />
-            <MenuItem Height="60" Width="100" VerticalAlignment="Center" Padding="10,0,0,0" Header="Medical record" Foreground="Maroon" Click="MedicalRecord_Click"/>
-            <MenuItem Height="60" Width="120" VerticalAlignment="Center" Padding="10,0,0,0" Header="My appointments" Margin="0,0,0,0" HorizontalAlignment="Stretch" Click="MyAppointments_Click" Foreground="Maroon"/>
-            <MenuItem Height="60" Width="85" VerticalAlignment="Center" Padding="10,0,0,0" Header="My therapy" Foreground="Maroon" Click="MyTherapy_Click"/>
-            <MenuItem Height="60" Width="77" VerticalAlignment="Center" Padding="10,0,0,0" Header="Calendar" Foreground="Maroon" Click="Calendar_Click"/>
-            <MenuItem Height="60" Width="55" VerticalAlignment="Center" Padding="10,0,0,0" Header="Notes" Foreground="Maroon" Click="Notes_Click"/>
-            <MenuItem Height="60" Width="65" VerticalAlignment="Center" Padding="10,0,0,0" Header="Surveys" Foreground="Maroon" Click="Surveys_Click" />
-            <MenuItem Height="60" Width="80" VerticalAlignment="Center" Padding="10,0,0,0" Header=" " Margin="10,0,0,0" HorizontalAlignment="Stretch" />
-            <MenuItem Click="Notification_Click">
-                <MenuItem.Icon>
-                    <Image Source="/images/notifications.png" Margin="0,0,-10,-2" />
-                </MenuItem.Icon>
-            </MenuItem>
-        </Menu>
-        <Label Content="Survey" HorizontalAlignment="Left" Margin="350,80,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Georgia"/>
-        <Border BorderBrush="Black" BorderThickness="1" Width="Auto" Height="1" Margin="0,85,0,364" />
+                <Grid Grid.Column="0">
+                    <StackPanel>
+                        <ItemsControl Name="icTodoList">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="40,0,0,5">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="100" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Text="{Binding QuestionText}" Margin="0,60,0,-43" />
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </Grid>
 
-        <StackPanel Margin="10,166,10,10">
-            <ItemsControl Name="icTodoList">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Grid Margin="40,0,0,5">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="100" />
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="{Binding QuestionText}" Margin="0,0,0,20" />
-                        </Grid>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </StackPanel>
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="37"/>
+                        <RowDefinition Height="37"/>
+                        <RowDefinition Height="37"/>
+                        <RowDefinition Height="37"/>
+                        <RowDefinition Height="37"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
 
-        <rating:RatingControl x:Name="Pitanje1" RenderTransformOrigin="0.422,0.31" Margin="380,147,280,322" />
-        <rating:RatingControl x:Name="Pitanje2" RenderTransformOrigin="0.422,0.31" Margin="380,192,280,285" />
-        <rating:RatingControl x:Name="Pitanje3" RenderTransformOrigin="0.422,0.31" Margin="380,235,280,245" />
-        <rating:RatingControl x:Name="Pitanje4" RenderTransformOrigin="0.422,0.31" Margin="380,262,280,192" />
-        <rating:RatingControl x:Name="Pitanje5" RenderTransformOrigin="0.422,0.31" Margin="380,300,280,148"/>
+                    <Grid Grid.Row="0">
+                        <rating:RatingControl x:Name="Pitanje1" RenderTransformOrigin="0.422,0.31" Margin="0,48,0,-48" />
+                    </Grid>
 
-        <Button Content="Send asnwers" Height="42" Width="114" Margin="350,377,256,31" Background="Green" FontFamily="Georgia" Click="SendAnswers_Click"/>
+                    <Grid Grid.Row="1">
+                        <rating:RatingControl x:Name="Pitanje2" RenderTransformOrigin="0.422,0.31" Margin="0,48,0,-48" />
+                    </Grid>
 
-        <Button Content="Discard" Height="42" Width="114" Margin="550,377,112,31" Background="IndianRed" FontFamily="Georgia" Click="Discard_Click"/>
+                    <Grid Grid.Row="2">
+                        <rating:RatingControl x:Name="Pitanje3" RenderTransformOrigin="0.422,0.31" Margin="0,48,0,-48"/>
+                    </Grid>
 
-        <Frame x:Name="frame" NavigationUIVisibility="Hidden" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" Grid.Column="1"/>
+                    <Grid Grid.Row="3">
+                        <rating:RatingControl x:Name="Pitanje4" RenderTransformOrigin="0.422,0.31" Margin="0,48,0,-48" />
+                    </Grid>
 
+                    <Grid Grid.Row="4">
+                        <rating:RatingControl x:Name="Pitanje5" RenderTransformOrigin="0.422,0.31" Margin="0,48,0,-48"/>
+                    </Grid>
 
+                    <Grid Grid.Row="5" Margin="7,0,-7,0">
+                        <Button Content="Send asnwers" Height="42" Width="114" Background="Green" FontFamily="Georgia" Click="SendAnswers_Click" Margin="43,108,43,65" />
+                    </Grid>
+
+                </Grid>
+                <Grid Grid.Column="2">
+                    <Button Content="Discard" Height="42" Width="114"  Background="IndianRed" FontFamily="Georgia" Click="Discard_Click" RenderTransformOrigin="0.425,-0.337" Margin="-25,293,90,65" />
+                    <Image Source="/images/notification.png" Margin="110,225,50,0" PreviewMouseDown="SurveyInfo_Click" HorizontalAlignment="Right"/>
+                </Grid>
+            </Grid>
+
+            <Grid Grid.Row="2">
+
+            </Grid>
+
+        </Grid>
     </Grid>
 </Page>

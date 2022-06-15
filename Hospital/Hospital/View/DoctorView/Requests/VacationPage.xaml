@@ -18,71 +18,77 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid>
-            <Rectangle 
-                Style="{StaticResource HeaderRectangleStyle}" 
+            <Border 
+                Style="{StaticResource HeaderBorderStyle}" 
                 HorizontalAlignment="Center" 
                 VerticalAlignment="Top"/>
             <Label 
-                Style="{StaticResource LabelStyle}" 
-                Content="Vacation" 
-                HorizontalAlignment="Center" 
-                VerticalAlignment="Top" 
-                FontSize="24"/>
-            <DataGrid
-                Name="VacationDataGrid"
-                CanUserAddRows="False"
-                AutoGenerateColumns="False"
-                Width="550"
+                Style="{StaticResource HeaderLabelStyle}" 
+                Content="Vacation"/>
+            <Border 
+                Style="{StaticResource BorderStyle}"
+                Width="550" 
                 Height="550"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Top"
-                Margin="0 100 0 0"
-                RowHeaderWidth="0"
-                CanUserSortColumns="False"
-                CanUserDeleteRows="False"
-                CanUserReorderColumns="False"
-                IsReadOnly="True">
-                <DataGrid.Columns>
-                    <DataGridTextColumn 
+                Margin="0 100 0 0">
+                <DataGrid
+                    RowStyle="{StaticResource PatientsDataGridRowStyle}"
+                    Name="VacationDataGrid"
+                    CanUserAddRows="False"
+                    AutoGenerateColumns="False"
+                    Width="550"
+                    Height="550"
+                    RowHeaderWidth="0"
+                    CanUserSortColumns="False"
+                    CanUserDeleteRows="False"
+                    CanUserReorderColumns="False"
+                    IsReadOnly="True"
+                    Background="Transparent"
+                    BorderThickness="0"
+                    ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn 
                         Header="Start date" 
                         Width="*" 
                         Binding="{Binding Path=StartDate, StringFormat={}{0:d.M.yyyy.}}"/>
-                    <DataGridTextColumn 
+                        <DataGridTextColumn 
                         Header="End date" 
                         Width="*"
                         Binding="{Binding Path=EndDate, StringFormat={}{0:d.M.yyyy.}}"/>
-                    <DataGridTextColumn 
+                        <DataGridTextColumn 
                         Header="Reason" 
                         Width="*"
                         Binding="{Binding Path=Reason}"/>
-                    <DataGridTextColumn 
+                        <DataGridTextColumn 
                         Header="Status" 
                         Width="*"
                         Binding="{Binding Path=State}"/>
-                    <DataGridTextColumn
+                        <DataGridTextColumn
                         Header="Reject reason"
                         Width="*"
                         Binding="{Binding Path=RejectReason}"/>
-                </DataGrid.Columns>
-            </DataGrid>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Border>
             
             <Button 
                 Content="New request" 
+                Style="{StaticResource ConfirmButton}"
                 HorizontalAlignment="Left"  
                 VerticalAlignment="Bottom" 
                 Margin="0,0,0,0" 
                 Width="350" 
                 Height="50" 
-                FontSize="25"
                 Click="NewRequest_OnClick"/>
             <Button 
                 Content="Back"  
+                Style="{StaticResource CancelButton}"
                 HorizontalAlignment="Right" 
                 VerticalAlignment="Bottom" 
                 Margin="0,0,0,0" 
                 Width="350" 
                 Height="50"  
-                FontSize="25"
                 Click="Back_OnClick"/>
         </Grid>
     </Grid>

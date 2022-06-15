@@ -1,16 +1,10 @@
-﻿using Hospital.Repository;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
 using Syncfusion.Pdf;
 using Syncfusion.Pdf.Graphics;
 using Syncfusion.Pdf.Tables;
-using System.Windows;
 using System.Data;
 using Hospital.Model;
+using Hospital.Repository.EquipmentRepo;
 
 namespace Hospital.View.ManagerView
 {
