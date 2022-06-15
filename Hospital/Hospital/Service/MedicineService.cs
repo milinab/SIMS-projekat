@@ -1,20 +1,16 @@
 ﻿using Hospital.Model;
-using Hospital.Repository;
-using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Hospital.Repository.MedicineRepo;
 
 namespace Hospital.Service
 {
     public class MedicineService
     {
         private int _id;
-        private readonly MedicineRepository _repository;
+        private readonly IMedicineRepository _repository;
 
-        public MedicineService(MedicineRepository medicineRepository)
+        public MedicineService(IMedicineRepository medicineRepository)
         {
             _repository = medicineRepository;
             List<Medicine> medicine = Read();

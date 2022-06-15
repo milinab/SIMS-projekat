@@ -1,16 +1,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using Hospital.Model;
-using Hospital.Repository;
+using Hospital.Repository.ReferralRepo;
 
 namespace Hospital.Service
 {
     public class ReferralService
     {
         private int _id;
-        private readonly ReferralRepository _repository;
+        private readonly IReferralRepository _repository;
 
-        public ReferralService(ReferralRepository referralRepository)
+        public ReferralService(IReferralRepository referralRepository)
         {
             _repository = referralRepository;
             List<Referral> referrals = Read();

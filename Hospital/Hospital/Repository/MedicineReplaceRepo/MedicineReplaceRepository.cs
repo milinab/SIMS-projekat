@@ -1,14 +1,9 @@
 ﻿using Hospital.Model;
-using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Hospital.Repository.MedicineReplaceRepo
 {
-    public class MedicineReplaceRepository
+    public class MedicineReplaceRepository : IMedicineReplaceRepository
     {
 
         private List<ReplacementMedicine> _medicineReplace;
@@ -40,7 +35,7 @@ namespace Hospital.Repository.MedicineReplaceRepo
             Write();
         }
 
-        private void Write()
+        public void Write()
         {
             _serializer.Write(_medicineReplace);
         }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Hospital.Repository.MedicineRepo
 {
-    public class MedicineRepository
+    public class MedicineRepository: IMedicineRepository
     {
         private List<Medicine> _medicine;
         private readonly Serializer<Medicine> _serializer;
@@ -40,7 +40,7 @@ namespace Hospital.Repository.MedicineRepo
             Write();
         }
 
-        private void Write()
+        public void Write()
         {
             _serializer.Write(_medicine);
         }

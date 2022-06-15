@@ -6,15 +6,16 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Hospital.Repository.MedicineReplaceRepo;
 
 namespace Hospital.Service
 {
     public class MedicineReplaceService
     {
         private int _id;
-        private readonly MedicineReplaceRepository _repository;
+        private readonly IMedicineReplaceRepository _repository;
 
-        public MedicineReplaceService(MedicineReplaceRepository medicineReplaceRepository)
+        public MedicineReplaceService(IMedicineReplaceRepository medicineReplaceRepository)
         {
             _repository = medicineReplaceRepository;
             List<ReplacementMedicine> medicineReplace = Read();

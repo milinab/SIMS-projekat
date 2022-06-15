@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using Hospital.Model;
 
 namespace Hospital.Repository.ManagerRepo
 {
-    public class ManagerRepository
+    public class ManagerRepository : IManagerRepository
     {
         private List<Manager> _managers;
         private readonly Serializer<Manager> _serializer;
