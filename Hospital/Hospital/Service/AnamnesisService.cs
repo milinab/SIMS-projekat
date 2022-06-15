@@ -48,9 +48,9 @@ namespace Hospital.Service
             _repository.Delete(id);
         }
         
-        public void Write()
+        public void Write(List<Anamnesis> list)
         {
-            _repository.Write();
+            _repository.Write(list);
         }
 
         public Anamnesis ReadByAppointmentId(int appointmentId)

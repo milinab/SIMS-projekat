@@ -3,17 +3,9 @@ using Hospital.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using Hospital.Exceptions;
 
 namespace Hospital.View.ManagerView
 {
@@ -24,8 +16,7 @@ namespace Hospital.View.ManagerView
     {
         private App _app;
         private readonly RoomOccupancy _roomOccupancy;
-        //private RoomController _roomController;
-        private AppointmentController _appointmentController;
+        private readonly AppointmentController _appointmentController;
 
         public Renovate(RoomOccupancy roomOccupancy, AppointmentController appointmentController)
         {
@@ -49,8 +40,6 @@ namespace Hospital.View.ManagerView
             DateTime _date = datePicker.SelectedDate.Value;
             string _room = roomComboBox.Text;
             TimeSpan interval = new TimeSpan(23, 59, 59);
-            List<Appointment> appointmentList = _app._appointmentController.Read();
-            ObservableCollection<Appointment> appointments = new ObservableCollection<Appointment>(appointmentList);
             List<Room>roomList = _app._roomController.Read();
             ObservableCollection<Room> rooms = new ObservableCollection<Room>(roomList);
             Room tempRoom = new Room();
@@ -63,36 +52,16 @@ namespace Hospital.View.ManagerView
             }
 
             Appointment appointment = new Appointment(tempRoom, _date, interval);
-
-            bool nesto = false;
-
-            foreach (Appointment appointment1 in appointments)
+            try
             {
-                if (DateTime.Compare(appointment1.Date, appointment.Date) == 0)
-                {
-                    if (appointment.RoomId == appointment1.RoomId)
-                    {
-                        validationDateRoom.Visibility = Visibility.Visible;
-                        nesto = true;
-                    }
-                }
-            }
-
-            if (nesto == false)
-            {
-
-                if (roomComboBox.Text.Equals(""))
-                {
-                    validationRoom.Visibility = Visibility.Visible;
-                    validationDate.Visibility = Visibility.Hidden;
-                    return;
-                }
-
                 _appointmentController.Create(appointment);
-                _roomOccupancy.BackToRoomOccupancy();
             }
-
-           // _roomOccupancy.BackToRoomOccupancy();
+            catch (AppointmentException exp)
+            { 
+                validationDateRoom.Visibility = Visibility.Visible;
+                return;
+            }
+            _roomOccupancy.BackToRoomOccupancy();
         }
 
         private void CancelRenovateClick(object sender, RoutedEventArgs e)
@@ -105,37 +74,29 @@ namespace Hospital.View.ManagerView
 
         public Renovate()
         {
-            
             InitializeComponent();
-            
-
-        }
-
-        private void roomComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
         }
 
         private void EquipmentClick(object sender, RoutedEventArgs e)
         {
-            View.ManagerView.EquipmentWindow equipmentWindow = new View.ManagerView.EquipmentWindow(_app._equipmentController);
+            EquipmentWindow equipmentWindow = new View.ManagerView.EquipmentWindow(_app._equipmentController);
             equipmentWindow.Show();
         }
         private void RoomClick(object sender, RoutedEventArgs e)
         {
 
-            View.ManagerView.ManagerWindow roomWindow = new View.ManagerView.ManagerWindow(_app._roomController);
+            ManagerWindow roomWindow = new View.ManagerView.ManagerWindow(_app._roomController);
             roomWindow.Show();
         }
 
         private void OccupancyClick(object sender, RoutedEventArgs e)
         {
-            View.ManagerView.RoomOccupancy roomOccupancy = new View.ManagerView.RoomOccupancy(_app._appointmentController, _app._roomController);
+            RoomOccupancy roomOccupancy = new View.ManagerView.RoomOccupancy(_app._appointmentController, _app._roomController);
             roomOccupancy.Show();
         }
         private void HomeClick(object sender, RoutedEventArgs e)
         {
-            View.ManagerView.ManagerHomeWindow managerHomeWindow = new ManagerHomeWindow();
+            ManagerHomeWindow managerHomeWindow = new ManagerHomeWindow();
             managerHomeWindow.Show();
         }
         private void MedicineClick(object sender, RoutedEventArgs e)

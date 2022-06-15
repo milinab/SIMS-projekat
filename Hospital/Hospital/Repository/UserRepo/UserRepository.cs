@@ -17,7 +17,7 @@ namespace Hospital.Repository.UserRepo
 
         public List<User> Read()
         {
-            var list = Read();
+            var list = _serializer.Read();
             foreach (var user in list)
             {
                 Address address = _addressRepository.ReadById(user.AddressId);

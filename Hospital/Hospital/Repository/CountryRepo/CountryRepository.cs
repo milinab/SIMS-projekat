@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using Hospital.Model;
 
@@ -41,14 +40,11 @@ namespace Hospital.Repository.CountryRepo
         public void Edit(Country editCountry)
         {
             var list = Read();
-            foreach (Country country in list)
+            foreach (var country in list.Where(country => editCountry.Id.Equals(country.Id)))
             {
-                if (editCountry.Id.Equals(country.Id))
-                {
-                    country.Name = editCountry.Name;
-                }
+                country.Name = editCountry.Name;
             }
-            Write();
+            Write(list);
         }
 
         public void Delete(int id)

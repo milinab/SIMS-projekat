@@ -21,7 +21,7 @@ namespace Hospital.Service
             }
             else
             {
-                _id = int.Parse(equipments.Last().Id);
+                _id = equipments.Last().Id;
             }
         }
 
@@ -32,7 +32,7 @@ namespace Hospital.Service
       
         public void Create(Equipment newEquipment)
         {
-            newEquipment.Id = GenerateId().ToString();
+            newEquipment.Id = GenerateId();
             _repository.Create(newEquipment);
         }
       

@@ -20,7 +20,7 @@ namespace Hospital.Service
             _repository = medicineReplaceRepository;
             List<ReplacementMedicine> medicineReplace = Read();
             if(medicineReplace != null)
-                _id = int.Parse(medicineReplace.Last().Id);
+                _id = medicineReplace.Last().Id;
             else
                 _id = 0;
 
@@ -32,7 +32,7 @@ namespace Hospital.Service
 
         public void Create(ReplacementMedicine newMedicineReplace)
         {
-            newMedicineReplace.Id = GenerateId().ToString();
+            newMedicineReplace.Id = GenerateId();
             _repository.Create(newMedicineReplace);
         }
         public void Delete(int id)

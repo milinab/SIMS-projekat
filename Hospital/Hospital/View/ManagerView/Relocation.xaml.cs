@@ -22,7 +22,7 @@ namespace Hospital.View.ManagerView
     /// </summary>
     public partial class Relocation : Page
     {
-        private string _id;
+        private int _id;
         private App _app;
         private readonly EquipmentWindow _equipmentWindow;
         private EquipmentController _equipmentController;
@@ -59,10 +59,10 @@ namespace Hospital.View.ManagerView
             eqComboBox.ItemsSource = eqName;
             roomComboBox.ItemsSource = roomName;
             roomComboBox2.ItemsSource = roomName;
-            this.eqComboBox.Text = equipments.Name;
-            this.quantityTextBox.Text = equipments.Number;
-            this.roomComboBox.Text = equipments.Room;
-            this.roomComboBox2.Text = equipments.Room;
+            eqComboBox.Text = equipments.Name;
+            quantityTextBox.Text = equipments.Number;
+            roomComboBox.Text = equipments.Room;
+            roomComboBox2.Text = equipments.Room;
             _id = equipments.Id;
 
 

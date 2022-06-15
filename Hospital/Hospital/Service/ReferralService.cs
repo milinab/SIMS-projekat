@@ -43,9 +43,9 @@ namespace Hospital.Service
             _repository.Delete(id);
         }
 
-        public void Write()
+        public void Write(List<Referral> list)
         {
-            _repository.Write();
+            _repository.Write(list);
         }
         
         private int GenerateId()
