@@ -13,51 +13,57 @@ namespace Hospital.Repository.AllergenRepos
         public AllergenRepository()
         {
             _serializer = new Serializer<Allergen>("allergens.csv");
-            _allergens = new List<Allergen>();
         }
 
         public List<Allergen> Read()
         {
-            _allergens = _serializer.Read();
-            return _allergens;
+            return _serializer.Read();
         }
 
         public Allergen ReadById(int id)
         {
-            return _allergens.FirstOrDefault(allergen => allergen.Id.Equals(id));
+            foreach (Allergen allergen in Read())
+            {
+                if (allergen.Id.Equals(id))
+                {
+                    return allergen;
+                }
+            }
+            return null;
         }
 
         public void Create(Allergen newAllergen)
         {
-            _allergens.Add(newAllergen);
-            Write();
+            var list = Read();
+            list.Add(newAllergen);
+            Write(list);
         }
 
         public void Edit(Allergen editAllergen)
         {
-            foreach (var allergen in _allergens.Where(allergen => editAllergen.Id.Equals(allergen.Id)))
+            var list = Read();
+            foreach (Allergen allergen in list)
             {
-                allergen.Name = editAllergen.Name;
+                if (allergen.Id.Equals(allergen.Id))
+                {
+                }
             }
-
-            Write();
+            Write(list);
         }
 
         public void Delete(int id)
         {
-            for (int i = _allergens.Count - 1; i >= 0; i--)
+            var list = Read();
+            foreach (var resp in list.Where(resp => resp.Id == id))
             {
-                if (_allergens[i].Id.Equals(id))
-                {
-                    _allergens.Remove(_allergens[i]);
-                }
+                list.Remove(resp);
             }
-            Write();
+            Write(list);
         }
 
-        public void Write()
+        public void Write(List<Allergen> list)
         {
-            _serializer.Write(_allergens);
+            _serializer.Write(list);
         }
     }
 }

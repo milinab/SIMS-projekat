@@ -1,27 +1,25 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Hospital.Model;
 
 namespace Hospital.Repository.DoctorRepo
 {
     public class DoctorRepository : IDoctorRepository
     {
-        private List<Doctor> _doctors;
         private readonly Serializer<Doctor> _serializer;
         public DoctorRepository()
         {
             _serializer = new Serializer<Doctor>("doctors.csv");
-            _doctors = new List<Doctor>();
         }
 
         public List<Doctor> Read()
         {
-            _doctors = _serializer.Read();
-            return _doctors;
+            return _serializer.Read();
         }
 
         public Doctor ReadById(int id)
         {
-            foreach (Doctor doctor in _doctors)
+            foreach (Doctor doctor in Read())
             {
                 if (doctor.Id.Equals(id))
                 {
@@ -33,13 +31,15 @@ namespace Hospital.Repository.DoctorRepo
 
         public void Create(Doctor newDoctor)
         {
-            _doctors.Add(newDoctor);
-            Write();
+            var list = Read();
+            list.Add(newDoctor);
+            Write(list);
         }
 
         public void Edit(Doctor editDoctor)
         {
-            foreach (Doctor doctor in _doctors)
+            var list = Read();
+            foreach (Doctor doctor in list)
             {
                 if (doctor.Id.Equals(editDoctor.Id))
                 { 
@@ -57,24 +57,22 @@ namespace Hospital.Repository.DoctorRepo
                     doctor.Specialization = editDoctor.Specialization;
                 }
             }
-            Write();
+            Write(list);
         }
 
         public void Delete(int id)
         {
-            for (int i = _doctors.Count - 1; i >= 0; i--)
+            var list = Read();
+            foreach (var resp in list.Where(resp => resp.Id == id))
             {
-                if (_doctors[i].Id.Equals(id))
-                {
-                    _doctors.Remove(_doctors[i]);
-                }
+                list.Remove(resp);
             }
-            Write();
+            Write(list);
         }
 
-        public void Write()
+        public void Write(List<Doctor> list)
         {
-            _serializer.Write(_doctors);
+            _serializer.Write(list);
         }
     }
 }

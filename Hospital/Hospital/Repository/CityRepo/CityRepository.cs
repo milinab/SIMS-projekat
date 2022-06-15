@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using Hospital.Model;
 using Hospital.Repository.CountryRepo;
 
@@ -7,35 +8,24 @@ namespace Hospital.Repository.CityRepo
 {
     public class CityRepository : ICityRepository
     {
-        private List<City> _cities;
         private readonly Serializer<City> _serializer;
         private readonly CountryRepository _countryRepository;
 
         public CityRepository(CountryRepository countryRepository)
         {
             _serializer = new Serializer<City>("cities.csv");
-            _cities = new List<City>();
             _countryRepository = countryRepository;
         }
 
         public List<City> Read()
         {
-            _cities = _serializer.Read();
-            foreach (var city in _cities)
-            {
-                Country country = _countryRepository.ReadById(city.CountryId);
-                if (country != null)
-                {
-                    city.Country = country;
-                }
-            }
-            return _cities;
+
+            return _serializer.Read();
         }
 
         public City ReadById(int id)
         {
-            _cities = _serializer.Read();
-            foreach (var city in _cities)
+            foreach (var city in Read())
             {
                 if (city.Id == id)
                 {
@@ -52,13 +42,15 @@ namespace Hospital.Repository.CityRepo
 
         public void Create(City newCity)
         {
-            _cities.Add(newCity);
-            Write();
+            var list = Read();
+            list.Add(newCity);
+            Write(list);
         }
 
         public void Edit(City editCity)
         {
-            foreach (City city in _cities)
+            var list = Read();
+            foreach (City city in list)
             {
                 if (editCity.Id.Equals(city.Id))
                 {
@@ -67,24 +59,22 @@ namespace Hospital.Repository.CityRepo
                     city.Zip = editCity.Zip;
                 }
             }
-            Write();
+            Write(list);
         }
 
         public void Delete(int id)
         {
-            for (int i = _cities.Count - 1; i >= 0; i--)
+            var list = Read();
+            foreach (var resp in list.Where(resp => resp.Id == id))
             {
-                if (_cities[i].Id.Equals(id))
-                {
-                    _cities.Remove(_cities[i]);
-                }
+                list.Remove(resp);
             }
-            Write();
+            Write(list);
         }
 
-        public void Write()
+        public void Write(List<City> list)
         {
-            _serializer.Write(_cities);
+            _serializer.Write(list);
         }
     }
 }

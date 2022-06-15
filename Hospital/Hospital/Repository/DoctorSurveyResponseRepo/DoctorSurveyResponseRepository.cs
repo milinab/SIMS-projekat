@@ -1,28 +1,26 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Hospital.Model;
 
 namespace Hospital.Repository.DoctorSurveyResponseRepo
 {
     public class DoctorSurveyResponseRepository : IDoctorSurveyResponseRepository
     {
-        private List<DoctorSurveyResponse> _doctorSurveyResponse;
         private readonly Serializer<DoctorSurveyResponse> _serializer;
 
         public DoctorSurveyResponseRepository()
         {
             _serializer = new Serializer<DoctorSurveyResponse>("doctorSurveyResponses.csv");
-            _doctorSurveyResponse = new List<DoctorSurveyResponse>();
         } 
 
         public List<DoctorSurveyResponse> Read()
         {
-            _doctorSurveyResponse = _serializer.Read();
-            return _doctorSurveyResponse;
+            return _serializer.Read();
         }
 
         public DoctorSurveyResponse ReadById(int id)
         {
-            foreach (DoctorSurveyResponse doctorSurveyResponse in _doctorSurveyResponse)
+            foreach (DoctorSurveyResponse doctorSurveyResponse in Read())
             {
                 if (doctorSurveyResponse.Id.Equals(id))
                 {
@@ -34,37 +32,36 @@ namespace Hospital.Repository.DoctorSurveyResponseRepo
 
         public void Create(DoctorSurveyResponse newDoctorSurveyResponse)
         {
-            _doctorSurveyResponse.Add(newDoctorSurveyResponse);
-            Write();
+            var list = Read();
+            list.Add(newDoctorSurveyResponse);
+            Write(list);
         }
 
         public void Edit(DoctorSurveyResponse editDoctorSurveyResponse)
         {
-            foreach (DoctorSurveyResponse doctorSurveyResponse in _doctorSurveyResponse)
+            var list = Read();
+            foreach (DoctorSurveyResponse doctorSurveyResponse in list)
             {
                 if (editDoctorSurveyResponse.Id.Equals(doctorSurveyResponse.Id))
                 {
-                    //
                 }
             }
-            Write();
+            Write(list);
         }
 
         public void Delete(int id)
         {
-            for (int i = _doctorSurveyResponse.Count - 1; i >= 0; i--)
+            var list = Read();
+            foreach (var resp in list.Where(resp => resp.Id == id))
             {
-                if (_doctorSurveyResponse[i].Id.Equals(id))
-                {
-                    _doctorSurveyResponse.Remove(_doctorSurveyResponse[i]);
-                }
+                list.Remove(resp);
             }
-            Write();
+            Write(list);
         }
 
-        public void Write()
+        public void Write(List<DoctorSurveyResponse> list)
         {
-            _serializer.Write(_doctorSurveyResponse);
+            _serializer.Write(list);
         }
     }
 }
