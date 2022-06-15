@@ -239,6 +239,7 @@
                 Margin="0 0 0 60"
                 Foreground="#CF6679"
                 TextWrapping="Wrap"
+                TextAlignment="Center"
                 Text="{Binding AppointmentValidationText}"/>
         </Grid>
     </Grid>

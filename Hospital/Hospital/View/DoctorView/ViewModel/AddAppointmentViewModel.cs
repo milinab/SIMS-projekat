@@ -14,7 +14,7 @@ namespace Hospital.View.DoctorView.ViewModel
         private App _app;
         public DateTime Date { get; set; }
         public string Time { get; set; }
-        public TimeSpan Duration { get; set; }
+        public string Duration { get; set; }
         private ObservableCollection<string> _rooms;
         public IEnumerable<string> Rooms => _rooms;
 
@@ -57,7 +57,7 @@ namespace Hospital.View.DoctorView.ViewModel
         public AddAppointmentViewModel(Patient patient)
         {
             Patient = patient;
-            Duration = new TimeSpan(0, 10, 0);
+            Duration = "PT10M";
             InstantiateProperties();
             AppointmentValidations = new ObservableCollection<AppointmentValidation>();
 

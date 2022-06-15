@@ -21,6 +21,23 @@
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
+            <Border
+                Style="{StaticResource BorderStyle}"
+                Name="FeedbackBorder"
+                VerticalAlignment="Top"
+                Height="10"
+                Background="#42A5F5"
+                Visibility="Hidden">
+                <Label 
+                    Content="Success"
+                    Foreground="#121212"
+                    HorizontalAlignment="Center"
+                    Height="11"
+                    FontSize="9"
+                    Padding="0"
+                    Margin="0 -2 0 0"/>
+            </Border>
+
             <Label
                 Content="Patient information:" 
                 Style="{StaticResource LabelStyle}" 
@@ -106,10 +123,9 @@
                         VerticalAlignment="Center">
                         <ListView
                             Name="PatientListView" 
+                            Style="{StaticResource PatientListViewStyle}"
                             Height="70" 
                             Width="250" 
-                            Background="Transparent"
-                            BorderThickness="0"
                             SelectionChanged="PatientListView_OnSelectionChanged">
                             <ListView.View>
                                 <GridView 
@@ -192,6 +208,7 @@
                 Width="270" 
                 Height="70" 
                 Margin="0 110 50 0"
+                Click="HospitalTreatment_OnClick" 
                 IsEnabled="False"/> 
             <Button 
                 Name="ReferralButton" 
@@ -213,6 +230,7 @@
                 Width="270"
                 Height="70"
                 Margin="0 0 50 20" 
+                Click="DischargeButton_OnClick"
                 IsEnabled="False"/>
             
         </Grid>

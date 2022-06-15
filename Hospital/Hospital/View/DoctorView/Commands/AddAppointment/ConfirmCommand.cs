@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows;
 using Hospital.Exceptions;
 using Hospital.Model;
+using Hospital.View.DoctorView.Checkup;
 using Hospital.View.DoctorView.Validation;
 using Hospital.View.DoctorView.ViewModel;
 
@@ -32,7 +33,8 @@ namespace Hospital.View.DoctorView.Commands.AddAppointment
                 var timeString = _addAppointmentViewModel.Time;
                 var time = TimeSpan.ParseExact(timeString, "c", CultureInfo.InvariantCulture);
                 date += time;
-                var duration = _addAppointmentViewModel.Duration;
+                var durationString = _addAppointmentViewModel.Duration;
+                var duration = TimeSpan.ParseExact(durationString, "c", CultureInfo.InvariantCulture);
                 var doctor = _addAppointmentViewModel.Doctor;
                 var patient = _addAppointmentViewModel.Patient;
                 var roomName = _addAppointmentViewModel.Room;
@@ -46,6 +48,7 @@ namespace Hospital.View.DoctorView.Commands.AddAppointment
 
                 _app._appointmentController.Create(appointment);
                 MainWindow.MainFrame.GoBack();
+                CheckupPage.Appointment = true;
             }
             catch (AppointmentException e)
             {

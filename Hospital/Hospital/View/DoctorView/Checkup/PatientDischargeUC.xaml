@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:Hospital.View.DoctorView.Checkup"
              mc:Ignorable="d"
-             d:DesignHeight="330" d:DesignWidth="650">
+             d:DesignHeight="768" d:DesignWidth="700">
     <UserControl.Resources>
         <ResourceDictionary Source="../Resources/DoctorResourceDictionary.xaml"/>
     </UserControl.Resources>
@@ -27,13 +27,13 @@
                 Style="{StaticResource ConfirmButton}"
                 Content="Confirm" 
                 HorizontalAlignment="Left"
-                Width="325" 
+                Width="350" 
                 Height="50" />
             <Button 
                 Content="Cancel" 
                 Style="{StaticResource CancelButton}"
                 HorizontalAlignment="Right"
-                Width="325" 
+                Width="350" 
                 Height="50" />
         </Grid>
     </Grid>

@@ -1,7 +1,10 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
-                    xmlns:Themes="clr-namespace:Xceed.Wpf.Toolkit.Themes;assembly=Xceed.Wpf.Toolkit">
+                    xmlns:themes="clr-namespace:Xceed.Wpf.Toolkit.Themes;assembly=Xceed.Wpf.Toolkit"
+                    xmlns:toggleSwitch="clr-namespace:ToggleSwitch;assembly=ToggleSwitch"
+                    xmlns:borders="clr-namespace:ToggleSwitch.Borders;assembly=ToggleSwitch"
+                    xmlns:utils="clr-namespace:ToggleSwitch.Utils;assembly=ToggleSwitch">
     
     
     <!-- Default button template -->
@@ -143,7 +146,7 @@
             </Grid>
             <ControlTemplate.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="BorderBrush" Value="{DynamicResource {ComponentResourceKey ResourceId=ControlMouseOverBorderKey, TypeInTargetAssembly={x:Type Themes:ResourceKeys}}}"/>
+                    <Setter Property="BorderBrush" Value="{DynamicResource {ComponentResourceKey ResourceId=ControlMouseOverBorderKey, TypeInTargetAssembly={x:Type themes:ResourceKeys}}}"/>
                 </Trigger>
                 <MultiDataTrigger>
                     <MultiDataTrigger.Conditions>
@@ -156,7 +159,7 @@
                     <Setter Property="IsReadOnly" TargetName="PART_TextBox" Value="True"/>
                 </DataTrigger>
                 <Trigger Property="IsKeyboardFocusWithin" Value="True">
-                    <Setter Property="BorderBrush" Value="{DynamicResource {ComponentResourceKey ResourceId=ControlSelectedBorderKey, TypeInTargetAssembly={x:Type Themes:ResourceKeys}}}"/>
+                    <Setter Property="BorderBrush" Value="{DynamicResource {ComponentResourceKey ResourceId=ControlSelectedBorderKey, TypeInTargetAssembly={x:Type themes:ResourceKeys}}}"/>
                 </Trigger>
                 <Trigger Property="IsEnabled" Value="False">
                     <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
@@ -213,8 +216,8 @@
                 <SolidColorBrush Color="#FFFFFF" Opacity="0.06"/>
             </Setter.Value>
         </Setter>
-        <Setter Property="BorderThickness" Value="1"/>
-        <Setter Property="BorderBrush" Value="#80DEEA"/>
+        <Setter Property="BorderThickness" Value="0.5"/>
+        <Setter Property="BorderBrush" Value="#42A5F5"/>
         <Setter Property="Template" Value="{StaticResource ButtonTemplate}"/>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
@@ -238,8 +241,8 @@
                 <SolidColorBrush Color="#FFFFFF" Opacity="0.06"/>
             </Setter.Value>
         </Setter>
-        <Setter Property="BorderThickness" Value="1"/>
-        <Setter Property="BorderBrush" Value="#80DEEA"/>
+        <Setter Property="BorderThickness" Value="0.5"/>
+        <Setter Property="BorderBrush" Value="#42A5F5"/>
         <Setter Property="Template" Value="{StaticResource ButtonTemplate}"/>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
@@ -556,16 +559,124 @@
         <Setter Property="Foreground" Value="#FFFFFF"/>
     </Style>
     
-    <!-- ListView -->
-    <Style TargetType="ListView" x:Key="ListViewStyle">
+    <!-- Patient ListView -->
+    <Style TargetType="ListView" x:Key="PatientListViewStyle">
         <Setter Property="Foreground">
             <Setter.Value>
                 <SolidColorBrush Color="#FFFFFF" Opacity="0.87"/>
             </Setter.Value>
         </Setter>
-        <Setter Property="FontSize" Value="25"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="Background" Value="Transparent"/>
+        <Style.Triggers>
+            <Trigger Property="IsSelected" Value="True" >
+                <Setter Property="Foreground" Value="#121212" />
+            </Trigger>
+        </Style.Triggers>
     </Style>
     
+    <!-- ListView -->
+    <Style TargetType="ListView" x:Key="ListViewStyle" BasedOn="{StaticResource PatientListViewStyle}">
+        <Setter Property="FontSize" Value="25"/>
+    </Style>
+
+    <!--ToggleSwitch-->
+    <Style x:Key="MetroToggleSwitchStyle" TargetType="toggleSwitch:HorizontalToggleSwitch">
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Width" Value="88"/>
+        <Setter Property="Height" Value="28"/>
+        <Setter Property="BorderBrush" Value="#FFBEBEBE"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Padding" Value="0,4"/>
+        <Setter Property="UncheckedForeground" Value="#FF5C5C5C"/>
+        <Setter Property="CheckedForeground" Value="White"/>
+        <Setter Property="ThumbSize" Value="42"/>
+        <Setter Property="FontFamily" Value="Roboto"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="CheckedBackground">
+            <Setter.Value>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#42A5F5" Offset="1"/>
+                    <GradientStop Color="#42A5F5" Offset="0.50"/>
+                    <GradientStop Color="#42A5F5" Offset="0.50"/>
+                    <GradientStop Color="#42A5F5"/>
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="UncheckedBackground">
+            <Setter.Value>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFBBBBBB" Offset="0"/>
+                    <GradientStop Color="#FFE1E2E2" Offset="0.5"/>
+                    <GradientStop Color="#FFDDDDDD" Offset="0.5"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ThumbBrush">
+            <Setter.Value>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFD8D7D8"/>
+                    <GradientStop Color="#FFFDFCFD" Offset="1"/>
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="toggleSwitch:HorizontalToggleSwitch">
+                    <Grid>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal"/>
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="DisabledOverlay">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Visible</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="MouseOver"/>
+                                <VisualState x:Name="Pressed"/>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="CheckStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition GeneratedDuration="0:0:0.10" To="Unchecked"/>
+                                    <VisualTransition GeneratedDuration="0:0:0.10" To="Checked"/>
+                                </VisualStateGroup.Transitions>
+                                <VisualState x:Name="Checked"/>
+                                <VisualState x:Name="Unchecked"/>
+                                <VisualState x:Name="DraggingChecked"/>
+                                <VisualState x:Name="DraggingUnchecked"/>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <borders:ClippingBorder x:Name="SwitchRoot" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1" CornerRadius="2" IsTabStop="False">
+                            <Canvas MinWidth="{TemplateBinding ThumbSize}" MinHeight="{TemplateBinding FontSize}">
+                                <utils:ActualSizePropertyProxy x:Name="ActualSizeProxy" Element="{Binding Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" Visibility="Collapsed"/>
+                                <Grid x:Name="SwitchTrack" Cursor="Hand" Height="{Binding ActualHeightValue, ElementName=ActualSizeProxy, Mode=OneWay}" Margin="0,-1,0,0">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Border Background="{TemplateBinding CheckedBackground}" Margin="-1,0,0,0" Padding="1,0,0,0">
+                                            <ContentControl x:Name="SwitchChecked" Foreground="{TemplateBinding CheckedForeground}" FontSize="{TemplateBinding FontSize}" FontFamily="{TemplateBinding FontFamily}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" HorizontalContentAlignment="Center" IsTabStop="False" Margin="{TemplateBinding Padding}" Padding="0,0,22,0" Template="{TemplateBinding ContentTemplate}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" VerticalContentAlignment="Center"/>
+                                        </Border>
+                                        <Border Background="{TemplateBinding UncheckedBackground}" Margin="-1,0,0,0">
+                                            <ContentControl x:Name="SwitchUnchecked" Foreground="{TemplateBinding UncheckedForeground}" FontSize="{TemplateBinding FontSize}" FontFamily="{TemplateBinding FontFamily}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" HorizontalContentAlignment="Center" IsTabStop="False" Margin="{TemplateBinding Padding}" Template="{TemplateBinding ContentTemplate}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" VerticalContentAlignment="Center"/>
+                                        </Border>
+                                    </StackPanel>
+                                </Grid>
+                                <borders:InnerGlowBorder BorderThickness="0" Background="#00000000" CornerRadius="4" Height="{Binding ActualHeightValue, ElementName=ActualSizeProxy, Mode=OneWay}" IsHitTestVisible="False" IsTabStop="False" InnerGlowOpacity="0.25" InnerGlowColor="Black" InnerGlowSize="2,4,2,0" Margin="-1,-1,0,0" Width="{Binding ActualWidthValue, ElementName=ActualSizeProxy, Mode=OneWay}"/>
+                                <Thumb x:Name="SwitchThumb" BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding ThumbBrush}" Cursor="Hand" Foreground="#FF359CE6" HorizontalAlignment="Left" Height="{Binding ActualHeightValue, ElementName=ActualSizeProxy, Mode=OneWay}" IsTabStop="False" Margin="0,-1,0,0" Template="{TemplateBinding ThumbTemplate}" Width="{TemplateBinding ThumbSize}"/>
+                            </Canvas>
+                        </borders:ClippingBorder>
+                        <Border x:Name="DisabledOverlay" Background="#AAEEEEEE" CornerRadius="4" Visibility="Collapsed"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 </ResourceDictionary>
