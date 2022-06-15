@@ -3,7 +3,7 @@ using Hospital.Model;
 
 namespace Hospital.Repository.DoctorRepo
 {
-    public class DoctorRepository
+    public class DoctorRepository : IDoctorRepository
     {
         private List<Doctor> _doctors;
         private readonly Serializer<Doctor> _serializer;

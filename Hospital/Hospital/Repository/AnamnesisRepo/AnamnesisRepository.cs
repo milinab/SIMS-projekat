@@ -7,7 +7,7 @@ using Hospital.Repository.TherapyRepo;
 
 namespace Hospital.Repository.AnamnesisRepo
 {
-    public class AnamnesisRepository
+    public class AnamnesisRepository : IAnamnesisRepository
     {
         private List<Anamnesis> _anamnesis;
         private readonly Serializer<Anamnesis> _serializer;

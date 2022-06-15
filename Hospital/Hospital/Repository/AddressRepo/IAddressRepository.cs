@@ -2,7 +2,7 @@
 
 namespace Hospital.Repository.AddressRepository
 {
-    internal interface IAddressRepository : IRepositoryBase<Address, int>
+    public interface IAddressRepository : IRepositoryBase<Address,int>
     {
 
     }

@@ -5,7 +5,7 @@ using Hospital.Repository.CountryRepo;
 
 namespace Hospital.Repository.CityRepo
 {
-    public class CityRepository
+    public class CityRepository : ICityRepository
     {
         private List<City> _cities;
         private readonly Serializer<City> _serializer;

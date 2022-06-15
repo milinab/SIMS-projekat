@@ -3,15 +3,16 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using Hospital.Model;
 using Hospital.Repository;
+using Hospital.Repository.GuestRepo;
 
 namespace Hospital.Service
 {
     public class GuestService
     {
         private int _id;
-        private readonly GuestRepository _repository;
+        private readonly IGuestRepository _repository;
 
-        public GuestService(GuestRepository guestRepository)
+        public GuestService(IGuestRepository guestRepository)
         {
             _repository = guestRepository;
             List<Guest> guests = Read();

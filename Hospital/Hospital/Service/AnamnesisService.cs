@@ -1,16 +1,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using Hospital.Model;
-using Hospital.Repository;
+using Hospital.Repository.AnamnesisRepo;
 
 namespace Hospital.Service
 {
     public class AnamnesisService
     {
         private int _id;
-        private readonly AnamnesisRepository _repository;
+        private readonly IAnamnesisRepository _repository;
 
-        public AnamnesisService(AnamnesisRepository anamnesisRepository)
+        public AnamnesisService(IAnamnesisRepository anamnesisRepository)
         {
             _repository = anamnesisRepository;
             List<Anamnesis> anamnesis = Read();
