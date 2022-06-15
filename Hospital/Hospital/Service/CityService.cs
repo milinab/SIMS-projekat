@@ -2,15 +2,16 @@
 using System.Linq;
 using Hospital.Model;
 using Hospital.Repository;
+using Hospital.Repository.CityRepo;
 
 namespace Hospital.Service
 {
     public class CityService
     {
         private int _id;
-        private readonly CityRepository _repository;
+        private readonly ICityRepository _repository;
 
-        public CityService(CityRepository cityRepository)
+        public CityService(ICityRepository cityRepository)
         {
             _repository = cityRepository;
             List<City> cities = Read();

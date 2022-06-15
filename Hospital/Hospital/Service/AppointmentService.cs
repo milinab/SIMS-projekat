@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Hospital.Exceptions;
 using Hospital.Model;
-using Hospital.Repository;
 using Hospital.Repository.AppointmentRepo;
 
 namespace Hospital.Service
@@ -11,9 +10,9 @@ namespace Hospital.Service
     public class AppointmentService
     {
         private int _id;
-        private readonly AppointmentRepository _repository;
+        private readonly IAppointmentRepository _repository;
 
-        public AppointmentService(AppointmentRepository appointmentRepository)
+        public AppointmentService(IAppointmentRepository appointmentRepository)
         {
             _repository = appointmentRepository;
             List<Appointment> appointments = Read();

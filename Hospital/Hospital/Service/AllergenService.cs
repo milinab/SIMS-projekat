@@ -1,16 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Hospital.Model;
-using Hospital.Repository;
+using Hospital.Repository.AllergenRepository;
 
 namespace Hospital.Service
 {
     public class AllergenService
     {
         private int _id;
-        private readonly AllergenRepository _repository;
+        private readonly IAllergenRepository _repository;
 
-        public AllergenService(AllergenRepository allergenRepository)
+        public AllergenService(IAllergenRepository allergenRepository)
         {
             _repository = allergenRepository;
             List<Allergen> allergens = Read();
