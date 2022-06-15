@@ -9,6 +9,6 @@ namespace Hospital.Repository
         void Create(T entity);
         void Edit(T entity);
         void Delete(TId id);
-        void Write();
+        void Write(List<T> list);
     }
 }
