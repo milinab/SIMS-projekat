@@ -398,6 +398,7 @@
     <Compile Include="View\PatientView\Calendar.xaml.cs">
       <DependentUpon>Calendar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\PatientView\Commands\CommandPatient.cs" />
     <Compile Include="View\PatientView\EditDatePriority.xaml.cs">
       <DependentUpon>EditDatePriority.xaml</DependentUpon>
     </Compile>
@@ -416,6 +417,9 @@
     <Compile Include="View\PatientView\EnumMatchToBooleanConverter.cs" />
     <Compile Include="View\PatientView\AppointmentsGraph.xaml.cs">
       <DependentUpon>AppointmentsGraph.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientView\StartScreenPagexaml.xaml.cs">
+      <DependentUpon>StartScreenPagexaml.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\PatientView\SurveyGraph.xaml.cs">
       <DependentUpon>SurveyGraph.xaml</DependentUpon>
@@ -461,6 +465,7 @@
     <Compile Include="View\PatientView\Surveys.xaml.cs">
       <DependentUpon>Surveys.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\PatientView\ViewModel\MedicalRecordViewModel.cs" />
     <Compile Include="View\PatientView\ViewModel\PastAppontmentsViewModel.cs" />
     <Compile Include="View\PatientView\ViewModel\ViewModelPatient.cs" />
     <Compile Include="View\SecretaryView\AddPatient.xaml.cs">
@@ -596,6 +601,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\PatientView\AppointmentsGraph.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PatientView\StartScreenPagexaml.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

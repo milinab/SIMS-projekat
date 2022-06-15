@@ -9,46 +9,17 @@
       Title="HomePage">
 
     <Grid Margin="0,0,0,0">
-        <Label Content="ZDRAVO CORPORATION" HorizontalAlignment="Left" Margin="7,6,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="18" Foreground="Maroon" FontFamily="Georgia"/>
-        <Button Content="Log out" BorderThickness="2" HorizontalAlignment="Left" Margin="700,6,0,0" VerticalAlignment="Top" Height="29" Width="82" Click="LogOut_Click" Background="IndianRed" FontFamily="Georgia"/>
-        <Border BorderBrush="Black" BorderThickness="1" Width="Auto" Height="1" Margin="0,32,0,470" />
 
-        <Menu Width="Auto" Margin="0,40,0,450" Background="Bisque">
-            <MenuItem Click="HomePage_Click">
-                <MenuItem.Icon>
-                    <Image Source="/images/home.png" Margin="0,0,-10,-2" />
-                </MenuItem.Icon>
-            </MenuItem>
-            <MenuItem Click="Profile_Click">
-                <MenuItem.Icon>
-                    <Image Source="/images/user.png" Margin="0,0,-10,-2" />
-                </MenuItem.Icon>
-            </MenuItem>
-            <MenuItem Height="60" Width="70" VerticalAlignment="Center" Padding="10,0,0,0" Header=" " Margin="10,0,0,0" HorizontalAlignment="Stretch" />
-            <MenuItem Height="60" Width="100" VerticalAlignment="Center" Padding="10,0,0,0" Header="Medical record" Foreground="Maroon" Click="MedicalRecord_Click"/>
-            <MenuItem Height="60" Width="120" VerticalAlignment="Center" Padding="10,0,0,0" Header="My appointments" Margin="0,0,0,0" HorizontalAlignment="Stretch" Click="MyAppointments_Click" Foreground="Maroon"/>
-            <MenuItem Height="60" Width="85" VerticalAlignment="Center" Padding="10,0,0,0" Header="My therapy" Foreground="Maroon" Click="MyTherapy_Click"/>
-            <MenuItem Height="60" Width="77" VerticalAlignment="Center" Padding="10,0,0,0" Header="Calendar" Foreground="Maroon" Click="Calendar_Click"/>
-            <MenuItem Height="60" Width="55" VerticalAlignment="Center" Padding="10,0,0,0" Header="Notes" Foreground="Maroon" Click="Notes_Click"/>
-            <MenuItem Height="60" Width="65" VerticalAlignment="Center" Padding="10,0,0,0" Header="Surveys" Foreground="Maroon" Click="Surveys_Click" />
-            <MenuItem Height="60" Width="80" VerticalAlignment="Center" Padding="10,0,0,0" Header=" " Margin="10,0,0,0" HorizontalAlignment="Stretch" />
-            <MenuItem Click="Notification_Click">
-                <MenuItem.Icon>
-                    <Image Source="/images/notifications.png" Margin="0,0,-10,-2" />
-                </MenuItem.Icon>
-            </MenuItem>
-        </Menu>
-        <Label Content="Who are we?" HorizontalAlignment="Left" Margin="350,80,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Georgia" FontWeight="Bold"/>
-        <Border BorderBrush="Black" BorderThickness="1" Width="Auto" Height="1" Margin="0,85,0,364" />
+        <Label Content="Who are we?" HorizontalAlignment="Left" Margin="330,10,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Georgia" FontWeight="Bold"/>
+        <Border BorderBrush="Black" BorderThickness="1" Width="Auto" Height="1" Margin="0,50,0,0" VerticalAlignment="Top"/>
 
-        <Image Source="/images/staff.png" Margin="4,128,505,222" />
-        <Image Source="/images/location.JPG" Margin="-7,325,479,11" />
-        <TextBlock Margin="300,133,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="190" Width="468" HorizontalAlignment="Left" FontStretch="Normal" TextAlignment="Justify" FontSize="14"><Run Text="Welcome!"/><LineBreak/><Run Text="We are a health clinic with a long career behind us. From the very beginning, we strive to provide our clients with the best and most enjoyable experience possible."/><LineBreak/><Run Text="The main location where we currently operate is in Novi Sad, Serbia. However, our goal is to expand to as many locations as possible, in order to provide our clients with easier access to our services."/><LineBreak/><Run Text="If You have questions, or want to receive our services, feel free to contact us by email, phone, or come to our address."/></TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="300,319,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="214" Width="482" FontSize="14"><Run Text="You can contact us by phone:&#x9;00/ 1231 21312"/><LineBreak/><Run Text="&#x9;&#x9;&#x9;&#x9;00/ 1231 21322"/><LineBreak/><Run Text="&#x9;&#x9;OR"/><LineBreak/><Run Text="You can fill out the next form:"/><LineBreak/><Run Text="E-mail:"/><LineBreak/><Run Text="Text:"/></TextBlock>
-        <TextBox HorizontalAlignment="Left" Margin="350,394,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="315" Height="21"/>
-        <TextBox HorizontalAlignment="Left" Margin="300,432,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="365" Height="82"/>
+        <Image Source="/images/staff.png" Margin="4,60,505,200" />
+        <Image Source="/images/location.JPG" Margin="-7,230,479,10" />
+        <TextBlock Margin="300,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="190" Width="468" HorizontalAlignment="Left" FontStretch="Normal" TextAlignment="Justify" FontSize="14"><Run Text="Welcome!"/><LineBreak/><Run Text="We are a health clinic with a long career behind us. From the very beginning, we strive to provide our clients with the best and most enjoyable experience possible."/><LineBreak/><Run Text="The main location where we currently operate is in Novi Sad, Serbia. However, our goal is to expand to as many locations as possible, in order to provide our clients with easier access to our services."/><LineBreak/><Run Text="If You have questions, or want to receive our services, feel free to contact us by email, phone, or come to our address."/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="300,225,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="214" Width="482" FontSize="14"><Run Text="You can contact us by phone:&#x9;00/ 1231 21312"/><LineBreak/><Run Text="&#x9;&#x9;&#x9;&#x9;00/ 1231 21322"/><LineBreak/><Run Text="&#x9;&#x9;OR"/><LineBreak/><Run Text="You can fill out the next form:"/><LineBreak/><Run Text="E-mail:"/><LineBreak/><Run Text="Text:"/></TextBlock>
+        <TextBox HorizontalAlignment="Left" Margin="350,300,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="315" Height="21"/>
+        <TextBox HorizontalAlignment="Left" Margin="300,340,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="365" Height="73"/>
 
-        <Frame x:Name="frame" NavigationUIVisibility="Hidden" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" Grid.Column="1"/>
-        
+
     </Grid>
 </Page>

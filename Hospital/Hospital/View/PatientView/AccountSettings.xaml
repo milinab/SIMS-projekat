@@ -9,58 +9,31 @@
       Title="AccountSettings">
 
     <Grid Margin="0,0,0,0">
-        <Label Content="ZDRAVO CORPORATION" HorizontalAlignment="Left" Margin="7,6,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="18" Foreground="Maroon" FontFamily="Georgia"/>
-        <Button Content="Log out" BorderThickness="2" HorizontalAlignment="Left" Margin="700,6,0,0" VerticalAlignment="Top" Height="29" Width="82" Click="LogOut_Click" Background="IndianRed" FontFamily="Georgia"/>
-        <Border BorderBrush="Black" BorderThickness="1" Width="Auto" Height="1" Margin="0,32,0,470" />
 
-        <Menu Width="Auto" Margin="0,40,0,450" Background="Bisque">
-            <MenuItem Click="HomePage_Click">
-                <MenuItem.Icon>
-                    <Image Source="/images/home.png" Margin="0,0,-10,-2" />
-                </MenuItem.Icon>
-            </MenuItem>
-            <MenuItem Click="Profile_Click">
-                <MenuItem.Icon>
-                    <Image Source="/images/user.png" Margin="0,0,-10,-2" />
-                </MenuItem.Icon>
-            </MenuItem>
-            <MenuItem Height="60" Width="51" VerticalAlignment="Center" Padding="10,0,0,0" Header=" " />
-            <MenuItem Height="60" Width="100" VerticalAlignment="Center" Padding="10,0,0,0" Header="Medical record" Foreground="Maroon" Click="MedicalRecord_Click"/>
-            <MenuItem Height="60" Width="140" VerticalAlignment="Center" Padding="10,0,0,0" Header="Manage appointments" Click="MyAppointments_Click" Foreground="Maroon"/>
-            <MenuItem Height="60" Width="85" VerticalAlignment="Center" Padding="10,0,0,0" Header="My therapy" Foreground="Maroon" Click="MyTherapy_Click"/>
-            <MenuItem Height="60" Width="120" VerticalAlignment="Center" Padding="10,0,0,0" Header="Past appointments" Foreground="Maroon" Click="PastAppointments_Click"/>
-            <MenuItem Height="60" Width="55" VerticalAlignment="Center" Padding="10,0,0,0" Header="Notes" Foreground="Maroon" Click="Notes_Click"/>
-            <MenuItem Height="60" Width="65" VerticalAlignment="Center" Padding="10,0,0,0" Header="Surveys" Foreground="Maroon" Click="Surveys_Click" />
-            <MenuItem Click="Notification_Click">
-                <MenuItem.Icon>
-                    <Image Source="/images/notifications.png" Margin="0,0,-10,-2" />
-                </MenuItem.Icon>
-            </MenuItem>
-        </Menu>
-        <Label Content="Account settings" HorizontalAlignment="Left" Margin="325,80,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Georgia"/>
-        <Border BorderBrush="Black" BorderThickness="1" Width="Auto" Height="1" Margin="0,85,0,364" />
+        <Label Content="Account settings" HorizontalAlignment="Left" Margin="325,10,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Georgia"/>
+        <Border BorderBrush="Black" BorderThickness="1" Width="Auto" Height="1" Margin="0,50,0,0" VerticalAlignment="Top"/>
 
-        <Label Content="Name:" HorizontalAlignment="Left" Margin="80,150,0,25" FontSize="14"/>
-        <TextBox VerticalAlignment="Top" HorizontalAlignment="Left" Margin="230,150,0,0" TextWrapping="Wrap" Text="Milina" Height="25" Width="200"/>
-        <Label Content="Surname:" HorizontalAlignment="Left" Margin="80,180,0,25" FontSize="14"/>
-        <TextBox VerticalAlignment="Top" HorizontalAlignment="Left" Margin="230,180,0,0" TextWrapping="Wrap" Text="Bucko" Height="25" Width="200"/>
-        <Label Content="Username:" HorizontalAlignment="Left" Margin="80,210,0,25" FontSize="14"/>
-        <TextBox VerticalAlignment="Top" HorizontalAlignment="Left" Margin="230,210,0,0" TextWrapping="Wrap" Text="milinabc" Height="25" Width="200"/>
-        <Label Content="E-mail:" HorizontalAlignment="Left" Margin="80,240,0,25" FontSize="14"/>
-        <TextBox VerticalAlignment="Top" HorizontalAlignment="Left" Margin="230,240,0,0" TextWrapping="Wrap" Text="milina@gmail.com" Height="25" Width="200"/>
-        <Label Content="Phone number:" HorizontalAlignment="Left" Margin="80,270,0,25" FontSize="14"/>
-        <TextBox VerticalAlignment="Top" HorizontalAlignment="Left" Margin="230,270,0,0" TextWrapping="Wrap" Text="098675343" Height="25" Width="200"/>
-        <Label Content="Want to change Your password?" HorizontalAlignment="Left" Margin="80,315,0,10" Foreground="Maroon" FontSize="14"/>
-        <Label Content="Old password:" HorizontalAlignment="Left" Margin="80,345,0,10" FontSize="14"/>
-        <TextBox VerticalAlignment="Top" HorizontalAlignment="Left" Margin="230,345,0,0" TextWrapping="Wrap" Text="" Height="25" Width="200"/>
-        <Label Content="New password:" HorizontalAlignment="Left" Margin="80,375,0,10" FontSize="14"/>
-        <TextBox VerticalAlignment="Top" HorizontalAlignment="Left" Margin="230,375,0,0" TextWrapping="Wrap" Text="" Height="25" Width="200"/>
-        <Label Content="New password again:" HorizontalAlignment="Left" Margin="80,405,0,10" FontSize="14"/>
-        <TextBox VerticalAlignment="Top" HorizontalAlignment="Left" Margin="230,405,0,0" TextWrapping="Wrap" Text="" Height="25" Width="200"/>
-        
-        <Button Content="Save changes" HorizontalAlignment="Left" Height="30" Margin="82,450,0,0" VerticalAlignment="Top" Background="Bisque" Width="100" FontSize="14"/>
-        <Button Content="Back to profile" HorizontalAlignment="Left" Height="30" Margin="650,450,0,0" VerticalAlignment="Top" Background="Bisque" Width="100" FontSize="14" Click="Profile_Click"/>
+        <Label Content="Name:" HorizontalAlignment="Left" Margin="80,75,0,100" FontSize="14"/>
+        <TextBox VerticalAlignment="Top" HorizontalAlignment="Left" Margin="230,75,0,0" TextWrapping="Wrap" Text="Milina" Height="25" Width="200"/>
+        <Label Content="Surname:" HorizontalAlignment="Left" Margin="80,105,0,100" FontSize="14"/>
+        <TextBox VerticalAlignment="Top" HorizontalAlignment="Left" Margin="230,105,0,0" TextWrapping="Wrap" Text="Bucko" Height="25" Width="200"/>
+        <Label Content="Username:" HorizontalAlignment="Left" Margin="80,135,0,100" FontSize="14"/>
+        <TextBox VerticalAlignment="Top" HorizontalAlignment="Left" Margin="230,135,0,0" TextWrapping="Wrap" Text="milinabc" Height="25" Width="200"/>
+        <Label Content="E-mail:" HorizontalAlignment="Left" Margin="80,165,0,100" FontSize="14"/>
+        <TextBox VerticalAlignment="Top" HorizontalAlignment="Left" Margin="230,165,0,0" TextWrapping="Wrap" Text="milina@gmail.com" Height="25" Width="200"/>
+        <Label Content="Phone number:" HorizontalAlignment="Left" Margin="80,195,0,100" FontSize="14"/>
+        <TextBox VerticalAlignment="Top" HorizontalAlignment="Left" Margin="230,195,0,0" TextWrapping="Wrap" Text="098675343" Height="26" Width="200"/>
 
-        <Frame x:Name="frame" NavigationUIVisibility="Hidden" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" Grid.Column="1"/>
+        <Label Content="Want to change Your password?" HorizontalAlignment="Left" Margin="80,240,0,117" Foreground="Maroon" FontSize="14"/>
+        <Label Content="Old password:" HorizontalAlignment="Left" Margin="80,270,0,54" FontSize="14"/>
+        <TextBox VerticalAlignment="Top" HorizontalAlignment="Left" Margin="230,270,0,0" TextWrapping="Wrap" Text="" Height="25" Width="200"/>
+        <Label Content="New password:" HorizontalAlignment="Left" Margin="80,300,0,54" FontSize="14"/>
+        <TextBox VerticalAlignment="Top" HorizontalAlignment="Left" Margin="230,300,0,0" TextWrapping="Wrap" Text="" Height="25" Width="200"/>
+        <Label Content="New password again:" HorizontalAlignment="Left" Margin="80,330,0,10" FontSize="14"/>
+        <TextBox VerticalAlignment="Top" HorizontalAlignment="Left" Margin="230,330,0,0" TextWrapping="Wrap" Text="" Height="25" Width="200"/>
+
+        <Button Content="Save changes" HorizontalAlignment="Left" Height="30" Margin="80,370,0,0" VerticalAlignment="Top" Background="Bisque" Width="100" FontSize="14"/>
+        <Button Content="Back to profile" HorizontalAlignment="Left" Height="30" Margin="636,370,0,0" VerticalAlignment="Top" Background="Bisque" Width="100" FontSize="14" Click="Profile_Click"/>
+
     </Grid>
 </Page>

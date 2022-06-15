@@ -16,11 +16,20 @@ namespace Hospital.View.PatientView
     public partial class PatientWindow
     {
         private App app;
-        private readonly object _content;
-        private Doctor doctor;
         public Patient patient;
         public Note notifyNote;
         DispatcherTimer liveDateTime = new DispatcherTimer();
+
+        public static PatientWindow instance = null;
+
+        public static PatientWindow getInstance()
+        {
+            if (instance == null)
+            {
+                instance = new PatientWindow();
+            }
+            return instance;
+        }
 
         public ObservableCollection<Appointment> Appointments
         {
@@ -49,31 +58,22 @@ namespace Hospital.View.PatientView
         public PatientWindow()
         {
             InitializeComponent();
-            app = Application.Current as App;
-            _content = Content;
+            frame.Content = new StartScreenPagexaml(this);
             this.DataContext = this;
-            patient = app._patientController.ReadById(LogIn.LoggedUser.Id);
-            dataGridAppointments.ItemsSource = app._appointmentController.ReadFutureAppointments(patient.Id);
 
-            List<Appointment> appointmentList = app._appointmentController.ReadFutureAppointments(patient.Id);
-            Appointments = new ObservableCollection<Appointment>(appointmentList);
+            app = Application.Current as App;
             
+            patient = app._patientController.ReadById(LogIn.LoggedUser.Id);
+
             List<Therapy> therapiesList = app._therapyController.ReadBypatientId(patient.Id);
             Therapies = new ObservableCollection<Therapy>(therapiesList);
 
             List<Note> noteList = app._noteController.ReadByPatientId(patient.Id);
             Notes = new ObservableCollection<Note>(noteList);
 
-            Doctors = new ObservableCollection<Doctor>();
-
             GetTherapyTime();
             GetNoteNotificationTime();
 
-
-            foreach (var a in Appointments) {
-                doctor = app._doctorController.ReadById(a.DoctorId);
-                Doctors.Add(doctor);
-            }
         }
 
         private void GetTherapyTime()
@@ -126,7 +126,7 @@ namespace Hospital.View.PatientView
             liveDateTime.Stop();
         }
 
-        private void BookAnAppointmentClick(object sender, RoutedEventArgs e)
+        /*private void BookAnAppointmentClick(object sender, RoutedEventArgs e)
         {
 
             BookAnAppointment bookAnAppointmentPage = new BookAnAppointment(this);
@@ -156,17 +156,16 @@ namespace Hospital.View.PatientView
             {
                 PopupNotification.SendPopupNotification("Warning", "Please, select an appointment You want to cancel.");
             }
-        }
+        }*/
 
         private void HomePage_Click(object sender, RoutedEventArgs e)
         {
             HomePage homePagePage = new HomePage(this);
-            Content = homePagePage;
+            frame.Content = homePagePage;
         }
         private void Profile_Click(object sender, RoutedEventArgs e)
         {
-            Profile profilePage = new Profile(this);
-            Content = profilePage;
+            frame.Navigate(new Profile(this));
         }
 
         private void MedicalRecord_Click(object sender, RoutedEventArgs e)
@@ -180,56 +179,48 @@ namespace Hospital.View.PatientView
             ObservableCollection<Allergen> allergens = new ObservableCollection<Allergen>(allergenList);
 
             var medicalRecordPage = new MedicalRecord(this, user, patient, address, city, country, medicalRecord, allergens);
-            Content = medicalRecordPage;
+            frame.Navigate(medicalRecordPage);
         }
         private void MyAppointments_Click(object sender, RoutedEventArgs e)
         {
-            this.BackToPatientWindow();
+            frame.Navigate(new StartScreenPagexaml(this));
         }
-
 
         private void PastAppointments_Click(object sender, RoutedEventArgs e)
         {
-            PastAppointments pastAppointmentsPage = new PastAppointments(this);
-            Content = pastAppointmentsPage;
+            frame.Navigate(new PastAppointments());
         }
         private void MyTherapy_Click(object sender, RoutedEventArgs e)
         {
-            MyTherapy myTherapyPage = new MyTherapy(this);
-            Content = myTherapyPage;
+            frame.Navigate(new MyTherapy(this));
         }
 
         private void Calendar_Click(object sender, RoutedEventArgs e)
         {
-            Calendar calendarPage = new Calendar(this);
-            Content = calendarPage;
+            frame.Navigate(new Calendar(this));
         }
         private void Notes_Click(object sender, RoutedEventArgs e)
         {
-            var lookNotes = new Notes(this);
-            Content = lookNotes;
+            frame.Navigate(new Notes(this));
         }
 
         private void Surveys_Click(object sender, RoutedEventArgs e)
         {
-            var takeSurvey = new Surveys(this);
-            Content = takeSurvey;
+            frame.Navigate(new Surveys(this));
         }
         private void Notification_Click(object sender, RoutedEventArgs e)
         {
-            Notification notificationPage = new Notification(this);
-            Content = notificationPage;
+            frame.Navigate(new Notification(this));
         }
 
         public void BackToPatientWindow()
         {
-            Content = _content;
-            Refresh();
+            frame.Navigate(new StartScreenPagexaml(this));
         }
-        public void Refresh()
+        /*public void Refresh()
         {
             dataGridAppointments.ItemsSource = app._appointmentController.ReadFutureAppointments(patient.Id);
-        }
+        }*/
 
         private void LogOut_Click(object sender, RoutedEventArgs e)
         {

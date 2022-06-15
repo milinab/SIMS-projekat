@@ -8,77 +8,48 @@
         Title="PatientWindow" Height="560" Width="800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Background="AntiqueWhite"
         x:Name="_window">
     <Grid Margin="0,0,0,0">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-        <Label Content="ZDRAVO CORPORATION" HorizontalAlignment="Left" Margin="7,6,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="18" Foreground="Maroon" FontFamily="Georgia"/>
-        <Button Content="Log out" BorderThickness="2" HorizontalAlignment="Left" Margin="700,6,0,0" VerticalAlignment="Top" Height="29" Width="82" Click="LogOut_Click" Background="IndianRed" FontFamily="Georgia"/>
-        <Border BorderBrush="Black" BorderThickness="1" Width="Auto" Height="1" Margin="0,32,0,470" />
-
-        <Menu Width="Auto" Margin="0,40,0,450" Background="Bisque">
-            <MenuItem Click="HomePage_Click">
-                <MenuItem.Icon>
-                    <Image Source="/images/home.png" Margin="0,0,-10,-2" />
-                </MenuItem.Icon>
-            </MenuItem>
-            <MenuItem Click="Profile_Click">
-                <MenuItem.Icon>
-                    <Image Source="/images/user.png" Margin="0,0,-10,-2" />
-                </MenuItem.Icon>
-            </MenuItem>
-            <MenuItem Height="60" Width="51" VerticalAlignment="Center" Padding="10,0,0,0" Header=" " />
-            <MenuItem Height="60" Width="100" VerticalAlignment="Center" Padding="10,0,0,0" Header="Medical record" Foreground="Maroon" Click="MedicalRecord_Click"/>
-            <MenuItem Height="60" Width="140" VerticalAlignment="Center" Padding="10,0,0,0" Header="Manage appointments" Click="MyAppointments_Click" Foreground="Maroon"/>
-            <MenuItem Height="60" Width="85" VerticalAlignment="Center" Padding="10,0,0,0" Header="My therapy" Foreground="Maroon" Click="MyTherapy_Click"/>
-            <MenuItem Height="60" Width="120" VerticalAlignment="Center" Padding="10,0,0,0" Header="Past appointments" Foreground="Maroon" Click="PastAppointments_Click"/>
-            <MenuItem Height="60" Width="55" VerticalAlignment="Center" Padding="10,0,0,0" Header="Notes" Foreground="Maroon" Click="Notes_Click"/>
-            <MenuItem Height="60" Width="65" VerticalAlignment="Center" Padding="10,0,0,0" Header="Surveys" Foreground="Maroon" Click="Surveys_Click" />
-            <MenuItem Height="60" Width="62" VerticalAlignment="Center" Padding="10,0,0,0" Header=" " />
-            <MenuItem Click="Notification_Click">
-                <MenuItem.Icon>
-                    <Image Source="/images/notifications.png" Margin="0,0,-10,-2" />
-                </MenuItem.Icon>
-            </MenuItem>
-        </Menu>
-
-        <Button x:Name="BTN_BookAnAppointment" Content="Book an appointment" HorizontalAlignment="Left" Margin="425,105,0,0" VerticalAlignment="Top" Click="BookAnAppointmentClick" Background="Bisque" Height="30" Width="165"/>
-        <!--<Button x:Name="BTN_EditAnAppointment" Content="Edit an appointment" HorizontalAlignment="Left" Margin="535,105,0,0" VerticalAlignment="Top" Click="EditAnAppointmentClick" Background="Bisque"/>-->
-        <Button x:Name="BTN_CancelAnAppointment" Content="Cancel an appointment" HorizontalAlignment="Left" Margin="605,105,0,0" VerticalAlignment="Top" Click="CancelAnAppointmentClick" Background="Bisque" Height="30" Width="165"/>
-
-        <DataGrid x:Name="dataGridAppointments" AutoGenerateColumns="False" Height="411" Margin="10,105,380,0" VerticalAlignment="Top" CanUserAddRows="false" Background="AntiqueWhite">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Doctor" Binding="{Binding Doctor.Name}" Width="2*">
-                    <DataGridTextColumn.CellStyle>
-                        <Style TargetType="DataGridCell">
-                            <Setter Property="Background" 
-                                Value="AntiqueWhite" />
-                        </Style>
-                    </DataGridTextColumn.CellStyle>
-                </DataGridTextColumn>
-                <DataGridTextColumn Header="Date" Binding="{Binding Date, StringFormat=\{0:d.M.yyyy\}}" Width="*">
-                    <DataGridTextColumn.CellStyle>
-                        <Style TargetType="DataGridCell">
-                            <Setter Property="Background" 
-                                Value="AntiqueWhite" />
-                        </Style>
-                    </DataGridTextColumn.CellStyle>
-                </DataGridTextColumn>
-                <DataGridTextColumn Header="Time" Binding="{Binding Date, StringFormat=\{0:H:mm\}}" Width="*">
-                    <DataGridTextColumn.CellStyle>
-                        <Style TargetType="DataGridCell">
-                            <Setter Property="Background" 
-                                Value="AntiqueWhite" />
-                        </Style>
-                    </DataGridTextColumn.CellStyle>
-                </DataGridTextColumn>
-                <DataGridTemplateColumn Width="50">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Click="EditButtonClick" Background="AliceBlue">Edit</Button>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
-        </DataGrid>
-
-        
+            <Grid Grid.Row="0">
+                <Label Content="ZDRAVO CORPORATION" HorizontalAlignment="Left" Margin="7,6,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="18" Foreground="Maroon" FontFamily="Georgia"/>
+                <Button Content="Log out" BorderThickness="2" HorizontalAlignment="Left" Margin="700,6,0,0" VerticalAlignment="Top" Height="29" Width="82" Click="LogOut_Click" Background="IndianRed" FontFamily="Georgia"/>
+                <Border BorderBrush="Black" BorderThickness="1" Width="Auto" Height="1" Margin="0,32,0,470" />
+            </Grid>
+            <Grid Grid.Row="1">
+                <Menu Width="Auto" Background="Bisque">
+                    <MenuItem Click="HomePage_Click">
+                        <MenuItem.Icon>
+                            <Image Source="/images/home.png" Margin="0,0,-10,-2" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Click="Profile_Click">
+                        <MenuItem.Icon>
+                            <Image Source="/images/user.png" Margin="0,0,-10,-2" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Height="60" Width="51" VerticalAlignment="Center" Padding="10,0,0,0" Header=" " />
+                    <MenuItem Height="60" Width="100" VerticalAlignment="Center" Padding="10,0,0,0" Header="Medical record" Foreground="Maroon" Click="MedicalRecord_Click"/>
+                    <MenuItem Height="60" Width="140" VerticalAlignment="Center" Padding="10,0,0,0" Header="Manage appointments" Click="MyAppointments_Click" Foreground="Maroon"/>
+                    <MenuItem Height="60" Width="85" VerticalAlignment="Center" Padding="10,0,0,0" Header="My therapy" Foreground="Maroon" Click="MyTherapy_Click"/>
+                    <MenuItem Height="60" Width="120" VerticalAlignment="Center" Padding="10,0,0,0" Header="Past appointments" Foreground="Maroon" Click="PastAppointments_Click"/>
+                    <MenuItem Height="60" Width="55" VerticalAlignment="Center" Padding="10,0,0,0" Header="Notes" Foreground="Maroon" Click="Notes_Click"/>
+                    <MenuItem Height="60" Width="65" VerticalAlignment="Center" Padding="10,0,0,0" Header="Surveys" Foreground="Maroon" Click="Surveys_Click" />
+                    <MenuItem Height="60" Width="62" VerticalAlignment="Center" Padding="10,0,0,0" Header=" " />
+                    <MenuItem Click="Notification_Click">
+                        <MenuItem.Icon>
+                            <Image Source="/images/notifications.png" Margin="0,0,-10,-2" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </Menu>
+            </Grid>
+            <Grid Grid.Row="2">
+                <Frame x:Name="frame" NavigationUIVisibility="Hidden"/>
+            </Grid>
+        </Grid>
     </Grid>
 </Window>

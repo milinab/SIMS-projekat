@@ -10,39 +10,11 @@
       Title="SurveyGraph">
 
     <Grid Margin="0,0,0,0">
-        <Label Content="ZDRAVO CORPORATION" HorizontalAlignment="Left" Margin="7,6,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="18" Foreground="Maroon" FontFamily="Georgia"/>
-        <Button Content="Log out" BorderThickness="2" HorizontalAlignment="Left" Margin="700,6,0,0" VerticalAlignment="Top" Height="29" Width="82" Click="LogOut_Click" Background="IndianRed" FontFamily="Georgia"/>
-        <Border BorderBrush="Black" BorderThickness="1" Width="Auto" Height="1" Margin="0,32,0,470" />
+        
+        <Label Content="Statistics" HorizontalAlignment="Left" Margin="350,10,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Georgia"/>
+        <Border BorderBrush="Black" BorderThickness="1" Width="Auto" Height="1" Margin="0,50,0,0" VerticalAlignment="Top"/>
 
-        <Menu Width="Auto" Margin="0,40,0,450" Background="Bisque">
-            <MenuItem Click="HomePage_Click">
-                <MenuItem.Icon>
-                    <Image Source="/images/home.png" Margin="0,0,-10,-2" />
-                </MenuItem.Icon>
-            </MenuItem>
-            <MenuItem Click="Profile_Click">
-                <MenuItem.Icon>
-                    <Image Source="/images/user.png" Margin="0,0,-10,-2" />
-                </MenuItem.Icon>
-            </MenuItem>
-            <MenuItem Height="60" Width="70" VerticalAlignment="Center" Padding="10,0,0,0" Header=" " Margin="10,0,0,0" HorizontalAlignment="Stretch" />
-            <MenuItem Height="60" Width="100" VerticalAlignment="Center" Padding="10,0,0,0" Header="Medical record" Foreground="Maroon" Click="MedicalRecord_Click"/>
-            <MenuItem Height="60" Width="120" VerticalAlignment="Center" Padding="10,0,0,0" Header="My appointments" Margin="0,0,0,0" HorizontalAlignment="Stretch" Click="MyAppointments_Click" Foreground="Maroon"/>
-            <MenuItem Height="60" Width="85" VerticalAlignment="Center" Padding="10,0,0,0" Header="My therapy" Foreground="Maroon" Click="MyTherapy_Click"/>
-            <MenuItem Height="60" Width="77" VerticalAlignment="Center" Padding="10,0,0,0" Header="Calendar" Foreground="Maroon" Click="Calendar_Click"/>
-            <MenuItem Height="60" Width="55" VerticalAlignment="Center" Padding="10,0,0,0" Header="Notes" Foreground="Maroon" Click="Notes_Click"/>
-            <MenuItem Height="60" Width="65" VerticalAlignment="Center" Padding="10,0,0,0" Header="Surveys" Foreground="Maroon" Click="Surveys_Click" />
-            <MenuItem Height="60" Width="80" VerticalAlignment="Center" Padding="10,0,0,0" Header=" " Margin="10,0,0,0" HorizontalAlignment="Stretch" />
-            <MenuItem Click="Notification_Click">
-                <MenuItem.Icon>
-                    <Image Source="/images/notifications.png" Margin="0,0,-10,-2" />
-                </MenuItem.Icon>
-            </MenuItem>
-        </Menu>
-        <Label Content="Statistics" HorizontalAlignment="Left" Margin="350,80,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Georgia"/>
-        <Border BorderBrush="Black" BorderThickness="1" Width="Auto" Height="1" Margin="0,85,0,364" />
-
-        <WindowsFormsHost Margin="80,200,490,135">
+        <WindowsFormsHost Margin="80,110,490,122">
             <wf:Chart x:Name ="hospitalSurveyInfo" BackColor="Bisque" Dock="Fill">
                 <wf:Chart.Series>
                     <wf:Series ChartType="Column" Color="Maroon"/>
@@ -54,23 +26,22 @@
         </WindowsFormsHost>
 
 
-        <TextBlock Text="Number of ones:" Margin="350,210,221,117" FontSize="10"/>
-        <TextBlock Name="oneHospital"  Margin="500,210,200,280" />
-        <TextBlock Text="Number of twos:" Margin="350,235,221,98" FontSize="10"/>
-        <TextBlock Name="twoHospital"  Margin="500,235,200,250" />
-        <TextBlock Text="Number of threes:" Margin="350,260,222,79" FontSize="10"/>
-        <TextBlock Name="threeHospital"  Margin="500,260,200,230" />
-        <TextBlock Text="Number of fours:" Margin="350,285,222,60" FontSize="10"/>
-        <TextBlock Name="fourHospital"  Margin="500,285,200,210" />
-        <TextBlock Text="Number of fives:" Margin="350,310,219,0" FontSize="10" Height="25" VerticalAlignment="Top"/>
-        <TextBlock Name="fiveHospital"  Margin="500,310,200,190" />
-        <Border Height="1" Width="100" Margin="350,340,350,229" Background="Black"/>
-        <TextBlock Text="Average:" Margin="350,360,186,9" FontSize="10"/>
-        <TextBlock Name="averageHospital"  Margin="500,360,200,80" />
+        <TextBlock Text="Number of ones:" Margin="350,125,221,202" FontSize="12"/>
+        <TextBlock Name="oneHospital"  Margin="455,125,221,0" FontSize="12"/>
+        <TextBlock Text="Number of twos:" Margin="350,150,221,183" FontSize="12"/>
+        <TextBlock Name="twoHospital"  Margin="455,150,221,0" FontSize="12"/>
+        <TextBlock Text="Number of threes:" Margin="350,175,221,164" FontSize="12"/>
+        <TextBlock Name="threeHospital"  Margin="455,175,221,0" FontSize="12"/>
+        <TextBlock Text="Number of fours:" Margin="350,200,222,145" FontSize="12"/>
+        <TextBlock Name="fourHospital"  Margin="455,200,222,0" FontSize="12"/>
+        <TextBlock Text="Number of fives:" Margin="350,225,222,94" FontSize="12" Height="25" VerticalAlignment="Top"/>
+        <TextBlock Name="fiveHospital"  Margin="455,225,222,0" FontSize="12"/>
+        <Border Height="1" Width="128" Margin="264,190,222,94" Background="Black"/>
+        <TextBlock Text="Average:" Margin="350,275,186,9" FontSize="12"/>
+        <TextBlock Name="averageHospital"  Margin="455,275,222,0" FontSize="12"/>
 
-        <Button Content="Back to survey" HorizontalAlignment="Left" Margin="350,400,0,0" VerticalAlignment="Top" Width="145" Background="Bisque" Click="Surveys_Click"/>
+        <Button Content="Back to survey" HorizontalAlignment="Left" Margin="350,310,0,0" VerticalAlignment="Top" Width="145" Background="Bisque" Click="Surveys_Click"/>
 
-        <Frame x:Name="frame" NavigationUIVisibility="Hidden" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" Grid.Column="1"/>
 
     </Grid>
 

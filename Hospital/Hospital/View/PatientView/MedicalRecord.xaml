@@ -10,91 +10,62 @@
       Title="MedicalRecord">
 
     <Grid Margin="0,0,0,0">
-        <Label Content="ZDRAVO CORPORATION" HorizontalAlignment="Left" Margin="7,6,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="18" Foreground="Maroon" FontFamily="Georgia"/>
-        <Button Content="Log out" BorderThickness="2" HorizontalAlignment="Left" Margin="700,6,0,0" VerticalAlignment="Top" Height="29" Width="82" Click="LogOut_Click" Background="IndianRed" FontFamily="Georgia"/>
-        <Border BorderBrush="Black" BorderThickness="1" Width="Auto" Height="1" Margin="0,32,0,470" />
 
-        <Menu Width="Auto" Margin="0,40,0,450" Background="Bisque">
-            <MenuItem Click="HomePage_Click">
-                <MenuItem.Icon>
-                    <Image Source="/images/home.png" Margin="0,0,-10,-2" />
-                </MenuItem.Icon>
-            </MenuItem>
-            <MenuItem Click="Profile_Click">
-                <MenuItem.Icon>
-                    <Image Source="/images/user.png" Margin="0,0,-10,-2" />
-                </MenuItem.Icon>
-            </MenuItem>
-            <MenuItem Height="60" Width="70" VerticalAlignment="Center" Padding="10,0,0,0" Header=" " Margin="10,0,0,0" HorizontalAlignment="Stretch" />
-            <MenuItem Height="60" Width="100" VerticalAlignment="Center" Padding="10,0,0,0" Header="Medical record" Foreground="Maroon" Click="MedicalRecord_Click"/>
-            <MenuItem Height="60" Width="120" VerticalAlignment="Center" Padding="10,0,0,0" Header="My appointments" Margin="0,0,0,0" HorizontalAlignment="Stretch" Click="MyAppointments_Click" Foreground="Maroon"/>
-            <MenuItem Height="60" Width="85" VerticalAlignment="Center" Padding="10,0,0,0" Header="My therapy" Foreground="Maroon" Click="MyTherapy_Click"/>
-            <MenuItem Height="60" Width="77" VerticalAlignment="Center" Padding="10,0,0,0" Header="Calendar" Foreground="Maroon" Click="Calendar_Click"/>
-            <MenuItem Height="60" Width="55" VerticalAlignment="Center" Padding="10,0,0,0" Header="Notes" Foreground="Maroon" Click="Notes_Click"/>
-            <MenuItem Height="60" Width="65" VerticalAlignment="Center" Padding="10,0,0,0" Header="Surveys" Foreground="Maroon" Click="Surveys_Click" />
-            <MenuItem Height="60" Width="80" VerticalAlignment="Center" Padding="10,0,0,0" Header=" " Margin="10,0,0,0" HorizontalAlignment="Stretch" />
-            <MenuItem Click="Notification_Click">
-                <MenuItem.Icon>
-                    <Image Source="/images/notifications.png" Margin="0,0,-10,-2" />
-                </MenuItem.Icon>
-            </MenuItem>
-        </Menu>
-        <Label Content="Medical record" HorizontalAlignment="Left" Margin="325,80,325,0" VerticalAlignment="Top" FontSize="18" FontFamily="Georgia"/>
-        <Border BorderBrush="Black" BorderThickness="1" Width="Auto" Height="1" Margin="0,85,0,364" />
+        <Label Content="Medical record" HorizontalAlignment="Left" Margin="325,10,325,0" VerticalAlignment="Top" FontSize="18" FontFamily="Georgia"/>
+        <Border BorderBrush="Black" BorderThickness="1" Width="Auto" Height="1" Margin="0,50,0,0" VerticalAlignment="Top"/>
 
-        <GroupBox Header="Identification information" Margin="30,140,30,30" BorderBrush="Black"/>
-        
-        <Label Content="Name:" HorizontalAlignment="Left" Margin="80,175,0,0"/>
-        <TextBlock x:Name="firstName" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="220,180,0,0" TextWrapping="Wrap" Height="30" Width="200"/>
-        
-        <Label Content="Surname:" HorizontalAlignment="Left" Margin="80,205,0,0"/>
-        <TextBlock x:Name="lastName" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="220,210,0,0" TextWrapping="Wrap" Height="30" Width="200"/>
-        
-        <Label Content="Gender:" HorizontalAlignment="Left" Margin="80,235,0,0"/>
-        <TextBlock x:Name="gender" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="220,240,0,0" TextWrapping="Wrap" Height="30" Width="200"/>
-        
-        <Label Content="Date of birth:" HorizontalAlignment="Left" Margin="80,265,0,0"/>
-        <TextBlock x:Name="dateOfBirth" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="220,270,0,0" TextWrapping="Wrap" Height="30" Width="200"/>
-        
-        <Label Content="JMBG:" HorizontalAlignment="Left" Margin="80,295,0,0"/>
-        <TextBlock x:Name="jmbg" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="220,300,0,0" TextWrapping="Wrap" Height="30" Width="200"/>
-        
-        <Label Content="Health Insurance ID:" HorizontalAlignment="Left" Margin="80,325,0,0"/>
-        <TextBlock x:Name="healthInsuranceID" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="220,330,0,0" TextWrapping="Wrap" Height="30" Width="200"/>
-        
-        <Label Content="Blood type:" HorizontalAlignment="Left" Margin="80,355,0,0"/>
-        <TextBlock x:Name="bloodType" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="220,360,0,0" TextWrapping="Wrap" Height="30" Width="200"/>
-        
-        <Label Content="Country:" HorizontalAlignment="Left" Margin="80,385,0,0"/>
-        <TextBlock x:Name="country" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="220,390,0,0" TextWrapping="Wrap" Height="30" Width="200"/>
-        
-        <Label Content="City:" HorizontalAlignment="Left" Margin="80,415,0,0"/>
-        <TextBlock x:Name="city" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="220,420,0,0" TextWrapping="Wrap" Height="30" Width="200"/>
-        
-        <Label Content="Postal code:" HorizontalAlignment="Left" Margin="80,445,0,0"/>
-        <TextBlock x:Name="postalCode" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="220,450,0,0" TextWrapping="Wrap" Height="30" Width="200"/>
-        
-        <Label Content="Street:" HorizontalAlignment="Left" Margin="430,175,0,0"/>
-        <TextBlock x:Name="streetName" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="560,180,0,0" TextWrapping="Wrap" Height="30" Width="200"/>
-        
-        <Label Content="Street number:" HorizontalAlignment="Left" Margin="430,205,0,0"/>
-        <TextBlock x:Name="streetNumber" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="560,210,0,0" TextWrapping="Wrap" Height="30" Width="200"/>
-        
-        <Label Content="Phone number:" HorizontalAlignment="Left" Margin="430,235,0,0"/>
-        <TextBlock x:Name="phoneNumber" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="560,240,0,0" TextWrapping="Wrap" Height="30" Width="200"/>
-       
-        <Label Content="E-mail:" HorizontalAlignment="Left" Margin="430,265,0,0"/>
-        <TextBlock x:Name="email" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="560,270,0,0" TextWrapping="Wrap" Height="30" Width="200"/>
-        
-        <Label Content="Chronical disease:" HorizontalAlignment="Left" Margin="430,295,0,0"/>
-        <TextBlock x:Name="chronicalDisease" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="560,300,0,0" TextWrapping="Wrap" Height="30" Width="200"/>
-        
-        <Label Content="Allergies:" HorizontalAlignment="Left" Margin="430,325,0,0"/>
-        <TextBlock x:Name="allergies" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="560,330,0,0" TextWrapping="Wrap" Height="142" Width="181"/>
-        
-        <Button Content="Past appointments" HorizontalAlignment="Left" Margin="434,437,0,0" VerticalAlignment="Top" Height="26" Width="126" Click="PastAppointments_Click" Background="Bisque"/>
-        <Button Content="Future appointments" HorizontalAlignment="Left" Margin="570,437,0,0" VerticalAlignment="Top" Height="27" Width="125" Click="MyAppointments_Click" Background="Bisque"/>
+        <GroupBox Header="Identification information" Margin="30,75,30,30" BorderBrush="Black"/>
 
-        <Frame x:Name="frame" NavigationUIVisibility="Hidden" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" Grid.Column="1"/>
+        <Label Content="Name:" HorizontalAlignment="Left" Margin="80,100,0,0"/>
+        <TextBlock Text="{Binding FirstName}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="220,105,0,0" TextWrapping="Wrap" Height="105" Width="200"/>
+
+        <Label Content="Surname:" HorizontalAlignment="Left" Margin="80,125,0,0"/>
+        <TextBlock Text="{Binding LastName}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="220,130,0,0" TextWrapping="Wrap" Height="115" Width="200"/>
+
+        <Label Content="Gender:" HorizontalAlignment="Left" Margin="80,150,0,0"/>
+        <TextBlock Text="{Binding Gender}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="220,155,0,0" TextWrapping="Wrap" Height="137" Width="200"/>
+
+        <Label Content="Date of birth:" HorizontalAlignment="Left" Margin="80,175,0,0"/>
+        <TextBlock Text="{Binding Date}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="220,180,0,0" TextWrapping="Wrap" Height="30" Width="200"/>
+
+        <Label Content="JMBG:" HorizontalAlignment="Left" Margin="80,200,0,0"/>
+        <TextBlock Text="{Binding Jmbg}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="220,205,0,0" TextWrapping="Wrap" Height="30" Width="200"/>
+
+        <Label Content="Health Insurance ID:" HorizontalAlignment="Left" Margin="80,225,0,0"/>
+        <TextBlock Text="{Binding HealthInsuranceID}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="220,230,0,0" TextWrapping="Wrap" Height="30" Width="200"/>
+
+        <Label Content="Blood type:" HorizontalAlignment="Left" Margin="80,250,0,0"/>
+        <TextBlock Text="{Binding BloodType}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="220,255,0,0" TextWrapping="Wrap" Height="30" Width="200"/>
+
+        <Label Content="Country:" HorizontalAlignment="Left" Margin="80,275,0,0"/>
+        <TextBlock Text="{Binding Country}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="220,280,0,0" TextWrapping="Wrap" Height="30" Width="200"/>
+
+        <Label Content="City:" HorizontalAlignment="Left" Margin="80,300,0,0"/>
+        <TextBlock Text="{Binding City}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="220,305,0,0" TextWrapping="Wrap" Height="30" Width="200"/>
+
+        <Label Content="Postal code:" HorizontalAlignment="Left" Margin="80,325,0,0"/>
+        <TextBlock Text="{Binding PostalCode}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="220,330,0,0" TextWrapping="Wrap" Height="30" Width="200"/>
+
+        <Label Content="Street:" HorizontalAlignment="Left" Margin="430,100,0,0"/>
+        <TextBlock Text="{Binding StreetName}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="560,105,0,0" TextWrapping="Wrap" Height="30" Width="200"/>
+
+        <Label Content="Street number:" HorizontalAlignment="Left" Margin="430,125,0,0"/>
+        <TextBlock Text="{Binding StreetNumber}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="560,130,0,0" TextWrapping="Wrap" Height="30" Width="200"/>
+
+        <Label Content="Phone number:" HorizontalAlignment="Left" Margin="430,150,0,0"/>
+        <TextBlock Text="{Binding PhoneNumber}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="560,155,0,0" TextWrapping="Wrap" Height="30" Width="200"/>
+
+        <Label Content="E-mail:" HorizontalAlignment="Left" Margin="430,175,0,0"/>
+        <TextBlock Text="{Binding Email}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="560,180,0,0" TextWrapping="Wrap" Height="30" Width="200"/>
+
+        <Label Content="Chronical disease:" HorizontalAlignment="Left" Margin="430,200,0,0"/>
+        <TextBlock Text="{Binding ChronicalDisease}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="560,205,0,0" TextWrapping="Wrap" Height="30" Width="200"/>
+
+        <Label Content="Allergies:" HorizontalAlignment="Left" Margin="430,225,0,0"/>
+        <TextBlock Text="{Binding Allergies}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="560,230,0,0" TextWrapping="Wrap" Height="142" Width="181"/>
+
+        <Button Content="Past appointments" HorizontalAlignment="Left" Margin="434,325,0,0" VerticalAlignment="Top" Height="26" Width="126" Command="{Binding Path=DataContext.PastAppointmentsCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Page}}}" Background="Bisque"/>
+        <Button Content="Future appointments" HorizontalAlignment="Left" Margin="570,325,0,0" VerticalAlignment="Top" Height="27" Width="125" Command="{Binding CancelCommand}" Background="Bisque"/>
+
     </Grid>
 </Page>
