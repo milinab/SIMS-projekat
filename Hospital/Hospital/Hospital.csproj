@@ -74,17 +74,14 @@
     <Reference Include="Syncfusion.DocIO.Base, Version=20.1460.0.59, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
       <HintPath>..\packages\Syncfusion.DocIO.Wpf.20.1.0.59\lib\net46\Syncfusion.DocIO.Base.dll</HintPath>
     </Reference>
-    <Reference Include="Syncfusion.DocToPdfConverter.Base, Version=20.1460.0.59, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
-      <HintPath>..\packages\Syncfusion.DocToPDFConverter.Wpf.20.1.0.59\lib\net46\Syncfusion.DocToPdfConverter.Base.dll</HintPath>
-    </Reference>
     <Reference Include="Syncfusion.Licensing, Version=20.1460.0.59, Culture=neutral, PublicKeyToken=632609b4d040f6b4, processorArchitecture=MSIL">
       <HintPath>..\packages\Syncfusion.Licensing.20.1.0.59\lib\net46\Syncfusion.Licensing.dll</HintPath>
     </Reference>
     <Reference Include="Syncfusion.OfficeChart.Base, Version=20.1460.0.59, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
       <HintPath>..\packages\Syncfusion.OfficeChart.Base.20.1.0.59\lib\net46\Syncfusion.OfficeChart.Base.dll</HintPath>
     </Reference>
-    <Reference Include="Syncfusion.Pdf.Base, Version=20.1460.0.59, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
-      <HintPath>..\packages\Syncfusion.Pdf.Wpf.20.1.0.59\lib\net46\Syncfusion.Pdf.Base.dll</HintPath>
+    <Reference Include="Syncfusion.Pdf.Base, Version=20.1460.0.60, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Pdf.Wpf.20.1.0.60\lib\net46\Syncfusion.Pdf.Base.dll</HintPath>
     </Reference>
     <Reference Include="Syncfusion.SfBusyIndicator.WPF, Version=20.1460.0.55, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
       <HintPath>..\packages\Syncfusion.SfBusyIndicator.WPF.20.1.0.55\lib\net46\Syncfusion.SfBusyIndicator.WPF.dll</HintPath>
@@ -900,7 +897,6 @@
     <Resource Include="images\clipboard.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Report\" />
     <Resource Include="View\DoctorView\Resources\Images\logo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
