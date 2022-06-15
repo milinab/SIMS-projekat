@@ -71,28 +71,46 @@ namespace Hospital.View.PatientView
             patient = app._patientController.ReadById(LogIn.LoggedUser.Id);
         }
 
+        private bool Validate()
+        {
+            if (TimePicker.Value == null)
+            {
+                PopupNotification.SendPopupNotification("Warning", "You need to select a time");
+                return false;
+            }
+
+            if (myCalendar.SelectedDate.HasValue == false)
+            {
+                PopupNotification.SendPopupNotification("Warning", "You need to select a date");
+                return false;
+            }
+            return true;
+        }
         private void SaveChanges_Click(object sender, RoutedEventArgs e)
         {
-            patient = app._patientController.ReadById(LogIn.LoggedUser.Id);
-            DateTime date = myCalendar.SelectedDate.Value;
-            string time = TimePicker.Text;
-            string[] timeParts = time.Split(':');
-            date += new TimeSpan(int.Parse(timeParts[0]), int.Parse(timeParts[1]), 0);
-
-            Note newNote = new Note(noteName.Text, noteText.Text, DateTime.Now, date, patient.Id);
-
-            if (this.noteName.Text != "" && this.noteText.Text != "")
+            if(Validate())
             {
-                app._noteController.Create(newNote);
-                _notes.BackToNotes();
-                Page note = new Notes(_patientWindow);
-                PatientWindow.getInstance().frame.Navigate(note);
+                patient = app._patientController.ReadById(LogIn.LoggedUser.Id);
+                DateTime date = myCalendar.SelectedDate.Value;
+                string time = TimePicker.Text;
+                string[] timeParts = time.Split(':');
+                date += new TimeSpan(int.Parse(timeParts[0]), int.Parse(timeParts[1]), 0);
+
+                Note newNote = new Note(noteName.Text, noteText.Text, DateTime.Now, date, patient.Id);
+
+                if (this.noteName.Text != "" && this.noteText.Text != "")
+                {
+                    app._noteController.Create(newNote);
+                    _notes.BackToNotes();
+                    Page note = new Notes(_patientWindow);
+                    PatientWindow.getInstance().frame.Navigate(note);
+                }
+                else
+                {
+                    Page note = new Notes(_patientWindow);
+                    PatientWindow.getInstance().frame.Navigate(note);
+                }
             }
-            else {
-                Page note = new Notes(_patientWindow);
-                PatientWindow.getInstance().frame.Navigate(note);
-            }
-            
         }
 
         private void BackToAllNotes_Click(object sender, RoutedEventArgs e)

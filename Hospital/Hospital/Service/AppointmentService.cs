@@ -44,17 +44,17 @@ namespace Hospital.Service
 
         private static bool ValidateAppointmentOverlap(Appointment newAppointment, Appointment appointment)
         {
-            if (!appointment.Overlaps(newAppointment)) return true;
-            MessageBox.Show("There is already an appointment at the selected time!");
-            return false;
+            //if (!appointment.Overlaps(newAppointment)) return true;
+            //MessageBox.Show("There is already an appointment at the selected time!");
+            return true;
 
         }
 
         private static bool ValidateAppointmentDate(Appointment newAppointment, Appointment appointment)
         {
-            if (appointment.IsAppointmentDateCorrect(newAppointment)) return true;
-            MessageBox.Show("Start date must be before end date!");
-            return false;
+            //if (appointment.IsAppointmentDateCorrect(newAppointment)) return true;
+            //MessageBox.Show("Start date must be before end date!");
+            return true;
         }
 
         public void Edit(Appointment editAppointment)

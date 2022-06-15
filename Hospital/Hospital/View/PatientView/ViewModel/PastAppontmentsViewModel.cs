@@ -32,7 +32,7 @@ namespace Hospital.View.PatientView.ViewModel
             App app = Application.Current as App;
             patient = app._patientController.ReadById(LogIn.LoggedUser.Id);
 
-            _pastAppointments = new ObservableCollection<Appointment>();            //PROVERITI OVO DA NISAM ZZABRLJALA ZBOG LIST I OBS COL
+            _pastAppointments = new ObservableCollection<Appointment>();            
 
             List<Appointment> pastAppointments = app._appointmentController.ReadPastAppointments(patient.Id);
             foreach (Appointment appointment in pastAppointments)

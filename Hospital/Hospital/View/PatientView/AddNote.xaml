@@ -48,7 +48,7 @@
             </Binding>
         </TextBox>
         <Button Content="Back to all notes" Background="Bisque" HorizontalAlignment="Left" Margin="620,69,0,0" VerticalAlignment="Top" FontSize="14" Height="27" Width="130" Click="BackToAllNotes_Click"/>
-        <Button x:Name="buttonSave" IsDefault="True" Command="{Binding SaveProtocolCommand}"  Content="Save changes" Background="Bisque" HorizontalAlignment="Left" Margin="620,375,0,0" VerticalAlignment="Top" Height="27" Width="130" Click="SaveChanges_Click" >
+        <Button x:Name="buttonSave" IsDefault="True" Command="{Binding SaveProtocolCommand}"  Content="Add note" Background="Bisque" HorizontalAlignment="Left" Margin="620,375,0,0" VerticalAlignment="Top" Height="27" Width="130" Click="SaveChanges_Click" >
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="IsEnabled" Value="False"/>

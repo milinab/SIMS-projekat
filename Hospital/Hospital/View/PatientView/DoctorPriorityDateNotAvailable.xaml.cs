@@ -94,26 +94,27 @@ namespace Hospital.View.PatientView
                 PopupNotification.SendPopupNotification("Warning", "You need to select an appointment.");
                 return false;
             }
-            return false;
+            return true;
         }
 
 
         private void ConfirmAppointment_Click(object sender, RoutedEventArgs e)
         {
-            Validate();
+            if(Validate())
+            {
+                var viewModel = this.dataGridDoctorPriority.DataContext as Appointment;
+                var SelectedItem = dataGridDoctorPriority.SelectedItem as Appointment;
 
-            var viewModel = this.dataGridDoctorPriority.DataContext as Appointment;
-            var SelectedItem = dataGridDoctorPriority.SelectedItem as Appointment;
+                Patient patient = new Patient();
+                patient.Id = _patientWindow.patient.Id;
+                Room room = new Room();
+                room.Id = 2;
+                var date = SelectedItem.Date;
 
-            Patient patient = new Patient();
-            patient.Id = _patientWindow.patient.Id;
-            Room room = new Room();
-            room.Id = 2;
-            var date = SelectedItem.Date;
-
-            Appointment appointment = new Appointment(date, new TimeSpan(0, 30, 00), doctor, patient, room);
-            app._appointmentController.Create(appointment);
-            _patientWindow.BackToPatientWindow();
+                Appointment appointment = new Appointment(date, new TimeSpan(0, 30, 00), doctor, patient, room);
+                app._appointmentController.Create(appointment);
+                _patientWindow.BackToPatientWindow();
+            }
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)

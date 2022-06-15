@@ -40,7 +40,8 @@
         <TextBlock Text="Average:" Margin="350,275,186,9" FontSize="12"/>
         <TextBlock Name="averageHospital"  Margin="455,275,222,0" FontSize="12"/>
 
-        <Button Content="Back to survey" HorizontalAlignment="Left" Margin="350,310,0,0" VerticalAlignment="Top" Width="145" Background="Bisque" Click="Surveys_Click"/>
+        <Button Content="Back to survey" HorizontalAlignment="Left" Margin="350,310,0,0" VerticalAlignment="Top" Width="130" Background="Bisque" Click="Surveys_Click"/>
+        <Label Content="Chart of grades that were previously given by patients:" HorizontalAlignment="Left" Margin="250,65,0,0" VerticalAlignment="Top"/>
 
 
     </Grid>

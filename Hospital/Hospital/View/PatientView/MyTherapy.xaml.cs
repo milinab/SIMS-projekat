@@ -1,8 +1,8 @@
 ﻿using Hospital.Model;
 using System.Windows;
 using System.Windows.Controls;
-using System.Collections.ObjectModel;
-using System.Collections.Generic;
+using Hospital.View.PatientView.ViewModel;
+using Syncfusion.UI.Xaml.Scheduler;
 
 namespace Hospital.View.PatientView
 {
@@ -11,32 +11,35 @@ namespace Hospital.View.PatientView
     /// </summary>
     public partial class MyTherapy : Page
     {
-        private App app;
-        private readonly object _content;
-        private readonly PatientWindow _patientWindow;
         public Patient patient;
+        MyTherapyViewModel mtvm;
         public MyTherapy(PatientWindow patientWindow)
         {
+            mtvm = new MyTherapyViewModel();
             InitializeComponent();
-            app = Application.Current as App;
-            _content = Content;
-            this.DataContext = this;
-            _patientWindow = patientWindow;
-            patient = app._patientController.ReadById(LogIn.LoggedUser.Id);
-            
-            TherapyCalendar.ItemsSource = app._therapyController.ReadBypatientId(patient.Id);
-        }
-       
-        private void Report_Click(object sender, RoutedEventArgs e)
-        {
-            TherapyReport therapyReport = new TherapyReport(_patientWindow);
-            therapyReport.GenerateReport();
-            PopupNotification.SendPopupNotification("Successful!", "You succesfully downloaded PDF therapy report.");
+            this.DataContext = mtvm;
         }
 
-        public void BackToPatientWindow()
+        private void TherapyCalendar_OnAppointmentEditorOpening(object sender, AppointmentEditorOpeningEventArgs e)
         {
-            Content = _content;
+            e.Cancel = true;
         }
+
+        /// <summary>
+        /// Disables Appointment dragging
+        /// </summary>
+        private void TherapyCalendar_OnAppointmentDragStarting(object sender, AppointmentDragStartingEventArgs e)
+        {
+            e.Cancel = true;
+        }
+
+        /// <summary>
+        /// Disables Appointment resizing
+        /// </summary>
+        private void TherapyCalendar_OnAppointmentResizing(object sender, AppointmentResizingEventArgs e)
+        {
+            e.CanContinueResize = false;
+        }
+
     }
 }

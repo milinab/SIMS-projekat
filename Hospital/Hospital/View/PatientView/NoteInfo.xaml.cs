@@ -64,7 +64,6 @@ namespace Hospital.View.PatientView
             InitializeComponent();
             app = Application.Current as App;
             PatientWindow.getInstance().frame.Content = null;
-            //this.frame.NavigationService.RemoveBackEntry();
 
             this.DataContext = this;
             _patientWindow = patientWindow;
@@ -77,19 +76,39 @@ namespace Hospital.View.PatientView
             this.notifyDate.Text = note.NotificationDate.ToString("d.M.yyyy H:mm");
             _id = note.Id;
         }
+
+        private bool Validate()
+        {
+            if (TimePicker.Value == null)
+            {
+                PopupNotification.SendPopupNotification("Warning", "You need to select a time");
+                return false;
+            }
+
+            if (myCalendar.SelectedDate.HasValue == false)
+            {
+                PopupNotification.SendPopupNotification("Warning", "You need to select a date");
+                return false;
+            }
+            return true;
+        }
        
         private void SaveChanges_Click(object sender, RoutedEventArgs e)
         {
-            patient = app._patientController.ReadById(LogIn.LoggedUser.Id);
-            DateTime date = myCalendar.SelectedDate.Value;
-            string time = TimePicker.Text;
-            string[] timeParts = time.Split(':');
-            date += new TimeSpan(int.Parse(timeParts[0]), int.Parse(timeParts[1]), 0);
-            Note note = new Note(noteName.Text, _id, noteText.Text, DateTime.Now, date, patient.Id);
+            if(Validate())
+            {
+                patient = app._patientController.ReadById(LogIn.LoggedUser.Id);
+                DateTime date = myCalendar.SelectedDate.Value;
+                string time = TimePicker.Text;
+                string[] timeParts = time.Split(':');
+                date += new TimeSpan(int.Parse(timeParts[0]), int.Parse(timeParts[1]), 0);
+                Note note = new Note(noteName.Text, _id, noteText.Text, DateTime.Now, date, patient.Id);
 
-            if (this.noteName.Text != "" || this.noteText.Text != "") {
-                app._noteController.Edit(note);
-                PopupNotification.SendPopupNotification("Success!", "Your note is edited successfully!");
+                if (this.noteName.Text != "" || this.noteText.Text != "")
+                {
+                    app._noteController.Edit(note);
+                    PopupNotification.SendPopupNotification("Success!", "Your note is edited successfully!");
+                }
             }
         }
 

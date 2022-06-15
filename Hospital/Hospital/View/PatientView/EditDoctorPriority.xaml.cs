@@ -85,25 +85,36 @@ namespace Hospital.View.PatientView
                 AvailableAppointments = new ObservableCollection<Appointment>(availableAppointmentsNoDate);
             }
         }
-            
+        private bool Validate()
+        {
+            if (dataGridDoctorPriority.SelectedItem == null)
+            {
+                PopupNotification.SendPopupNotification("Warning", "You need to select an appointment.");
+                return false;
+            }
+            return true;
+        }
+
         private void ConfirmAppointment_Click(object sender, RoutedEventArgs e)
         {
-            var SelectedItem = dataGridDoctorPriority.SelectedItem as Appointment;
+            if(Validate())
+            {
+                var SelectedItem = dataGridDoctorPriority.SelectedItem as Appointment;
 
-            Patient patient = new Patient();
-            patient.Id = _patientWindow.patient.Id;
-            TimeSpan duration = new TimeSpan(0, 0, 30, 0);
-            Room room = new Room();
-            room.Id = 2;
-            var selectedDate = SelectedItem.Date;
+                Patient patient = new Patient();
+                patient.Id = _patientWindow.patient.Id;
+                TimeSpan duration = new TimeSpan(0, 0, 30, 0);
+                Room room = new Room();
+                room.Id = 2;
+                var selectedDate = SelectedItem.Date;
 
-            Appointment ap = new Appointment(_id, selectedDate, duration, doctor, patient, room);
-            app._appointmentController.Edit(ap);
+                Appointment ap = new Appointment(_id, selectedDate, duration, doctor, patient, room);
+                app._appointmentController.Edit(ap);
 
-            TrollSystem ts = new TrollSystem(_patientWindow, app);
-             ts.Troll();
-            PatientWindow.getInstance().BackToPatientWindow();
-
+                TrollSystem ts = new TrollSystem(_patientWindow, app);
+                ts.Troll();
+                PatientWindow.getInstance().BackToPatientWindow();
+            }
         }
        
         private void Back_Click(object sender, RoutedEventArgs e)

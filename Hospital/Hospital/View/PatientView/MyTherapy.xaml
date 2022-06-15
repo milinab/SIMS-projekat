@@ -18,6 +18,7 @@
         <Label Content="My therapy" HorizontalAlignment="Left" Margin="350,10,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Georgia"/>
         <Border BorderBrush="Black" BorderThickness="1" Width="Auto" Height="1" Margin="0,50,0,0" VerticalAlignment="Top"/>
         <syncfusion:SfScheduler Name="TherapyCalendar"
+                                ItemsSource="{Binding Therapies}"
                                 ViewType="Week"
                                 FirstDayOfWeek="Monday"
                                 ResourceGroupType="Date"
@@ -26,8 +27,21 @@
                                 Margin="0,90,0,0" 
                                 VerticalAlignment="Top" 
                                 Height="325" 
-                                Width="770"/>
-        <Button Content="Report" HorizontalAlignment="Left" Margin="705,58,0,0" Width="70" Height="25" VerticalAlignment="Top" Click="Report_Click" Background="Bisque"/>
+                                Width="770"
+                                AppointmentResizing="TherapyCalendar_OnAppointmentResizing"
+                                AppointmentDragStarting="TherapyCalendar_OnAppointmentDragStarting"
+                                AppointmentEditorOpening="TherapyCalendar_OnAppointmentEditorOpening">
+            <syncfusion:SfScheduler.AppointmentMapping>
+                <syncfusion:AppointmentMapping
+                                Subject="TherapySubject"
+                                StartTime="Date"
+                                EndTime="End"/>
+            </syncfusion:SfScheduler.AppointmentMapping>
+            
+        </syncfusion:SfScheduler>
+        <Label Content="You can download Your report in pdf:" HorizontalAlignment="Left" Margin="490,58,0,0" VerticalAlignment="Top"/>
+        <Button Content="Report" HorizontalAlignment="Left" Margin="705,58,0,0" Width="70" Height="25" VerticalAlignment="Top" Command="{Binding ReportCommand}" Background="Bisque"/>
+        
 
     </Grid>
 </Page>
