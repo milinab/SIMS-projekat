@@ -6,6 +6,7 @@
 *.sln.docstates
 *.csv
 Hospital/.idea/
+Hospital/Hospital/View/DoctorView/Resources/Reports/
 
 # Default ignored files
 /shelf/

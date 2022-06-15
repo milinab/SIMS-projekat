@@ -4,10 +4,10 @@ using Hospital.Model;
 
 namespace Hospital.View.DoctorView.Appointments
 {
-    public partial class ViewPatientInformations : Page
+    public partial class PatientInformationPage : Page
     {
         
-        public ViewPatientInformations(Appointment app)
+        public PatientInformationPage(Appointment app)
         {
             InitializeComponent();
             Patient patient = app.Patient;
@@ -16,7 +16,7 @@ namespace Hospital.View.DoctorView.Appointments
             HealthInsuranceId.Text = patient.HealthInsuranceId;
             Gender.Text = patient.HealthInsuranceId;
             BloodType.Text = patient.BloodType;
-            ChronicalDiseasesItemsControl.ItemsSource = patient.MedicalRecord.ChronicalDiseases;
+            ChronicDiseasesItemsControl.ItemsSource = patient.MedicalRecord.ChronicalDiseases;
             AllergiesItemsControl.ItemsSource = patient.MedicalRecord.AllergenIds;
         }
 

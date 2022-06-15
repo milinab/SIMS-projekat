@@ -6,10 +6,12 @@ namespace Hospital.Exceptions
     {
         public VacationException()
         {
+            
         }
 
         public VacationException(string message) : base(message)
         {
+            
         }
     }
 }

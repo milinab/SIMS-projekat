@@ -18,96 +18,116 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid>
-            <Rectangle 
-                Style="{StaticResource HeaderRectangleStyle}" 
+            <Border 
+                Style="{StaticResource HeaderBorderStyle}" 
                 HorizontalAlignment="Center" 
                 VerticalAlignment="Top"/>
             <Label 
+                Style="{StaticResource HeaderLabelStyle}" 
+                Content="New vacation request"/>
+            <Label 
+                Content="Start date:" 
                 Style="{StaticResource LabelStyle}" 
-                Content="New vacation request" 
-                HorizontalAlignment="Center" 
-                VerticalAlignment="Top" 
-                FontSize="24"/>
-            <TextBlock 
-                Text="Start date:" 
-                Style="{StaticResource TextBlockStyle}" 
                 HorizontalAlignment="Left" 
                 VerticalAlignment="Top" 
                 Margin="100, 120, 0, 0" 
                 FontSize="25"/>
-            <TextBlock 
-                Style="{StaticResource TextBlockStyle}"
-                Text="End date:" 
+            <Label 
+                Style="{StaticResource LabelStyle}"
+                Content="End date:" 
                 HorizontalAlignment="Left" 
                 VerticalAlignment="Top" 
                 Margin="109, 220, 0, 0" 
                 FontSize="25"/>
-            <TextBlock  
-                Style="{StaticResource TextBlockStyle}"
-                Text="Reason:" 
+            <Label  
+                Style="{StaticResource LabelStyle}"
+                Content="Reason:" 
                 HorizontalAlignment="Left" 
                 VerticalAlignment="Top" 
                 Margin="127, 320, 0, 0" 
                 FontSize="25"/>
-            <TextBlock 
-                Style="{StaticResource TextBlockStyle}"
-                Text="Urgent request?"  
+            <Label 
+                Style="{StaticResource LabelStyle}"
+                Content="Urgent request?"  
                 HorizontalAlignment="Center" 
                 VerticalAlignment="Center" 
-                Margin="0, 400, 100, 0" FontSize="25"/>
-            <DatePicker 
-                Name="StartDate" 
-                Style="{StaticResource DatePickerStyle}" 
-                HorizontalAlignment="Center" 
-                VerticalAlignment="Top" 
-                Margin="40, 124, 0, 0" 
+                Margin="0 400 100 0" FontSize="25"/>
+            <Border 
+                Style="{StaticResource BorderStyle}"
+                Margin="40 124 0 0" 
                 Width="260" 
                 Height="30" 
-                FontSize="18" 
-                SelectedDateChanged="StartDate_OnSelectedDateChanged"/>
-            <DatePicker 
-                Style="{StaticResource DatePickerStyle}"
-                Name="EndDate"  
                 HorizontalAlignment="Center" 
-                VerticalAlignment="Top"
-                Margin="40, 224, 0, 0" 
-                Width="260"
+                VerticalAlignment="Top">
+                <DatePicker 
+                    Name="StartDate" 
+                    Style="{StaticResource DatePickerStyle}"
+                    Width="260" 
+                    Height="30" 
+                    FontSize="18" 
+                    SelectedDateChanged="StartDate_OnSelectedDateChanged"/>
+            </Border>
+            <Border 
+                Style="{StaticResource BorderStyle}"
+                Margin="40 224 0 0" 
+                Width="260" 
                 Height="30" 
-                FontSize="18"/>
-            <TextBox 
-                Name="ReasonTextBox" 
                 HorizontalAlignment="Center" 
-                VerticalAlignment="Center" 
+                VerticalAlignment="Top">
+                <DatePicker 
+                    Style="{StaticResource DatePickerStyle}"
+                    Name="EndDate"
+                    Width="260"
+                    Height="30" 
+                    FontSize="18"/>
+            </Border>
+            <Border 
+                Style="{StaticResource BorderStyle}"
+                Margin="40 30 0 0"
                 Width="260" 
                 Height="150" 
-                Margin="40, 30, 0, 0"/>
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Center">
+                <TextBox 
+                    Name="ReasonTextBox"  
+                    Style="{StaticResource TextBoxStyle}"
+                    Width="260" 
+                    Height="150"
+                    Padding="5 5 5 5"/>
+            </Border>
             <CheckBox Name="UrgentCheckBox" 
                       HorizontalAlignment="Center" 
                       VerticalAlignment="Center" 
-                      Margin="150, 405, 0, 0">
+                      Margin="150 405 0 0">
                 <CheckBox.LayoutTransform>
                     <ScaleTransform ScaleX="2" ScaleY="2"/>
                 </CheckBox.LayoutTransform>
             </CheckBox>
-            
-            <Button 
+
+            <TextBlock
+                Name="ErrorTextBlock"
+                VerticalAlignment="Bottom"
+                HorizontalAlignment="Center"
+                Margin="0 0 0 100"
+                Foreground="#CF6679"
+                TextWrapping="Wrap"/>
+
+                <Button 
                 Content="Confirm" 
+                Style="{StaticResource ConfirmButton}"
                 HorizontalAlignment="Left"  
-                VerticalAlignment="Bottom" 
-                Margin="0,0,0,0" 
+                VerticalAlignment="Bottom"
                 Width="350" 
                 Height="50" 
-                Click="Confirm" 
-                FontSize="25"/>
+                Click="Confirm"/>
             <Button 
                 Content="Cancel"  
+                Style="{StaticResource CancelButton}"
                 HorizontalAlignment="Right" 
-                VerticalAlignment="Bottom" 
-                Margin="0,0,0,0" 
+                VerticalAlignment="Bottom"
                 Width="350" 
                 Height="50" 
-                Click="Cancel" 
-                FontSize="25"/>
+                Click="Cancel"/>
         </Grid>
     </Grid>
 </Page>

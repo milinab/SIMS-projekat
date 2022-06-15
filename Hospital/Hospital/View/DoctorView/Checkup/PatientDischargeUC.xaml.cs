@@ -1,3 +1,4 @@
+using System.Windows;
 
 namespace Hospital.View.DoctorView.Checkup
 {
@@ -6,6 +7,16 @@ namespace Hospital.View.DoctorView.Checkup
         public PatientDischargeUC()
         {
             InitializeComponent();
+        }
+
+        private void Confirm_OnClick(object sender, RoutedEventArgs e)
+        {
+            MainWindow.MainFrame.GoBack();
+        }
+
+        private void Cancel_OnClick(object sender, RoutedEventArgs e)
+        {
+            MainWindow.MainFrame.GoBack();
         }
     }
 }

@@ -73,7 +73,7 @@ namespace Hospital.View.DoctorView.Appointments {
 
         private void PatientInformationClick(object sender, RoutedEventArgs e)
         {
-            MainWindow.MainFrame.Navigate(new ViewPatientInformations(_appointment));
+            MainWindow.MainFrame.Navigate(new PatientInformationPage(_appointment));
         }
     }
 }

@@ -23,19 +23,90 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid Grid.Column="0">
-            <Rectangle Name="MenuRectangle" Style="{StaticResource MenuRectangleStyle}"/>
-            <Button Content="Checkup" Name="CheckupButton" Style="{StaticResource MenuButtonStyle}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,180,0,0" Click="CheckupPage"/>
-            <Button Content="Appointments" Name="AppointmentsButton" Style="{StaticResource MenuButtonStyle}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,300,0,0" Click="AppointmentsPage"/>
-            <Button Content="Patients" Name="PatientsButton" Style="{StaticResource MenuButtonStyle}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,350,0,0" Click="PatientsPage"/>
-            <Button Content="Requests" Name="RequestsButton" Style="{StaticResource MenuButtonStyle}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,400,0,0" Click="RequestsPage"/>
-            <Button Content="Malfunction report" Name="MalfunctionReportButton" Style="{StaticResource MenuButtonStyle}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,450,0,0" Click="MalfunctionReportPage"/>
-            <Button Content="Account" Name="AccountButton" Style="{StaticResource MenuButtonStyle}" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,134" Click="AccountPage"/>
-            <Button Content="Log out" Name="LogOutButton" Style="{StaticResource MenuButtonStyle}" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,0" Click="LogOutPage"/>
-            <Button Content="Verify medicine" Name="VerifyMedicine" Style="{StaticResource MenuButtonStyle}" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,200" Click="VerifyMedicine_OnClick" Visibility="Hidden"/>
+            <Rectangle 
+                Name="MenuRectangle" 
+                Style="{StaticResource MenuRectangleStyle}"
+                Opacity="0.05"/>
+            <Image 
+                Margin="0 -8 0 0"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top"
+                Height="180"
+                Width="180"
+                Source="Resources/Images/logo.png">
+            </Image>
+            
+            <Button 
+                Content="Checkup" 
+                Name="CheckupButton" 
+                Style="{StaticResource MenuButtonStyle}" 
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top" 
+                Margin="0,180,0,0" 
+                Click="CheckupPage"/>
+            <Button 
+                Content="Appointments"
+                Name="AppointmentsButton"
+                Style="{StaticResource MenuButtonStyle}" 
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Top"
+                Margin="0,300,0,0" 
+                Click="AppointmentsPage"/>
+            <Button 
+                Content="Patients" 
+                Name="PatientsButton" 
+                Style="{StaticResource MenuButtonStyle}" 
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Top" 
+                Margin="0,350,0,0" 
+                Click="PatientsPage"/>
+            <Button 
+                Content="Requests" 
+                Name="RequestsButton" 
+                Style="{StaticResource MenuButtonStyle}" 
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Top" 
+                Margin="0,400,0,0" 
+                Click="RequestsPage"/>
+            <Button 
+                Content="Malfunction report" 
+                Name="MalfunctionReportButton" 
+                Style="{StaticResource MenuButtonStyle}" 
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Top" 
+                Margin="0,450,0,0" 
+                Click="MalfunctionReportPage"/>
+            <Button
+                Content="Account"
+                Name="AccountButton" 
+                Style="{StaticResource MenuButtonStyle}" 
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Bottom"
+                Margin="0,0,0,134"
+                Click="AccountPage"/>
+            <Button 
+                Content="Log out" 
+                Name="LogOutButton" 
+                Style="{StaticResource MenuButtonStyle}" 
+                HorizontalAlignment="Center"
+                VerticalAlignment="Bottom"
+                Margin="0,0,0,0" 
+                Click="LogOutPage"/>
+            <Button 
+                Content="Verify medicine"
+                Name="VerifyMedicine" 
+                Style="{StaticResource MenuButtonStyle}"
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Bottom" 
+                Margin="0,0,0,218" 
+                Click="VerifyMedicine_OnClick" 
+                Visibility="Hidden"/>
         </Grid>
+        
         <Grid Grid.Column="1">
-            <Frame Name="Frame" NavigationUIVisibility="Hidden">
-                
+            <Frame 
+                Name="Frame"
+                NavigationUIVisibility="Hidden">
             </Frame>
         </Grid>
     </Grid>
