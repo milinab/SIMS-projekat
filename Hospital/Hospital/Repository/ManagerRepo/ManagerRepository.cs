@@ -1,79 +1,67 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Hospital.Model;
 
 namespace Hospital.Repository.ManagerRepo
 {
     public class ManagerRepository : IManagerRepository
     {
-        private List<Manager> _managers;
         private readonly Serializer<Manager> _serializer;
         public ManagerRepository()
         {
             _serializer = new Serializer<Manager>("managers.csv");
-            _managers = new List<Manager>();
         }
 
         public List<Manager> Read()
         {
-            _managers = _serializer.Read();
-            return _managers;
+            return _serializer.Read();
         }
 
         public Manager ReadById(int id)
         {
-            foreach (Manager manager in _managers)
-            {
-                if (manager.Id.Equals(id))
-                {
-                    return manager;
-                }
-            }
-            return null;
+            return Read().FirstOrDefault(manager => manager.Id.Equals(id));
         }
 
         public void Create(Manager newManager)
         {
-            _managers.Add(newManager);
-            Write();
+            var list = Read();
+            list.Add(newManager);
+            Write(list);
         }
 
         public void Edit(Manager editManager)
         {
-            foreach (Manager manager in _managers)
+            var list = Read();
+            foreach (var manager in list.Where(manager => manager.Id.Equals(editManager.Id)))
             {
-                if (manager.Id.Equals(editManager.Id))
-                {
-                    manager.IdNumber = editManager.IdNumber;
-                    manager.LastName = editManager.LastName;
-                    manager.Name = editManager.Name;
-                    manager.Password = editManager.Password;
-                    manager.Phone = editManager.Phone;
-                    manager.Username = editManager.Username;
-                    manager.Address = editManager.Address;
-                    manager.DateOfBirth = editManager.DateOfBirth;
-                    manager.Email = editManager.Email;
-                    manager.Experience = editManager.Experience;
-                    manager.Vacation = editManager.Vacation;
-                }
+                manager.IdNumber = editManager.IdNumber;
+                manager.LastName = editManager.LastName;
+                manager.Name = editManager.Name;
+                manager.Password = editManager.Password;
+                manager.Phone = editManager.Phone;
+                manager.Username = editManager.Username;
+                manager.Address = editManager.Address;
+                manager.DateOfBirth = editManager.DateOfBirth;
+                manager.Email = editManager.Email;
+                manager.Experience = editManager.Experience;
+                manager.Vacation = editManager.Vacation;
             }
-            Write();
+            Write(list);
         }
 
         public void Delete(int id)
         {
-            for (int i = _managers.Count - 1; i >= 0; i--)
+            var list = Read();
+            foreach (var resp in list.Where(resp => resp.Id == id))
             {
-                if (_managers[i].Id.Equals(id))
-                {
-                    _managers.Remove(_managers[i]);
-                }
+                list.Remove(resp);
             }
-            Write();
+            Write(list);
         }
 
-        public void Write()
+        public void Write(List<Manager> list)
         {
-            _serializer.Write(_managers);
+            _serializer.Write(list);
         }
     }
 }

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Hospital.Model;
 using Hospital.Repository.MedicalRecordRepo;
 
@@ -6,7 +7,6 @@ namespace Hospital.Repository.PatientRepo
 {
     public class PatientRepository : IPatientRepository
     {
-        private List<Patient> _patients;
         private readonly Serializer<Patient> _serializer;
         private readonly AddressRepo.AddressRepository _addressRepository;
         private readonly MedicalRecordRepository _medicalRecordRepository;
@@ -14,16 +14,15 @@ namespace Hospital.Repository.PatientRepo
         public PatientRepository(AddressRepo.AddressRepository addressRepository, MedicalRecordRepository medicalRecordRepository)
         {
             _serializer = new Serializer<Patient>("patients.csv");
-            _patients = new List<Patient>();
             _addressRepository = addressRepository;
             _medicalRecordRepository = medicalRecordRepository;
         }
 
         public List<Patient> Read()
         {
-            _patients = _serializer.Read();
+            var patients = _serializer.Read();
             
-            foreach (var patient in _patients)
+            foreach (var patient in patients)
             {
                 Address address = _addressRepository.ReadById(patient.AddressId);
                 MedicalRecord medicalRecord = _medicalRecordRepository.ReadById(patient.MedicalRecordId);
@@ -36,108 +35,109 @@ namespace Hospital.Repository.PatientRepo
                    patient.MedicalRecord = medicalRecord;
                 }
             }
-            return _patients;
+            return patients;
         }
 
         public Patient ReadById(int id)
         {
-            foreach (var patient in _patients)
+            foreach (var patient in Read())
             {
-                if (patient.Id == id)
+                if (patient.Id != id)
                 {
-                    Address address = _addressRepository.ReadById(patient.AddressId);
-                    MedicalRecord medicalRecord = _medicalRecordRepository.ReadById(patient.MedicalRecordId);
-                    if (address != null)
-                    {
-                        patient.Address = address;
-                    }
-                    if (medicalRecord != null)
-                    {
-                        patient.MedicalRecord= medicalRecord;
-                    }
-                    return patient;
+                    continue;
                 }
+                
+                Address address = _addressRepository.ReadById(patient.AddressId);
+                MedicalRecord medicalRecord = _medicalRecordRepository.ReadById(patient.MedicalRecordId);
+                if (address != null)
+                {
+                    patient.Address = address;
+                }
+                if (medicalRecord != null)
+                {
+                    patient.MedicalRecord= medicalRecord;
+                }
+                return patient;
             }
             return null;
         }
         public Patient ReadByIdTest(int id)
         {
-            foreach (var patient in _patients)
+            foreach (var patient in Read())
             {
-                if (patient.Id == id)
+                if (patient.Id != id)
                 {
-                    Address address = _addressRepository.ReadById(patient.AddressId);
-                    if (address != null)
-                    {
-                        patient.Address = address;
-                    }
-                    return patient;
+                    continue;
                 }
+                
+                Address address = _addressRepository.ReadById(patient.AddressId);
+                if (address != null)
+                {
+                    patient.Address = address;
+                }
+                return patient;
             }
             return null;
         }
 
         public void Create(Patient newPatient)
         {
-            _patients.Add(newPatient);
-            Write();
+            var list = Read();
+            list.Add(newPatient);
+            Write(list);
         }
 
         public void Edit(Patient editPatient)
         {
-            foreach (Patient patient in _patients)
+            var list = Read();
+            foreach (var patient in list.Where(patient => patient.Id.Equals(editPatient.Id)))
             {
-                if (patient.Id.Equals(editPatient.Id))
-                {
-                    patient.HealthInsuranceId = editPatient.HealthInsuranceId;
-                    patient.IdNumber = editPatient.IdNumber;
-                    patient.LastName = editPatient.LastName;
-                    patient.Name = editPatient.Name;
-                    patient.Password = editPatient.Password;
-                    patient.Phone = editPatient.Phone;
-                    patient.Username = editPatient.Username;
-                    patient.BloodType = editPatient.BloodType;
-                    patient.DateOfBirth = editPatient.DateOfBirth;
-                    patient.Email = editPatient.Email;
-                    patient.Gender = editPatient.Gender;
-                    patient.IsActive = editPatient.IsActive;
-                }
+                patient.HealthInsuranceId = editPatient.HealthInsuranceId;
+                patient.IdNumber = editPatient.IdNumber;
+                patient.LastName = editPatient.LastName;
+                patient.Name = editPatient.Name;
+                patient.Password = editPatient.Password;
+                patient.Phone = editPatient.Phone;
+                patient.Username = editPatient.Username;
+                patient.BloodType = editPatient.BloodType;
+                patient.DateOfBirth = editPatient.DateOfBirth;
+                patient.Email = editPatient.Email;
+                patient.Gender = editPatient.Gender;
+                patient.IsActive = editPatient.IsActive;
             }
-            Write();
+            Write(list);
         }
 
         public void Delete(int id)
         {
-            for (int i = _patients.Count - 1; i >= 0; i--)
+            var list = Read();
+            foreach (var resp in list.Where(resp => resp.Id == id))
             {
-                if (_patients[i].Id.Equals(id))
-                {
-                    _patients.Remove(_patients[i]);
-                }
+                list.Remove(resp);
             }
-            Write();
+            Write(list);
         }
 
-        public void Write()
+        public void Write(List<Patient> list)
         {
-            _serializer.Write(_patients);
+            _serializer.Write(list);
         }
 
         public Patient ReadByUsername(string username)
         {
-            _patients = _serializer.Read();
-            foreach (Patient user in _patients)
+            foreach (Patient user in Read())
             {
-                if (user.Username == username)
+                if (user.Username != username)
                 {
-                    Address address = _addressRepository.ReadById(user.AddressId);
-                    if (address != null)
-                    {
-                        user.Address = address;
-                        return user;
-                    }
+                    continue;
+                }
+                Address address = _addressRepository.ReadById(user.AddressId);
+                if (address == null)
+                {
                     return user;
                 }
+                user.Address = address;
+                return user;
             }
             return null;
         }

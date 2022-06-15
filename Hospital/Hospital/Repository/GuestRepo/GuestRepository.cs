@@ -1,72 +1,59 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using Hospital.Model;
 
 namespace Hospital.Repository.GuestRepo
 {
     public class GuestRepository : IGuestRepository
     {
-        private List<Guest> _guests;
         private readonly Serializer<Guest> _serializer;
 
         public GuestRepository()
         {
             _serializer = new Serializer<Guest>("guests.csv");
-            _guests = new List<Guest>();
         }
 
         public List<Guest> Read()
         {
-            _guests = _serializer.Read();
-            return _guests;
+            return _serializer.Read();
         }
 
         public Guest ReadById(int id)
         {
-            foreach (Guest guest in _guests)
-            {
-                if (guest.Id.Equals(id))
-                {
-                    return guest;
-                }
-            }
-            return null;
+            return Read().FirstOrDefault(guest => guest.Id.Equals(id));
         }
 
         public void Create(Guest newGuest)
         {
-            _guests.Add(newGuest);
-            Write();
+            var list = Read();
+            list.Add(newGuest);
+            Write(list);
         }
 
         public void Edit(Guest editGuest)
         {
-            foreach (Guest guest in _guests)
+            var list = Read();
+            foreach (var guest in list.Where(guest => editGuest.Id.Equals(guest.Id)))
             {
-                if (editGuest.Id.Equals(guest.Id))
-                {
-                    //guest.Name = editGuest.Name;
-                    //guest.LastName = editGuest.LastName;
-                }
+                
             }
-            Write();
+            Write(list);
         }
 
         public void Delete(int id)
         {
-            for (int i = _guests.Count - 1; i >= 0; i--)
+            var list = Read();
+            foreach (var resp in list.Where(resp => resp.Id == id))
             {
-                if (_guests[i].Id.Equals(id))
-                {
-                    _guests.Remove(_guests[i]);
-                }
+                list.Remove(resp);
             }
-            Write();
+            Write(list);
         }
 
-        public void Write()
+        public void Write(List<Guest> list)
         {
-            _serializer.Write(_guests);
+            _serializer.Write(list);
         }
     }
 }
