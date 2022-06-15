@@ -1,29 +1,27 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using Hospital.Model;
 
 namespace Hospital.Repository.TherapyRepo
 {
     public class TherapyRepository : ITherapyRepository
     {
-        private List<Therapy> _therapies;
         private readonly Serializer<Therapy> _serializer;
 
         public TherapyRepository()
         {
             _serializer = new Serializer<Therapy>("therapies.csv");
-            _therapies = new List<Therapy>();
         }
 
         public List<Therapy> Read()
         {
-            _therapies = _serializer.Read();
-            return _therapies;
+            return _serializer.Read();
         }
 
         public Therapy ReadById(int id)
         {
-            foreach (Therapy therapy in _therapies)
+            foreach (Therapy therapy in Read())
             {
                 if (therapy.Id.Equals(id))
                 {
@@ -38,7 +36,7 @@ namespace Hospital.Repository.TherapyRepo
 
             List<Therapy> result = new List<Therapy>(); 
 
-            foreach (Therapy therapy in _therapies)
+            foreach (Therapy therapy in Read())
             {
                 if (therapy.PatientId.Equals(PatientId))
                 {
@@ -51,13 +49,15 @@ namespace Hospital.Repository.TherapyRepo
 
         public void Create(Therapy newTherapy)
         {
-            _therapies.Add(newTherapy);
-            Write();
+            var list = Read();
+            list.Add(newTherapy);
+            Write(list);
         }
 
         public void Edit(Therapy editTherapy)
         {
-            foreach (Therapy therapy in _therapies)
+            var list = Read();
+            foreach (Therapy therapy in list)
             {
                 if (editTherapy.Id.Equals(therapy.Id))
                 {
@@ -65,24 +65,21 @@ namespace Hospital.Repository.TherapyRepo
                     therapy.Time = editTherapy.Time;
                 }
             }
-            Write();
+            Write(list);
         }
-
         public void Delete(int id)
         {
-            for (int i = _therapies.Count - 1; i >= 0; i--)
+            var list = Read();
+            foreach (var resp in list.Where(resp => resp.Id == id))
             {
-                if (_therapies[i].Id.Equals(id))
-                {
-                    _therapies.Remove(_therapies[i]);
-                }
+                list.Remove(resp);
             }
-            Write();
+            Write(list);
         }
 
-        public void Write()
+        public void Write(List<Therapy> list)
         {
-            _serializer.Write(_therapies);
+            _serializer.Write(list);
         }
     }
 }

@@ -1,29 +1,27 @@
 using Hospital.Model;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace Hospital.Repository.RoomRepo
 {
     public class RoomRepository : IRoomRepository
     {
-        private List<Room> _rooms;
         private readonly Serializer<Room> _serializer;
 
         public RoomRepository()
         {
             _serializer = new Serializer<Room>("rooms.csv");
-            _rooms = new List<Room>();
         }
    
         public List<Room> Read()
         {
-            _rooms = _serializer.Read();
-            return _rooms;
+            return _serializer.Read();
         }
 
         public Room ReadById(int id)
         {
-            foreach (Room room in _rooms)
+            foreach (Room room in Read())
             {
                 if (room.Id.Equals(id))
                 {
@@ -35,13 +33,15 @@ namespace Hospital.Repository.RoomRepo
 
         public void Create(Room newRoom)
         {
-            _rooms.Add(newRoom);
-            Write();
+            var list = Read();
+            list.Add(newRoom);
+            Write(list);
         }
 
         public void Edit(Room editRoom)
         {
-            foreach (Room room in _rooms)
+            var list = Read();
+            foreach (Room room in list)
             {
                 if (room.Id.Equals(editRoom.Id))
                 {
@@ -50,24 +50,22 @@ namespace Hospital.Repository.RoomRepo
                     room.Type = editRoom.Type;
                 }
             }
-            Write();
+            Write(list);
         }
 
         public void Delete(int id)
         {
-            for (int i = _rooms.Count - 1; i >= 0; i--)
+            var list = Read();
+            foreach (var resp in list.Where(resp => resp.Id == id))
             {
-                if (_rooms[i].Id.Equals(id))
-                {
-                    _rooms.Remove(_rooms[i]);
-                }
+                list.Remove(resp);
             }
-            Write();
+            Write(list);
         }
-   
-        public void Write()
+
+        public void Write(List<Room> list)
         {
-            _serializer.Write(_rooms);
+            _serializer.Write(list);
         }
     }
 }

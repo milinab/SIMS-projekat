@@ -1,28 +1,26 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using Hospital.Model;
 
 namespace Hospital.Repository.SecretaryRepo
 {
     public class SecretaryRepository : ISecretaryRepository
     {
-        private List<Secretary> _secretaries;
         private readonly Serializer<Secretary> _serializer;
         public SecretaryRepository()
         {
             _serializer = new Serializer<Secretary>("secretaries.csv");
-            _secretaries = new List<Secretary>();
         }
 
         public List<Secretary> Read()
         {
-            _secretaries = _serializer.Read();
-            return _secretaries;
+            return _serializer.Read();
         }
 
         public Secretary ReadById(int id)
         {
-            foreach (Secretary secretary in _secretaries)
+            foreach (Secretary secretary in Read())
             {
                 if (secretary.Id.Equals(id))
                 {
@@ -34,13 +32,15 @@ namespace Hospital.Repository.SecretaryRepo
 
         public void Create(Secretary newSecretary)
         {
-            _secretaries.Add(newSecretary);
-            Write();
+            var list = Read();
+            list.Add(newSecretary);
+            Write(list);
         }
 
         public void Edit(Secretary editSecretary)
         {
-            foreach (Secretary secretary in _secretaries)
+            var list = Read();
+            foreach (Secretary secretary in list)
             {
                 if (secretary.Id.Equals(editSecretary.Id))
                 {
@@ -57,24 +57,22 @@ namespace Hospital.Repository.SecretaryRepo
                     secretary.Vacation = editSecretary.Vacation;
                 }
             }
-            Write();
+            Write(list);
         }
 
         public void Delete(int id)
         {
-            for (int i = _secretaries.Count - 1; i >= 0; i--)
+            var list = Read();
+            foreach (var resp in list.Where(resp => resp.Id == id))
             {
-                if (_secretaries[i].Id.Equals(id))
-                {
-                    _secretaries.Remove(_secretaries[i]);
-                }
+                list.Remove(resp);
             }
-            Write();
+            Write(list);
         }
 
-        public void Write()
+        public void Write(List<Secretary> list)
         {
-            _serializer.Write(_secretaries);
+            _serializer.Write(list);
         }
     }
 }

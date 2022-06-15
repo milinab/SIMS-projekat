@@ -8,45 +8,45 @@ namespace Hospital.Repository.VacationRepo
 {
     public class VacationRepository : IVacationRepository
     {
-        private List<Vacation> _vacations;
         private readonly Serializer<Vacation> _serializer;
         private readonly DoctorRepository _doctorRepository;
 
         public VacationRepository(DoctorRepository doctorRepository)
         {
             _serializer = new Serializer<Vacation>("vacations.csv");
-            _vacations = new List<Vacation>();
             _doctorRepository = doctorRepository;
         }
 
         public List<Vacation> Read()
         {
-            _vacations = _serializer.Read().ToList();
-            foreach (var vacation in _vacations)
+            var list = _serializer.Read().ToList();
+            foreach (var vacation in list)
             {
                 var doctor = _doctorRepository.ReadById(vacation.DoctorId);
                 if (doctor == null) continue;
                 vacation.Doctor = doctor;
             }
             
-            return _vacations;
+            return list;
         }
 
         public Vacation ReadById(int id)
         {
-            _vacations = _serializer.Read().ToList();
-            return _vacations.FirstOrDefault(vacation => vacation.Id == id);
+            var list = _serializer.Read().ToList();
+            return list.FirstOrDefault(vacation => vacation.Id == id);
         }
 
         public void Create(Vacation newVacation)
         {
-            _vacations.Add(newVacation);
-            Write();
+            var list = Read();
+            list.Add(newVacation);
+            Write(list);
         }
 
         public void Edit(Vacation editVacation)
         {
-            foreach (Vacation vacation in _vacations)
+            var list = Read();
+            foreach (Vacation vacation in list)
             {
                 if (editVacation.Id.Equals(vacation.Id))
                 {
@@ -57,25 +57,22 @@ namespace Hospital.Repository.VacationRepo
                 }
             }
 
-            Write();
+            Write(list);
         }
 
         public void Delete(int id)
         {
-            for (int i = _vacations.Count - 1; i >= 0; i--)
+            var list = Read();
+            foreach (var resp in list.Where(resp => resp.Id == id))
             {
-                if (_vacations[i].Id.Equals(id))
-                {
-                    _vacations.Remove(_vacations[i]);
-                }
+                list.Remove(resp);
             }
-
-            Write();
+            Write(list);
         }
 
-        public void Write()
+        public void Write(List<Vacation>list)
         {
-            _serializer.Write(_vacations);
+            _serializer.Write(list);
         }
     }
 }

@@ -107,7 +107,14 @@ namespace Hospital.View.PatientView
                 var a = SelectedItem.Date;
 
                 Appointment appointment = new Appointment(a, new TimeSpan(0, 30, 00), SelectedItem.Doctor, patient, room);
-                app._appointmentController.Create(appointment);
+                try
+                {
+                    app._appointmentController.Create(appointment);
+                }
+                catch (Exception AppointmentException)
+                {
+
+                }   
                 _patientWindow.BackToPatientWindow();
             }
         }

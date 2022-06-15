@@ -1,29 +1,27 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using Hospital.Model;
 
 namespace Hospital.Repository.SurgeryRepo
 {
     public class SurgeryRepository : ISurgeryRepository
     {
-        private List<Surgery> _surgeries;
         private readonly Serializer<Surgery> _serializer;
 
         public SurgeryRepository()
         {
             _serializer = new Serializer<Surgery>("surgeries.csv");
-            _surgeries = new List<Surgery>();
         }
 
         public List<Surgery> Read()
         {
-            _surgeries = _serializer.Read();
-            return _surgeries;
+            return _serializer.Read();
         }
 
         public Surgery ReadById(int id)
         {
-            foreach (Surgery surgery in _surgeries)
+            foreach (Surgery surgery in Read())
             {
                 if (surgery.Id.Equals(id))
                 {
@@ -35,13 +33,15 @@ namespace Hospital.Repository.SurgeryRepo
 
         public void Create(Surgery newSurgery)
         {
-            _surgeries.Add(newSurgery);
-            Write();
+            var list = Read();
+            list.Add(newSurgery);
+            Write(list);
         }
 
         public void Edit(Surgery editSurgery)
         {
-            foreach (Surgery surgery in _surgeries)
+            var list = Read();
+            foreach (Surgery surgery in list)
             {
                 if (editSurgery.Id.Equals(surgery.Id))
                 {
@@ -49,24 +49,22 @@ namespace Hospital.Repository.SurgeryRepo
                     surgery.Duration = editSurgery.Duration;
                 }
             }
-            Write();
+            Write(list);
         }
 
         public void Delete(int id)
         {
-            for (int i = _surgeries.Count - 1; i >= 0; i--)
+            var list = Read();
+            foreach (var resp in list.Where(resp => resp.Id == id))
             {
-                if (_surgeries[i].Id.Equals(id))
-                {
-                    _surgeries.Remove(_surgeries[i]);
-                }
+                list.Remove(resp);
             }
-            Write();
+            Write(list);
         }
 
-        public void Write()
+        public void Write(List<Surgery> list)
         {
-            _serializer.Write(_surgeries);
+            _serializer.Write(list);
         }
     }
 }
