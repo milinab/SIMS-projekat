@@ -4,7 +4,7 @@ using Hospital.Model;
 
 namespace Hospital.Repository.TrollRepo
 {
-    public class TrolRepository
+    public class TrolRepository : ITrolRepository
     {
         private List<Trol> _trols;
         private readonly Serializer<Trol> _serializer;

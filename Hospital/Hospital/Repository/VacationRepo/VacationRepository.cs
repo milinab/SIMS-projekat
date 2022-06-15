@@ -6,7 +6,7 @@ using Hospital.Repository.DoctorRepo;
 
 namespace Hospital.Repository.VacationRepo
 {
-    public class VacationRepository
+    public class VacationRepository : IVacationRepository
     {
         private List<Vacation> _vacations;
         private readonly Serializer<Vacation> _serializer;

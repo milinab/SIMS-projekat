@@ -2,7 +2,7 @@
 
 namespace Hospital.Repository.AllergenRepository
 {
-    internal interface IAllergenRepository : IRepositoryBase<Allergen,int>
+    public interface IAllergenRepository : IRepositoryBase<Allergen,int>
     {
     }
 }

@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 
 namespace Hospital.Repository.RoomRepo
 {
-    public class RoomRepository
+    public class RoomRepository : IRoomRepository
     {
         private List<Room> _rooms;
         private readonly Serializer<Room> _serializer;

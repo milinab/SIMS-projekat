@@ -4,15 +4,16 @@ using System.Linq;
 using Hospital.Exceptions;
 using Hospital.Model;
 using Hospital.Repository;
+using Hospital.Repository.VacationRepo;
 
 namespace Hospital.Service
 {
     public class VacationService
     {
         private int _id;
-        private readonly VacationRepository _repository;
+        private readonly IVacationRepository _repository;
         
-        public VacationService(VacationRepository vacationRepository)
+        public VacationService(IVacationRepository vacationRepository)
         {
             _repository = vacationRepository;
             List<Vacation> vacations = Read();

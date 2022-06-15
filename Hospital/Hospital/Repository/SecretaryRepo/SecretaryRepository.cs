@@ -4,7 +4,7 @@ using Hospital.Model;
 
 namespace Hospital.Repository.SecretaryRepo
 {
-    public class SecretaryRepository
+    public class SecretaryRepository : ISecretaryRepository
     {
         private List<Secretary> _secretaries;
         private readonly Serializer<Secretary> _serializer;
