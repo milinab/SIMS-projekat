@@ -75,9 +75,10 @@
                     Width="260" 
                     Height="30" 
                     FontSize="18" 
-                    SelectedDate="{Binding Date, Mode=OneWay}" 
+                    SelectedDate="{Binding Date}" 
                     DisplayDateStart="{x:Static sys:DateTime.Today}"
-                    Text="{Binding CurrentAppointmentValidation.Date, Mode=TwoWay}"/>
+                    Text="{Binding CurrentAppointmentValidation.Date, Mode=TwoWay}"
+                    Validation.ErrorTemplate="{x:Null}"/>
             </Border>
             <Border 
                 Style="{StaticResource BorderStyle}"

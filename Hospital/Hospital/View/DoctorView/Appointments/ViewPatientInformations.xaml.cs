@@ -4,10 +4,10 @@ using Hospital.Model;
 
 namespace Hospital.View.DoctorView.Appointments
 {
-    public partial class ViewPatientInformations : Page
+    public partial class PatientInformationPage : Page
     {
         
-        public ViewPatientInformations(Appointment app)
+        public PatientInformationPage(Appointment app)
         {
             InitializeComponent();
             Patient patient = app.Patient;

@@ -678,5 +678,16 @@
             </Setter.Value>
         </Setter>
     </Style>
+    
+    <Style TargetType="ItemsControl" x:Key="ItemsControlStyle">
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="Padding" Value="2 0 0 0"/>
+        <Setter Property="FontFamily" Value="Roboto"/>
+        <Setter Property="Foreground">
+            <Setter.Value>
+                <SolidColorBrush Color="#FFFFFF" Opacity="0.87"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
 </ResourceDictionary>

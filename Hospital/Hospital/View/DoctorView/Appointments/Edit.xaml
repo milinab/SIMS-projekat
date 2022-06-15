@@ -144,7 +144,13 @@
                     Style="{StaticResource ListBoxStyle}"
                     Width="260" 
                     Height="166"
-                    FontSize="18"/>
+                    FontSize="18">
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel HorizontalAlignment="Center" Margin="0 0 12 0"/>
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                </ListBox>
             </Border>
             <Border 
                 Style="{StaticResource BorderStyle}"
@@ -158,7 +164,13 @@
                     Style="{StaticResource ListBoxStyle}"
                     Width="260" 
                     Height="166"
-                    FontSize="18"/>
+                    FontSize="18">
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel HorizontalAlignment="Center" Margin="0 0 12 0"/>
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                </ListBox>
             </Border>
             <Button
                 Content="Confirm" 

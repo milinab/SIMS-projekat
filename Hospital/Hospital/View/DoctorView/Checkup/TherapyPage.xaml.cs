@@ -65,13 +65,13 @@ namespace Hospital.View.DoctorView.Checkup
                         {
                             if (allergenId == allergen.Id && _patient.MedicalRecord.AllergenIds.Contains(allergen.Id))
                             {
-                                if (MessageBox.Show(
-                                        "Patient is allergic to the chosen medicine. Are you sure you want to proceed?",
-                                        "Warning", MessageBoxButton.YesNo) == MessageBoxResult.No)
-                                {
-                                    MainWindow.MainFrame.Navigate(new TherapyPage(_patient));
-                                    return;
-                                }
+                                //if (MessageBox.Show(
+                                //        "Patient is allergic to the chosen medicine. Are you sure you want to proceed?",
+                                //        "Warning", MessageBoxButton.YesNo) == MessageBoxResult.No)
+                                //{
+                                //    MainWindow.MainFrame.Navigate(new TherapyPage(_patient));
+                                //    return;
+                                //}
                                 displayAllergens.Add(allergen.Name);
                             }
                         }

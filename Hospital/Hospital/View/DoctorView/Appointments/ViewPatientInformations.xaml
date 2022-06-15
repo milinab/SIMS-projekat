@@ -1,4 +1,4 @@
-<Page x:Class="Hospital.View.DoctorView.Appointments.ViewPatientInformations"
+<Page x:Class="Hospital.View.DoctorView.Appointments.PatientInformationPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -85,7 +85,8 @@
                     Height="30"
                     Width="260"
                     FontSize="20"
-                    IsReadOnly="True"/>
+                    IsReadOnly="True"
+                    Padding="3 4 0 0"/>
             </Border>
             <Border 
                 Style="{StaticResource BorderStyle}"
@@ -100,7 +101,8 @@
                     Height="30"
                     Width="260"
                     FontSize="20"
-                    IsReadOnly="True"/>
+                    IsReadOnly="True"
+                    Padding="3 4 0 0"/>
             </Border>
             <Border 
                 Style="{StaticResource BorderStyle}"
@@ -115,7 +117,8 @@
                     Height="30"
                     Width="260"
                     FontSize="20"
-                    IsReadOnly="True"/>
+                    IsReadOnly="True"
+                    Padding="3 4 0 0"/>
             </Border>
             <Border 
                 Style="{StaticResource BorderStyle}"
@@ -130,7 +133,8 @@
                     Height="30"
                     Width="260"
                     FontSize="20"
-                    IsReadOnly="True"/>
+                    IsReadOnly="True"
+                    Padding="3 4 0 0"/>
             </Border>
             <Border 
                 Style="{StaticResource BorderStyle}"
@@ -145,7 +149,8 @@
                     Height="30"
                     Width="260"
                     FontSize="20"
-                    IsReadOnly="True"/>
+                    IsReadOnly="True"
+                    Padding="3 4 0 0"/>
             </Border>
             <Border 
                 Style="{StaticResource BorderStyle}"
@@ -156,12 +161,10 @@
                 VerticalAlignment="Top">
                 <ItemsControl 
                     Name="ChronicDiseasesItemsControl"
+                    Style="{StaticResource ItemsControlStyle}"
                     Height="120" 
                     Width="260" 
-                    FontSize="20"
-                    Padding="2 0 0 0"
-                    FontFamily="Roboto"
-                    Foreground="#0F5A96"/>
+                    Padding="3 4 0 0"/>
             </Border>
             <Border 
                 Style="{StaticResource BorderStyle}"
@@ -172,12 +175,10 @@
                 VerticalAlignment="Top">
                 <ItemsControl 
                     Name="AllergiesItemsControl"
+                    Style="{StaticResource ItemsControlStyle}"
                     Height="120" 
-                    Width="260" 
-                    FontSize="20"
-                    Padding="2 0 0 0"
-                    FontFamily="Roboto"
-                    Foreground="#0F5A96"/>
+                    Width="260"
+                    Padding="3 4 0 0"/>
             </Border>
             
             <Button 

@@ -18,8 +18,26 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid Column="0" Row="0">
-            <Button Name="EquipmentProcurement" Style="{StaticResource CheckupButton}" Content="Equipment procurement" FontSize="50" HorizontalAlignment="Center" VerticalAlignment="Top" Width="700" Height="384" Click="EquipmentProcurement_OnClick"/>
-            <Button Name="Vacation" Style="{StaticResource CheckupButton}" Content="Vacation" FontSize="50" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="700" Height="384" Click="Vacation_OnClick"/>
+            <Button 
+                Name="EquipmentProcurement" 
+                Style="{StaticResource CheckupButton}" 
+                Content="Equipment procurement"
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Top" 
+                Width="500" 
+                Height="300" 
+                Margin="0 50 0 0"
+                Click="EquipmentProcurement_OnClick"/>
+            <Button 
+                Name="Vacation" 
+                Style="{StaticResource CheckupButton}" 
+                Content="Vacation" 
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Bottom" 
+                Width="500" 
+                Height="300" 
+                Margin="0 0 0 50"
+                Click="Vacation_OnClick"/>
         </Grid>
     </Grid>
 </Page>

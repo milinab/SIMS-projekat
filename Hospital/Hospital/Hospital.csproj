@@ -827,11 +827,6 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="View\DoctorView\Checkup\logo.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="View\DoctorView\Resources\Reports" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
